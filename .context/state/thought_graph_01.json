@@ -1,0 +1,16 @@
+{
+  "session_id": "01",
+  "axioms": [
+    "User wants a complete and exhaustive analysis of their DNA file",
+    "Max depth reasoning is required",
+    "Must cover health, diet, fitness, and psychology"
+  ],
+  "lateral_prism": {
+    "Track_A_Clinical": "Analyse disease risk, methylation, heart health, and pharmacogenomics",
+    "Track_B_Optimization": "Analyse diet, metabolism, vitamins, and physical fitness markers",
+    "Track_C_Behavioral": "Analyse neurotransmitters, addiction risk, and cognitive baselines"
+  },
+  "plan": "Write a python script with a massive dictionary of SNPs. Run it on the DNA file. Synthesize into a giant report.",
+  "review": "Checked for accuracy: ensuring standard 23andMe/Ancestry rsID mappings are used. Will note if SNPs are missing.",
+  "convergence_score": 95
+}

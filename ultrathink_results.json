@@ -1,0 +1,202 @@
+{
+  "Track_A_Clinical": [
+    {
+      "rsid": "rs1801133",
+      "trait": "MTHFR (Methylation)",
+      "genotype": "AG",
+      "context": "C = Normal. T = Reduced enzyme activity (requires methylated folate/B12)."
+    },
+    {
+      "rsid": "rs1801131",
+      "trait": "MTHFR (Methylation)",
+      "genotype": "TT",
+      "context": "A = Normal. C = Reduced enzyme activity."
+    },
+    {
+      "rsid": "rs7412",
+      "trait": "APOE (Alzheimers/Cardio)",
+      "genotype": "CC",
+      "context": "Marker 1 for APOE status."
+    },
+    {
+      "rsid": "rs429358",
+      "trait": "APOE (Alzheimers/Cardio)",
+      "genotype": "NOT_FOUND",
+      "context": "Marker 2 for APOE status. C = Risk allele (e4)."
+    },
+    {
+      "rsid": "rs1799945",
+      "trait": "HFE (Hemochromatosis)",
+      "genotype": "CG",
+      "context": "C = Normal. G = Hemochromatosis risk (H63D)."
+    },
+    {
+      "rsid": "rs1800562",
+      "trait": "HFE (Hemochromatosis)",
+      "genotype": "GG",
+      "context": "G = Normal. A = Hemochromatosis risk (C282Y)."
+    },
+    {
+      "rsid": "rs738409",
+      "trait": "PNPLA3 (Fatty Liver)",
+      "genotype": "CG",
+      "context": "C = Normal. G = High risk of NAFLD."
+    },
+    {
+      "rsid": "rs12255372",
+      "trait": "TCF7L2 (Type 2 Diabetes)",
+      "genotype": "TG",
+      "context": "G = Normal. T = Higher risk of T2D."
+    },
+    {
+      "rsid": "rs7903146",
+      "trait": "TCF7L2 (Type 2 Diabetes)",
+      "genotype": "TC",
+      "context": "C = Normal. T = Higher risk of T2D."
+    },
+    {
+      "rsid": "rs1800629",
+      "trait": "TNF-Alpha (Inflammation)",
+      "genotype": "AG",
+      "context": "G = Normal. A = Higher baseline inflammation/autoimmune risk."
+    },
+    {
+      "rsid": "rs662",
+      "trait": "PON1 (Heart Disease/Toxins)",
+      "genotype": "TC",
+      "context": "A = Low enzyme activity. G = High enzyme activity (protective)."
+    },
+    {
+      "rsid": "rs174537",
+      "trait": "FADS1 (Omega-3 Metabolism)",
+      "genotype": "GG",
+      "context": "G = Normal EPA/DHA synthesis. T = Poor conversion of plant Omega-3s."
+    }
+  ],
+  "Track_B_Optimization": [
+    {
+      "rsid": "rs4988235",
+      "trait": "MCM6 (Lactose Tolerance)",
+      "genotype": "AA",
+      "context": "A/G = Tolerant. G/G = Intolerant (European)."
+    },
+    {
+      "rsid": "rs9939609",
+      "trait": "FTO (Obesity Risk)",
+      "genotype": "TT",
+      "context": "T = Normal. A = Higher obesity risk, lower satiety."
+    },
+    {
+      "rsid": "rs1801282",
+      "trait": "PPARG (Insulin Sensitivity)",
+      "genotype": "CG",
+      "context": "C = Normal. G = Better insulin sensitivity."
+    },
+    {
+      "rsid": "rs762551",
+      "trait": "CYP1A2 (Caffeine Metabolism)",
+      "genotype": "AC",
+      "context": "A = Fast metabolizer. C = Slow metabolizer (caffeine disrupts sleep/blood pressure)."
+    },
+    {
+      "rsid": "rs1815739",
+      "trait": "ACTN3 (Muscle Fiber)",
+      "genotype": "TC",
+      "context": "C = Fast twitch (Power). T = Slower twitch (Endurance)."
+    },
+    {
+      "rsid": "rs1042713",
+      "trait": "ADRB2 (Exercise Response)",
+      "genotype": "GG",
+      "context": "A = Good response to endurance. G = Good response to resistance training."
+    },
+    {
+      "rsid": "rs4341",
+      "trait": "ACE (Blood Pressure/Fitness)",
+      "genotype": "NOT_FOUND",
+      "context": "G = Power/Strength bias. C = Endurance bias."
+    },
+    {
+      "rsid": "rs1544410",
+      "trait": "VDR (Vitamin D Receptor)",
+      "genotype": "CC",
+      "context": "A = Higher need for Vitamin D. G = Normal."
+    }
+  ],
+  "Track_C_Behavior": [
+    {
+      "rsid": "rs4680",
+      "trait": "COMT (Warrior/Worrier)",
+      "genotype": "GG",
+      "context": "G = Warrior (Fast dopamine clearance). A = Worrier (Slow dopamine clearance)."
+    },
+    {
+      "rsid": "rs53576",
+      "trait": "OXTR (Empathy/Stress)",
+      "genotype": "AA",
+      "context": "G = Highly empathetic. A = Introverted, less sensitive to social stress."
+    },
+    {
+      "rsid": "rs1800497",
+      "trait": "DRD2 (Dopamine Receptor)",
+      "genotype": "GG",
+      "context": "G = Normal. A = Fewer D2 receptors (risk of addiction/overeating)."
+    },
+    {
+      "rsid": "rs25531",
+      "trait": "SLC6A4 (Serotonin Transporter)",
+      "genotype": "NOT_FOUND",
+      "context": "Related to serotonin reuptake (often grouped with 5-HTTLPR)."
+    },
+    {
+      "rsid": "rs1800955",
+      "trait": "DRD4 (Novelty Seeking)",
+      "genotype": "NOT_FOUND",
+      "context": "C = Normal. T = Higher novelty seeking / risk taking."
+    },
+    {
+      "rsid": "rs6265",
+      "trait": "BDNF (Brain Plasticity)",
+      "genotype": "TC",
+      "context": "G = Normal BDNF production. A = Lower BDNF (harder to learn under stress)."
+    },
+    {
+      "rsid": "rs1611115",
+      "trait": "DBH (Dopamine Beta-Hydroxylase)",
+      "genotype": "CC",
+      "context": "C = Normal dopamine->norepinephrine conversion. T = Slower conversion (prone to brain fog)."
+    },
+    {
+      "rsid": "rs1801260",
+      "trait": "CLOCK (Circadian Rhythm)",
+      "genotype": "AA",
+      "context": "T = Morning person. C = Evening person."
+    }
+  ],
+  "Track_D_Traits": [
+    {
+      "rsid": "rs1799971",
+      "trait": "OPRM1 (Opioid/Pain Sensitivity)",
+      "genotype": "AA",
+      "context": "A = Normal. G = Requires more anesthesia/opioids for pain relief."
+    },
+    {
+      "rsid": "rs1045642",
+      "trait": "ABCB1 (Drug Transporter)",
+      "genotype": "AA",
+      "context": "C = Normal. T = Altered drug transport in gut/blood-brain barrier."
+    },
+    {
+      "rsid": "rs12913832",
+      "trait": "HERC2 (Eye Color)",
+      "genotype": "AA",
+      "context": "A = Brown/Dark. G = Blue/Light."
+    },
+    {
+      "rsid": "rs1805007",
+      "trait": "MC1R (Red Hair/Sun)",
+      "genotype": "CC",
+      "context": "C = Normal. T = Burn easily/Red hair."
+    }
+  ]
+}

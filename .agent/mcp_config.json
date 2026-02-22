@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "athena": {
+      "command": "python",
+      "args": ["-m", "athena.mcp_server"],
+      "cwd": "C:/Users/prisc/Documents/Athena-Public"
+    }
+  }
+}
