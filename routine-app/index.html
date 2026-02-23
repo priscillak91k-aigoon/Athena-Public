@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symphony | Daily Routine Optimizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="background-effects">
+        <div class="blur-blob blob-1"></div>
+        <div class="blur-blob blob-2"></div>
+    </div>
+
+    <div class="app-container">
+        <header class="glass-panel">
+            <div class="date-display">
+                <span id="current-date">Tuesday, Feb 24</span>
+                <span class="badge">Day Off</span>
+            </div>
+            <h1>Symphony</h1>
+            <p class="subtitle">Your dynamic routine tracker & visual schedule.</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="today">Today's Schedule</button>
+            <button class="tab-btn" data-tab="daily">Daily Candidates</button>
+            <button class="tab-btn" data-tab="weekly">Weekly/Monthly</button>
+            <button class="tab-btn" data-tab="dog">Quinny</button>
+            <button class="tab-btn" data-tab="workout">Workout</button>
+            <button class="tab-btn" data-tab="bio">Bio Tracking</button>
+        </div>
+
+        <main class="content-area">
+            <!-- Today's View -->
+            <section id="today" class="tab-content active glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">✨</span> Today's Action Plan</h2>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="today-progress"></div>
+                    </div>
+                </div>
+                <div class="timeline" id="today-timeline">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Daily Candidates View -->
+            <section id="daily" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">📋</span> Daily Routine Queue</h2>
+                    <p class="sub-text">Tasks to organize on March 25th.</p>
+                </div>
+                <ul class="task-list" id="daily-list">
+                    <!-- Populated by JS -->
+                </ul>
+            </section>
+
+            <!-- Weekly/Monthly View -->
+            <section id="weekly" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">📅</span> Weekly & Monthly Objectives</h2>
+                </div>
+                <div class="grid-2-col">
+                    <div class="sub-panel">
+                        <h3>Weekly Reset</h3>
+                        <ul class="task-list" id="weekly-list"></ul>
+                    </div>
+                    <div class="sub-panel">
+                        <h3>Monthly Audit</h3>
+                        <ul class="task-list" id="monthly-list"></ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dog Protocol View -->
+            <section id="dog" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">🐶</span> Quinny's Training Protocol</h2>
+                </div>
+                <div class="grid-2-col">
+                    <div class="sub-panel">
+                        <h3>Phase 1: House Training</h3>
+                        <div class="workout-rules" style="margin-top: 1rem;">
+                            <strong>🔔 Bell Training:</strong> Touch her nose to the bells before opening the main house
+                            door. Wait for her to nudge it. Over 2-3 weeks, break the caravan association.
+                        </div>
+                    </div>
+                    <div class="sub-panel">
+                        <h3>Phase 2: Daily Manners</h3>
+                        <ul class="task-list" id="dog-training-list">
+                            <!-- Populated by JS -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Workout Plan View -->
+            <section id="workout" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">💪</span> Longevity & Stability Workout</h2>
+                    <p class="sub-text">3-Day Split (10kg DB, 3kg DBs, 8kg KB, Bench)</p>
+                </div>
+
+                <div class="workout-rules">
+                    <strong>⚖️ The "Left Side First" Rule:</strong> Start unilateral moves on the weaker left side.
+                    Match reps on the right. <br>
+                    <strong>⏱️ Tempo:</strong> 3-1-1 (3 seconds down, 1 second pause, 1 second up).<br>
+                    <strong>🦶 Foot Rehab (Post-Walk):</strong> 30s Kneeling Heel Sit, 10x Slow Eccentric Right-to-Left
+                    Calf Drops, 2min Frozen Bottle Roll.
+                </div>
+
+                <div class="grid-3-col" id="workout-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Bio & Health View -->
+            <section id="bio" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">🩸</span> Biological Tracking & Supplements</h2>
+                </div>
+                <div class="grid-3-col">
+                    <div class="sub-panel" style="grid-column: span 2;">
+                        <h3>Supplement Protocol (HealthPost NZ)</h3>
+                        <ul class="task-list" id="supplements-list">
+                            <!-- Populated by JS -->
+                        </ul>
+                        <div class="workout-rules" style="margin-top: 1rem; font-size: 0.85rem;">
+                            <strong>Note:</strong> Order from HealthPost NZ for a single shipment. Avoid NAC blends with
+                            Selenium to protect thyroid.
+                        </div>
+                    </div>
+                    <div class="sub-panel">
+                        <h3>Recent Iron Panel (26/08/2024)</h3>
+                        <ul class="workout-list" style="margin-top: 1rem;">
+                            <li><strong>Ferritin:</strong> 205 ug/L <span
+                                    style="color:var(--accent-purple)">[High]</span></li>
+                            <li><strong>Iron:</strong> 9 umol/L <span style="color:var(--accent-purple)">[Low]</span>
+                            </li>
+                            <li><strong>Transferrin Saturation:</strong> 12% <span
+                                    style="color:var(--accent-purple)">[Low]</span></li>
+                        </ul>
+                        <div class="workout-rules" style="margin-top: 1rem; font-size: 0.85rem;">
+                            Elevated ferritin but low iron/saturation indicates an inflammatory process. Repeat when
+                            resolved.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
