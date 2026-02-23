@@ -3,6 +3,9 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Global State
+    let appState = window.SymphonyData;
+
     // ---------------------------------------------------------
     // 1. Security & Lock Screen
     // ---------------------------------------------------------
@@ -45,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------
     // 2. Global State & Initialization
     // ---------------------------------------------------------
-    let appState = window.SymphonyData;
 
     function initDashboard() {
         // Set Date
