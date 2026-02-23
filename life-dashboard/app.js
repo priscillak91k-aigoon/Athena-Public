@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Render everything
         renderTimeline();
+        renderWeekOverview();
         renderChecklist('daily-pool-list', appState.pools.daily, 'pools.daily');
         renderChecklist('weekly-reset-list', appState.pools.weekly, 'pools.weekly');
         renderChecklist('monthly-audit-list', appState.pools.monthly, 'pools.monthly');
@@ -158,6 +159,37 @@ document.addEventListener('DOMContentLoaded', () => {
             container.appendChild(el);
         });
         updateProgress();
+    }
+
+    function renderWeekOverview() {
+        // Render custom notes
+        const notesContainer = document.getElementById('weekly-notes-container');
+        if (appState.weeklyNotes && appState.weeklyNotes.length > 0) {
+            notesContainer.innerHTML = `<strong style="display:block; margin-bottom: 0.5rem; color: #EAB308;">⚠️ Custom Notes & Appointments:</strong>` +
+                appState.weeklyNotes.map(n => `• ${n}`).join('<br>');
+            notesContainer.style.display = 'block';
+        } else {
+            notesContainer.style.display = 'none';
+        }
+
+        // Render week grid
+        const grid = document.getElementById('week-grid');
+        grid.innerHTML = '';
+        if (appState.weekOverview) {
+            appState.weekOverview.forEach(day => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.style.padding = '1.25rem';
+                card.innerHTML = `
+                    <h3 style="display:flex; justify-content:space-between; align-items: center; margin-bottom: 0.5rem;">
+                        ${day.day} 
+                        <span class="badge ${day.type === 'work' ? 'focus' : 'info'}">${day.type.toUpperCase()}</span>
+                    </h3>
+                    <p class="subtext" style="color: rgba(255,255,255,0.8);">${day.focus}</p>
+                `;
+                grid.appendChild(card);
+            });
+        }
     }
 
     function renderChecklist(containerId, listArray, categoryName) {

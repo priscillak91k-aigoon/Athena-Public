@@ -10,6 +10,23 @@ window.SymphonyData = {
     // We will generate the timeline array dynamically below.
     timeline: [],
 
+    // Custom notes/appointments for this week (editable dynamically)
+    weeklyNotes: [
+        "Example Note: Dentist appointment on Thursday at 2:00 PM (Adjusted Longevity Protocol to morning)",
+        "Example Note: Need to buy more dog food this weekend"
+    ],
+
+    // Weekly Bird's Eye View
+    weekOverview: [
+        { day: "Monday", focus: "Work Shift 12pm-6pm | Evening Walk", type: "work" },
+        { day: "Tuesday", focus: "Off Day | Morning Walk | Deep Recovery", type: "off" },
+        { day: "Wednesday", focus: "Off Day | Morning Walk | Attia Protocol", type: "off" },
+        { day: "Thursday", focus: "Off Day | Morning Walk | House Reset", type: "off" },
+        { day: "Friday", focus: "Work Shift 2:45pm-11pm | Morning Walk", type: "work" },
+        { day: "Saturday", focus: "Work Shift 2:45pm-11pm | Morning Walk", type: "work" },
+        { day: "Sunday", focus: "Work Shift 11am-5pm | Evening Walk | Sleep In (8:30am)", type: "work" }
+    ],
+
     // Habit Pools (Tasks that can be pulled in dynamically)
     pools: {
         daily: [

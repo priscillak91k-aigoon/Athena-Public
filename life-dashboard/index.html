@@ -65,6 +65,9 @@
             <button class="nav-btn active" data-tab="timeline">
                 <span class="icon">⏱️</span> Action Timeline
             </button>
+            <button class="nav-btn" data-tab="week-overview">
+                <span class="icon">🗓️</span> Week View
+            </button>
             <button class="nav-btn" data-tab="routines">
                 <span class="icon">📋</span> Core Routines
             </button>
@@ -90,6 +93,21 @@
                     </div>
                 </div>
                 <div class="timeline-container" id="dynamic-timeline">
+                    <!-- Javascript Injected -->
+                </div>
+            </section>
+
+            <!-- 1.5. Week View -->
+            <section id="week-overview" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2>Week at a Glance</h2>
+                </div>
+
+                <div class="alert-box insight" id="weekly-notes-container" style="margin-bottom: 2rem;">
+                    <!-- Javascript Injected -->
+                </div>
+
+                <div class="grid-layout cols-2" id="week-grid">
                     <!-- Javascript Injected -->
                 </div>
             </section>
