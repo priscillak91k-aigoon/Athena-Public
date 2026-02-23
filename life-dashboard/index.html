@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symphony 2.0 | Dynamic Life Dashboard</title>
+    <!-- Modern Font: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Dynamic Ambient Background -->
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Security Lock Screen -->
+    <div id="lock-screen" class="glass-panel lock-container">
+        <h2><span class="icon">🧬</span> Symphony Access</h2>
+        <p class="subtitle" style="margin-bottom: 2rem;">Please enter password to unlock.</p>
+        <div class="password-input-group">
+            <input type="password" id="password-input" placeholder="Enter password...">
+            <button id="unlock-btn" class="btn primary-btn active" style="margin-top: 1rem;">Unlock</button>
+        </div>
+        <div id="password-error" class="error-msg" style="display: none;">Incorrect password.</div>
+    </div>
+
+    <!-- Main Dashboard Application -->
+    <div class="app-container" id="app-content" style="display: none;">
+
+        <!-- Header & Profile -->
+        <header class="dashboard-header glass-panel">
+            <div class="header-top">
+                <div class="header-title">
+                    <h1>Symphony 2.0</h1>
+                    <p class="subtitle">Dynamic Protocol Sync & Dashboard</p>
+                </div>
+                <div class="header-status">
+                    <span class="status-indicator live"></span>
+                    <span id="current-mode-display">Mode: Standard Day</span>
+                </div>
+            </div>
+
+            <div class="header-bottom">
+                <div class="date-widget">
+                    <span class="icon">📅</span>
+                    <span id="current-date-display">...</span>
+                </div>
+
+                <button id="ai-sync-btn" class="btn ai-btn">
+                    <span class="icon">⚡</span> Generate AI Sync Code
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="glass-nav">
+            <button class="nav-btn active" data-tab="timeline">
+                <span class="icon">⏱️</span> Action Timeline
+            </button>
+            <button class="nav-btn" data-tab="routines">
+                <span class="icon">📋</span> Core Routines
+            </button>
+            <button class="nav-btn" data-tab="longevity">
+                <span class="icon">🧬</span> Attia Longevity
+            </button>
+            <button class="nav-btn" data-tab="bio">
+                <span class="icon">🩸</span> Biometrics & Supplements
+            </button>
+        </nav>
+
+        <main class="content-area">
+
+            <!-- 1. Timeline View -->
+            <section id="timeline" class="tab-content active glass-panel">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>Today's Flow</h2>
+                        <span class="badge" id="timeline-progress-text">0%</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="timeline-progress-bar"></div>
+                    </div>
+                </div>
+                <div class="timeline-container" id="dynamic-timeline">
+                    <!-- Javascript Injected -->
+                </div>
+            </section>
+
+            <!-- 2. Core Routines View -->
+            <section id="routines" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2>Daily & Weekly Checklists</h2>
+                </div>
+                <div class="grid-layout cols-2">
+                    <div class="card">
+                        <h3>Daily Candidate Pool</h3>
+                        <p class="subtext">Tasks you can pull into today.</p>
+                        <ul class="interactive-list" id="daily-pool-list"></ul>
+                    </div>
+                    <div class="card">
+                        <h3>Weekly Reset & Maintenance</h3>
+                        <ul class="interactive-list" id="weekly-reset-list"></ul>
+
+                        <h3 style="margin-top:2rem;">Monthly Audit</h3>
+                        <ul class="interactive-list" id="monthly-audit-list"></ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Attia & Nicola Longevity Suite View -->
+            <section id="longevity" class="tab-content glass-panel">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>Attia & Nicola Longevity Suite</h2>
+                        <span class="badge info">DNA & Blood Optimized</span>
+                    </div>
+                </div>
+
+                <div class="alert-box insight">
+                    <strong>DNA Integration:</strong> High Iron/T2D Risk + Achilles Tendon Risk. Prescribing strict Zone
+                    2 cardio base + heavy eccentric loads (Step Downs).<br><br>
+                    <strong>Neuro-Athletics:</strong> Leg strength focused for BDNF stimulation. Minimum 90m caffeine
+                    delay. Evening protocols prioritize Glymphatic system tau-protein clearance (Alzheimer's Defense).
+                </div>
+
+                <div class="grid-layout cols-3" id="workout-dashboard">
+                    <!-- Javascript Injected: 3x Strength/Stability, 3x Zone 2, 1x Zone 5 -->
+                </div>
+            </section>
+
+            <!-- 4. Bio & Health Protocol View -->
+            <section id="bio" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2>Biometrics & Protocols</h2>
+                </div>
+
+                <div class="grid-layout cols-2">
+                    <div class="card">
+                        <h3>Supplement Stack</h3>
+                        <ul class="interactive-list" id="supplement-stack-list"></ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Quinny's Training Protocol</h3>
+                        <ul class="interactive-list" id="dog-training-list"></ul>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Data & Logic Scripts -->
+    <script src="schedule_data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
