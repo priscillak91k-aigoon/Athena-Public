@@ -1,0 +1,19 @@
+{
+    "session_id": "2026-02-24-0710-attia",
+    "topic": "Dr. Peter Attia 'Outlive' Longevity Integration",
+    "axioms": [
+        "Dr. Peter Attia's framework focuses on 'Healthspan' and Medicine 3.0 to delay the 'Four Horsemen' of disease.",
+        "Fitness pillars: 1. Stability (the cornerstone), 2. Strength (muscle mass = survival), 3. Zone 2 Cardio (mitochondrial health), 4. VO2 Max (peak output).",
+        "Mental framework: The 'Centenarian Decathlon' (training backward from what you want to be able to do at 100).",
+        "User constraints: High inflammation (CRP), weak left side, plantar fasciitis, limited equipment."
+    ],
+    "lateral_views": {
+        "DomainExpert_Biomechanics": "Attia defines stability not just as balance on a wobble board, but the subconscious ability to harness and decelerate force safely. Exercises like the Kettlebell Deadbug and Bear Crawl Hold are pure DNS (Dynamic Neuromuscular Stabilization), which aligns perfectly with Attia's protocol.",
+        "AdversarialSkeptic_Health": "Attia pushes hard for VO2 Max (Zone 5) intervals. However, the user's high CRP/inflammation means true Zone 5 work could cause a systemic cortisol spike and immune suppression. We must cap cardiovascular work at Zone 2, with maybe occasional Zone 3 'hill bursts' during the dog walk.",
+        "OperationsPattern_Integration": "We don't need to add new workouts. We can reframe the existing routine. The 1-hour daily dog walk perfectly fulfills Attia's requirement for 3-4 hours of Zone 2 cardio per week, provided the pace is brisk. The 3-day split fulfills the Strength requirement."
+    },
+    "synthesis": {
+        "score": 96,
+        "conclusion": "1. Add the 'Centenarian Decathlon' framework to the workout philosophy. 2. Categorize the daily 1hr dog walk explicitly as 'Zone 2 Base Building'. 3. Highlight that the current core exercises (Deadbugs, Planks, Halos) are directly fulfilling the 'Stability' pillar to prevent injuries."
+    }
+}

@@ -116,6 +116,7 @@ header h1 {
     margin: 0.5rem 0 0.25rem 0;
     background: linear-gradient(135deg, #fff, #94a3b8);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -447,6 +448,24 @@ header h1 {
     line-height: 1.8;
 }
 
+/* Briefing Section Styles */
+.briefing-content {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid var(--glass-border);
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-height: 400px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    margin-top: 1rem;
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
 
@@ -464,4 +483,53 @@ header h1 {
     .tabs {
         flex-direction: column;
     }
+}
+
+/* Lock Screen */
+.lock-container {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.password-input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+#password-input {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-family: inherit;
+    transition: var(--transition-smooth);
+}
+
+#password-input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+.error-msg {
+    color: #ef4444;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    background: rgba(239, 68, 68, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(239, 68, 68, 0.2);
 }

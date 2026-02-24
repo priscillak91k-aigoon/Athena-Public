@@ -1,0 +1,21 @@
+{
+    "session_id": "2026-02-24-0710-training",
+    "topic": "Border Collie Routine & Obedience Plan",
+    "axioms": [
+        "Dog (Quinn/Quinny) is a Border Collie (high intelligence, high energy, needs mental stimulation).",
+        "Requires a 1-hour daily walk.",
+        "Free time should include suggestions like a second walk.",
+        "Requires daily training (basic obedience and manners).",
+        "Current issue: Quinn associates 'outside' with the caravan, not the main house, leading to confusion/accidents.",
+        "Goal: Teach Quinn how to ask to go outside from the main house."
+    ],
+    "lateral_views": {
+        "DomainExpert_CanineBehavior": "Border Collies thrive on 'jobs.' A 1-hour physical walk is good, but 15 minutes of intense mental training often tires them out more than 1 hour of running. The house/caravan context issue is classic 'state-dependent learning' for dogs—they don't generalize well without explicit training across different environments.",
+        "AdversarialSkeptic_Schedule": "Adding a 1-hour walk + daily training + second walks on top of the user's existing heavy chore load (dishes, washing, bins, Parker pick-up) risks schedule collapse. The training needs to be embedded *into* existing routines (e.g., training during the walk, or 5-minute micro-sessions), not added as massive standalone blocks.",
+        "OperationsPattern_Training": "To solve the 'outside' problem, we need a physical, unambiguous trigger at the main house door. Bell training (hanging a bell on the door handle) is the most effective and clear mechanism for a smart breed to generalized 'I need to go out' across different locations."
+    },
+    "synthesis": {
+        "score": 95,
+        "conclusion": "1. Schedule the 1hr walk as a non-negotiable anchor (e.g., late afternoon post-nap or early morning). 2. Add 'Free Time' blocks to the app with randomized/suggested activities (extra walk, puzzle toy). 3. Create a structured 10-min/day Border Collie manners plan. 4. Implement formal 'Bell Training' at the main house door to break the caravan context dependency."
+    }
+}

@@ -17,7 +17,19 @@
         <div class="blur-blob blob-2"></div>
     </div>
 
-    <div class="app-container">
+    <!-- Lock Screen -->
+    <div id="lock-screen" class="glass-panel lock-container">
+        <h2><span class="icon">🔒</span> Symphony Access</h2>
+        <p class="subtitle" style="margin-bottom: 2rem;">Please enter password to unlock.</p>
+        <div class="password-input-group">
+            <input type="password" id="password-input" placeholder="Enter password...">
+            <button id="unlock-btn" class="tab-btn active" style="margin-top: 1rem;">Unlock</button>
+        </div>
+        <div id="password-error" class="error-msg" style="display: none;">Incorrect password.</div>
+    </div>
+
+    <!-- Main App Content (Hidden by default) -->
+    <div class="app-container" id="app-content" style="display: none;">
         <header class="glass-panel">
             <div class="date-display">
                 <span id="current-date">Tuesday, Feb 24</span>
@@ -29,6 +41,7 @@
 
         <div class="tabs">
             <button class="tab-btn active" data-tab="today">Today's Schedule</button>
+            <button class="tab-btn" data-tab="briefing">Briefing</button>
             <button class="tab-btn" data-tab="daily">Daily Candidates</button>
             <button class="tab-btn" data-tab="weekly">Weekly/Monthly</button>
             <button class="tab-btn" data-tab="dog">Quinny</button>
@@ -40,13 +53,41 @@
             <!-- Today's View -->
             <section id="today" class="tab-content active glass-panel">
                 <div class="section-header">
-                    <h2><span class="icon">✨</span> Today's Action Plan</h2>
+                    <h2><span class="icon">✨</span> Today's Action Plan <span id="points-display"
+                            style="font-size: 1rem; color: var(--accent-green); margin-left: 1rem;">[0 pts]</span></h2>
                     <div class="progress-container">
                         <div class="progress-bar" id="today-progress"></div>
                     </div>
                 </div>
+
+                <div class="chart-container" style="position: relative; height:150px; width:100%; margin-bottom: 2rem;">
+                    <canvas id="productivityChart"></canvas>
+                </div>
                 <div class="timeline" id="today-timeline">
                     <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Briefing View -->
+            <section id="briefing" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">📰</span> Daily Briefing & Logs</h2>
+                    <p class="sub-text">Biological history and memory synchronization from Supabase.</p>
+                </div>
+
+                <div class="grid-2-col">
+                    <div class="sub-panel">
+                        <h3>Biological History</h3>
+                        <div id="bio-history-content" class="briefing-content">
+                            <p class="text-secondary" style="font-style: italic;">Loading from cloud...</p>
+                        </div>
+                    </div>
+                    <div class="sub-panel">
+                        <h3>Memory Bank</h3>
+                        <div id="memory-bank-content" class="briefing-content">
+                            <p class="text-secondary" style="font-style: italic;">Loading from cloud...</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -156,6 +197,8 @@
         </main>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
 

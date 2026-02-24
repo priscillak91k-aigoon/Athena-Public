@@ -1,0 +1,19 @@
+{
+    "session_id": "2026-02-24-0710-workout",
+    "topic": "Home Workout Routine for Longevity",
+    "axioms": [
+        "User wants to maintain fitness, prevent injury, and support longevity as they age.",
+        "Equipment available: 1x 10kg dumbbell, 2x 3kg dumbbells, 1x 8kg kettlebell, adjustable bench.",
+        "Health DNA/Bloodwork: High CRP (9) and High Ferritin (205) indicates underlying systemic inflammation. Low iron saturation.",
+        "User has a physically active routine (dog walking, chores) but needs structured resistance training."
+    ],
+    "lateral_views": {
+        "DomainExpert_Biomechanics": "With limited, light-to-moderate weights, the focus must be on unilateral (one-sided) movements, tempo control (slow eccentrics), and core stability. The adjustable bench allows for supported rows and incline presses. To prevent aging injuries, we need to bulletproof the posterior chain (glutes/hamstrings) and shoulders.",
+        "AdversarialSkeptic_Health": "The user has systemic inflammation (High CRP/Ferritin). High-intensity, heavy-load, or exhaustive workouts will spike cortisol and exacerbate this inflammation. The routine MUST be moderate intensity, focusing on time-under-tension rather than max heart rate.",
+        "OperationsPattern_Integration": "A 3-day full-body split fits perfectly into the user's days off (Tues/Wed/Thurs), or can be spread out (e.g., Mon/Wed/Fri). Sessions should be under 40 minutes to avoid burnout."
+    },
+    "synthesis": {
+        "score": 93,
+        "conclusion": "Create a 'Longevity & Joint Armor' 3-day home workout plan. Focus on unilateral exercises using the 8kg KB and 10kg DB to maximize the limited weight weight. Incorporate slow tempos. Explicitly warn against working to failure due to the existing inflammatory markers."
+    }
+}

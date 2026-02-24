@@ -1,0 +1,19 @@
+{
+    "session_id": "2026-02-24-0710-stability",
+    "topic": "Workout Stability & Web App Integration",
+    "axioms": [
+        "User wants their home workout directly accessible inside the Symphony Web App.",
+        "User stated that 'stability is something important to me in terms of exercise'.",
+        "Known history: Weak left side, calf sprain, plantar fasciitis.",
+        "Known equipment: adjustable bench, 10kg DB, 2x 3kg DB, 8kg KB."
+    ],
+    "lateral_views": {
+        "DomainExpert_Biomechanics": "To prioritize stability over raw strength, we must shift exercises from 'open chain' (wobbly) to 'closed chain' or bench-assisted where possible. If balance is the goal, core bracing is paramount. The adjustable bench is the ultimate tool here—seated presses and chest-supported rows remove lower back instability.",
+        "AdversarialSkeptic_Tech": "Adding a whole new 'Workout' tab to the web app means modifying the HTML structure, CSS layout (creating a grid for the 3-day split), and JS navigation. If the UI gets cluttered, the user won't use it. The workout UI needs to be clean, scannable, and distinct from the daily chores.",
+        "OperationsPattern_Integration": "Instead of a generic list, the workout tab needs 3 distinct cards (Workout A, B, C) with bullet points for easy reference while working out, explicitly keeping the 'Left Side First' and 'Foot Rehab' rules pinned at the top."
+    },
+    "synthesis": {
+        "score": 94,
+        "conclusion": "1. Update HTML/JS to add a 4th tab: 'Workout Plan'. 2. Refactor the workout exercises to heavily emphasize the bench for stability (e.g., Seated exercises instead of standing, chest-supported rows). 3. Pin the core stability rules (Left Side First, Foot Rehab) to the top of the new digital workout dashboard."
+    }
+}

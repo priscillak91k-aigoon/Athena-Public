@@ -1,0 +1,18 @@
+{
+    "items": [
+        {
+            "name": "Xiaomi Mijia Water Flosser 2",
+            "url": "https://www.pbtech.co.nz/product/HEAXMI0045/Xiaomi-Water-Flosser-2---White",
+            "store": "PB Tech",
+            "target_price": 60.00,
+            "css_selector": "span.price"
+        },
+        {
+            "name": "Doctor's Best Vitamin K2 MK-7",
+            "url": "https://www.healthpost.co.nz/search-results/?q=Doctors+Best+Vitamin+K2",
+            "store": "HealthPost",
+            "target_price": 50.00,
+            "css_selector": "span.price"
+        }
+    ]
+}

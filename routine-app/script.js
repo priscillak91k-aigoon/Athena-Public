@@ -1,42 +1,80 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Current Data
+    // Auth & Lock Screen Logic
+    const CORRECT_PASSWORD = "symphony2026";
+    const lockScreen = document.getElementById('lock-screen');
+    const appContent = document.getElementById('app-content');
+    const passwordInput = document.getElementById('password-input');
+    const unlockBtn = document.getElementById('unlock-btn');
+    const passwordError = document.getElementById('password-error');
+
+    function checkAuth() {
+        if (localStorage.getItem('symphony_auth') === 'true') {
+            lockScreen.style.display = 'none';
+            appContent.style.display = 'flex';
+        } else {
+            lockScreen.style.display = 'flex';
+            appContent.style.display = 'none';
+        }
+    }
+
+    unlockBtn.addEventListener('click', () => {
+        if (passwordInput.value === CORRECT_PASSWORD) {
+            localStorage.setItem('symphony_auth', 'true');
+            passwordError.style.display = 'none';
+            checkAuth();
+        } else {
+            passwordError.style.display = 'block';
+            passwordInput.value = '';
+            passwordInput.focus();
+        }
+    });
+
+    passwordInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') unlockBtn.click();
+    });
+
+    checkAuth();
+
+    // Current Data with Point Values
     const scheduleData = [
-        { time: '08:50 AM', title: 'Morning Ride Drop-off', desc: 'Sarah and the boys (School/Kindy)', tags: ['Done'], completed: true },
-        { time: '09:00 AM - 10:00 AM', title: 'Post-Drop-off Reset', desc: 'Dishes, put stuff away, make boys bed, lux ground floor, empty inside bins, air house out, spray couches.', tags: ['Cleaning'], completed: false },
-        { time: '10:00 AM - 11:30 AM', title: 'Wash & Brush', desc: 'Catch up on washing (hang outside) & Quinny 1hr Furminator brush.', tags: ['Chores', 'Pet Care'], completed: false },
-        { time: '11:30 AM - 12:30 PM', title: 'Lunch & Wind Down', desc: 'Sort/fold washing, eat lunch, prepare to rest.', tags: ['Break', 'break'], completed: false },
-        { time: '12:30 PM - 01:30 PM', title: 'Core Rest Phase (Nap)', desc: 'Crucial for recovery and energy before the afternoon rush. Sleep well!', tags: ['Rest', 'break'], completed: false },
-        { time: '01:30 PM - 02:30 PM', title: 'Quinny\'s Walk (Zone 2 Cardio)', desc: '1-Hr brisk walk (conversational but strained) for aerobic base + 10 mins training.', tags: ['Pet Care', 'Health'], completed: false },
-        { time: '02:30 PM - 02:45 PM', title: 'Shower & Prep', desc: 'Have a quick shower, tidy up the house, and refill bin liners.', tags: ['Prep', 'Self Care'], completed: false },
-        { time: '02:45 PM - 03:30 PM', title: 'Parker Pick Up', desc: 'Leave with Tash at 2:45 PM to pick up Parker for 3:00 PM.', tags: ['Family'], completed: false },
-        { time: 'Late Afternoon', title: 'Free Time Block', desc: 'Suggestions: Take Quinny for a second walk, do a Trick session with her, or just relax!', tags: ['Free Time', 'break'], completed: false },
-        { time: 'Evening', title: 'Final Sweep', desc: 'Bring in outside bins when convenient.', tags: ['Chores'], completed: false },
+        { time: '08:50 AM', title: 'Morning Ride Drop-off', desc: 'Sarah and the boys (School/Kindy)', tags: ['Done'], completed: true, points: 2 },
+        { time: '09:00 AM - 10:00 AM', title: 'Post-Drop-off Reset', desc: 'Dishes, put stuff away, make boys bed, lux ground floor, empty inside bins, air house out, spray couches.', tags: ['Cleaning'], completed: false, points: 4 },
+        { time: '10:00 AM - 11:30 AM', title: 'Wash & Brush', desc: 'Catch up on washing (hang outside) & Quinny 1hr Furminator brush.', tags: ['Chores', 'Pet Care'], completed: false, points: 5 },
+        { time: '11:30 AM - 12:30 PM', title: 'Lunch & Wind Down', desc: 'Sort/fold washing, eat lunch, prepare to rest.', tags: ['Break', 'break'], completed: false, points: 1 },
+        { time: '12:30 PM - 01:30 PM', title: 'Core Rest Phase (Nap)', desc: 'Crucial for recovery and energy before the afternoon rush. Sleep well!', tags: ['Rest', 'break'], completed: false, points: 1 },
+        { time: '01:30 PM - 02:30 PM', title: 'Quinny\'s Walk (Zone 2 Cardio)', desc: '1-Hr brisk walk (conversational but strained) for aerobic base + 10 mins training.', tags: ['Pet Care', 'Health'], completed: false, points: 3 },
+        { time: '02:30 PM - 02:45 PM', title: 'Shower & Prep', desc: 'Have a quick shower, tidy up the house, and refill bin liners.', tags: ['Prep', 'Self Care'], completed: false, points: 1 },
+        { time: '02:45 PM - 03:30 PM', title: 'Parker Pick Up', desc: 'Leave with Tash at 2:45 PM to pick up Parker for 3:00 PM.', tags: ['Family'], completed: false, points: 2 },
+        { time: 'Late Afternoon', title: 'Free Time Block', desc: 'Suggestions: Take Quinny for a second walk, do a Trick session with her, or just relax!', tags: ['Free Time', 'break'], completed: false, points: 0 },
+        { time: 'Evening', title: 'Final Sweep', desc: 'Bring in outside bins when convenient.', tags: ['Chores'], completed: false, points: 1 },
     ];
 
     const dailyCandidates = [
-        "Pick up dog (Quinn) poop from the lawn",
-        "Morning ride over the hill with Sarah and the boys",
-        "Dishes",
-        "Put stuff away",
-        "Make boys' bed (if needed)",
-        "Lux ground floor",
-        "Spray couches",
-        "Air house out",
-        "Make house smell nice",
-        "Catch up on washing (hang outside if decent day)",
-        "Sort, fold, and pop washing aside for others",
-        "Give Quinny a full Furminator brush (takes ~1 hour)",
-        "Empty inside bins and refill liners",
-        "Bring in outside bins (later in the day)",
-        "General clean up of house",
-        "Pick up Parker for 3pm (Leave with Tash at 2:45pm)"
+        { text: "Pick up dog (Quinn) poop from the lawn", points: 2 },
+        { text: "Morning ride over the hill with Sarah and the boys", points: 3 },
+        { text: "Dishes", points: 1 },
+        { text: "Put stuff away", points: 1 },
+        { text: "Make boys' bed (if needed)", points: 1 },
+        { text: "Lux ground floor", points: 2 },
+        { text: "Spray couches", points: 1 },
+        { text: "Air house out", points: 1 },
+        { text: "Make house smell nice", points: 1 },
+        { text: "Catch up on washing (hang outside if decent day)", points: 3 },
+        { text: "Sort, fold, and pop washing aside for others", points: 2 },
+        { text: "Give Quinny a full Furminator brush (takes ~1 hour)", points: 3 },
+        { text: "Empty inside bins and refill liners", points: 1 },
+        { text: "Bring in outside bins (later in the day)", points: 1 },
+        { text: "General clean up of house", points: 2 },
+        { text: "Pick up Parker for 3pm (Leave with Tash at 2:45pm)", points: 2 },
+        { text: "Clean my shoes", points: 1 }
     ];
 
     const weeklyMonthly = {
         weekly: [
             "Clean the vacuum (Lux) head",
             "Clean Sarah's car (due to Quinny's fur)",
-            "Complete 3-Day Longevity Home Workout Split"
+            "Complete 3-Day Longevity Home Workout Split",
+            "Clean the toilet and bathroom"
         ],
         monthly: [
             "Clean the clothes drier and washer",
@@ -80,6 +118,134 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    // Supabase Configuration
+    const SUPABASE_URL = "YOUR_SUPABASE_URL"; // We will prompt the user to inject these securely or rely on their environment
+    const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+
+    async function fetchSupabaseData() {
+        try {
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/user_data?id=eq.1&select=*`, {
+                method: 'GET',
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                if (data && data.length > 0) {
+                    const userData = data[0];
+
+                    // Parse Schedule (if it's valid JS/JSON string)
+                    if (userData.schedule_payload) {
+                        try {
+                            // Extract schedule from the payload (assuming it overrides scheduleData)
+                            // For security/simplicity, we might use eval or Function, 
+                            // but ideally it's an array of objects.
+                            console.log("Schedule Payload found, but avoiding unsafe eval for now.");
+                        } catch (e) { console.error("Error parsing schedule:", e); }
+                    }
+
+                    // Parse History & Memory
+                    if (userData.history_payload) {
+                        document.getElementById('bio-history-content').innerHTML = marked.parse(userData.history_payload);
+                    } else {
+                        document.getElementById('bio-history-content').innerHTML = "<p class='text-secondary'>No biological history logged yet.</p>";
+                    }
+
+                    if (userData.memory_payload) {
+                        document.getElementById('memory-bank-content').innerHTML = marked.parse(userData.memory_payload);
+                    } else {
+                        document.getElementById('memory-bank-content').innerHTML = "<p class='text-secondary'>No memories logged yet.</p>";
+                    }
+                }
+            } else {
+                console.error("Supabase fetch failed:", response.status, response.statusText);
+            }
+        } catch (error) {
+            console.error("Error connecting to Supabase:", error);
+            document.getElementById('bio-history-content').innerHTML = `<p class="error-msg">Error loading data: ${error.message}</p>`;
+            document.getElementById('memory-bank-content').innerHTML = `<p class="error-msg">Error loading data: ${error.message}</p>`;
+        }
+    }
+
+    // Load schedule state
+    const savedSchedule = JSON.parse(localStorage.getItem('symphony_schedule_state') || 'null');
+    if (savedSchedule && savedSchedule.length === scheduleData.length) {
+        scheduleData.forEach((item, i) => {
+            item.completed = savedSchedule[i];
+        });
+    }
+
+    // Productivity Point Tracking
+    let pointsToday = 0;
+    const pointsDisplay = document.getElementById('points-display');
+
+    // Simple local data for graph (In production, replace this with Supabase log fetch)
+    const storedGraphData = JSON.parse(localStorage.getItem('symphony_graph_data') || '[12, 19, 15, 8, 22, 18, 0]');
+
+    function updatePoints() {
+        pointsToday = 0;
+
+        // Tally from timeline
+        scheduleData.forEach(item => {
+            if (item.completed && item.points) pointsToday += item.points;
+        });
+
+        // Tally from Daily Candidates
+        const savedDailyState = JSON.parse(localStorage.getItem('symphony_list_state_daily-list') || '{}');
+        dailyCandidates.forEach((cand, index) => {
+            if (savedDailyState[index]) pointsToday += cand.points;
+        });
+
+        pointsDisplay.innerText = `[${pointsToday} pts]`;
+
+        // Update today's graph value
+        storedGraphData[6] = pointsToday;
+        localStorage.setItem('symphony_graph_data', JSON.stringify(storedGraphData));
+        if (window.productivityChartInstance) {
+            window.productivityChartInstance.update();
+        }
+    }
+
+    function initChart() {
+        const ctx = document.getElementById('productivityChart').getContext('2d');
+        window.productivityChartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Today'],
+                datasets: [{
+                    label: 'Productivity Points',
+                    data: storedGraphData,
+                    backgroundColor: 'rgba(56, 189, 248, 0.6)',
+                    borderColor: 'rgba(56, 189, 248, 1)',
+                    borderWidth: 1,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8' }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    }
+
     // Render Logic
 
     // Tab Switching
@@ -109,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
             el.className = `timeline-item ${item.completed ? 'completed' : ''}`;
             el.innerHTML = `
                 <span class="time">${item.time}</span>
-                <div class="task-title">${item.title}</div>
+                <div class="task-title">${item.title} <span style="font-size:0.8rem; color:var(--accent-blue);">[+${item.points} pts]</span></div>
                 <div class="task-desc">${item.desc}</div>
                 <div>
                     ${item.tags.map(t => `<span class="tag ${t === 'break' ? 'break' : ''}">${t}</span>`).join('')}
@@ -118,6 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             el.addEventListener('click', () => {
                 scheduleData[index].completed = !scheduleData[index].completed;
+                localStorage.setItem('symphony_schedule_state', JSON.stringify(scheduleData.map(s => s.completed)));
                 renderTimeline();
             });
 
@@ -126,6 +293,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const progressPercent = (completedCount / scheduleData.length) * 100;
         document.getElementById('today-progress').style.width = `${progressPercent}%`;
+
+        updatePoints();
     };
 
     // Populate Lists
@@ -133,16 +302,36 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById(containerId);
         container.innerHTML = '';
 
-        items.forEach((itemText) => {
+        // Load list state
+        const savedListState = JSON.parse(localStorage.getItem('symphony_list_state_' + containerId) || '{}');
+
+        items.forEach((itemObj, index) => {
+            // Handle both simple strings and objects with points
+            const text = typeof itemObj === 'string' ? itemObj : itemObj.text;
+            const pointsLabel = (typeof itemObj === 'object' && itemObj.points) ? ` <span style="font-size:0.8rem; color:var(--accent-blue);">[+${itemObj.points} pts]</span>` : '';
+
             const li = document.createElement('li');
+            const isCompleted = savedListState[index];
+
+            if (isCompleted) {
+                li.classList.add('completed');
+            }
+
             li.innerHTML = `
-                <div class="checkbox"></div>
-                <div class="task-content">${itemText}</div>
+                <div class="checkbox ${isCompleted ? 'checked' : ''}"></div>
+                <div class="task-content">${text}${pointsLabel}</div>
             `;
 
             li.querySelector('.checkbox').addEventListener('click', function () {
                 this.classList.toggle('checked');
-                this.parentElement.classList.toggle('completed');
+                const parent = this.parentElement;
+                parent.classList.toggle('completed');
+
+                // Save state
+                savedListState[index] = this.classList.contains('checked');
+                localStorage.setItem('symphony_list_state_' + containerId, JSON.stringify(savedListState));
+
+                if (containerId === 'daily-list') updatePoints();
             });
 
             container.appendChild(li);
@@ -172,6 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Initialize View
+    initChart();
     renderTimeline();
     createListItems(dailyCandidates, 'daily-list');
     createListItems(weeklyMonthly.weekly, 'weekly-list');
@@ -196,4 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
     createListItems(supplementTasks, 'supplements-list');
 
     populateWorkout();
+
+    // Trigger Supabase fetch
+    fetchSupabaseData();
 });

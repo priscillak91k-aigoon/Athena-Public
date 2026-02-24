@@ -4,6 +4,7 @@ from datetime import time
 import asyncio
 from telegram import Update
 from telegram.ext import Application, ContextTypes
+from telegram.request import HTTPXRequest
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -54,9 +55,6 @@ def main():
         time=time(hour=23, minute=30, tzinfo=nz_tz),
         chat_id=USER_ID
     )
-
-    # Boot Notification (fires 5 seconds after boot)
-    application.job_queue.run_once(send_welcome, 5)
 
     print("Pathfinder Reminder Bot is running in the background...")
     application.run_polling(allowed_updates=Update.ALL_TYPES)

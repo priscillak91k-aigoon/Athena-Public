@@ -4,7 +4,12 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Global State
-    let appState = window.SymphonyData;
+    let appState = null;
+
+    // Supabase Configuration
+    const supabaseUrl = 'https://ezvptctdfcddoybownml.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6dnB0Y3RkZmNkZG95Ym93bm1sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3NDgzNzAsImV4cCI6MjA4NzMyNDM3MH0.u_t44hY_YCwwtbWCIrQKf7EnUZDrja1q4zUFT0MXNOs';
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
     // ---------------------------------------------------------
     // 1. Security & Lock Screen
@@ -20,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (localStorage.getItem('symphony_v2_auth') === 'true') {
             lockScreen.style.display = 'none';
             appContent.style.display = 'flex';
-            initDashboard();
+            fetchSupabaseData();
         } else {
             lockScreen.style.display = 'flex';
             appContent.style.display = 'none';
@@ -48,6 +53,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------
     // 2. Global State & Initialization
     // ---------------------------------------------------------
+
+    async function fetchSupabaseData() {
+        document.getElementById('current-date-display').textContent = "Loading cloud data...";
+        try {
+            const { data, error } = await supabase
+                .from('user_data')
+                .select('schedule_payload')
+                .eq('id', 1)
+                .single();
+
+            if (error) throw error;
+
+            // Execute the retrieved Javascript payload to configure window state
+            const scriptEl = document.createElement('script');
+            scriptEl.textContent = data.schedule_payload;
+            document.body.appendChild(scriptEl);
+
+            // Give it a micro-tick to execute and attach to window
+            setTimeout(() => {
+                appState = window.SymphonyData;
+                initDashboard();
+            }, 50);
+
+        } catch (err) {
+            console.error("Error fetching Supabase data:", err);
+            document.getElementById('current-date-display').textContent = "Cloud Sync Failed";
+        }
+    }
 
     function initDashboard() {
         // Set Date

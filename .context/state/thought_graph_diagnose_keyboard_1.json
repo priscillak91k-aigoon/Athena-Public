@@ -1,0 +1,22 @@
+{
+    "session_id": "diagnose_keyboard_1",
+    "topic": "Laptop keyboard stops working until restart",
+    "axioms": [
+        "Keyboard is internal (laptop).",
+        "Failure is intermittent.",
+        "Restart resolves the issue temporarily, implying a software/driver/power state issue rather than a permanent hardware failure."
+    ],
+    "lateral_views": {
+        "driver_conflict": "A filter driver or recent update is crashing the keyboard stack.",
+        "power_management": "The OS is putting the USB hub or internal I2C/PS2 controller to sleep to save power, and failing to wake it up.",
+        "hardware_fault": "The ribbon cable is loose, or there's thermal expansion causing intermittent disconnects (less likely if restart *always* fixes it, but possible)."
+    },
+    "current_phase": "Phase 4: Synthesis & Convergence",
+    "phase_3_orchestrator": {
+        "track_a_expert": "Event logs show Synaptics driver (SynTPEnh.exe) blocking device transitions and a WUDFRd driver failing to load for a Synaptics USB device (likely fingerprint reader). Since laptop keyboards (PS/2) and touchpads share the i8042prt controller or ACPI logic, a hanging touchpad driver takes down the keyboard.",
+        "track_b_skeptic": "If it were purely a keyboard driver issue, we'd see kbdclass errors. We only see Synaptics errors. This confirms the issue is peripheral to the keyboard itself but shares the bus. Could also be Fast Startup / Modern Standby power state failures.",
+        "track_c_pattern": "Shared interrupt controller lockup. The EC (Embedded Controller) manages both. If the OS touchpad driver locks up the I/O request packet (IRP) queue, the keyboard interrupt isn't serviced.",
+        "synthesis": "The intermittent keyboard loss is a secondary symptom of the Synaptics (Touchpad/Fingerprint) driver or its power management failing, particularly during sleep/wake cycles. The fixes should target Synaptics drivers and Windows power states.",
+        "convergence_score": 95
+    }
+}

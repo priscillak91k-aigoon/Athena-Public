@@ -1,0 +1,24 @@
+{
+    "session_id": "ultrathink_productivity_system",
+    "phase": 1,
+    "deconstruction": {
+        "context": "User wants a gamified routine tracker (points system), productivity graph, caravan logistics reminder, and accessible raw data spreadsheets.",
+        "action_items": [
+            "Add 'Caravan Track Vehicle Logistics' reminder.",
+            "Assign point values to all tasks (e.g., dishes=1, put away=1, washing=3).",
+            "Display productivity score and graph on index.html.",
+            "Create spreadsheet functionality (local generic CSVs or XLSX) for Finances, Ideas, Routine, Points, Birthdates."
+        ]
+    },
+    "lateral_prism": {
+        "tech_view": "Points can be added to the js state. To graph it, we need history. Supabase can store daily point accumulations. Spreadsheets can be handled by an orchestrator python script that syncs Supabase to a local multi-tab Excel file using pandas, or we use CSVs.",
+        "biz_view": "Gamification massively increases compliance. The point system gives the user a tangible 'score' to beat. Spreadsheets give the user transparent control over the 'black box' data.",
+        "risk_view": "Syncing spreadsheets to Supabase bi-directionally is risky mapping. Best to make the spreadsheet a 'read-only' export of the cloud data, or use local CSVs that the app reads from instead of hardcoded arrays."
+    },
+    "plan": [
+        "Plan the architecture: How to store points? (Add 'points' key to scheduleData and dailyCandidates).",
+        "How to manage spreadsheets? Wait, if the user edits the spreadsheet, we want it to reflect on the site. A local CSV/Excel based workflow converted to JSON for the web, OR pulling directly from Google Sheets API. Given constraints, building a fast python script to convert local Excel -> Supabase/JSON might be best.",
+        "Add Chart.js to index.html for the graph.",
+        "Create the 'Caravan track vehicle' reminder in memory."
+    ]
+}
