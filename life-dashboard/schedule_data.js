@@ -37,7 +37,8 @@ window.SymphonyData = {
         weekly: [
             { id: "w1", text: "Clean Lux vacuum head", completed: false },
             { id: "w2", text: "Clean Sarah's car (Quinny hair)", completed: false },
-            { id: "w3", text: "Meal prep protein sources", completed: false }
+            { id: "w3", text: "Meal prep protein sources", completed: false },
+            { id: "w4", text: "Lawns & Garden maintenance", completed: false }
         ],
         monthly: [
             { id: "m1", text: "Clean clothes drier and washer filters", completed: false },
