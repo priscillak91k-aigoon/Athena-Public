@@ -32,14 +32,15 @@ window.SymphonyData = {
         daily: [
             { id: "d1", text: "Pick up Quinny poop from lawn", completed: false },
             { id: "d2", text: "Catch up on washing (hang outside)", completed: false },
-            { id: "d3", text: "1-Hour Quinny Furminator brush", completed: false },
+            { id: "d3", text: "Daily normal brush for Quinny", completed: false },
             { id: "d4", text: "Play outside with Quinny", completed: true }
         ],
         weekly: [
             { id: "w1", text: "Clean Lux vacuum head", completed: false },
             { id: "w2", text: "Clean Sarah's car (Quinny hair)", completed: false },
             { id: "w3", text: "Meal prep protein sources", completed: false },
-            { id: "w4", text: "Lawns & Garden maintenance", completed: false }
+            { id: "w4", text: "Lawns & Garden maintenance", completed: false },
+            { id: "w5", text: "Weekly deep groom / Furminator for Quinny", completed: false }
         ],
         monthly: [
             { id: "m1", text: "Clean clothes drier and washer filters", completed: false },
