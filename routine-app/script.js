@@ -516,6 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update DOM Elements
         const formatCurrency = (num) => '$' + num.toFixed(2);
 
+        document.getElementById('finance-hours').innerText = hoursWorked + ' hrs';
         document.getElementById('finance-gross').innerText = formatCurrency(grossWeekly);
         document.getElementById('finance-tax').innerText = '-' + formatCurrency(weeklyPayeAndAcc);
         document.getElementById('finance-sl').innerText = '-' + formatCurrency(weeklyStudentLoan);
