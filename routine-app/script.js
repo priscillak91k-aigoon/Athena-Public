@@ -183,8 +183,52 @@ document.addEventListener('DOMContentLoaded', () => {
     let pointsToday = 0;
     const pointsDisplay = document.getElementById('points-display');
 
-    // Simple local data for graph (In production, replace this with Supabase log fetch)
-    const storedGraphData = JSON.parse(localStorage.getItem('symphony_graph_data') || '[12, 19, 15, 8, 22, 18, 0]');
+    // Graph Data States (In production, replace dummy history with Supabase historical logs)
+    const graphDataWeekly = JSON.parse(localStorage.getItem('symphony_graph_data') || '[12, 19, 15, 8, 22, 18, 0]');
+
+    // Mock historical data to demonstrate the visual scaling
+    let graphDataMonthly = Array.from({ length: 29 }, () => Math.floor(Math.random() * 15) + 5);
+    graphDataMonthly.push(0); // Today
+
+    let graphDataYearly = [120, 145, 130, 160, 155, 170, 165, 180, 175, 190, 185, 0]; // 11 months + current month empty
+
+    let currentChartView = 'weekly';
+
+    window.setChartView = function (view) {
+        currentChartView = view;
+        // Update button states
+        ['weekly', 'monthly', 'yearly'].forEach(v => {
+            document.getElementById(`btn-view-${v}`).classList.remove('active');
+        });
+        document.getElementById(`btn-view-${view}`).classList.add('active');
+
+        updateChartDisplay();
+    };
+
+    function updateChartDisplay() {
+        if (!window.productivityChartInstance) return;
+
+        const chart = window.productivityChartInstance;
+        const subtitle = document.getElementById('chart-subtitle');
+
+        if (currentChartView === 'weekly') {
+            chart.data.labels = ['Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Today'];
+            chart.data.datasets[0].data = graphDataWeekly;
+            subtitle.innerText = "Your 7-Day Rolling Gamification Score";
+        } else if (currentChartView === 'monthly') {
+            const labels = Array.from({ length: 30 }, (_, i) => `${i - 29}d`);
+            labels[29] = 'Today';
+            chart.data.labels = labels;
+            chart.data.datasets[0].data = graphDataMonthly;
+            subtitle.innerText = "Your 30-Day Monthly Gamification Score";
+        } else if (currentChartView === 'yearly') {
+            chart.data.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            chart.data.datasets[0].data = graphDataYearly;
+            subtitle.innerText = "Your Year-to-Date Gamification Score";
+        }
+
+        chart.update();
+    }
 
     function updatePoints() {
         pointsToday = 0;
@@ -202,12 +246,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         pointsDisplay.innerText = `[${pointsToday} pts]`;
 
-        // Update today's graph value
-        storedGraphData[6] = pointsToday;
-        localStorage.setItem('symphony_graph_data', JSON.stringify(storedGraphData));
-        if (window.productivityChartInstance) {
-            window.productivityChartInstance.update();
-        }
+        // Update today's graph value across scales
+        graphDataWeekly[6] = pointsToday;
+        graphDataMonthly[29] = pointsToday;
+
+        const currentMonth = new Date().getMonth();
+        // Just directly setting the current month's accumulated score for demonstration
+        graphDataYearly[currentMonth] = 75 + pointsToday;
+
+        localStorage.setItem('symphony_graph_data', JSON.stringify(graphDataWeekly));
+
+        updateChartDisplay();
 
         // Push current points to Supabase
         syncPointsToCloud(pointsToday);
@@ -252,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 labels: ['Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Today'],
                 datasets: [{
                     label: 'Productivity Points',
-                    data: storedGraphData,
+                    data: graphDataWeekly,
                     backgroundColor: 'rgba(56, 189, 248, 0.6)',
                     borderColor: 'rgba(56, 189, 248, 1)',
                     borderWidth: 1,
@@ -278,6 +327,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+
+        // Initial render update to sync labels
+        updateChartDisplay();
     }
 
     // Render Logic
