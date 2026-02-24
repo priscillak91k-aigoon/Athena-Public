@@ -17,6 +17,94 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- Financial Calculations (NZ) ---
+    function calculateFinance() {
+        // User Variables
+        const hourlyRate = 24.00;
+        const hoursWorked = 28.5;
+        const kiwiSaverRate = 0.03; // 3%
+
+        // Base Calculations
+        const grossWeekly = hourlyRate * hoursWorked; // $684.00
+        const annualizedGross = grossWeekly * 52;     // $35,568.00
+
+        // 1. KiwiSaver (Calculated on Gross)
+        const weeklyKiwiSaver = grossWeekly * kiwiSaverRate; // $20.52
+
+        // 2. Student Loan (12% over $438/week threshold)
+        const slThreshold = 438.00;
+        let weeklyStudentLoan = 0;
+        if (grossWeekly > slThreshold) {
+            weeklyStudentLoan = (grossWeekly - slThreshold) * 0.12; // $29.52
+        }
+
+        // 3. PAYE Tax (M Tax Code Approximation for $35,568)
+        let annualizedTax = 0;
+        if (annualizedGross <= 15600) {
+            annualizedTax = annualizedGross * 0.105;
+        } else if (annualizedGross <= 53500) {
+            annualizedTax = (15600 * 0.105) + ((annualizedGross - 15600) * 0.175);
+        }
+
+        const accLevy = annualizedGross * 0.0139;
+        const weeklyPayeAndAcc = (annualizedTax + accLevy) / 52;
+
+        // 4. Net Income
+        const totalDeductions = weeklyPayeAndAcc + weeklyStudentLoan + weeklyKiwiSaver;
+        const netWeekly = grossWeekly - totalDeductions;
+
+        // Update DOM Elements
+        const formatCurrency = (num) => '$' + num.toFixed(2);
+
+        document.getElementById('finance-hours').innerText = hoursWorked + ' hrs';
+        document.getElementById('finance-gross').innerText = formatCurrency(grossWeekly);
+        document.getElementById('finance-tax').innerText = '-' + formatCurrency(weeklyPayeAndAcc);
+        document.getElementById('finance-sl').innerText = '-' + formatCurrency(weeklyStudentLoan);
+        document.getElementById('finance-ks').innerText = '-' + formatCurrency(weeklyKiwiSaver);
+        document.getElementById('finance-net-pay').innerText = formatCurrency(netWeekly);
+
+        // Initialize/Update Pie Chart
+        const ctx = document.getElementById('financePieChart').getContext('2d');
+        if (window.financeChartInstance) {
+            window.financeChartInstance.destroy();
+        }
+
+        window.financeChartInstance = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Net Pay', 'PAYE & ACC', 'Student Loan', 'KiwiSaver (3%)'],
+                datasets: [{
+                    data: [netWeekly, weeklyPayeAndAcc, weeklyStudentLoan, weeklyKiwiSaver],
+                    backgroundColor: [
+                        'rgba(52, 211, 153, 0.8)', // Green (Net)
+                        'rgba(239, 68, 68, 0.8)',  // Red (Tax)
+                        'rgba(245, 158, 11, 0.8)', // Orange (SL)
+                        'rgba(56, 189, 248, 0.8)'  // Blue (KS)
+                    ],
+                    borderColor: 'rgba(15, 23, 42, 1)',
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: '#94a3b8',
+                            font: { size: 11 }
+                        }
+                    }
+                },
+                cutout: '65%'
+            }
+        });
+    }
+
+    calculateFinance();
+
     unlockBtn.addEventListener('click', () => {
         if (passwordInput.value === CORRECT_PASSWORD) {
             localStorage.setItem('symphony_auth', 'true');
@@ -473,97 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     populateWorkout();
 
-    // --- Financial Calculations (NZ) ---
-    function calculateFinance() {
-        // User Variables
-        const hourlyRate = 24.00;
-        const hoursWorked = 28.5;
-        const kiwiSaverRate = 0.03; // 3%
-
-        // Base Calculations
-        const grossWeekly = hourlyRate * hoursWorked; // $684.00
-        const annualizedGross = grossWeekly * 52;     // $35,568.00
-
-        // 1. KiwiSaver (Calculated on Gross)
-        const weeklyKiwiSaver = grossWeekly * kiwiSaverRate; // $20.52
-
-        // 2. Student Loan (12% over $438/week threshold)
-        const slThreshold = 438.00;
-        let weeklyStudentLoan = 0;
-        if (grossWeekly > slThreshold) {
-            weeklyStudentLoan = (grossWeekly - slThreshold) * 0.12; // $29.52
-        }
-
-        // 3. PAYE Tax (M Tax Code Approximation for $35,568)
-        // NZ Tax Brackets (Approx per annum, simplified for dashboard display):
-        // $0 to $15,600 @ 10.5%
-        // $15,601 to $53,500 @ 17.5%
-        let annualizedTax = 0;
-        if (annualizedGross <= 15600) {
-            annualizedTax = annualizedGross * 0.105;
-        } else if (annualizedGross <= 53500) {
-            annualizedTax = (15600 * 0.105) + ((annualizedGross - 15600) * 0.175); // $1638 + $3494.40 = $5132.40
-        }
-        // ACC Earner's levy is approx 1.39% (Simplified as part of PAYE grouping for dashboard or kept separate)
-        // For absolute accuracy in NZ, ACC is 1.39% of gross. We'll add it to the tax pool for simplicity.
-        const accLevy = annualizedGross * 0.0139; // ~$494.39
-        const weeklyPayeAndAcc = (annualizedTax + accLevy) / 52; // ~$108.20
-
-        // 4. Net Income
-        const totalDeductions = weeklyPayeAndAcc + weeklyStudentLoan + weeklyKiwiSaver;
-        const netWeekly = grossWeekly - totalDeductions;
-
-        // Update DOM Elements
-        const formatCurrency = (num) => '$' + num.toFixed(2);
-
-        document.getElementById('finance-hours').innerText = hoursWorked + ' hrs';
-        document.getElementById('finance-gross').innerText = formatCurrency(grossWeekly);
-        document.getElementById('finance-tax').innerText = '-' + formatCurrency(weeklyPayeAndAcc);
-        document.getElementById('finance-sl').innerText = '-' + formatCurrency(weeklyStudentLoan);
-        document.getElementById('finance-ks').innerText = '-' + formatCurrency(weeklyKiwiSaver);
-        document.getElementById('finance-net-pay').innerText = formatCurrency(netWeekly);
-
-        // Initialize/Update Pie Chart
-        const ctx = document.getElementById('financePieChart').getContext('2d');
-        if (window.financeChartInstance) {
-            window.financeChartInstance.destroy();
-        }
-
-        window.financeChartInstance = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Net Pay', 'PAYE & ACC', 'Student Loan', 'KiwiSaver (3%)'],
-                datasets: [{
-                    data: [netWeekly, weeklyPayeAndAcc, weeklyStudentLoan, weeklyKiwiSaver],
-                    backgroundColor: [
-                        'rgba(52, 211, 153, 0.8)', // Green (Net)
-                        'rgba(239, 68, 68, 0.8)',  // Red (Tax)
-                        'rgba(245, 158, 11, 0.8)', // Orange (SL)
-                        'rgba(56, 189, 248, 0.8)'  // Blue (KS)
-                    ],
-                    borderColor: 'rgba(15, 23, 42, 1)',
-                    borderWidth: 2,
-                    hoverOffset: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'right',
-                        labels: {
-                            color: '#94a3b8',
-                            font: { size: 11 }
-                        }
-                    }
-                },
-                cutout: '65%'
-            }
-        });
-    }
-
-    calculateFinance();
+    // --- Logic shifted to top of file ---
 
     // Trigger Supabase fetch
     fetchSupabaseData();
