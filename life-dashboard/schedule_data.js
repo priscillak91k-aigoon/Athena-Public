@@ -32,7 +32,8 @@ window.SymphonyData = {
         daily: [
             { id: "d1", text: "Pick up Quinny poop from lawn", completed: false },
             { id: "d2", text: "Catch up on washing (hang outside)", completed: false },
-            { id: "d3", text: "1-Hour Quinny Furminator brush", completed: false }
+            { id: "d3", text: "1-Hour Quinny Furminator brush", completed: false },
+            { id: "d4", text: "Play outside with Quinny", completed: true }
         ],
         weekly: [
             { id: "w1", text: "Clean Lux vacuum head", completed: false },
