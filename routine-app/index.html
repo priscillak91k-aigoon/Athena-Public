@@ -42,6 +42,7 @@
         <div class="tabs">
             <button class="tab-btn active" data-tab="today">Today's Schedule</button>
             <button class="tab-btn" data-tab="productivity">Productivity</button>
+            <button class="tab-btn" data-tab="finances">Finances</button>
             <button class="tab-btn" data-tab="briefing">Briefing</button>
             <button class="tab-btn" data-tab="daily">Daily Candidates</button>
             <button class="tab-btn" data-tab="weekly">Weekly/Monthly</button>
@@ -84,6 +85,48 @@
                     Tick off tasks in your "Today's Schedule" and "Daily Candidates" lists to rack up points. Maximize
                     your daily output and hold yourself accountable. Data is dual-synced via Supabase back into your
                     local raw Excel Ledger.
+                </div>
+            </section>
+
+            <!-- Finances View -->
+            <section id="finances" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">💰</span> Financial Overview</h2>
+                    <p class="sub-text">Weekly Income & Tax Breakdown (NZD)</p>
+                </div>
+
+                <div class="grid-2-col">
+                    <div class="sub-panel">
+                        <h3>Income Summary</h3>
+                        <div
+                            style="margin-top: 1rem; padding: 1rem; background: rgba(52, 211, 153, 0.1); border: 1px solid var(--accent-green); border-radius: var(--radius-sm); text-align: center;">
+                            <span
+                                style="font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase;">Estimated
+                                Net Weekly Pay</span>
+                            <div id="finance-net-pay"
+                                style="font-size: 2.5rem; font-weight: 700; color: var(--accent-green); margin: 0.5rem 0;">
+                                $0.00</div>
+                        </div>
+
+                        <ul class="workout-list" style="margin-top: 1.5rem;">
+                            <li style="display:flex; justify-content:space-between;"><span>Gross Income (28.5 hrs @
+                                    $24)</span> <strong id="finance-gross">$0.00</strong></li>
+                            <li style="display:flex; justify-content:space-between; color: #ef4444;"><span>PAYE Tax (M
+                                    SL)</span> <strong id="finance-tax">-$0.00</strong></li>
+                            <li style="display:flex; justify-content:space-between; color: #ef4444;"><span>Student Loan
+                                    (12%)</span> <strong id="finance-sl">-$0.00</strong></li>
+                            <li style="display:flex; justify-content:space-between; color: var(--accent-blue);">
+                                <span>KiwiSaver (3%)</span> <strong id="finance-ks">-$0.00</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-panel"
+                        style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <h3>Distribution Breakdown</h3>
+                        <div style="position: relative; height: 200px; width: 100%; margin-top: 1rem;">
+                            <canvas id="financePieChart"></canvas>
+                        </div>
+                    </div>
                 </div>
             </section>
 

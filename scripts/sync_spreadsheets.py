@@ -46,9 +46,9 @@ def initialize_spreadsheet():
     }
     
     finances_data = {
-        "Category": ["Income", "Groceries", "Utilities", "Savings", "Miscellaneous"],
-        "Amount": [0, 0, 0, 0, 0],
-        "Notes": ["", "", "", "", ""]
+        "Category": ["Gross Pay (28.5 hrs @ $24)", "PAYE Tax & ACC (M SL)", "Student Loan (12%)", "KiwiSaver (3%)", "Estimated Net Pay", "Remaining Buffer"],
+        "Amount": ["$684.00", "-$108.20", "-$29.52", "-$20.52", "$525.76", "$525.76"],
+        "Notes": ["Base Income", "Calculated annualized $35,568", "Over $438/wk threshold", "Minimum rate", "Take-home pay", "Available for expenses"]
     }
     
     ideas_data = {
