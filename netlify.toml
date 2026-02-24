@@ -1,4 +1,0 @@
-[build]
-  base = "life-dashboard"
-  publish = "."
-  command = "echo 'No build step required for static Symphony 2.0 app'"
