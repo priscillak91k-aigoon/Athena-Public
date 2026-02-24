@@ -174,11 +174,18 @@ window.generateTodayTimeline = function () {
         }
     }
 
-    // --- QUINNY WALK (Evening Route: Mon, Sun) ---
-    if (today === 0) { // Sunday
-        timeline.push({ id: "t_walk_pm", time: "05:30 PM", title: "Quinny's Evening Walk", desc: "Decompression walk.", expertInsight: "Post-work Zone 1 movement clears accumulated lactate and cortisol.", tags: ["Pet Care"], completed: false });
-    } else if (today === 1) { // Monday
-        timeline.push({ id: "t_walk_pm", time: "06:30 PM", title: "Quinny's Evening Walk", desc: "Decompression walk.", expertInsight: "Post-work Zone 1 movement clears accumulated lactate and cortisol.", tags: ["Pet Care"], completed: false });
+    // --- KIDS EVENING ROUTINE (Sun, Mon, Tue, Wed, Thu) ---
+    // User helps feed, clean, and tuck the kids into bed from 4:15 PM to 7:30 PM on Off Days + Sun/Mon.
+    if (today >= 0 && today <= 4) {
+        timeline.push({ id: "t_kids_pm", time: "04:15 PM - 07:30 PM", title: "Kids Evening Routine", desc: "Feed, clean, and tuck the kids into bed.", expertInsight: "High physical and emotional engagement. Treat this as an active movement block.", tags: ["Family"], completed: false });
+    }
+
+    // --- QUINNY EVENING WALK ---
+    // If it's a day with the Kids Evening routine (Sun-Thu) AND we aren't working the evening shift (Fri/Sat), the walk goes AFTER the kids are down.
+    if (today >= 0 && today <= 4) {
+        timeline.push({ id: "t_walk_pm", time: "07:45 PM", title: "Quinny's Evening Walk", desc: "Decompression walk.", expertInsight: "Post-routine Zone 1 movement clears accumulated lactate and cortisol before bed.", tags: ["Pet Care"], completed: false });
+    } else if (today === 1) { // Monday (Fallback, handled by above condition, kept for logic safety if shifting)
+        timeline.push({ id: "t_walk_pm", time: "07:45 PM", title: "Quinny's Evening Walk", desc: "Decompression walk.", expertInsight: "Post-work Zone 1 movement clears accumulated lactate and cortisol.", tags: ["Pet Care"], completed: false });
     }
 
     // --- CHORES / RESET ---
