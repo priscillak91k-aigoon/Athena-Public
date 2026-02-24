@@ -154,6 +154,33 @@ window.generateTodayTimeline = function () {
         timeline.push({ id: "t_workout", time: "10:30 AM", title: "Daily Training Session", desc: "Execute today's workout block.", expertInsight: "Peter Attia Longevity Protocol: Consistent training volume is the strongest leading indicator of an extended healthspan.", tags: ["Workout", "Attia"], completed: false });
     }
 
+    // --- TCF7L2 GLUCOSE CLEARANCE PROTOCOL ---
+    // Injected due to high-glycemic meal log: 5 pieces of Turkish Delight
+    // Turkish Delight is extremely high-glycemic (glucose + sucrose base, ~20-25g sugar per 5 pieces)
+    // Must be executed within 15-30 minutes of consumption to activate GLUT4 translocation
+    const now = new Date();
+    let glucoseProtocolHour = now.getHours();
+    let glucoseProtocolMin = now.getMinutes() + 20;
+    if (glucoseProtocolMin >= 60) {
+        glucoseProtocolHour += 1;
+        glucoseProtocolMin -= 60;
+    }
+    if (glucoseProtocolHour >= 24) glucoseProtocolHour = 23;
+    const gpPeriod = glucoseProtocolHour >= 12 ? "PM" : "AM";
+    const gpHour12 = glucoseProtocolHour % 12 === 0 ? 12 : glucoseProtocolHour % 12;
+    const gpMinStr = glucoseProtocolMin < 10 ? "0" + glucoseProtocolMin : "" + glucoseProtocolMin;
+    const glucoseProtocolTimeStr = gpHour12 + ":" + gpMinStr + " " + gpPeriod;
+
+    timeline.push({
+        id: "t_tcf7l2_squats",
+        time: glucoseProtocolTimeStr,
+        title: "Glucose Disposal Protocol: 30 Air Squats (GLUT4 Activation)",
+        desc: "IMMEDIATE ACTION REQUIRED: Perform 30 continuous air squats NOW. Focus on full depth and controlled tempo (2s down, 1s up). This is a non-negotiable metabolic countermeasure following your Turkish Delight intake.",
+        expertInsight: "TCF7L2 Risk Mitigation: You carry a high-risk metabolic genotype (TCF7L2 variant) that impairs insulin secretion timing and glucose uptake efficiency. Turkish Delight is a pure glucose-sucrose bomb (~20-25g of high-GI sugar across 5 pieces), causing a rapid postprandial glucose spike. Skeletal muscle contraction is the only GLUT4-independent pathway to force glucose transporter translocation to the cell membrane — meaning your muscles absorb glucose WITHOUT requiring insulin. 30 air squats engage your largest muscle groups (glutes, quads, hamstrings) and can reduce the postprandial glucose AUC (area under the curve) by up to 30%. Execute this within 20-30 minutes of consumption for maximum glycemic blunting. Do NOT skip this block.",
+        tags: ["Bio", "Metabolic"],
+        completed: false
+    });
+
     // --- WORK BLOCKS & VACATION OVERRIDE ---
     const todayObj = new Date();
     // Month is 0-indexed (March = 2)
