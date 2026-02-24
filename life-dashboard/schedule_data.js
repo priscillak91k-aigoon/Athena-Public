@@ -204,6 +204,11 @@ window.generateTodayTimeline = function () {
 
     timeline.push({ id: "t_sleep", time: sleepTime, title: "Wind Down Protocol", desc: "Begin evening routine.", expertInsight: "Louisa Nicola Deep Sleep Priming: Establish a digital sunset (no blue light) and practice box breathing. This triggers the Parasympathetic state and preps the Glymphatic system to clear Alzheimer's-related proteins.", tags: ["Bio", "Neuro"], completed: false });
 
+    // Add brush Quinny reminder
+    if (today === 0 || today === 1 || today === 2 || today === 3 || today === 4 || today === 5 || today === 6) {
+        timeline.push({ id: "t_quinny_brush", time: "07:00 PM", title: "Brush Quinny", desc: "Brush Quinny's teeth.", tags: ["Pet Care"], completed: false });
+    }
+
     // Sort timeline by time string (basic sorting, works for our PM/AM format if we convert to 24h for sorting)
     timeline.sort((a, b) => {
         const parseTime = (timeStr) => {
