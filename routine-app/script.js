@@ -208,6 +208,40 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.productivityChartInstance) {
             window.productivityChartInstance.update();
         }
+
+        // Push current points to Supabase
+        syncPointsToCloud(pointsToday);
+    }
+
+    // Cloud Sync Logic for Points
+    let lastSyncTimeout = null;
+    function syncPointsToCloud(points) {
+        // Debounce the network request so we don't spam Supabase
+        // every time a checkbox is clicked
+        if (lastSyncTimeout) clearTimeout(lastSyncTimeout);
+
+        lastSyncTimeout = setTimeout(async () => {
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/user_data?id=eq.1`, {
+                    method: 'PATCH',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ dashboard_points: points })
+                });
+
+                if (!response.ok) {
+                    console.error("Failed to sync points to cloud:", response.statusText);
+                } else {
+                    console.log(`Synced ${points} points to Supabase.`);
+                }
+            } catch (err) {
+                console.error("Network error syncing points:", err);
+            }
+        }, 1500); // Wait 1.5 seconds after last click before syncing
     }
 
     function initChart() {

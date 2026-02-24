@@ -5,12 +5,14 @@ CREATE TABLE IF NOT EXISTS user_data (
     id integer PRIMARY KEY DEFAULT 1,
     schedule_payload text,
     history_payload text,
-    memory_payload text
+    memory_payload text,
+    excel_payload text,
+    dashboard_points integer DEFAULT 0
 );
 
 -- Insert the initial blank row
-INSERT INTO user_data (id, schedule_payload, history_payload, memory_payload)
-VALUES (1, '', '', '')
+INSERT INTO user_data (id, schedule_payload, history_payload, memory_payload, excel_payload, dashboard_points)
+VALUES (1, '', '', '', '', 0)
 ON CONFLICT (id) DO NOTHING;
 
 -- Enable RLS and allow the Anon key to read/write this specific table
