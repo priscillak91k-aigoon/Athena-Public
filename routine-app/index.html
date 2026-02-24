@@ -41,6 +41,7 @@
 
         <div class="tabs">
             <button class="tab-btn active" data-tab="today">Today's Schedule</button>
+            <button class="tab-btn" data-tab="productivity">Productivity</button>
             <button class="tab-btn" data-tab="briefing">Briefing</button>
             <button class="tab-btn" data-tab="daily">Daily Candidates</button>
             <button class="tab-btn" data-tab="weekly">Weekly/Monthly</button>
@@ -53,18 +54,36 @@
             <!-- Today's View -->
             <section id="today" class="tab-content active glass-panel">
                 <div class="section-header">
-                    <h2><span class="icon">✨</span> Today's Action Plan <span id="points-display"
-                            style="font-size: 1rem; color: var(--accent-green); margin-left: 1rem;">[0 pts]</span></h2>
+                    <h2><span class="icon">✨</span> Today's Action Plan</h2>
                     <div class="progress-container">
                         <div class="progress-bar" id="today-progress"></div>
                     </div>
                 </div>
-
-                <div class="chart-container" style="position: relative; height:150px; width:100%; margin-bottom: 2rem;">
-                    <canvas id="productivityChart"></canvas>
-                </div>
                 <div class="timeline" id="today-timeline">
                     <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Productivity & Gamification View -->
+            <section id="productivity" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">📈</span> Productivity Metrics <span id="points-display"
+                            style="font-size: 1.25rem; font-weight: bold; color: var(--accent-green); margin-left: 1rem;">[0
+                            pts]</span>
+                    </h2>
+                    <p class="sub-text">Your 7-Day Rolling Gamification Score</p>
+                </div>
+
+                <div class="chart-container"
+                    style="position: relative; height: 250px; width:100%; margin-bottom: 2rem; background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-md); padding: 1rem;">
+                    <canvas id="productivityChart"></canvas>
+                </div>
+
+                <div class="workout-rules">
+                    <strong>🎮 Gamification System:</strong>
+                    Tick off tasks in your "Today's Schedule" and "Daily Candidates" lists to rack up points. Maximize
+                    your daily output and hold yourself accountable. Data is dual-synced via Supabase back into your
+                    local raw Excel Ledger.
                 </div>
             </section>
 
