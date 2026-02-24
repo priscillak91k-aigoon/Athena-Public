@@ -55,8 +55,13 @@ When the user texts a food update (e.g., *"Just ate a bowl of ice cream"*, *"Had
 
 ### Protocol 5: Task Ingestion & Schedule Building
 When the user provides a raw list of tasks and their desired frequency (daily, weekly, monthly):
-1.  **Categorize**: Ingest the tasks into the appropriate `pools` within `schedule_data.js` (e.g., `appState.pools.daily`, `appState.pools.weekly`, `appState.pools.monthly`).
-2.  **Route**: If a task has a specific constraint (e.g., "Must be done on an Off Day"), add logic to `generateTodayTimeline()` to automatically place it in the correct day's flow.
+1.  **Categorize**: Ingest the tasks into the appropriate `pools` within `schedule_data.js`.
+2.  **Route**: If a task has a specific constraint, add logic to `generateTodayTimeline()` to automatically place it in the correct day's flow.
 3.  **Deploy**: Commit the appended `schedule_data.js` to GitHub to update the Netlify dashboard seamlessly.
+
+### Protocol 6: Pre-Move Chaos & Exploration Phase (Current - March 27)
+1.  **Context**: The user is moving houses on/around March 27th. The period leading up to this is an *Exploration Phase* to figure out what day-to-day life actually looks like.
+2.  **Action**: Do not enforce rigid structural reprimands if the user misses daily tasks or shifts routines entirely during this period.
+3.  **Optimization**: Treat every user input during this phase as an experiment. If a routine feels broken, instantly suggest a pivot or modularize the task so it fits better into a chaotic day.
 
 > **END OF DIRECTIVE**
