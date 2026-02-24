@@ -153,13 +153,21 @@ window.generateTodayTimeline = function () {
         timeline.push({ id: "t_workout", time: "10:30 AM", title: "Daily Training Session", desc: "Execute today's workout block.", expertInsight: "Peter Attia Longevity Protocol: Consistent training volume is the strongest leading indicator of an extended healthspan.", tags: ["Workout", "Attia"], completed: false });
     }
 
-    // --- WORK BLOCKS ---
-    if (today === 5 || today === 6) { // Fri, Sat
-        timeline.push({ id: "t_work", time: "02:45 PM - 11:00 PM", title: "Work Shift", desc: "Clock in for the evening shift.", expertInsight: "High dopamine demand. Ensure you take brief 2-minute visual breaks (stare 20ft away) every hour to reduce cognitive fatigue.", tags: ["Work"], completed: false });
-    } else if (today === 0) { // Sunday
-        timeline.push({ id: "t_work", time: "11:00 AM - 05:00 PM", title: "Work Shift", desc: "Clock in for the day shift.", tags: ["Work"], completed: false });
-    } else if (today === 1) { // Monday
-        timeline.push({ id: "t_work", time: "12:00 PM - 06:00 PM", title: "Work Shift", desc: "Clock in for the day shift.", tags: ["Work"], completed: false });
+    // --- WORK BLOCKS & VACATION OVERRIDE ---
+    const todayObj = new Date();
+    // Month is 0-indexed (March = 2)
+    const isVacation = (todayObj.getMonth() === 2 && todayObj.getDate() >= 27 && todayObj.getDate() <= 30);
+
+    if (isVacation) {
+        timeline.push({ id: "t_work", time: "All Day", title: "Vacation / Time Off", desc: "No work shifts scheduled.", expertInsight: "Focus entirely on parasympathetic recovery, family connection, and deep rest.", tags: ["Rest", "Family"], completed: false });
+    } else {
+        if (today === 5 || today === 6) { // Fri, Sat
+            timeline.push({ id: "t_work", time: "02:45 PM - 11:00 PM", title: "Work Shift", desc: "Clock in for the evening shift.", expertInsight: "High dopamine demand. Ensure you take brief 2-minute visual breaks (stare 20ft away) every hour to reduce cognitive fatigue.", tags: ["Work"], completed: false });
+        } else if (today === 0) { // Sunday
+            timeline.push({ id: "t_work", time: "11:00 AM - 05:00 PM", title: "Work Shift", desc: "Clock in for the day shift.", tags: ["Work"], completed: false });
+        } else if (today === 1) { // Monday
+            timeline.push({ id: "t_work", time: "12:00 PM - 06:00 PM", title: "Work Shift", desc: "Clock in for the day shift.", tags: ["Work"], completed: false });
+        }
     }
 
     // --- QUINNY WALK (Evening Route: Mon, Sun) ---
