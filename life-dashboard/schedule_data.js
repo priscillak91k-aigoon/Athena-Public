@@ -126,54 +126,54 @@ window.generateTodayTimeline = function () {
 
     // --- WAKE BLOCK ---
     if (today === 0) { // Sunday
-        timeline.push({ id: "t_wake", time: "08:30 AM", title: "Wake, Hydrate & Electrolytes", desc: "1L Water + electrolytes. Rest day wake time.", tags: ["Health", "Morning"], completed: false });
+        timeline.push({ id: "t_wake", time: "08:30 AM", title: "Wake Up", desc: "Start the day.", expertInsight: "Drink 1L Water with electrolytes immediately. Your Sunday rest day allows for this delayed wake time to prioritize recovery.", tags: ["Health", "Morning"], completed: false });
     } else { // Mon-Sat
-        timeline.push({ id: "t_wake", time: "06:30 AM", title: "Wake, Hydrate & Electrolytes", desc: "1L Water + electrolytes.", tags: ["Health", "Morning"], completed: false });
+        timeline.push({ id: "t_wake", time: "06:30 AM", title: "Wake Up", desc: "Start the day.", expertInsight: "Drink 1L Water with electrolytes immediately. Wait 90 minutes before caffeine (CYP1A2 poor metabolizer) to protect deep sleep later.", tags: ["Health", "Morning"], completed: false });
     }
 
     // --- MORNING LIGHT / NEURO ---
     let sunTime = today === 0 ? "09:00 AM" : "07:30 AM";
-    timeline.push({ id: "t_sun", time: sunTime, title: "Morning Sunlight & Movement", desc: "Neuro-Athletics Protocol: Sunlight exposure to regulate circadian rhythm (CLOCK gene support).", tags: ["Bio"], completed: false });
+    timeline.push({ id: "t_sun", time: sunTime, title: "Morning Movement Outside", desc: "Get outside for 10-15 minutes.", expertInsight: "Louisa Nicola Protocol: Morning sunlight exposure directly to the eyes regulates your circadian rhythm and supports your CLOCK genes.", tags: ["Bio"], completed: false });
 
     // --- KIDS MORNING ROUTINE (Mon - Fri) ---
     if (today >= 1 && today <= 5) {
-        timeline.push({ id: "t_kids", time: "06:30 AM - 08:15 AM", title: "Kids Morning Prep", desc: "Help with kids routine and breakfast.", tags: ["Family"], completed: false });
-        timeline.push({ id: "t_drop", time: "08:50 AM", title: "Morning Ride Drop-off", desc: "Sarah and the boys.", tags: ["Family"], completed: false });
+        timeline.push({ id: "t_kids", time: "06:30 AM - 08:15 AM", title: "Kids Morning Prep", desc: "Help with kids routine and breakfast.", expertInsight: "Action-oriented family time. Stay present and avoid digital distraction during this block.", tags: ["Family"], completed: false });
+        timeline.push({ id: "t_drop", time: "08:50 AM", title: "Morning Ride Drop-off", desc: "Drop off Sarah and the boys.", tags: ["Family"], completed: false });
     }
 
     // --- QUINNY WALK (Morning Route: Tue, Wed, Thu, Fri, Sat) ---
     if (today >= 2 && today <= 6) {
         let walkTime = (today === 5 || today === 6) ? "09:30 AM" : "09:30 AM"; // Default morning walk
-        timeline.push({ id: "t_walk_am", time: walkTime, title: "Quinny's Morning Walk", desc: "Zone 1/2 active recovery + 10 mins rigid training.", tags: ["Pet Care"], completed: false });
+        timeline.push({ id: "t_walk_am", time: walkTime, title: "Quinny's Morning Walk", desc: "30-45 minute walk.", expertInsight: "Zone 1/2 active recovery. Incorporate 10 minutes of rigid training (impulse control) for mental stimulation.", tags: ["Pet Care"], completed: false });
     }
 
     // --- LONGEVITY WORKOUT BLOCK ---
     // Off-days (Tue, Wed, Thu) usually have more time for longevity protocols in the morning
     if (today >= 2 && today <= 4) {
-        timeline.push({ id: "t_workout", time: "10:30 AM", title: "Longevity & Neuro Protocol", desc: "Execute today's Attia/Nicola workout block.", tags: ["Workout", "Attia"], completed: false });
+        timeline.push({ id: "t_workout", time: "10:30 AM", title: "Daily Training Session", desc: "Execute today's workout block.", expertInsight: "Peter Attia Longevity Protocol: Consistent training volume is the strongest leading indicator of an extended healthspan.", tags: ["Workout", "Attia"], completed: false });
     }
 
     // --- WORK BLOCKS ---
     if (today === 5 || today === 6) { // Fri, Sat
-        timeline.push({ id: "t_work", time: "02:45 PM - 11:00 PM", title: "Work Shift", desc: "Deep work block.", tags: ["Work"], completed: false });
+        timeline.push({ id: "t_work", time: "02:45 PM - 11:00 PM", title: "Work Shift", desc: "Clock in for the evening shift.", expertInsight: "High dopamine demand. Ensure you take brief 2-minute visual breaks (stare 20ft away) every hour to reduce cognitive fatigue.", tags: ["Work"], completed: false });
     } else if (today === 0) { // Sunday
-        timeline.push({ id: "t_work", time: "11:00 AM - 05:00 PM", title: "Work Shift", desc: "Deep work block.", tags: ["Work"], completed: false });
+        timeline.push({ id: "t_work", time: "11:00 AM - 05:00 PM", title: "Work Shift", desc: "Clock in for the day shift.", tags: ["Work"], completed: false });
     } else if (today === 1) { // Monday
-        timeline.push({ id: "t_work", time: "12:00 PM - 06:00 PM", title: "Work Shift", desc: "Deep work block.", tags: ["Work"], completed: false });
+        timeline.push({ id: "t_work", time: "12:00 PM - 06:00 PM", title: "Work Shift", desc: "Clock in for the day shift.", tags: ["Work"], completed: false });
     }
 
     // --- QUINNY WALK (Evening Route: Mon, Sun) ---
     if (today === 0) { // Sunday
-        timeline.push({ id: "t_walk_pm", time: "05:30 PM", title: "Quinny's Evening Walk", desc: "Post-work decompression walk.", tags: ["Pet Care"], completed: false });
+        timeline.push({ id: "t_walk_pm", time: "05:30 PM", title: "Quinny's Evening Walk", desc: "Decompression walk.", expertInsight: "Post-work Zone 1 movement clears accumulated lactate and cortisol.", tags: ["Pet Care"], completed: false });
     } else if (today === 1) { // Monday
-        timeline.push({ id: "t_walk_pm", time: "06:30 PM", title: "Quinny's Evening Walk", desc: "Post-work decompression walk.", tags: ["Pet Care"], completed: false });
+        timeline.push({ id: "t_walk_pm", time: "06:30 PM", title: "Quinny's Evening Walk", desc: "Decompression walk.", expertInsight: "Post-work Zone 1 movement clears accumulated lactate and cortisol.", tags: ["Pet Care"], completed: false });
     }
 
     // --- CHORES / RESET ---
     // If not working the afternoon, add the Parker pickup and house reset
     if (today >= 2 && today <= 4) {
         timeline.push({ id: "t_chores", time: "11:30 AM", title: "House Mid-Day Reset", desc: "Dishes, beds, lux ground floor, spray couches.", tags: ["Chores"], completed: false });
-        timeline.push({ id: "t_nap", time: "12:30 PM", title: "Nap / Core Rest", desc: "Crucial for recovery.", tags: ["Rest"], completed: false });
+        timeline.push({ id: "t_nap", time: "12:30 PM", title: "Nap / Core Rest", desc: "Take a break to recharge.", expertInsight: "Crucial for physical recovery and cognitive offloading, especially after strength training or poor night sleep.", tags: ["Rest"], completed: false });
         timeline.push({ id: "t_pickup", time: "02:45 PM", title: "Parker Pick Up", desc: "Leave with Tash at 2:45 PM.", tags: ["Family"], completed: false });
     }
 
@@ -183,7 +183,7 @@ window.generateTodayTimeline = function () {
     if (today === 5 || today === 6) sleepTime = "11:30 PM";
     else if (today === 1) sleepTime = "08:30 PM";
 
-    timeline.push({ id: "t_sleep", time: sleepTime, title: "Deep Sleep Priming", desc: "Digital sunset (no blue light), box breathing. Prep Glymphatic system for Alzheimer's defense.", tags: ["Bio", "Neuro"], completed: false });
+    timeline.push({ id: "t_sleep", time: sleepTime, title: "Wind Down Protocol", desc: "Begin evening routine.", expertInsight: "Louisa Nicola Deep Sleep Priming: Establish a digital sunset (no blue light) and practice box breathing. This triggers the Parasympathetic state and preps the Glymphatic system to clear Alzheimer's-related proteins.", tags: ["Bio", "Neuro"], completed: false });
 
     // Sort timeline by time string (basic sorting, works for our PM/AM format if we convert to 24h for sorting)
     timeline.sort((a, b) => {

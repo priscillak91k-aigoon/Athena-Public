@@ -143,11 +143,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 return `<span class="tag ${colorClass}">${tag}</span>`;
             }).join('');
 
+            let expertInsightHtml = '';
+            if (item.expertInsight) {
+                expertInsightHtml = `
+                    <div class="expert-insight" style="margin-top: 0.75rem; padding: 0.75rem; background: rgba(14, 165, 233, 0.05); border-left: 2px solid var(--accent); border-radius: 4px; font-size: 0.85rem; color: rgba(255,255,255,0.7);">
+                        <strong style="color: var(--accent); display: block; margin-bottom: 0.25rem;">🔬 Protocol Insight</strong>
+                        ${item.expertInsight}
+                    </div>
+                `;
+            }
+
             el.innerHTML = `
                 <span class="timeline-time">${item.time}</span>
                 <div class="timeline-content">
                     <div class="timeline-title">${item.title}</div>
                     <div class="timeline-desc">${item.desc}</div>
+                    ${expertInsightHtml}
                     <div class="tags">${tagsHtml}</div>
                 </div>
             `;
