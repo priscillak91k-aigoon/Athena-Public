@@ -206,7 +206,7 @@ window.generateTodayTimeline = function () {
 
     // Add brush Quinny reminder
     if (today === 0 || today === 1 || today === 2 || today === 3 || today === 4 || today === 5 || today === 6) {
-        timeline.push({ id: "t_quinny_brush", time: "07:00 PM", title: "Brush Quinny", desc: "Brush Quinny's teeth.", tags: ["Pet Care"], completed: false });
+        timeline.push({ id: "t_quinny_brush", time: "07:00 PM", title: "Brush Quinny's Fur", desc: "Brush Quinny's fur.", tags: ["Pet Care"], completed: false });
     }
 
     // Sort timeline by time string (basic sorting, works for our PM/AM format if we convert to 24h for sorting)
