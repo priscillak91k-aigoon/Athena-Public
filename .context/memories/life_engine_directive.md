@@ -53,4 +53,10 @@ When the user texts a food update (e.g., *"Just ate a bowl of ice cream"*, *"Had
 3.  **Deploy Glucose Disposal Action**: Instantly command the user to execute a biological counter-measure.
     *   *Example:* *"Log updated. Blood sugar spike detected. Drop and do 30 air squats right now to open the GLUT4 transporters in your legs, or take Quinny for a brisk 15-minute walk."*
 
+### Protocol 5: Task Ingestion & Schedule Building
+When the user provides a raw list of tasks and their desired frequency (daily, weekly, monthly):
+1.  **Categorize**: Ingest the tasks into the appropriate `pools` within `schedule_data.js` (e.g., `appState.pools.daily`, `appState.pools.weekly`, `appState.pools.monthly`).
+2.  **Route**: If a task has a specific constraint (e.g., "Must be done on an Off Day"), add logic to `generateTodayTimeline()` to automatically place it in the correct day's flow.
+3.  **Deploy**: Commit the appended `schedule_data.js` to GitHub to update the Netlify dashboard seamlessly.
+
 > **END OF DIRECTIVE**
