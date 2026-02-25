@@ -127,6 +127,91 @@ document.addEventListener('DOMContentLoaded', () => {
 
     checkAuth();
 
+    // --- Tab Navigation Logic ---
+    const tabBtns = document.querySelectorAll('.tab-btn[data-tab]');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active style from all tabs and hide all contents
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(c => {
+                c.classList.remove('active');
+                c.style.display = 'none';
+            });
+
+            // Add active style to the clicked tab
+            btn.classList.add('active');
+
+            // Show target content
+            const targetId = btn.getAttribute('data-tab');
+            const targetContent = document.getElementById(targetId);
+            if (targetContent) {
+                targetContent.classList.add('active');
+                targetContent.style.display = 'block';
+            }
+        });
+    });
+
+    // Explicitly hide non-active tabs on load to be safe
+    tabContents.forEach(c => {
+        if (!c.classList.contains('active')) {
+            c.style.display = 'none';
+        }
+    });
+
+    // --- Quick Add Logic ---
+    const quickAddInput = document.getElementById('quick-add-input');
+    const quickAddBtn = document.getElementById('quick-add-btn');
+
+    async function handleQuickAdd() {
+        const title = quickAddInput.value.trim();
+        if (!title) return;
+
+        quickAddBtn.innerText = "⏳";
+        quickAddBtn.style.pointerEvents = "none";
+
+        const newTask = {
+            title: title,
+            points: 2,
+            priority_color: 'ORANGE',
+            time_target: 'Unscheduled',
+            is_active: true
+        };
+
+        try {
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master`, {
+                method: 'POST',
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Content-Type': 'application/json',
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify([newTask])
+            });
+
+            if (response.ok) {
+                quickAddInput.value = '';
+                await fetchTasksAndRenderTimeline();
+                if (typeof initTaskConfigurator === 'function') initTaskConfigurator();
+            } else {
+                console.error("Failed to add quick task:", response.statusText);
+                alert("Failed to add task.");
+            }
+        } catch (err) {
+            console.error("Network error adding task:", err);
+        } finally {
+            quickAddBtn.innerText = "Add";
+            quickAddBtn.style.pointerEvents = "auto";
+        }
+    }
+
+    if (quickAddBtn) quickAddBtn.addEventListener('click', handleQuickAdd);
+    if (quickAddInput) quickAddInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleQuickAdd();
+    });
+
     // Store our dynamically fetched tasks here
     let dynamicTasks = [];
 
@@ -139,8 +224,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // First time UI setup
             setupDragAndDropZones();
 
-            // Fetch only RED tasks for this specific implementation
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?priority_color=eq.RED&is_active=eq.true&select=*`, {
+            // Fetch ALL active tasks for the universal Task Pool
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?is_active=eq.true&select=*`, {
                 method: 'GET',
                 headers: {
                     'apikey': SUPABASE_ANON_KEY,
@@ -153,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 dynamicTasks = await response.json();
                 renderDraggableTimeline();
             } else {
-                console.error("Failed to fetch red tasks list:", response.statusText);
+                console.error("Failed to fetch tasks list:", response.statusText);
             }
         } catch (error) {
             console.error("Network error fetching tasks:", error);
@@ -161,8 +246,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderDraggableTimeline() {
-        // Clear all drop zones first
+        // Clear all drop zones and accordion bodies
         document.querySelectorAll('.drop-zone').forEach(zone => zone.innerHTML = '');
+
+        // Categorization helper: determine which pool a task belongs to
+        function getPoolId(task) {
+            const tt = (task.time_target || '').trim();
+
+            // If it matches a specific time slot (e.g. "08:00 AM"), it goes on the timeline
+            if (/^\d{2}:\d{2}\s*(AM|PM)$/i.test(tt)) return 'timeline';
+
+            // Daily tasks
+            if (tt === 'Daily Flexible') return 'pool-today';
+
+            // This week tasks
+            if (tt === 'Weekly' || tt === 'Weekly (3x)' || tt === 'Moveable') return 'pool-week';
+
+            // Long-term
+            if (tt === 'Monthly') return 'pool-longterm';
+
+            // Everything else (Unscheduled, empty, null, new quick-add tasks)
+            return 'pool-future';
+        }
+
+        // Track counts per section for badge display
+        const counts = { 'pool-today': 0, 'pool-week': 0, 'pool-longterm': 0, 'pool-future': 0 };
 
         dynamicTasks.forEach(task => {
             // Create the draggable card
@@ -171,7 +279,14 @@ document.addEventListener('DOMContentLoaded', () => {
             el.draggable = true;
             el.dataset.id = task.id;
 
-            // Re-use formatting from the old timeline element, but without the hard time text (since it's in a slot now)
+            // Visual indicator for priority color
+            let colorBorder = 'var(--glass-border)';
+            if (task.priority_color === 'RED') colorBorder = 'var(--accent-red)';
+            if (task.priority_color === 'ORANGE') colorBorder = 'var(--accent-orange)';
+            if (task.priority_color === 'GREEN') colorBorder = 'var(--accent-green)';
+
+            el.style.borderLeft = `3px solid ${colorBorder}`;
+
             el.innerHTML = `
                 <div class="task-title" style="font-size: 0.95rem;">${task.title} <span style="font-size:0.8rem; color:var(--accent-blue);">[+${task.points} pts]</span></div>
                 ${task.description ? `<div class="task-desc" style="font-size: 0.8rem;">${task.description}</div>` : ''}
@@ -180,11 +295,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
-            // Attach drag events to the specific task card
+            // Attach drag events
             el.addEventListener('dragstart', (e) => {
                 el.classList.add('dragging');
-                draggedTaskObj = task; // Store reference to the object being dragged
-                // Required for Firefox
+                draggedTaskObj = task;
                 e.dataTransfer.setData('text/plain', task.id);
             });
 
@@ -193,20 +307,64 @@ document.addEventListener('DOMContentLoaded', () => {
                 draggedTaskObj = null;
             });
 
-            // Decide where it goes based on its time_target
-            let targetZone = document.querySelector(`.drop-zone[data-time="${task.time_target}"]`);
+            // Route to the correct container
+            const poolId = getPoolId(task);
 
-            // If the database has a weird time target that we don't have a slot for, throw it in unscheduled
-            if (!targetZone) {
-                targetZone = document.getElementById('unscheduled-red-tasks');
+            if (poolId === 'timeline') {
+                const targetZone = document.querySelector(`.drop-zone[data-time="${task.time_target}"]`);
+                if (targetZone) {
+                    targetZone.appendChild(el);
+                } else {
+                    // Fallback: time slot doesn't exist on the timeline, put in Today
+                    const fallback = document.getElementById('pool-today');
+                    if (fallback) fallback.appendChild(el);
+                    counts['pool-today']++;
+                }
+            } else {
+                const container = document.getElementById(poolId);
+                if (container) container.appendChild(el);
+                if (counts[poolId] !== undefined) counts[poolId]++;
             }
-
-            targetZone.appendChild(el);
         });
 
-        // Small visual update for progress container, hardcoding to 0% for now since completion isn't tracked in this v1 test
+        // Update section headers with task counts
+        document.querySelectorAll('.pool-accordion-header').forEach(header => {
+            const poolId = header.getAttribute('data-pool');
+            const count = counts[poolId];
+            if (count !== undefined) {
+                const label = header.querySelector('span:first-child');
+                // Add count badge
+                const existingBadge = header.querySelector('.pool-count');
+                if (existingBadge) existingBadge.remove();
+                const badge = document.createElement('span');
+                badge.className = 'pool-count';
+                badge.textContent = ` (${count})`;
+                label.appendChild(badge);
+            }
+        });
+
+        // Progress update
         document.getElementById('today-progress').style.width = '0%';
     }
+
+    // --- Accordion Toggle Logic ---
+    document.querySelectorAll('.pool-accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const poolId = header.getAttribute('data-pool');
+            const body = document.getElementById(poolId);
+            const toggle = header.querySelector('.pool-toggle');
+
+            if (body.style.display === 'none') {
+                body.style.display = 'block';
+                header.classList.add('expanded');
+                toggle.textContent = '▼';
+            } else {
+                body.style.display = 'none';
+                header.classList.remove('expanded');
+                toggle.textContent = '►';
+            }
+        });
+    });
 
     function setupDragAndDropZones() {
         const dropZones = document.querySelectorAll('.drop-zone');
@@ -257,19 +415,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 time_target: t.time_target
             }));
 
-            // Supabase REST Bulk Upsert/Patch
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?columns=id,time_target`, {
-                method: 'POST', // UPSERT requires POST with prefer resolution
-                headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Content-Type': 'application/json',
-                    'Prefer': 'resolution=merge-duplicates'
-                },
-                body: JSON.stringify(updates)
+            // Supabase REST Bulk Upsert often fails if we don't pass the complete row data to satisfy NOT NULL constraints
+            // (even with merge-duplicates) because it evaluates the insert payload first.
+            // Using a Promise.all of individual PATCH requests is safest since we're only updating 5-10 items max.
+
+            const patchPromises = updates.map(update => {
+                return fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?id=eq.${update.id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ time_target: update.time_target })
+                });
             });
 
-            if (response.ok) {
+            const responses = await Promise.all(patchPromises);
+
+            // Check if any failed
+            const allOk = responses.every(r => r.ok);
+
+            if (allOk) {
                 lockBtn.innerText = "✅ Locked In";
                 lockBtn.style.background = "var(--glass-bg)";
                 lockBtn.style.color = "var(--accent-green)";
@@ -446,11 +614,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Initialize View
-    initChart();
-    renderTimeline();
-    createListItems(dailyCandidates, 'daily-list');
-    createListItems(weeklyMonthly.weekly, 'weekly-list');
-    createListItems(weeklyMonthly.monthly, 'monthly-list');
+    // initChart();
+    // renderTimeline();
+    // createListItems(dailyCandidates, 'daily-list');
+    // createListItems(weeklyMonthly.weekly, 'weekly-list');
+    // createListItems(weeklyMonthly.monthly, 'monthly-list');
 
     // Create dog tasks (Referencing lines 726-734 block instead to avoid duplicate let/const error)
 
@@ -575,11 +743,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Initialize View
-    initChart();
+    // initChart();
+    // fetchTasksAndRenderTimeline(); (Now called differently or moved)
     fetchTasksAndRenderTimeline();
-    createListItems(dailyCandidates, 'daily-list');
-    createListItems(weeklyMonthly.weekly, 'weekly-list');
-    createListItems(weeklyMonthly.monthly, 'monthly-list');
+    // createListItems(dailyCandidates, 'daily-list');
+    // createListItems(weeklyMonthly.weekly, 'weekly-list');
+    // createListItems(weeklyMonthly.monthly, 'monthly-list');
 
     // Create dog tasks
     const dogTrainingTasks = [
@@ -796,7 +965,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    populateWorkout();
+    // populateWorkout();
     initFoodAnalytics();
     initBioTracking();
     initProcurement();
