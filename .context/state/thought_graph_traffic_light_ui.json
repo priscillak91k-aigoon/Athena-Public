@@ -1,0 +1,19 @@
+{
+    "workflow": "ultrathink",
+    "objective": "Build a frontend GUI allowing the user to manage their tasks and set Traffic Light priorities (Red/Orange/Green), persisting to Supabase.",
+    "phases": {
+        "1_clarification_and_state_init": {
+            "status": "in_progress",
+            "active_thoughts": [
+                "Deconstruct: The user wants to set the traffic light status for tasks directly 'on that page'. This implies a configuration UI where they can see all tasks and change their colors.",
+                "Lateral Prism - Tech View: The frontend needs to fetch 'symphony_tasks_master', render an interactive list (perhaps with a status dropdown or color-cycle button), and when changed, send a PATCH request to Supabase to update 'priority_color'.",
+                "Lateral Prism - Biz View: This puts power entirely in the user's hands. They can dynamically promote or demote tasks without touching SQL or Javascript.",
+                "Lateral Prism - Risk View: The frontend uses the Anon Key. By default, our SQL script only allowed SELECT via RLS. To allow the frontend to UPDATE tasks, we must either update the RLS policies in Supabase to allow UPDATE with the Anon key or use the Service Role key in an Edge Function. For a local personal dashboard, altering the RLS to allow Anon UPDATEs on the tasks table is the most friction-free path.",
+                "Plan: 1) Update RLS via SQL script. 2) Build a 'Task Manager' or 'Traffic Light' UI panel. 3) Wire Javascript to update Supabase on click. 4) Update Today's Schedule to render purely based on this live Supabase data."
+            ]
+        },
+        "2_execution": {
+            "status": "pending"
+        }
+    }
+}

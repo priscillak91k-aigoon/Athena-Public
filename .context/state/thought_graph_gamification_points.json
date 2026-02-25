@@ -1,0 +1,28 @@
+{
+    "workflow": "ultrathink",
+    "objective": "Compile every real-life task mentioned by the user and assign a realistic, low-scaling points value based on difficulty/time.",
+    "phases": {
+        "1_data_gathering": {
+            "status": "in_progress",
+            "active_thoughts": [
+                "I need to scan `symphony-app.js` and `index.html` to extract every single task that currently exists.",
+                "Sources to check:",
+                "1. Today's Schedule (morning drop off, cleaning, walking dog).",
+                "2. Daily Candidates (dishes, luxing, brushing Quinny).",
+                "3. Weekly/Monthly reset (cleaning cars, drying clothes).",
+                "4. Dog Training Protocol (bell training, impulse control).",
+                "5. Workouts (Longevity split - squats, RDLs).",
+                "6. Supplements & Health (K2, L-Theanine, NAC).",
+                "7. Reminders / Mental Load (toy cleanup, flossing).",
+                "8. New features like 'Procurement' don't necessarily have points, but checking budgets might.",
+                "The scale needs to be kept low. Base tasks = 1 point. Difficult/long tasks (like a 1hr dog brush or a full workout) = 3-5 points max."
+            ]
+        },
+        "2_points_calibration": {
+            "status": "pending"
+        },
+        "3_user_review": {
+            "status": "pending"
+        }
+    }
+}

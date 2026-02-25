@@ -1,0 +1,26 @@
+{
+    "session_id": "ultrathink_dna_dashboard_integration",
+    "phase": 1,
+    "deconstruction": {
+        "context": "User wants to surface the actionable insights and mitigation strategies from the Exhaustive DNA Report directly onto their life website (Routine/Bio Tracking Dashboard). They also specifically requested a 'Doctor Visit' area that compiles concerning genetic markers to discuss with medical professionals.",
+        "action_items": [
+            "Locate the frontend files for the Bio Tracking dashboard.",
+            "Design a new section in the dashboard to display DNA Advice.",
+            "Design a 'Doctor Visit / Medical Alerts' section.",
+            "Extract the highest-priority action items from the DNA report (e.g. 9p21, HLA-B27, CYP3A4, MTHFR, etc.) and format them for the dashboard.",
+            "Implement the UI changes in HTML/CSS/JS."
+        ]
+    },
+    "lateral_prism": {
+        "tech_view": "The existing Bio Tracking tab likely already uses fetch or localized data. We can either parse the raw markdown on the fly, or (better) generate a structured JSON file `dna_insights.json` from the Python script, and have the dashboard dynamically render the 'Advice' and 'Doctor Alerts' sections from it.",
+        "biz_view": "Moving from a static markdown report to an interactive, persistent dashboard puts the bio-hacking advice directly in front of the user daily, ensuring the insights actually drive behavioral change rather than being forgotten in a folder.",
+        "risk_view": "Presenting genetic data as 'Medical Alerts' bridges the gap between informational and clinical. We must ensure the UI clearly states this is genetic predisposition data to discuss with a doctor, not an acute diagnosis."
+    },
+    "plan": [
+        "1. List the web app directory to locate `index.html` and `script.js`.",
+        "2. Review the existing Bio Tracking codebase.",
+        "3. Update `dna_ultimate_extractor.py` to also export a `dna_insights.json` payload, categorizing alerts into 'Daily Hacks' and 'Doctor Prompts'.",
+        "4. Edit the dashboard HTML/JS to render these new sections in the Bio Tracking tab.",
+        "5. Verify UI."
+    ]
+}

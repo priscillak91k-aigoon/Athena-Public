@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Supabase Global Configuration ---
+    const SUPABASE_URL = "https://ezvptctdfcddoybownml.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6dnB0Y3RkZmNkZG95Ym93bm1sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3NDgzNzAsImV4cCI6MjA4NzMyNDM3MH0.u_t44hY_YCwwtbWCIrQKf7EnUZDrja1q4zUFT0MXNOs";
+
     // Auth & Lock Screen Logic
-    const CORRECT_PASSWORD = "symphony2026";
+    const CORRECT_PASSWORD = "quinn15405";
     const lockScreen = document.getElementById('lock-screen');
     const appContent = document.getElementById('app-content');
     const passwordInput = document.getElementById('password-input');
@@ -123,96 +127,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     checkAuth();
 
-    // Current Data with Point Values
-    const scheduleData = [
-        { time: '08:50 AM', title: 'Morning Ride Drop-off', desc: 'Sarah and the boys (School/Kindy)', tags: ['Done'], completed: true, points: 2 },
-        { time: '09:00 AM - 10:00 AM', title: 'Post-Drop-off Reset', desc: 'Dishes, put stuff away, make boys bed, lux ground floor, empty inside bins, air house out, spray couches.', tags: ['Cleaning'], completed: false, points: 4 },
-        { time: '10:00 AM - 11:30 AM', title: 'Wash & Brush', desc: 'Catch up on washing (hang outside) & Quinny 1hr Furminator brush.', tags: ['Chores', 'Pet Care'], completed: false, points: 5 },
-        { time: '11:30 AM - 12:30 PM', title: 'Lunch & Wind Down', desc: 'Sort/fold washing, eat lunch, prepare to rest.', tags: ['Break', 'break'], completed: false, points: 1 },
-        { time: '12:30 PM - 01:30 PM', title: 'Core Rest Phase (Nap)', desc: 'Crucial for recovery and energy before the afternoon rush. Sleep well!', tags: ['Rest', 'break'], completed: false, points: 1 },
-        { time: '01:30 PM - 02:30 PM', title: 'Quinny\'s Walk (Zone 2 Cardio)', desc: '1-Hr brisk walk (conversational but strained) for aerobic base + 10 mins training.', tags: ['Pet Care', 'Health'], completed: false, points: 3 },
-        { time: '02:30 PM - 02:45 PM', title: 'Shower & Prep', desc: 'Have a quick shower, tidy up the house, and refill bin liners.', tags: ['Prep', 'Self Care'], completed: false, points: 1 },
-        { time: '02:45 PM - 03:30 PM', title: 'Parker Pick Up', desc: 'Leave with Tash at 2:45 PM to pick up Parker for 3:00 PM.', tags: ['Family'], completed: false, points: 2 },
-        { time: 'Late Afternoon', title: 'Free Time Block', desc: 'Suggestions: Take Quinny for a second walk, do a Trick session with her, or just relax!', tags: ['Free Time', 'break'], completed: false, points: 0 },
-        { time: 'Evening', title: 'Final Sweep', desc: 'Bring in outside bins when convenient.', tags: ['Chores'], completed: false, points: 1 },
-    ];
+    // Store our dynamically fetched tasks here
+    let dynamicTasks = [];
 
-    const dailyCandidates = [
-        { text: "Pick up dog (Quinn) poop from the lawn", points: 2 },
-        { text: "Morning ride over the hill with Sarah and the boys", points: 3 },
-        { text: "Dishes", points: 1 },
-        { text: "Put stuff away", points: 1 },
-        { text: "Make boys' bed (if needed)", points: 1 },
-        { text: "Lux ground floor", points: 2 },
-        { text: "Spray couches", points: 1 },
-        { text: "Air house out", points: 1 },
-        { text: "Make house smell nice", points: 1 },
-        { text: "Catch up on washing (hang outside if decent day)", points: 3 },
-        { text: "Sort, fold, and pop washing aside for others", points: 2 },
-        { text: "Give Quinny a full Furminator brush (takes ~1 hour)", points: 3 },
-        { text: "Empty inside bins and refill liners", points: 1 },
-        { text: "Bring in outside bins (later in the day)", points: 1 },
-        { text: "General clean up of house", points: 2 },
-        { text: "Pick up Parker for 3pm (Leave with Tash at 2:45pm)", points: 2 },
-        { text: "Clean my shoes", points: 1 }
-    ];
+    // Drag and Drop State
+    let draggedTaskObj = null;
 
-    const weeklyMonthly = {
-        weekly: [
-            "Clean the vacuum (Lux) head",
-            "Clean Sarah's car (due to Quinny's fur)",
-            "Complete 3-Day Longevity Home Workout Split",
-            "Clean the toilet and bathroom"
-        ],
-        monthly: [
-            "Clean the clothes drier and washer",
-            "Message sister (Tresha)",
-            "Message mum (Rachel)",
-            "Message foster mum (Jacinta)",
-            "Message foster sister (Shakira)"
-        ]
-    };
-
-    const workoutPlan = [
-        {
-            day: "Workout A",
-            focus: "Lower Body & Core (Foundation)",
-            exercises: [
-                "1. Goblet Squats (8kg KB or 10kg DB) - 3x10",
-                "2. RDLs (10kg + 8kg) - 3x10",
-                "3. Bulgarian Split Squats (Bodyweight/3kg DBs) - 3x8",
-                "4. Plank to Bear Hold - 3x 30s/20s"
-            ]
-        },
-        {
-            day: "Workout B",
-            focus: "Upper Body Pull & Shoulders (Posture)",
-            exercises: [
-                "1. Single-Arm DB Row (10kg DB on bench) - 3x10",
-                "2. Kettlebell Halo (8kg KB) - 3x10",
-                "3. Seated Overhead Press (3kg DBs on bench) - 3x15",
-                "4. Bench Reverse Flyes (3kg DBs on bench) - 3x15"
-            ]
-        },
-        {
-            day: "Workout C",
-            focus: "Full Body Functional Stability",
-            exercises: [
-                "1. Kettlebell Deadbug (8kg KB) - 3x10",
-                "2. Incline Bench Push-ups - 3x near failure",
-                "3. Goblet Reverse Lunges (8kg KB) - 3x10",
-                "4. Farmers Carry (10kg + 8kg) - 3x 45s"
-            ]
-        }
-    ];
-
-    // Supabase Configuration
-    const SUPABASE_URL = "YOUR_SUPABASE_URL"; // We will prompt the user to inject these securely or rely on their environment
-    const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
-
-    async function fetchSupabaseData() {
+    // --- Dynamic Drag and Drop Logic ---
+    async function fetchTasksAndRenderTimeline() {
         try {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/user_data?id=eq.1&select=*`, {
+            // First time UI setup
+            setupDragAndDropZones();
+
+            // Fetch only RED tasks for this specific implementation
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?priority_color=eq.RED&is_active=eq.true&select=*`, {
                 method: 'GET',
                 headers: {
                     'apikey': SUPABASE_ANON_KEY,
@@ -222,254 +150,145 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                const data = await response.json();
-                if (data && data.length > 0) {
-                    const userData = data[0];
-
-                    // Parse Schedule (if it's valid JS/JSON string)
-                    if (userData.schedule_payload) {
-                        try {
-                            // Extract schedule from the payload (assuming it overrides scheduleData)
-                            // For security/simplicity, we might use eval or Function, 
-                            // but ideally it's an array of objects.
-                            console.log("Schedule Payload found, but avoiding unsafe eval for now.");
-                        } catch (e) { console.error("Error parsing schedule:", e); }
-                    }
-
-                    // Parse History & Memory
-                    if (userData.history_payload) {
-                        document.getElementById('bio-history-content').innerHTML = marked.parse(userData.history_payload);
-                    } else {
-                        document.getElementById('bio-history-content').innerHTML = "<p class='text-secondary'>No biological history logged yet.</p>";
-                    }
-
-                    if (userData.memory_payload) {
-                        document.getElementById('memory-bank-content').innerHTML = marked.parse(userData.memory_payload);
-                    } else {
-                        document.getElementById('memory-bank-content').innerHTML = "<p class='text-secondary'>No memories logged yet.</p>";
-                    }
-                }
+                dynamicTasks = await response.json();
+                renderDraggableTimeline();
             } else {
-                console.error("Supabase fetch failed:", response.status, response.statusText);
+                console.error("Failed to fetch red tasks list:", response.statusText);
             }
         } catch (error) {
-            console.error("Error connecting to Supabase:", error);
-            document.getElementById('bio-history-content').innerHTML = `<p class="error-msg">Error loading data: ${error.message}</p>`;
-            document.getElementById('memory-bank-content').innerHTML = `<p class="error-msg">Error loading data: ${error.message}</p>`;
+            console.error("Network error fetching tasks:", error);
         }
     }
 
-    // Load schedule state
-    const savedSchedule = JSON.parse(localStorage.getItem('symphony_schedule_state') || 'null');
-    if (savedSchedule && savedSchedule.length === scheduleData.length) {
-        scheduleData.forEach((item, i) => {
-            item.completed = savedSchedule[i];
-        });
-    }
+    function renderDraggableTimeline() {
+        // Clear all drop zones first
+        document.querySelectorAll('.drop-zone').forEach(zone => zone.innerHTML = '');
 
-    // Productivity Point Tracking
-    let pointsToday = 0;
-    const pointsDisplay = document.getElementById('points-display');
-
-    // Graph Data States (In production, replace dummy history with Supabase historical logs)
-    const graphDataWeekly = JSON.parse(localStorage.getItem('symphony_graph_data') || '[12, 19, 15, 8, 22, 18, 0]');
-
-    // Mock historical data to demonstrate the visual scaling
-    let graphDataMonthly = Array.from({ length: 29 }, () => Math.floor(Math.random() * 15) + 5);
-    graphDataMonthly.push(0); // Today
-
-    let graphDataYearly = [120, 145, 130, 160, 155, 170, 165, 180, 175, 190, 185, 0]; // 11 months + current month empty
-
-    let currentChartView = 'weekly';
-
-    window.setChartView = function (view) {
-        currentChartView = view;
-        // Update button states
-        ['weekly', 'monthly', 'yearly'].forEach(v => {
-            document.getElementById(`btn-view-${v}`).classList.remove('active');
-        });
-        document.getElementById(`btn-view-${view}`).classList.add('active');
-
-        updateChartDisplay();
-    };
-
-    function updateChartDisplay() {
-        if (!window.productivityChartInstance) return;
-
-        const chart = window.productivityChartInstance;
-        const subtitle = document.getElementById('chart-subtitle');
-
-        if (currentChartView === 'weekly') {
-            chart.data.labels = ['Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Today'];
-            chart.data.datasets[0].data = graphDataWeekly;
-            subtitle.innerText = "Your 7-Day Rolling Gamification Score";
-        } else if (currentChartView === 'monthly') {
-            const labels = Array.from({ length: 30 }, (_, i) => `${i - 29}d`);
-            labels[29] = 'Today';
-            chart.data.labels = labels;
-            chart.data.datasets[0].data = graphDataMonthly;
-            subtitle.innerText = "Your 30-Day Monthly Gamification Score";
-        } else if (currentChartView === 'yearly') {
-            chart.data.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            chart.data.datasets[0].data = graphDataYearly;
-            subtitle.innerText = "Your Year-to-Date Gamification Score";
-        }
-
-        chart.update();
-    }
-
-    function updatePoints() {
-        pointsToday = 0;
-
-        // Tally from timeline
-        scheduleData.forEach(item => {
-            if (item.completed && item.points) pointsToday += item.points;
-        });
-
-        // Tally from Daily Candidates
-        const savedDailyState = JSON.parse(localStorage.getItem('symphony_list_state_daily-list') || '{}');
-        dailyCandidates.forEach((cand, index) => {
-            if (savedDailyState[index]) pointsToday += cand.points;
-        });
-
-        pointsDisplay.innerText = `[${pointsToday} pts]`;
-
-        // Update today's graph value across scales
-        graphDataWeekly[6] = pointsToday;
-        graphDataMonthly[29] = pointsToday;
-
-        const currentMonth = new Date().getMonth();
-        // Just directly setting the current month's accumulated score for demonstration
-        graphDataYearly[currentMonth] = 75 + pointsToday;
-
-        localStorage.setItem('symphony_graph_data', JSON.stringify(graphDataWeekly));
-
-        updateChartDisplay();
-
-        // Push current points to Supabase
-        syncPointsToCloud(pointsToday);
-    }
-
-    // Cloud Sync Logic for Points
-    let lastSyncTimeout = null;
-    function syncPointsToCloud(points) {
-        // Debounce the network request so we don't spam Supabase
-        // every time a checkbox is clicked
-        if (lastSyncTimeout) clearTimeout(lastSyncTimeout);
-
-        lastSyncTimeout = setTimeout(async () => {
-            try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/user_data?id=eq.1`, {
-                    method: 'PATCH',
-                    headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
-                    },
-                    body: JSON.stringify({ dashboard_points: points })
-                });
-
-                if (!response.ok) {
-                    console.error("Failed to sync points to cloud:", response.statusText);
-                } else {
-                    console.log(`Synced ${points} points to Supabase.`);
-                }
-            } catch (err) {
-                console.error("Network error syncing points:", err);
-            }
-        }, 1500); // Wait 1.5 seconds after last click before syncing
-    }
-
-    function initChart() {
-        const ctx = document.getElementById('productivityChart').getContext('2d');
-        window.productivityChartInstance = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Today'],
-                datasets: [{
-                    label: 'Productivity Points',
-                    data: graphDataWeekly,
-                    backgroundColor: 'rgba(56, 189, 248, 0.6)',
-                    borderColor: 'rgba(56, 189, 248, 1)',
-                    borderWidth: 1,
-                    borderRadius: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        ticks: { color: '#94a3b8' }
-                    },
-                    x: {
-                        grid: { display: false },
-                        ticks: { color: '#94a3b8' }
-                    }
-                },
-                plugins: {
-                    legend: { display: false }
-                }
-            }
-        });
-
-        // Initial render update to sync labels
-        updateChartDisplay();
-    }
-
-    // Render Logic
-
-    // Tab Switching
-    const tabs = document.querySelectorAll('.tab-btn');
-    const contents = document.querySelectorAll('.tab-content');
-
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            contents.forEach(c => c.classList.remove('active'));
-
-            tab.classList.add('active');
-            document.getElementById(tab.dataset.tab).classList.add('active');
-        });
-    });
-
-    // Populate Today's Schedule
-    const timelineElement = document.getElementById('today-timeline');
-    const renderTimeline = () => {
-        timelineElement.innerHTML = '';
-        let completedCount = 0;
-
-        scheduleData.forEach((item, index) => {
-            if (item.completed) completedCount++;
-
+        dynamicTasks.forEach(task => {
+            // Create the draggable card
             const el = document.createElement('div');
-            el.className = `timeline-item ${item.completed ? 'completed' : ''}`;
+            el.className = 'draggable-task';
+            el.draggable = true;
+            el.dataset.id = task.id;
+
+            // Re-use formatting from the old timeline element, but without the hard time text (since it's in a slot now)
             el.innerHTML = `
-                <span class="time">${item.time}</span>
-                <div class="task-title">${item.title} <span style="font-size:0.8rem; color:var(--accent-blue);">[+${item.points} pts]</span></div>
-                <div class="task-desc">${item.desc}</div>
-                <div>
-                    ${item.tags.map(t => `<span class="tag ${t === 'break' ? 'break' : ''}">${t}</span>`).join('')}
+                <div class="task-title" style="font-size: 0.95rem;">${task.title} <span style="font-size:0.8rem; color:var(--accent-blue);">[+${task.points} pts]</span></div>
+                ${task.description ? `<div class="task-desc" style="font-size: 0.8rem;">${task.description}</div>` : ''}
+                <div style="margin-top: 4px;">
+                    ${(task.tags || []).map(t => `<span class="tag" style="font-size: 0.65rem; padding: 2px 6px;">${t}</span>`).join('')}
                 </div>
             `;
 
-            el.addEventListener('click', () => {
-                scheduleData[index].completed = !scheduleData[index].completed;
-                localStorage.setItem('symphony_schedule_state', JSON.stringify(scheduleData.map(s => s.completed)));
-                renderTimeline();
+            // Attach drag events to the specific task card
+            el.addEventListener('dragstart', (e) => {
+                el.classList.add('dragging');
+                draggedTaskObj = task; // Store reference to the object being dragged
+                // Required for Firefox
+                e.dataTransfer.setData('text/plain', task.id);
             });
 
-            timelineElement.appendChild(el);
+            el.addEventListener('dragend', () => {
+                el.classList.remove('dragging');
+                draggedTaskObj = null;
+            });
+
+            // Decide where it goes based on its time_target
+            let targetZone = document.querySelector(`.drop-zone[data-time="${task.time_target}"]`);
+
+            // If the database has a weird time target that we don't have a slot for, throw it in unscheduled
+            if (!targetZone) {
+                targetZone = document.getElementById('unscheduled-red-tasks');
+            }
+
+            targetZone.appendChild(el);
         });
 
-        const progressPercent = (completedCount / scheduleData.length) * 100;
-        document.getElementById('today-progress').style.width = `${progressPercent}%`;
+        // Small visual update for progress container, hardcoding to 0% for now since completion isn't tracked in this v1 test
+        document.getElementById('today-progress').style.width = '0%';
+    }
 
-        updatePoints();
-    };
+    function setupDragAndDropZones() {
+        const dropZones = document.querySelectorAll('.drop-zone');
+
+        dropZones.forEach(zone => {
+            zone.addEventListener('dragover', e => {
+                e.preventDefault(); // allow dropping
+                zone.classList.add('drag-over');
+            });
+
+            zone.addEventListener('dragleave', () => {
+                zone.classList.remove('drag-over');
+            });
+
+            zone.addEventListener('drop', e => {
+                e.preventDefault();
+                zone.classList.remove('drag-over');
+
+                const draggingEl = document.querySelector('.dragging');
+                if (draggingEl && draggedTaskObj) {
+                    // Visually move the element
+                    zone.appendChild(draggingEl);
+
+                    // Update the local object state to match the new zone
+                    draggedTaskObj.time_target = zone.dataset.time;
+                }
+            });
+        });
+
+        // Setup the "Lock In Schedule" Button
+        const lockBtn = document.getElementById('lock-in-btn');
+        if (lockBtn) {
+            lockBtn.addEventListener('click', lockInSchedule);
+        }
+    }
+
+    async function lockInSchedule() {
+        const lockBtn = document.getElementById('lock-in-btn');
+        const originalText = lockBtn.innerText;
+        lockBtn.innerText = "⏳ Syncing...";
+        lockBtn.style.opacity = '0.7';
+        lockBtn.style.pointerEvents = 'none';
+
+        try {
+            // Create a payload of all tasks and their current `time_target` from the local array
+            const updates = dynamicTasks.map(t => ({
+                id: t.id,
+                time_target: t.time_target
+            }));
+
+            // Supabase REST Bulk Upsert/Patch
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?columns=id,time_target`, {
+                method: 'POST', // UPSERT requires POST with prefer resolution
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Content-Type': 'application/json',
+                    'Prefer': 'resolution=merge-duplicates'
+                },
+                body: JSON.stringify(updates)
+            });
+
+            if (response.ok) {
+                lockBtn.innerText = "✅ Locked In";
+                lockBtn.style.background = "var(--glass-bg)";
+                lockBtn.style.color = "var(--accent-green)";
+                setTimeout(() => {
+                    lockBtn.innerText = originalText;
+                    lockBtn.style.background = "var(--accent-green)";
+                    lockBtn.style.color = "#000";
+                    lockBtn.style.opacity = '1';
+                    lockBtn.style.pointerEvents = 'auto';
+                }, 3000);
+            } else {
+                console.error("Failed to commit schedule bulk update:", await response.text());
+                lockBtn.innerText = "❌ Sync Failed";
+            }
+        } catch (error) {
+            console.error("Network error locking in schedule:", error);
+            lockBtn.innerText = "❌ Network Error";
+        }
+    }
 
     // Populate Lists
     const createListItems = (items, containerId) => {
@@ -534,6 +353,98 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    // --- Food Analytics Integration ---
+    const MOCK_FOOD_DATA = {
+        calories: 1850,
+        target_calories: 2200,
+        protein: 140, // grams
+        carbs: 120, // grams
+        fats: 65,  // grams
+        meals: [
+            { time: '08:00 AM', desc: '3x Scrambled Eggs on Toast with Butter' },
+            { time: '01:00 PM', desc: 'Chicken Breast Salad with Olive Oil Dressing' },
+            { time: '04:00 PM', desc: 'Whey Protein Shake (Water)' },
+            { time: '07:30 PM', desc: 'Steak, Kumara Mash, and Broccolini' }
+        ]
+    };
+
+    function initFoodAnalytics() {
+        // 1. Render Calorie Progress
+        const calorieDisplay = document.getElementById('food-calorie-display');
+        const calorieProgress = document.getElementById('calorie-progress');
+
+        if (calorieDisplay && calorieProgress) {
+            calorieDisplay.innerText = `${MOCK_FOOD_DATA.calories} / ${MOCK_FOOD_DATA.target_calories} kcal`;
+
+            let progressPercent = (MOCK_FOOD_DATA.calories / MOCK_FOOD_DATA.target_calories) * 100;
+            if (progressPercent > 100) {
+                progressPercent = 100;
+                calorieProgress.style.background = 'linear-gradient(90deg, #ef4444, #b91c1c)'; // Over target (red)
+            }
+            calorieProgress.style.width = `${progressPercent}%`;
+        }
+
+        // 2. Render Macro Breakdown List
+        const pEl = document.getElementById('food-protein');
+        const cEl = document.getElementById('food-carbs');
+        const fEl = document.getElementById('food-fats');
+
+        if (pEl) pEl.innerText = `${MOCK_FOOD_DATA.protein}g`;
+        if (cEl) cEl.innerText = `${MOCK_FOOD_DATA.carbs}g`;
+        if (fEl) fEl.innerText = `${MOCK_FOOD_DATA.fats}g`;
+
+        // 3. Render Meal Timeline
+        const mealList = document.getElementById('food-timeline-list');
+        if (mealList) {
+            mealList.innerHTML = '';
+            MOCK_FOOD_DATA.meals.forEach(meal => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <div style="color: var(--text-secondary); font-size: 0.85rem; width: 80px; flex-shrink: 0; margin-top: 3px;">${meal.time}</div>
+                    <div class="task-content" style="color: var(--text-primary); font-weight: 500;">${meal.desc}</div>
+                `;
+                mealList.appendChild(li);
+            });
+        }
+
+        // 4. Initialize Macro Doughnut Chart
+        const canvas = document.getElementById('foodMacroChart');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            if (window.foodChartInstance) {
+                window.foodChartInstance.destroy();
+            }
+
+            window.foodChartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Protein', 'Carbs', 'Fats'],
+                    datasets: [{
+                        data: [MOCK_FOOD_DATA.protein, MOCK_FOOD_DATA.carbs, MOCK_FOOD_DATA.fats],
+                        backgroundColor: [
+                            'rgba(56, 189, 248, 0.8)', // Blue (Protein)
+                            'rgba(251, 191, 36, 0.8)', // Yellow (Carbs)
+                            'rgba(239, 68, 68, 0.8)'   // Red (Fats)
+                        ],
+                        borderColor: 'rgba(15, 23, 42, 1)',
+                        borderWidth: 2,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    cutout: '65%'
+                }
+            });
+        }
+    }
+
     // Initialize View
     initChart();
     renderTimeline();
@@ -541,25 +452,355 @@ document.addEventListener('DOMContentLoaded', () => {
     createListItems(weeklyMonthly.weekly, 'weekly-list');
     createListItems(weeklyMonthly.monthly, 'monthly-list');
 
+    // Create dog tasks (Referencing lines 726-734 block instead to avoid duplicate let/const error)
+
+    // --- Bio Tracking Integration ---
+    const MOCK_BLOOD_DATA = [
+        { marker: 'Platelets', value: '509 x 10e9/L', status: 'High', color: 'var(--accent-red)' },
+        { marker: 'WBC', value: '12.6 x 10e9/L', status: 'High', color: 'var(--accent-red)' },
+        { marker: 'Ferritin', value: '205 ug/L', status: 'High', color: 'var(--accent-red)' },
+        { marker: 'CRP', value: '9 mg/L', status: 'High', color: 'var(--accent-red)' },
+        { marker: 'TSH', value: '0.37 mIU/L', status: 'Borderline Low', color: 'var(--accent-yellow)' }
+    ];
+
+    const MEDICAL_ALERTS = [
+        {
+            gene: 'HLA-B27',
+            risk: 'Ankylosing Spondylitis / Autoimmune Joint Fusion',
+            action: 'ALERT: Massive genetic liability. The moment you experience chronic, unexplainable lower back pain or morning joint stiffness, you must immediately report this HLA-B27 finding to a Rheumatologist to prevent spinal fusion.'
+        },
+        {
+            gene: '9p21 (CDKN2A/B)',
+            risk: 'Coronary Artery Disease (Heart Attack Risk)',
+            action: 'Your coronary arteries are genetically prone to stiffening and retaining plaque. You must keep your ApoB blood levels <60 mg/dL for life. Aggressive Zone 2 cardio is mandatory.'
+        },
+        {
+            gene: 'CYP3A4 (T/C)',
+            risk: 'Rapid Drug Metabolizer (Statins/Testosterone)',
+            action: 'Your liver is a hyper-active incinerator. If prescribing a statin for your 9p21 heart gene, warn your doctor that standard starting doses will likely be destroyed before working. You require tailored dosing.'
+        },
+        {
+            gene: 'MTHFR (A/G)',
+            risk: 'Homocysteine Vascular Damage',
+            action: 'Vitamin conversion runs at ~65% speed. Avoid synthetic Folic Acid; take L-Methylfolate. Request a Homocysteine blood test to ensure levels are < 9 µmol/L to prevent artery scratching.'
+        }
+    ];
+
+    const GENETIC_HACKS = [
+        {
+            gene: 'ADRB2 (G/G)',
+            trait: 'Power/Sprint Fat Burning',
+            advice: 'Stop jogging to lose fat. Your specific beta-2 receptors dictate that heavy, explosive weightlifting or high-intensity sprints will shred body fat drastically faster than steady-state cardio.'
+        },
+        {
+            gene: 'COMT (G/G)',
+            trait: 'The Warrior (Fast Dopamine Clearance)',
+            advice: 'You violent sweep dopamine away. You require high-stakes environments or intense physical stress to feel "awake". Caffeine and L-Tyrosine are highly effective.'
+        },
+        {
+            gene: 'COL5A1 (C/T)',
+            trait: 'Brittle Tendons & Achilles Risk',
+            advice: 'Abandon explosive plyometrics (box jumps). Perform Heavy Slow Resistance (HSR) training— specifically 4-5 second eccentric lowering phases—to purposefully thicken your tendons.'
+        },
+        {
+            gene: 'CYP1A2 (A/C)',
+            trait: 'Ultra-Slow Caffeine Clearance',
+            advice: 'A strict 10:00 AM hard cutoff for ALL caffeine is mandatory. A 2 PM coffee means 50% of the drug is still bound to your receptors at midnight, utterly destroying deep sleep.'
+        },
+        {
+            gene: 'SIRT1 (C/C)',
+            trait: 'Disrupted Circadian Aging',
+            advice: 'You physically cannot handle shifting sleep schedules. Pulling all-nighters or rotating shift work will shred your telomeres and induce rapid biological aging. Wake up at the exact same hour daily.'
+        },
+        {
+            gene: 'ACTN3 (C/T)',
+            trait: 'Hybrid Muscle Fibers',
+            advice: 'Perfectly mixed 50/50 muscle fiber. Your body responds incredibly well to hybrid training (Crossfit, Hyrox, MMA) building heavy muscle mass AND deep VO2 max simultaneously.'
+        }
+    ];
+
+    function initBioTracking() {
+        // Render Blood Markers
+        const bloodList = document.getElementById('blood-marker-list');
+        if (bloodList) {
+            bloodList.innerHTML = '';
+            MOCK_BLOOD_DATA.forEach(item => {
+                const li = document.createElement('li');
+                li.style = `display:flex; justify-content:space-between; color: var(--text-primary); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0.5rem 0;`;
+                li.innerHTML = `<span>${item.marker}</span> <div><strong>${item.value}</strong> <span style="color:${item.color}; margin-left: 0.5rem;">[${item.status}]</span></div>`;
+                bloodList.appendChild(li);
+            });
+        }
+
+        // Render Medical Alerts (Doctor Prompts)
+        const medicalContainer = document.getElementById('medical-alerts-container');
+        if (medicalContainer) {
+            medicalContainer.innerHTML = '';
+            MEDICAL_ALERTS.forEach(item => {
+                const div = document.createElement('div');
+                div.style = `background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent-red); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1rem;`;
+                div.innerHTML = `
+                    <div style="font-weight: 600; color: var(--accent-red); display: flex; justify-content: space-between;">
+                        <span>${item.gene}</span>
+                        <span style="font-size: 0.8rem; background: rgba(239, 68, 68, 0.2); padding: 2px 8px; border-radius: 12px; color: #fca5a5;">Clinical Review</span>
+                    </div>
+                    <div style="font-size: 0.95rem; color: #fca5a5; font-weight: 500; margin-top: 0.25rem;">${item.risk}</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.5;">
+                        <strong>Action for Doctor:</strong> ${item.action}
+                    </div>
+                `;
+                medicalContainer.appendChild(div);
+            });
+        }
+
+        // Render Genetic Hacks
+        const geneticsContainer = document.getElementById('genetic-hacks-container');
+        if (geneticsContainer) {
+            geneticsContainer.innerHTML = '';
+            GENETIC_HACKS.forEach(item => {
+                const div = document.createElement('div');
+                div.style = `background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1rem;`;
+                div.innerHTML = `
+                    <div style="font-weight: 600; color: var(--accent-purple); display: flex; justify-content: space-between;">
+                        <span>${item.gene}</span>
+                        <span style="font-size: 0.8rem; background: rgba(192, 132, 252, 0.2); padding: 2px 8px; border-radius: 12px;">${item.trait}</span>
+                    </div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.5;">
+                        <strong>Hack:</strong> ${item.advice}
+                    </div>
+                `;
+                geneticsContainer.appendChild(div);
+            });
+        }
+    }
+
+    // Initialize View
+    initChart();
+    fetchTasksAndRenderTimeline();
+    createListItems(dailyCandidates, 'daily-list');
+    createListItems(weeklyMonthly.weekly, 'weekly-list');
+    createListItems(weeklyMonthly.monthly, 'monthly-list');
+
     // Create dog tasks
     const dogTrainingTasks = [
-        "Meal Time: 'Wait' until told 'Okay'",
-        "Doorways: 'Wait' before going through any door",
-        "Impulse Control: Practice 'Leave It' during play",
-        "Free Time: 30-min Sniffari / Decompression Walk",
-        "Mental Stimulation: 10 mins Hide and Seek"
+        { text: "Meal Time: 'Wait' until told 'Okay'", points: 1 },
+        { text: "Doorways: 'Wait' before going through any door", points: 1 },
+        { text: "Impulse Control: Practice 'Leave It' during play", points: 1 },
+        { text: "Free Time: 30-min Sniffari / Decompression Walk", points: 3 },
+        { text: "Mental Stimulation: 10 mins Hide and Seek", points: 2 }
     ];
     createListItems(dogTrainingTasks, 'dog-training-list');
 
-    // Create supplement tasks
+    // Create supplement tasks (now moved exclusively to the Bio tab)
     const supplementTasks = [
-        "Vitamin K2 MK-7 (Doctor's Best with MenaQ7)",
-        "L-Theanine (Natroceutics B-Complex OR Good Health Rapid Calm)",
-        "NAC pure 600mg (Solgar Vegicaps)"
+        { text: "Vitamin K2 MK-7 (Doctor's Best with MenaQ7) - 100mcg AM w/ Food", points: 1 },
+        { text: "L-Theanine (Good Health Rapid Calm) - 200mg AM Empty Stomach", points: 1 },
+        { text: "NAC pure 600mg (Solgar Vegicaps) - 600mg AM Empty Stomach", points: 1 }
     ];
     createListItems(supplementTasks, 'supplements-list');
 
+    // Create Reminders (Mental Load)
+    const activeReminders = [
+        { text: "Make sure outside kids' toys are left upright so they can easily use them", points: 0 },
+        { text: "Discard used tooth floss", points: 0 }
+    ];
+    createListItems(activeReminders, 'reminders-list');
+
+    // --- Procurement (Wants vs Needs) Integration ---
+    async function initProcurement() {
+        const needsContainer = document.getElementById('needs-container');
+        const wantsContainer = document.getElementById('wants-container');
+        const advisoryContainer = document.getElementById('athena-advisory-container');
+
+        if (!needsContainer || !wantsContainer || !advisoryContainer) return;
+
+        needsContainer.innerHTML = '<div style="color:var(--text-secondary); font-size: 0.85rem;">Syncing from Supabase...</div>';
+        wantsContainer.innerHTML = '';
+        advisoryContainer.innerHTML = '';
+
+        try {
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_procurement?select=*`, {
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                console.warn("Procurement table might not exist yet or RLS blocked read:", response.status);
+                needsContainer.innerHTML = '<div style="color:var(--text-secondary); font-size: 0.85rem;">[Cloud Database Not Initialized]</div>';
+                return;
+            }
+
+            const data = await response.json();
+            needsContainer.innerHTML = '';
+
+            if (data.length === 0) {
+                needsContainer.innerHTML = '<div style="color:var(--text-secondary); font-size: 0.85rem;">No active procurement items.</div>';
+                return;
+            }
+
+            // Separate items by category
+            const needs = data.filter(d => d.category === 'NEED');
+            const wants = data.filter(d => d.category === 'WANT');
+
+            // Render Needs
+            needs.forEach(item => {
+                const div = document.createElement('div');
+                div.style = `background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 1rem;`;
+                div.innerHTML = `
+                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--accent-green);"></span>
+                        ${item.item}
+                    </div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                        <strong>Why:</strong> ${item.justification}
+                    </div>
+                `;
+                needsContainer.appendChild(div);
+            });
+
+            // Render Wants
+            wants.forEach(item => {
+                const div = document.createElement('div');
+                div.style = `background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 1rem;`;
+                div.innerHTML = `
+                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--accent-yellow);"></span>
+                        ${item.item}
+                    </div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                        <strong>Why:</strong> ${item.justification}
+                    </div>
+                `;
+                wantsContainer.appendChild(div);
+            });
+
+            // Render Advisory (for all items)
+            data.forEach(item => {
+                const div = document.createElement('div');
+                div.style = `background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 1rem;`;
+
+                const verdictColor = item.athena_verdict === 'APPROVED' ? 'var(--accent-green)' : (item.athena_verdict === 'FLAGGED' ? 'var(--accent-yellow)' : 'var(--text-secondary)');
+
+                div.innerHTML = `
+                    <div style="font-weight: 600; color: var(--accent-blue); display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span>Target: ${item.item}</span>
+                        <span style="font-size: 0.75rem; color: ${verdictColor}; border: 1px solid ${verdictColor}; padding: 2px 6px; border-radius: 4px;">${item.athena_verdict}</span>
+                    </div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                        ${item.athena_comment || 'Awaiting Athena assessment...'}
+                    </div>
+                `;
+                advisoryContainer.appendChild(div);
+            });
+
+        } catch (err) {
+            console.error("Network error fetching procurement data:", err);
+            needsContainer.innerHTML = '<div style="color:var(--accent-red); font-size: 0.85rem;">[Network Error - Offline Mode]</div>';
+        }
+    }
+
+    // --- Dynamic Task Configurator (Traffic Light) ---
+    async function initTaskConfigurator() {
+        const configContent = document.getElementById('config-content');
+        if (!configContent) return;
+
+        try {
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?select=*&order=priority_color.desc`, {
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                configContent.innerHTML = '<div style="color:var(--accent-red); font-size: 0.85rem;">[Cloud Database Not Initialized - Run SQL First]</div>';
+                return;
+            }
+
+            const tasks = await response.json();
+            configContent.innerHTML = '';
+
+            // Group tasks by category
+            const redTasks = tasks.filter(t => t.priority_color === 'RED');
+            const orangeTasks = tasks.filter(t => t.priority_color === 'ORANGE');
+            const greenTasks = tasks.filter(t => t.priority_color === 'GREEN');
+
+            const createCategorySection = (title, colorClass, colorHex, taskList) => {
+                const section = document.createElement('div');
+                section.className = 'sub-panel';
+                section.style.borderColor = `rgba(${colorClass}, 0.3)`;
+
+                let html = `<h3 style="color: ${colorHex};"><span class="icon">🚦</span> ${title}</h3>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">`;
+
+                taskList.forEach(task => {
+                    html += `
+                        <div style="display:flex; justify-content:space-between; align-items:center; background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.75rem;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-primary);">${task.title}</div>
+                                <div style="font-size: 0.8rem; color: var(--text-secondary);">${task.time_target || 'Flexible'} • ${task.points} pts</div>
+                            </div>
+                            <button onclick="cycleTaskColor('${task.id}', '${task.priority_color}')" 
+                                style="background: none; border: 2px solid ${colorHex}; color: ${colorHex}; border-radius: var(--radius-lg); padding: 0.25rem 0.75rem; font-weight: bold; cursor: pointer; transition: all 0.2s;">
+                                ${task.priority_color}
+                            </button>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+                section.innerHTML = html;
+                return section;
+            };
+
+            // Needs to match the css variable rgb values or just use hex
+            configContent.appendChild(createCategorySection('RED (Strict Timeline)', '239, 68, 68', '#ef4444', redTasks));
+            configContent.appendChild(createCategorySection('ORANGE (Daily Flexible)', '249, 115, 22', '#f97316', orangeTasks));
+            configContent.appendChild(createCategorySection('GREEN (Moveable/Weekly)', '16, 185, 129', '#10b981', greenTasks));
+
+        } catch (err) {
+            console.error("Error fetching tasks configuration:", err);
+            configContent.innerHTML = '<div style="color:var(--accent-red); font-size: 0.85rem;">[Network Error - Offline Mode]</div>';
+        }
+    }
+
+    // Assign globally to be called by onclick
+    window.cycleTaskColor = async function (taskId, currentColor) {
+        const nextColorMap = {
+            'RED': 'ORANGE',
+            'ORANGE': 'GREEN',
+            'GREEN': 'RED'
+        };
+        const newColor = nextColorMap[currentColor];
+
+        try {
+            await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?id=eq.${taskId}`, {
+                method: 'PATCH',
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Content-Type': 'application/json',
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify({ priority_color: newColor })
+            });
+
+            // Re-render
+            initTaskConfigurator();
+        } catch (err) {
+            console.error("Failed to update task color:", err);
+        }
+    };
+
     populateWorkout();
+    initFoodAnalytics();
+    initBioTracking();
+    initProcurement();
+    initTaskConfigurator();
 
     // --- Logic shifted to top of file ---
 

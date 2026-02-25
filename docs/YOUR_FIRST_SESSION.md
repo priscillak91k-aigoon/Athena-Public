@@ -82,14 +82,14 @@ Athena: "Got it. Follow-up questions:
 [Repeat until Athena is satisfied — usually 2-4 turns]
 
 Athena: ✅ Interview Complete
-        📄 Writing profile to: .context/memories/user_profile.md
+        📄 Writing profile to: .context/memories/core/user_profile.md
 ```
 
 ---
 
 ## Step 3: Review Your Profile
 
-After the interview, Athena writes your profile to `.context/memories/user_profile.md`. **Read it.** Edit anything that's wrong or incomplete. This file is the single source of truth that Athena loads on every `/start`.
+After the interview, Athena writes your profile to `.context/memories/core/user_profile.md`. **Read it.** Edit anything that's wrong or incomplete. This file is the single source of truth that Athena loads on every `/start`.
 
 Your profile will look something like this:
 
@@ -168,7 +168,7 @@ The first session takes ~30 minutes. Every session after that takes ~30 seconds 
 1. **Be honest about weaknesses.** The blind spots you share are the ones Athena will actively monitor.
 2. **Share your actual goals, not aspirational ones.** Athena optimizes for where you're going, not where you think you should be going.
 3. **Include personal context.** Athena isn't just for work. The more it understands your full life, the better it calibrates priorities.
-4. **Edit the profile after.** The interview is a draft. You can always refine `.context/memories/user_profile.md` directly.
+4. **Edit the profile after.** The interview is a draft. You can always refine `.context/memories/core/user_profile.md` directly.
 5. **Don't worry about over-sharing.** Everything is local. No cloud. No tracking. Your machine, your data.
 
 ---

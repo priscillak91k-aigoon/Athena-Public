@@ -530,8 +530,46 @@ header h1 {
     color: #ef4444;
     font-size: 0.9rem;
     margin-top: 1rem;
-    background: rgba(239, 68, 68, 0.1);
-    padding: 0.5rem 1rem;
     border-radius: var(--radius-sm);
     border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* --- Drag and Drop Overrides --- */
+.draggable-task {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem;
+    cursor: grab;
+    transition: transform 0.2s, box-shadow 0.2s;
+    user-select: none;
+    /* Prevent text selection while dragging */
+}
+
+.draggable-task:active {
+    cursor: grabbing;
+    transform: scale(0.98);
+}
+
+.draggable-task.dragging {
+    opacity: 0.5;
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.drop-zone {
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.drop-zone.drag-over {
+    background-color: rgba(56, 189, 248, 0.1) !important;
+    border: 1px dashed var(--accent-blue) !important;
+}
+
+/* Adjust timeline layout for the grid */
+@media (max-width: 768px) {
+    .today-grid {
+        grid-template-columns: 1fr !important;
+    }
 }

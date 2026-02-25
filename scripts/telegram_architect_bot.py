@@ -77,17 +77,17 @@ Here is the current Life Memory Bank:
 </current_memory>
 
 Analyze the user's message. 
-1. If it is a log of high-glycemic food, implement the TCF7L2 Glucose Clearance Protocol in the schedule.
-2. If it is a scheduling constraint, adjust the day-of-week routing or add an override boolean in the schedule.
-3. If it is an End of Day summary, Sleep Score, or HRV log:
-   - Evaluate the HRV/Sleep. If it implies high central nervous system fatigue, downgrade tomorrow's workout in the schedule to 'Zone 2 Active Recovery'.
-   - Generate a markdown log entry for this new data to append to the biological history.
-4. If it is a general life update or fact to remember (not a schedule constraint or biological log), append it to the memory bank.
+1. If they are requesting to buy, purchase, or procure an item, evaluate whether it is a NEED (biological/structural necessity) or a WANT (recreational/luxury). Generate an AI verdict ('APPROVED' or 'FLAGGED') and a brief explanation based on their DNA Blueprint or financial goals.
+2. If it is a log of high-glycemic food, implement the TCF7L2 Glucose Clearance Protocol in the schedule.
+3. If it is a scheduling constraint, adjust the day-of-week routing or add an override boolean in the schedule.
+4. If it is an End of Day summary, Sleep Score, or HRV log, evaluate it and generate a history entry.
+5. If it is a general life update or fact, append it to the memory bank.
 
-You MUST wrap your outputs in specific XML tags.
-If modifying the schedule, wrap the FULL, completely valid javascript code in <javascript>...</javascript> tags.
-If adding a biological history log, wrap the NEW markdown entry to append in <history>...</history> tags.
-If adding a memory, wrap the NEW markdown entry to append in <memory>...</memory> tags.
+You MUST wrap your outputs in specific XML tags:
+- <procurement>{"category": "NEED|WANT", "item": "Name", "justification": "Why the user wants it", "athena_verdict": "APPROVED|FLAGGED", "athena_comment": "Your reasoning"}</procurement> (MUST BE VALID JSON INSIDE THE TAG)
+- <javascript>...FULL js code...</javascript>
+- <history>...markdown log...</history>
+- <memory>...markdown fact...</memory>
 Do NOT use markdown code blocks inside the XML tags.
 """
         print("Calling Anthropic API...")
@@ -100,14 +100,12 @@ Do NOT use markdown code blocks inside the XML tags.
             client.messages.create,
             model="claude-sonnet-4-6",
             max_tokens=8192,
-            system="""You are the Athena Life Engine (Architect). Your task is to apply modifications to the javascript schedule timeline and/or track biological history.
+            system="""You are the Athena Life Engine (Architect). Your task is to apply modifications to the schedule, track biology, and filter procurement requests.
 
 CRITICAL DIRECTIVES:
-1. XML Outputs: You must use <javascript> to output the modified schedule, and <history> to output new markdown log entries. Do not output anything outside of these tags.
-2. Routine Edits: Adjust `window.generateTodayTimeline` for scheduling constraints.
-3. Metabolic Logging: For high-glycemic carbs, inject a "Glucose Disposal Protocol: 30 Air Squats" into the timeline with tags: ["Bio", "Metabolic"] and an expertInsight.
-4. Deep-Sync Protocol: When processing HRV/Sleep scores, log the data in <history> and explicitly scale down the next day's high-intensity workouts in <javascript> if the user is under-recovered.
-5. Infinite Memory: When processing a general life update or persistent fact, log it in <memory> to retain it for the future.
+1. Procurement: If the user wants to buy something, output a strict JSON object inside <procurement> tags. 'category' must be NEED or WANT. 'athena_verdict' must be APPROVED or FLAGGED.
+2. Routine Edits: Adjust `window.generateTodayTimeline` inside <javascript> for scheduling constraints.
+3. Infinite Memory: Log persistent facts in <memory>.
 """,
             messages=[
                 {"role": "user", "content": prompt}
@@ -121,9 +119,24 @@ CRITICAL DIRECTIVES:
         js_match = re.search(r"<javascript>(.*?)</javascript>", response_text, re.DOTALL)
         history_match = re.search(r"<history>(.*?)</history>", response_text, re.DOTALL)
         memory_match = re.search(r"<memory>(.*?)</memory>", response_text, re.DOTALL)
+        procurement_match = re.search(r"<procurement>(.*?)</procurement>", response_text, re.DOTALL)
         
         update_payload = {}
         items_modified = []
+        
+        if procurement_match:
+            import json
+            try:
+                proc_data = json.loads(procurement_match.group(1).strip())
+                print(f"Executing Procurement Insert: {proc_data}")
+                
+                await asyncio.to_thread(
+                    lambda: supabase.table("symphony_procurement").insert(proc_data).execute()
+                )
+                items_modified.append("Wants vs Needs Dashboard")
+            except Exception as pe:
+                print(f"Failed to parse or insert procurement data: {pe}")
+                await update.message.reply_text("❌ Failed to parse the procurement JSON object from Athena.")
         
         if js_match:
             new_code = js_match.group(1).strip()
@@ -149,16 +162,17 @@ CRITICAL DIRECTIVES:
                 update_payload["memory_payload"] = updated_memory
                 items_modified.append("memory_bank")
                 
-        if update_payload:
+        if update_payload or "Wants vs Needs Dashboard" in items_modified:
             print(f"Entities updated: {items_modified}. Sending Telegram confirmation...")
             await update.message.reply_text(f"🔄 Updates processed ({', '.join(items_modified)}). Saving to Supabase...")
             
-            await asyncio.to_thread(
-                lambda: supabase.table("user_data").update(update_payload).eq("id", 1).execute()
-            )
+            if update_payload:
+                await asyncio.to_thread(
+                    lambda: supabase.table("user_data").update(update_payload).eq("id", 1).execute()
+                )
             
-            print("Supabase update complete.")
-            await update.message.reply_text(f"✅ Cloud sync complete for {len(items_modified)} item(s)! Refresh your dashboard in 2-3 seconds.")
+            print("Supabase processing complete.")
+            await update.message.reply_text(f"✅ Cloud sync complete for {len(items_modified)} item(s)! Refresh your dashboard widget in 2-3 seconds.")
         else:
             print(f"No valid XML tags found in response.")
             await update.message.reply_text("❌ Model generated invalid XML output structure. Update aborted.")

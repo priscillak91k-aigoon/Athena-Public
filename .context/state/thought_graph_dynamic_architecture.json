@@ -1,0 +1,23 @@
+{
+    "workflow": "ultrathink",
+    "objective": "Architect a robust, dynamic backend that connects the user's Telegram Bot inputs to the Symphony frontend dashboard via Supabase.",
+    "phases": {
+        "1_clarification_and_state_init": {
+            "status": "in_progress",
+            "active_thoughts": [
+                "Deconstruct: The current website is static (hardcoded arrays in JS). The user wants their 'architect bot' (Athena/Telegram Bot) to take inputs and dynamically modify the website's data.",
+                "Lateral Prism - Tech View: We need a central source of truth. Supabase (PostgreSQL) is the perfect bridge. Telegram Bot writes to Supabase via POST/Python. Symphony JS fetches from Supabase via GET/REST.",
+                "Lateral Prism - Biz View: This reduces maintenance to zero. The user never has to touch `symphony-app.js` again to add a 'Want' or check off a task.",
+                "Lateral Prism - Risk View: Exposing Supabase anon keys in front-end JS requires Row Level Security (RLS) to prevent unauthorized writes, but for a local dashboard, anon read keys are acceptable.",
+                "Plan: Draft a robust 3-tier architecture plan (Telegram -> Supabase -> Frontend) in the implementation plan."
+            ]
+        },
+        "1.5_senior_principal_review": {
+            "status": "pending",
+            "notes": "Will perform a First Principles Breakdown of the Supabase schema to ensure all current hardcoded elements (Points, Wants/Needs, Food, Bloods) have a scalable table structure."
+        },
+        "2_execution": {
+            "status": "pending"
+        }
+    }
+}

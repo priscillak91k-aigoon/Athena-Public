@@ -1,0 +1,22 @@
+{
+    "workflow": "ultrathink",
+    "objective": "Design and implement a 'Wants vs Needs' tracking tab within the Symphony Routine App.",
+    "phases": {
+        "1_planning_and_architecture": {
+            "status": "in_progress",
+            "active_thoughts": [
+                "The user wants a dedicated UI to track purchases/desires, categorized strictly by 'Needs' vs 'Wants'.",
+                "Needs must include a 'Why', directly tying back to health/DNA data (e.g., Water Flosser -> Plaque/Bloodstream prevention).",
+                "Wants are discretionary (e.g., Xbox Controller).",
+                "There must also be an 'AI Advice/Commentary' section where Athena can weigh in on these items.",
+                "UI Strategy: A new tab in `index.html`. A 3-column layout might work best: Column 1 (Needs), Column 2 (Wants), Column 3 (Athena's Assessment)."
+            ]
+        },
+        "2_execution": {
+            "status": "pending"
+        },
+        "3_synthesis_and_review": {
+            "status": "pending"
+        }
+    }
+}

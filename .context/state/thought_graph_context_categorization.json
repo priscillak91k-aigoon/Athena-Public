@@ -1,0 +1,25 @@
+{
+    "session_id": "ultrathink_context_categorization",
+    "phase": 1,
+    "deconstruction": {
+        "context": "User wants to optimize AI efficiency by organizing information into distinct categories (e.g., finances, health, routines) so the AI doesn't have to scan everything.",
+        "action_items": [
+            "Analyze current information storage structure (likely in .context/memories/).",
+            "Design a categorical folder structure (Finances, Health, Projects, Identity, etc.).",
+            "Develop a protocol or system for the AI to know *where* to look.",
+            "Physically migrate existing memories/documents into this new structure."
+        ]
+    },
+    "lateral_prism": {
+        "tech_view": "Currently, files are mostly flat or loosely grouped in `.context/memories/` or `.context/state/`. A well-defined folder hierarchy combined with an index (`_index.md` or a JSON map) will allow the AI's search tools (like codebase_search or list_dir) to be highly targeted, saving tokens and time.",
+        "biz_view": "Efficiency directly translates to speed and lower token burn. If the AI knows exactly where the 'finance' data is, it won't hallucinate or waste context window loading irrelevant health data. This builds trust and accelerates task execution.",
+        "risk_view": "Over-categorization can lead to fragmented information where the AI misses cross-domain insights (e.g., a purchase that affects both \"finances\" and \"health\"). The system must have a way to tag or link related concepts across folders."
+    },
+    "plan": [
+        "Review current contents of `.context/memories/` and root directories.",
+        "Draft a proposed folder structure.",
+        "Propose the structure to the user via an implementation plan.",
+        "Execute the migration of files.",
+        "Create an index or protocol document that the AI reads on boot to understand the new structure."
+    ]
+}

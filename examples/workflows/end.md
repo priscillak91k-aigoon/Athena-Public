@@ -67,6 +67,15 @@ last_updated: 2026-01-07
 
 3. **Append**: Add this block to the end of the Session Log.
 
+## 1.4 Memory Defragmentation (Categorization Check)
+
+> **Rule**: Clean up the workspace before shutting down. Sort loose files.
+
+1. **Scan**: Look in the root of `.context/memories/` for any loose `.md`, `.json`, or raw files (excluding `_knowledge_index.md` or `imports/`).
+2. **Contextualize**: Read any stray active files.
+3. **Defrag**: Move the files into their strict categorical folders based on `_knowledge_index.md` mapping (`health/`, `finances/`, `core/`, `logs/`, or `maintenance/`).
+4. **Enforce**: Do not proceed to `1.5` until the root directory is clean of unclassified memory.
+
 ## 1.5 Shutdown Orchestrator
 
 > **Rule**: Single script handles harvest check, git commit, and compliance.
@@ -74,8 +83,8 @@ last_updated: 2026-01-07
 // turbo
 
 ```bash
-python3 .agent/scripts/shutdown.py
-./Athena-Public/scripts/launch_athena.sh --stop
+python3 scripts/shutdown.py
+./scripts/launch_athena.sh --stop
 ```
 
 **What it does**:
