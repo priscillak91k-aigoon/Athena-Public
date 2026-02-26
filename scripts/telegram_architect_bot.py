@@ -82,12 +82,14 @@ Analyze the user's message.
 3. If it is a scheduling constraint, adjust the day-of-week routing or add an override boolean in the schedule.
 4. If it is an End of Day summary, Sleep Score, or HRV log, evaluate it and generate a history entry.
 5. If it is a general life update or fact, append it to the memory bank.
+6. If it is just a casual chat, question, or normal conversation, respond directly to the user in a friendly, helpful, "Architect" persona.
 
 You MUST wrap your outputs in specific XML tags:
 - <procurement>{"category": "NEED|WANT", "item": "Name", "justification": "Why the user wants it", "athena_verdict": "APPROVED|FLAGGED", "athena_comment": "Your reasoning"}</procurement> (MUST BE VALID JSON INSIDE THE TAG)
 - <javascript>...FULL js code...</javascript>
 - <history>...markdown log...</history>
 - <memory>...markdown fact...</memory>
+- <chat>...your conversational reply to the user...</chat>
 Do NOT use markdown code blocks inside the XML tags.
 """
         print("Calling Anthropic API...")
@@ -100,12 +102,13 @@ Do NOT use markdown code blocks inside the XML tags.
             client.messages.create,
             model="claude-sonnet-4-6",
             max_tokens=8192,
-            system="""You are the Athena Life Engine (Architect). Your task is to apply modifications to the schedule, track biology, and filter procurement requests.
+            system="""You are the Athena Life Engine (Architect). Your task is to apply modifications to the schedule, track biology, filter procurement requests, and act as the user's personal conversational AI.
 
 CRITICAL DIRECTIVES:
 1. Procurement: If the user wants to buy something, output a strict JSON object inside <procurement> tags. 'category' must be NEED or WANT. 'athena_verdict' must be APPROVED or FLAGGED.
 2. Routine Edits: Adjust `window.generateTodayTimeline` inside <javascript> for scheduling constraints.
 3. Infinite Memory: Log persistent facts in <memory>.
+4. Casual Chat: If the user is just chatting, asking a question, or needs advice, provide your thoughtful response inside <chat> tags.
 """,
             messages=[
                 {"role": "user", "content": prompt}
@@ -120,9 +123,16 @@ CRITICAL DIRECTIVES:
         history_match = re.search(r"<history>(.*?)</history>", response_text, re.DOTALL)
         memory_match = re.search(r"<memory>(.*?)</memory>", response_text, re.DOTALL)
         procurement_match = re.search(r"<procurement>(.*?)</procurement>", response_text, re.DOTALL)
+        chat_match = re.search(r"<chat>(.*?)</chat>", response_text, re.DOTALL)
         
         update_payload = {}
         items_modified = []
+        
+        # If there is a chat response, send it immediately
+        if chat_match:
+            chat_reply = chat_match.group(1).strip()
+            if chat_reply:
+                await update.message.reply_text(chat_reply)
         
         if procurement_match:
             import json
@@ -173,7 +183,7 @@ CRITICAL DIRECTIVES:
             
             print("Supabase processing complete.")
             await update.message.reply_text(f"✅ Cloud sync complete for {len(items_modified)} item(s)! Refresh your dashboard widget in 2-3 seconds.")
-        else:
+        elif not chat_match:
             print(f"No valid XML tags found in response.")
             await update.message.reply_text("❌ Model generated invalid XML output structure. Update aborted.")
             
@@ -186,7 +196,8 @@ def main():
         print("TELEGRAM_ARCHITECT_TOKEN is not set in .env.")
         return
         
-    application = Application.builder().token(TOKEN).build()
+    req = HTTPXRequest(http_version="1.1", connection_pool_size=8)
+    application = Application.builder().token(TOKEN).request(req).build()
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
     print("Architect Bot is running and listening for instructions...")

@@ -1,4 +1,53 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Accordion Toggle via Event Delegation ---
+    // Placed at the very top of DOMContentLoaded to ensure registration
+    // even if subsequent initialization functions fail silently.
+    document.body.addEventListener('click', (e) => {
+        // Bio Tab Accordion
+        const bioHeader = e.target.closest('.bio-accordion-header');
+        if (bioHeader) {
+            const targetId = bioHeader.getAttribute('data-bio-panel');
+            if (!targetId) return;
+            const body = document.getElementById(targetId);
+            const toggle = bioHeader.querySelector('.bio-toggle');
+            if (!body || !toggle) return;
+
+            const isOpen = bioHeader.classList.contains('expanded');
+            if (isOpen) {
+                body.style.display = 'none';
+                bioHeader.classList.remove('expanded');
+                toggle.textContent = '►';
+            } else {
+                body.style.display = 'block';
+                bioHeader.classList.add('expanded');
+                toggle.textContent = '▼';
+            }
+            return;
+        }
+
+        // Supplement Timing Sub-Accordion
+        const suppHeader = e.target.closest('.supp-timing-header');
+        if (suppHeader) {
+            const targetId = suppHeader.getAttribute('data-supp-body');
+            if (!targetId) return;
+            const body = document.getElementById(targetId);
+            const toggle = suppHeader.querySelector('.supp-toggle');
+            if (!body || !toggle) return;
+
+            const isOpen = suppHeader.classList.contains('expanded');
+            if (isOpen) {
+                body.style.display = 'none';
+                suppHeader.classList.remove('expanded');
+                toggle.textContent = '►';
+            } else {
+                body.style.display = 'block';
+                suppHeader.classList.add('expanded');
+                toggle.textContent = '▼';
+            }
+            return;
+        }
+    });
+
     // --- Supabase Global Configuration ---
     const SUPABASE_URL = "https://ezvptctdfcddoybownml.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6dnB0Y3RkZmNkZG95Ym93bm1sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3NDgzNzAsImV4cCI6MjA4NzMyNDM3MH0.u_t44hY_YCwwtbWCIrQKf7EnUZDrja1q4zUFT0MXNOs";
@@ -131,27 +180,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabBtns = document.querySelectorAll('.tab-btn[data-tab]');
     const tabContents = document.querySelectorAll('.tab-content');
 
+    function activateTab(tabId) {
+        const targetBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+        if (!targetBtn) return;
+
+        // Remove active style from all tabs and hide all contents
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => {
+            c.classList.remove('active');
+            c.style.display = 'none';
+        });
+
+        // Add active style to the matched tab
+        targetBtn.classList.add('active');
+
+        // Show target content
+        const targetContent = document.getElementById(tabId);
+        if (targetContent) {
+            targetContent.classList.add('active');
+            targetContent.style.display = 'block';
+        }
+    }
+
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active style from all tabs and hide all contents
-            tabBtns.forEach(b => b.classList.remove('active'));
-            tabContents.forEach(c => {
-                c.classList.remove('active');
-                c.style.display = 'none';
-            });
-
-            // Add active style to the clicked tab
-            btn.classList.add('active');
-
-            // Show target content
             const targetId = btn.getAttribute('data-tab');
-            const targetContent = document.getElementById(targetId);
-            if (targetContent) {
-                targetContent.classList.add('active');
-                targetContent.style.display = 'block';
-            }
+            activateTab(targetId);
+            localStorage.setItem('symphony_active_tab', targetId);
         });
     });
+
+    // Persist active tab across refreshes
+    const savedTab = localStorage.getItem('symphony_active_tab') || 'today';
+    activateTab(savedTab);
 
     // Explicitly hide non-active tabs on load to be safe
     tabContents.forEach(c => {
@@ -761,12 +822,34 @@ document.addEventListener('DOMContentLoaded', () => {
     createListItems(dogTrainingTasks, 'dog-training-list');
 
     // Create supplement tasks (now moved exclusively to the Bio tab)
-    const supplementTasks = [
-        { text: "Vitamin K2 MK-7 (Doctor's Best with MenaQ7) - 100mcg AM w/ Food", points: 1 },
-        { text: "L-Theanine (Good Health Rapid Calm) - 200mg AM Empty Stomach", points: 1 },
-        { text: "NAC pure 600mg (Solgar Vegicaps) - 600mg AM Empty Stomach", points: 1 }
+    // AM — Empty Stomach (30 min before food)
+    const supplementsAM_Empty = [
+        { text: "☀️ Solgar NAC 600mg × 2 caps (1200mg) — Empty stomach, 30 min before breakfast", points: 2 }
     ];
-    createListItems(supplementTasks, 'supplements-list');
+    createListItems(supplementsAM_Empty, 'supp-am-empty-body');
+
+    // AM — With Breakfast
+    const supplementsAM_Food = [
+        { text: "🧬 Doctor's Best Vitamin K2 MK-7 × 2 caps (200mcg) — With food (fat-soluble)", points: 2 },
+        { text: "🐟 Go Healthy Fish Oil + D3 10,000IU × 1 cap — With food", points: 1 },
+        { text: "🧠 Natroceutics Activated B-Complex + L-Theanine × 1 cap — With breakfast", points: 1 },
+        { text: "🔥 Sanderson Turmeric 28,000+ × 2 caps — With food (needs fat)", points: 2 },
+        { text: "🩸 Even Blood Sugar Babe × 2 caps — With biggest carb meal", points: 2 },
+        { text: "💊 Phloe Bowel & Gut Health × 2 caps — Before breakfast", points: 1 }
+    ];
+    createListItems(supplementsAM_Food, 'supp-am-food-body');
+
+    // PM — With Dinner
+    const supplementsPM_Dinner = [
+        { text: "🐟 Go Healthy Fish Oil + D3 × 2 caps — With dinner (Attia split protocol)", points: 2 }
+    ];
+    createListItems(supplementsPM_Dinner, 'supp-pm-dinner-body');
+
+    // PM — Before Bed
+    const supplementsPM = [
+        { text: "🌙 Swisse Magnesium Glycinate × 2-3 caps (400mg elemental) — 30-60 min before bed", points: 2 }
+    ];
+    createListItems(supplementsPM, 'supp-pm-bed-body');
 
     // Create Reminders (Mental Load)
     const activeReminders = [
@@ -907,16 +990,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">`;
 
                 taskList.forEach(task => {
+                    const selRed = task.priority_color === 'RED' ? 'selected' : '';
+                    const selOrg = task.priority_color === 'ORANGE' ? 'selected' : '';
+                    const selGrn = task.priority_color === 'GREEN' ? 'selected' : '';
+
                     html += `
                         <div style="display:flex; justify-content:space-between; align-items:center; background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.75rem;">
                             <div>
                                 <div style="font-weight: 600; color: var(--text-primary);">${task.title}</div>
                                 <div style="font-size: 0.8rem; color: var(--text-secondary);">${task.time_target || 'Flexible'} • ${task.points} pts</div>
                             </div>
-                            <button onclick="cycleTaskColor('${task.id}', '${task.priority_color}')" 
-                                style="background: none; border: 2px solid ${colorHex}; color: ${colorHex}; border-radius: var(--radius-lg); padding: 0.25rem 0.75rem; font-weight: bold; cursor: pointer; transition: all 0.2s;">
-                                ${task.priority_color}
-                            </button>
+                            <select onchange="changeTaskColor('${task.id}', this)" 
+                                style="background: rgba(15, 23, 42, 0.9); border: 1px solid ${colorHex}; color: ${colorHex}; border-radius: var(--radius-sm); padding: 0.25rem 0.5rem; font-weight: bold; cursor: pointer; outline: none; transition: all 0.2s;">
+                                <option value="RED" ${selRed}>RED</option>
+                                <option value="ORANGE" ${selOrg}>ORANGE</option>
+                                <option value="GREEN" ${selGrn}>GREEN</option>
+                            </select>
                         </div>
                     `;
                 });
@@ -937,16 +1026,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Assign globally to be called by onclick
-    window.cycleTaskColor = async function (taskId, currentColor) {
-        const nextColorMap = {
-            'RED': 'ORANGE',
-            'ORANGE': 'GREEN',
-            'GREEN': 'RED'
+    // Assign globally to be called by onchange
+    window.changeTaskColor = async function (taskId, selectEl) {
+        const newColor = selectEl.value;
+        const colorMap = {
+            'RED': '#ef4444',
+            'ORANGE': '#f97316',
+            'GREEN': '#10b981'
         };
-        const newColor = nextColorMap[currentColor];
+        const hex = colorMap[newColor];
+
+        // Optimistically update the dropdown visual styling
+        selectEl.style.borderColor = hex;
+        selectEl.style.color = hex;
 
         try {
+            selectEl.disabled = true;
+
             await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?id=eq.${taskId}`, {
                 method: 'PATCH',
                 headers: {
@@ -958,10 +1054,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({ priority_color: newColor })
             });
 
-            // Re-render
-            initTaskConfigurator();
+            selectEl.disabled = false;
+
+            // Intentionally bypassing initTaskConfigurator() here 
+            // so the task doesn't vanish from the user's current category view.
+
+            // Refresh the main schedule view behind the scenes just in case
+            if (typeof fetchSupabaseData === 'function') {
+                fetchSupabaseData();
+            }
+
         } catch (err) {
             console.error("Failed to update task color:", err);
+            selectEl.disabled = false;
+            alert("Failed to save changes.");
         }
     };
 
@@ -970,6 +1076,24 @@ document.addEventListener('DOMContentLoaded', () => {
     initBioTracking();
     initProcurement();
     initTaskConfigurator();
+
+    // --- Dynamic Task Config Lock In ---
+    const lockInBtn = document.getElementById('lock-in-config-btn');
+    if (lockInBtn) {
+        lockInBtn.addEventListener('click', async () => {
+            lockInBtn.innerHTML = '<span class="icon">⏳</span> Locking...';
+            lockInBtn.style.pointerEvents = 'none';
+
+            // Re-render the configurator to move items to their new lists
+            await initTaskConfigurator();
+            if (typeof fetchSupabaseData === 'function') {
+                await fetchSupabaseData();
+            }
+
+            lockInBtn.innerHTML = '<span class="icon">🔒</span> Lock In';
+            lockInBtn.style.pointerEvents = 'auto';
+        });
+    }
 
     // --- Logic shifted to top of file ---
 

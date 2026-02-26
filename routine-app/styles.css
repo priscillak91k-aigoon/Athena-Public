@@ -825,3 +825,95 @@ canvas {
     text-align: center;
     padding: 0.5rem;
 }
+
+/* ==============================
+   Bio Tab Accordion (Collapsible Sections)
+   ============================== */
+
+.bio-accordion {
+    margin-bottom: 6px;
+}
+
+.bio-accordion-header {
+    background: linear-gradient(180deg, #000080 0%, #1084d0 100%);
+    border: 2px outset var(--win-highlight);
+    padding: 0.6rem 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.bio-accordion-header:hover {
+    background: linear-gradient(180deg, #0000a0 0%, #2094e0 100%);
+}
+
+.bio-accordion-header:active {
+    border-style: inset;
+}
+
+.bio-accordion-header.expanded {
+    border-bottom: none;
+}
+
+.bio-toggle {
+    font-size: 0.9rem;
+    color: #ffff00;
+}
+
+.bio-accordion-body {
+    padding: 0.75rem;
+    background: #e8e8e8;
+    border: 2px inset var(--win-shadow);
+    border-top: none;
+}
+
+/* Supplement Timing Sub-Groups */
+.supp-timing-group {
+    margin-bottom: 4px;
+}
+
+.supp-timing-header {
+    background: #c0c0c0;
+    border: 2px outset var(--win-highlight);
+    padding: 0.35rem 0.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    color: #000080;
+}
+
+.supp-timing-header:hover {
+    background: #d0d0d0;
+}
+
+.supp-timing-header:active {
+    border-style: inset;
+}
+
+.supp-timing-header.expanded {
+    background: #ffffff;
+    border-style: inset;
+    border-bottom: none;
+}
+
+.supp-toggle {
+    font-size: 0.7rem;
+    color: #000000;
+}
+
+.supp-timing-body {
+    padding: 0.4rem;
+    background: #ffffff;
+    border: 2px inset var(--win-shadow);
+    border-top: none;
+}

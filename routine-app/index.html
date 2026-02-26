@@ -407,27 +407,78 @@
             <section id="bio" class="tab-content glass-panel">
                 <div class="section-header">
                     <h2><span class="icon">🩸</span> Biological Tracking & Supplements</h2>
-                    <p class="sub-text">DNA Analysis, Blood Trends, and Supplement Protocols</p>
+                    <p class="sub-text">DNA Analysis, Blood Trends, and Supplement Protocols. Click sections to expand.
+                    </p>
                 </div>
 
-                <div class="grid-2-col">
-                    <!-- Panel A: Supplements -->
-                    <div class="sub-panel">
-                        <h3>Supplement Protocol</h3>
-                        <div class="workout-rules" style="margin-top: 1rem; font-size: 0.85rem;">
-                            <strong>Note:</strong> Order from HealthPost NZ. Avoid NAC blends with Selenium to protect
-                            thyroid.
-                        </div>
-                        <ul class="task-list" id="supplements-list" style="margin-top: 1rem;">
-                            <!-- Populated by JS -->
-                        </ul>
+                <!-- Bio Accordion: Supplements (default OPEN) -->
+                <div class="bio-accordion">
+                    <div class="bio-accordion-header expanded" data-bio-panel="bio-supplements-body">
+                        <span>💊 Supplement Protocol <span
+                                style="font-size: 0.75rem; color: var(--accent-blue); font-weight: 400;">(Personalized —
+                                DNA + Blood)</span></span>
+                        <span class="bio-toggle">▼</span>
                     </div>
+                    <div class="bio-accordion-body" id="bio-supplements-body" style="display: block;">
+                        <div class="workout-rules" style="font-size: 0.85rem; margin-bottom: 1rem;">
+                            <strong>⚠️ Critical:</strong> NAC — no Selenium blends (TSH borderline low).
+                            Vit D load = 30,000IU/day — get 25(OH)D test at 8 weeks. ~16-18 total caps/day.
+                        </div>
 
-                    <!-- Panel B: Blood Markers -->
-                    <div class="sub-panel">
-                        <h3>Clinical Blood Markers</h3>
+                        <!-- Supplement Timing Sub-Accordions -->
+                        <div class="supp-timing-group">
+                            <div class="supp-timing-header expanded" data-supp-body="supp-am-empty-body">
+                                <span style="color: var(--accent-yellow);">☀️ AM — Empty Stomach (~6:30 AM)</span>
+                                <span class="supp-toggle">▼</span>
+                            </div>
+                            <ul class="task-list supp-timing-body" id="supp-am-empty-body" style="display: block;">
+                                <!-- id referenced by JS -->
+                            </ul>
+                        </div>
+
+                        <div class="supp-timing-group">
+                            <div class="supp-timing-header expanded" data-supp-body="supp-am-food-body">
+                                <span style="color: var(--accent-green);">🍳 AM — With Breakfast (~7:00 AM)</span>
+                                <span class="supp-toggle">▼</span>
+                            </div>
+                            <ul class="task-list supp-timing-body" id="supp-am-food-body" style="display: block;">
+                                <!-- id referenced by JS -->
+                            </ul>
+                        </div>
+
+                        <div class="supp-timing-group">
+                            <div class="supp-timing-header expanded" data-supp-body="supp-pm-dinner-body">
+                                <span style="color: var(--accent-blue);">🍽️ PM — With Dinner (~6:30 PM)</span>
+                                <span class="supp-toggle">▼</span>
+                            </div>
+                            <ul class="task-list supp-timing-body" id="supp-pm-dinner-body" style="display: block;">
+                                <!-- id referenced by JS -->
+                            </ul>
+                        </div>
+
+                        <div class="supp-timing-group">
+                            <div class="supp-timing-header expanded" data-supp-body="supp-pm-bed-body">
+                                <span style="color: var(--accent-purple);">🌙 PM — Before Bed (~9:00 PM)</span>
+                                <span class="supp-toggle">▼</span>
+                            </div>
+                            <ul class="task-list supp-timing-body" id="supp-pm-bed-body" style="display: block;">
+                                <!-- id referenced by JS -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bio Accordion: Blood Markers (default CLOSED) -->
+                <div class="bio-accordion">
+                    <div class="bio-accordion-header" data-bio-panel="bio-blood-body">
+                        <span>🩸 Clinical Blood Markers <span
+                                style="font-size: 0.75rem; color: var(--accent-red); font-weight: 400;">[Active
+                                Inflammation Detected]</span></span>
+                        <span class="bio-toggle">►</span>
+                    </div>
+                    <div class="bio-accordion-body" id="bio-blood-body" style="display: none;">
                         <div class="workout-rules"
-                            style="background: rgba(239, 68, 68, 0.1); border-left-color: var(--accent-red); margin-top: 1rem; font-size: 0.85rem;">
+                            style="background: rgba(239, 68, 68, 0.1); border-left-color: var(--accent-red); font-size: 0.85rem;">
                             <strong>Status:</strong> Active systemic inflammatory response detected. Monitoring
                             required.
                         </div>
@@ -435,13 +486,19 @@
                             <!-- Populated by JS -->
                         </ul>
                     </div>
+                </div>
 
-                    <!-- Panel C: Medical Alerts & Doctor Prompts -->
-                    <div class="sub-panel" style="border-color: rgba(239, 68, 68, 0.3);">
-                        <h3 style="color: var(--accent-red);"><span class="icon">🚨</span> Medical Alerts (Doctor Visit)
-                        </h3>
+                <!-- Bio Accordion: Medical Alerts (default CLOSED) -->
+                <div class="bio-accordion">
+                    <div class="bio-accordion-header" data-bio-panel="bio-medical-body"
+                        style="border-color: rgba(239, 68, 68, 0.3);">
+                        <span style="color: var(--accent-red);">🚨 Medical Alerts (Doctor Visit) <span
+                                style="font-size: 0.75rem; font-weight: 400;">— 4 flagged genes</span></span>
+                        <span class="bio-toggle">►</span>
+                    </div>
+                    <div class="bio-accordion-body" id="bio-medical-body" style="display: none;">
                         <div class="workout-rules"
-                            style="margin-top: 1rem; font-size: 0.85rem; border-left-color: var(--accent-red); background: rgba(239, 68, 68, 0.05);">
+                            style="font-size: 0.85rem; border-left-color: var(--accent-red); background: rgba(239, 68, 68, 0.05);">
                             <strong>Priority:</strong> Discuss these highest-yield genetic markers at your next GP or
                             specialist visit.
                         </div>
@@ -450,12 +507,19 @@
                             <!-- Populated by JS -->
                         </div>
                     </div>
+                </div>
 
-                    <!-- Panel D: Genetic Action Plan -->
-                    <div class="sub-panel">
-                        <h3>🧬 Genetic Action Plan</h3>
+                <!-- Bio Accordion: Genetic Action Plan (default CLOSED) -->
+                <div class="bio-accordion">
+                    <div class="bio-accordion-header" data-bio-panel="bio-genetics-body">
+                        <span>🧬 Genetic Action Plan <span
+                                style="font-size: 0.75rem; color: var(--accent-purple); font-weight: 400;">— 6 DNA
+                                hacks</span></span>
+                        <span class="bio-toggle">►</span>
+                    </div>
+                    <div class="bio-accordion-body" id="bio-genetics-body" style="display: none;">
                         <div class="workout-rules"
-                            style="margin-top: 1rem; font-size: 0.85rem; border-left-color: var(--accent-purple); background: rgba(192, 132, 252, 0.05);">
+                            style="font-size: 0.85rem; border-left-color: var(--accent-purple); background: rgba(192, 132, 252, 0.05);">
                             <strong>Protocol:</strong> Daily lifestyle and training hacks tailored to your specific DNA
                             vulnerabilities.
                         </div>
@@ -589,10 +653,18 @@
 
             <!-- Task Configurator View -->
             <section id="taskconfig" class="tab-content glass-panel">
-                <div class="section-header">
-                    <h2><span class="icon">🚦</span> Traffic Light Configurator</h2>
-                    <p class="sub-text">Dynamically toggle your daily Red, Orange, and Green task priorities. Click the
-                        color to cycle.</p>
+                <div class="section-header" style="display: flex; justify-content: space-between; align-items: start;">
+                    <div>
+                        <h2><span class="icon">🚦</span> Traffic Light Configurator</h2>
+                        <p class="sub-text">Dynamically toggle your daily Red, Orange, and Green task priorities. Select
+                            a
+                            priority
+                            color from the dropdown.</p>
+                    </div>
+                    <button id="lock-in-config-btn" class="glass-button"
+                        style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #10b981; border: 1px solid #10b981; padding: 0.5rem 1rem; border-radius: var(--radius-sm); cursor: pointer; transition: all 0.2s;">
+                        <span class="icon">🔒</span> Lock In
+                    </button>
                 </div>
                 <!-- Categories will be rendered here by JS -->
                 <div id="config-content" style="display: flex; flex-direction: column; gap: 2rem;">
@@ -605,7 +677,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="symphony-app.js?v=7"></script>
+    <script src="symphony-app.js"></script>
 </body>
 
 </html>
