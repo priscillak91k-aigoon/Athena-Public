@@ -341,6 +341,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // If it matches a specific time slot (e.g. "08:00 AM"), it goes on the timeline
             if (/^\d{2}:\d{2}\s*(AM|PM)$/i.test(tt)) return 'timeline';
 
+            // If it matches a time range (e.g. "06:30 AM - 08:30 AM"), it also goes on the timeline
+            if (/^\d{2}:\d{2}\s*(AM|PM)\s*-\s*\d{2}:\d{2}\s*(AM|PM)$/i.test(tt)) return 'timeline-span';
+
             // Daily tasks
             if (tt === 'Daily Flexible') return 'pool-today';
 
@@ -352,6 +355,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Everything else (Unscheduled, empty, null, new quick-add tasks)
             return 'pool-future';
+        }
+
+        // Helper: parse "06:30 AM" into minutes since midnight for comparison
+        function timeToMinutes(timeStr) {
+            const match = timeStr.trim().match(/(\d{2}):(\d{2})\s*(AM|PM)/i);
+            if (!match) return -1;
+            let hours = parseInt(match[1]);
+            const minutes = parseInt(match[2]);
+            const period = match[3].toUpperCase();
+            if (period === 'PM' && hours !== 12) hours += 12;
+            if (period === 'AM' && hours === 12) hours = 0;
+            return hours * 60 + minutes;
+        }
+
+        // Helper: convert minutes since midnight back to "HH:MM AM/PM" format
+        function minutesToTime(totalMins) {
+            let h = Math.floor(totalMins / 60);
+            const m = totalMins % 60;
+            const period = h >= 12 ? 'PM' : 'AM';
+            if (h > 12) h -= 12;
+            if (h === 0) h = 12;
+            return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')} ${period}`;
+        }
+
+        // Helper: get the start time and duration of a task from its time_target
+        function parseTaskTiming(timeTarget) {
+            const tt = (timeTarget || '').trim();
+            const rangeMatch = tt.match(/^(\d{2}:\d{2}\s*(?:AM|PM))\s*-\s*(\d{2}:\d{2}\s*(?:AM|PM))$/i);
+            if (rangeMatch) {
+                const startMins = timeToMinutes(rangeMatch[1]);
+                const endMins = timeToMinutes(rangeMatch[2]);
+                return { startTime: rangeMatch[1].trim(), startMins, endMins, duration: endMins - startMins };
+            }
+            const singleMatch = tt.match(/^(\d{2}:\d{2}\s*(?:AM|PM))$/i);
+            if (singleMatch) {
+                const startMins = timeToMinutes(singleMatch[1]);
+                return { startTime: singleMatch[1].trim(), startMins, endMins: startMins + 30, duration: 30 };
+            }
+            return null;
+        }
+
+        // Adjust task duration by delta minutes, update local state and re-render
+        function adjustTaskDuration(taskId, deltaMins) {
+            const task = dynamicTasks.find(t => t.id === taskId);
+            if (!task) return;
+            const timing = parseTaskTiming(task.time_target);
+            if (!timing) return;
+
+            let newEndMins = timing.endMins + deltaMins;
+            // Minimum duration: 15 minutes
+            if (newEndMins - timing.startMins < 15) return;
+            // Maximum: don't go past 11:30 PM (23:30 = 1410 mins)
+            if (newEndMins > 1410) return;
+
+            const newEndTime = minutesToTime(newEndMins);
+            if (newEndMins - timing.startMins <= 30) {
+                // Single slot — revert to simple format
+                task.time_target = timing.startTime;
+            } else {
+                task.time_target = `${timing.startTime} - ${newEndTime}`;
+            }
+            renderDraggableTimeline();
         }
 
         // Track counts per section for badge display
@@ -372,21 +437,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
             el.style.borderLeft = `3px solid ${colorBorder}`;
 
+            const isOnTimeline = (getPoolId(task) === 'timeline' || getPoolId(task) === 'timeline-span');
+            const timing = isOnTimeline ? parseTaskTiming(task.time_target) : null;
+            const durationLabel = timing ? `${timing.duration}m` : '';
+
             el.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                     <div style="display: flex; align-items: flex-start; gap: 8px;">
-                        ${getPoolId(task) === 'timeline' ? `<div class="checkbox completion-toggle" style="margin-top: 2px;" title="Mark Complete"></div>` : ''}
+                        ${isOnTimeline ? `<div class="checkbox completion-toggle" style="margin-top: 2px;" title="Mark Complete"></div>` : ''}
                         <div class="task-title" style="font-size: 0.95rem; font-weight: bold; transition: all 0.2s;">
                             ${task.title} <span style="font-size:0.8rem; color:var(--accent-blue); font-weight: normal;">[+${task.points} pts]</span>
                         </div>
                     </div>
-                    ${getPoolId(task) === 'timeline' ? `<button class="remove-timeline-btn" style="background: none; border: none; color: red; font-weight: bold; font-size: 1.1rem; cursor: pointer; padding: 0 4px;" title="Remove from schedule">×</button>` : ''}
+                    ${isOnTimeline ? `<button class="remove-timeline-btn" style="background: none; border: none; color: red; font-weight: bold; font-size: 1.1rem; cursor: pointer; padding: 0 4px;" title="Remove from schedule">×</button>` : ''}
                 </div>
                 ${task.description ? `<div class="task-desc" style="font-size: 0.8rem;">${task.description}</div>` : ''}
-                <div style="margin-top: 4px;">
-                    ${(task.tags || []).map(t => `<span class="tag" style="font-size: 0.65rem; padding: 2px 6px;">${t}</span>`).join('')}
+                <div style="margin-top: 4px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        ${(task.tags || []).map(t => `<span class="tag" style="font-size: 0.65rem; padding: 2px 6px;">${t}</span>`).join('')}
+                    </div>
+                    ${isOnTimeline ? `
+                    <div class="duration-controls" style="display: flex; align-items: center; gap: 4px; font-size: 0.75rem;">
+                        <button class="dur-minus" style="background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border); color: var(--text-primary); width: 22px; height: 22px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.9rem; line-height: 1;">−</button>
+                        <span class="dur-label" style="color: var(--accent-blue); font-weight: 600; min-width: 32px; text-align: center;">${durationLabel}</span>
+                        <button class="dur-plus" style="background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border); color: var(--text-primary); width: 22px; height: 22px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.9rem; line-height: 1;">+</button>
+                    </div>` : ''}
                 </div>
             `;
+
+            // Attach duration control listeners
+            const durMinus = el.querySelector('.dur-minus');
+            const durPlus = el.querySelector('.dur-plus');
+            if (durMinus) durMinus.addEventListener('click', (e) => { e.stopPropagation(); adjustTaskDuration(task.id, -15); });
+            if (durPlus) durPlus.addEventListener('click', (e) => { e.stopPropagation(); adjustTaskDuration(task.id, 15); });
 
             // Attach completion toggle
             const completeBtn = el.querySelector('.completion-toggle');
@@ -492,6 +575,64 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (fallback) fallback.appendChild(el);
                     counts['pool-today']++;
                 }
+            } else if (poolId === 'timeline-span') {
+                // Multi-hour task: parse start and end, span across slots
+                const parts = task.time_target.split('-').map(s => s.trim());
+                const startTime = parts[0];
+                const endTime = parts[1];
+                const startMinutes = timeToMinutes(startTime);
+                const endMinutes = timeToMinutes(endTime);
+
+                const startSlot = document.querySelector(`.time-slot[data-time="${startTime}"]`);
+                const timelineContainer = document.getElementById('today-timeline');
+                if (startSlot && timelineContainer) {
+                    const allSlots = Array.from(document.querySelectorAll('.time-slot'));
+                    const startIdx = allSlots.findIndex(s => s.dataset.time === startTime);
+                    let endIdx = allSlots.findIndex(s => timeToMinutes(s.dataset.time) >= endMinutes);
+                    if (endIdx === -1) endIdx = allSlots.length;
+
+                    for (let i = startIdx; i < endIdx && i < allSlots.length; i++) {
+                        const zone = allSlots[i].querySelector('.drop-zone');
+                        if (zone) {
+                            zone.style.background = 'rgba(56, 189, 248, 0.05)';
+                            zone.style.borderColor = 'rgba(56, 189, 248, 0.2)';
+                        }
+                    }
+
+                    timelineContainer.style.position = 'relative';
+
+                    const rangeBadge = document.createElement('div');
+                    rangeBadge.style.cssText = 'font-size: 0.7rem; color: var(--accent-blue); margin-top: 4px;';
+                    rangeBadge.textContent = startTime + ' \u2192 ' + endTime;
+                    el.appendChild(rangeBadge);
+
+                    timelineContainer.appendChild(el);
+
+                    requestAnimationFrame(() => {
+                        const timelineRect = timelineContainer.getBoundingClientRect();
+                        const startRect = startSlot.getBoundingClientRect();
+                        const lastSlotIdx = Math.min(endIdx - 1, allSlots.length - 1);
+                        const endSlotRect = allSlots[lastSlotIdx].getBoundingClientRect();
+                        const topOffset = startRect.top - timelineRect.top;
+                        const spanHeight = endSlotRect.bottom - startRect.top;
+                        el.style.position = 'absolute';
+                        el.style.top = topOffset + 'px';
+                        el.style.left = '85px';
+                        el.style.right = '0';
+                        el.style.height = spanHeight + 'px';
+                        el.style.zIndex = '5';
+                        el.style.background = 'rgba(56, 189, 248, 0.12)';
+                        el.style.border = '2px solid rgba(56, 189, 248, 0.4)';
+                        el.style.borderRadius = '6px';
+                        el.style.padding = '0.5rem';
+                        el.style.boxSizing = 'border-box';
+                        el.style.backdropFilter = 'blur(4px)';
+                    });
+                } else {
+                    const fallback = document.getElementById('pool-today');
+                    if (fallback) fallback.appendChild(el);
+                    counts['pool-today']++;
+                }
             } else {
                 const container = document.getElementById(poolId);
                 if (container) container.appendChild(el);
@@ -520,6 +661,102 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Render Weekly/Monthly Tracker immediately after timeline is built
         renderWeeklyMonthlyTracker();
+
+        // Setup drag-and-drop after rendering
+        setupDragAndDropZones();
+    }
+
+    function setupDragAndDropZones() {
+        const dropZones = document.querySelectorAll('.drop-zone');
+
+        dropZones.forEach(zone => {
+            // Clone to remove old listeners and prevent stacking
+            const freshZone = zone.cloneNode(true);
+            zone.parentNode.replaceChild(freshZone, zone);
+
+            freshZone.addEventListener('dragover', e => {
+                e.preventDefault();
+                freshZone.classList.add('drag-over');
+            });
+
+            freshZone.addEventListener('dragleave', () => {
+                freshZone.classList.remove('drag-over');
+            });
+
+            freshZone.addEventListener('drop', e => {
+                e.preventDefault();
+                freshZone.classList.remove('drag-over');
+
+                const draggingEl = document.querySelector('.dragging');
+                if (draggingEl && draggedTaskObj) {
+                    draggedTaskObj.time_target = freshZone.dataset.time;
+                    // Defer re-render to avoid conflicts during drag event
+                    setTimeout(() => renderDraggableTimeline(), 0);
+                }
+            });
+        });
+
+        // Setup the "Lock In Schedule" Button
+        const lockBtn = document.getElementById('lock-in-btn');
+        if (lockBtn) {
+            // Remove old listeners by cloning
+            const newBtn = lockBtn.cloneNode(true);
+            lockBtn.parentNode.replaceChild(newBtn, lockBtn);
+            newBtn.addEventListener('click', lockInSchedule);
+        }
+    }
+
+    async function lockInSchedule() {
+        const lockBtn = document.getElementById('lock-in-btn');
+        const originalText = lockBtn.innerText;
+        lockBtn.innerText = '\u23f3 Syncing...';
+        lockBtn.style.opacity = '0.7';
+        lockBtn.style.pointerEvents = 'none';
+
+        try {
+            const updates = dynamicTasks.map(t => ({
+                id: t.id,
+                time_target: t.time_target
+            }));
+
+            const patchPromises = updates.map(update => {
+                return fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?id=eq.${update.id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ time_target: update.time_target })
+                });
+            });
+
+            const responses = await Promise.all(patchPromises);
+            const allOk = responses.every(r => r.ok);
+
+            if (allOk) {
+                lockBtn.innerText = '\u2705 Locked In';
+                lockBtn.style.background = 'var(--glass-bg)';
+                lockBtn.style.color = 'var(--accent-green)';
+                if (typeof playRetroSuccess === 'function') playRetroSuccess();
+                setTimeout(() => {
+                    lockBtn.innerText = originalText;
+                    lockBtn.style.background = 'var(--accent-green)';
+                    lockBtn.style.color = '#000';
+                    lockBtn.style.opacity = '1';
+                    lockBtn.style.pointerEvents = 'auto';
+                }, 3000);
+            } else {
+                console.error('Failed to commit schedule bulk update');
+                lockBtn.innerText = '\u274c Sync Failed';
+                if (typeof playRetroError === 'function') playRetroError();
+            }
+        } catch (error) {
+            console.error('Network error locking in schedule:', error);
+            lockBtn.innerText = '\u274c Network Error';
+            if (typeof playRetroError === 'function') playRetroError();
+        }
     }
 
     function renderWeeklyMonthlyTracker() {
@@ -846,62 +1083,49 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- Food Analytics Integration ---
-    const MOCK_FOOD_DATA = {
-        calories: 1850,
-        target_calories: 2200,
-        protein: 140, // grams
-        carbs: 120, // grams
-        fats: 65,  // grams
-        meals: [
-            { time: '08:00 AM', desc: '3x Scrambled Eggs on Toast with Butter' },
-            { time: '01:00 PM', desc: 'Chicken Breast Salad with Olive Oil Dressing' },
-            { time: '04:00 PM', desc: 'Whey Protein Shake (Water)' },
-            { time: '07:30 PM', desc: 'Steak, Kumara Mash, and Broccolini' }
-        ]
-    };
+    // --- Food Metrics Engine ---
+    const FOOD_LOG_KEY = `symphony_food_log_${new Date().toISOString().split('T')[0]}`;
 
-    function initFoodAnalytics() {
-        // 1. Render Calorie Progress
-        const calorieDisplay = document.getElementById('food-calorie-display');
-        const calorieProgress = document.getElementById('calorie-progress');
+    function getDailyFoodLog() {
+        const stored = localStorage.getItem(FOOD_LOG_KEY);
+        return stored ? JSON.parse(stored) : [];
+    }
 
-        if (calorieDisplay && calorieProgress) {
-            calorieDisplay.innerText = `${MOCK_FOOD_DATA.calories} / ${MOCK_FOOD_DATA.target_calories} kcal`;
+    function saveFoodLog(logArr) {
+        localStorage.setItem(FOOD_LOG_KEY, JSON.stringify(logArr));
+    }
 
-            let progressPercent = (MOCK_FOOD_DATA.calories / MOCK_FOOD_DATA.target_calories) * 100;
-            if (progressPercent > 100) {
-                progressPercent = 100;
-                calorieProgress.style.background = 'linear-gradient(90deg, #ef4444, #b91c1c)'; // Over target (red)
-            }
-            calorieProgress.style.width = `${progressPercent}%`;
-        }
+    function calculateDailyTotals(logArr) {
+        return logArr.reduce((totals, item) => {
+            totals.calories += item.calories || 0;
+            totals.protein += item.protein || 0;
+            totals.carbs += item.carbs || 0;
+            totals.fats += item.fats || 0;
+            return totals;
+        }, { calories: 0, protein: 0, carbs: 0, fats: 0 });
+    }
 
-        // 2. Render Macro Breakdown List
+    function renderFoodDashboard() {
+        const log = getDailyFoodLog();
+        const totals = calculateDailyTotals(log);
+
+        // Update Dash Cards
+        document.getElementById('food-dash-calories').innerText = totals.calories;
+        document.getElementById('food-dash-protein').innerText = `${totals.protein}g`;
+        document.getElementById('food-dash-carbs').innerText = `${totals.carbs}g`;
+        document.getElementById('food-dash-fats').innerText = `${totals.fats}g`;
+
+        // Update Macro Details
         const pEl = document.getElementById('food-protein');
         const cEl = document.getElementById('food-carbs');
         const fEl = document.getElementById('food-fats');
+        if (pEl) pEl.innerText = `${totals.protein}g`;
+        if (cEl) cEl.innerText = `${totals.carbs}g`;
+        if (fEl) fEl.innerText = `${totals.fats}g`;
 
-        if (pEl) pEl.innerText = `${MOCK_FOOD_DATA.protein}g`;
-        if (cEl) cEl.innerText = `${MOCK_FOOD_DATA.carbs}g`;
-        if (fEl) fEl.innerText = `${MOCK_FOOD_DATA.fats}g`;
-
-        // 3. Render Meal Timeline
-        const mealList = document.getElementById('food-timeline-list');
-        if (mealList) {
-            mealList.innerHTML = '';
-            MOCK_FOOD_DATA.meals.forEach(meal => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <div style="color: var(--text-secondary); font-size: 0.85rem; width: 80px; flex-shrink: 0; margin-top: 3px;">${meal.time}</div>
-                    <div class="task-content" style="color: var(--text-primary); font-weight: 500;">${meal.desc}</div>
-                `;
-                mealList.appendChild(li);
-            });
-        }
-
-        // 4. Initialize Macro Doughnut Chart
+        // Update Chart
         const canvas = document.getElementById('foodMacroChart');
-        if (canvas) {
+        if (canvas && totals.protein + totals.carbs + totals.fats > 0) {
             const ctx = canvas.getContext('2d');
             if (window.foodChartInstance) {
                 window.foodChartInstance.destroy();
@@ -912,7 +1136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 data: {
                     labels: ['Protein', 'Carbs', 'Fats'],
                     datasets: [{
-                        data: [MOCK_FOOD_DATA.protein, MOCK_FOOD_DATA.carbs, MOCK_FOOD_DATA.fats],
+                        data: [totals.protein, totals.carbs, totals.fats],
                         backgroundColor: [
                             'rgba(56, 189, 248, 0.8)', // Blue (Protein)
                             'rgba(251, 191, 36, 0.8)', // Yellow (Carbs)
@@ -926,13 +1150,176 @@ document.addEventListener('DOMContentLoaded', () => {
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
+                    plugins: { legend: { display: false } },
                     cutout: '65%'
                 }
+            });
+        }
+
+        // Render Log List
+        const listEl = document.getElementById('food-log-list');
+        if (listEl) {
+            listEl.innerHTML = '';
+            log.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.style.flexDirection = 'column';
+                li.style.alignItems = 'flex-start';
+
+                li.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; width: 100%; cursor: pointer;" onclick="document.getElementById('food-details-${index}').style.display = document.getElementById('food-details-${index}').style.display === 'none' ? 'block' : 'none'">
+                        <div>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary); margin-right: 0.5rem;">${item.timestamp}</span>
+                            <strong style="color: var(--text-primary);">${item.name}</strong>
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                            ${item.calories} kcal | ${item.protein}P ${item.carbs}C ${item.fats}F
+                        </div>
+                    </div>
+                    <div id="food-details-${index}" style="display: none; width: 100%; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed var(--glass-border); font-size: 0.8rem; color: var(--text-secondary);">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                            <span>Sugars: ${item.sugars}g</span>
+                            <span>Fiber: ${item.fiber}g</span>
+                            <span>Sodium: ${item.sodium}g</span>
+                        </div>
+                        <div style="margin-top: 0.5rem; font-style: italic;">
+                            ${item.ingredients ? item.ingredients.substring(0, 100) + '...' : 'Ingredients not available.'}
+                        </div>
+                        <button class="delete-food-btn" data-index="${index}" style="margin-top: 0.5rem; background: transparent; border: 1px solid var(--accent-red); color: var(--accent-red); padding: 2px 8px; border-radius: 4px; cursor: pointer;">Remove</button>
+                    </div>
+                `;
+                listEl.appendChild(li);
+            });
+
+            // Bind delete buttons
+            document.querySelectorAll('.delete-food-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const idx = parseInt(e.target.getAttribute('data-index'));
+                    let currentLog = getDailyFoodLog();
+                    currentLog.splice(idx, 1);
+                    saveFoodLog(currentLog);
+                    renderFoodDashboard();
+                });
+            });
+        }
+    }
+
+    function initFoodAnalytics() {
+        renderFoodDashboard();
+
+        const searchInput = document.getElementById('food-search-input');
+        const resultsContainer = document.getElementById('food-autocomplete-results');
+        let searchTimeout;
+
+        if (searchInput && resultsContainer) {
+            searchInput.addEventListener('input', (e) => {
+                clearTimeout(searchTimeout);
+                const query = e.target.value.trim();
+
+                if (query.length < 3) {
+                    resultsContainer.style.display = 'none';
+                    return;
+                }
+
+                searchTimeout = setTimeout(async () => {
+                    resultsContainer.innerHTML = '<div style="padding: 0.75rem; color: #94a3b8; font-size: 0.85rem;">Searching Open Food Facts API...</div>';
+                    resultsContainer.style.display = 'block';
+
+                    try {
+                        const response = await fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=8`);
+                        const data = await response.json();
+
+                        resultsContainer.innerHTML = '';
+                        if (data.products && data.products.length > 0) {
+                            data.products.forEach(product => {
+                                // Skip items without caloric info to keep dash clean
+                                if (!product.nutriments || !product.nutriments['energy-kcal_100g'] && !product.nutriments['energy-kcal']) return;
+
+                                const n = product.nutriments;
+                                const cals = Math.round(n['energy-kcal_100g'] || n['energy-kcal'] || 0);
+                                const pro = Math.round(n['proteins_100g'] || n.proteins || 0);
+                                const car = Math.round(n['carbohydrates_100g'] || n.carbohydrates || 0);
+                                const fat = Math.round(n['fat_100g'] || n.fat || 0);
+
+                                const desc = product.product_name || 'Unknown Product';
+                                const brand = product.brands || '';
+
+                                const resDiv = document.createElement('div');
+                                resDiv.style.padding = '0.75rem';
+                                resDiv.style.borderBottom = '1px solid var(--glass-border)';
+                                resDiv.style.cursor = 'pointer';
+                                resDiv.className = 'food-result-item';
+
+                                resDiv.innerHTML = `
+                                    <div style="font-weight: 600; color: #f1f5f9;">${desc} <span style="font-size: 0.75rem; color: #94a3b8;">${brand}</span></div>
+                                    <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">
+                                        100g/ml: ${cals} kcal | ${pro}P ${car}C ${fat}F
+                                    </div>
+                                `;
+
+                                resDiv.addEventListener('click', () => {
+                                    // Log the item
+                                    const logEntry = {
+                                        name: desc,
+                                        calories: cals,
+                                        protein: pro,
+                                        carbs: car,
+                                        fats: fat,
+                                        sugars: Math.round(n['sugars_100g'] || n.sugars || 0),
+                                        fiber: Math.round(n['fiber_100g'] || n.fiber || 0),
+                                        sodium: Math.round(n['sodium_100g'] || n.sodium || 0),
+                                        ingredients: product.ingredients_text || '',
+                                        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                                    };
+
+                                    const currentLog = getDailyFoodLog();
+                                    currentLog.push(logEntry);
+                                    saveFoodLog(currentLog);
+
+                                    // Reset UI
+                                    searchInput.value = '';
+                                    resultsContainer.style.display = 'none';
+                                    renderFoodDashboard();
+                                });
+
+                                resultsContainer.appendChild(resDiv);
+                            });
+                        } else {
+                            resultsContainer.innerHTML = '<div style="padding: 0.75rem; color: var(--text-secondary); font-size: 0.85rem;">No results found.</div>';
+                        }
+
+                    } catch (error) {
+                        console.error('Food Search Error:', error);
+                        resultsContainer.innerHTML = '<div style="padding: 0.75rem; color: var(--accent-red); font-size: 0.85rem;">Error fetching data.</div>';
+                    }
+                }, 400); // 400ms debounce
+            });
+
+            // Close results if clicked outside
+            document.addEventListener('click', (e) => {
+                if (e.target !== searchInput && e.target !== resultsContainer) {
+                    resultsContainer.style.display = 'none';
+                }
+            });
+        }
+
+        // AI Audit Stub
+        const runAuditBtn = document.getElementById('run-food-audit-btn');
+        if (runAuditBtn) {
+            runAuditBtn.addEventListener('click', () => {
+                const resultBox = document.getElementById('food-audit-result');
+                runAuditBtn.innerHTML = '<span class="icon">🔍</span> Analyzing...';
+
+                setTimeout(() => {
+                    const log = getDailyFoodLog();
+                    if (log.length === 0) {
+                        resultBox.innerHTML = "No food logged yet today.";
+                    } else {
+                        resultBox.innerHTML = "[MOCK ATHENA RESPONSE]\nBased on your DAOA/DRD2 profile and MTHFR markers, today's protein intake is optimal for neurotransmitter support, but the sodium levels are slightly elevated. Consider increasing hydration and adding potassium-rich foods to balance. Your caloric intake aligns with the longevity target.";
+                    }
+                    resultBox.style.display = 'block';
+                    runAuditBtn.innerHTML = '<span class="icon">🔍</span> Analyze Today\'s Intake';
+                }, 1500);
             });
         }
     }

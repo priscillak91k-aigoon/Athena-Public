@@ -37,6 +37,9 @@
             </div>
             <h1>The Life Hub</h1>
             <p class="subtitle">Your dynamic routine tracker & visual schedule.</p>
+            <button id="audio-toggle" onclick="toggleRetroAudio()"
+                style="position: absolute; top: 12px; right: 16px; background: rgba(0,0,0,0.6); border: 1px solid #0f0; color: #0f0; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #0f0;"
+                title="Toggle Music">🔊 Music</button>
         </header>
 
         <div class="tabs">
@@ -99,19 +102,22 @@
                             <div style="display:flex; align-items:center; gap: 4px;">
                                 <div style="width:10px; height:10px; border-radius:50%; background:var(--accent-red);">
                                 </div>
-                                <span style="color:var(--text-secondary);"><strong>Crucial</strong> (Strict Time)</span>
+                                <span style="color:var(--text-secondary);"><strong>Crucial</strong> (Strict
+                                    Time)</span>
                             </div>
                             <div style="display:flex; align-items:center; gap: 4px;">
                                 <div
                                     style="width:10px; height:10px; border-radius:50%; background:var(--accent-orange);">
                                 </div>
-                                <span style="color:var(--text-secondary);"><strong>Flex Today</strong> (Required)</span>
+                                <span style="color:var(--text-secondary);"><strong>Flex Today</strong>
+                                    (Required)</span>
                             </div>
                             <div style="display:flex; align-items:center; gap: 4px;">
                                 <div
                                     style="width:10px; height:10px; border-radius:50%; background:var(--accent-green);">
                                 </div>
-                                <span style="color:var(--text-secondary);"><strong>Flexible</strong> (Moveable)</span>
+                                <span style="color:var(--text-secondary);"><strong>Flexible</strong>
+                                    (Moveable)</span>
                             </div>
                         </div>
 
@@ -175,13 +181,37 @@
                             </button>
                         </div>
                         <div class="timeline" id="today-timeline">
-                            <!-- Fixed Time Slots that act as drop zones -->
+                            <!-- Half-hour Time Slots -->
+                            <div class="time-slot" data-time="06:00 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    06:00 AM</div>
+                                <div class="drop-zone" data-time="06:00 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="06:30 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    06:30 AM</div>
+                                <div class="drop-zone" data-time="06:30 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
                             <div class="time-slot" data-time="07:00 AM">
                                 <div class="slot-label"
                                     style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
                                     07:00 AM</div>
                                 <div class="drop-zone" data-time="07:00 AM"
-                                    style="flex-grow: 1; min-height: 60px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="07:30 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    07:30 AM</div>
+                                <div class="drop-zone" data-time="07:30 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                                 </div>
                             </div>
                             <div class="time-slot" data-time="08:00 AM">
@@ -189,7 +219,15 @@
                                     style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
                                     08:00 AM</div>
                                 <div class="drop-zone" data-time="08:00 AM"
-                                    style="flex-grow: 1; min-height: 60px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="08:30 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    08:30 AM</div>
+                                <div class="drop-zone" data-time="08:30 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                                 </div>
                             </div>
                             <div class="time-slot" data-time="09:00 AM">
@@ -197,7 +235,15 @@
                                     style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
                                     09:00 AM</div>
                                 <div class="drop-zone" data-time="09:00 AM"
-                                    style="flex-grow: 1; min-height: 60px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="09:30 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    09:30 AM</div>
+                                <div class="drop-zone" data-time="09:30 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                                 </div>
                             </div>
                             <div class="time-slot" data-time="10:00 AM">
@@ -205,7 +251,15 @@
                                     style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
                                     10:00 AM</div>
                                 <div class="drop-zone" data-time="10:00 AM"
-                                    style="flex-grow: 1; min-height: 60px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="10:30 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    10:30 AM</div>
+                                <div class="drop-zone" data-time="10:30 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                                 </div>
                             </div>
                             <div class="time-slot" data-time="11:00 AM">
@@ -213,7 +267,15 @@
                                     style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
                                     11:00 AM</div>
                                 <div class="drop-zone" data-time="11:00 AM"
-                                    style="flex-grow: 1; min-height: 60px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="11:30 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    11:30 AM</div>
+                                <div class="drop-zone" data-time="11:30 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                                 </div>
                             </div>
                             <div class="time-slot" data-time="12:00 PM">
@@ -221,7 +283,15 @@
                                     style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
                                     12:00 PM</div>
                                 <div class="drop-zone" data-time="12:00 PM"
-                                    style="flex-grow: 1; min-height: 60px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="12:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    12:30 PM</div>
+                                <div class="drop-zone" data-time="12:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                                 </div>
                             </div>
                             <div class="time-slot" data-time="01:00 PM">
@@ -229,7 +299,15 @@
                                     style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
                                     01:00 PM</div>
                                 <div class="drop-zone" data-time="01:00 PM"
-                                    style="flex-grow: 1; min-height: 60px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="01:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    01:30 PM</div>
+                                <div class="drop-zone" data-time="01:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                                 </div>
                             </div>
                             <div class="time-slot" data-time="02:00 PM">
@@ -237,7 +315,15 @@
                                     style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
                                     02:00 PM</div>
                                 <div class="drop-zone" data-time="02:00 PM"
-                                    style="flex-grow: 1; min-height: 60px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="02:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    02:30 PM</div>
+                                <div class="drop-zone" data-time="02:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                                 </div>
                             </div>
                             <div class="time-slot" data-time="03:00 PM">
@@ -245,7 +331,15 @@
                                     style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
                                     03:00 PM</div>
                                 <div class="drop-zone" data-time="03:00 PM"
-                                    style="flex-grow: 1; min-height: 60px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="03:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    03:30 PM</div>
+                                <div class="drop-zone" data-time="03:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                                 </div>
                             </div>
                             <div class="time-slot" data-time="04:00 PM">
@@ -253,7 +347,15 @@
                                     style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
                                     04:00 PM</div>
                                 <div class="drop-zone" data-time="04:00 PM"
-                                    style="flex-grow: 1; min-height: 60px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="04:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    04:30 PM</div>
+                                <div class="drop-zone" data-time="04:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                                 </div>
                             </div>
                             <div class="time-slot" data-time="05:00 PM">
@@ -261,7 +363,15 @@
                                     style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
                                     05:00 PM</div>
                                 <div class="drop-zone" data-time="05:00 PM"
-                                    style="flex-grow: 1; min-height: 60px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="05:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    05:30 PM</div>
+                                <div class="drop-zone" data-time="05:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                                 </div>
                             </div>
                             <div class="time-slot" data-time="Evening">
@@ -269,7 +379,7 @@
                                     style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
                                     Evening</div>
                                 <div class="drop-zone" data-time="Evening"
-                                    style="flex-grow: 1; min-height: 60px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                                 </div>
                             </div>
                         </div>
@@ -295,7 +405,8 @@
 
                 <div class="workout-rules">
                     <strong>🎮 Gamification System:</strong>
-                    Tick off tasks in your "Today's Schedule" and "Daily Candidates" lists to rack up points. Maximize
+                    Tick off tasks in your "Today's Schedule" and "Daily Candidates" lists to rack up points.
+                    Maximize
                     your daily output and hold yourself accountable. Data is dual-synced via Supabase back into your
                     local raw Excel Ledger.
                 </div>
@@ -337,13 +448,16 @@
                         </div>
 
                         <ul class="workout-list" style="margin-top: 1.5rem;">
-                            <li style="display:flex; justify-content:space-between;"><span>Hours Worked</span> <strong
-                                    id="finance-hours">0 hrs</strong></li>
+                            <li style="display:flex; justify-content:space-between;"><span>Hours Worked</span>
+                                <strong id="finance-hours">0 hrs</strong>
+                            </li>
                             <li style="display:flex; justify-content:space-between;"><span>Gross Income (@
                                     $24/hr)</span> <strong id="finance-gross">$0.00</strong></li>
-                            <li style="display:flex; justify-content:space-between; color: #ef4444;"><span>PAYE Tax (M
+                            <li style="display:flex; justify-content:space-between; color: #ef4444;"><span>PAYE Tax
+                                    (M
                                     SL)</span> <strong id="finance-tax">-$0.00</strong></li>
-                            <li style="display:flex; justify-content:space-between; color: #ef4444;"><span>Student Loan
+                            <li style="display:flex; justify-content:space-between; color: #ef4444;"><span>Student
+                                    Loan
                                     (12%)</span> <strong id="finance-sl">-$0.00</strong></li>
                             <li style="display:flex; justify-content:space-between; color: var(--accent-blue);">
                                 <span>KiwiSaver (3%)</span> <strong id="finance-ks">-$0.00</strong>
@@ -387,7 +501,8 @@
                     <div class="sub-panel">
                         <h3>Phase 1: House Training</h3>
                         <div class="workout-rules" style="margin-top: 1rem;">
-                            <strong>🔔 Bell Training:</strong> Touch her nose to the bells before opening the main house
+                            <strong>🔔 Bell Training:</strong> Touch her nose to the bells before opening the main
+                            house
                             door. Wait for her to nudge it. Over 2-3 weeks, break the caravan association.
                         </div>
                     </div>
@@ -411,7 +526,8 @@
                     <strong>⚖️ The "Left Side First" Rule:</strong> Start unilateral moves on the weaker left side.
                     Match reps on the right. <br>
                     <strong>⏱️ Tempo:</strong> 3-1-1 (3 seconds down, 1 second pause, 1 second up).<br>
-                    <strong>🦶 Foot Rehab (Post-Walk):</strong> 30s Kneeling Heel Sit, 10x Slow Eccentric Right-to-Left
+                    <strong>🦶 Foot Rehab (Post-Walk):</strong> 30s Kneeling Heel Sit, 10x Slow Eccentric
+                    Right-to-Left
                     Calf Drops, 2min Frozen Bottle Roll.
                 </div>
 
@@ -424,7 +540,8 @@
             <section id="bio" class="tab-content glass-panel">
                 <div class="section-header">
                     <h2><span class="icon">🩸</span> Biological Tracking & Supplements</h2>
-                    <p class="sub-text">DNA Analysis, Blood Trends, and Supplement Protocols. Click sections to expand.
+                    <p class="sub-text">DNA Analysis, Blood Trends, and Supplement Protocols. Click sections to
+                        expand.
                     </p>
                 </div>
 
@@ -432,7 +549,8 @@
                 <div class="bio-accordion">
                     <div class="bio-accordion-header expanded" data-bio-panel="bio-supplements-body">
                         <span>💊 Supplement Protocol <span
-                                style="font-size: 0.75rem; color: var(--accent-blue); font-weight: 400;">(Personalized —
+                                style="font-size: 0.75rem; color: var(--accent-blue); font-weight: 400;">(Personalized
+                                —
                                 DNA + Blood)</span></span>
                         <span class="bio-toggle">▼</span>
                     </div>
@@ -516,7 +634,8 @@
                     <div class="bio-accordion-body" id="bio-medical-body" style="display: none;">
                         <div class="workout-rules"
                             style="font-size: 0.85rem; border-left-color: var(--accent-red); background: rgba(239, 68, 68, 0.05);">
-                            <strong>Priority:</strong> Discuss these highest-yield genetic markers at your next GP or
+                            <strong>Priority:</strong> Discuss these highest-yield genetic markers at your next GP
+                            or
                             specialist visit.
                         </div>
                         <div id="medical-alerts-container"
@@ -537,7 +656,8 @@
                     <div class="bio-accordion-body" id="bio-genetics-body" style="display: none;">
                         <div class="workout-rules"
                             style="font-size: 0.85rem; border-left-color: var(--accent-purple); background: rgba(192, 132, 252, 0.05);">
-                            <strong>Protocol:</strong> Daily lifestyle and training hacks tailored to your specific DNA
+                            <strong>Protocol:</strong> Daily lifestyle and training hacks tailored to your specific
+                            DNA
                             vulnerabilities.
                         </div>
                         <div id="genetic-hacks-container"
@@ -548,54 +668,82 @@
                 </div>
             </section>
             <!-- Food Analytics View -->
+            <!-- Food Analytics View -->
             <section id="food" class="tab-content glass-panel">
                 <div class="section-header">
                     <h2><span class="icon">🍎</span> Food Analytics</h2>
                     <p class="sub-text">Daily Macro & Caloric Intake Tracking</p>
                 </div>
 
+                <!-- Daily Dashboard -->
+                <div class="grid-4-col"
+                    style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+                    <div class="sub-panel" style="text-align: center; padding: 1rem;">
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase;">
+                            Calories</div>
+                        <div id="food-dash-calories"
+                            style="font-size: 1.8rem; font-weight: 700; color: var(--text-primary);">0</div>
+                    </div>
+                    <div class="sub-panel"
+                        style="text-align: center; padding: 1rem; border-color: rgba(56, 189, 248, 0.3);">
+                        <div style="font-size: 0.8rem; color: var(--accent-blue); text-transform: uppercase;">
+                            Protein
+                        </div>
+                        <div id="food-dash-protein"
+                            style="font-size: 1.8rem; font-weight: 700; color: var(--text-primary);">0g</div>
+                    </div>
+                    <div class="sub-panel"
+                        style="text-align: center; padding: 1rem; border-color: rgba(251, 191, 36, 0.3);">
+                        <div style="font-size: 0.8rem; color: var(--accent-yellow); text-transform: uppercase;">
+                            Carbs
+                        </div>
+                        <div id="food-dash-carbs"
+                            style="font-size: 1.8rem; font-weight: 700; color: var(--text-primary);">0g</div>
+                    </div>
+                    <div class="sub-panel"
+                        style="text-align: center; padding: 1rem; border-color: rgba(239, 68, 68, 0.3);">
+                        <div style="font-size: 0.8rem; color: var(--accent-red); text-transform: uppercase;">Fats
+                        </div>
+                        <div id="food-dash-fats"
+                            style="font-size: 1.8rem; font-weight: 700; color: var(--text-primary);">0g</div>
+                    </div>
+                </div>
+
                 <div class="grid-2-col">
+                    <!-- Column 1: Food Log & Search -->
                     <div class="sub-panel">
-                        <h3>Today's Caloric Goal</h3>
-                        <div
-                            style="margin-top: 1rem; padding: 1rem; background: rgba(56, 189, 248, 0.1); border: 1px solid var(--accent-blue); border-radius: var(--radius-sm); text-align: center;">
-                            <span
-                                style="font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase;">Total
-                                Calories</span>
-                            <div id="food-calorie-display"
-                                style="font-size: 2.5rem; font-weight: 700; color: var(--text-primary); margin: 0.5rem 0;">
-                                0 / 2200 kcal</div>
-                            <div class="progress-container"
-                                style="width: 100%; height: 12px; margin-top: 1rem; background: rgba(255, 255, 255, 0.1);">
-                                <div class="progress-bar" id="calorie-progress"
-                                    style="width: 0%; background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));">
-                                </div>
+                        <h3>Log Food</h3>
+                        <div style="position: relative; margin-top: 1rem;">
+                            <input type="text" id="food-search-input" placeholder="Search food (e.g., Cheddar Chips)..."
+                                autocomplete="off"
+                                style="width: 100%; padding: 0.75rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 1rem;">
+                            <div id="food-autocomplete-results"
+                                style="position: absolute; top: 100%; left: 0; width: 100%; max-height: 250px; overflow-y: auto; background: #1e293b; border: 1px solid var(--glass-border); border-top: none; z-index: 10; display: none; margin-top: 2px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); font-family: 'Segoe UI', Arial, sans-serif; font-size: 0.95rem; color: #f1f5f9;">
+                                <!-- Populated by JS -->
                             </div>
                         </div>
 
-                        <h3 style="margin-top: 2rem;">Meal Timeline</h3>
-                        <ul class="task-list" id="food-timeline-list" style="margin-top: 1rem;">
+                        <h3 style="margin-top: 2rem;">Today's Log</h3>
+                        <ul class="task-list" id="food-log-list" style="margin-top: 1rem;">
                             <!-- Populated by JS -->
                         </ul>
                     </div>
 
-                    <div class="sub-panel"
-                        style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
-                        <h3>Macro Breakdown</h3>
-                        <div style="position: relative; height: 250px; width: 100%; margin-top: 1rem;">
-                            <canvas id="foodMacroChart"></canvas>
+                    <!-- Column 2: AI Audit -->
+                    <div class="sub-panel" style="display: flex; flex-direction: column;">
+                        <h3>Brain-Machine Audit</h3>
+                        <div class="workout-rules"
+                            style="margin-top: 1rem; font-size: 0.85rem; border-left-color: var(--accent-purple); background: rgba(192, 132, 252, 0.05);">
+                            <strong>AI Analyst:</strong> Compare today's macros against DNA traits and goals.
                         </div>
-                        <ul class="workout-list" style="margin-top: 1.5rem; width: 100%;">
-                            <li style="display:flex; justify-content:space-between; color: var(--accent-blue);">
-                                <span>Protein</span> <strong id="food-protein">0g</strong>
-                            </li>
-                            <li style="display:flex; justify-content:space-between; color: var(--accent-yellow);">
-                                <span>Carbs</span> <strong id="food-carbs">0g</strong>
-                            </li>
-                            <li style="display:flex; justify-content:space-between; color: #ef4444;"><span>Fats</span>
-                                <strong id="food-fats">0g</strong>
-                            </li>
-                        </ul>
+                        <button id="run-food-audit-btn" class="glass-button"
+                            style="margin-top: 1rem; width: 100%; padding: 0.75rem;">
+                            <span class="icon">🔍</span> Analyze Today's Intake
+                        </button>
+                        <div id="food-audit-result"
+                            style="margin-top: 1rem; padding: 1rem; background: rgba(0,0,0,0.3); border: 1px inset var(--glass-border); font-size: 0.9rem; flex-grow: 1; display: none; white-space: pre-wrap; font-family: sans-serif; line-height: 1.4;">
+                            <!-- AI Output Here -->
+                        </div>
                     </div>
                 </div>
             </section>
@@ -603,7 +751,8 @@
             <section id="reminders" class="tab-content glass-panel" style="border-color: rgba(251, 191, 36, 0.3);">
                 <div class="section-header">
                     <h2><span class="icon">💡</span> Mental Load & Reminders</h2>
-                    <p class="sub-text" style="color: var(--accent-yellow);">Frequently forgotten items and household
+                    <p class="sub-text" style="color: var(--accent-yellow);">Frequently forgotten items and
+                        household
                         rules.</p>
                 </div>
 
@@ -640,7 +789,8 @@
 
                     <!-- Column 2: Discretionary Wants -->
                     <div class="sub-panel" style="border-color: rgba(251, 191, 36, 0.3);">
-                        <h3 style="color: var(--accent-yellow);"><span class="icon">🎮</span> Discretionary Wants</h3>
+                        <h3 style="color: var(--accent-yellow);"><span class="icon">🎮</span> Discretionary Wants
+                        </h3>
                         <div class="workout-rules"
                             style="margin-top: 1rem; font-size: 0.85rem; border-left-color: var(--accent-yellow); background: rgba(251, 191, 36, 0.05);">
                             <strong>Rule:</strong> Purely recreational or luxury items. Lowest priority capital
@@ -657,7 +807,8 @@
                         <h3 style="color: var(--accent-purple);"><span class="icon">🧠</span> Athena's Advisory</h3>
                         <div class="workout-rules"
                             style="margin-top: 1rem; font-size: 0.85rem; border-left-color: var(--accent-purple); background: rgba(192, 132, 252, 0.05);">
-                            <strong>System:</strong> Cross-referencing requested items against the DNA Master Blueprint
+                            <strong>System:</strong> Cross-referencing requested items against the DNA Master
+                            Blueprint
                             and current financial velocity.
                         </div>
                         <div id="athena-advisory-container"
@@ -672,7 +823,8 @@
             <section id="ideas" class="tab-content glass-panel" style="border-color: rgba(16, 185, 129, 0.3);">
                 <div class="section-header">
                     <h2><span class="icon">💡</span> Ideas & Bucket List</h2>
-                    <p class="sub-text" style="color: var(--accent-green);">A brain dump for your brilliant ideas and
+                    <p class="sub-text" style="color: var(--accent-green);">A brain dump for your brilliant ideas
+                        and
                         long-term adventures.</p>
                 </div>
 
@@ -712,6 +864,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="retro-audio.js"></script>
     <script src="symphony-app.js"></script>
 </body>
 
