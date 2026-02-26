@@ -1,0 +1,15 @@
+{
+    "session_id": "2026-02-27",
+    "axioms": [
+        "Laptop experienced stuttering around the end of the last session.",
+        "Keyboard stopped working simultaneously or sequentially.",
+        "System crashed at 10:49 AM (Event 6008/41)."
+    ],
+    "tracks": {
+        "A": "Confirmed: Embedded Controller (EC) failure. ACPI Event 13 repeatedly logged. EC manages thermals and keyboard.",
+        "B": "Confirmed: Hardware-level interrupt storm (ACPI trying to reach EC) caused stuttering. Downstream USB/Synaptics failed.",
+        "C": "Synthesis: The EC hung. Keyboard died because it routes through EC. Stuttering caused by interrupt storm and fail-safe thermal throttling. Crash caused by EC locking up completely."
+    },
+    "status": "converged",
+    "convergence_score": 95
+}
