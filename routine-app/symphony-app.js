@@ -73,9 +73,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Financial Calculations (NZ) ---
     function calculateFinance() {
         // User Variables
-        const hourlyRate = 24.00;
-        const hoursWorked = 28.5;
+        const baseHourlyRate = 24.00;
         const kiwiSaverRate = 0.03; // 3%
+
+        const hoursInput = document.getElementById('input-hours');
+        const holidayInput = document.getElementById('input-holiday');
+
+        const hoursWorked = hoursInput ? parseFloat(hoursInput.value) || 0 : 28.5;
+        const isHoliday = holidayInput ? holidayInput.classList.contains('checked') : false;
+
+        const hourlyRate = isHoliday ? baseHourlyRate * 1.5 : baseHourlyRate;
 
         // Base Calculations
         const grossWeekly = hourlyRate * hoursWorked; // $684.00
@@ -158,6 +165,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     calculateFinance();
 
+    const hoursInput = document.getElementById('input-hours');
+    if (hoursInput) {
+        hoursInput.addEventListener('input', calculateFinance);
+    }
+
+    const holidayInput = document.getElementById('input-holiday');
+    if (holidayInput) {
+        holidayInput.addEventListener('click', () => {
+            holidayInput.classList.toggle('checked');
+            calculateFinance();
+        });
+    }
+
     unlockBtn.addEventListener('click', () => {
         if (passwordInput.value === CORRECT_PASSWORD) {
             localStorage.setItem('symphony_auth', 'true');
@@ -224,10 +244,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Quick Add Logic ---
     const quickAddInput = document.getElementById('quick-add-input');
     const quickAddBtn = document.getElementById('quick-add-btn');
+    const quickAddCategory = document.getElementById('quick-add-category');
+    const quickAddPriority = document.getElementById('quick-add-priority');
 
     async function handleQuickAdd() {
         const title = quickAddInput.value.trim();
         if (!title) return;
+
+        const category = quickAddCategory ? quickAddCategory.value : 'Unscheduled';
+        const priorityColor = quickAddPriority ? quickAddPriority.value : 'ORANGE';
 
         quickAddBtn.innerText = "⏳";
         quickAddBtn.style.pointerEvents = "none";
@@ -235,8 +260,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const newTask = {
             title: title,
             points: 2,
-            priority_color: 'ORANGE',
-            time_target: 'Unscheduled',
+            priority_color: priorityColor,
+            time_target: category,
             is_active: true
         };
 
@@ -255,7 +280,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 quickAddInput.value = '';
                 await fetchTasksAndRenderTimeline();
-                if (typeof initTaskConfigurator === 'function') initTaskConfigurator();
             } else {
                 console.error("Failed to add quick task:", response.statusText);
                 alert("Failed to add task.");
@@ -349,12 +373,99 @@ document.addEventListener('DOMContentLoaded', () => {
             el.style.borderLeft = `3px solid ${colorBorder}`;
 
             el.innerHTML = `
-                <div class="task-title" style="font-size: 0.95rem;">${task.title} <span style="font-size:0.8rem; color:var(--accent-blue);">[+${task.points} pts]</span></div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div style="display: flex; align-items: flex-start; gap: 8px;">
+                        ${getPoolId(task) === 'timeline' ? `<div class="checkbox completion-toggle" style="margin-top: 2px;" title="Mark Complete"></div>` : ''}
+                        <div class="task-title" style="font-size: 0.95rem; font-weight: bold; transition: all 0.2s;">
+                            ${task.title} <span style="font-size:0.8rem; color:var(--accent-blue); font-weight: normal;">[+${task.points} pts]</span>
+                        </div>
+                    </div>
+                    ${getPoolId(task) === 'timeline' ? `<button class="remove-timeline-btn" style="background: none; border: none; color: red; font-weight: bold; font-size: 1.1rem; cursor: pointer; padding: 0 4px;" title="Remove from schedule">×</button>` : ''}
+                </div>
                 ${task.description ? `<div class="task-desc" style="font-size: 0.8rem;">${task.description}</div>` : ''}
                 <div style="margin-top: 4px;">
                     ${(task.tags || []).map(t => `<span class="tag" style="font-size: 0.65rem; padding: 2px 6px;">${t}</span>`).join('')}
                 </div>
             `;
+
+            // Attach completion toggle
+            const completeBtn = el.querySelector('.completion-toggle');
+            if (completeBtn) {
+                // Determine initial state
+                let lastDoneDates = JSON.parse(localStorage.getItem('symphony_last_done') || '{}');
+                const lastDoneIso = lastDoneDates[task.id];
+                const isCompletedToday = lastDoneIso && (new Date(lastDoneIso).toDateString() === new Date().toDateString());
+
+                if (isCompletedToday) {
+                    completeBtn.classList.add('checked');
+                    el.querySelector('.task-title').style.opacity = '0.5';
+                    el.querySelector('.task-title').style.textDecoration = 'line-through';
+                }
+
+                completeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    completeBtn.classList.toggle('checked');
+                    const isChecked = completeBtn.classList.contains('checked');
+
+                    const titleEl = el.querySelector('.task-title');
+                    if (isChecked) {
+                        titleEl.style.opacity = '0.5';
+                        titleEl.style.textDecoration = 'line-through';
+                        // Save last done date
+                        lastDoneDates = JSON.parse(localStorage.getItem('symphony_last_done') || '{}');
+                        lastDoneDates[task.id] = new Date().toISOString();
+                        localStorage.setItem('symphony_last_done', JSON.stringify(lastDoneDates));
+                        // Re-render trackers
+                        renderWeeklyMonthlyTracker();
+                    } else {
+                        titleEl.style.opacity = '1';
+                        titleEl.style.textDecoration = 'none';
+                        // Remove last done date if un-toggled (optional, but good for correcting mistakes)
+                        lastDoneDates = JSON.parse(localStorage.getItem('symphony_last_done') || '{}');
+                        delete lastDoneDates[task.id];
+                        localStorage.setItem('symphony_last_done', JSON.stringify(lastDoneDates));
+                        renderWeeklyMonthlyTracker();
+                    }
+                });
+            }
+
+            // Attach remove timeline handler
+            const removeBtn = el.querySelector('.remove-timeline-btn');
+            if (removeBtn) {
+                removeBtn.addEventListener('click', async (e) => {
+                    e.stopPropagation(); // Prevent drag initialization
+                    removeBtn.innerText = "⏳";
+                    try {
+                        const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?id=eq.${task.id}`, {
+                            method: 'PATCH',
+                            headers: {
+                                'apikey': SUPABASE_ANON_KEY,
+                                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                                'Content-Type': 'application/json',
+                                'Prefer': 'return=minimal'
+                            },
+                            body: JSON.stringify({ time_target: 'Unscheduled' })
+                        });
+
+                        if (response.ok) {
+                            // Update local task array and re-render without full fetch
+                            const tIndex = dynamicTasks.findIndex(t => t.id === task.id);
+                            if (tIndex > -1) {
+                                dynamicTasks[tIndex].time_target = 'Unscheduled';
+                            }
+                            renderDraggableTimeline();
+                        } else {
+                            console.error("Failed to remove task from timeline", response.statusText);
+                            alert("Failed to unschedule task");
+                            removeBtn.innerText = "×";
+                        }
+                    } catch (err) {
+                        console.error("Network error unscheduling task:", err);
+                        alert("Network error. Try again.");
+                        removeBtn.innerText = "×";
+                    }
+                });
+            }
 
             // Attach drag events
             el.addEventListener('dragstart', (e) => {
@@ -406,6 +517,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Progress update
         document.getElementById('today-progress').style.width = '0%';
+
+        // Render Weekly/Monthly Tracker immediately after timeline is built
+        renderWeeklyMonthlyTracker();
+    }
+
+    function renderWeeklyMonthlyTracker() {
+        const weeklyList = document.getElementById('weekly-list');
+        const monthlyList = document.getElementById('monthly-list');
+        if (!weeklyList || !monthlyList) return;
+
+        weeklyList.innerHTML = '';
+        monthlyList.innerHTML = '';
+
+        const lastDoneDates = JSON.parse(localStorage.getItem('symphony_last_done') || '{}');
+
+        // Helper to format dates cleanly
+        const formatDate = (isoStr) => {
+            if (!isoStr) return 'Never';
+            const d = new Date(isoStr);
+            return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }); // e.g., 25 Mar
+        };
+
+        // Filter for tracking tasks
+        const trackingTasks = dynamicTasks.filter(t => {
+            const tt = (t.time_target || '').trim();
+            return ['Weekly', 'Weekly (3x)', 'Monthly'].includes(tt);
+        });
+
+        trackingTasks.forEach(task => {
+            const tt = (task.time_target || '').trim();
+            const lastDone = formatDate(lastDoneDates[task.id]);
+
+            const li = document.createElement('li');
+            li.style.display = 'flex';
+            li.style.justifyContent = 'space-between';
+            li.style.alignItems = 'center';
+            li.innerHTML = `
+                <div class="task-content">
+                    <strong>${task.title}</strong>
+                    ${task.tags ? `<br><span class="tag" style="font-size:0.65rem;">${task.tags.join(', ')}</span>` : ''}
+                </div>
+                <div style="background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; border: 1px solid var(--glass-border);">
+                    <span style="color: var(--text-secondary);">Last Done:</span> <span style="font-weight:bold; color: var(--accent-green);">${lastDone}</span>
+                </div>
+            `;
+
+            if (tt === 'Monthly') {
+                monthlyList.appendChild(li);
+            } else {
+                weeklyList.appendChild(li);
+            }
+        });
+
+        // If nothing was found, put a placeholder
+        if (weeklyList.innerHTML === '') weeklyList.innerHTML = '<li style="color: var(--text-secondary); font-style: italic;">No weekly tasks found.</li>';
+        if (monthlyList.innerHTML === '') monthlyList.innerHTML = '<li style="color: var(--text-secondary); font-style: italic;">No monthly tasks found.</li>';
     }
 
     // --- Accordion Toggle Logic ---
@@ -559,6 +726,102 @@ document.addEventListener('DOMContentLoaded', () => {
             container.appendChild(li);
         });
     };
+
+    // --- Ideas / Bucket List Setup ---
+    function initIdeasPage() {
+        const attachListListener = (inputId, btnId, listId, storageKey) => {
+            const input = document.getElementById(inputId);
+            const btn = document.getElementById(btnId);
+            const list = document.getElementById(listId);
+
+            if (!input || !btn || !list) return;
+
+            // Load existing items from localStorage
+            const loadItems = () => {
+                const storedItems = JSON.parse(localStorage.getItem(storageKey) || '[]');
+                list.innerHTML = ''; // Clear default hardcoded or current items
+                storedItems.forEach((item, index) => {
+                    const li = document.createElement('li');
+                    if (item.completed) li.classList.add('completed');
+
+                    li.innerHTML = `
+                        <div class="checkbox ${item.completed ? 'checked' : ''}"></div>
+                        <div class="task-content" style="flex-grow: 1;">${item.text}</div>
+                        <button class="delete-btn" data-index="${index}" style="background: none; border: none; color: #ff0000; cursor: pointer; font-size: 1.2rem; margin-left: 10px;" title="Delete item">×</button>
+                    `;
+
+                    li.querySelector('.checkbox').addEventListener('click', function () {
+                        this.classList.toggle('checked');
+                        this.parentElement.classList.toggle('completed');
+                        saveItems();
+                    });
+
+                    li.querySelector('.delete-btn').addEventListener('click', function () {
+                        this.parentElement.remove();
+                        saveItems();
+                    });
+
+                    list.appendChild(li);
+                });
+            };
+
+            const saveItems = () => {
+                const items = [];
+                list.querySelectorAll('li').forEach(li => {
+                    items.push({
+                        text: li.querySelector('.task-content').innerText,
+                        completed: li.classList.contains('completed')
+                    });
+                });
+                localStorage.setItem(storageKey, JSON.stringify(items));
+            };
+
+            const handleAdd = () => {
+                const text = input.value.trim();
+                if (!text) return;
+
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <div class="checkbox"></div>
+                    <div class="task-content" style="flex-grow: 1;">${text}</div>
+                    <button class="delete-btn" style="background: none; border: none; color: #ff0000; cursor: pointer; font-size: 1.2rem; margin-left: 10px;" title="Delete item">×</button>
+                `;
+
+                li.querySelector('.checkbox').addEventListener('click', function () {
+                    this.classList.toggle('checked');
+                    this.parentElement.classList.toggle('completed');
+                    saveItems();
+                });
+
+                li.querySelector('.delete-btn').addEventListener('click', function () {
+                    this.parentElement.remove();
+                    saveItems();
+                });
+
+                list.appendChild(li);
+                input.value = '';
+                saveItems();
+            };
+
+            btn.addEventListener('click', handleAdd);
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleAdd();
+            });
+
+            // Initialize by loading
+            // If it's the first time and the list doesn't have local storage, populate heavily with default so it doesn't look empty
+            if (!localStorage.getItem(storageKey) && listId === 'bucket-list') {
+                localStorage.setItem(storageKey, JSON.stringify([{ text: "Walk the full Pineapple Track", completed: false }]));
+            }
+
+            loadItems();
+        };
+
+        attachListListener('quick-add-bucket', 'quick-add-bucket-btn', 'bucket-list', 'symphony_bucket_list');
+        attachListListener('quick-add-braindump', 'quick-add-braindump-btn', 'braindump-list', 'symphony_brain_dump');
+    }
+
+    initIdeasPage();
 
     // Populate Workout Grid
     const populateWorkout = () => {
@@ -954,78 +1217,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Dynamic Task Configurator (Traffic Light) ---
-    async function initTaskConfigurator() {
-        const configContent = document.getElementById('config-content');
-        if (!configContent) return;
-
-        try {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?select=*&order=priority_color.desc`, {
-                headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Content-Type': 'application/json'
-                }
-            });
-
-            if (!response.ok) {
-                configContent.innerHTML = '<div style="color:var(--accent-red); font-size: 0.85rem;">[Cloud Database Not Initialized - Run SQL First]</div>';
-                return;
-            }
-
-            const tasks = await response.json();
-            configContent.innerHTML = '';
-
-            // Group tasks by category
-            const redTasks = tasks.filter(t => t.priority_color === 'RED');
-            const orangeTasks = tasks.filter(t => t.priority_color === 'ORANGE');
-            const greenTasks = tasks.filter(t => t.priority_color === 'GREEN');
-
-            const createCategorySection = (title, colorClass, colorHex, taskList) => {
-                const section = document.createElement('div');
-                section.className = 'sub-panel';
-                section.style.borderColor = `rgba(${colorClass}, 0.3)`;
-
-                let html = `<h3 style="color: ${colorHex};"><span class="icon">🚦</span> ${title}</h3>
-                <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">`;
-
-                taskList.forEach(task => {
-                    const selRed = task.priority_color === 'RED' ? 'selected' : '';
-                    const selOrg = task.priority_color === 'ORANGE' ? 'selected' : '';
-                    const selGrn = task.priority_color === 'GREEN' ? 'selected' : '';
-
-                    html += `
-                        <div style="display:flex; justify-content:space-between; align-items:center; background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.75rem;">
-                            <div>
-                                <div style="font-weight: 600; color: var(--text-primary);">${task.title}</div>
-                                <div style="font-size: 0.8rem; color: var(--text-secondary);">${task.time_target || 'Flexible'} • ${task.points} pts</div>
-                            </div>
-                            <select onchange="changeTaskColor('${task.id}', this)" 
-                                style="background: rgba(15, 23, 42, 0.9); border: 1px solid ${colorHex}; color: ${colorHex}; border-radius: var(--radius-sm); padding: 0.25rem 0.5rem; font-weight: bold; cursor: pointer; outline: none; transition: all 0.2s;">
-                                <option value="RED" ${selRed}>RED</option>
-                                <option value="ORANGE" ${selOrg}>ORANGE</option>
-                                <option value="GREEN" ${selGrn}>GREEN</option>
-                            </select>
-                        </div>
-                    `;
-                });
-
-                html += `</div>`;
-                section.innerHTML = html;
-                return section;
-            };
-
-            // Needs to match the css variable rgb values or just use hex
-            configContent.appendChild(createCategorySection('RED (Strict Timeline)', '239, 68, 68', '#ef4444', redTasks));
-            configContent.appendChild(createCategorySection('ORANGE (Daily Flexible)', '249, 115, 22', '#f97316', orangeTasks));
-            configContent.appendChild(createCategorySection('GREEN (Moveable/Weekly)', '16, 185, 129', '#10b981', greenTasks));
-
-        } catch (err) {
-            console.error("Error fetching tasks configuration:", err);
-            configContent.innerHTML = '<div style="color:var(--accent-red); font-size: 0.85rem;">[Network Error - Offline Mode]</div>';
-        }
-    }
-
     // Assign globally to be called by onchange
     window.changeTaskColor = async function (taskId, selectEl) {
         const newColor = selectEl.value;
@@ -1075,7 +1266,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initFoodAnalytics();
     initBioTracking();
     initProcurement();
-    initTaskConfigurator();
 
     // --- Dynamic Task Config Lock In ---
     const lockInBtn = document.getElementById('lock-in-config-btn');

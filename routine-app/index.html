@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Symphony | Daily Routine Optimizer</title>
+    <title>The Life Hub | Daily Routine Optimizer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
 
     <!-- Lock Screen -->
     <div id="lock-screen" class="glass-panel lock-container">
-        <h2><span class="icon">🔒</span> Symphony Access</h2>
+        <h2><span class="icon">🔒</span> The Life Hub Access</h2>
         <p class="subtitle" style="margin-bottom: 2rem;">Please enter password to unlock.</p>
         <div class="password-input-group">
             <input type="password" id="password-input" placeholder="Enter password...">
@@ -35,7 +35,7 @@
                 <span id="current-date">Tuesday, Feb 24</span>
                 <span class="badge">Day Off</span>
             </div>
-            <h1>Symphony</h1>
+            <h1>The Life Hub</h1>
             <p class="subtitle">Your dynamic routine tracker & visual schedule.</p>
         </header>
 
@@ -43,8 +43,6 @@
             <button class="tab-btn active" data-tab="today">Today's Schedule</button>
             <button class="tab-btn" data-tab="productivity">Productivity</button>
             <button class="tab-btn" data-tab="finances">Finances</button>
-            <button class="tab-btn" data-tab="briefing">Briefing</button>
-            <button class="tab-btn" data-tab="daily">Daily Candidates</button>
             <button class="tab-btn" data-tab="weekly">Weekly/Monthly</button>
             <button class="tab-btn" data-tab="dog">Quinny</button>
             <button class="tab-btn" data-tab="workout">Workout</button>
@@ -52,7 +50,7 @@
             <button class="tab-btn" data-tab="food">Food Metrics</button>
             <button class="tab-btn" data-tab="reminders">Reminders</button>
             <button class="tab-btn" data-tab="procurement">Wants vs Needs</button>
-            <button class="tab-btn" data-tab="taskconfig">Task Config</button>
+            <button class="tab-btn" data-tab="ideas">Ideas</button>
         </div>
 
         <main class="content-area">
@@ -76,7 +74,45 @@
                         <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
                             <input type="text" id="quick-add-input" placeholder="Quick add a new task..."
                                 style="flex-grow: 1; min-width: 0; padding: 0.5rem;">
+
+                            <select id="quick-add-category"
+                                style="padding: 0.5rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 1rem;">
+                                <option value="Unscheduled">Unscheduled</option>
+                                <option value="Daily Flexible">Daily</option>
+                                <option value="Weekly">Weekly</option>
+                                <option value="Monthly">Monthly</option>
+                            </select>
+
+                            <select id="quick-add-priority"
+                                style="padding: 0.5rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 1rem;">
+                                <option value="ORANGE">Orange (Flex Today)</option>
+                                <option value="RED">Red (Crucial)</option>
+                                <option value="GREEN">Green (Flexible)</option>
+                            </select>
+
                             <button id="quick-add-btn">Add</button>
+                        </div>
+
+                        <!-- Priority Legend -->
+                        <div
+                            style="font-size: 0.8rem; display: flex; gap: 0.75rem; margin-bottom: 1rem; padding: 0.5rem; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: var(--radius-sm);">
+                            <div style="display:flex; align-items:center; gap: 4px;">
+                                <div style="width:10px; height:10px; border-radius:50%; background:var(--accent-red);">
+                                </div>
+                                <span style="color:var(--text-secondary);"><strong>Crucial</strong> (Strict Time)</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap: 4px;">
+                                <div
+                                    style="width:10px; height:10px; border-radius:50%; background:var(--accent-orange);">
+                                </div>
+                                <span style="color:var(--text-secondary);"><strong>Flex Today</strong> (Required)</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap: 4px;">
+                                <div
+                                    style="width:10px; height:10px; border-radius:50%; background:var(--accent-green);">
+                                </div>
+                                <span style="color:var(--text-secondary);"><strong>Flexible</strong> (Moveable)</span>
+                            </div>
                         </div>
 
                         <!-- Accordion: Today's Tasks -->
@@ -285,6 +321,21 @@
                                 $0.00</div>
                         </div>
 
+                        <div
+                            style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; background: rgba(0, 0, 0, 0.05); padding: 1rem; border: 1px solid var(--glass-border); border-radius: 0;">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <label for="input-hours" style="font-weight: bold; color: var(--text-secondary);">Hours
+                                    Worked:</label>
+                                <input type="number" id="input-hours" value="28.5" step="0.5" min="0"
+                                    style="width: 80px; padding: 0.25rem; font-family: 'VT323', monospace; font-size: 1.2rem; border: 2px inset var(--win-shadow);">
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <label style="font-weight: bold; color: var(--text-secondary);">Public Holiday (1.5x
+                                    pay):</label>
+                                <div class="checkbox" id="input-holiday" style="margin-top: 0;"></div>
+                            </div>
+                        </div>
+
                         <ul class="workout-list" style="margin-top: 1.5rem;">
                             <li style="display:flex; justify-content:space-between;"><span>Hours Worked</span> <strong
                                     id="finance-hours">0 hrs</strong></li>
@@ -308,40 +359,6 @@
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- Briefing View -->
-            <section id="briefing" class="tab-content glass-panel">
-                <div class="section-header">
-                    <h2><span class="icon">📰</span> Daily Briefing & Logs</h2>
-                    <p class="sub-text">Biological history and memory synchronization from Supabase.</p>
-                </div>
-
-                <div class="grid-2-col">
-                    <div class="sub-panel">
-                        <h3>Biological History</h3>
-                        <div id="bio-history-content" class="briefing-content">
-                            <p class="text-secondary" style="font-style: italic;">Loading from cloud...</p>
-                        </div>
-                    </div>
-                    <div class="sub-panel">
-                        <h3>Memory Bank</h3>
-                        <div id="memory-bank-content" class="briefing-content">
-                            <p class="text-secondary" style="font-style: italic;">Loading from cloud...</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Daily Candidates View -->
-            <section id="daily" class="tab-content glass-panel">
-                <div class="section-header">
-                    <h2><span class="icon">📋</span> Daily Routine Queue</h2>
-                    <p class="sub-text">Tasks to organize on March 25th.</p>
-                </div>
-                <ul class="task-list" id="daily-list">
-                    <!-- Populated by JS -->
-                </ul>
             </section>
 
             <!-- Weekly/Monthly View -->
@@ -651,27 +668,45 @@
                 </div>
             </section>
 
-            <!-- Task Configurator View -->
-            <section id="taskconfig" class="tab-content glass-panel">
-                <div class="section-header" style="display: flex; justify-content: space-between; align-items: start;">
-                    <div>
-                        <h2><span class="icon">🚦</span> Traffic Light Configurator</h2>
-                        <p class="sub-text">Dynamically toggle your daily Red, Orange, and Green task priorities. Select
-                            a
-                            priority
-                            color from the dropdown.</p>
-                    </div>
-                    <button id="lock-in-config-btn" class="glass-button"
-                        style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #10b981; border: 1px solid #10b981; padding: 0.5rem 1rem; border-radius: var(--radius-sm); cursor: pointer; transition: all 0.2s;">
-                        <span class="icon">🔒</span> Lock In
-                    </button>
+            <!-- Ideas / Bucket List View -->
+            <section id="ideas" class="tab-content glass-panel" style="border-color: rgba(16, 185, 129, 0.3);">
+                <div class="section-header">
+                    <h2><span class="icon">💡</span> Ideas & Bucket List</h2>
+                    <p class="sub-text" style="color: var(--accent-green);">A brain dump for your brilliant ideas and
+                        long-term adventures.</p>
                 </div>
-                <!-- Categories will be rendered here by JS -->
-                <div id="config-content" style="display: flex; flex-direction: column; gap: 2rem;">
-                    <!-- Loading state -->
-                    <div style="color:var(--text-secondary); font-size: 0.85rem;">Syncing tasks from Supabase...</div>
+
+                <div class="grid-2-col">
+                    <div class="sub-panel" style="border-color: rgba(56, 189, 248, 0.3);">
+                        <h3 style="color: var(--accent-blue);"><span class="icon">🍍</span> Bucket List</h3>
+                        <!-- Quick Add for Bucket List -->
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem; margin-bottom: 0.75rem;">
+                            <input type="text" id="quick-add-bucket" placeholder="Add a bucket list item..."
+                                style="flex-grow: 1; min-width: 0; padding: 0.5rem;">
+                            <button id="quick-add-bucket-btn" class="tab-btn">Add</button>
+                        </div>
+                        <ul class="task-list" id="bucket-list" style="margin-top: 1rem;">
+                            <li>
+                                <div class="checkbox"></div>
+                                <div class="task-content">Walk the full Pineapple Track</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sub-panel" style="border-color: rgba(251, 191, 36, 0.3);">
+                        <h3 style="color: var(--accent-yellow);"><span class="icon">🧠</span> Brain Dump</h3>
+                        <!-- Quick Add for Brain Dump -->
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem; margin-bottom: 0.75rem;">
+                            <input type="text" id="quick-add-braindump" placeholder="Dump a random thought..."
+                                style="flex-grow: 1; min-width: 0; padding: 0.5rem;">
+                            <button id="quick-add-braindump-btn" class="tab-btn">Dump</button>
+                        </div>
+                        <ul class="task-list" id="braindump-list" style="margin-top: 1rem;">
+                            <!-- Populated dynamically or left empty initially -->
+                        </ul>
+                    </div>
                 </div>
             </section>
+
         </main>
     </div>
 

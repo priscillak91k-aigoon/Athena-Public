@@ -1,0 +1,390 @@
+[
+  {
+    "id": "7b53f829-82dd-46b6-bbc7-f2ec70e8b3c1",
+    "title": "Quinny's Walk (Zone 2 Cardio)",
+    "description": "1-Hr brisk walk + 10 mins training",
+    "time_target": "Daily Flexible",
+    "priority_color": "GREEN",
+    "points": 5,
+    "tags": [
+      "Pet Care",
+      "Health"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "b4f9a2b9-a863-49ed-b7ed-ceb1982a3200",
+    "title": "Message sister (Tresha)",
+    "description": "Monthly check-in",
+    "time_target": "Monthly",
+    "priority_color": "ORANGE",
+    "points": 2,
+    "tags": [
+      "Family"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "1ca5023a-fd9a-490b-a96b-57fd6200e347",
+    "title": "Catch up on washing",
+    "description": "Hang outside if decent weather",
+    "time_target": "Unscheduled",
+    "priority_color": "GREEN",
+    "points": 3,
+    "tags": [
+      "Chores"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "3b7944a7-c91c-4ef0-a76a-892442dfab0a",
+    "title": "Clean the toilet and bathroom",
+    "description": "Weekly deep clean",
+    "time_target": "Weekly",
+    "priority_color": "GREEN",
+    "points": 4,
+    "tags": [
+      "Cleaning"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "5fad83a0-2cf7-42ee-b373-e10335117789",
+    "title": "Message foster mum (Jacinta)",
+    "description": "Monthly check-in",
+    "time_target": "Monthly",
+    "priority_color": "GREEN",
+    "points": 2,
+    "tags": [
+      "Family"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "535fee59-e719-4bac-9b96-88f4a5770260",
+    "title": "Parker Pick Up",
+    "description": "Leave with Tash at 2:45 PM for 3:00 PM pickup",
+    "time_target": "Unscheduled",
+    "priority_color": "GREEN",
+    "points": 2,
+    "tags": [
+      "Family"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "1bdaffcc-4067-4386-bde0-89c87a9e87fa",
+    "title": "Message foster sister (Shakira)",
+    "description": "Monthly check-in",
+    "time_target": "Monthly",
+    "priority_color": "GREEN",
+    "points": 2,
+    "tags": [
+      "Family"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "504a08d4-ef58-46ce-8378-17898e8f7a0e",
+    "title": "Empty inside bins",
+    "description": "Empty and refill liners",
+    "time_target": "Daily Flexible",
+    "priority_color": "GREEN",
+    "points": 1,
+    "tags": [
+      "Cleaning"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "007d9618-c682-44b4-b28f-b82e4a7980ca",
+    "title": "Morning Ride Drop-off",
+    "description": "Sarah and the boys (School/Kindy)",
+    "time_target": "Unscheduled",
+    "priority_color": "GREEN",
+    "points": 2,
+    "tags": [
+      "Family"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "8b93f174-2192-44c1-b310-1adefc07d15f",
+    "title": "3-Day Longevity Workout Split",
+    "description": "Full Session",
+    "time_target": "Unscheduled",
+    "priority_color": "GREEN",
+    "points": 5,
+    "tags": [
+      "Health",
+      "Workout"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "11862113-7233-4452-897f-78506a554309",
+    "title": "Lux (Vacuum) Ground Floor",
+    "description": "General vacuuming",
+    "time_target": "Daily Flexible",
+    "priority_color": "GREEN",
+    "points": 2,
+    "tags": [
+      "Cleaning"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "238b47a3-f5c6-497e-ba4f-d69714607f3b",
+    "title": "Clean the vacuum (Lux) head",
+    "description": "Weekly maintenance",
+    "time_target": "Unscheduled",
+    "priority_color": "GREEN",
+    "points": 2,
+    "tags": [
+      "Maintenance"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "2e218926-79e2-4f23-9598-03e4c4871e43",
+    "title": "Air house out & Spray couches",
+    "description": "Make the house smell nice",
+    "time_target": "Daily Flexible",
+    "priority_color": "GREEN",
+    "points": 1,
+    "tags": [
+      "Cleaning"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "f2d34a6b-b038-407e-a115-74e494cd544c",
+    "title": "Clean my shoes",
+    "description": "Periodic maintenance",
+    "time_target": "Moveable",
+    "priority_color": "GREEN",
+    "points": 1,
+    "tags": [
+      "Chores"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "4816d023-f093-4aac-ab9d-c74706f5f73a",
+    "title": "90s Test Task",
+    "description": null,
+    "time_target": "Unscheduled",
+    "priority_color": "GREEN",
+    "points": 2,
+    "tags": null,
+    "is_active": true,
+    "created_at": "2026-02-25T09:35:54.566213+00:00"
+  },
+  {
+    "id": "dfe5443c-eb24-4249-a3da-c35d2f2179cc",
+    "title": "Sort & fold washing",
+    "description": "Pop aside for others",
+    "time_target": "Moveable",
+    "priority_color": "GREEN",
+    "points": 2,
+    "tags": [
+      "Chores"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "d5f90d1e-240a-43cf-b02f-a4ada150d2c2",
+    "title": "Core Rest Phase (Nap)",
+    "description": "Crucial recovery and energy before afternoon rush",
+    "time_target": "Daily Flexible",
+    "priority_color": "GREEN",
+    "points": 2,
+    "tags": [
+      "Rest"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "dbd8c2b0-dbaa-4c55-9c1c-338afc679046",
+    "title": "Clean clothes drier and washer",
+    "description": "Monthly maintenance",
+    "time_target": "Monthly",
+    "priority_color": "GREEN",
+    "points": 4,
+    "tags": [
+      "Maintenance"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "9d2a87d4-5647-4ae1-97f0-79d7c720c3bc",
+    "title": "Morning Supplements",
+    "description": "K2, L-Theanine, NAC",
+    "time_target": "Daily Flexible",
+    "priority_color": "GREEN",
+    "points": 1,
+    "tags": [
+      "Health",
+      "Bio"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "d31dec72-95ff-4fc6-99b8-55be45eac076",
+    "title": "Caravan Track Vehicle Logistics",
+    "description": "Weekly check",
+    "time_target": "Weekly",
+    "priority_color": "GREEN",
+    "points": 3,
+    "tags": [
+      "Logistics"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "26fd5b2b-0583-408f-8800-80ca0f5bc6a3",
+    "title": "Test Quick Feature",
+    "description": null,
+    "time_target": "Unscheduled",
+    "priority_color": "GREEN",
+    "points": 2,
+    "tags": null,
+    "is_active": true,
+    "created_at": "2026-02-25T07:48:54.108853+00:00"
+  },
+  {
+    "id": "40a23dde-0a51-4189-9710-43da0c9b9550",
+    "title": "Post-Drop-off Reset",
+    "description": "Dishes, put stuff away, make boys bed",
+    "time_target": "Daily Flexible",
+    "priority_color": "GREEN",
+    "points": 3,
+    "tags": [
+      "Cleaning"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "eea4baec-e29d-4052-9c7f-6a9842d3a331",
+    "title": "Pick up Quinn's Poop",
+    "description": "Clear the lawn",
+    "time_target": "Daily Flexible",
+    "priority_color": "GREEN",
+    "points": 1,
+    "tags": [
+      "Pet Care",
+      "Chores"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "9108232a-8315-48ba-bec0-e7200a592b4d",
+    "title": "Discard used tooth floss",
+    "description": "Mental load cleanup",
+    "time_target": "Daily Flexible",
+    "priority_color": "GREEN",
+    "points": 1,
+    "tags": [
+      "Mental Load"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "5e0d5199-c8b9-49b9-b7ef-40e06f87ef4f",
+    "title": "Bring in outside bins",
+    "description": "Evening sweep",
+    "time_target": "Daily Flexible",
+    "priority_color": "GREEN",
+    "points": 1,
+    "tags": [
+      "Chores"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "aa18dfb6-1ec1-425b-b108-e0f7a7884965",
+    "title": "Message mum (Rachel)",
+    "description": "Monthly check-in",
+    "time_target": "Monthly",
+    "priority_color": "GREEN",
+    "points": 2,
+    "tags": [
+      "Family"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "d08c10ec-d992-4667-8805-a49ee9c25db9",
+    "title": "Clean Sarah's car",
+    "description": "Due to Quinny's fur",
+    "time_target": "Weekly",
+    "priority_color": "GREEN",
+    "points": 4,
+    "tags": [
+      "Maintenance"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "2936ca5c-6171-4175-a489-960db1e1d736",
+    "title": "New house inspection",
+    "description": null,
+    "time_target": "Unscheduled",
+    "priority_color": "GREEN",
+    "points": 2,
+    "tags": null,
+    "is_active": true,
+    "created_at": "2026-02-25T21:11:31.34133+00:00"
+  },
+  {
+    "id": "7fc29533-0d40-4f43-bd98-e22782cf9fee",
+    "title": "Quinny's Furminator Brush",
+    "description": "Deep groom taking ~1 hour",
+    "time_target": "Weekly",
+    "priority_color": "GREEN",
+    "points": 4,
+    "tags": [
+      "Pet Care"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  },
+  {
+    "id": "57974edd-274e-4836-82d4-aeabaddddaf9",
+    "title": "Kids Toys Upright",
+    "description": "Make sure outside kids toys are left upright",
+    "time_target": "Daily Flexible",
+    "priority_color": "ORANGE",
+    "points": 1,
+    "tags": [
+      "Mental Load"
+    ],
+    "is_active": true,
+    "created_at": "2026-02-25T00:06:34.461443+00:00"
+  }
+]
