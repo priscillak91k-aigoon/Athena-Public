@@ -3270,7 +3270,326 @@ document.addEventListener('DOMContentLoaded', () => {
     initLogistics();
     initSuppsVault();
 
-    // --- Expenses / Budget Builder Implementation ---
+    // --- Calendar Event System ---
+    async function initCalendar() {
+        let calEvents = [];
+        let calViewMonth = new Date().getMonth();
+        let calViewYear = new Date().getFullYear();
+
+        const colorMap = {
+            'RED': '#ff0000', 'ORANGE': '#ff8c00', 'GREEN': '#008000',
+            'BLUE': '#0000ff', 'PURPLE': '#800080'
+        };
+        const categoryEmoji = {
+            'birthday': '🎂', 'appointment': '📋', 'deadline': '⏰',
+            'reminder': '🔔', 'other': '📌'
+        };
+        const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        // Fetch events from Supabase
+        async function fetchEvents() {
+            try {
+                const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_events?order=event_date.asc`, {
+                    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+                });
+                if (resp.ok) {
+                    calEvents = await resp.json();
+                    localStorage.setItem('symphony_events_local', JSON.stringify(calEvents));
+                    return;
+                }
+            } catch (e) {
+                console.warn('Calendar: Supabase unavailable, using localStorage', e);
+            }
+            const local = localStorage.getItem('symphony_events_local');
+            calEvents = local ? JSON.parse(local) : [];
+        }
+
+        // Check if an event occurs on a given date (considering recurrence)
+        function eventOccursOn(event, date) {
+            const evDate = new Date(event.event_date + 'T00:00:00');
+            const d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+            if (event.recurrence === 'once') {
+                return evDate.getTime() === d.getTime();
+            }
+            if (event.recurrence === 'yearly') {
+                return evDate.getMonth() === d.getMonth() && evDate.getDate() === d.getDate();
+            }
+            if (event.recurrence === 'monthly') {
+                return evDate.getDate() === d.getDate() && d >= evDate;
+            }
+            if (event.recurrence === 'weekly') {
+                return evDate.getDay() === d.getDay() && d >= evDate;
+            }
+            return false;
+        }
+
+        // Get events for a specific date
+        function getEventsForDate(date) {
+            return calEvents.filter(ev => eventOccursOn(ev, date));
+        }
+
+        // Render the week view (Mon-Sun of current week)
+        function renderWeekView() {
+            const container = document.getElementById('calendar-week-view');
+            if (!container) return;
+
+            const today = new Date();
+            const dayOfWeek = today.getDay(); // 0=Sun, 1=Mon...
+            const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+            const monday = new Date(today);
+            monday.setDate(today.getDate() + mondayOffset);
+
+            let html = '';
+            for (let i = 0; i < 7; i++) {
+                const d = new Date(monday);
+                d.setDate(monday.getDate() + i);
+                const isToday = d.toDateString() === today.toDateString();
+                const eventsOnDay = getEventsForDate(d);
+
+                html += `<div class="week-day-row ${isToday ? 'is-today' : ''}">
+                    <div class="week-day-label">
+                        ${dayNames[i]}
+                        <span class="week-date">${d.getDate()}/${d.getMonth() + 1}</span>
+                    </div>
+                    <div style="flex: 1;">
+                        ${eventsOnDay.length === 0
+                        ? '<span style="color: #999; font-size: 0.85rem;">—</span>'
+                        : eventsOnDay.map(ev =>
+                            `<div class="week-event-item">
+                                    <span class="cal-event-dot color-${ev.color}"></span>
+                                    <span>${categoryEmoji[ev.category] || '📌'} ${ev.title}</span>
+                                    ${ev.time_of_day ? `<span style="color:#666; font-size:0.8rem;">${ev.time_of_day}</span>` : ''}
+                                    <span class="recurrence-badge">${ev.recurrence}</span>
+                                </div>`
+                        ).join('')
+                    }
+                    </div>
+                </div>`;
+            }
+            container.innerHTML = html;
+        }
+
+        // Render the month calendar grid
+        function renderMonthGrid() {
+            const grid = document.getElementById('calendar-month-grid');
+            const title = document.getElementById('calendar-month-title');
+            if (!grid) return;
+
+            if (title) title.textContent = `${monthNames[calViewMonth]} ${calViewYear}`;
+
+            const today = new Date();
+            const firstDay = new Date(calViewYear, calViewMonth, 1);
+            const lastDay = new Date(calViewYear, calViewMonth + 1, 0);
+
+            // Adjust so Monday = 0
+            let startDow = firstDay.getDay() - 1;
+            if (startDow < 0) startDow = 6;
+
+            let html = '<div class="cal-grid">';
+            // Header row
+            dayNames.forEach(d => { html += `<div class="cal-header-cell">${d}</div>`; });
+
+            // Previous month padding
+            const prevMonthLast = new Date(calViewYear, calViewMonth, 0);
+            for (let i = startDow - 1; i >= 0; i--) {
+                const dayNum = prevMonthLast.getDate() - i;
+                html += `<div class="cal-day other-month"><span class="cal-day-num">${dayNum}</span></div>`;
+            }
+
+            // Current month days
+            for (let day = 1; day <= lastDay.getDate(); day++) {
+                const d = new Date(calViewYear, calViewMonth, day);
+                const isToday = d.toDateString() === today.toDateString();
+                const eventsOnDay = getEventsForDate(d);
+
+                html += `<div class="cal-day ${isToday ? 'today' : ''}">
+                    <span class="cal-day-num">${day}</span>
+                    <div>${eventsOnDay.map(ev =>
+                    `<span class="cal-event-dot color-${ev.color}" title="${ev.title}"></span>`
+                ).join('')}</div>
+                </div>`;
+            }
+
+            // Next month padding (fill to 42 cells = 6 rows)
+            const totalCells = startDow + lastDay.getDate();
+            const remaining = (7 - (totalCells % 7)) % 7;
+            for (let i = 1; i <= remaining; i++) {
+                html += `<div class="cal-day other-month"><span class="cal-day-num">${i}</span></div>`;
+            }
+
+            html += '</div>';
+            grid.innerHTML = html;
+        }
+
+        // Render all events list (editable)
+        function renderAllEventsList() {
+            const list = document.getElementById('all-events-list');
+            if (!list) return;
+
+            if (calEvents.length === 0) {
+                list.innerHTML = '<div style="color: #808080; font-style: italic; padding: 0.5rem;">No events yet. Add one above!</div>';
+                return;
+            }
+
+            list.innerHTML = calEvents.map(ev => {
+                const dateStr = new Date(ev.event_date + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+                return `<div class="event-list-item">
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                        <span class="cal-event-dot color-${ev.color}" style="width:8px;height:8px;"></span>
+                        <span>${categoryEmoji[ev.category] || '📌'} <strong>${ev.title}</strong></span>
+                        <span class="recurrence-badge">${ev.recurrence}</span>
+                        <span style="color: #666;">${dateStr}</span>
+                        ${ev.time_of_day ? `<span style="color: #0000ff;">${ev.time_of_day}</span>` : ''}
+                    </div>
+                    <button class="event-delete-btn" data-event-id="${ev.id}">×</button>
+                </div>`;
+            }).join('');
+
+            // Attach delete handlers
+            list.querySelectorAll('.event-delete-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const id = btn.dataset.eventId;
+                    calEvents = calEvents.filter(e => e.id !== id);
+                    localStorage.setItem('symphony_events_local', JSON.stringify(calEvents));
+                    renderAll();
+                    try {
+                        await fetch(`${SUPABASE_URL}/rest/v1/symphony_events?id=eq.${id}`, {
+                            method: 'DELETE',
+                            headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+                        });
+                    } catch (e) { console.warn('Failed to delete event from Supabase:', e); }
+                });
+            });
+        }
+
+        // Render "Coming Up This Week" on Today's Schedule
+        function renderComingUpThisWeek() {
+            const container = document.getElementById('coming-up-this-week');
+            if (!container) return;
+
+            const today = new Date();
+            const dayOfWeek = today.getDay();
+            const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+            const monday = new Date(today);
+            monday.setDate(today.getDate() + mondayOffset);
+            const sunday = new Date(monday);
+            sunday.setDate(monday.getDate() + 6);
+
+            // Collect events for this week
+            const weekEvents = [];
+            for (let i = 0; i < 7; i++) {
+                const d = new Date(monday);
+                d.setDate(monday.getDate() + i);
+                const evs = getEventsForDate(d);
+                evs.forEach(ev => {
+                    weekEvents.push({ ...ev, displayDate: new Date(d) });
+                });
+            }
+
+            if (weekEvents.length === 0) {
+                container.innerHTML = '<div style="color: #008000; font-size: 0.95rem;">✅ No events this week — smooth sailing!</div>';
+                return;
+            }
+
+            container.innerHTML = weekEvents.map(ev => {
+                const dName = dayNames[(ev.displayDate.getDay() + 6) % 7]; // Mon=0
+                const isPast = ev.displayDate < today && ev.displayDate.toDateString() !== today.toDateString();
+                return `<div class="coming-up-event" style="border-left: 4px solid ${colorMap[ev.color] || '#0000ff'}; ${isPast ? 'opacity: 0.5;' : ''}">
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                        <span style="font-weight: bold; color: #000080; min-width: 30px;">${dName}</span>
+                        <span>${categoryEmoji[ev.category] || '📌'} ${ev.title}</span>
+                        ${ev.time_of_day ? `<span style="color: #0000ff; font-size: 0.85rem;">${ev.time_of_day}</span>` : ''}
+                        <span class="recurrence-badge">${ev.recurrence}</span>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function renderAll() {
+            renderWeekView();
+            renderMonthGrid();
+            renderAllEventsList();
+            renderComingUpThisWeek();
+        }
+
+        // Add event handler
+        const addBtn = document.getElementById('add-event-btn');
+        if (addBtn) {
+            addBtn.addEventListener('click', async () => {
+                const title = document.getElementById('event-title')?.value.trim();
+                const eventDate = document.getElementById('event-date')?.value;
+                const timeOfDay = document.getElementById('event-time')?.value || null;
+                const recurrence = document.getElementById('event-recurrence')?.value || 'once';
+                const color = document.getElementById('event-color')?.value || 'BLUE';
+                const category = document.getElementById('event-category')?.value || 'other';
+
+                if (!title || !eventDate) {
+                    alert('Please enter a title and date.');
+                    return;
+                }
+
+                addBtn.innerText = '⏳';
+                addBtn.style.pointerEvents = 'none';
+
+                const newEvent = {
+                    id: crypto.randomUUID(),
+                    title, event_date: eventDate, recurrence, color, category,
+                    time_of_day: timeOfDay || null
+                };
+
+                calEvents.push(newEvent);
+                localStorage.setItem('symphony_events_local', JSON.stringify(calEvents));
+                renderAll();
+
+                // Clear form
+                document.getElementById('event-title').value = '';
+                document.getElementById('event-date').value = '';
+                document.getElementById('event-time').value = '';
+
+                try {
+                    await fetch(`${SUPABASE_URL}/rest/v1/symphony_events`, {
+                        method: 'POST',
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                            'Content-Type': 'application/json',
+                            'Prefer': 'return=minimal'
+                        },
+                        body: JSON.stringify({
+                            id: newEvent.id, title, event_date: eventDate,
+                            recurrence, color, category,
+                            time_of_day: timeOfDay || null
+                        })
+                    });
+                } catch (e) { console.warn('Failed to save event to Supabase:', e); }
+
+                addBtn.innerText = 'Add Event';
+                addBtn.style.pointerEvents = 'auto';
+            });
+        }
+
+        // Month navigation
+        const prevBtn = document.getElementById('cal-prev-month');
+        const nextBtn = document.getElementById('cal-next-month');
+        if (prevBtn) prevBtn.addEventListener('click', () => {
+            calViewMonth--;
+            if (calViewMonth < 0) { calViewMonth = 11; calViewYear--; }
+            renderMonthGrid();
+        });
+        if (nextBtn) nextBtn.addEventListener('click', () => {
+            calViewMonth++;
+            if (calViewMonth > 11) { calViewMonth = 0; calViewYear++; }
+            renderMonthGrid();
+        });
+
+        // Initial load
+        await fetchEvents();
+        renderAll();
+    }
+    initCalendar();
+
     async function initExpensesTracker() {
         const listEl = document.getElementById('expenses-list');
         const addBtn = document.getElementById('add-expense-btn');

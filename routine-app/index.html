@@ -274,6 +274,20 @@
 
                     <!-- Right: The Timeline Drop Zones -->
                     <div class="sub-panel">
+
+                        <!-- Coming Up This Week -->
+                        <div
+                            style="background: #ffffcc; border: 2px inset var(--win-shadow); padding: 0.5rem; margin-bottom: 0.75rem;">
+                            <h3
+                                style="color: #800000; font-family: 'Press Start 2P', monospace; font-size: 0.5rem; margin: 0 0 0.4rem 0;">
+                                📆 COMING UP THIS WEEK</h3>
+                            <div id="coming-up-this-week"
+                                style="display: flex; flex-direction: column; gap: 4px; font-family: 'VT323', monospace;">
+                                <div style="color: #808080; font-style: italic; font-size: 0.9rem;">Loading events...
+                                </div>
+                            </div>
+                        </div>
+
                         <div
                             style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
                             <h3 style="margin: 0;"><span class="icon">⏱️</span> Timeline Integration</h3>
@@ -804,15 +818,122 @@
             <!-- Weekly/Monthly View -->
             <section id="weekly" class="tab-content glass-panel">
                 <div class="section-header">
-                    <h2><span class="icon">📅</span> Weekly & Monthly Objectives</h2>
+                    <h2><span class="icon">📅</span> Weekly & Monthly Planner</h2>
                 </div>
-                <div class="grid-2-col">
+
+                <!-- Add Event Form -->
+                <div
+                    style="background: #ffffff; border: 2px inset var(--win-shadow); padding: 0.75rem; margin-bottom: 1rem;">
+                    <h3
+                        style="color: #000080; font-family: 'Press Start 2P', monospace; font-size: 0.55rem; margin-bottom: 0.5rem;">
+                        ➕ ADD EVENT</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: flex-end;">
+                        <div style="flex: 2 1 180px;">
+                            <label
+                                style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Title</label>
+                            <input type="text" id="event-title" placeholder="e.g. Dad's Birthday"
+                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem; box-sizing: border-box;">
+                        </div>
+                        <div style="flex: 1 1 130px;">
+                            <label style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Date</label>
+                            <input type="date" id="event-date"
+                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem; box-sizing: border-box;">
+                        </div>
+                        <div style="flex: 1 1 100px;">
+                            <label style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Time
+                                (opt)</label>
+                            <input type="time" id="event-time"
+                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem; box-sizing: border-box;">
+                        </div>
+                        <div style="flex: 1 1 100px;">
+                            <label
+                                style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Recurrence</label>
+                            <select id="event-recurrence"
+                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem;">
+                                <option value="once">One-Time</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="yearly">Yearly</option>
+                            </select>
+                        </div>
+                        <div style="flex: 0 1 80px;">
+                            <label
+                                style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Color</label>
+                            <select id="event-color"
+                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem;">
+                                <option value="BLUE">🔵 Blue</option>
+                                <option value="RED">🔴 Red</option>
+                                <option value="ORANGE">🟠 Orange</option>
+                                <option value="GREEN">🟢 Green</option>
+                                <option value="PURPLE">🟣 Purple</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1 1 100px;">
+                            <label
+                                style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Category</label>
+                            <select id="event-category"
+                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem;">
+                                <option value="birthday">🎂 Birthday</option>
+                                <option value="appointment">📋 Appointment</option>
+                                <option value="deadline">⏰ Deadline</option>
+                                <option value="reminder">🔔 Reminder</option>
+                                <option value="other">📌 Other</option>
+                            </select>
+                        </div>
+                        <button id="add-event-btn"
+                            style="padding: 6px 16px; background: #008000; border: 2px outset #00ff00; color: #fff; font-family: 'VT323', monospace; font-size: 1.1rem; cursor: pointer; font-weight: bold; text-shadow: 1px 1px 0 #000;">
+                            Add Event
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Calendar Views Grid -->
+                <div class="grid-2-col" style="margin-bottom: 1rem;">
+                    <!-- Week View -->
                     <div class="sub-panel">
-                        <h3>Weekly Reset</h3>
+                        <h3><span class="icon">📆</span> This Week</h3>
+                        <div id="calendar-week-view"
+                            style="background: #ffffff; border: 2px inset var(--win-shadow); padding: 0.5rem; min-height: 200px;">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    <!-- Month View -->
+                    <div class="sub-panel">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <h3 style="margin: 0;"><span class="icon">🗓️</span> <span
+                                    id="calendar-month-title">February 2026</span></h3>
+                            <div>
+                                <button id="cal-prev-month"
+                                    style="background: #c0c0c0; border: 2px outset var(--win-highlight); cursor: pointer; padding: 2px 8px; font-family: 'VT323', monospace; font-weight: bold;">◄</button>
+                                <button id="cal-next-month"
+                                    style="background: #c0c0c0; border: 2px outset var(--win-highlight); cursor: pointer; padding: 2px 8px; font-family: 'VT323', monospace; font-weight: bold;">►</button>
+                            </div>
+                        </div>
+                        <div id="calendar-month-grid"
+                            style="background: #ffffff; border: 2px inset var(--win-shadow); padding: 0.25rem;">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- All Events List -->
+                <div class="sub-panel">
+                    <h3><span class="icon">📋</span> All Events</h3>
+                    <div id="all-events-list"
+                        style="background: #ffffff; border: 2px inset var(--win-shadow); padding: 0.5rem; max-height: 300px; overflow-y: auto;">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Existing Task Trackers -->
+                <div class="grid-2-col" style="margin-top: 1rem;">
+                    <div class="sub-panel">
+                        <h3>Weekly Reset Tasks</h3>
                         <ul class="task-list" id="weekly-list"></ul>
                     </div>
                     <div class="sub-panel">
-                        <h3>Monthly Audit</h3>
+                        <h3>Monthly Audit Tasks</h3>
                         <ul class="task-list" id="monthly-list"></ul>
                     </div>
                 </div>
