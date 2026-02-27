@@ -558,7 +558,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             el.style.borderLeft = `3px solid ${colorBorder}`;
 
-            const isOnTimeline = (getPoolId(task) === 'timeline' || getPoolId(task) === 'timeline-span');
+            const poolId = getPoolId(task);
+            const isOnTimeline = (poolId === 'timeline' || poolId === 'timeline-span');
             const timing = isOnTimeline ? parseTaskTiming(task.time_target) : null;
             const durationLabel = timing ? `${timing.duration}m` : '';
 
@@ -579,9 +580,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     ${isOnTimeline ? `
                     <div class="duration-controls" style="display: flex; align-items: center; gap: 4px; font-size: 0.75rem;">
-                        <button class="dur-minus" style="background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border); color: var(--text-primary); width: 22px; height: 22px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.9rem; line-height: 1;">−</button>
-                        <span class="dur-label" style="color: var(--accent-blue); font-weight: 600; min-width: 32px; text-align: center;">${durationLabel}</span>
-                        <button class="dur-plus" style="background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border); color: var(--text-primary); width: 22px; height: 22px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.9rem; line-height: 1;">+</button>
+                        <button class="dur-minus" style="background: #c0c0c0; border: 2px outset var(--win-highlight); color: #000000; width: 24px; height: 24px; border-radius: 0; cursor: pointer; font-weight: bold; font-size: 1rem; line-height: 1; font-family: 'VT323', monospace;">−</button>
+                        <span class="dur-label" style="color: #0000ff; font-weight: 600; min-width: 32px; text-align: center; font-family: 'VT323', monospace;">${durationLabel}</span>
+                        <button class="dur-plus" style="background: #c0c0c0; border: 2px outset var(--win-highlight); color: #000000; width: 24px; height: 24px; border-radius: 0; cursor: pointer; font-weight: bold; font-size: 1rem; line-height: 1; font-family: 'VT323', monospace;">+</button>
                     </div>` : ''}
                 </div>
             `;
@@ -683,8 +684,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 draggedTaskObj = null;
             });
 
-            // Route to the correct container
-            const poolId = getPoolId(task);
+
+            // Route to the correct container (using poolId cached above)
 
             if (poolId === 'timeline') {
                 const targetZone = document.querySelector(`.drop-zone[data-time="${task.time_target}"]`);

@@ -522,6 +522,64 @@ header h1 {
     .tabs {
         flex-direction: column;
     }
+
+    /* Force schedule grid to single column on mobile */
+    .today-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    /* Prevent any horizontal overflow */
+    .app-container,
+    .glass-panel,
+    .sub-panel,
+    .pool-accordion-body {
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    /* Stack Quick Add controls */
+    #today .sub-panel>div:first-of-type {
+        flex-wrap: wrap !important;
+    }
+
+    #quick-add-input {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    #quick-add-category,
+    #quick-add-priority {
+        flex: 1 1 45%;
+        min-width: 0;
+        font-size: 0.85rem !important;
+    }
+
+    /* Priority legend wraps on mobile */
+    .sub-panel>div[style*="display: flex"][style*="gap: 0.75rem"] {
+        flex-wrap: wrap !important;
+    }
+
+    /* Time slot labels smaller on mobile */
+    .slot-label {
+        width: 55px !important;
+        font-size: 0.45rem !important;
+    }
+
+    /* Make draggable tasks fit */
+    .draggable-task {
+        font-size: 0.85rem;
+        padding: 0.35rem;
+    }
+
+    /* Header text smaller */
+    .section-header h2 {
+        font-size: 0.65rem;
+    }
+
+    .sub-panel h3 {
+        font-size: 0.55rem !important;
+    }
 }
 
 /* Lock Screen — Win95 Dialog Box */
@@ -609,11 +667,11 @@ header h1 {
     border: 2px dashed #ff0000 !important;
 }
 
-/* Adjust timeline layout for the grid */
-@media (max-width: 768px) {
-    .today-grid {
-        grid-template-columns: 1fr !important;
-    }
+/* Prevent body overflow */
+html,
+body {
+    overflow-x: hidden;
+    max-width: 100vw;
 }
 
 /* ==============================
