@@ -193,8 +193,8 @@ header h1 {
 }
 
 .tab-btn.active {
-    background: #ffffff;
-    color: #000080;
+    background: #000080;
+    color: #ffffff;
     border: 2px inset var(--win-shadow);
     box-shadow: none;
     font-weight: bold;

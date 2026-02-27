@@ -1,0 +1,337 @@
+﻿
+TimeCreated            LogName LevelDisplayName ProviderName                               Id Message                  
+-----------            ------- ---------------- ------------                               -- -------                  
+27/02/2026 10:49:50 am System  Information      Microsoft-Windows-TPM-WMI                1041 Pre-attestation health   
+                                                                                              check detailed           
+                                                                                              information: {"Version":1
+                                                                                              ,"HealthStatus":"Attestab
+                                                                                              le","Required":[{"Field":
+                                                                                              "TpmPresent","Value":true
+                                                                                              ,"DesiredValue":true},{"F
+                                                                                              ield":"TpmMeetsMinimumVer
+                                                                                              sion","Value":true,"Desir
+                                                                                              edValue":true},{"Field":"
+                                                                                              TpmIsResponsive","Value":
+                                                                                              true,"DesiredValue":true}
+                                                                                              ,{"Field":"EkCertIsAvaila
+                                                                                              ble","Value":true,"Desire
+                                                                                              dValue":true},{"Field":"T
+                                                                                              cgLogFound","Value":true,
+                                                                                              "DesiredValue":true}],"Ex
+                                                                                              pected":[{"Field":"PcrsMa
+                                                                                              tchTcgLog","Value":true,"
+                                                                                              DesiredValue":true}],"Inf
+                                                                                              ormational":[{"Field":"Se
+                                                                                              cureBootEnabled","ValueFr
+                                                                                              omComputer":true,"ValueFr
+                                                                                              omTcgLog":true,"DesiredVa
+                                                                                              lue":true,"TcgValueIsVeri
+                                                                                              fiable":true},{"Field":"V
+                                                                                              irtualSecureMemory","Valu
+                                                                                              eFromComputer":false,"Val
+                                                                                              ueFromTcgLog":false,"Desi
+                                                                                              redValue":true,"TcgValueI
+                                                                                              sVerifiable":true},{"Fiel
+                                                                                              d":"SecureCorePCCompliant
+                                                                                              ","ValueFromComputer":fal
+                                                                                              se,"ValueFromTcgLog":fals
+                                                                                              e,"DesiredValue":true,"Tc
+                                                                                              gValueIsVerifiable":true}
+                                                                                              {"Field":"BootTcgLogFound
+                                                                                              InFileSystem","Value":tru
+                                                                                              e,"DesiredValue":true},{"
+                                                                                              Field":"CurrentTcgLogFoun
+                                                                                              dInFileSystem","Value":tr
+                                                                                              ue,"DesiredValue":true}]}
+27/02/2026 10:49:44 am System  Information      BTHUSB                                     18 Windows cannot store     
+                                                                                              Bluetooth authentication 
+                                                                                              codes (link keys) on the 
+                                                                                              local adapter. Bluetooth 
+                                                                                              keyboards might not work 
+                                                                                              in the system BIOS       
+                                                                                              during startup.          
+27/02/2026 10:49:43 am System  Warning          Microsoft-Windows-Kernel-PnP              219 The driver               
+                                                                                              \Driver\WUDFRd failed to 
+                                                                                              load.                    
+                                                                                              Device: USB\VID_06CB&PID_
+                                                                                              009B\d390940084ef        
+                                                                                              Status: 0xC0000365       
+27/02/2026 10:49:41 am System  Information      Microsoft-Windows-Kernel-Processor-Power   55 Processor 11 in group 0  
+                                                                                              exposes the following    
+                                                                                              power management         
+                                                                                              capabilities:            
+                                                                                                                       
+                                                                                              Idle state type: ACPI    
+                                                                                              Idle (C) States (3       
+                                                                                              state(s))                
+                                                                                                                       
+                                                                                              Performance state type:  
+                                                                                              ACPI Collaborative       
+                                                                                              Processor Performance    
+                                                                                              Control                  
+                                                                                              Nominal Frequency (MHz): 
+                                                                                              2592                     
+                                                                                              Maximum performance      
+                                                                                              percentage: 173          
+                                                                                              Minimum performance      
+                                                                                              percentage: 42           
+                                                                                              Minimum throttle         
+                                                                                              percentage: 3            
+27/02/2026 10:49:41 am System  Information      Microsoft-Windows-Kernel-Processor-Power   55 Processor 9 in group 0   
+                                                                                              exposes the following    
+                                                                                              power management         
+                                                                                              capabilities:            
+                                                                                                                       
+                                                                                              Idle state type: ACPI    
+                                                                                              Idle (C) States (3       
+                                                                                              state(s))                
+                                                                                                                       
+                                                                                              Performance state type:  
+                                                                                              ACPI Collaborative       
+                                                                                              Processor Performance    
+                                                                                              Control                  
+                                                                                              Nominal Frequency (MHz): 
+                                                                                              2592                     
+                                                                                              Maximum performance      
+                                                                                              percentage: 173          
+                                                                                              Minimum performance      
+                                                                                              percentage: 42           
+                                                                                              Minimum throttle         
+                                                                                              percentage: 3            
+27/02/2026 10:49:41 am System  Information      Microsoft-Windows-Kernel-Processor-Power   55 Processor 7 in group 0   
+                                                                                              exposes the following    
+                                                                                              power management         
+                                                                                              capabilities:            
+                                                                                                                       
+                                                                                              Idle state type: ACPI    
+                                                                                              Idle (C) States (3       
+                                                                                              state(s))                
+                                                                                                                       
+                                                                                              Performance state type:  
+                                                                                              ACPI Collaborative       
+                                                                                              Processor Performance    
+                                                                                              Control                  
+                                                                                              Nominal Frequency (MHz): 
+                                                                                              2592                     
+                                                                                              Maximum performance      
+                                                                                              percentage: 173          
+                                                                                              Minimum performance      
+                                                                                              percentage: 42           
+                                                                                              Minimum throttle         
+                                                                                              percentage: 3            
+27/02/2026 10:49:41 am System  Information      Microsoft-Windows-Kernel-Processor-Power   55 Processor 5 in group 0   
+                                                                                              exposes the following    
+                                                                                              power management         
+                                                                                              capabilities:            
+                                                                                                                       
+                                                                                              Idle state type: ACPI    
+                                                                                              Idle (C) States (3       
+                                                                                              state(s))                
+                                                                                                                       
+                                                                                              Performance state type:  
+                                                                                              ACPI Collaborative       
+                                                                                              Processor Performance    
+                                                                                              Control                  
+                                                                                              Nominal Frequency (MHz): 
+                                                                                              2592                     
+                                                                                              Maximum performance      
+                                                                                              percentage: 173          
+                                                                                              Minimum performance      
+                                                                                              percentage: 38           
+                                                                                              Minimum throttle         
+                                                                                              percentage: 3            
+27/02/2026 10:49:41 am System  Information      Microsoft-Windows-Kernel-Processor-Power   55 Processor 3 in group 0   
+                                                                                              exposes the following    
+                                                                                              power management         
+                                                                                              capabilities:            
+                                                                                                                       
+                                                                                              Idle state type: ACPI    
+                                                                                              Idle (C) States (3       
+                                                                                              state(s))                
+                                                                                                                       
+                                                                                              Performance state type:  
+                                                                                              ACPI Collaborative       
+                                                                                              Processor Performance    
+                                                                                              Control                  
+                                                                                              Nominal Frequency (MHz): 
+                                                                                              2592                     
+                                                                                              Maximum performance      
+                                                                                              percentage: 173          
+                                                                                              Minimum performance      
+                                                                                              percentage: 38           
+                                                                                              Minimum throttle         
+                                                                                              percentage: 3            
+27/02/2026 10:49:41 am System  Information      Microsoft-Windows-Kernel-Processor-Power   55 Processor 1 in group 0   
+                                                                                              exposes the following    
+                                                                                              power management         
+                                                                                              capabilities:            
+                                                                                                                       
+                                                                                              Idle state type: ACPI    
+                                                                                              Idle (C) States (3       
+                                                                                              state(s))                
+                                                                                                                       
+                                                                                              Performance state type:  
+                                                                                              ACPI Collaborative       
+                                                                                              Processor Performance    
+                                                                                              Control                  
+                                                                                              Nominal Frequency (MHz): 
+                                                                                              2592                     
+                                                                                              Maximum performance      
+                                                                                              percentage: 173          
+                                                                                              Minimum performance      
+                                                                                              percentage: 38           
+                                                                                              Minimum throttle         
+                                                                                              percentage: 3            
+27/02/2026 10:49:41 am System  Information      Microsoft-Windows-Kernel-Processor-Power   55 Processor 10 in group 0  
+                                                                                              exposes the following    
+                                                                                              power management         
+                                                                                              capabilities:            
+                                                                                                                       
+                                                                                              Idle state type: ACPI    
+                                                                                              Idle (C) States (3       
+                                                                                              state(s))                
+                                                                                                                       
+                                                                                              Performance state type:  
+                                                                                              ACPI Collaborative       
+                                                                                              Processor Performance    
+                                                                                              Control                  
+                                                                                              Nominal Frequency (MHz): 
+                                                                                              2592                     
+                                                                                              Maximum performance      
+                                                                                              percentage: 173          
+                                                                                              Minimum performance      
+                                                                                              percentage: 38           
+                                                                                              Minimum throttle         
+                                                                                              percentage: 3            
+27/02/2026 10:49:41 am System  Information      Microsoft-Windows-Kernel-Processor-Power   55 Processor 8 in group 0   
+                                                                                              exposes the following    
+                                                                                              power management         
+                                                                                              capabilities:            
+                                                                                                                       
+                                                                                              Idle state type: ACPI    
+                                                                                              Idle (C) States (3       
+                                                                                              state(s))                
+                                                                                                                       
+                                                                                              Performance state type:  
+                                                                                              ACPI Collaborative       
+                                                                                              Processor Performance    
+                                                                                              Control                  
+                                                                                              Nominal Frequency (MHz): 
+                                                                                              2592                     
+                                                                                              Maximum performance      
+                                                                                              percentage: 173          
+                                                                                              Minimum performance      
+                                                                                              percentage: 38           
+                                                                                              Minimum throttle         
+                                                                                              percentage: 3            
+27/02/2026 10:49:41 am System  Information      Microsoft-Windows-Kernel-Processor-Power   55 Processor 6 in group 0   
+                                                                                              exposes the following    
+                                                                                              power management         
+                                                                                              capabilities:            
+                                                                                                                       
+                                                                                              Idle state type: ACPI    
+                                                                                              Idle (C) States (3       
+                                                                                              state(s))                
+                                                                                                                       
+                                                                                              Performance state type:  
+                                                                                              ACPI Collaborative       
+                                                                                              Processor Performance    
+                                                                                              Control                  
+                                                                                              Nominal Frequency (MHz): 
+                                                                                              2592                     
+                                                                                              Maximum performance      
+                                                                                              percentage: 173          
+                                                                                              Minimum performance      
+                                                                                              percentage: 42           
+                                                                                              Minimum throttle         
+                                                                                              percentage: 3            
+27/02/2026 10:49:41 am System  Information      Microsoft-Windows-Kernel-Processor-Power   55 Processor 4 in group 0   
+                                                                                              exposes the following    
+                                                                                              power management         
+                                                                                              capabilities:            
+                                                                                                                       
+                                                                                              Idle state type: ACPI    
+                                                                                              Idle (C) States (3       
+                                                                                              state(s))                
+                                                                                                                       
+                                                                                              Performance state type:  
+                                                                                              ACPI Collaborative       
+                                                                                              Processor Performance    
+                                                                                              Control                  
+                                                                                              Nominal Frequency (MHz): 
+                                                                                              2592                     
+                                                                                              Maximum performance      
+                                                                                              percentage: 173          
+                                                                                              Minimum performance      
+                                                                                              percentage: 42           
+                                                                                              Minimum throttle         
+                                                                                              percentage: 3            
+27/02/2026 10:49:41 am System  Information      Microsoft-Windows-Kernel-Processor-Power   55 Processor 2 in group 0   
+                                                                                              exposes the following    
+                                                                                              power management         
+                                                                                              capabilities:            
+                                                                                                                       
+                                                                                              Idle state type: ACPI    
+                                                                                              Idle (C) States (3       
+                                                                                              state(s))                
+                                                                                                                       
+                                                                                              Performance state type:  
+                                                                                              ACPI Collaborative       
+                                                                                              Processor Performance    
+                                                                                              Control                  
+                                                                                              Nominal Frequency (MHz): 
+                                                                                              2592                     
+                                                                                              Maximum performance      
+                                                                                              percentage: 173          
+                                                                                              Minimum performance      
+                                                                                              percentage: 42           
+                                                                                              Minimum throttle         
+                                                                                              percentage: 3            
+27/02/2026 10:49:41 am System  Information      Microsoft-Windows-Kernel-Processor-Power   55 Processor 0 in group 0   
+                                                                                              exposes the following    
+                                                                                              power management         
+                                                                                              capabilities:            
+                                                                                                                       
+                                                                                              Idle state type: ACPI    
+                                                                                              Idle (C) States (3       
+                                                                                              state(s))                
+                                                                                                                       
+                                                                                              Performance state type:  
+                                                                                              ACPI Collaborative       
+                                                                                              Processor Performance    
+                                                                                              Control                  
+                                                                                              Nominal Frequency (MHz): 
+                                                                                              2592                     
+                                                                                              Maximum performance      
+                                                                                              percentage: 173          
+                                                                                              Minimum performance      
+                                                                                              percentage: 30           
+                                                                                              Minimum throttle         
+                                                                                              percentage: 3            
+27/02/2026 10:49:39 am System  Information      Microsoft-Windows-Kernel-Power            125 ACPI thermal zone        
+                                                                                              \_TZ.THRM has been       
+                                                                                              enumerated.              
+                                                                                              _PSV = 0K                
+                                                                                              _TC1 = 0                 
+                                                                                              _TC2 = 0                 
+                                                                                              _TSP = 0ms               
+                                                                                              _AC0 = 0K                
+                                                                                              _AC1 = 0K                
+                                                                                              _AC2 = 0K                
+                                                                                              _AC3 = 0K                
+                                                                                              _AC4 = 0K                
+                                                                                              _AC5 = 0K                
+                                                                                              _AC6 = 0K                
+                                                                                              _AC7 = 0K                
+                                                                                              _AC8 = 0K                
+                                                                                              _AC9 = 0K                
+                                                                                              _CRT = 373K              
+                                                                                              _HOT = 0K                
+                                                                                              minimum throttle = 0     
+                                                                                                                       
+                                                                                              _CR3 = 0K                
+27/02/2026 10:49:47 am System  Information      EventLog                                 6009 Microsoft (R) Windows    
+                                                                                              (R) 10.00. 26200         
+                                                                                              Multiprocessor Free.     
+
+

@@ -932,9 +932,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedListState = JSON.parse(localStorage.getItem('symphony_list_state_' + containerId) || '{}');
 
         items.forEach((itemObj, index) => {
-            // Handle both simple strings and objects with points
+            // Handle both simple strings and objects with points/sync data
             const text = typeof itemObj === 'string' ? itemObj : itemObj.text;
             const pointsLabel = (typeof itemObj === 'object' && itemObj.points) ? ` <span style="font-size:0.8rem; color:var(--accent-blue);">[+${itemObj.points} pts]</span>` : '';
+
+            const suppSyncAttr = (typeof itemObj === 'object' && itemObj.suppSync) ? `data-supp-sync="${itemObj.suppSync}" data-supp-dose="${itemObj.suppDose || 1}"` : '';
 
             const li = document.createElement('li');
             const isCompleted = savedListState[index];
@@ -944,20 +946,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             li.innerHTML = `
-                <div class="checkbox ${isCompleted ? 'checked' : ''}"></div>
+                <div class="checkbox ${isCompleted ? 'checked' : ''}" ${suppSyncAttr}></div>
                 <div class="task-content">${text}${pointsLabel}</div>
             `;
 
             li.querySelector('.checkbox').addEventListener('click', function () {
+                const wasChecked = this.classList.contains('checked');
                 this.classList.toggle('checked');
+                const isNowChecked = this.classList.contains('checked');
+
                 const parent = this.parentElement;
                 parent.classList.toggle('completed');
 
                 // Save state
-                savedListState[index] = this.classList.contains('checked');
+                savedListState[index] = isNowChecked;
                 localStorage.setItem('symphony_list_state_' + containerId, JSON.stringify(savedListState));
 
                 if (containerId === 'daily-list') updatePoints();
+
+                // Trigger Supplement Sync if newly checked
+                if (!wasChecked && isNowChecked && window.triggerSuppSync) {
+                    const syncName = this.getAttribute('data-supp-sync');
+                    const syncDose = parseInt(this.getAttribute('data-supp-dose')) || 1;
+                    if (syncName) {
+                        window.triggerSuppSync(syncName, syncDose);
+                    }
+                }
             });
 
             container.appendChild(li);
@@ -1082,17 +1096,65 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- Food Analytics Integration ---
-    // --- Food Metrics Engine ---
-    const FOOD_LOG_KEY = `symphony_food_log_${new Date().toISOString().split('T')[0]}`;
+    // ── Local Time Helper ──
+    function getLocalDayDateString(d = new Date()) {
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
 
+    const FOOD_LOG_KEY = `symphony_food_log_${getLocalDayDateString()}`;
+    const FOOD_RECIPES_KEY = 'symphony_food_recipes';
+    const FOOD_HISTORY_KEY = 'symphony_food_history'; // localStorage backup for chart data
+
+    // ── DNA-Personalized Targets ──
+    // Based on: TCF7L2 C/T, KLF14 A/A, 9p21 G/G, ACTN3 C/T, ADRB2 G/G, CRP=9
+    const DNA_TARGETS = {
+        calories: { min: 1800, max: 2400, label: 'Calories (KLF14 tight margin)' },
+        protein: { min: 120, max: 999, label: 'Protein (ACTN3 hybrid muscle)' },
+        carbs: { min: 0, max: 150, label: 'Carbs (TCF7L2 pancreas limit)' },
+        fats: { min: 0, max: 80, label: 'Fats (9p21 artery risk)' },
+        fiber: { min: 25, max: 999, label: 'Fiber (Gut barrier / CRP=9)' },
+        sugars: { min: 0, max: 30, label: 'Sugars (TCF7L2 + KLF14)' },
+        sodium: { min: 0, max: 2.3, label: 'Sodium (< 2300mg)' }
+    };
+
+    // ── LocalStorage helpers ──
     function getDailyFoodLog() {
         const stored = localStorage.getItem(FOOD_LOG_KEY);
         return stored ? JSON.parse(stored) : [];
     }
-
     function saveFoodLog(logArr) {
         localStorage.setItem(FOOD_LOG_KEY, JSON.stringify(logArr));
+    }
+    function getRecipes() {
+        const stored = localStorage.getItem(FOOD_RECIPES_KEY);
+        return stored ? JSON.parse(stored) : [];
+    }
+    function saveRecipes(arr) {
+        localStorage.setItem(FOOD_RECIPES_KEY, JSON.stringify(arr));
+    }
+    function getFoodHistory() {
+        const stored = localStorage.getItem(FOOD_HISTORY_KEY);
+        return stored ? JSON.parse(stored) : [];
+    }
+    function saveFoodHistory(arr) {
+        localStorage.setItem(FOOD_HISTORY_KEY, JSON.stringify(arr));
+    }
+
+    // ── Nutrient scaling ──
+    function scaleNutrients(per100g, amountG) {
+        const factor = amountG / 100;
+        return {
+            calories: Math.round((per100g.calories || 0) * factor),
+            protein: Math.round((per100g.protein || 0) * factor * 10) / 10,
+            carbs: Math.round((per100g.carbs || 0) * factor * 10) / 10,
+            fats: Math.round((per100g.fats || 0) * factor * 10) / 10,
+            sugars: Math.round((per100g.sugars || 0) * factor * 10) / 10,
+            fiber: Math.round((per100g.fiber || 0) * factor * 10) / 10,
+            sodium: Math.round((per100g.sodium || 0) * factor * 100) / 100
+        };
     }
 
     function calculateDailyTotals(logArr) {
@@ -1101,96 +1163,179 @@ document.addEventListener('DOMContentLoaded', () => {
             totals.protein += item.protein || 0;
             totals.carbs += item.carbs || 0;
             totals.fats += item.fats || 0;
+            totals.sugars += item.sugars || 0;
+            totals.fiber += item.fiber || 0;
+            totals.sodium += item.sodium || 0;
             return totals;
-        }, { calories: 0, protein: 0, carbs: 0, fats: 0 });
+        }, { calories: 0, protein: 0, carbs: 0, fats: 0, sugars: 0, fiber: 0, sodium: 0 });
     }
 
+    // ── DNA Grading Engine ──
+    function gradeDailyIntake(totals) {
+        let score = 100;
+        const breakdown = [];
+
+        const checks = [
+            { key: 'calories', value: Math.round(totals.calories), unit: '' },
+            { key: 'protein', value: Math.round(totals.protein * 10) / 10, unit: 'g' },
+            { key: 'carbs', value: Math.round(totals.carbs * 10) / 10, unit: 'g' },
+            { key: 'fats', value: Math.round(totals.fats * 10) / 10, unit: 'g' },
+            { key: 'fiber', value: Math.round(totals.fiber * 10) / 10, unit: 'g' },
+            { key: 'sugars', value: Math.round(totals.sugars * 10) / 10, unit: 'g' },
+            { key: 'sodium', value: Math.round(totals.sodium * 100) / 100, unit: 'g' }
+        ];
+
+        checks.forEach(c => {
+            const t = DNA_TARGETS[c.key];
+            let status = 'pass';
+            let penalty = 0;
+
+            if (c.value < t.min) {
+                const deficit = ((t.min - c.value) / t.min) * 100;
+                penalty = Math.min(20, Math.round(deficit / 5) * 3);
+                status = penalty > 10 ? 'fail' : 'warn';
+            } else if (c.value > t.max) {
+                const excess = ((c.value - t.max) / t.max) * 100;
+                penalty = Math.min(25, Math.round(excess / 5) * 3);
+                status = penalty > 10 ? 'fail' : 'warn';
+            }
+
+            score -= penalty;
+            breakdown.push({
+                label: t.label,
+                value: `${c.value}${c.unit}`,
+                target: c.key === 'protein' || c.key === 'fiber'
+                    ? `≥ ${t.min}${c.unit}`
+                    : c.key === 'calories'
+                        ? `${t.min}-${t.max}`
+                        : `≤ ${t.max}${c.unit}`,
+                status,
+                penalty
+            });
+        });
+
+        score = Math.max(0, Math.min(100, score));
+
+        let grade;
+        if (score >= 95) grade = 'A+';
+        else if (score >= 88) grade = 'A';
+        else if (score >= 80) grade = 'B+';
+        else if (score >= 72) grade = 'B';
+        else if (score >= 64) grade = 'C+';
+        else if (score >= 55) grade = 'C';
+        else if (score >= 45) grade = 'D';
+        else grade = 'F';
+
+        return { grade, score, breakdown };
+    }
+
+    function gradeToNumber(grade) {
+        const map = { 'A+': 5, 'A': 4.5, 'B+': 4, 'B': 3.5, 'C+': 3, 'C': 2.5, 'D': 1.5, 'F': 0.5 };
+        return map[grade] || 0;
+    }
+
+    function getGradeColor(grade) {
+        if (grade.startsWith('A')) return '#22c55e';
+        if (grade.startsWith('B')) return '#38bdf8';
+        if (grade.startsWith('C')) return '#fbbf24';
+        if (grade === 'D') return '#f97316';
+        return '#ef4444';
+    }
+
+    // ── Render Functions ──
     function renderFoodDashboard() {
         const log = getDailyFoodLog();
         const totals = calculateDailyTotals(log);
 
-        // Update Dash Cards
-        document.getElementById('food-dash-calories').innerText = totals.calories;
-        document.getElementById('food-dash-protein').innerText = `${totals.protein}g`;
-        document.getElementById('food-dash-carbs').innerText = `${totals.carbs}g`;
-        document.getElementById('food-dash-fats').innerText = `${totals.fats}g`;
+        // Dashboard tiles
+        document.getElementById('food-dash-calories').innerText = Math.round(totals.calories);
+        document.getElementById('food-dash-protein').innerText = `${Math.round(totals.protein)}g`;
+        document.getElementById('food-dash-carbs').innerText = `${Math.round(totals.carbs)}g`;
+        document.getElementById('food-dash-fats').innerText = `${Math.round(totals.fats)}g`;
 
-        // Update Macro Details
-        const pEl = document.getElementById('food-protein');
-        const cEl = document.getElementById('food-carbs');
-        const fEl = document.getElementById('food-fats');
-        if (pEl) pEl.innerText = `${totals.protein}g`;
-        if (cEl) cEl.innerText = `${totals.carbs}g`;
-        if (fEl) fEl.innerText = `${totals.fats}g`;
+        // Live DNA grade
+        if (log.length > 0) {
+            const result = gradeDailyIntake(totals);
+            const badge = document.getElementById('food-grade-badge');
+            const scoreEl = document.getElementById('food-grade-score');
+            badge.innerText = result.grade;
+            badge.style.color = getGradeColor(result.grade);
+            badge.style.textShadow = `0 0 12px ${getGradeColor(result.grade)}50`;
+            scoreEl.innerText = `${result.score}/100 points`;
 
-        // Update Chart
+            // Grade breakdown
+            const breakdownEl = document.getElementById('food-grade-breakdown');
+            if (breakdownEl) {
+                breakdownEl.innerHTML = result.breakdown.map(b => {
+                    const icon = b.status === 'pass' ? '✅' : b.status === 'warn' ? '⚠️' : '❌';
+                    const color = b.status === 'pass' ? 'var(--accent-green)' : b.status === 'warn' ? 'var(--accent-yellow)' : 'var(--accent-red)';
+                    return `<div style="display: flex; justify-content: space-between; padding: 0.25rem 0; border-bottom: 1px dotted rgba(255,255,255,0.05);">
+                        <span>${icon} ${b.label}</span>
+                        <span style="color: ${color}; font-weight: 600;">${b.value} <span style="font-weight: 400; color: var(--text-secondary);">(${b.target})</span></span>
+                    </div>`;
+                }).join('');
+            }
+        }
+
+        // Doughnut chart
         const canvas = document.getElementById('foodMacroChart');
         if (canvas && totals.protein + totals.carbs + totals.fats > 0) {
             const ctx = canvas.getContext('2d');
-            if (window.foodChartInstance) {
-                window.foodChartInstance.destroy();
-            }
-
+            if (window.foodChartInstance) window.foodChartInstance.destroy();
             window.foodChartInstance = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
                     labels: ['Protein', 'Carbs', 'Fats'],
                     datasets: [{
-                        data: [totals.protein, totals.carbs, totals.fats],
-                        backgroundColor: [
-                            'rgba(56, 189, 248, 0.8)', // Blue (Protein)
-                            'rgba(251, 191, 36, 0.8)', // Yellow (Carbs)
-                            'rgba(239, 68, 68, 0.8)'   // Red (Fats)
-                        ],
-                        borderColor: 'rgba(15, 23, 42, 1)',
+                        data: [Math.round(totals.protein), Math.round(totals.carbs), Math.round(totals.fats)],
+                        backgroundColor: ['rgba(56,189,248,0.8)', 'rgba(251,191,36,0.8)', 'rgba(239,68,68,0.8)'],
+                        borderColor: 'rgba(15,23,42,1)',
                         borderWidth: 2,
                         hoverOffset: 4
                     }]
                 },
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
+                    responsive: true, maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     cutout: '65%'
                 }
             });
         }
 
-        // Render Log List
+        // Food log list
         const listEl = document.getElementById('food-log-list');
         if (listEl) {
             listEl.innerHTML = '';
+            if (log.length === 0) {
+                listEl.innerHTML = '<li style="color: var(--text-secondary); font-style: italic;">No food logged yet today</li>';
+            }
             log.forEach((item, index) => {
                 const li = document.createElement('li');
                 li.style.flexDirection = 'column';
                 li.style.alignItems = 'flex-start';
-
                 li.innerHTML = `
                     <div style="display: flex; justify-content: space-between; width: 100%; cursor: pointer;" onclick="document.getElementById('food-details-${index}').style.display = document.getElementById('food-details-${index}').style.display === 'none' ? 'block' : 'none'">
                         <div>
-                            <span style="font-size: 0.8rem; color: var(--text-secondary); margin-right: 0.5rem;">${item.timestamp}</span>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary); margin-right: 0.5rem;">${item.timestamp}</span>
                             <strong style="color: var(--text-primary);">${item.name}</strong>
+                            <span style="font-size: 0.7rem; color: var(--accent-blue);">${item.amount}${item.unit || 'g'}</span>
                         </div>
-                        <div style="font-size: 0.85rem; color: var(--text-secondary);">
-                            ${item.calories} kcal | ${item.protein}P ${item.carbs}C ${item.fats}F
+                        <div style="font-size: 0.8rem; color: var(--text-secondary);">
+                            ${item.calories} kcal | ${Math.round(item.protein)}P ${Math.round(item.carbs)}C ${Math.round(item.fats)}F
                         </div>
                     </div>
-                    <div id="food-details-${index}" style="display: none; width: 100%; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed var(--glass-border); font-size: 0.8rem; color: var(--text-secondary);">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
-                            <span>Sugars: ${item.sugars}g</span>
-                            <span>Fiber: ${item.fiber}g</span>
-                            <span>Sodium: ${item.sodium}g</span>
+                    <div id="food-details-${index}" style="display: none; width: 100%; margin-top: 0.4rem; padding-top: 0.4rem; border-top: 1px dashed var(--glass-border); font-size: 0.75rem; color: var(--text-secondary);">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.3rem;">
+                            <span>Sugars: ${Math.round(item.sugars * 10) / 10}g</span>
+                            <span>Fiber: ${Math.round(item.fiber * 10) / 10}g</span>
+                            <span>Sodium: ${Math.round(item.sodium * 1000)}mg</span>
                         </div>
-                        <div style="margin-top: 0.5rem; font-style: italic;">
-                            ${item.ingredients ? item.ingredients.substring(0, 100) + '...' : 'Ingredients not available.'}
-                        </div>
-                        <button class="delete-food-btn" data-index="${index}" style="margin-top: 0.5rem; background: transparent; border: 1px solid var(--accent-red); color: var(--accent-red); padding: 2px 8px; border-radius: 4px; cursor: pointer;">Remove</button>
+                        <button class="delete-food-btn" data-index="${index}" style="margin-top: 0.4rem; background: transparent; border: 1px solid var(--accent-red); color: var(--accent-red); padding: 2px 8px; border-radius: 4px; cursor: pointer; font-family: 'VT323', monospace;">Remove</button>
                     </div>
                 `;
                 listEl.appendChild(li);
             });
 
-            // Bind delete buttons
             document.querySelectorAll('.delete-food-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -1199,129 +1344,585 @@ document.addEventListener('DOMContentLoaded', () => {
                     currentLog.splice(idx, 1);
                     saveFoodLog(currentLog);
                     renderFoodDashboard();
+                    if (typeof playRetroClick === 'function') playRetroClick();
                 });
             });
         }
     }
 
+    // ── Recipes rendering ──
+    function renderRecipes() {
+        const recipes = getRecipes();
+        const list = document.getElementById('food-recipes-list');
+        if (!list) return;
+        list.innerHTML = '';
+        if (recipes.length === 0) {
+            list.innerHTML = '<div style="color: var(--text-secondary); font-style: italic; font-size: 0.8rem; padding: 0.25rem 0;">No recipes saved yet</div>';
+            return;
+        }
+        recipes.forEach((recipe, idx) => {
+            const totals = calculateDailyTotals(recipe.items);
+            const div = document.createElement('div');
+            div.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px dotted rgba(255,255,255,0.05); font-size: 0.8rem;';
+            div.innerHTML = `
+                <div>
+                    <strong style="color: var(--text-primary);">${recipe.name}</strong>
+                    <span style="color: var(--text-secondary);"> (${recipe.items.length} items, ${Math.round(totals.calories)} kcal)</span>
+                </div>
+                <div style="display: flex; gap: 0.3rem;">
+                    <button class="log-recipe-btn" data-idx="${idx}" style="padding: 2px 6px; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: var(--accent-green); font-family: 'VT323', monospace; cursor: pointer; border-radius: 3px; font-size: 0.75rem;">Log</button>
+                    <button class="delete-recipe-btn" data-idx="${idx}" style="padding: 2px 6px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); color: var(--accent-red); font-family: 'VT323', monospace; cursor: pointer; border-radius: 3px; font-size: 0.75rem;">×</button>
+                </div>
+            `;
+            list.appendChild(div);
+        });
+
+        // Log recipe handlers
+        document.querySelectorAll('.log-recipe-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const idx = parseInt(btn.getAttribute('data-idx'));
+                const recipe = recipes[idx];
+                const currentLog = getDailyFoodLog();
+                recipe.items.forEach(item => {
+                    currentLog.push({
+                        ...item,
+                        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                        fromRecipe: recipe.name
+                    });
+                });
+                saveFoodLog(currentLog);
+                renderFoodDashboard();
+                if (typeof playRetroSuccess === 'function') playRetroSuccess();
+            });
+        });
+
+        // Delete recipe handlers
+        document.querySelectorAll('.delete-recipe-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const idx = parseInt(btn.getAttribute('data-idx'));
+                const allRecipes = getRecipes();
+                allRecipes.splice(idx, 1);
+                saveRecipes(allRecipes);
+                renderRecipes();
+                if (typeof playRetroClick === 'function') playRetroClick();
+            });
+        });
+    }
+
+    // ── Historical Charts ──
+    function renderGradeChart(days = 14) {
+        const history = getFoodHistory();
+        const canvas = document.getElementById('gradeHistoryChart');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        // Get last N days
+        const cutoff = new Date();
+        cutoff.setDate(cutoff.getDate() - days);
+        const filtered = history.filter(h => new Date(h.date) >= cutoff).sort((a, b) => new Date(a.date) - new Date(b.date));
+
+        if (window.gradeChartInstance) window.gradeChartInstance.destroy();
+
+        const labels = filtered.map(h => {
+            const d = new Date(h.date);
+            return `${d.getDate()}/${d.getMonth() + 1}`;
+        });
+
+        const scores = filtered.map(h => gradeToNumber(h.grade));
+        const colors = filtered.map(h => getGradeColor(h.grade));
+
+        window.gradeChartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [{
+                    label: 'Grade',
+                    data: scores,
+                    borderColor: 'rgba(56,189,248,0.8)',
+                    backgroundColor: 'rgba(56,189,248,0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    pointBackgroundColor: colors,
+                    pointBorderColor: '#fff',
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        min: 0, max: 5.5,
+                        ticks: {
+                            callback: v => {
+                                const map = { 5: 'A+', 4.5: 'A', 4: 'B+', 3.5: 'B', 3: 'C+', 2.5: 'C', 1.5: 'D', 0.5: 'F' };
+                                return map[v] || '';
+                            },
+                            color: '#94a3b8'
+                        },
+                        grid: { color: 'rgba(255,255,255,0.05)' }
+                    },
+                    x: {
+                        ticks: { color: '#94a3b8', font: { size: 10 } },
+                        grid: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => {
+                                const item = filtered[ctx.dataIndex];
+                                return item ? `${item.grade} (${item.score}/100)` : '';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function renderMacroHistoryChart() {
+        const history = getFoodHistory();
+        const canvas = document.getElementById('macroHistoryChart');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        const sorted = history.sort((a, b) => new Date(a.date) - new Date(b.date)).slice(-30);
+
+        if (window.macroHistChartInstance) window.macroHistChartInstance.destroy();
+
+        const labels = sorted.map(h => {
+            const d = new Date(h.date);
+            return `${d.getDate()}/${d.getMonth() + 1}`;
+        });
+
+        window.macroHistChartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels,
+                datasets: [
+                    { label: 'Protein', data: sorted.map(h => Math.round(h.totals?.protein || 0)), backgroundColor: 'rgba(56,189,248,0.7)' },
+                    { label: 'Carbs', data: sorted.map(h => Math.round(h.totals?.carbs || 0)), backgroundColor: 'rgba(251,191,36,0.7)' },
+                    { label: 'Fats', data: sorted.map(h => Math.round(h.totals?.fats || 0)), backgroundColor: 'rgba(239,68,68,0.7)' }
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                scales: {
+                    x: { stacked: true, ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { display: false } },
+                    y: { stacked: true, ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                },
+                plugins: { legend: { labels: { color: '#94a3b8', font: { size: 11 } } } }
+            }
+        });
+    }
+
+    // ── Supabase sync helpers ──
+    async function saveDayToSupabase(dateStr, items, totals, grade, score) {
+        try {
+            // First check if an entry exists for this date
+            const getResp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_food_log?date=eq.${dateStr}&select=id`, {
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                }
+            });
+            const existing = await getResp.json();
+
+            if (existing && existing.length > 0) {
+                // Update existing
+                const id = existing[0].id;
+                const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_food_log?id=eq.${id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ items, totals, grade, grade_score: score })
+                });
+                return resp.ok;
+            } else {
+                // Insert new
+                const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_food_log`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ date: dateStr, items, totals, grade, grade_score: score })
+                });
+                return resp.ok;
+            }
+        } catch (e) {
+            console.error('Supabase food log save failed:', e);
+            return false;
+        }
+    }
+
+    async function fetchHistoryFromSupabase(days = 30) {
+        try {
+            const cutoff = new Date();
+            cutoff.setDate(cutoff.getDate() - days);
+            const dateStr = getLocalDayDateString(cutoff);
+
+            const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_food_log?date=gte.${dateStr}&select=date,grade,grade_score,totals&order=date.asc`, {
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                }
+            });
+            if (resp.ok) {
+                const data = await resp.json();
+                // Sync to localStorage for offline
+                const history = data.map(d => ({ date: d.date, grade: d.grade, score: d.grade_score, totals: d.totals }));
+                saveFoodHistory(history);
+                return history;
+            }
+        } catch (e) {
+            console.error('Supabase history fetch failed, using localStorage:', e);
+        }
+        return getFoodHistory();
+    }
+
+    async function saveRecipeToSupabase(recipe) {
+        try {
+            const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_food_recipes`, {
+                method: 'POST',
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Content-Type': 'application/json',
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify(recipe)
+            });
+            return resp.ok;
+        } catch (e) {
+            console.error('Supabase recipe save failed:', e);
+            return false;
+        }
+    }
+
+    // ── Main init ──
     function initFoodAnalytics() {
         renderFoodDashboard();
+        renderRecipes();
+        renderGradeChart(14);
+
+        // Portion picker state
+        let selectedFood = null; // { product, per100g: {cal,pro,carb,fat,...}, servingSize }
 
         const searchInput = document.getElementById('food-search-input');
         const resultsContainer = document.getElementById('food-autocomplete-results');
-        let searchTimeout;
+        const portionPicker = document.getElementById('food-portion-picker');
+        const portionAmount = document.getElementById('portion-amount');
+        const portionUnit = document.getElementById('portion-unit');
+        const portionPreview = document.getElementById('portion-preview');
+        const portionServingBtn = document.getElementById('portion-serving-btn');
+        const portionAddBtn = document.getElementById('portion-add-btn');
+        const portionCancelBtn = document.getElementById('portion-cancel-btn');
+        const portionFoodName = document.getElementById('portion-food-name');
 
+        let searchTimeout;
+        let buildingRecipe = false;
+        let recipeItems = [];
+
+        // ── Search ──
         if (searchInput && resultsContainer) {
             searchInput.addEventListener('input', (e) => {
                 clearTimeout(searchTimeout);
                 const query = e.target.value.trim();
-
-                if (query.length < 3) {
-                    resultsContainer.style.display = 'none';
-                    return;
-                }
+                if (query.length < 3) { resultsContainer.style.display = 'none'; return; }
 
                 searchTimeout = setTimeout(async () => {
-                    resultsContainer.innerHTML = '<div style="padding: 0.75rem; color: #94a3b8; font-size: 0.85rem;">Searching Open Food Facts API...</div>';
+                    resultsContainer.innerHTML = '<div style="padding: 0.75rem; color: #94a3b8; font-size: 0.85rem;">Searching Open Food Facts...</div>';
                     resultsContainer.style.display = 'block';
 
                     try {
                         const response = await fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=8`);
                         const data = await response.json();
-
                         resultsContainer.innerHTML = '';
+
                         if (data.products && data.products.length > 0) {
                             data.products.forEach(product => {
-                                // Skip items without caloric info to keep dash clean
-                                if (!product.nutriments || !product.nutriments['energy-kcal_100g'] && !product.nutriments['energy-kcal']) return;
+                                if (!product.nutriments || (!product.nutriments['energy-kcal_100g'] && !product.nutriments['energy-kcal'])) return;
 
                                 const n = product.nutriments;
-                                const cals = Math.round(n['energy-kcal_100g'] || n['energy-kcal'] || 0);
-                                const pro = Math.round(n['proteins_100g'] || n.proteins || 0);
-                                const car = Math.round(n['carbohydrates_100g'] || n.carbohydrates || 0);
-                                const fat = Math.round(n['fat_100g'] || n.fat || 0);
+                                const per100g = {
+                                    calories: Math.round(n['energy-kcal_100g'] || n['energy-kcal'] || 0),
+                                    protein: Math.round((n['proteins_100g'] || n.proteins || 0) * 10) / 10,
+                                    carbs: Math.round((n['carbohydrates_100g'] || n.carbohydrates || 0) * 10) / 10,
+                                    fats: Math.round((n['fat_100g'] || n.fat || 0) * 10) / 10,
+                                    sugars: Math.round((n['sugars_100g'] || n.sugars || 0) * 10) / 10,
+                                    fiber: Math.round((n['fiber_100g'] || n.fiber || 0) * 10) / 10,
+                                    sodium: Math.round((n['sodium_100g'] || n.sodium || 0) * 100) / 100
+                                };
+                                const servingSize = product.serving_size || null;
+                                const servingG = product.serving_quantity || null;
 
                                 const desc = product.product_name || 'Unknown Product';
                                 const brand = product.brands || '';
 
                                 const resDiv = document.createElement('div');
-                                resDiv.style.padding = '0.75rem';
-                                resDiv.style.borderBottom = '1px solid var(--glass-border)';
-                                resDiv.style.cursor = 'pointer';
+                                resDiv.style.cssText = 'padding: 0.65rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer;';
                                 resDiv.className = 'food-result-item';
-
                                 resDiv.innerHTML = `
-                                    <div style="font-weight: 600; color: #f1f5f9;">${desc} <span style="font-size: 0.75rem; color: #94a3b8;">${brand}</span></div>
-                                    <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">
-                                        100g/ml: ${cals} kcal | ${pro}P ${car}C ${fat}F
+                                    <div style="font-weight: 600; color: #f1f5f9; font-size: 0.9rem;">${desc} <span style="font-size: 0.7rem; color: #94a3b8;">${brand}</span></div>
+                                    <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.15rem;">
+                                        per 100g: ${per100g.calories} kcal | ${per100g.protein}P ${per100g.carbs}C ${per100g.fats}F
+                                        ${servingSize ? `<span style="color: var(--accent-blue);"> · Serving: ${servingSize}</span>` : ''}
                                     </div>
                                 `;
 
                                 resDiv.addEventListener('click', () => {
-                                    // Log the item
-                                    const logEntry = {
-                                        name: desc,
-                                        calories: cals,
-                                        protein: pro,
-                                        carbs: car,
-                                        fats: fat,
-                                        sugars: Math.round(n['sugars_100g'] || n.sugars || 0),
-                                        fiber: Math.round(n['fiber_100g'] || n.fiber || 0),
-                                        sodium: Math.round(n['sodium_100g'] || n.sodium || 0),
-                                        ingredients: product.ingredients_text || '',
-                                        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                                    selectedFood = {
+                                        name: desc, brand, per100g, servingSize, servingG,
+                                        ingredients: product.ingredients_text || ''
                                     };
-
-                                    const currentLog = getDailyFoodLog();
-                                    currentLog.push(logEntry);
-                                    saveFoodLog(currentLog);
-
-                                    // Reset UI
-                                    searchInput.value = '';
+                                    // Show portion picker
+                                    portionFoodName.innerText = `${desc}${brand ? ' (' + brand + ')' : ''}`;
+                                    portionAmount.value = 100;
+                                    portionServingBtn.style.display = servingSize ? 'inline-block' : 'none';
+                                    portionServingBtn.innerText = servingSize ? `1 Serving (${servingSize})` : '1 Serving';
+                                    updatePortionPreview();
+                                    portionPicker.style.display = 'block';
                                     resultsContainer.style.display = 'none';
-                                    renderFoodDashboard();
+                                    searchInput.value = '';
+                                    if (typeof playRetroClick === 'function') playRetroClick();
                                 });
 
                                 resultsContainer.appendChild(resDiv);
                             });
+                            if (resultsContainer.children.length === 0) {
+                                resultsContainer.innerHTML = '<div style="padding: 0.75rem; color: var(--text-secondary); font-size: 0.85rem;">No results with nutrition data.</div>';
+                            }
                         } else {
                             resultsContainer.innerHTML = '<div style="padding: 0.75rem; color: var(--text-secondary); font-size: 0.85rem;">No results found.</div>';
                         }
-
                     } catch (error) {
                         console.error('Food Search Error:', error);
                         resultsContainer.innerHTML = '<div style="padding: 0.75rem; color: var(--accent-red); font-size: 0.85rem;">Error fetching data.</div>';
                     }
-                }, 400); // 400ms debounce
+                }, 400);
             });
 
-            // Close results if clicked outside
             document.addEventListener('click', (e) => {
-                if (e.target !== searchInput && e.target !== resultsContainer) {
+                if (e.target !== searchInput && !resultsContainer.contains(e.target)) {
                     resultsContainer.style.display = 'none';
                 }
             });
         }
 
-        // AI Audit Stub
-        const runAuditBtn = document.getElementById('run-food-audit-btn');
-        if (runAuditBtn) {
-            runAuditBtn.addEventListener('click', () => {
-                const resultBox = document.getElementById('food-audit-result');
-                runAuditBtn.innerHTML = '<span class="icon">🔍</span> Analyzing...';
+        // ── Portion controls ──
+        function updatePortionPreview() {
+            if (!selectedFood) return;
+            const amt = parseFloat(portionAmount.value) || 0;
+            const scaled = scaleNutrients(selectedFood.per100g, amt);
+            portionPreview.innerText = `${scaled.calories} kcal | ${scaled.protein}P ${scaled.carbs}C ${scaled.fats}F`;
+        }
 
-                setTimeout(() => {
-                    const log = getDailyFoodLog();
-                    if (log.length === 0) {
-                        resultBox.innerHTML = "No food logged yet today.";
-                    } else {
-                        resultBox.innerHTML = "[MOCK ATHENA RESPONSE]\nBased on your DAOA/DRD2 profile and MTHFR markers, today's protein intake is optimal for neurotransmitter support, but the sodium levels are slightly elevated. Consider increasing hydration and adding potassium-rich foods to balance. Your caloric intake aligns with the longevity target.";
-                    }
-                    resultBox.style.display = 'block';
-                    runAuditBtn.innerHTML = '<span class="icon">🔍</span> Analyze Today\'s Intake';
-                }, 1500);
+        if (portionAmount) portionAmount.addEventListener('input', updatePortionPreview);
+
+        if (portionServingBtn) {
+            portionServingBtn.addEventListener('click', () => {
+                if (selectedFood && selectedFood.servingG) {
+                    portionAmount.value = selectedFood.servingG;
+                    updatePortionPreview();
+                }
             });
         }
+
+        if (portionCancelBtn) {
+            portionCancelBtn.addEventListener('click', () => {
+                portionPicker.style.display = 'none';
+                selectedFood = null;
+            });
+        }
+
+        if (portionAddBtn) {
+            portionAddBtn.addEventListener('click', () => {
+                if (!selectedFood) return;
+                const amt = parseFloat(portionAmount.value) || 100;
+                const unit = portionUnit.value;
+                const scaled = scaleNutrients(selectedFood.per100g, amt);
+
+                const logEntry = {
+                    name: selectedFood.name,
+                    amount: amt,
+                    unit,
+                    ...scaled,
+                    ingredients: selectedFood.ingredients,
+                    timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                };
+
+                if (buildingRecipe) {
+                    // Add to recipe builder instead
+                    recipeItems.push({ ...logEntry, per100g: selectedFood.per100g });
+                    renderRecipeBuilder();
+                } else {
+                    const currentLog = getDailyFoodLog();
+                    currentLog.push(logEntry);
+                    saveFoodLog(currentLog);
+                    renderFoodDashboard();
+                }
+
+                portionPicker.style.display = 'none';
+                selectedFood = null;
+                if (typeof playRetroClick === 'function') playRetroClick();
+            });
+        }
+
+        // ── Recipe system ──
+        const recipesHeader = document.querySelector('[data-pool="food-recipes"]');
+        const recipesPanel = document.getElementById('food-recipes-panel');
+        if (recipesHeader && recipesPanel) {
+            recipesHeader.addEventListener('click', () => {
+                const open = recipesPanel.style.display !== 'none';
+                recipesPanel.style.display = open ? 'none' : 'block';
+                recipesHeader.querySelector('span:last-child').innerText = open ? '▶' : '▼';
+            });
+        }
+
+        const createRecipeBtn = document.getElementById('create-recipe-btn');
+        const recipeBuilder = document.getElementById('recipe-builder');
+        const recipeCloseBtn = document.getElementById('recipe-builder-close');
+        const saveRecipeBtn = document.getElementById('save-recipe-btn');
+
+        if (createRecipeBtn) {
+            createRecipeBtn.addEventListener('click', () => {
+                buildingRecipe = true;
+                recipeItems = [];
+                recipeBuilder.style.display = 'block';
+                document.getElementById('recipe-name-input').value = '';
+                renderRecipeBuilder();
+            });
+        }
+
+        if (recipeCloseBtn) {
+            recipeCloseBtn.addEventListener('click', () => {
+                buildingRecipe = false;
+                recipeItems = [];
+                recipeBuilder.style.display = 'none';
+            });
+        }
+
+        function renderRecipeBuilder() {
+            const list = document.getElementById('recipe-items-list');
+            const totalsEl = document.getElementById('recipe-totals');
+            if (!list) return;
+
+            if (recipeItems.length === 0) {
+                list.innerHTML = '<li style="color: var(--text-secondary); font-style: italic;">Search and add foods above</li>';
+                totalsEl.innerText = '';
+                return;
+            }
+
+            list.innerHTML = recipeItems.map((item, i) =>
+                `<li style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                    <span>${item.name} (${item.amount}${item.unit})</span>
+                    <span style="color: var(--text-secondary);">${item.calories} kcal</span>
+                </li>`
+            ).join('');
+
+            const totals = calculateDailyTotals(recipeItems);
+            totalsEl.innerText = `Total: ${Math.round(totals.calories)} kcal | ${Math.round(totals.protein)}P ${Math.round(totals.carbs)}C ${Math.round(totals.fats)}F`;
+        }
+
+        if (saveRecipeBtn) {
+            saveRecipeBtn.addEventListener('click', () => {
+                const name = document.getElementById('recipe-name-input').value.trim();
+                if (!name || recipeItems.length === 0) return;
+
+                const recipe = { name, items: recipeItems };
+                const allRecipes = getRecipes();
+                allRecipes.push(recipe);
+                saveRecipes(allRecipes);
+                saveRecipeToSupabase(recipe); // async background save
+
+                buildingRecipe = false;
+                recipeItems = [];
+                recipeBuilder.style.display = 'none';
+                renderRecipes();
+                if (typeof playRetroSuccess === 'function') playRetroSuccess();
+            });
+        }
+
+        // ── Analyze & Save button ──
+        const runAuditBtn = document.getElementById('run-food-audit-btn');
+        if (runAuditBtn) {
+            runAuditBtn.addEventListener('click', async () => {
+                const log = getDailyFoodLog();
+                if (log.length === 0) {
+                    alert('No food logged yet today.');
+                    return;
+                }
+
+                runAuditBtn.innerHTML = '<span class="icon">⏳</span> Analyzing...';
+
+                const totals = calculateDailyTotals(log);
+                const result = gradeDailyIntake(totals);
+                const today = getLocalDayDateString();
+
+                // Save to history (localStorage)
+                const history = getFoodHistory();
+                const existingIdx = history.findIndex(h => h.date === today);
+                const entry = { date: today, grade: result.grade, score: result.score, totals };
+                if (existingIdx >= 0) history[existingIdx] = entry;
+                else history.push(entry);
+                saveFoodHistory(history);
+
+                // Save to Supabase
+                await saveDayToSupabase(today, log, totals, result.grade, result.score);
+
+                // Refresh charts
+                renderGradeChart(14);
+                renderFoodDashboard();
+
+                runAuditBtn.innerHTML = '<span class="icon">✅</span> Saved!';
+                if (typeof playRetroSuccess === 'function') playRetroSuccess();
+                setTimeout(() => {
+                    runAuditBtn.innerHTML = '<span class="icon">🔍</span> Analyze & Save to History';
+                }, 2000);
+            });
+        }
+
+        // ── Grade range buttons (7d / 14d / 30d) ──
+        document.querySelectorAll('.grade-range-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.grade-range-btn').forEach(b => {
+                    b.style.background = 'rgba(56,189,248,0.2)';
+                    b.style.color = 'var(--accent-blue)';
+                });
+                btn.style.background = 'rgba(56,189,248,0.4)';
+                btn.style.color = '#fff';
+                renderGradeChart(parseInt(btn.getAttribute('data-days')));
+            });
+        });
+
+        // ── Collapsible macro history ──
+        const macroHeader = document.getElementById('macro-history-header');
+        const macroBody = document.getElementById('macro-history-body');
+        let macroLoaded = false;
+        if (macroHeader && macroBody) {
+            macroHeader.addEventListener('click', () => {
+                const open = macroBody.style.display !== 'none';
+                macroBody.style.display = open ? 'none' : 'block';
+                macroHeader.querySelector('span:last-child').innerText = open ? '▶' : '▼';
+                if (!open && !macroLoaded) {
+                    renderMacroHistoryChart();
+                    macroLoaded = true;
+                }
+            });
+        }
+
+        // Fetch Supabase history in background for charts
+        fetchHistoryFromSupabase(30).then(() => renderGradeChart(14));
     }
 
     // Initialize View
@@ -1472,32 +2073,33 @@ document.addEventListener('DOMContentLoaded', () => {
     createListItems(dogTrainingTasks, 'dog-training-list');
 
     // Create supplement tasks (now moved exclusively to the Bio tab)
+    // We pass extra properties for Supps Vault syncing
     // AM — Empty Stomach (30 min before food)
     const supplementsAM_Empty = [
-        { text: "☀️ Solgar NAC 600mg × 2 caps (1200mg) — Empty stomach, 30 min before breakfast", points: 2 }
+        { text: "☀️ Solgar NAC 600mg × 2 caps (1200mg) — Empty stomach, 30 min before breakfast", points: 2, suppSync: "NAC", suppDose: 2 }
     ];
     createListItems(supplementsAM_Empty, 'supp-am-empty-body');
 
     // AM — With Breakfast
     const supplementsAM_Food = [
-        { text: "🧬 Doctor's Best Vitamin K2 MK-7 × 2 caps (200mcg) — With food (fat-soluble)", points: 2 },
-        { text: "🐟 Go Healthy Fish Oil + D3 10,000IU × 1 cap — With food", points: 1 },
-        { text: "🧠 Natroceutics Activated B-Complex + L-Theanine × 1 cap — With breakfast", points: 1 },
-        { text: "🔥 Sanderson Turmeric 28,000+ × 2 caps — With food (needs fat)", points: 2 },
-        { text: "🩸 Even Blood Sugar Babe × 2 caps — With biggest carb meal", points: 2 },
-        { text: "💊 Phloe Bowel & Gut Health × 2 caps — Before breakfast", points: 1 }
+        { text: "🧬 Doctor's Best Vitamin K2 MK-7 × 2 caps (200mcg) — With food (fat-soluble)", points: 2, suppSync: "Vitamin K2", suppDose: 2 },
+        { text: "🐟 Go Healthy Fish Oil + D3 10,000IU × 1 cap — With food", points: 1, suppSync: "Fish Oil", suppDose: 1 },
+        { text: "🧠 Natroceutics Activated B-Complex + L-Theanine × 1 cap — With breakfast", points: 1, suppSync: "B-Complex", suppDose: 1 },
+        { text: "🔥 Sanderson Turmeric 28,000+ × 2 caps — With food (needs fat)", points: 2, suppSync: "Turmeric", suppDose: 2 },
+        { text: "🩸 Even Blood Sugar Babe × 2 caps — With biggest carb meal", points: 2, suppSync: "Blood Sugar Babe", suppDose: 2 },
+        { text: "💊 Phloe Bowel & Gut Health × 2 caps — Before breakfast", points: 1, suppSync: "Phloe", suppDose: 2 }
     ];
     createListItems(supplementsAM_Food, 'supp-am-food-body');
 
     // PM — With Dinner
     const supplementsPM_Dinner = [
-        { text: "🐟 Go Healthy Fish Oil + D3 × 2 caps — With dinner (Attia split protocol)", points: 2 }
+        { text: "🐟 Go Healthy Fish Oil + D3 × 2 caps — With dinner (Attia split protocol)", points: 2, suppSync: "Fish Oil", suppDose: 2 }
     ];
     createListItems(supplementsPM_Dinner, 'supp-pm-dinner-body');
 
     // PM — Before Bed
     const supplementsPM = [
-        { text: "🌙 Swisse Magnesium Glycinate × 2-3 caps (400mg elemental) — 30-60 min before bed", points: 2 }
+        { text: "🌙 Swisse Magnesium Glycinate × 3 caps (450mg elemental) — 30-60 min before bed", points: 2, suppSync: "Magnesium Glycinate", suppDose: 3 }
     ];
     createListItems(supplementsPM, 'supp-pm-bed-body');
 
@@ -1649,10 +2251,709 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // --- Supps Vault Implementation ---
+    async function initSuppsVault() {
+        const grid = document.getElementById('supps-inventory-grid');
+        const addBtn = document.getElementById('add-supp-btn');
+        if (!grid || !addBtn) return;
+
+        let inventory = [];
+
+        // 1. Fetch from Supabase
+        async function fetchSupabaseInventory() {
+            try {
+                const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_supp_inventory?order=name.asc`, {
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    }
+                });
+                if (resp.ok) {
+                    const data = await resp.json();
+                    inventory = data;
+                    localStorage.setItem('symphony_supp_inventory_local', JSON.stringify(inventory));
+                }
+            } catch (e) {
+                console.error("Failed to fetch supps from Supabase, falling back to local:", e);
+                const local = localStorage.getItem('symphony_supp_inventory_local');
+                if (local) inventory = JSON.parse(local);
+            }
+        }
+
+        // 2. Add New Supp
+        async function addSupp() {
+            const nameEl = document.getElementById('supp-name-input');
+            const capEl = document.getElementById('supp-capacity-input');
+            const doseEl = document.getElementById('supp-dose-input');
+
+            const name = nameEl.value.trim();
+            const capacity = parseInt(capEl.value);
+            const dailyDose = parseInt(doseEl.value);
+
+            if (!name || isNaN(capacity) || isNaN(dailyDose)) {
+                alert("Please fill out all fields correctly.");
+                return;
+            }
+
+            const newSupp = {
+                name,
+                total_capacity: capacity,
+                current_stock: capacity,
+                daily_dose: dailyDose
+            };
+
+            // Optimistic Local Add
+            inventory.push(newSupp);
+            renderGrid();
+
+            nameEl.value = ''; capEl.value = ''; doseEl.value = '';
+
+            try {
+                await fetch(`${SUPABASE_URL}/rest/v1/symphony_supp_inventory`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify(newSupp)
+                });
+                // Re-fetch to get actual IDs
+                await fetchSupabaseInventory();
+                renderGrid();
+            } catch (e) {
+                console.error("Failed to save new supp to Supabase:", e);
+            }
+        }
+
+        // 3. Update existing supp (take dose or refill)
+        async function updateSuppStock(id, newStock) {
+            // Find locally and update
+            const supp = inventory.find(s => s.id === id);
+            if (supp) {
+                supp.current_stock = newStock;
+                renderGrid(); // Instant UI update
+            }
+
+            try {
+                await fetch(`${SUPABASE_URL}/rest/v1/symphony_supp_inventory?id=eq.${id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({
+                        current_stock: newStock,
+                        updated_at: new Date().toISOString()
+                    })
+                });
+            } catch (e) {
+                console.error("Failed to update stock in Supabase:", e);
+            }
+        }
+
+        // Global Sync Function for Checklists
+        window.triggerSuppSync = async function (suppName, amountToDeduct) {
+            const supp = inventory.find(s => s.name === suppName);
+            if (supp) {
+                const newStock = Math.max(0, supp.current_stock - amountToDeduct);
+                console.log(`Syncing ${suppName}: Deducting ${amountToDeduct}. New Stock: ${newStock}`);
+                await updateSuppStock(supp.id, newStock);
+            } else {
+                console.warn(`Could not sync ${suppName}: Not found in Vault inventory.`);
+            }
+        };
+
+        // 4. Render Grid
+        function renderGrid() {
+            grid.innerHTML = '';
+            if (inventory.length === 0) {
+                grid.innerHTML = '<div style="color: var(--text-secondary); grid-column: 1/-1;">No supplements tracked yet. Add one above.</div>';
+                return;
+            }
+
+            inventory.forEach(supp => {
+                const { id, name, total_capacity, current_stock, daily_dose } = supp;
+                const percentage = Math.max(0, Math.min(100, (current_stock / total_capacity) * 100));
+
+                const isLow = percentage < 50;
+                const dangerText = isLow ? '<span style="color: var(--accent-red); font-size: 0.8rem; margin-left: 0.5rem;" class="blinking">⚠️ LOW STOCK</span>' : '';
+                const cardBorder = isLow ? 'var(--accent-red)' : 'var(--glass-border)';
+                const barColor = isLow ? 'var(--accent-red)' : 'var(--accent-blue)';
+
+                let daysLeft = '0';
+                if (daily_dose > 0) {
+                    daysLeft = Math.floor(current_stock / daily_dose);
+                }
+
+                const div = document.createElement('div');
+                div.className = 'glass-panel';
+                div.style.cssText = `border-color: ${cardBorder}; position: relative; padding: 1rem;`;
+
+                div.innerHTML = `
+                    <h4 style="margin: 0 0 0.5rem 0; color: var(--text-primary); font-size: 1.1rem;">
+                        ${name} ${dangerText}
+                    </h4>
+                    
+                    <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+                        <span>Dose: ${daily_dose}/day</span>
+                        <span style="float: right;">Est. ${daysLeft} days left</span>
+                    </div>
+
+                    <div style="width: 100%; height: 8px; background: rgba(0,0,0,0.5); border-radius: 4px; overflow: hidden; margin-bottom: 0.5rem; border: 1px solid rgba(255,255,255,0.1);">
+                        <div style="height: 100%; width: ${percentage}%; background: ${barColor}; transition: width 0.3s ease;"></div>
+                    </div>
+                    
+                    <div style="font-size: 0.85rem; color: var(--text-primary); text-align: right; margin-bottom: 1rem;">
+                        <strong>${current_stock}</strong> / ${total_capacity} pills
+                    </div>
+
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <button class="tab-btn take-dose-btn" data-id="${id}" data-dose="${daily_dose}" data-stock="${current_stock}"
+                            style="flex: 1; margin: 0; padding: 0.3rem; background: rgba(56,189,248,0.1); border: 1px solid var(--accent-blue); color: var(--accent-blue); font-size: 0.8rem;">
+                            Take Dose (-${daily_dose})
+                        </button>
+                        <button class="tab-btn refill-btn" data-id="${id}" data-cap="${total_capacity}"
+                            style="flex: 1; margin: 0; padding: 0.3rem; background: rgba(251,191,36,0.1); border: 1px solid var(--accent-yellow); color: var(--accent-yellow); font-size: 0.8rem;">
+                            Refill (Max)
+                        </button>
+                    </div>
+                    <button class="tab-btn adjust-btn" data-id="${id}" data-stock="${current_stock}"
+                        style="width: 100%; margin: 0; padding: 0.3rem; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: var(--text-secondary); font-size: 0.8rem;">
+                        ⚙️ Adjust Stock Manually
+                    </button>
+                `;
+                grid.appendChild(div);
+            });
+
+            // Bind events
+            document.querySelectorAll('.take-dose-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = e.target.getAttribute('data-id');
+                    const dose = parseInt(e.target.getAttribute('data-dose'));
+                    const stock = parseInt(e.target.getAttribute('data-stock'));
+                    const newStock = Math.max(0, stock - dose);
+                    updateSuppStock(id, newStock);
+                });
+            });
+
+            document.querySelectorAll('.refill-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = e.target.getAttribute('data-id');
+                    const cap = parseInt(e.target.getAttribute('data-cap'));
+                    updateSuppStock(id, cap);
+                });
+            });
+
+            document.querySelectorAll('.adjust-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = e.target.getAttribute('data-id');
+                    const currentStock = e.target.getAttribute('data-stock');
+                    const newStockStr = prompt(`Enter the new stock amount (Current: ${currentStock}):`, currentStock);
+                    if (newStockStr !== null) {
+                        const newStock = parseInt(newStockStr);
+                        if (!isNaN(newStock) && newStock >= 0) {
+                            updateSuppStock(id, newStock);
+                        } else {
+                            alert("Invalid number.");
+                        }
+                    }
+                });
+            });
+        }
+
+        addBtn.addEventListener('click', addSupp);
+
+        // Init
+        await fetchSupabaseInventory();
+        renderGrid();
+    }
+
+    // --- Open Logistics Implementation ---
+    async function initLogistics() {
+        const container = document.getElementById('logistics-items-container');
+        const addBtn = document.getElementById('add-logistics-btn');
+        const titleInput = document.getElementById('logistics-title-input');
+        if (!container || !addBtn) return;
+
+        let items = []; // { id, title, status, subtasks: [{id, text, completed}] }
+        let solvedItems = []; // Solved items log
+        const LOCAL_KEY = 'symphony_logistics_local';
+        const SOLVED_KEY = 'symphony_logistics_solved';
+        const solvedList = document.getElementById('logistics-solved-list');
+        const solvedCount = document.getElementById('logistics-solved-count');
+
+        // Try Supabase first, fallback to localStorage
+        async function fetchItems() {
+            try {
+                const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics?status=eq.open&order=created_at.desc`, {
+                    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+                });
+                if (resp.ok) {
+                    const data = await resp.json();
+                    // Fetch subtasks for all items
+                    const stResp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics_subtasks?order=created_at.asc`, {
+                        headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+                    });
+                    const subtasks = stResp.ok ? await stResp.json() : [];
+                    items = data.map(item => ({
+                        ...item,
+                        subtasks: subtasks.filter(st => st.logistics_id === item.id)
+                    }));
+                    localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
+                    // Also fetch solved items for the log
+                    try {
+                        const solvedResp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics?status=eq.done&order=updated_at.desc`, {
+                            headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+                        });
+                        if (solvedResp.ok) {
+                            const solvedData = await solvedResp.json();
+                            solvedItems = solvedData.map(item => ({
+                                ...item,
+                                subtasks: subtasks.filter(st => st.logistics_id === item.id)
+                            }));
+                            localStorage.setItem(SOLVED_KEY, JSON.stringify(solvedItems));
+                        }
+                    } catch (e) { /* solved fetch optional */ }
+                    return;
+                }
+            } catch (e) {
+                console.warn('Logistics: Supabase unavailable, using localStorage', e);
+            }
+            // Fallback
+            const local = localStorage.getItem(LOCAL_KEY);
+            items = local ? JSON.parse(local) : [];
+            const localSolved = localStorage.getItem(SOLVED_KEY);
+            solvedItems = localSolved ? JSON.parse(localSolved) : [];
+        }
+
+        function saveLocal() {
+            localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
+            localStorage.setItem(SOLVED_KEY, JSON.stringify(solvedItems));
+        }
+
+        // Add new item
+        async function addItem() {
+            const title = titleInput.value.trim();
+            if (!title) return;
+
+            const newItem = {
+                id: crypto.randomUUID(),
+                title,
+                status: 'open',
+                created_at: new Date().toISOString(),
+                subtasks: []
+            };
+
+            items.unshift(newItem);
+            saveLocal();
+            renderItems();
+            titleInput.value = '';
+
+            try {
+                await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ id: newItem.id, title: newItem.title, status: 'open' })
+                });
+            } catch (e) { console.warn('Failed to save item to Supabase:', e); }
+        }
+
+        // Add sub-task
+        async function addSubtask(itemId, text) {
+            const item = items.find(i => i.id === itemId);
+            if (!item || !text.trim()) return;
+
+            const st = { id: crypto.randomUUID(), logistics_id: itemId, text: text.trim(), completed: false };
+            item.subtasks.push(st);
+            saveLocal();
+            renderItems();
+
+            try {
+                await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics_subtasks`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify(st)
+                });
+            } catch (e) { console.warn('Failed to save subtask to Supabase:', e); }
+        }
+
+        // Toggle sub-task completion
+        async function toggleSubtask(itemId, subtaskId) {
+            const item = items.find(i => i.id === itemId);
+            if (!item) return;
+            const st = item.subtasks.find(s => s.id === subtaskId);
+            if (!st) return;
+
+            st.completed = !st.completed;
+            saveLocal();
+            renderItems();
+
+            try {
+                await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics_subtasks?id=eq.${subtaskId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ completed: st.completed })
+                });
+            } catch (e) { console.warn('Failed to update subtask:', e); }
+        }
+
+        // Mark item as done → move to solved log
+        async function markDone(itemId) {
+            const item = items.find(i => i.id === itemId);
+            if (!item) return;
+
+            item.status = 'done';
+            item.solved_at = new Date().toISOString();
+            solvedItems.unshift(item);
+            items = items.filter(i => i.id !== itemId);
+            saveLocal();
+            renderItems();
+            renderSolvedLog();
+
+            try {
+                await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics?id=eq.${itemId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ status: 'done', updated_at: new Date().toISOString() })
+                });
+            } catch (e) { console.warn('Failed to mark done in Supabase:', e); }
+        }
+
+        // Re-open a solved item
+        async function reopenItem(itemId) {
+            const item = solvedItems.find(i => i.id === itemId);
+            if (!item) return;
+
+            item.status = 'open';
+            delete item.solved_at;
+            items.unshift(item);
+            solvedItems = solvedItems.filter(i => i.id !== itemId);
+            saveLocal();
+            renderItems();
+            renderSolvedLog();
+
+            try {
+                await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics?id=eq.${itemId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ status: 'open', updated_at: new Date().toISOString() })
+                });
+            } catch (e) { console.warn('Failed to reopen in Supabase:', e); }
+        }
+
+        // Render Solved Log
+        function renderSolvedLog() {
+            if (!solvedList || !solvedCount) return;
+            solvedCount.textContent = `(${solvedItems.length} item${solvedItems.length !== 1 ? 's' : ''})`;
+
+            if (solvedItems.length === 0) {
+                solvedList.innerHTML = '<div style="color: var(--text-secondary); font-size: 0.85rem; padding: 0.5rem;">No solved items yet.</div>';
+                return;
+            }
+
+            solvedList.innerHTML = solvedItems.map(item => {
+                const solvedDate = item.solved_at ? new Date(item.solved_at).toLocaleDateString('en-NZ', { day: 'numeric', month: 'short' }) : '';
+                return `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0.75rem; background: rgba(0,0,0,0.15); border: 1px solid rgba(34,197,94,0.15); border-radius: 6px;">
+                    <div style="flex: 1;">
+                        <span style="color: var(--text-secondary); text-decoration: line-through; font-size: 0.9rem;">✅ ${item.title}</span>
+                        ${solvedDate ? `<span style="font-size: 0.7rem; color: var(--text-secondary); margin-left: 0.5rem; opacity: 0.6;">${solvedDate}</span>` : ''}
+                    </div>
+                    <button class="logistics-reopen-btn" data-id="${item.id}"
+                        style="background: rgba(251,191,36,0.15); border: 1px solid var(--accent-yellow); color: var(--accent-yellow); padding: 0.2rem 0.6rem; border-radius: 4px; font-family: 'VT323', monospace; font-size: 0.8rem; cursor: pointer; white-space: nowrap;"
+                        title="Move back to active items">
+                        ↩️ Re-open
+                    </button>
+                </div>`;
+            }).join('');
+
+            // Bind reopen buttons
+            solvedList.querySelectorAll('.logistics-reopen-btn').forEach(btn => {
+                btn.addEventListener('click', () => reopenItem(btn.dataset.id));
+            });
+        }
+
+        // Delete sub-task
+        async function deleteSubtask(itemId, subtaskId) {
+            const item = items.find(i => i.id === itemId);
+            if (!item) return;
+            item.subtasks = item.subtasks.filter(s => s.id !== subtaskId);
+            saveLocal();
+            renderItems();
+
+            try {
+                await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics_subtasks?id=eq.${subtaskId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Prefer': 'return=minimal'
+                    }
+                });
+            } catch (e) { console.warn('Failed to delete subtask:', e); }
+        }
+
+        // Render
+        function renderItems() {
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+                        <div style="font-size: 1.1rem;">Nothing to solve right now!</div>
+                        <div style="font-size: 0.85rem; margin-top: 0.5rem;">Add a logistics item above when something comes up.</div>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = items.map(item => {
+                const completedCount = item.subtasks.filter(s => s.completed).length;
+                const totalCount = item.subtasks.length;
+                const progressText = totalCount > 0 ? `${completedCount}/${totalCount} steps` : 'No steps yet';
+                const progressPct = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
+                const barColor = progressPct === 100 ? 'var(--accent-green)' : 'var(--accent-blue)';
+
+                return `
+                <div class="glass-panel" style="border-color: var(--accent-blue); padding: 1.25rem; position: relative;">
+                    <!-- Header -->
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+                        <div style="flex: 1;">
+                            <h4 style="margin: 0; color: var(--text-primary); font-size: 1.15rem; line-height: 1.3;">
+                                🔧 ${item.title}
+                            </h4>
+                            <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem;">
+                                ${progressText}
+                            </div>
+                        </div>
+                        <button class="logistics-done-btn" data-id="${item.id}"
+                            style="background: rgba(34,197,94,0.15); border: 1px solid var(--accent-green); color: var(--accent-green); padding: 0.25rem 0.75rem; border-radius: 4px; font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; white-space: nowrap;">
+                            ✅ Solved
+                        </button>
+                    </div>
+
+                    <!-- Progress bar -->
+                    ${totalCount > 0 ? `
+                    <div style="width: 100%; height: 4px; background: rgba(0,0,0,0.4); border-radius: 2px; margin-bottom: 1rem; overflow: hidden;">
+                        <div style="height: 100%; width: ${progressPct}%; background: ${barColor}; transition: width 0.3s ease;"></div>
+                    </div>` : ''}
+
+                    <!-- Sub-tasks list -->
+                    <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.75rem;">
+                        ${item.subtasks.map(st => `
+                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.5rem; background: rgba(0,0,0,0.2); border-radius: 4px; border: 1px solid rgba(255,255,255,0.05);">
+                            <input type="checkbox" class="logistics-st-check" data-item="${item.id}" data-st="${st.id}"
+                                ${st.completed ? 'checked' : ''}
+                                style="cursor: pointer; accent-color: var(--accent-blue); width: 16px; height: 16px;">
+                            <span style="flex: 1; font-size: 0.9rem; color: ${st.completed ? 'var(--text-secondary)' : 'var(--text-primary)'}; ${st.completed ? 'text-decoration: line-through;' : ''}">${st.text}</span>
+                            <button class="logistics-st-del" data-item="${item.id}" data-st="${st.id}"
+                                style="background: none; border: none; color: var(--accent-red); cursor: pointer; font-size: 0.9rem; padding: 0 4px; opacity: 0.6;"
+                                title="Remove">×</button>
+                        </div>`).join('')}
+                    </div>
+
+                    <!-- Add sub-task input -->
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" class="logistics-st-input" data-item="${item.id}"
+                            placeholder="Add a step..."
+                            style="flex: 1; padding: 0.4rem 0.6rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: #fff; font-family: 'VT323', monospace; font-size: 0.9rem; border-radius: 4px;">
+                        <button class="logistics-st-add" data-item="${item.id}"
+                            style="padding: 0.4rem 0.75rem; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.3); color: var(--accent-blue); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 4px; white-space: nowrap;">+ Step</button>
+                    </div>
+                </div>`;
+            }).join('');
+
+            // Bind events
+            container.querySelectorAll('.logistics-done-btn').forEach(btn => {
+                btn.addEventListener('click', () => markDone(btn.dataset.id));
+            });
+
+            container.querySelectorAll('.logistics-st-check').forEach(cb => {
+                cb.addEventListener('change', () => toggleSubtask(cb.dataset.item, cb.dataset.st));
+            });
+
+            container.querySelectorAll('.logistics-st-del').forEach(btn => {
+                btn.addEventListener('click', () => deleteSubtask(btn.dataset.item, btn.dataset.st));
+            });
+
+            container.querySelectorAll('.logistics-st-add').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const input = container.querySelector(`.logistics-st-input[data-item="${btn.dataset.item}"]`);
+                    if (input && input.value.trim()) {
+                        addSubtask(btn.dataset.item, input.value);
+                        input.value = '';
+                    }
+                });
+            });
+
+            // Allow Enter key to add sub-tasks
+            container.querySelectorAll('.logistics-st-input').forEach(input => {
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && input.value.trim()) {
+                        addSubtask(input.dataset.item, input.value);
+                        input.value = '';
+                    }
+                });
+            });
+        }
+
+        // Event handlers
+        addBtn.addEventListener('click', addItem);
+        titleInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') addItem();
+        });
+
+        // Init
+        await fetchItems();
+        renderItems();
+        renderSolvedLog();
+    }
+
     // populateWorkout();
     initFoodAnalytics();
     initBioTracking();
     initProcurement();
+    initLogistics();
+    initSuppsVault();
+
+    // --- Pulse Overview (At-a-Glance Command Center) ---
+    function initPulse() {
+        const pulseToday = document.getElementById('pulse-today-summary');
+        const pulseLogistics = document.getElementById('pulse-logistics');
+        const pulseSupps = document.getElementById('pulse-supps');
+        const pulseMedical = document.getElementById('pulse-medical');
+        const pulseFinance = document.getElementById('pulse-finance');
+        if (!pulseToday) return;
+
+        // 1. Today's progress — count checked items in the schedule
+        try {
+            const allCheckboxes = document.querySelectorAll('#today .task-list .checkbox, .supp-timing-body .checkbox');
+            const checked = document.querySelectorAll('#today .task-list .checkbox.checked, .supp-timing-body .checkbox.checked');
+            const totalTasks = allCheckboxes.length;
+            const completedTasks = checked.length;
+            const pct = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+
+            pulseToday.innerHTML = `
+                <div style="font-size: 2rem; font-weight: 700; color: var(--accent-green); margin-bottom: 0.25rem;">${pct}%</div>
+                <div>${completedTasks} of ${totalTasks} tasks completed today</div>
+                <div style="width: 100%; height: 6px; background: rgba(0,0,0,0.4); border-radius: 3px; margin-top: 0.5rem; overflow: hidden;">
+                    <div style="height: 100%; width: ${pct}%; background: var(--accent-green); transition: width 0.3s;"></div>
+                </div>`;
+        } catch (e) {
+            pulseToday.innerHTML = '<div>Open Today\'s Schedule to see progress.</div>';
+        }
+
+        // 2. Open Logistics
+        try {
+            const logisticsLocal = localStorage.getItem('symphony_logistics_local');
+            const logItems = logisticsLocal ? JSON.parse(logisticsLocal) : [];
+            if (logItems.length === 0) {
+                pulseLogistics.innerHTML = '<div style="color: var(--accent-green);">✅ Nothing to solve right now!</div>';
+            } else {
+                pulseLogistics.innerHTML = logItems.map(item => {
+                    const stCount = item.subtasks ? item.subtasks.length : 0;
+                    const stDone = item.subtasks ? item.subtasks.filter(s => s.completed).length : 0;
+                    const badge = stCount > 0 ? ` <span style="color: var(--text-secondary); font-size: 0.75rem;">(${stDone}/${stCount} steps)</span>` : '';
+                    return `<div style="padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        🔧 ${item.title}${badge}
+                    </div>`;
+                }).join('');
+            }
+        } catch (e) {
+            pulseLogistics.innerHTML = '<div>Could not load logistics.</div>';
+        }
+
+        // 3. Low Stock Supplements
+        try {
+            const suppLocal = localStorage.getItem('symphony_supp_inventory_local');
+            const supps = suppLocal ? JSON.parse(suppLocal) : [];
+            const lowStock = supps.filter(s => s.daily_dose > 0 && (s.current_stock / s.total_capacity) < 0.5);
+
+            if (lowStock.length === 0 && supps.length > 0) {
+                pulseSupps.innerHTML = '<div style="color: var(--accent-green);">✅ All supplements well-stocked.</div>';
+            } else if (supps.length === 0) {
+                pulseSupps.innerHTML = '<div>No supplements tracked yet. Add them in the Supps Vault.</div>';
+            } else {
+                pulseSupps.innerHTML = lowStock.map(s => {
+                    const daysLeft = s.daily_dose > 0 ? Math.floor(s.current_stock / s.daily_dose) : '∞';
+                    const pct = Math.round((s.current_stock / s.total_capacity) * 100);
+                    const color = pct < 25 ? 'var(--accent-red)' : 'var(--accent-yellow)';
+                    return `<div style="padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between;">
+                        <span style="color: ${color};">⚠️ ${s.name}</span>
+                        <span>${s.current_stock}/${s.total_capacity} (${daysLeft} days left)</span>
+                    </div>`;
+                }).join('');
+            }
+        } catch (e) {
+            pulseSupps.innerHTML = '<div>Could not load supplement data.</div>';
+        }
+
+        // 4. Medical Flags (from static MEDICAL_ALERTS)
+        try {
+            pulseMedical.innerHTML = MEDICAL_ALERTS.map(alert => `
+                <div style="padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <span style="color: var(--accent-red); font-weight: 600;">${alert.gene}</span>
+                    <span style="color: var(--text-secondary); font-size: 0.8rem;"> — ${alert.risk}</span>
+                </div>
+            `).join('');
+        } catch (e) {
+            pulseMedical.innerHTML = '<div>No medical flags loaded.</div>';
+        }
+
+        // 5. Financial Snapshot
+        try {
+            const netPay = document.getElementById('finance-net-pay');
+            const gross = document.getElementById('finance-gross');
+            const hours = document.getElementById('finance-hours');
+            if (netPay && gross && hours) {
+                pulseFinance.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <span>Est. Weekly Net:</span>
+                        <span style="font-size: 1.5rem; font-weight: 700; color: var(--accent-green);">${netPay.innerText}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.25rem;">
+                        <span>Gross:</span><span>${gross.innerText}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.25rem;">
+                        <span>Hours:</span><span>${hours.innerText}</span>
+                    </div>`;
+            } else {
+                pulseFinance.innerHTML = '<div>Open the Finances tab to calculate.</div>';
+            }
+        } catch (e) {
+            pulseFinance.innerHTML = '<div>Could not load financial data.</div>';
+        }
+    }
+
+    // Run Pulse after a short delay so other modules populate first
+    setTimeout(initPulse, 1500);
 
     // --- Dynamic Task Config Lock In ---
     const lockInBtn = document.getElementById('lock-in-config-btn');

@@ -1,0 +1,547 @@
+﻿
+TimeCreated            LogName LevelDisplayName ProviderName                             Id Message                    
+-----------            ------- ---------------- ------------                             -- -------                    
+27/02/2026 10:57:35 am System  Warning          Microsoft-Windows-DistributedCOM      10016 The application-specific   
+                                                                                            permission settings do not 
+                                                                                            grant Local Launch         
+                                                                                            permission for the COM     
+                                                                                            Server application with    
+                                                                                            CLSID                      
+                                                                                            Windows.SecurityCenter.WscD
+                                                                                            ataProtection              
+                                                                                             and APPID                 
+                                                                                            Unavailable                
+                                                                                             to the user NT            
+                                                                                            AUTHORITY\SYSTEM SID       
+                                                                                            (S-1-5-18) from address    
+                                                                                            LocalHost (Using LRPC)     
+                                                                                            running in the application 
+                                                                                            container Unavailable SID  
+                                                                                            (Unavailable). This        
+                                                                                            security permission can be 
+                                                                                            modified using the         
+                                                                                            Component Services         
+                                                                                            administrative tool.       
+27/02/2026 10:57:35 am System  Warning          Microsoft-Windows-DistributedCOM      10016 The application-specific   
+                                                                                            permission settings do not 
+                                                                                            grant Local Launch         
+                                                                                            permission for the COM     
+                                                                                            Server application with    
+                                                                                            CLSID                      
+                                                                                            Windows.SecurityCenter.Secu
+                                                                                            rityAppBroker              
+                                                                                             and APPID                 
+                                                                                            Unavailable                
+                                                                                             to the user NT            
+                                                                                            AUTHORITY\SYSTEM SID       
+                                                                                            (S-1-5-18) from address    
+                                                                                            LocalHost (Using LRPC)     
+                                                                                            running in the application 
+                                                                                            container Unavailable SID  
+                                                                                            (Unavailable). This        
+                                                                                            security permission can be 
+                                                                                            modified using the         
+                                                                                            Component Services         
+                                                                                            administrative tool.       
+27/02/2026 10:57:35 am System  Warning          Microsoft-Windows-DistributedCOM      10016 The application-specific   
+                                                                                            permission settings do not 
+                                                                                            grant Local Launch         
+                                                                                            permission for the COM     
+                                                                                            Server application with    
+                                                                                            CLSID                      
+                                                                                            Windows.SecurityCenter.WscB
+                                                                                            rokerManager               
+                                                                                             and APPID                 
+                                                                                            Unavailable                
+                                                                                             to the user NT            
+                                                                                            AUTHORITY\SYSTEM SID       
+                                                                                            (S-1-5-18) from address    
+                                                                                            LocalHost (Using LRPC)     
+                                                                                            running in the application 
+                                                                                            container Unavailable SID  
+                                                                                            (Unavailable). This        
+                                                                                            security permission can be 
+                                                                                            modified using the         
+                                                                                            Component Services         
+                                                                                            administrative tool.       
+27/02/2026 10:57:15 am System  Warning          Microsoft-Windows-DistributedCOM      10016 The application-specific   
+                                                                                            permission settings do not 
+                                                                                            grant Local Activation     
+                                                                                            permission for the COM     
+                                                                                            Server application with    
+                                                                                            CLSID                      
+                                                                                            {2593F8B9-4EAF-457C-B68A-50
+                                                                                            F6B8EA6B54}                
+                                                                                             and APPID                 
+                                                                                            {15C20B67-12E7-4BB6-92BB-7A
+                                                                                            FF07997402}                
+                                                                                             to the user LOBOTMY\prisc 
+                                                                                            SID (S-1-5-21-3126550908-28
+                                                                                            10976114-2690961538-1003)  
+                                                                                            from address LocalHost     
+                                                                                            (Using LRPC) running in    
+                                                                                            the application container M
+                                                                                            icrosoftWindows.Client.WebE
+                                                                                            xperience_526.1202.40.0_x64
+                                                                                            __cw5n1h2txyewy SID        
+                                                                                            (Unavailable). This        
+                                                                                            security permission can be 
+                                                                                            modified using the         
+                                                                                            Component Services         
+                                                                                            administrative tool.       
+27/02/2026 10:56:49 am System  Warning          Microsoft-Windows-DistributedCOM      10016 The application-specific   
+                                                                                            permission settings do not 
+                                                                                            grant Local Activation     
+                                                                                            permission for the COM     
+                                                                                            Server application with    
+                                                                                            CLSID                      
+                                                                                            {2593F8B9-4EAF-457C-B68A-50
+                                                                                            F6B8EA6B54}                
+                                                                                             and APPID                 
+                                                                                            {15C20B67-12E7-4BB6-92BB-7A
+                                                                                            FF07997402}                
+                                                                                             to the user LOBOTMY\prisc 
+                                                                                            SID (S-1-5-21-3126550908-28
+                                                                                            10976114-2690961538-1003)  
+                                                                                            from address LocalHost     
+                                                                                            (Using LRPC) running in    
+                                                                                            the application container  
+                                                                                            Unavailable SID            
+                                                                                            (Unavailable). This        
+                                                                                            security permission can be 
+                                                                                            modified using the         
+                                                                                            Component Services         
+                                                                                            administrative tool.       
+27/02/2026 10:56:08 am System  Warning          Microsoft-Windows-DistributedCOM      10016 The application-specific   
+                                                                                            permission settings do not 
+                                                                                            grant Local Activation     
+                                                                                            permission for the COM     
+                                                                                            Server application with    
+                                                                                            CLSID                      
+                                                                                            {6B3B8D23-FA8D-40B9-8DBD-B9
+                                                                                            50333E2C52}                
+                                                                                             and APPID                 
+                                                                                            {4839DDB7-58C2-48F5-8283-E1
+                                                                                            D1807D0D7D}                
+                                                                                             to the user NT            
+                                                                                            AUTHORITY\LOCAL SERVICE    
+                                                                                            SID (S-1-5-19) from        
+                                                                                            address LocalHost (Using   
+                                                                                            LRPC) running in the       
+                                                                                            application container      
+                                                                                            Unavailable SID            
+                                                                                            (Unavailable). This        
+                                                                                            security permission can be 
+                                                                                            modified using the         
+                                                                                            Component Services         
+                                                                                            administrative tool.       
+27/02/2026 10:56:08 am System  Warning          Microsoft-Windows-DistributedCOM      10016 The application-specific   
+                                                                                            permission settings do not 
+                                                                                            grant Local Activation     
+                                                                                            permission for the COM     
+                                                                                            Server application with    
+                                                                                            CLSID                      
+                                                                                            {6B3B8D23-FA8D-40B9-8DBD-B9
+                                                                                            50333E2C52}                
+                                                                                             and APPID                 
+                                                                                            {4839DDB7-58C2-48F5-8283-E1
+                                                                                            D1807D0D7D}                
+                                                                                             to the user NT            
+                                                                                            AUTHORITY\LOCAL SERVICE    
+                                                                                            SID (S-1-5-19) from        
+                                                                                            address LocalHost (Using   
+                                                                                            LRPC) running in the       
+                                                                                            application container      
+                                                                                            Unavailable SID            
+                                                                                            (Unavailable). This        
+                                                                                            security permission can be 
+                                                                                            modified using the         
+                                                                                            Component Services         
+                                                                                            administrative tool.       
+27/02/2026 10:55:55 am System  Error            Microsoft-Windows-TPM-WMI              1801 Secure Boot CA/keys need   
+                                                                                            to be updated. This device 
+                                                                                            signature information is   
+                                                                                            included here.             
+                                                                                            DeviceAttributes: BaseBoard
+                                                                                            Manufacturer:Micro-Star    
+                                                                                            International Co., Ltd.;Fir
+                                                                                            mwareManufacturer:American 
+                                                                                            Megatrends Inc.;FirmwareVer
+                                                                                            sion:E17E2IWS.116;OEMModelB
+                                                                                            aseBoard:MS-17E2;OEMManufac
+                                                                                            turerName:Micro-Star       
+                                                                                            International Co.,         
+                                                                                            Ltd.;OSArchitecture:amd64; 
+                                                                                            BucketId: 3958fca3306651e22
+                                                                                            5dc58702885e3c17b2c15503973
+                                                                                            110d53c1d6e39e6ddaae       
+                                                                                            BucketConfidenceLevel:     
+                                                                                            UpdateType: 0              
+                                                                                            HResult: The operation     
+                                                                                            completed successfully.    
+27/02/2026 10:49:57 am System  Warning          Microsoft-Windows-Time-Service          134 NtpClient was unable to    
+                                                                                            set a manual peer to use   
+                                                                                            as a time source because   
+                                                                                            of DNS resolution error on 
+                                                                                            'time.windows.com,0x9'.    
+                                                                                            NtpClient will try again   
+                                                                                            in 15 minutes and double   
+                                                                                            the reattempt interval     
+                                                                                            thereafter. The error was: 
+                                                                                            No such host is known.     
+                                                                                            (0x80072AF9)               
+27/02/2026 10:49:56 am System  Warning          Netwtw08                               6062 6062 - Lso was triggered   
+27/02/2026 10:49:56 am System  Warning          ACPI                                     15 : The embedded controller  
+                                                                                            (EC) returned data when    
+                                                                                            none was requested. The    
+                                                                                            BIOS might be trying to    
+                                                                                            access the EC without      
+                                                                                            synchronizing with the     
+                                                                                            operating system. This     
+                                                                                            data will be ignored. No   
+                                                                                            further action is          
+                                                                                            necessary; however, you    
+                                                                                            should check with your     
+                                                                                            computer manufacturer for  
+                                                                                            an upgraded BIOS.          
+27/02/2026 10:49:56 am System  Warning          ACPI                                     15 : The embedded controller  
+                                                                                            (EC) returned data when    
+                                                                                            none was requested. The    
+                                                                                            BIOS might be trying to    
+                                                                                            access the EC without      
+                                                                                            synchronizing with the     
+                                                                                            operating system. This     
+                                                                                            data will be ignored. No   
+                                                                                            further action is          
+                                                                                            necessary; however, you    
+                                                                                            should check with your     
+                                                                                            computer manufacturer for  
+                                                                                            an upgraded BIOS.          
+27/02/2026 10:49:56 am System  Warning          ACPI                                     15 : The embedded controller  
+                                                                                            (EC) returned data when    
+                                                                                            none was requested. The    
+                                                                                            BIOS might be trying to    
+                                                                                            access the EC without      
+                                                                                            synchronizing with the     
+                                                                                            operating system. This     
+                                                                                            data will be ignored. No   
+                                                                                            further action is          
+                                                                                            necessary; however, you    
+                                                                                            should check with your     
+                                                                                            computer manufacturer for  
+                                                                                            an upgraded BIOS.          
+27/02/2026 10:49:56 am System  Warning          ACPI                                     15 : The embedded controller  
+                                                                                            (EC) returned data when    
+                                                                                            none was requested. The    
+                                                                                            BIOS might be trying to    
+                                                                                            access the EC without      
+                                                                                            synchronizing with the     
+                                                                                            operating system. This     
+                                                                                            data will be ignored. No   
+                                                                                            further action is          
+                                                                                            necessary; however, you    
+                                                                                            should check with your     
+                                                                                            computer manufacturer for  
+                                                                                            an upgraded BIOS.          
+27/02/2026 10:49:56 am System  Warning          Microsoft-Windows-Time-Service          134 NtpClient was unable to    
+                                                                                            set a manual peer to use   
+                                                                                            as a time source because   
+                                                                                            of DNS resolution error on 
+                                                                                            'time.windows.com,0x9'.    
+                                                                                            NtpClient will try again   
+                                                                                            in 15 minutes and double   
+                                                                                            the reattempt interval     
+                                                                                            thereafter. The error was: 
+                                                                                            No such host is known.     
+                                                                                            (0x80072AF9)               
+27/02/2026 10:49:51 am System  Warning          ACPI                                     15 : The embedded controller  
+                                                                                            (EC) returned data when    
+                                                                                            none was requested. The    
+                                                                                            BIOS might be trying to    
+                                                                                            access the EC without      
+                                                                                            synchronizing with the     
+                                                                                            operating system. This     
+                                                                                            data will be ignored. No   
+                                                                                            further action is          
+                                                                                            necessary; however, you    
+                                                                                            should check with your     
+                                                                                            computer manufacturer for  
+                                                                                            an upgraded BIOS.          
+27/02/2026 10:49:51 am System  Error            Service Control Manager                7024 The Gaming Services        
+                                                                                            service terminated with    
+                                                                                            the following              
+                                                                                            service-specific error:    
+                                                                                            %%2279604629               
+27/02/2026 10:49:43 am System  Warning          Microsoft-Windows-Kernel-PnP            219 The driver \Driver\WUDFRd  
+                                                                                            failed to load.            
+                                                                                            Device: USB\VID_06CB&PID_00
+                                                                                            9B\d390940084ef            
+                                                                                            Status: 0xC0000365         
+27/02/2026 10:49:39 am System  Critical         Microsoft-Windows-Kernel-Power           41 The system has rebooted    
+                                                                                            without cleanly shutting   
+                                                                                            down first. This error     
+                                                                                            could be caused if the     
+                                                                                            system stopped responding, 
+                                                                                            crashed, or lost power     
+                                                                                            unexpectedly.              
+27/02/2026 10:49:47 am System  Error            EventLog                               6008 The previous system        
+                                                                                            shutdown at 10:49:34 AM on 
+                                                                                            ‎2/‎27/‎2026 was           
+                                                                                            unexpected.                
+27/02/2026 10:48:41 am System  Error            Microsoft-Windows-DistributedCOM      10010 The server {FD06603A-2BDF-4
+                                                                                            BB1-B7DF-5DC68F353601} did 
+                                                                                            not register with DCOM     
+                                                                                            within the required        
+                                                                                            timeout.                   
+27/02/2026 10:47:31 am System  Error            Microsoft-Windows-WindowsUpdateClient    20 Installation Failure:      
+                                                                                            Windows failed to install  
+                                                                                            the following update with  
+                                                                                            error 0x80073712: 2026-02  
+                                                                                            Security Update            
+                                                                                            (KB5077181) (26200.7840).  
+27/02/2026 8:14:17 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 8:08:06 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 8:06:52 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 7:44:40 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 7:44:22 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 7:43:46 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 7:34:56 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 7:32:44 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 7:26:37 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 7:26:10 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 7:23:54 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 7:22:59 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 7:20:19 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 7:18:41 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 7:17:12 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 7:15:37 am  System  Error            ACPI                                     13 : The embedded controller  
+                                                                                            (EC) did not respond       
+                                                                                            within the specified       
+                                                                                            timeout period. This may   
+                                                                                            indicate that there is an  
+                                                                                            error in the EC hardware   
+                                                                                            or firmware or that the    
+                                                                                            BIOS is accessing the EC   
+                                                                                            incorrectly. You should    
+                                                                                            check with your computer   
+                                                                                            manufacturer for an        
+                                                                                            upgraded BIOS. In some     
+                                                                                            situations, this error may 
+                                                                                            cause the computer to      
+                                                                                            function incorrectly.      
+27/02/2026 7:13:46 am  System  Warning          Netwtw08                               6062 6062 - Lso was triggered   
+27/02/2026 7:10:46 am  System  Warning          Netwtw08                               6062 6062 - Lso was triggered   
+27/02/2026 7:06:19 am  System  Warning          Netwtw08                               6062 6062 - Lso was triggered   
+27/02/2026 7:03:14 am  System  Warning          Netwtw08                               6062 6062 - Lso was triggered   
+
+
