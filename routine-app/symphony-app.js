@@ -71,10 +71,48 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Financial Calculations (NZ) ---
+    // Helper: compute NZ net income for a given weekly gross
+    function computeNZNetWeekly(grossWeekly) {
+        const kiwiSaverRate = 0.03;
+        const annualizedGross = grossWeekly * 52;
+
+        // KiwiSaver
+        const weeklyKiwiSaver = grossWeekly * kiwiSaverRate;
+
+        // Student Loan (12% over $438/week threshold)
+        const slThreshold = 438.00;
+        let weeklyStudentLoan = 0;
+        if (grossWeekly > slThreshold) {
+            weeklyStudentLoan = (grossWeekly - slThreshold) * 0.12;
+        }
+
+        // PAYE Tax (M Tax Code)
+        let annualizedTax = 0;
+        if (annualizedGross <= 15600) {
+            annualizedTax = annualizedGross * 0.105;
+        } else if (annualizedGross <= 53500) {
+            annualizedTax = (15600 * 0.105) + ((annualizedGross - 15600) * 0.175);
+        } else if (annualizedGross <= 78100) {
+            annualizedTax = (15600 * 0.105) + ((53500 - 15600) * 0.175) + ((annualizedGross - 53500) * 0.30);
+        } else {
+            annualizedTax = (15600 * 0.105) + ((53500 - 15600) * 0.175) + ((78100 - 53500) * 0.30) + ((annualizedGross - 78100) * 0.33);
+        }
+
+        const accLevy = annualizedGross * 0.0139;
+        const weeklyPayeAndAcc = (annualizedTax + accLevy) / 52;
+
+        const totalDeductions = weeklyPayeAndAcc + weeklyStudentLoan + weeklyKiwiSaver;
+        const netWeekly = grossWeekly - totalDeductions;
+
+        return { netWeekly, weeklyPayeAndAcc, weeklyStudentLoan, weeklyKiwiSaver, annualizedGross };
+    }
+
+    // Global reference so budget builder can use it
+    window.currentNetWeekly = 0;
+
     function calculateFinance() {
         // User Variables
         const baseHourlyRate = 24.00;
-        const kiwiSaverRate = 0.03; // 3%
 
         const hoursInput = document.getElementById('input-hours');
         const holidayInput = document.getElementById('input-holiday');
@@ -85,43 +123,58 @@ document.addEventListener('DOMContentLoaded', () => {
         const hourlyRate = isHoliday ? baseHourlyRate * 1.5 : baseHourlyRate;
 
         // Base Calculations
-        const grossWeekly = hourlyRate * hoursWorked; // $684.00
-        const annualizedGross = grossWeekly * 52;     // $35,568.00
+        const grossWeekly = hourlyRate * hoursWorked;
+        const result = computeNZNetWeekly(grossWeekly);
 
-        // 1. KiwiSaver (Calculated on Gross)
-        const weeklyKiwiSaver = grossWeekly * kiwiSaverRate; // $20.52
-
-        // 2. Student Loan (12% over $438/week threshold)
-        const slThreshold = 438.00;
-        let weeklyStudentLoan = 0;
-        if (grossWeekly > slThreshold) {
-            weeklyStudentLoan = (grossWeekly - slThreshold) * 0.12; // $29.52
-        }
-
-        // 3. PAYE Tax (M Tax Code Approximation for $35,568)
-        let annualizedTax = 0;
-        if (annualizedGross <= 15600) {
-            annualizedTax = annualizedGross * 0.105;
-        } else if (annualizedGross <= 53500) {
-            annualizedTax = (15600 * 0.105) + ((annualizedGross - 15600) * 0.175);
-        }
-
-        const accLevy = annualizedGross * 0.0139;
-        const weeklyPayeAndAcc = (annualizedTax + accLevy) / 52;
-
-        // 4. Net Income
-        const totalDeductions = weeklyPayeAndAcc + weeklyStudentLoan + weeklyKiwiSaver;
-        const netWeekly = grossWeekly - totalDeductions;
-
-        // Update DOM Elements
         const formatCurrency = (num) => '$' + num.toFixed(2);
+        const formatCurrencyRound = (num) => '$' + Math.round(num).toLocaleString();
 
+        // Update existing DOM elements
         document.getElementById('finance-hours').innerText = hoursWorked + ' hrs';
         document.getElementById('finance-gross').innerText = formatCurrency(grossWeekly);
-        document.getElementById('finance-tax').innerText = '-' + formatCurrency(weeklyPayeAndAcc);
-        document.getElementById('finance-sl').innerText = '-' + formatCurrency(weeklyStudentLoan);
-        document.getElementById('finance-ks').innerText = '-' + formatCurrency(weeklyKiwiSaver);
-        document.getElementById('finance-net-pay').innerText = formatCurrency(netWeekly);
+        document.getElementById('finance-tax').innerText = '-' + formatCurrency(result.weeklyPayeAndAcc);
+        document.getElementById('finance-sl').innerText = '-' + formatCurrency(result.weeklyStudentLoan);
+        document.getElementById('finance-ks').innerText = '-' + formatCurrency(result.weeklyKiwiSaver);
+        document.getElementById('finance-net-pay').innerText = formatCurrency(result.netWeekly);
+
+        // Store for budget summary
+        window.currentNetWeekly = result.netWeekly;
+
+        // --- Yearly Income Projection ---
+        // Baseline: 28.5h/wk at $24/hr (non-holiday)
+        const baselineGrossWeekly = 24.00 * 28.5;
+        const baseline = computeNZNetWeekly(baselineGrossWeekly);
+        const baselineAnnualNet = baseline.netWeekly * 52;
+
+        // Current: at whatever hours/rate they entered
+        const currentAnnualNet = result.netWeekly * 52;
+
+        const yearlyBaseGrossEl = document.getElementById('finance-yearly-baseline-gross');
+        const yearlyBaseNetEl = document.getElementById('finance-yearly-baseline-net');
+        const yearlyCurrentGrossEl = document.getElementById('finance-yearly-current-gross');
+        const yearlyCurrentNetEl = document.getElementById('finance-yearly-current-net');
+        const yearlyDiffEl = document.getElementById('finance-yearly-diff');
+
+        if (yearlyBaseGrossEl) yearlyBaseGrossEl.innerText = formatCurrencyRound(baselineGrossWeekly * 52);
+        if (yearlyBaseNetEl) yearlyBaseNetEl.innerText = formatCurrencyRound(baselineAnnualNet);
+        if (yearlyCurrentGrossEl) yearlyCurrentGrossEl.innerText = formatCurrencyRound(grossWeekly * 52);
+        if (yearlyCurrentNetEl) yearlyCurrentNetEl.innerText = formatCurrencyRound(currentAnnualNet);
+
+        if (yearlyDiffEl) {
+            const diff = currentAnnualNet - baselineAnnualNet;
+            if (Math.abs(diff) < 1) {
+                yearlyDiffEl.innerText = 'At baseline hours';
+            } else if (diff > 0) {
+                yearlyDiffEl.innerHTML = `<span style="color: var(--accent-green);">+${formatCurrencyRound(diff)}/yr</span> above baseline`;
+            } else {
+                yearlyDiffEl.innerHTML = `<span style="color: var(--accent-red);">${formatCurrencyRound(diff)}/yr</span> below baseline`;
+            }
+        }
+
+        // Update budget summary if expenses are loaded
+        if (typeof window.updateBudgetSummary === 'function') {
+            window.updateBudgetSummary();
+        }
 
         // Initialize/Update Pie Chart
         const ctx = document.getElementById('financePieChart').getContext('2d');
@@ -134,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
             data: {
                 labels: ['Net Pay', 'PAYE & ACC', 'Student Loan', 'KiwiSaver (3%)'],
                 datasets: [{
-                    data: [netWeekly, weeklyPayeAndAcc, weeklyStudentLoan, weeklyKiwiSaver],
+                    data: [result.netWeekly, result.weeklyPayeAndAcc, result.weeklyStudentLoan, result.weeklyKiwiSaver],
                     backgroundColor: [
                         'rgba(52, 211, 153, 0.8)', // Green (Net)
                         'rgba(239, 68, 68, 0.8)',  // Red (Tax)
@@ -297,6 +350,50 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Enter') handleQuickAdd();
     });
 
+    // --- Pool Add Item Handlers (Weekly/Monthly/Backlog) ---
+    function setupPoolAddButton(inputId, btnId, timeTarget) {
+        const input = document.getElementById(inputId);
+        const btn = document.getElementById(btnId);
+        if (!input || !btn) return;
+
+        async function addPoolItem() {
+            const title = input.value.trim();
+            if (!title) return;
+            btn.innerText = '⏳';
+            btn.style.pointerEvents = 'none';
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify([{ title, points: 2, priority_color: 'GREEN', time_target: timeTarget, is_active: true }])
+                });
+                if (response.ok) {
+                    input.value = '';
+                    await fetchTasksAndRenderTimeline();
+                } else {
+                    console.error('Failed to add pool item:', response.statusText);
+                }
+            } catch (err) {
+                console.error('Network error adding pool item:', err);
+            } finally {
+                btn.innerText = '+';
+                btn.style.pointerEvents = 'auto';
+            }
+        }
+
+        btn.addEventListener('click', addPoolItem);
+        input.addEventListener('keypress', (e) => { if (e.key === 'Enter') addPoolItem(); });
+    }
+
+    setupPoolAddButton('pool-week-input', 'pool-week-add-btn', 'Weekly');
+    setupPoolAddButton('pool-longterm-input', 'pool-longterm-add-btn', 'Monthly');
+    setupPoolAddButton('pool-future-input', 'pool-future-add-btn', 'Unscheduled');
+
     // Store our dynamically fetched tasks here
     let dynamicTasks = [];
 
@@ -331,12 +428,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderDraggableTimeline() {
-        // Clear all drop zones and accordion bodies
-        document.querySelectorAll('.drop-zone').forEach(zone => zone.innerHTML = '');
+        // Clear only task cards from drop zones, preserving add-item forms
+        document.querySelectorAll('.drop-zone').forEach(zone => {
+            zone.querySelectorAll('.draggable-task').forEach(t => t.remove());
+        });
 
         // Categorization helper: determine which pool a task belongs to
         function getPoolId(task) {
             const tt = (task.time_target || '').trim();
+
+            // Legacy fallback: remap "Evening" to a proper time slot
+            if (tt === 'Evening') {
+                task.time_target = '06:00 PM';
+                return 'timeline';
+            }
 
             // If it matches a specific time slot (e.g. "08:00 AM"), it goes on the timeline
             if (/^\d{2}:\d{2}\s*(AM|PM)$/i.test(tt)) return 'timeline';
@@ -396,8 +501,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return null;
         }
 
-        // Adjust task duration by delta minutes, update local state and re-render
-        function adjustTaskDuration(taskId, deltaMins) {
+        // Adjust task duration by delta minutes, update local state, persist, and re-render
+        async function adjustTaskDuration(taskId, deltaMins) {
             const task = dynamicTasks.find(t => t.id === taskId);
             if (!task) return;
             const timing = parseTaskTiming(task.time_target);
@@ -406,8 +511,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let newEndMins = timing.endMins + deltaMins;
             // Minimum duration: 15 minutes
             if (newEndMins - timing.startMins < 15) return;
-            // Maximum: don't go past 11:30 PM (23:30 = 1410 mins)
-            if (newEndMins > 1410) return;
+            // Maximum: don't go past midnight (24:00 = 1440 mins)
+            if (newEndMins > 1440) return;
 
             const newEndTime = minutesToTime(newEndMins);
             if (newEndMins - timing.startMins <= 30) {
@@ -417,6 +522,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 task.time_target = `${timing.startTime} - ${newEndTime}`;
             }
             renderDraggableTimeline();
+
+            // Persist to Supabase
+            try {
+                await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?id=eq.${taskId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ time_target: task.time_target })
+                });
+            } catch (e) {
+                console.warn('Failed to persist duration change:', e);
+            }
         }
 
         // Track counts per section for badge display
@@ -659,6 +780,28 @@ document.addEventListener('DOMContentLoaded', () => {
         // Progress update
         document.getElementById('today-progress').style.width = '0%';
 
+        // Highlight current time slot and auto-scroll to it
+        const now = new Date();
+        const nowMins = now.getHours() * 60 + now.getMinutes();
+        const allTimeSlots = document.querySelectorAll('.time-slot[data-time]');
+        let closestSlot = null;
+        allTimeSlots.forEach(slot => {
+            slot.classList.remove('current-time');
+            const slotTime = slot.dataset.time;
+            const slotMins = timeToMinutes(slotTime);
+            if (slotMins >= 0 && slotMins <= nowMins) {
+                closestSlot = slot;
+            }
+        });
+        if (closestSlot) {
+            closestSlot.classList.add('current-time');
+            // Auto-scroll to current time (only on initial load)
+            if (!window._timelineScrolled) {
+                window._timelineScrolled = true;
+                setTimeout(() => closestSlot.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
+            }
+        }
+
         // Render Weekly/Monthly Tracker immediately after timeline is built
         renderWeeklyMonthlyTracker();
 
@@ -670,26 +813,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const dropZones = document.querySelectorAll('.drop-zone');
 
         dropZones.forEach(zone => {
-            // Clone to remove old listeners and prevent stacking
-            const freshZone = zone.cloneNode(true);
-            zone.parentNode.replaceChild(freshZone, zone);
+            // Skip zones that already have drag handlers (prevents stacking)
+            if (zone.dataset.dragReady) return;
+            zone.dataset.dragReady = 'true';
 
-            freshZone.addEventListener('dragover', e => {
+            zone.addEventListener('dragover', e => {
                 e.preventDefault();
-                freshZone.classList.add('drag-over');
+                zone.classList.add('drag-over');
             });
 
-            freshZone.addEventListener('dragleave', () => {
-                freshZone.classList.remove('drag-over');
+            zone.addEventListener('dragleave', () => {
+                zone.classList.remove('drag-over');
             });
 
-            freshZone.addEventListener('drop', e => {
+            zone.addEventListener('drop', e => {
                 e.preventDefault();
-                freshZone.classList.remove('drag-over');
+                zone.classList.remove('drag-over');
 
                 const draggingEl = document.querySelector('.dragging');
                 if (draggingEl && draggedTaskObj) {
-                    draggedTaskObj.time_target = freshZone.dataset.time;
+                    draggedTaskObj.time_target = zone.dataset.time;
                     // Defer re-render to avoid conflicts during drag event
                     setTimeout(() => renderDraggableTimeline(), 0);
                 }
@@ -978,20 +1121,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- Ideas / Bucket List Setup ---
-    function initIdeasPage() {
-        const attachListListener = (inputId, btnId, listId, storageKey) => {
+    // --- Ideas / Bucket List Setup (Supabase-backed) ---
+    async function initIdeasPage() {
+        const attachListListener = (inputId, btnId, listId, listType) => {
             const input = document.getElementById(inputId);
             const btn = document.getElementById(btnId);
             const list = document.getElementById(listId);
+            const LOCAL_KEY = `symphony_ideas_${listType}`;
 
             if (!input || !btn || !list) return;
 
-            // Load existing items from localStorage
-            const loadItems = () => {
-                const storedItems = JSON.parse(localStorage.getItem(storageKey) || '[]');
-                list.innerHTML = ''; // Clear default hardcoded or current items
-                storedItems.forEach((item, index) => {
+            let items = []; // [{id, text, completed, sort_order}]
+
+            // Fetch from Supabase, fallback to localStorage
+            async function fetchItems() {
+                try {
+                    const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_ideas?list_type=eq.${listType}&order=sort_order.asc,created_at.asc`, {
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                        }
+                    });
+                    if (resp.ok) {
+                        items = await resp.json();
+                        localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
+                    } else {
+                        throw new Error(`HTTP ${resp.status}`);
+                    }
+                } catch (e) {
+                    console.warn(`Ideas (${listType}): Supabase fetch failed, using localStorage:`, e);
+                    const local = localStorage.getItem(LOCAL_KEY);
+                    if (local) items = JSON.parse(local);
+                }
+            }
+
+            function renderItems() {
+                list.innerHTML = '';
+                if (items.length === 0) {
+                    list.innerHTML = '<li style="color: var(--text-secondary); font-style: italic;">No items yet — add one above!</li>';
+                    return;
+                }
+                items.forEach((item, index) => {
                     const li = document.createElement('li');
                     if (item.completed) li.classList.add('completed');
 
@@ -1001,75 +1171,110 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button class="delete-btn" data-index="${index}" style="background: none; border: none; color: #ff0000; cursor: pointer; font-size: 1.2rem; margin-left: 10px;" title="Delete item">×</button>
                     `;
 
-                    li.querySelector('.checkbox').addEventListener('click', function () {
+                    li.querySelector('.checkbox').addEventListener('click', async function () {
                         this.classList.toggle('checked');
                         this.parentElement.classList.toggle('completed');
-                        saveItems();
+                        items[index].completed = !items[index].completed;
+                        localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
+                        // Sync to Supabase
+                        if (items[index].id) {
+                            try {
+                                await fetch(`${SUPABASE_URL}/rest/v1/symphony_ideas?id=eq.${items[index].id}`, {
+                                    method: 'PATCH',
+                                    headers: {
+                                        'apikey': SUPABASE_ANON_KEY,
+                                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                                        'Content-Type': 'application/json',
+                                        'Prefer': 'return=minimal'
+                                    },
+                                    body: JSON.stringify({ completed: items[index].completed, updated_at: new Date().toISOString() })
+                                });
+                            } catch (e) { console.warn('Failed to sync checkbox to Supabase:', e); }
+                        }
                     });
 
-                    li.querySelector('.delete-btn').addEventListener('click', function () {
-                        this.parentElement.remove();
-                        saveItems();
+                    li.querySelector('.delete-btn').addEventListener('click', async function () {
+                        const removedItem = items.splice(index, 1)[0];
+                        localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
+                        renderItems();
+                        // Delete from Supabase
+                        if (removedItem && removedItem.id) {
+                            try {
+                                await fetch(`${SUPABASE_URL}/rest/v1/symphony_ideas?id=eq.${removedItem.id}`, {
+                                    method: 'DELETE',
+                                    headers: {
+                                        'apikey': SUPABASE_ANON_KEY,
+                                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                                    }
+                                });
+                            } catch (e) { console.warn('Failed to delete from Supabase:', e); }
+                        }
                     });
 
                     list.appendChild(li);
                 });
-            };
+            }
 
-            const saveItems = () => {
-                const items = [];
-                list.querySelectorAll('li').forEach(li => {
-                    items.push({
-                        text: li.querySelector('.task-content').innerText,
-                        completed: li.classList.contains('completed')
-                    });
-                });
-                localStorage.setItem(storageKey, JSON.stringify(items));
-            };
-
-            const handleAdd = () => {
+            async function handleAdd() {
                 const text = input.value.trim();
                 if (!text) return;
 
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <div class="checkbox"></div>
-                    <div class="task-content" style="flex-grow: 1;">${text}</div>
-                    <button class="delete-btn" style="background: none; border: none; color: #ff0000; cursor: pointer; font-size: 1.2rem; margin-left: 10px;" title="Delete item">×</button>
-                `;
+                const newItem = {
+                    list_type: listType,
+                    text: text,
+                    completed: false,
+                    sort_order: items.length
+                };
 
-                li.querySelector('.checkbox').addEventListener('click', function () {
-                    this.classList.toggle('checked');
-                    this.parentElement.classList.toggle('completed');
-                    saveItems();
-                });
-
-                li.querySelector('.delete-btn').addEventListener('click', function () {
-                    this.parentElement.remove();
-                    saveItems();
-                });
-
-                list.appendChild(li);
+                // Optimistic local add
+                items.push(newItem);
+                localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
+                renderItems();
                 input.value = '';
-                saveItems();
-            };
+
+                // Persist to Supabase
+                try {
+                    const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_ideas`, {
+                        method: 'POST',
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                            'Content-Type': 'application/json',
+                            'Prefer': 'return=representation'
+                        },
+                        body: JSON.stringify(newItem)
+                    });
+                    if (resp.ok) {
+                        // Re-fetch to get the real ID from Supabase
+                        await fetchItems();
+                        renderItems();
+                    }
+                } catch (e) {
+                    console.warn('Failed to save idea to Supabase:', e);
+                }
+
+                if (typeof playRetroClick === 'function') playRetroClick();
+            }
 
             btn.addEventListener('click', handleAdd);
             input.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') handleAdd();
             });
 
-            // Initialize by loading
-            // If it's the first time and the list doesn't have local storage, populate heavily with default so it doesn't look empty
-            if (!localStorage.getItem(storageKey) && listId === 'bucket-list') {
-                localStorage.setItem(storageKey, JSON.stringify([{ text: "Walk the full Pineapple Track", completed: false }]));
-            }
-
-            loadItems();
+            // Initialize: fetch and render
+            return fetchItems().then(() => {
+                // Seed bucket list default if completely empty (first use)
+                if (items.length === 0 && listType === 'bucket') {
+                    items = [{ text: "Walk the full Pineapple Track", completed: false, sort_order: 0 }];
+                }
+                renderItems();
+            });
         };
 
-        attachListListener('quick-add-bucket', 'quick-add-bucket-btn', 'bucket-list', 'symphony_bucket_list');
-        attachListListener('quick-add-braindump', 'quick-add-braindump-btn', 'braindump-list', 'symphony_brain_dump');
+        await Promise.all([
+            attachListListener('quick-add-bucket', 'quick-add-bucket-btn', 'bucket-list', 'bucket'),
+            attachListListener('quick-add-braindump', 'quick-add-braindump-btn', 'braindump-list', 'braindump')
+        ]);
     }
 
     initIdeasPage();
@@ -1633,46 +1838,163 @@ document.addEventListener('DOMContentLoaded', () => {
         let buildingRecipe = false;
         let recipeItems = [];
 
+        // ── Built-in Common Foods Database (per 100g values) ──
+        // qtyLabel = natural unit name, qtyG = grams per 1 unit (for quantity-based input)
+        const COMMON_FOODS = [
+            { name: 'Egg (whole, boiled)', brand: 'Whole Food', cal: 155, pro: 12.6, carb: 1.1, fat: 10.6, sugar: 1.1, fiber: 0, sodium: 0.124, serving: '1 large (50g)', servingG: 50, qtyLabel: 'egg', qtyG: 50 },
+            { name: 'Egg (whole, scrambled)', brand: 'Whole Food', cal: 149, pro: 10.0, carb: 1.6, fat: 11.1, sugar: 1.4, fiber: 0, sodium: 0.145, serving: '1 large (61g)', servingG: 61, qtyLabel: 'egg', qtyG: 61 },
+            { name: 'Egg (whole, fried)', brand: 'Whole Food', cal: 196, pro: 13.6, carb: 0.8, fat: 15.3, sugar: 0.4, fiber: 0, sodium: 0.207, serving: '1 large (46g)', servingG: 46, qtyLabel: 'egg', qtyG: 46 },
+            { name: 'Egg (whole, raw)', brand: 'Whole Food', cal: 143, pro: 12.6, carb: 0.7, fat: 9.5, sugar: 0.4, fiber: 0, sodium: 0.140, serving: '1 large (50g)', servingG: 50, qtyLabel: 'egg', qtyG: 50 },
+            { name: 'Egg White (raw)', brand: 'Whole Food', cal: 52, pro: 10.9, carb: 0.7, fat: 0.2, sugar: 0.7, fiber: 0, sodium: 0.166, serving: '1 large (33g)', servingG: 33, qtyLabel: 'egg white', qtyG: 33 },
+            { name: 'Chicken Breast (grilled)', brand: 'Whole Food', cal: 165, pro: 31.0, carb: 0, fat: 3.6, sugar: 0, fiber: 0, sodium: 0.074, serving: '1 breast (172g)', servingG: 172, qtyLabel: 'breast', qtyG: 172 },
+            { name: 'Chicken Thigh (skin off)', brand: 'Whole Food', cal: 209, pro: 26.0, carb: 0, fat: 10.9, sugar: 0, fiber: 0, sodium: 0.084, serving: '1 thigh (116g)', servingG: 116, qtyLabel: 'thigh', qtyG: 116 },
+            { name: 'Salmon (baked)', brand: 'Whole Food', cal: 208, pro: 20.4, carb: 0, fat: 13.4, sugar: 0, fiber: 0, sodium: 0.059, serving: '1 fillet (154g)', servingG: 154, qtyLabel: 'fillet', qtyG: 154 },
+            { name: 'Tuna (canned in water)', brand: 'Whole Food', cal: 116, pro: 25.5, carb: 0, fat: 0.8, sugar: 0, fiber: 0, sodium: 0.338, serving: '1 can (165g)', servingG: 165, qtyLabel: 'can', qtyG: 165 },
+            { name: 'Beef Mince (lean)', brand: 'Whole Food', cal: 250, pro: 26.1, carb: 0, fat: 15.4, sugar: 0, fiber: 0, sodium: 0.075, serving: '100g', servingG: 100 },
+            { name: 'Beef Steak (sirloin)', brand: 'Whole Food', cal: 271, pro: 26.1, carb: 0, fat: 17.3, sugar: 0, fiber: 0, sodium: 0.054, serving: '1 steak (200g)', servingG: 200, qtyLabel: 'steak', qtyG: 200 },
+            { name: 'Bacon (cooked)', brand: 'Whole Food', cal: 541, pro: 37.0, carb: 1.4, fat: 42.0, sugar: 0, fiber: 0, sodium: 2.310, serving: '3 slices (34g)', servingG: 34, qtyLabel: 'rasher', qtyG: 11 },
+            { name: 'White Rice (cooked)', brand: 'Whole Food', cal: 130, pro: 2.7, carb: 28.2, fat: 0.3, sugar: 0, fiber: 0.4, sodium: 0.001, serving: '1 cup (158g)', servingG: 158, qtyLabel: 'cup', qtyG: 158 },
+            { name: 'Brown Rice (cooked)', brand: 'Whole Food', cal: 112, pro: 2.3, carb: 23.5, fat: 0.8, sugar: 0.4, fiber: 1.8, sodium: 0.005, serving: '1 cup (195g)', servingG: 195, qtyLabel: 'cup', qtyG: 195 },
+            { name: 'Oats (rolled, dry)', brand: 'Whole Food', cal: 389, pro: 16.9, carb: 66.3, fat: 6.9, sugar: 0, fiber: 10.6, sodium: 0.002, serving: '1/2 cup (40g)', servingG: 40, qtyLabel: 'serve (½ cup)', qtyG: 40 },
+            { name: 'White Bread', brand: 'Whole Food', cal: 265, pro: 9.4, carb: 49.2, fat: 3.2, sugar: 5.0, fiber: 2.7, sodium: 0.491, serving: '1 slice (25g)', servingG: 25, qtyLabel: 'slice', qtyG: 25 },
+            { name: 'Wholemeal Bread', brand: 'Whole Food', cal: 247, pro: 13.0, carb: 41.3, fat: 3.4, sugar: 5.6, fiber: 6.0, sodium: 0.450, serving: '1 slice (28g)', servingG: 28, qtyLabel: 'slice', qtyG: 28 },
+            { name: 'Pasta (cooked)', brand: 'Whole Food', cal: 131, pro: 5.0, carb: 25.0, fat: 1.1, sugar: 0.6, fiber: 1.8, sodium: 0.001, serving: '1 cup (140g)', servingG: 140, qtyLabel: 'cup', qtyG: 140 },
+            { name: 'Potato (boiled)', brand: 'Whole Food', cal: 87, pro: 1.9, carb: 20.1, fat: 0.1, sugar: 0.9, fiber: 1.8, sodium: 0.005, serving: '1 medium (150g)', servingG: 150, qtyLabel: 'potato', qtyG: 150 },
+            { name: 'Kumara / Sweet Potato (baked)', brand: 'Whole Food', cal: 90, pro: 2.0, carb: 20.1, fat: 0.1, sugar: 6.5, fiber: 3.3, sodium: 0.036, serving: '1 medium (130g)', servingG: 130, qtyLabel: 'kumara', qtyG: 130 },
+            { name: 'Banana', brand: 'Whole Food', cal: 89, pro: 1.1, carb: 22.8, fat: 0.3, sugar: 12.2, fiber: 2.6, sodium: 0.001, serving: '1 medium (118g)', servingG: 118, qtyLabel: 'banana', qtyG: 118 },
+            { name: 'Apple', brand: 'Whole Food', cal: 52, pro: 0.3, carb: 13.8, fat: 0.2, sugar: 10.4, fiber: 2.4, sodium: 0.001, serving: '1 medium (182g)', servingG: 182, qtyLabel: 'apple', qtyG: 182 },
+            { name: 'Orange', brand: 'Whole Food', cal: 47, pro: 0.9, carb: 11.8, fat: 0.1, sugar: 9.4, fiber: 2.4, sodium: 0, serving: '1 medium (131g)', servingG: 131, qtyLabel: 'orange', qtyG: 131 },
+            { name: 'Avocado', brand: 'Whole Food', cal: 160, pro: 2.0, carb: 8.5, fat: 14.7, sugar: 0.7, fiber: 6.7, sodium: 0.007, serving: '1/2 avocado (68g)', servingG: 68, qtyLabel: 'half', qtyG: 68 },
+            { name: 'Broccoli (steamed)', brand: 'Whole Food', cal: 35, pro: 2.4, carb: 7.2, fat: 0.4, sugar: 1.4, fiber: 3.3, sodium: 0.041, serving: '1 cup (91g)', servingG: 91, qtyLabel: 'cup', qtyG: 91 },
+            { name: 'Spinach (raw)', brand: 'Whole Food', cal: 23, pro: 2.9, carb: 3.6, fat: 0.4, sugar: 0.4, fiber: 2.2, sodium: 0.079, serving: '1 cup (30g)', servingG: 30, qtyLabel: 'cup', qtyG: 30 },
+            { name: 'Carrot (raw)', brand: 'Whole Food', cal: 41, pro: 0.9, carb: 9.6, fat: 0.2, sugar: 4.7, fiber: 2.8, sodium: 0.069, serving: '1 medium (61g)', servingG: 61, qtyLabel: 'carrot', qtyG: 61 },
+            { name: 'Tomato (raw)', brand: 'Whole Food', cal: 18, pro: 0.9, carb: 3.9, fat: 0.2, sugar: 2.6, fiber: 1.2, sodium: 0.005, serving: '1 medium (123g)', servingG: 123, qtyLabel: 'tomato', qtyG: 123 },
+            { name: 'Onion (raw)', brand: 'Whole Food', cal: 40, pro: 1.1, carb: 9.3, fat: 0.1, sugar: 4.2, fiber: 1.7, sodium: 0.004, serving: '1 medium (110g)', servingG: 110, qtyLabel: 'onion', qtyG: 110 },
+            { name: 'Milk (whole)', brand: 'Whole Food', cal: 61, pro: 3.2, carb: 4.8, fat: 3.3, sugar: 5.1, fiber: 0, sodium: 0.043, serving: '1 cup (244ml)', servingG: 244, qtyLabel: 'cup', qtyG: 244 },
+            { name: 'Milk (trim / skim)', brand: 'Whole Food', cal: 34, pro: 3.4, carb: 5.1, fat: 0.1, sugar: 5.1, fiber: 0, sodium: 0.042, serving: '1 cup (244ml)', servingG: 244, qtyLabel: 'cup', qtyG: 244 },
+            { name: 'Greek Yoghurt (plain)', brand: 'Whole Food', cal: 97, pro: 9.0, carb: 3.6, fat: 5.0, sugar: 3.2, fiber: 0, sodium: 0.047, serving: '1 pot (170g)', servingG: 170, qtyLabel: 'pot', qtyG: 170 },
+            { name: 'Cheese (cheddar)', brand: 'Whole Food', cal: 402, pro: 24.9, carb: 1.3, fat: 33.1, sugar: 0.5, fiber: 0, sodium: 0.621, serving: '1 slice (28g)', servingG: 28, qtyLabel: 'slice', qtyG: 28 },
+            { name: 'Butter', brand: 'Whole Food', cal: 717, pro: 0.9, carb: 0.1, fat: 81.1, sugar: 0.1, fiber: 0, sodium: 0.011, serving: '1 tbsp (14g)', servingG: 14, qtyLabel: 'tbsp', qtyG: 14 },
+            { name: 'Peanut Butter', brand: 'Whole Food', cal: 588, pro: 25.1, carb: 20.0, fat: 50.4, sugar: 9.2, fiber: 6.0, sodium: 0.459, serving: '2 tbsp (32g)', servingG: 32, qtyLabel: 'tbsp', qtyG: 16 },
+            { name: 'Almonds', brand: 'Whole Food', cal: 579, pro: 21.2, carb: 21.6, fat: 49.9, sugar: 4.4, fiber: 12.5, sodium: 0.001, serving: '1/4 cup (35g)', servingG: 35, qtyLabel: 'handful', qtyG: 35 },
+            { name: 'Olive Oil', brand: 'Whole Food', cal: 884, pro: 0, carb: 0, fat: 100, sugar: 0, fiber: 0, sodium: 0.002, serving: '1 tbsp (14ml)', servingG: 14, qtyLabel: 'tbsp', qtyG: 14 },
+            { name: 'Honey', brand: 'Whole Food', cal: 304, pro: 0.3, carb: 82.4, fat: 0, sugar: 82.1, fiber: 0.2, sodium: 0.004, serving: '1 tbsp (21g)', servingG: 21, qtyLabel: 'tbsp', qtyG: 21 },
+            { name: 'Sugar (white)', brand: 'Whole Food', cal: 387, pro: 0, carb: 100, fat: 0, sugar: 100, fiber: 0, sodium: 0.001, serving: '1 tsp (4g)', servingG: 4, qtyLabel: 'tsp', qtyG: 4 },
+            { name: 'Protein Powder (whey)', brand: 'Supplement', cal: 120, pro: 24.0, carb: 3.0, fat: 1.5, sugar: 1.5, fiber: 0, sodium: 0.160, serving: '1 scoop (30g)', servingG: 30, qtyLabel: 'scoop', qtyG: 30 },
+            { name: 'Baked Beans (canned)', brand: 'Whole Food', cal: 94, pro: 5.2, carb: 14.5, fat: 0.4, sugar: 5.3, fiber: 5.5, sodium: 0.362, serving: '1 cup (254g)', servingG: 254, qtyLabel: 'cup', qtyG: 254 },
+            { name: 'Chickpeas (canned)', brand: 'Whole Food', cal: 164, pro: 8.9, carb: 27.4, fat: 2.6, sugar: 4.8, fiber: 7.6, sodium: 0.007, serving: '1 cup (240g)', servingG: 240, qtyLabel: 'cup', qtyG: 240 },
+            { name: 'Toast (white, buttered)', brand: 'Whole Food', cal: 313, pro: 8.0, carb: 42.0, fat: 12.0, sugar: 4.5, fiber: 2.0, sodium: 0.500, serving: '1 slice (35g)', servingG: 35, qtyLabel: 'slice', qtyG: 35 },
+            { name: 'Sausage (pork)', brand: 'Whole Food', cal: 301, pro: 18.0, carb: 0, fat: 25.0, sugar: 0, fiber: 0, sodium: 0.749, serving: '1 link (75g)', servingG: 75, qtyLabel: 'sausage', qtyG: 75 },
+            { name: 'Ham (deli sliced)', brand: 'Whole Food', cal: 145, pro: 21.0, carb: 3.5, fat: 5.5, sugar: 0, fiber: 0, sodium: 1.203, serving: '3 slices (84g)', servingG: 84, qtyLabel: 'slice', qtyG: 28 },
+            { name: 'Mushrooms (raw)', brand: 'Whole Food', cal: 22, pro: 3.1, carb: 3.3, fat: 0.3, sugar: 2.0, fiber: 1.0, sodium: 0.005, serving: '1 cup (70g)', servingG: 70, qtyLabel: 'cup', qtyG: 70 },
+            { name: 'Capsicum / Bell Pepper', brand: 'Whole Food', cal: 31, pro: 1.0, carb: 6.0, fat: 0.3, sugar: 4.2, fiber: 2.1, sodium: 0.004, serving: '1 medium (119g)', servingG: 119, qtyLabel: 'pepper', qtyG: 119 },
+            { name: 'Lettuce (iceberg)', brand: 'Whole Food', cal: 14, pro: 0.9, carb: 3.0, fat: 0.1, sugar: 2.0, fiber: 1.2, sodium: 0.010, serving: '1 cup (72g)', servingG: 72, qtyLabel: 'cup', qtyG: 72 },
+            { name: 'Mango', brand: 'Whole Food', cal: 60, pro: 0.8, carb: 15.0, fat: 0.4, sugar: 13.7, fiber: 1.6, sodium: 0.001, serving: '1 cup (165g)', servingG: 165, qtyLabel: 'mango', qtyG: 200 },
+            { name: 'Strawberries', brand: 'Whole Food', cal: 32, pro: 0.7, carb: 7.7, fat: 0.3, sugar: 4.9, fiber: 2.0, sodium: 0.001, serving: '1 cup (152g)', servingG: 152, qtyLabel: 'cup', qtyG: 152 },
+            { name: 'Blueberries', brand: 'Whole Food', cal: 57, pro: 0.7, carb: 14.5, fat: 0.3, sugar: 10.0, fiber: 2.4, sodium: 0.001, serving: '1 cup (148g)', servingG: 148, qtyLabel: 'cup', qtyG: 148 },
+        ];
+
         // ── Search ──
         if (searchInput && resultsContainer) {
             searchInput.addEventListener('input', (e) => {
                 clearTimeout(searchTimeout);
                 const query = e.target.value.trim();
-                if (query.length < 3) { resultsContainer.style.display = 'none'; return; }
+                if (query.length < 2) { resultsContainer.style.display = 'none'; return; }
 
                 searchTimeout = setTimeout(async () => {
-                    resultsContainer.innerHTML = '<div style="padding: 0.75rem; color: #94a3b8; font-size: 0.85rem;">Searching Open Food Facts...</div>';
+                    resultsContainer.innerHTML = '<div style="padding: 0.75rem; color: #94a3b8; font-size: 0.85rem;">Searching...</div>';
                     resultsContainer.style.display = 'block';
 
-                    try {
-                        const response = await fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=8`);
-                        const data = await response.json();
-                        resultsContainer.innerHTML = '';
+                    // 1) Search built-in common foods first (instant, always works)
+                    const q = query.toLowerCase();
+                    const localMatches = COMMON_FOODS.filter(f => f.name.toLowerCase().includes(q));
 
-                        if (data.products && data.products.length > 0) {
-                            data.products.forEach(product => {
-                                if (!product.nutriments || (!product.nutriments['energy-kcal_100g'] && !product.nutriments['energy-kcal'])) return;
+                    resultsContainer.innerHTML = '';
 
-                                const n = product.nutriments;
-                                const per100g = {
-                                    calories: Math.round(n['energy-kcal_100g'] || n['energy-kcal'] || 0),
-                                    protein: Math.round((n['proteins_100g'] || n.proteins || 0) * 10) / 10,
-                                    carbs: Math.round((n['carbohydrates_100g'] || n.carbohydrates || 0) * 10) / 10,
-                                    fats: Math.round((n['fat_100g'] || n.fat || 0) * 10) / 10,
-                                    sugars: Math.round((n['sugars_100g'] || n.sugars || 0) * 10) / 10,
-                                    fiber: Math.round((n['fiber_100g'] || n.fiber || 0) * 10) / 10,
-                                    sodium: Math.round((n['sodium_100g'] || n.sodium || 0) * 100) / 100
+                    if (localMatches.length > 0) {
+                        // Header for local results
+                        const header = document.createElement('div');
+                        header.style.cssText = 'padding: 0.4rem 0.75rem; font-size: 0.7rem; color: var(--accent-green); text-transform: uppercase; font-weight: 700; border-bottom: 1px solid rgba(52,211,153,0.15);';
+                        header.textContent = '🥚 Whole Foods';
+                        resultsContainer.appendChild(header);
+
+                        localMatches.forEach(food => {
+                            const resDiv = document.createElement('div');
+                            resDiv.style.cssText = 'padding: 0.65rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer;';
+                            resDiv.className = 'food-result-item';
+                            resDiv.innerHTML = `
+                                <div style="font-weight: 600; color: #f1f5f9; font-size: 0.9rem;">${food.name} <span style="font-size: 0.7rem; color: var(--accent-green);">${food.brand}</span></div>
+                                <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.15rem;">
+                                    per 100g: ${food.cal} kcal | ${food.pro}P ${food.carb}C ${food.fat}F
+                                    <span style="color: var(--accent-blue);"> · Serving: ${food.serving}</span>
+                                </div>
+                            `;
+                            resDiv.addEventListener('click', () => {
+                                selectedFood = {
+                                    name: food.name, brand: food.brand,
+                                    per100g: { calories: food.cal, protein: food.pro, carbs: food.carb, fats: food.fat, sugars: food.sugar, fiber: food.fiber, sodium: food.sodium },
+                                    servingSize: food.serving, servingG: food.servingG, ingredients: '',
+                                    qtyLabel: food.qtyLabel || null, qtyG: food.qtyG || null
                                 };
-                                const servingSize = product.serving_size || null;
-                                const servingG = product.serving_quantity || null;
+                                portionFoodName.innerText = food.name;
+                                // Switch to quantity mode if food has a natural unit
+                                if (food.qtyLabel && food.qtyG) {
+                                    portionAmount.value = 1;
+                                    portionAmount.step = 1;
+                                    portionAmount.min = 0.5;
+                                    portionUnit.innerHTML = `<option value="qty">× ${food.qtyLabel}${food.qtyLabel.endsWith('s') ? '' : '(s)'} (${food.qtyG}g ea)</option><option value="g">grams</option>`;
+                                    portionUnit.value = 'qty';
+                                } else {
+                                    portionAmount.value = food.servingG || 100;
+                                    portionAmount.step = 1;
+                                    portionAmount.min = 1;
+                                    portionUnit.innerHTML = '<option value="g">grams</option><option value="ml">ml</option>';
+                                }
+                                portionServingBtn.style.display = 'none';
+                                updatePortionPreview();
+                                portionPicker.style.display = 'block';
+                                resultsContainer.style.display = 'none';
+                            });
+                            resultsContainer.appendChild(resDiv);
+                        });
+                    }
 
-                                const desc = product.product_name || 'Unknown Product';
-                                const brand = product.brands || '';
+                    // 2) Also search Open Food Facts for branded/packaged products
+                    if (query.length >= 3) {
+                        try {
+                            const response = await fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=6`);
+                            const data = await response.json();
 
-                                const resDiv = document.createElement('div');
-                                resDiv.style.cssText = 'padding: 0.65rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer;';
-                                resDiv.className = 'food-result-item';
-                                resDiv.innerHTML = `
+                            if (data.products && data.products.length > 0) {
+                                // Add header for packaged products
+                                const offHeader = document.createElement('div');
+                                offHeader.style.cssText = 'padding: 0.4rem 0.75rem; font-size: 0.7rem; color: var(--accent-blue); text-transform: uppercase; font-weight: 700; border-bottom: 1px solid rgba(56,189,248,0.15); margin-top: 0.25rem;';
+                                offHeader.textContent = '📦 Packaged Products (Open Food Facts)';
+                                resultsContainer.appendChild(offHeader);
+
+                                data.products.forEach(product => {
+                                    if (!product.nutriments || (!product.nutriments['energy-kcal_100g'] && !product.nutriments['energy-kcal'])) return;
+
+                                    const n = product.nutriments;
+                                    const per100g = {
+                                        calories: Math.round(n['energy-kcal_100g'] || n['energy-kcal'] || 0),
+                                        protein: Math.round((n['proteins_100g'] || n.proteins || 0) * 10) / 10,
+                                        carbs: Math.round((n['carbohydrates_100g'] || n.carbohydrates || 0) * 10) / 10,
+                                        fats: Math.round((n['fat_100g'] || n.fat || 0) * 10) / 10,
+                                        sugars: Math.round((n['sugars_100g'] || n.sugars || 0) * 10) / 10,
+                                        fiber: Math.round((n['fiber_100g'] || n.fiber || 0) * 10) / 10,
+                                        sodium: Math.round((n['sodium_100g'] || n.sodium || 0) * 100) / 100
+                                    };
+                                    const servingSize = product.serving_size || null;
+                                    const servingG = product.serving_quantity || null;
+
+                                    const desc = product.product_name || 'Unknown Product';
+                                    const brand = product.brands || '';
+
+                                    const resDiv = document.createElement('div');
+                                    resDiv.style.cssText = 'padding: 0.65rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer;';
+                                    resDiv.className = 'food-result-item';
+                                    resDiv.innerHTML = `
                                     <div style="font-weight: 600; color: #f1f5f9; font-size: 0.9rem;">${desc} <span style="font-size: 0.7rem; color: #94a3b8;">${brand}</span></div>
                                     <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.15rem;">
                                         per 100g: ${per100g.calories} kcal | ${per100g.protein}P ${per100g.carbs}C ${per100g.fats}F
@@ -1680,36 +2002,40 @@ document.addEventListener('DOMContentLoaded', () => {
                                     </div>
                                 `;
 
-                                resDiv.addEventListener('click', () => {
-                                    selectedFood = {
-                                        name: desc, brand, per100g, servingSize, servingG,
-                                        ingredients: product.ingredients_text || ''
-                                    };
-                                    // Show portion picker
-                                    portionFoodName.innerText = `${desc}${brand ? ' (' + brand + ')' : ''}`;
-                                    portionAmount.value = 100;
-                                    portionServingBtn.style.display = servingSize ? 'inline-block' : 'none';
-                                    portionServingBtn.innerText = servingSize ? `1 Serving (${servingSize})` : '1 Serving';
-                                    updatePortionPreview();
-                                    portionPicker.style.display = 'block';
-                                    resultsContainer.style.display = 'none';
-                                    searchInput.value = '';
-                                    if (typeof playRetroClick === 'function') playRetroClick();
-                                });
+                                    resDiv.addEventListener('click', () => {
+                                        selectedFood = {
+                                            name: desc, brand, per100g, servingSize, servingG,
+                                            ingredients: product.ingredients_text || '',
+                                            qtyLabel: null, qtyG: null
+                                        };
+                                        portionFoodName.innerText = `${desc}${brand ? ' (' + brand + ')' : ''}`;
+                                        // Reset to grams mode for packaged products
+                                        portionUnit.innerHTML = '<option value="g">grams</option><option value="ml">ml</option>';
+                                        portionAmount.step = 1;
+                                        portionAmount.min = 1;
+                                        portionAmount.value = 100;
+                                        portionServingBtn.style.display = servingSize ? 'inline-block' : 'none';
+                                        portionServingBtn.innerText = servingSize ? `1 Serving (${servingSize})` : '1 Serving';
+                                        updatePortionPreview();
+                                        portionPicker.style.display = 'block';
+                                        resultsContainer.style.display = 'none';
+                                        searchInput.value = '';
+                                        if (typeof playRetroClick === 'function') playRetroClick();
+                                    });
 
-                                resultsContainer.appendChild(resDiv);
-                            });
-                            if (resultsContainer.children.length === 0) {
-                                resultsContainer.innerHTML = '<div style="padding: 0.75rem; color: var(--text-secondary); font-size: 0.85rem;">No results with nutrition data.</div>';
+                                    resultsContainer.appendChild(resDiv);
+                                });
                             }
-                        } else {
-                            resultsContainer.innerHTML = '<div style="padding: 0.75rem; color: var(--text-secondary); font-size: 0.85rem;">No results found.</div>';
+                        } catch (error) {
+                            console.error('Food Search Error:', error);
                         }
-                    } catch (error) {
-                        console.error('Food Search Error:', error);
-                        resultsContainer.innerHTML = '<div style="padding: 0.75rem; color: var(--accent-red); font-size: 0.85rem;">Error fetching data.</div>';
                     }
-                }, 400);
+
+                    // If no results at all from either source
+                    if (resultsContainer.children.length === 0) {
+                        resultsContainer.innerHTML = '<div style="padding: 0.75rem; color: var(--text-secondary); font-size: 0.85rem;">No results found. Try a different search term.</div>';
+                    }
+                }, 300);
             });
 
             document.addEventListener('click', (e) => {
@@ -1720,14 +2046,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ── Portion controls ──
+        function getResolvedGrams() {
+            const amt = parseFloat(portionAmount.value) || 0;
+            const unit = portionUnit.value;
+            if (unit === 'qty' && selectedFood && selectedFood.qtyG) {
+                return amt * selectedFood.qtyG;
+            }
+            return amt;
+        }
+
         function updatePortionPreview() {
             if (!selectedFood) return;
-            const amt = parseFloat(portionAmount.value) || 0;
-            const scaled = scaleNutrients(selectedFood.per100g, amt);
-            portionPreview.innerText = `${scaled.calories} kcal | ${scaled.protein}P ${scaled.carbs}C ${scaled.fats}F`;
+            const grams = getResolvedGrams();
+            const scaled = scaleNutrients(selectedFood.per100g, grams);
+            const unit = portionUnit.value;
+            const suffix = (unit === 'qty' && selectedFood.qtyLabel) ? ` (${Math.round(grams)}g)` : '';
+            portionPreview.innerText = `${scaled.calories} kcal | ${scaled.protein}P ${scaled.carbs}C ${scaled.fats}F${suffix}`;
         }
 
         if (portionAmount) portionAmount.addEventListener('input', updatePortionPreview);
+        if (portionUnit) portionUnit.addEventListener('change', () => {
+            // When switching between qty and grams, adjust the value
+            if (portionUnit.value === 'g' && selectedFood && selectedFood.qtyG) {
+                portionAmount.value = getResolvedGrams();
+                portionAmount.step = 1;
+                portionAmount.min = 1;
+            } else if (portionUnit.value === 'qty' && selectedFood && selectedFood.qtyG) {
+                portionAmount.value = 1;
+                portionAmount.step = 1;
+                portionAmount.min = 0.5;
+            }
+            updatePortionPreview();
+        });
 
         if (portionServingBtn) {
             portionServingBtn.addEventListener('click', () => {
@@ -1748,14 +2098,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (portionAddBtn) {
             portionAddBtn.addEventListener('click', () => {
                 if (!selectedFood) return;
-                const amt = parseFloat(portionAmount.value) || 100;
+                const grams = getResolvedGrams();
                 const unit = portionUnit.value;
-                const scaled = scaleNutrients(selectedFood.per100g, amt);
+                const displayAmt = parseFloat(portionAmount.value) || 1;
+                const displayUnit = (unit === 'qty' && selectedFood.qtyLabel) ? selectedFood.qtyLabel + (displayAmt !== 1 ? 's' : '') : unit;
+                const scaled = scaleNutrients(selectedFood.per100g, grams);
 
                 const logEntry = {
                     name: selectedFood.name,
-                    amount: amt,
-                    unit,
+                    amount: displayAmt,
+                    unit: displayUnit,
+                    grams: Math.round(grams),
                     ...scaled,
                     ingredients: selectedFood.ingredients,
                     timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
@@ -2115,83 +2468,79 @@ document.addEventListener('DOMContentLoaded', () => {
         const needsContainer = document.getElementById('needs-container');
         const wantsContainer = document.getElementById('wants-container');
         const advisoryContainer = document.getElementById('athena-advisory-container');
+        const addBtn = document.getElementById('add-procurement-btn');
 
         if (!needsContainer || !wantsContainer || !advisoryContainer) return;
 
-        needsContainer.innerHTML = '<div style="color:var(--text-secondary); font-size: 0.85rem;">Syncing from Supabase...</div>';
-        wantsContainer.innerHTML = '';
-        advisoryContainer.innerHTML = '';
+        let procurementData = [];
+        const LOCAL_KEY = 'symphony_procurement_local';
 
-        try {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_procurement?select=*`, {
-                headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Content-Type': 'application/json'
+        async function fetchData() {
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_procurement?select=*&order=created_at.desc`, {
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (response.ok) {
+                    procurementData = await response.json();
+                    localStorage.setItem(LOCAL_KEY, JSON.stringify(procurementData));
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
                 }
-            });
-
-            if (!response.ok) {
-                console.warn("Procurement table might not exist yet or RLS blocked read:", response.status);
-                needsContainer.innerHTML = '<div style="color:var(--text-secondary); font-size: 0.85rem;">[Cloud Database Not Initialized]</div>';
-                return;
+            } catch (e) {
+                console.warn('Procurement: Supabase fetch failed, using localStorage:', e);
+                const local = localStorage.getItem(LOCAL_KEY);
+                if (local) procurementData = JSON.parse(local);
             }
+        }
 
-            const data = await response.json();
+        function renderAll() {
             needsContainer.innerHTML = '';
+            wantsContainer.innerHTML = '';
+            advisoryContainer.innerHTML = '';
 
-            if (data.length === 0) {
-                needsContainer.innerHTML = '<div style="color:var(--text-secondary); font-size: 0.85rem;">No active procurement items.</div>';
+            if (procurementData.length === 0) {
+                needsContainer.innerHTML = '<div style="color:var(--text-secondary); font-size: 0.85rem; font-style: italic;">No items yet. Add one above!</div>';
                 return;
             }
 
-            // Separate items by category
-            const needs = data.filter(d => d.category === 'NEED');
-            const wants = data.filter(d => d.category === 'WANT');
+            const needs = procurementData.filter(d => d.category === 'NEED');
+            const wants = procurementData.filter(d => d.category === 'WANT');
 
-            // Render Needs
-            needs.forEach(item => {
+            function renderCard(item, container, dotColor) {
                 const div = document.createElement('div');
-                div.style = `background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 1rem;`;
+                div.style = `background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 1rem; position: relative;`;
                 div.innerHTML = `
+                    <button class="delete-procurement-btn" data-id="${item.id}" style="position: absolute; top: 0.5rem; right: 0.5rem; background: none; border: none; color: #ff0000; cursor: pointer; font-size: 1.1rem;" title="Delete">×</button>
                     <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--accent-green);"></span>
+                        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:${dotColor};"></span>
                         ${item.item}
                     </div>
                     <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
-                        <strong>Why:</strong> ${item.justification}
+                        <strong>Why:</strong> ${item.justification || 'No justification provided.'}
                     </div>
                 `;
-                needsContainer.appendChild(div);
-            });
+                container.appendChild(div);
+            }
 
-            // Render Wants
-            wants.forEach(item => {
-                const div = document.createElement('div');
-                div.style = `background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 1rem;`;
-                div.innerHTML = `
-                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--accent-yellow);"></span>
-                        ${item.item}
-                    </div>
-                    <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
-                        <strong>Why:</strong> ${item.justification}
-                    </div>
-                `;
-                wantsContainer.appendChild(div);
-            });
+            needs.forEach(item => renderCard(item, needsContainer, 'var(--accent-green)'));
+            wants.forEach(item => renderCard(item, wantsContainer, 'var(--accent-yellow)'));
+
+            if (needs.length === 0) needsContainer.innerHTML = '<div style="color:var(--text-secondary); font-size: 0.85rem; font-style: italic;">No essential needs listed.</div>';
+            if (wants.length === 0) wantsContainer.innerHTML = '<div style="color:var(--text-secondary); font-size: 0.85rem; font-style: italic;">No discretionary wants listed.</div>';
 
             // Render Advisory (for all items)
-            data.forEach(item => {
+            procurementData.forEach(item => {
                 const div = document.createElement('div');
                 div.style = `background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 1rem;`;
-
                 const verdictColor = item.athena_verdict === 'APPROVED' ? 'var(--accent-green)' : (item.athena_verdict === 'FLAGGED' ? 'var(--accent-yellow)' : 'var(--text-secondary)');
-
                 div.innerHTML = `
                     <div style="font-weight: 600; color: var(--accent-blue); display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                         <span>Target: ${item.item}</span>
-                        <span style="font-size: 0.75rem; color: ${verdictColor}; border: 1px solid ${verdictColor}; padding: 2px 6px; border-radius: 4px;">${item.athena_verdict}</span>
+                        <span style="font-size: 0.75rem; color: ${verdictColor}; border: 1px solid ${verdictColor}; padding: 2px 6px; border-radius: 4px;">${item.athena_verdict || 'PENDING'}</span>
                     </div>
                     <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
                         ${item.athena_comment || 'Awaiting Athena assessment...'}
@@ -2200,10 +2549,87 @@ document.addEventListener('DOMContentLoaded', () => {
                 advisoryContainer.appendChild(div);
             });
 
-        } catch (err) {
-            console.error("Network error fetching procurement data:", err);
-            needsContainer.innerHTML = '<div style="color:var(--accent-red); font-size: 0.85rem;">[Network Error - Offline Mode]</div>';
+            // Bind delete buttons
+            document.querySelectorAll('.delete-procurement-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const id = btn.getAttribute('data-id');
+                    procurementData = procurementData.filter(d => d.id !== id);
+                    localStorage.setItem(LOCAL_KEY, JSON.stringify(procurementData));
+                    renderAll();
+                    try {
+                        await fetch(`${SUPABASE_URL}/rest/v1/symphony_procurement?id=eq.${id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'apikey': SUPABASE_ANON_KEY,
+                                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                            }
+                        });
+                    } catch (e) { console.warn('Failed to delete procurement item:', e); }
+                    if (typeof playRetroClick === 'function') playRetroClick();
+                });
+            });
         }
+
+        // Add item handler
+        if (addBtn) {
+            addBtn.addEventListener('click', async () => {
+                const itemEl = document.getElementById('procurement-item-input');
+                const justEl = document.getElementById('procurement-justification-input');
+                const catEl = document.getElementById('procurement-category-input');
+
+                const item = itemEl.value.trim();
+                const justification = justEl.value.trim();
+                const category = catEl.value;
+
+                if (!item) {
+                    alert('Please enter an item name.');
+                    return;
+                }
+
+                const newItem = {
+                    item,
+                    justification: justification || 'No justification provided.',
+                    category,
+                    athena_verdict: 'PENDING',
+                    athena_comment: 'Awaiting Athena assessment...'
+                };
+
+                // Optimistic local add
+                procurementData.unshift(newItem);
+                localStorage.setItem(LOCAL_KEY, JSON.stringify(procurementData));
+                renderAll();
+
+                itemEl.value = '';
+                justEl.value = '';
+
+                // Persist to Supabase
+                try {
+                    const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_procurement`, {
+                        method: 'POST',
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                            'Content-Type': 'application/json',
+                            'Prefer': 'return=representation'
+                        },
+                        body: JSON.stringify(newItem)
+                    });
+                    if (resp.ok) {
+                        await fetchData();
+                        renderAll();
+                    }
+                } catch (e) {
+                    console.warn('Failed to save procurement item to Supabase:', e);
+                }
+
+                if (typeof playRetroSuccess === 'function') playRetroSuccess();
+            });
+        }
+
+        // Init
+        needsContainer.innerHTML = '<div style="color:var(--text-secondary); font-size: 0.85rem;">Syncing from Supabase...</div>';
+        await fetchData();
+        renderAll();
     }
 
     // Assign globally to be called by onchange
@@ -2842,6 +3268,262 @@ document.addEventListener('DOMContentLoaded', () => {
     initProcurement();
     initLogistics();
     initSuppsVault();
+
+    // --- Expenses / Budget Builder Implementation ---
+    async function initExpensesTracker() {
+        const listEl = document.getElementById('expenses-list');
+        const addBtn = document.getElementById('add-expense-btn');
+        if (!listEl || !addBtn) return;
+
+        let expenses = [];
+        const LOCAL_KEY = 'symphony_expenses_local';
+
+        // Normalize any frequency to weekly amount
+        function toWeekly(amount, frequency) {
+            switch (frequency) {
+                case 'weekly': return amount;
+                case 'fortnightly': return amount / 2;
+                case 'monthly': return (amount * 12) / 52;
+                case 'yearly': return amount / 52;
+                default: return amount;
+            }
+        }
+
+        function freqLabel(f) {
+            return { weekly: '/wk', fortnightly: '/fn', monthly: '/mo', yearly: '/yr' }[f] || '';
+        }
+
+        // Fetch from Supabase
+        async function fetchExpenses() {
+            try {
+                const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_expenses?order=category.asc,name.asc`, {
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    }
+                });
+                if (resp.ok) {
+                    expenses = await resp.json();
+                    localStorage.setItem(LOCAL_KEY, JSON.stringify(expenses));
+                } else {
+                    throw new Error(`HTTP ${resp.status}`);
+                }
+            } catch (e) {
+                console.warn('Expenses: Supabase fetch failed, using localStorage:', e);
+                const local = localStorage.getItem(LOCAL_KEY);
+                if (local) expenses = JSON.parse(local);
+            }
+        }
+
+        function renderExpenses() {
+            listEl.innerHTML = '';
+            if (expenses.length === 0) {
+                listEl.innerHTML = '<div style="color: var(--text-secondary); font-style: italic; font-size: 0.85rem; padding: 0.5rem 0;">No expenses added yet. Add your bills above.</div>';
+                updateBudgetSummary();
+                return;
+            }
+
+            // Group by category
+            const essential = expenses.filter(e => e.category === 'essential');
+            const flexible = expenses.filter(e => e.category === 'flexible');
+
+            const renderGroup = (items, label, color) => {
+                if (items.length === 0) return;
+                const header = document.createElement('div');
+                header.style.cssText = `font-size: 0.75rem; color: ${color}; text-transform: uppercase; font-weight: 700; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 0.25rem;`;
+                header.textContent = label;
+                listEl.appendChild(header);
+
+                items.forEach(exp => {
+                    const weeklyAmt = toWeekly(parseFloat(exp.amount), exp.frequency);
+                    const row = document.createElement('div');
+                    row.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0; border-bottom: 1px dotted rgba(255,255,255,0.05); font-size: 0.85rem;';
+                    row.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="color: var(--text-primary);">${exp.name}</span>
+                            <span style="font-size: 0.7rem; color: var(--text-secondary);">$${parseFloat(exp.amount).toFixed(2)}${freqLabel(exp.frequency)}</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="color: ${color}; font-weight: 600;">$${weeklyAmt.toFixed(2)}/wk</span>
+                            <button class="delete-expense-btn" data-id="${exp.id}" style="background: none; border: none; color: #ff0000; cursor: pointer; font-size: 1.1rem;" title="Delete">×</button>
+                        </div>
+                    `;
+                    listEl.appendChild(row);
+                });
+            };
+
+            renderGroup(essential, '🛡️ Essential', '#ef4444');
+            renderGroup(flexible, '🎮 Flexible', 'var(--accent-yellow)');
+
+            // Bind delete buttons
+            listEl.querySelectorAll('.delete-expense-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const id = btn.getAttribute('data-id');
+                    expenses = expenses.filter(e => e.id !== id);
+                    localStorage.setItem(LOCAL_KEY, JSON.stringify(expenses));
+                    renderExpenses();
+                    // Delete from Supabase
+                    try {
+                        await fetch(`${SUPABASE_URL}/rest/v1/symphony_expenses?id=eq.${id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'apikey': SUPABASE_ANON_KEY,
+                                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                            }
+                        });
+                    } catch (e) { console.warn('Failed to delete expense from Supabase:', e); }
+                    if (typeof playRetroClick === 'function') playRetroClick();
+                });
+            });
+
+            updateBudgetSummary();
+        }
+
+        function updateBudgetSummary() {
+            const netPay = window.currentNetWeekly || 0;
+            const formatCurrency = (num) => '$' + Math.abs(num).toFixed(2);
+
+            let essentialTotal = 0;
+            let flexibleTotal = 0;
+            expenses.forEach(exp => {
+                const weekly = toWeekly(parseFloat(exp.amount), exp.frequency);
+                if (exp.category === 'essential') essentialTotal += weekly;
+                else flexibleTotal += weekly;
+            });
+
+            const totalExpenses = essentialTotal + flexibleTotal;
+            const disposable = netPay - totalExpenses;
+
+            const netPayEl = document.getElementById('budget-net-pay');
+            const essentialEl = document.getElementById('budget-essential-total');
+            const flexibleEl = document.getElementById('budget-flexible-total');
+            const totalEl = document.getElementById('budget-expenses-total');
+            const disposableEl = document.getElementById('budget-disposable');
+            const dailyEl = document.getElementById('budget-disposable-daily');
+
+            if (netPayEl) netPayEl.innerText = formatCurrency(netPay);
+            if (essentialEl) essentialEl.innerText = '-' + formatCurrency(essentialTotal);
+            if (flexibleEl) flexibleEl.innerText = '-' + formatCurrency(flexibleTotal);
+            if (totalEl) totalEl.innerText = '-' + formatCurrency(totalExpenses);
+
+            if (disposableEl) {
+                disposableEl.innerText = (disposable >= 0 ? '$' : '-$') + Math.abs(disposable).toFixed(2);
+                disposableEl.style.color = disposable >= 0 ? 'var(--accent-green)' : 'var(--accent-red)';
+            }
+            if (dailyEl) {
+                const daily = disposable / 7;
+                dailyEl.innerText = `(${daily >= 0 ? '$' : '-$'}${Math.abs(daily).toFixed(2)} / day)`;
+            }
+
+            // Max Savings Potential (essentials-only baseline)
+            const baselineNetWeekly = computeNZNetWeekly(24.00 * 28.5).netWeekly;
+            const maxSavingsWeekly = baselineNetWeekly - essentialTotal;
+            const maxSavingsYearly = maxSavingsWeekly * 52;
+
+            const maxSavingsEl = document.getElementById('budget-max-savings');
+            const maxSavingsWeeklyEl = document.getElementById('budget-max-savings-weekly');
+            if (maxSavingsEl) {
+                maxSavingsEl.innerText = (maxSavingsYearly >= 0 ? '$' : '-$') + Math.abs(Math.round(maxSavingsYearly)).toLocaleString();
+                maxSavingsEl.style.color = maxSavingsYearly >= 0 ? 'var(--accent-blue)' : 'var(--accent-red)';
+            }
+            if (maxSavingsWeeklyEl) {
+                maxSavingsWeeklyEl.innerText = `($${maxSavingsWeekly.toFixed(2)} / week)`;
+            }
+
+            const canvas = document.getElementById('budgetPieChart');
+            if (canvas && (essentialTotal + flexibleTotal + Math.max(0, disposable)) > 0) {
+                const ctx = canvas.getContext('2d');
+                if (window.budgetChartInstance) window.budgetChartInstance.destroy();
+                window.budgetChartInstance = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Disposable', 'Essential', 'Flexible'],
+                        datasets: [{
+                            data: [Math.max(0, disposable), essentialTotal, flexibleTotal],
+                            backgroundColor: [
+                                'rgba(52, 211, 153, 0.8)',
+                                'rgba(239, 68, 68, 0.8)',
+                                'rgba(251, 191, 36, 0.8)'
+                            ],
+                            borderColor: 'rgba(15, 23, 42, 1)',
+                            borderWidth: 2,
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                                labels: { color: '#94a3b8', font: { size: 11 } }
+                            }
+                        },
+                        cutout: '65%'
+                    }
+                });
+            }
+        }
+
+        // Expose globally so calculateFinance can trigger it
+        window.updateBudgetSummary = updateBudgetSummary;
+
+        // Add expense handler
+        addBtn.addEventListener('click', async () => {
+            const nameEl = document.getElementById('expense-name-input');
+            const amountEl = document.getElementById('expense-amount-input');
+            const freqEl = document.getElementById('expense-freq-input');
+            const catEl = document.getElementById('expense-cat-input');
+
+            const name = nameEl.value.trim();
+            const amount = parseFloat(amountEl.value);
+            const frequency = freqEl.value;
+            const category = catEl.value;
+
+            if (!name || isNaN(amount) || amount <= 0) {
+                alert('Please fill out expense name and a valid amount.');
+                return;
+            }
+
+            const newExpense = { name, amount, frequency, category };
+
+            // Optimistic local add
+            expenses.push(newExpense);
+            localStorage.setItem(LOCAL_KEY, JSON.stringify(expenses));
+            renderExpenses();
+
+            nameEl.value = '';
+            amountEl.value = '';
+
+            // Persist to Supabase
+            try {
+                const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_expenses`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=representation'
+                    },
+                    body: JSON.stringify(newExpense)
+                });
+                if (resp.ok) {
+                    await fetchExpenses();
+                    renderExpenses();
+                }
+            } catch (e) {
+                console.warn('Failed to save expense to Supabase:', e);
+            }
+
+            if (typeof playRetroSuccess === 'function') playRetroSuccess();
+        });
+
+        // Init
+        await fetchExpenses();
+        renderExpenses();
+    }
+
+    initExpensesTracker();
 
     // --- Pulse Overview (At-a-Glance Command Center) ---
     function initPulse() {

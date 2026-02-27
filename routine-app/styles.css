@@ -917,3 +917,64 @@ canvas {
     border: 2px inset var(--win-shadow);
     border-top: none;
 }
+
+/* ==============================
+   Compact Timeline — Empty slots collapse
+   ============================== */
+
+/* Base: each time slot is a flex row */
+.time-slot {
+    display: flex;
+    align-items: flex-start;
+    transition: none;
+}
+
+/* Empty drop zones collapse to a compact height */
+.time-slot .drop-zone:empty {
+    min-height: 8px !important;
+    padding: 2px 0.5rem !important;
+    opacity: 0.4;
+}
+
+/* Compact slot labels when empty */
+.time-slot:has(.drop-zone:empty) .slot-label {
+    margin-top: 0 !important;
+    font-size: 0.5rem !important;
+    opacity: 0.5;
+}
+
+/* Full height when content is present */
+.time-slot .drop-zone:not(:empty) {
+    min-height: 40px;
+}
+
+/* Hover on empty slot expands it for drag target */
+.time-slot .drop-zone:empty:hover,
+.time-slot .drop-zone:empty.drag-over {
+    min-height: 35px !important;
+    opacity: 1;
+}
+
+.time-slot:has(.drop-zone:empty:hover) .slot-label,
+.time-slot:has(.drop-zone.drag-over) .slot-label {
+    opacity: 1;
+    margin-top: 0.5rem !important;
+    font-size: 0.6rem !important;
+}
+
+/* Current time highlight */
+.time-slot.current-time {
+    background: rgba(0, 0, 128, 0.08);
+    border-left: 3px solid #ff0000;
+}
+
+.time-slot.current-time .slot-label {
+    color: #ff0000 !important;
+    opacity: 1 !important;
+    font-weight: bold;
+}
+
+.time-slot.current-time .drop-zone:empty {
+    min-height: 25px !important;
+    opacity: 0.7;
+}
