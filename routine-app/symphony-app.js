@@ -571,7 +571,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             ${task.title} <span style="font-size:0.8rem; color:var(--accent-blue); font-weight: normal;">[+${task.points} pts]</span>
                         </div>
                     </div>
-                    ${isOnTimeline ? `<button class="remove-timeline-btn" style="background: none; border: none; color: red; font-weight: bold; font-size: 1.1rem; cursor: pointer; padding: 0 4px;" title="Remove from schedule">×</button>` : ''}
+                    <button class="task-delete-btn" data-task-id="${task.id}" style="background: #c0c0c0; border: 2px outset var(--win-highlight); color: red; font-weight: bold; font-size: 0.9rem; cursor: pointer; padding: 0 5px; line-height: 1.2;" title="Delete task">×</button>
                 </div>
                 ${task.description ? `<div class="task-desc" style="font-size: 0.8rem;">${task.description}</div>` : ''}
                 <div style="margin-top: 4px; display: flex; justify-content: space-between; align-items: center;">
@@ -634,40 +634,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            // Attach remove timeline handler
-            const removeBtn = el.querySelector('.remove-timeline-btn');
-            if (removeBtn) {
-                removeBtn.addEventListener('click', async (e) => {
-                    e.stopPropagation(); // Prevent drag initialization
-                    removeBtn.innerText = "⏳";
+            // Attach delete handler
+            const deleteBtn = el.querySelector('.task-delete-btn');
+            if (deleteBtn) {
+                deleteBtn.addEventListener('click', async (e) => {
+                    e.stopPropagation();
+                    if (!confirm(`Delete "${task.title}"?`)) return;
+                    deleteBtn.innerText = "⏳";
                     try {
                         const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?id=eq.${task.id}`, {
-                            method: 'PATCH',
+                            method: 'DELETE',
                             headers: {
                                 'apikey': SUPABASE_ANON_KEY,
-                                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                                'Content-Type': 'application/json',
-                                'Prefer': 'return=minimal'
-                            },
-                            body: JSON.stringify({ time_target: 'Unscheduled' })
+                                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                            }
                         });
 
-                        if (response.ok) {
-                            // Update local task array and re-render without full fetch
-                            const tIndex = dynamicTasks.findIndex(t => t.id === task.id);
-                            if (tIndex > -1) {
-                                dynamicTasks[tIndex].time_target = 'Unscheduled';
-                            }
+                        if (response.ok || response.status === 204) {
+                            dynamicTasks = dynamicTasks.filter(t => t.id !== task.id);
                             renderDraggableTimeline();
                         } else {
-                            console.error("Failed to remove task from timeline", response.statusText);
-                            alert("Failed to unschedule task");
-                            removeBtn.innerText = "×";
+                            console.error("Failed to delete task", response.statusText);
+                            alert("Failed to delete task");
+                            deleteBtn.innerText = "×";
                         }
                     } catch (err) {
-                        console.error("Network error unscheduling task:", err);
+                        console.error("Network error deleting task:", err);
                         alert("Network error. Try again.");
-                        removeBtn.innerText = "×";
+                        deleteBtn.innerText = "×";
                     }
                 });
             }
