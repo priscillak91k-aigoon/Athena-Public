@@ -1843,7 +1843,92 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="retro-audio.js"></script>
-    <script src="symphony-app.js?v=4"></script>
+    <script src="symphony-app.js?v=5"></script>
+
+    <!-- Standalone Quinny handlers (runs independently of main script) -->
+    <script>
+        (function () {
+            'use strict';
+            var QUINNY_KEY = 'symphony_quinny_data';
+            var PHOTO_KEY = 'symphony_quinny_photo';
+
+            function getQuinnyData() {
+                try { return JSON.parse(localStorage.getItem(QUINNY_KEY)) || {}; } catch (e) { return {}; }
+            }
+
+            // Photo upload
+            var photoInput = document.getElementById('quinny-photo-upload');
+            var profileImg = document.getElementById('quinny-profile-img');
+
+            // Restore photo
+            try {
+                var saved = localStorage.getItem(PHOTO_KEY);
+                if (saved && profileImg) profileImg.src = saved;
+            } catch (e) { }
+
+            if (photoInput) {
+                photoInput.addEventListener('change', function (e) {
+                    var file = e.target.files[0];
+                    if (!file || !profileImg) return;
+                    var reader = new FileReader();
+                    reader.onload = function (evt) {
+                        var dataUrl = evt.target.result;
+                        profileImg.src = dataUrl;
+                        try { localStorage.setItem(PHOTO_KEY, dataUrl); } catch (e) {
+                            // Too large, resize
+                            var img = new Image();
+                            img.onload = function () {
+                                var c = document.createElement('canvas');
+                                var s = Math.min(300 / img.width, 300 / img.height, 1);
+                                c.width = img.width * s; c.height = img.height * s;
+                                c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+                                var small = c.toDataURL('image/jpeg', 0.6);
+                                try { localStorage.setItem(PHOTO_KEY, small); profileImg.src = small; } catch (e2) { alert('Image too large to save.'); }
+                            };
+                            img.src = dataUrl;
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            // Birthday save
+            var bdaySave = document.getElementById('quinny-birthday-save');
+            var bdayInput = document.getElementById('quinny-birthday-input');
+            var ageDisplay = document.getElementById('quinny-age');
+
+            function showAge() {
+                var data = getQuinnyData();
+                if (!data.birthday) { if (ageDisplay) ageDisplay.innerText = 'Set birthday below \u2193'; return; }
+                if (bdayInput) bdayInput.value = data.birthday;
+                var bday = new Date(data.birthday + 'T00:00:00');
+                var now = new Date();
+                var years = now.getFullYear() - bday.getFullYear();
+                var months = now.getMonth() - bday.getMonth();
+                if (months < 0) { years--; months += 12; }
+                if (now.getDate() < bday.getDate()) { months--; if (months < 0) { years--; months += 12; } }
+                var dogYears = years <= 2 ? years * 10.5 : 21 + (years - 2) * 4;
+                if (ageDisplay) ageDisplay.innerHTML = '\ud83c\udf82 ' + years + ' year' + (years !== 1 ? 's' : '') + ', ' + months + ' month' + (months !== 1 ? 's' : '') + ' old <span style="color:var(--accent-yellow);">(~' + Math.round(dogYears) + ' dog years)</span>';
+            }
+
+            if (bdaySave) {
+                bdaySave.onclick = function () {
+                    var val = bdayInput ? bdayInput.value : '';
+                    if (!val) { alert('Please select a date first.'); return; }
+                    var data = getQuinnyData();
+                    data.birthday = val;
+                    if (!data.vaccinations) data.vaccinations = [];
+                    if (!data.treatments) data.treatments = [];
+                    localStorage.setItem(QUINNY_KEY, JSON.stringify(data));
+                    showAge();
+                    bdaySave.innerText = '\u2705 Saved!';
+                    bdaySave.style.background = 'rgba(52,211,153,0.4)';
+                    setTimeout(function () { bdaySave.innerText = 'Save'; bdaySave.style.background = ''; }, 1500);
+                };
+            }
+            showAge();
+        })();
+    </script>
 </body>
 
 </html>
