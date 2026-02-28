@@ -3545,6 +3545,62 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         updateAge();
 
+        // --- Knowledge Base ---
+        const VACC_INFO = {
+            'c3': { name: 'C3 (Core)', protects: 'Distemper, Hepatitis (Adenovirus), Parvovirus', schedule: 'Puppy: 6-8, 10-12, 14-16 weeks. Adult booster every 3 years.', note: 'Core vaccine — essential for all dogs in NZ.' },
+            'c5': { name: 'C5 (Core + Kennel Cough)', protects: 'Distemper, Hepatitis, Parvovirus + Parainfluenza, Bordetella (Kennel Cough)', schedule: 'Puppy: 6-8, 10-12, 14-16 weeks. Kennel Cough component: annual booster.', note: 'Required for boarding, daycare, and grooming facilities.' },
+            'c7': { name: 'C7 (Extended)', protects: 'Everything in C5 + Leptospirosis (2 strains)', schedule: 'Puppy series + annual Leptospirosis booster.', note: 'Recommended if your dog swims in rivers/ponds or lives rurally.' },
+            'kennel cough': { name: 'Kennel Cough (Bordetella)', protects: 'Bordetella bronchiseptica + Parainfluenza — causes harsh dry cough', schedule: 'Annual booster (intranasal or injectable).', note: 'Highly contagious. Required before boarding.' },
+            'leptospirosis': { name: 'Leptospirosis', protects: 'Bacterial infection from contaminated water/soil — can cause kidney/liver failure', schedule: 'Initial 2 doses 2-4 weeks apart, then annual booster.', note: 'Zoonotic — can spread to humans. Important in rural NZ.' },
+            'rabies': { name: 'Rabies', protects: 'Rabies virus — fatal neurological disease', schedule: 'Required for international travel. Not endemic in NZ.', note: 'Only needed if travelling overseas with your dog.' },
+            'parvovirus': { name: 'Parvovirus', protects: 'Canine Parvovirus — severe vomiting, bloody diarrhoea, often fatal in puppies', schedule: 'Part of C3/C5/C7. Puppy series critical.', note: 'Survives in soil for years. Unvaccinated puppies at extreme risk.' },
+            'distemper': { name: 'Distemper', protects: 'Canine Distemper Virus — respiratory, GI, and neurological disease', schedule: 'Part of C3/C5/C7 core vaccines.', note: 'No cure once infected. Vaccination is the only protection.' },
+            'hepatitis': { name: 'Hepatitis (Adenovirus)', protects: 'Infectious Canine Hepatitis — liver inflammation and failure', schedule: 'Part of C3/C5/C7 core vaccines.', note: 'Can cause "blue eye" (corneal edema) in recovered dogs.' }
+        };
+
+        const TREAT_INFO = {
+            // Worming
+            'drontal': { name: 'Drontal', type: 'worming', protects: 'Roundworm, Hookworm, Whipworm, Tapeworm (all major intestinal worms)', schedule: 'Every 3 months for adult dogs. Puppies: every 2 weeks until 12 weeks, then monthly until 6 months.', note: 'Broad-spectrum. Gold standard for intestinal worming.' },
+            'milbemax': { name: 'Milbemax', type: 'worming', protects: 'Roundworm, Hookworm, Whipworm, Tapeworm + Heartworm prevention', schedule: 'Monthly for heartworm prevention, or every 3 months for intestinal worms only.', note: 'Also prevents heartworm — good dual-purpose option.' },
+            'nexgard spectra': { name: 'NexGard Spectra', type: 'combo', protects: 'Fleas, Ticks, Mites + Roundworm, Hookworm, Whipworm, Heartworm', schedule: 'Monthly chewable tablet.', note: 'All-in-one flea, tick, and worming protection. Very popular in NZ.' },
+            'paragard': { name: 'Paragard', type: 'worming', protects: 'Roundworm, Hookworm, Whipworm, Tapeworm', schedule: 'Every 3 months for adults.', note: 'Allwormer tablet — budget-friendly alternative to Drontal.' },
+            // Flea/Tick
+            'nexgard': { name: 'NexGard', type: 'flea', protects: 'Fleas (kills within 8 hours) + Ticks (including paralysis tick)', schedule: 'Monthly chewable tablet.', note: 'Beef-flavoured chew. Starts killing fleas within 8 hours.' },
+            'bravecto': { name: 'Bravecto', type: 'flea', protects: 'Fleas + Ticks for up to 3 months per dose', schedule: 'Every 3 months (chew) or 6 months (spot-on).', note: 'Longest-lasting flea/tick protection available.' },
+            'simparica': { name: 'Simparica', type: 'flea', protects: 'Fleas (kills within 3 hours) + Ticks + Mites (sarcoptic & demodectic mange)', schedule: 'Monthly chewable tablet.', note: 'Fastest flea kill speed of any oral product.' },
+            'advantage': { name: 'Advantage', type: 'flea', protects: 'Fleas only (spot-on topical treatment)', schedule: 'Monthly spot-on application.', note: 'Topical — good for dogs who won\'t take chews. Avoid bathing 48hrs after.' },
+            'frontline': { name: 'Frontline Plus', type: 'flea', protects: 'Fleas + Ticks + Lice (spot-on)', schedule: 'Monthly spot-on application.', note: 'Also kills flea eggs and larvae to break the lifecycle.' },
+            'seresto': { name: 'Seresto Collar', type: 'flea', protects: 'Fleas + Ticks for up to 8 months', schedule: 'Replace collar every 8 months.', note: 'Continuous slow-release protection. Water-resistant.' },
+            'revolution': { name: 'Revolution', type: 'flea', protects: 'Fleas, Heartworm, Ear mites, Sarcoptic mange, some ticks', schedule: 'Monthly spot-on.', note: 'Multi-parasite spot-on. Does NOT cover all tick species.' }
+        };
+
+        function matchVaccInfo(name) {
+            const lower = name.toLowerCase();
+            for (const [key, info] of Object.entries(VACC_INFO)) {
+                if (lower.includes(key)) return info;
+            }
+            return null;
+        }
+
+        function matchTreatInfo(product, type) {
+            const lower = (product || '').toLowerCase();
+            for (const [key, info] of Object.entries(TREAT_INFO)) {
+                if (lower.includes(key)) return info;
+            }
+            return null;
+        }
+
+        function infoBoxHtml(info) {
+            if (!info) return '';
+            return `
+            <div style="margin: 0.3rem 0 0.5rem; padding: 0.5rem; background: rgba(59,130,246,0.08); border-left: 3px solid var(--accent-blue); font-size: 0.75rem; line-height: 1.4;">
+                <div style="color: var(--accent-blue); font-weight: 700; margin-bottom: 0.2rem;">ℹ️ ${info.name}</div>
+                <div><strong style="color: var(--text-secondary);">Protects against:</strong> <span style="color: var(--text-primary);">${info.protects}</span></div>
+                <div style="margin-top: 0.15rem;"><strong style="color: var(--text-secondary);">Schedule:</strong> <span style="color: var(--text-primary);">${info.schedule}</span></div>
+                ${info.note ? `<div style="margin-top: 0.15rem; color: var(--accent-yellow); font-style: italic;">💡 ${info.note}</div>` : ''}
+            </div>`;
+        }
+
         // Vaccinations
         const vaccList = document.getElementById('vacc-list');
         const vaccAddBtn = document.getElementById('vacc-add-btn');
@@ -3556,16 +3612,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 vaccList.innerHTML = '<div style="color: var(--text-secondary); font-style: italic; font-size: 0.8rem;">No vaccinations recorded yet.</div>';
                 return;
             }
-            vaccList.innerHTML = data.vaccinations.map((v, i) => `
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px dotted rgba(255,255,255,0.05); font-size: 0.85rem;">
-                    <div>
-                        <strong style="color: var(--text-primary);">${v.name}</strong>
-                        <div style="font-size: 0.75rem; color: var(--text-secondary);">Given: ${formatDate(v.dateGiven)}</div>
-                        <div style="font-size: 0.75rem;">${v.nextDue ? dueBadge(v.nextDue) : '<span style="color: var(--text-secondary);">No follow-up set</span>'}</div>
+            vaccList.innerHTML = data.vaccinations.map((v, i) => {
+                const info = matchVaccInfo(v.name);
+                return `
+                <div style="padding: 0.4rem 0; border-bottom: 1px dotted rgba(255,255,255,0.05); font-size: 0.85rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong style="color: var(--text-primary);">${v.name}</strong>
+                            <div style="font-size: 0.75rem; color: var(--text-secondary);">Given: ${formatDate(v.dateGiven)}</div>
+                            <div style="font-size: 0.75rem;">${v.nextDue ? dueBadge(v.nextDue) : '<span style="color: var(--text-secondary);">No follow-up set</span>'}</div>
+                        </div>
+                        <button class="vacc-del-btn" data-idx="${i}" style="background: none; border: none; color: #ff0000; cursor: pointer; font-size: 1.1rem;" title="Delete">×</button>
                     </div>
-                    <button class="vacc-del-btn" data-idx="${i}" style="background: none; border: none; color: #ff0000; cursor: pointer; font-size: 1.1rem;" title="Delete">×</button>
-                </div>
-            `).join('');
+                    ${infoBoxHtml(info)}
+                </div>`;
+            }).join('');
 
             vaccList.querySelectorAll('.vacc-del-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -3609,15 +3670,19 @@ document.addEventListener('DOMContentLoaded', () => {
             treatList.innerHTML = data.treatments.map((t, i) => {
                 const icon = t.type === 'worming' ? '🐛' : '🪲';
                 const label = t.type === 'worming' ? 'Worming' : 'Flea/Tick';
+                const info = matchTreatInfo(t.product, t.type);
                 return `
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px dotted rgba(255,255,255,0.05); font-size: 0.85rem;">
-                    <div>
-                        <strong style="color: var(--text-primary);">${icon} ${t.product || label}</strong>
-                        <span style="font-size: 0.7rem; color: var(--text-secondary); margin-left: 0.3rem;">${label}</span>
-                        <div style="font-size: 0.75rem; color: var(--text-secondary);">Given: ${formatDate(t.dateGiven)}</div>
-                        <div style="font-size: 0.75rem;">${t.nextDue ? dueBadge(t.nextDue) : '<span style="color: var(--text-secondary);">No follow-up set</span>'}</div>
+                <div style="padding: 0.4rem 0; border-bottom: 1px dotted rgba(255,255,255,0.05); font-size: 0.85rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong style="color: var(--text-primary);">${icon} ${t.product || label}</strong>
+                            <span style="font-size: 0.7rem; color: var(--text-secondary); margin-left: 0.3rem;">${label}</span>
+                            <div style="font-size: 0.75rem; color: var(--text-secondary);">Given: ${formatDate(t.dateGiven)}</div>
+                            <div style="font-size: 0.75rem;">${t.nextDue ? dueBadge(t.nextDue) : '<span style="color: var(--text-secondary);">No follow-up set</span>'}</div>
+                        </div>
+                        <button class="treat-del-btn" data-idx="${i}" style="background: none; border: none; color: #ff0000; cursor: pointer; font-size: 1.1rem;" title="Delete">×</button>
                     </div>
-                    <button class="treat-del-btn" data-idx="${i}" style="background: none; border: none; color: #ff0000; cursor: pointer; font-size: 1.1rem;" title="Delete">×</button>
+                    ${infoBoxHtml(info)}
                 </div>`;
             }).join('');
 
