@@ -1128,7 +1128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let items = []; // [{id, text, completed, sort_order}]
 
-            // Fetch from Supabase, fallback to localStorage
+            // Fetch from Supabase, fallback to localStorage (safe: won't clobber local data)
             async function fetchItems() {
                 try {
                     const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_ideas?list_type=eq.${listType}&order=sort_order.asc,created_at.asc`, {
@@ -1138,8 +1138,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
                     if (resp.ok) {
-                        items = await resp.json();
-                        localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
+                        const supabaseData = await resp.json();
+                        const localData = localStorage.getItem(LOCAL_KEY);
+                        const localItems = localData ? JSON.parse(localData) : [];
+                        if (supabaseData.length > 0) {
+                            items = supabaseData;
+                            localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
+                        } else if (localItems.length > 0) {
+                            items = localItems;
+                            console.info(`Ideas (${listType}): Supabase empty, keeping local data`);
+                        } else {
+                            items = [];
+                        }
                     } else {
                         throw new Error(`HTTP ${resp.status}`);
                     }
@@ -1307,6 +1317,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const FOOD_LOG_KEY = `symphony_food_log_${getLocalDayDateString()}`;
     const FOOD_RECIPES_KEY = 'symphony_food_recipes';
     const FOOD_HISTORY_KEY = 'symphony_food_history'; // localStorage backup for chart data
+    const MY_FOODS_KEY = 'symphony_my_foods'; // persistent food history + favorites
 
     // ── DNA-Personalized Targets ──
     // Based on: TCF7L2 C/T, KLF14 A/A, 9p21 G/G, ACTN3 C/T, ADRB2 G/G, CRP=9
@@ -1341,6 +1352,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     function saveFoodHistory(arr) {
         localStorage.setItem(FOOD_HISTORY_KEY, JSON.stringify(arr));
+    }
+    function getMyFoods() {
+        const stored = localStorage.getItem(MY_FOODS_KEY);
+        return stored ? JSON.parse(stored) : [];
+    }
+    function saveMyFoods(arr) {
+        localStorage.setItem(MY_FOODS_KEY, JSON.stringify(arr));
+    }
+    function addToMyFoods(food) {
+        // food = selectedFood shape: { name, brand, per100g, servingSize, servingG, qtyLabel, qtyG }
+        if (!food || !food.name) return;
+        const myFoods = getMyFoods();
+        const existing = myFoods.find(f => f.name === food.name && (f.brand || '') === (food.brand || ''));
+        if (existing) {
+            existing.useCount = (existing.useCount || 1) + 1;
+            existing.lastUsed = new Date().toISOString();
+        } else {
+            myFoods.push({
+                name: food.name,
+                brand: food.brand || '',
+                per100g: food.per100g,
+                servingSize: food.servingSize,
+                servingG: food.servingG,
+                qtyLabel: food.qtyLabel || null,
+                qtyG: food.qtyG || null,
+                favorite: false,
+                lastUsed: new Date().toISOString(),
+                useCount: 1
+            });
+        }
+        saveMyFoods(myFoods);
+    }
+    function toggleMyFoodFavorite(name, brand) {
+        const myFoods = getMyFoods();
+        const item = myFoods.find(f => f.name === name && (f.brand || '') === (brand || ''));
+        if (item) {
+            item.favorite = !item.favorite;
+            saveMyFoods(myFoods);
+        }
     }
 
     // ── Nutrient scaling ──
@@ -1809,10 +1859,75 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // ── My Foods panel render ──
+    function renderMyFoods() {
+        const favList = document.getElementById('my-foods-favorites-list');
+        const recentList = document.getElementById('my-foods-recent-list');
+        if (!favList || !recentList) return;
+
+        const myFoods = getMyFoods();
+        const favorites = myFoods.filter(f => f.favorite).sort((a, b) => (b.useCount || 0) - (a.useCount || 0));
+        const recents = [...myFoods].sort((a, b) => new Date(b.lastUsed) - new Date(a.lastUsed)).slice(0, 20);
+
+        function renderList(container, items, emptyMsg) {
+            container.innerHTML = '';
+            if (items.length === 0) {
+                container.innerHTML = `<div style="color: var(--text-secondary); font-style: italic; font-size: 0.8rem; padding: 0.25rem 0;">${emptyMsg}</div>`;
+                return;
+            }
+            items.forEach(food => {
+                const div = document.createElement('div');
+                div.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px dotted rgba(255,255,255,0.05); font-size: 0.8rem;';
+                const p = food.per100g;
+                div.innerHTML = `
+                    <div style="flex: 1; min-width: 0;">
+                        <strong style="color: var(--text-primary);">${food.name}</strong>
+                        ${food.brand ? `<span style="font-size: 0.7rem; color: var(--text-secondary);"> ${food.brand}</span>` : ''}
+                        <div style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 1px;">
+                            ${p.calories} kcal/100g · ${Math.round(food.useCount || 1)}× logged
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.3rem; flex-shrink: 0;">
+                        <button class="my-foods-fav-btn" data-name="${food.name}" data-brand="${food.brand || ''}" style="padding: 2px 6px; background: none; border: 1px solid rgba(251,191,36,0.3); color: ${food.favorite ? '#fbbf24' : 'var(--text-secondary)'}; font-size: 0.85rem; cursor: pointer; border-radius: 3px;" title="${food.favorite ? 'Remove from favorites' : 'Add to favorites'}">${food.favorite ? '⭐' : '☆'}</button>
+                        <button class="my-foods-add-btn" data-name="${food.name}" data-brand="${food.brand || ''}" style="padding: 2px 6px; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: var(--accent-green); font-family: 'VT323', monospace; cursor: pointer; border-radius: 3px; font-size: 0.75rem;">+ Log</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        renderList(favList, favorites, 'No favorites yet — tap ☆ on a food to pin it here');
+        renderList(recentList, recents, 'No history yet — log food to build your list');
+
+        // Favorite toggle handlers
+        document.querySelectorAll('.my-foods-fav-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                toggleMyFoodFavorite(btn.getAttribute('data-name'), btn.getAttribute('data-brand'));
+                renderMyFoods();
+                if (typeof playRetroClick === 'function') playRetroClick();
+            });
+        });
+
+        // Re-log handlers (expose selectedFood setter via window for the render callback)
+        document.querySelectorAll('.my-foods-add-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const name = btn.getAttribute('data-name');
+                const brand = btn.getAttribute('data-brand');
+                const food = myFoods.find(f => f.name === name && (f.brand || '') === (brand || ''));
+                if (!food) return;
+                // Trigger the portion picker with this food
+                if (window._symphonySelectFood) {
+                    window._symphonySelectFood(food);
+                }
+            });
+        });
+    }
+
     // ── Main init ──
     function initFoodAnalytics() {
         renderFoodDashboard();
         renderRecipes();
+        renderMyFoods();
         renderGradeChart(14);
 
         // Portion picker state
@@ -2090,6 +2205,33 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // Expose a function so My Foods panel can open the portion picker
+        window._symphonySelectFood = function (food) {
+            selectedFood = {
+                name: food.name, brand: food.brand || '',
+                per100g: food.per100g,
+                servingSize: food.servingSize, servingG: food.servingG,
+                ingredients: '',
+                qtyLabel: food.qtyLabel || null, qtyG: food.qtyG || null
+            };
+            portionFoodName.innerText = food.name;
+            if (food.qtyLabel && food.qtyG) {
+                portionAmount.value = 1;
+                portionAmount.step = 1;
+                portionAmount.min = 0.5;
+                portionUnit.innerHTML = `<option value="qty">× ${food.qtyLabel}${food.qtyLabel.endsWith('s') ? '' : '(s)'} (${food.qtyG}g ea)</option><option value="g">grams</option>`;
+                portionUnit.value = 'qty';
+            } else {
+                portionAmount.value = food.servingG || 100;
+                portionAmount.step = 1;
+                portionAmount.min = 1;
+                portionUnit.innerHTML = '<option value="g">grams</option><option value="ml">ml</option>';
+            }
+            portionServingBtn.style.display = 'none';
+            updatePortionPreview();
+            portionPicker.style.display = 'block';
+        };
+
         if (portionAddBtn) {
             portionAddBtn.addEventListener('click', () => {
                 if (!selectedFood) return;
@@ -2109,6 +2251,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                 };
 
+                // Auto-save to My Foods history
+                addToMyFoods(selectedFood);
+
                 if (buildingRecipe) {
                     // Add to recipe builder instead
                     recipeItems.push({ ...logEntry, per100g: selectedFood.per100g });
@@ -2122,6 +2267,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 portionPicker.style.display = 'none';
                 selectedFood = null;
+                renderMyFoods();
                 if (typeof playRetroClick === 'function') playRetroClick();
             });
         }
@@ -2134,6 +2280,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const open = recipesPanel.style.display !== 'none';
                 recipesPanel.style.display = open ? 'none' : 'block';
                 recipesHeader.querySelector('span:last-child').innerText = open ? '▶' : '▼';
+            });
+        }
+
+        // ── My Foods accordion ──
+        const myFoodsHeader = document.querySelector('[data-pool="my-foods"]');
+        const myFoodsPanel = document.getElementById('my-foods-panel');
+        if (myFoodsHeader && myFoodsPanel) {
+            myFoodsHeader.addEventListener('click', () => {
+                const open = myFoodsPanel.style.display !== 'none';
+                myFoodsPanel.style.display = open ? 'none' : 'block';
+                myFoodsHeader.querySelector('span:last-child').innerText = open ? '▶' : '▼';
             });
         }
 
@@ -2680,7 +2837,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let inventory = [];
 
-        // 1. Fetch from Supabase
+        // 1. Fetch from Supabase (safe: won't clobber local data)
         async function fetchSupabaseInventory() {
             try {
                 const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_supp_inventory?order=name.asc`, {
@@ -2690,9 +2847,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
                 if (resp.ok) {
-                    const data = await resp.json();
-                    inventory = data;
-                    localStorage.setItem('symphony_supp_inventory_local', JSON.stringify(inventory));
+                    const supabaseData = await resp.json();
+                    const localData = localStorage.getItem('symphony_supp_inventory_local');
+                    const localItems = localData ? JSON.parse(localData) : [];
+                    if (supabaseData.length > 0) {
+                        inventory = supabaseData;
+                        localStorage.setItem('symphony_supp_inventory_local', JSON.stringify(inventory));
+                    } else if (localItems.length > 0) {
+                        inventory = localItems;
+                        console.info('Supps: Supabase empty, keeping local inventory');
+                    } else {
+                        inventory = [];
+                    }
                 }
             } catch (e) {
                 console.error("Failed to fetch supps from Supabase, falling back to local:", e);
@@ -2907,7 +3073,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const solvedList = document.getElementById('logistics-solved-list');
         const solvedCount = document.getElementById('logistics-solved-count');
 
-        // Try Supabase first, fallback to localStorage
+        // Try Supabase first, fallback to localStorage (safe: won't clobber local data)
         async function fetchItems() {
             try {
                 const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics?status=eq.open&order=created_at.desc`, {
@@ -2920,11 +3086,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
                     });
                     const subtasks = stResp.ok ? await stResp.json() : [];
-                    items = data.map(item => ({
+                    const mergedItems = data.map(item => ({
                         ...item,
                         subtasks: subtasks.filter(st => st.logistics_id === item.id)
                     }));
-                    localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
+
+                    const localData = localStorage.getItem(LOCAL_KEY);
+                    const localItems = localData ? JSON.parse(localData) : [];
+                    if (mergedItems.length > 0) {
+                        items = mergedItems;
+                        localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
+                    } else if (localItems.length > 0) {
+                        items = localItems;
+                        console.info('Logistics: Supabase empty, keeping local data');
+                    } else {
+                        items = [];
+                    }
+
                     // Also fetch solved items for the log
                     try {
                         const solvedResp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics?status=eq.done&order=updated_at.desc`, {
@@ -3617,8 +3795,37 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
                 if (resp.ok) {
-                    expenses = await resp.json();
-                    localStorage.setItem(LOCAL_KEY, JSON.stringify(expenses));
+                    const supabaseData = await resp.json();
+                    const localData = localStorage.getItem(LOCAL_KEY);
+                    const localItems = localData ? JSON.parse(localData) : [];
+
+                    if (supabaseData.length > 0) {
+                        // Supabase has data — use it as source of truth
+                        expenses = supabaseData;
+                        localStorage.setItem(LOCAL_KEY, JSON.stringify(expenses));
+                    } else if (localItems.length > 0) {
+                        // Supabase is empty but localStorage has items — sync UP
+                        expenses = localItems;
+                        console.info('Expenses: Supabase empty, syncing local items up...');
+                        for (const item of localItems) {
+                            if (!item.id) {
+                                try {
+                                    await fetch(`${SUPABASE_URL}/rest/v1/symphony_expenses`, {
+                                        method: 'POST',
+                                        headers: {
+                                            'apikey': SUPABASE_ANON_KEY,
+                                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                                            'Content-Type': 'application/json',
+                                            'Prefer': 'return=minimal'
+                                        },
+                                        body: JSON.stringify({ name: item.name, amount: item.amount, frequency: item.frequency, category: item.category })
+                                    });
+                                } catch (e) { /* best-effort sync */ }
+                            }
+                        }
+                    } else {
+                        expenses = [];
+                    }
                 } else {
                     throw new Error(`HTTP ${resp.status}`);
                 }
