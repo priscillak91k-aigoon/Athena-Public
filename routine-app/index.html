@@ -1927,6 +1927,46 @@
                 };
             }
             showAge();
+
+            // Morning Read (edit/save)
+            var MORNING_KEY = 'symphony_morning_read';
+            var mrDisplay = document.getElementById('morning-read-display');
+            var mrEditor = document.getElementById('morning-read-editor');
+            var mrEditBtn = document.getElementById('morning-read-edit-btn');
+            var mrSaveBtn = document.getElementById('morning-read-save-btn');
+
+            if (mrDisplay) {
+                var savedMR = localStorage.getItem(MORNING_KEY);
+                if (savedMR) mrDisplay.innerText = savedMR;
+
+                function openEditor() {
+                    if (!mrEditor) return;
+                    mrEditor.value = localStorage.getItem(MORNING_KEY) || '';
+                    mrDisplay.style.display = 'none';
+                    mrEditor.style.display = 'block';
+                    if (mrEditBtn) mrEditBtn.style.display = 'none';
+                    if (mrSaveBtn) mrSaveBtn.style.display = 'inline-block';
+                    mrEditor.focus();
+                }
+                function closeEditor() {
+                    var text = mrEditor ? mrEditor.value.trim() : '';
+                    if (text) {
+                        localStorage.setItem(MORNING_KEY, text);
+                        mrDisplay.innerText = text;
+                    } else {
+                        localStorage.removeItem(MORNING_KEY);
+                        mrDisplay.innerText = 'Click here to write your morning reminders...';
+                    }
+                    if (mrEditor) mrEditor.style.display = 'none';
+                    mrDisplay.style.display = 'block';
+                    if (mrSaveBtn) mrSaveBtn.style.display = 'none';
+                    if (mrEditBtn) mrEditBtn.style.display = 'inline-block';
+                }
+
+                mrDisplay.onclick = openEditor;
+                if (mrEditBtn) mrEditBtn.onclick = openEditor;
+                if (mrSaveBtn) mrSaveBtn.onclick = closeEditor;
+            }
         })();
     </script>
 </body>
