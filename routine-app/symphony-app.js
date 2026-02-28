@@ -3442,6 +3442,177 @@ document.addEventListener('DOMContentLoaded', () => {
     initLogistics();
     initSuppsVault();
 
+    // --- Quinny's Page (Pet Health Tracking) ---
+    function initQuinnyPage() {
+        const QUINNY_KEY = 'symphony_quinny_data';
+        function getData() {
+            const s = localStorage.getItem(QUINNY_KEY);
+            return s ? JSON.parse(s) : { birthday: null, vaccinations: [], treatments: [] };
+        }
+        function saveData(d) { localStorage.setItem(QUINNY_KEY, JSON.stringify(d)); }
+
+        function formatDate(iso) {
+            if (!iso) return '—';
+            const d = new Date(iso + 'T00:00:00');
+            return d.toLocaleDateString('en-NZ', { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+
+        function daysUntil(iso) {
+            if (!iso) return Infinity;
+            const now = new Date(); now.setHours(0, 0, 0, 0);
+            return Math.ceil((new Date(iso + 'T00:00:00') - now) / 86400000);
+        }
+
+        function dueBadge(iso) {
+            const days = daysUntil(iso);
+            if (days < 0) return `<span style="color: var(--accent-red); font-weight: 700;">⚠️ OVERDUE by ${Math.abs(days)}d</span>`;
+            if (days <= 7) return `<span style="color: var(--accent-yellow);">⏰ Due in ${days}d</span>`;
+            if (days <= 30) return `<span style="color: var(--accent-blue);">📅 Due in ${days}d</span>`;
+            return `<span style="color: var(--accent-green);">✅ Due ${formatDate(iso)}</span>`;
+        }
+
+        // Birthday
+        const bdayInput = document.getElementById('quinny-birthday-input');
+        const bdaySave = document.getElementById('quinny-birthday-save');
+        const ageDisplay = document.getElementById('quinny-age');
+
+        function updateAge() {
+            const data = getData();
+            if (!data.birthday) {
+                if (ageDisplay) ageDisplay.innerText = 'Set birthday below ↓';
+                return;
+            }
+            if (bdayInput) bdayInput.value = data.birthday;
+            const bday = new Date(data.birthday + 'T00:00:00');
+            const now = new Date();
+            let years = now.getFullYear() - bday.getFullYear();
+            let months = now.getMonth() - bday.getMonth();
+            if (months < 0) { years--; months += 12; }
+            if (now.getDate() < bday.getDate()) months--;
+            if (months < 0) { years--; months += 12; }
+            const dogYears = years <= 2 ? years * 10.5 : 21 + (years - 2) * 4;
+            if (ageDisplay) {
+                ageDisplay.innerHTML = `🎂 ${years} year${years !== 1 ? 's' : ''}, ${months} month${months !== 1 ? 's' : ''} old <span style="color: var(--accent-yellow);">(~${Math.round(dogYears)} dog years)</span>`;
+            }
+        }
+
+        if (bdaySave) {
+            bdaySave.addEventListener('click', () => {
+                const data = getData();
+                data.birthday = bdayInput.value;
+                saveData(data);
+                updateAge();
+                if (typeof playRetroClick === 'function') playRetroClick();
+            });
+        }
+        updateAge();
+
+        // Vaccinations
+        const vaccList = document.getElementById('vacc-list');
+        const vaccAddBtn = document.getElementById('vacc-add-btn');
+
+        function renderVaccinations() {
+            if (!vaccList) return;
+            const data = getData();
+            if (data.vaccinations.length === 0) {
+                vaccList.innerHTML = '<div style="color: var(--text-secondary); font-style: italic; font-size: 0.8rem;">No vaccinations recorded yet.</div>';
+                return;
+            }
+            vaccList.innerHTML = data.vaccinations.map((v, i) => `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px dotted rgba(255,255,255,0.05); font-size: 0.85rem;">
+                    <div>
+                        <strong style="color: var(--text-primary);">${v.name}</strong>
+                        <div style="font-size: 0.75rem; color: var(--text-secondary);">Given: ${formatDate(v.dateGiven)}</div>
+                        <div style="font-size: 0.75rem;">${v.nextDue ? dueBadge(v.nextDue) : '<span style="color: var(--text-secondary);">No follow-up set</span>'}</div>
+                    </div>
+                    <button class="vacc-del-btn" data-idx="${i}" style="background: none; border: none; color: #ff0000; cursor: pointer; font-size: 1.1rem;" title="Delete">×</button>
+                </div>
+            `).join('');
+
+            vaccList.querySelectorAll('.vacc-del-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const data = getData();
+                    data.vaccinations.splice(parseInt(btn.dataset.idx), 1);
+                    saveData(data);
+                    renderVaccinations();
+                });
+            });
+        }
+
+        if (vaccAddBtn) {
+            vaccAddBtn.addEventListener('click', () => {
+                const name = document.getElementById('vacc-name-input').value.trim();
+                const dateGiven = document.getElementById('vacc-date-input').value;
+                const nextDue = document.getElementById('vacc-next-input').value;
+                if (!name) { alert('Please enter a vaccine name.'); return; }
+                const data = getData();
+                data.vaccinations.push({ name, dateGiven, nextDue });
+                saveData(data);
+                document.getElementById('vacc-name-input').value = '';
+                document.getElementById('vacc-date-input').value = '';
+                document.getElementById('vacc-next-input').value = '';
+                renderVaccinations();
+                if (typeof playRetroSuccess === 'function') playRetroSuccess();
+            });
+        }
+        renderVaccinations();
+
+        // Treatments (Worming / Flea)
+        const treatList = document.getElementById('treat-list');
+        const treatAddBtn = document.getElementById('treat-add-btn');
+
+        function renderTreatments() {
+            if (!treatList) return;
+            const data = getData();
+            if (data.treatments.length === 0) {
+                treatList.innerHTML = '<div style="color: var(--text-secondary); font-style: italic; font-size: 0.8rem;">No treatments recorded yet.</div>';
+                return;
+            }
+            treatList.innerHTML = data.treatments.map((t, i) => {
+                const icon = t.type === 'worming' ? '🐛' : '🪲';
+                const label = t.type === 'worming' ? 'Worming' : 'Flea/Tick';
+                return `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px dotted rgba(255,255,255,0.05); font-size: 0.85rem;">
+                    <div>
+                        <strong style="color: var(--text-primary);">${icon} ${t.product || label}</strong>
+                        <span style="font-size: 0.7rem; color: var(--text-secondary); margin-left: 0.3rem;">${label}</span>
+                        <div style="font-size: 0.75rem; color: var(--text-secondary);">Given: ${formatDate(t.dateGiven)}</div>
+                        <div style="font-size: 0.75rem;">${t.nextDue ? dueBadge(t.nextDue) : '<span style="color: var(--text-secondary);">No follow-up set</span>'}</div>
+                    </div>
+                    <button class="treat-del-btn" data-idx="${i}" style="background: none; border: none; color: #ff0000; cursor: pointer; font-size: 1.1rem;" title="Delete">×</button>
+                </div>`;
+            }).join('');
+
+            treatList.querySelectorAll('.treat-del-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const data = getData();
+                    data.treatments.splice(parseInt(btn.dataset.idx), 1);
+                    saveData(data);
+                    renderTreatments();
+                });
+            });
+        }
+
+        if (treatAddBtn) {
+            treatAddBtn.addEventListener('click', () => {
+                const type = document.getElementById('treat-type-input').value;
+                const product = document.getElementById('treat-product-input').value.trim();
+                const dateGiven = document.getElementById('treat-date-input').value;
+                const nextDue = document.getElementById('treat-next-input').value;
+                const data = getData();
+                data.treatments.push({ type, product, dateGiven, nextDue });
+                saveData(data);
+                document.getElementById('treat-product-input').value = '';
+                document.getElementById('treat-date-input').value = '';
+                document.getElementById('treat-next-input').value = '';
+                renderTreatments();
+                if (typeof playRetroSuccess === 'function') playRetroSuccess();
+            });
+        }
+        renderTreatments();
+    }
+    initQuinnyPage();
+
     // --- Calendar Event System ---
     async function initCalendar() {
         let calEvents = [];
