@@ -1074,6 +1074,30 @@
                     </p>
                 </div>
 
+                <!-- DNA Report Button -->
+                <div style="margin-bottom: 1rem; text-align: center;">
+                    <button id="dna-report-btn"
+                        style="padding: 0.6rem 1.5rem; background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(59,130,246,0.3)); border: 2px solid rgba(139,92,246,0.5); color: #a78bfa; font-family: 'VT323', monospace; font-size: 1.1rem; cursor: pointer; border-radius: 4px; transition: all 0.3s; text-shadow: 0 0 8px rgba(139,92,246,0.5);">
+                        🧬 View Nuclear DNA Report
+                    </button>
+                </div>
+
+                <!-- DNA Report Modal -->
+                <div id="dna-report-modal"
+                    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 9999; overflow-y: auto;">
+                    <div
+                        style="max-width: 900px; margin: 2rem auto; padding: 2rem; background: var(--bg-surface); border: 2px solid rgba(139,92,246,0.4); border-radius: 8px; position: relative;">
+                        <button id="dna-report-close"
+                            style="position: sticky; top: 0; float: right; background: rgba(239,68,68,0.2); border: 1px solid var(--accent-red); color: var(--accent-red); font-family: 'VT323', monospace; font-size: 1rem; padding: 0.4rem 1rem; cursor: pointer; border-radius: 4px; z-index: 10;">✕
+                            Close</button>
+                        <div id="dna-report-content"
+                            style="color: var(--text-primary); line-height: 1.8; font-size: 0.95rem;">
+                            <div style="text-align: center; color: var(--text-secondary); padding: 2rem;">Loading DNA
+                                Report...</div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Bio Accordion: Supplements (default OPEN) -->
                 <div class="bio-accordion">
                     <div class="bio-accordion-header expanded" data-bio-panel="bio-supplements-body">
@@ -1967,6 +1991,103 @@
                 if (mrEditBtn) mrEditBtn.onclick = openEditor;
                 if (mrSaveBtn) mrSaveBtn.onclick = closeEditor;
             }
+
+            // DNA Report Modal
+            var dnaBtn = document.getElementById('dna-report-btn');
+            var dnaModal = document.getElementById('dna-report-modal');
+            var dnaClose = document.getElementById('dna-report-close');
+            var dnaContent = document.getElementById('dna-report-content');
+            var dnaLoaded = false;
+
+            if (dnaBtn && dnaModal) {
+                dnaBtn.onclick = function () {
+                    dnaModal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                    if (!dnaLoaded) {
+                        // Try fetching from GitHub Pages path
+                        var paths = ['../health/DNA_God_Mode_Report.md', 'https://raw.githubusercontent.com/priscillak91k-aigoon/Athena-Public/main/health/DNA_God_Mode_Report.md'];
+                        function tryFetch(idx) {
+                            if (idx >= paths.length) {
+                                dnaContent.innerHTML = '<div style="color:var(--accent-red);padding:2rem;text-align:center;">Could not load DNA report. Please view on the <a href="https://priscillak91k-aigoon.github.io/Athena-Public/routine-app/" style="color:var(--accent-blue);">live site</a>.</div>';
+                                return;
+                            }
+                            fetch(paths[idx]).then(function (r) {
+                                if (!r.ok) throw new Error('Not found');
+                                return r.text();
+                            }).then(function (md) {
+                                if (typeof marked !== 'undefined' && marked.parse) {
+                                    dnaContent.innerHTML = marked.parse(md);
+                                } else {
+                                    dnaContent.innerHTML = '<pre style="white-space:pre-wrap;font-family:VT323,monospace;font-size:0.9rem;">' + md + '</pre>';
+                                }
+                                dnaLoaded = true;
+                                // Style the rendered markdown
+                                dnaContent.querySelectorAll('h1,h2,h3').forEach(function (h) { h.style.color = '#a78bfa'; });
+                                dnaContent.querySelectorAll('strong').forEach(function (s) { s.style.color = 'var(--accent-yellow)'; });
+                            }).catch(function () { tryFetch(idx + 1); });
+                        }
+                        tryFetch(0);
+                    }
+                };
+            }
+            if (dnaClose && dnaModal) {
+                dnaClose.onclick = function () {
+                    dnaModal.style.display = 'none';
+                    document.body.style.overflow = '';
+                };
+                // Also close on clicking backdrop
+                dnaModal.onclick = function (e) {
+                    if (e.target === dnaModal) {
+                        dnaModal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }
+                };
+            }
+
+            // Bio accordion toggle fallback (in case main JS doesn't run)
+            document.querySelectorAll('.bio-accordion-header').forEach(function (header) {
+                if (!header.onclick) {
+                    header.onclick = function () {
+                        var panelId = header.getAttribute('data-bio-panel');
+                        if (!panelId) return;
+                        var body = document.getElementById(panelId);
+                        var toggle = header.querySelector('.bio-toggle');
+                        if (!body) return;
+                        var isOpen = header.classList.contains('expanded');
+                        if (isOpen) {
+                            body.style.display = 'none';
+                            header.classList.remove('expanded');
+                            if (toggle) toggle.textContent = '\u25ba';
+                        } else {
+                            body.style.display = 'block';
+                            header.classList.add('expanded');
+                            if (toggle) toggle.textContent = '\u25bc';
+                        }
+                    };
+                }
+            });
+            // Same for supp timing sub-accordions
+            document.querySelectorAll('.supp-timing-header').forEach(function (header) {
+                if (!header.onclick) {
+                    header.onclick = function () {
+                        var bodyId = header.getAttribute('data-supp-body');
+                        if (!bodyId) return;
+                        var body = document.getElementById(bodyId);
+                        var toggle = header.querySelector('.supp-toggle');
+                        if (!body) return;
+                        var isOpen = header.classList.contains('expanded');
+                        if (isOpen) {
+                            body.style.display = 'none';
+                            header.classList.remove('expanded');
+                            if (toggle) toggle.textContent = '\u25ba';
+                        } else {
+                            body.style.display = 'block';
+                            header.classList.add('expanded');
+                            if (toggle) toggle.textContent = '\u25bc';
+                        }
+                    };
+                }
+            });
         })();
     </script>
 </body>
