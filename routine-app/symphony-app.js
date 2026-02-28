@@ -3482,7 +3482,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (savedPhoto && profileImg) profileImg.src = savedPhoto;
 
         if (photoWrapper && photoInput) {
-            photoWrapper.addEventListener('click', () => photoInput.click());
+            photoWrapper.addEventListener('click', (e) => {
+                if (e.target === photoInput) return; // don't re-trigger
+                photoInput.click();
+            });
+            photoInput.addEventListener('click', (e) => e.stopPropagation());
             photoInput.addEventListener('change', (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
