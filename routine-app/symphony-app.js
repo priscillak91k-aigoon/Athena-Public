@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Dynamic Date Header ---
+    const dateEl = document.getElementById('current-date');
+    if (dateEl) {
+        const updateDate = () => {
+            const now = new Date();
+            const dayName = now.toLocaleDateString('en-NZ', { weekday: 'long' });
+            const month = now.toLocaleDateString('en-NZ', { month: 'short' });
+            const day = now.getDate();
+            dateEl.textContent = `${dayName}, ${month} ${day}`;
+        };
+        updateDate();
+        setInterval(updateDate, 60000); // refresh every minute
+    }
+
     // --- Accordion Toggle via Event Delegation ---
     // Placed at the very top of DOMContentLoaded to ensure registration
     // even if subsequent initialization functions fail silently.
@@ -3481,12 +3495,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedPhoto = localStorage.getItem('symphony_quinny_photo');
         if (savedPhoto && profileImg) profileImg.src = savedPhoto;
 
-        if (photoWrapper && photoInput) {
-            photoWrapper.addEventListener('click', (e) => {
-                if (e.target === photoInput) return; // don't re-trigger
-                photoInput.click();
-            });
-            photoInput.addEventListener('click', (e) => e.stopPropagation());
+        if (photoInput) {
             photoInput.addEventListener('change', (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
@@ -3540,10 +3549,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (bdaySave) {
             bdaySave.addEventListener('click', () => {
+                const val = bdayInput ? bdayInput.value : '';
+                if (!val) {
+                    alert('Please select a date first.');
+                    return;
+                }
                 const data = getData();
-                data.birthday = bdayInput.value;
+                data.birthday = val;
                 saveData(data);
                 updateAge();
+                // Visual feedback
+                const origText = bdaySave.innerText;
+                bdaySave.innerText = '✅ Saved!';
+                bdaySave.style.color = 'var(--accent-green)';
+                setTimeout(() => { bdaySave.innerText = origText; bdaySave.style.color = ''; }, 1500);
                 if (typeof playRetroClick === 'function') playRetroClick();
             });
         }
