@@ -159,8 +159,11 @@ I am currently taking the following, all based on the genetic + blood analysis a
 | Blood Sugar Babe (myo-inositol) | 4g | TCF7L2 diabetes risk |
 | Phloe (Zyactinase) | 2 caps | Gut integrity, CRP |
 | Magnesium Glycinate | 400mg elemental | SIRT1 circadian, BDNF sleep |
+| Creatine Monohydrate | 10g (split AM/PM) | Neuroprotection, muscle recovery, cognitive support |
 
 > ⚠️ **Prescribing Note**: My CYP3A4 T/C means I am a **rapid metaboliser** of many drugs including statins. Standard doses may be insufficient. CYP1A2 A/C means caffeine clears very slowly (10+ hour half-life).
+
+> ⚠️ **Creatine & Blood Tests**: I supplement **10g creatine monohydrate daily**. This will **elevate serum creatinine** on blood tests — this is a known supplement effect, *not* indicative of kidney dysfunction. If kidney function markers (eGFR, creatinine) appear abnormal, please consider this before ordering further investigation. Cystatin C is a more accurate kidney function marker for creatine users.
 
 ---
 ---
