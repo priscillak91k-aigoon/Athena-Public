@@ -3485,40 +3485,63 @@ document.addEventListener('DOMContentLoaded', () => {
             return `<span style="color: var(--accent-green);">✅ Due ${formatDate(iso)}</span>`;
         }
 
-        // Birthday
         // Photo upload
-        const photoWrapper = document.getElementById('quinny-photo-wrapper');
         const photoInput = document.getElementById('quinny-photo-upload');
         const profileImg = document.getElementById('quinny-profile-img');
 
         // Restore saved photo on load
-        const savedPhoto = localStorage.getItem('symphony_quinny_photo');
-        if (savedPhoto && profileImg) profileImg.src = savedPhoto;
+        try {
+            const savedPhoto = localStorage.getItem('symphony_quinny_photo');
+            if (savedPhoto && profileImg) profileImg.src = savedPhoto;
+        } catch (e) { console.warn('Failed to restore Quinny photo:', e); }
 
-        if (photoInput) {
-            photoInput.addEventListener('change', (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (evt) => {
-                    // Resize to save localStorage space
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const MAX = 300;
-                        let w = img.width, h = img.height;
-                        if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
-                        else { w = Math.round(w * MAX / h); h = MAX; }
-                        canvas.width = w; canvas.height = h;
-                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                        const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
-                        profileImg.src = dataUrl;
-                        localStorage.setItem('symphony_quinny_photo', dataUrl);
-                        if (typeof playRetroSuccess === 'function') playRetroSuccess();
+        if (photoInput && profileImg) {
+            photoInput.addEventListener('change', function (e) {
+                try {
+                    const file = e.target.files[0];
+                    if (!file) return;
+                    console.log('[Quinny] Photo selected:', file.name, file.size, 'bytes');
+                    const reader = new FileReader();
+                    reader.onload = function (evt) {
+                        try {
+                            const dataUrl = evt.target.result;
+                            profileImg.src = dataUrl;
+                            // Check size — localStorage has ~5MB limit
+                            if (dataUrl.length > 4000000) {
+                                // Too big, resize via canvas
+                                const img = new Image();
+                                img.onload = function () {
+                                    const canvas = document.createElement('canvas');
+                                    const MAX = 300;
+                                    let w = img.width, h = img.height;
+                                    if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
+                                    else { w = Math.round(w * MAX / h); h = MAX; }
+                                    canvas.width = w; canvas.height = h;
+                                    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                                    const smallUrl = canvas.toDataURL('image/jpeg', 0.7);
+                                    localStorage.setItem('symphony_quinny_photo', smallUrl);
+                                    profileImg.src = smallUrl;
+                                    console.log('[Quinny] Photo saved (resized)');
+                                };
+                                img.src = dataUrl;
+                            } else {
+                                localStorage.setItem('symphony_quinny_photo', dataUrl);
+                                console.log('[Quinny] Photo saved directly');
+                            }
+                            if (typeof playRetroSuccess === 'function') playRetroSuccess();
+                        } catch (err) {
+                            console.error('[Quinny] Photo processing error:', err);
+                            alert('Photo save failed: ' + err.message);
+                        }
                     };
-                    img.src = evt.target.result;
-                };
-                reader.readAsDataURL(file);
+                    reader.onerror = function () {
+                        console.error('[Quinny] FileReader error');
+                        alert('Could not read the file. Try a different image.');
+                    };
+                    reader.readAsDataURL(file);
+                } catch (err) {
+                    console.error('[Quinny] Photo change handler error:', err);
+                }
             });
         }
 
@@ -3548,8 +3571,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (bdaySave) {
-            bdaySave.addEventListener('click', () => {
+            bdaySave.onclick = function () {
+                console.log('[Quinny] Birthday save clicked');
                 const val = bdayInput ? bdayInput.value : '';
+                console.log('[Quinny] Birthday value:', val);
                 if (!val) {
                     alert('Please select a date first.');
                     return;
@@ -3557,14 +3582,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = getData();
                 data.birthday = val;
                 saveData(data);
+                console.log('[Quinny] Birthday saved:', JSON.stringify(data));
                 updateAge();
                 // Visual feedback
-                const origText = bdaySave.innerText;
                 bdaySave.innerText = '✅ Saved!';
-                bdaySave.style.color = 'var(--accent-green)';
-                setTimeout(() => { bdaySave.innerText = origText; bdaySave.style.color = ''; }, 1500);
+                bdaySave.style.background = 'rgba(52,211,153,0.4)';
+                setTimeout(function () { bdaySave.innerText = 'Save'; bdaySave.style.background = ''; }, 1500);
                 if (typeof playRetroClick === 'function') playRetroClick();
-            });
+            };
+        } else {
+            console.warn('[Quinny] Birthday save button NOT FOUND');
         }
         updateAge();
 
