@@ -3472,6 +3472,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Birthday
+        // Photo upload
+        const photoWrapper = document.getElementById('quinny-photo-wrapper');
+        const photoInput = document.getElementById('quinny-photo-upload');
+        const profileImg = document.getElementById('quinny-profile-img');
+
+        // Restore saved photo on load
+        const savedPhoto = localStorage.getItem('symphony_quinny_photo');
+        if (savedPhoto && profileImg) profileImg.src = savedPhoto;
+
+        if (photoWrapper && photoInput) {
+            photoWrapper.addEventListener('click', () => photoInput.click());
+            photoInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (evt) => {
+                    // Resize to save localStorage space
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const MAX = 300;
+                        let w = img.width, h = img.height;
+                        if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
+                        else { w = Math.round(w * MAX / h); h = MAX; }
+                        canvas.width = w; canvas.height = h;
+                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                        const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+                        profileImg.src = dataUrl;
+                        localStorage.setItem('symphony_quinny_photo', dataUrl);
+                        if (typeof playRetroSuccess === 'function') playRetroSuccess();
+                    };
+                    img.src = evt.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Birthday
         const bdayInput = document.getElementById('quinny-birthday-input');
         const bdaySave = document.getElementById('quinny-birthday-save');
         const ageDisplay = document.getElementById('quinny-age');
