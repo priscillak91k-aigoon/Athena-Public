@@ -74,6 +74,32 @@
                         attention.</p>
                 </div>
 
+                <!-- Morning Briefing -->
+                <div class="glass-panel"
+                    style="padding: 1.25rem; margin-bottom: 1.5rem; border-color: rgba(251,191,36,0.4); background: linear-gradient(135deg, rgba(251,191,36,0.08) 0%, rgba(239,68,68,0.04) 100%);">
+                    <h3 style="margin: 0 0 0.5rem 0; color: var(--accent-yellow); font-size: 1.1rem;">
+                        🌅 Read First Thing Every Morning
+                    </h3>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.75rem;">Your daily
+                        intentions, reminders, and mindset anchors. This is the first thing you see.</p>
+                    <div id="morning-read-display"
+                        style="font-size: 0.9rem; color: var(--text-primary); line-height: 1.7; white-space: pre-wrap; min-height: 2rem; padding: 0.75rem; background: rgba(0,0,0,0.2); border: 1px solid rgba(251,191,36,0.15); border-radius: 3px; cursor: pointer;"
+                        title="Click to edit">
+                        Click here to write your morning intentions...
+                    </div>
+                    <textarea id="morning-read-editor"
+                        style="display: none; width: 100%; min-height: 120px; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 2px solid var(--accent-yellow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem; line-height: 1.6; resize: vertical; border-radius: 3px;"
+                        placeholder="Write what you need to remember every morning...&#10;&#10;Examples:&#10;• Today I choose discipline over motivation&#10;• Take NAC 30 min before breakfast&#10;• Quinny's walk = MY Zone 2 cardio&#10;• No caffeine after 10 AM (CYP1A2 slow)&#10;• Stretch before sitting at desk"></textarea>
+                    <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.5rem;">
+                        <button id="morning-read-edit-btn"
+                            style="padding: 0.3rem 0.8rem; background: rgba(251,191,36,0.15); border: 1px solid rgba(251,191,36,0.3); color: var(--accent-yellow); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 3px;">✏️
+                            Edit</button>
+                        <button id="morning-read-save-btn"
+                            style="display: none; padding: 0.3rem 0.8rem; background: rgba(52,211,153,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 3px;">💾
+                            Save</button>
+                    </div>
+                </div>
+
                 <!-- Pulse Grid -->
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
 

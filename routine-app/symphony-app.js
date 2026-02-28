@@ -4433,6 +4433,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- Morning Read (Read First Thing Every Morning) ---
+    (function initMorningRead() {
+        const MORNING_KEY = 'symphony_morning_read';
+        const display = document.getElementById('morning-read-display');
+        const editor = document.getElementById('morning-read-editor');
+        const editBtn = document.getElementById('morning-read-edit-btn');
+        const saveBtn = document.getElementById('morning-read-save-btn');
+        if (!display || !editor) return;
+
+        // Load saved text
+        const saved = localStorage.getItem(MORNING_KEY);
+        if (saved) display.innerText = saved;
+
+        function showEditor() {
+            editor.value = localStorage.getItem(MORNING_KEY) || '';
+            display.style.display = 'none';
+            editor.style.display = 'block';
+            editBtn.style.display = 'none';
+            saveBtn.style.display = 'inline-block';
+            editor.focus();
+        }
+
+        function saveAndClose() {
+            const text = editor.value.trim();
+            if (text) {
+                localStorage.setItem(MORNING_KEY, text);
+                display.innerText = text;
+            } else {
+                localStorage.removeItem(MORNING_KEY);
+                display.innerText = 'Click here to write your morning intentions...';
+            }
+            editor.style.display = 'none';
+            display.style.display = 'block';
+            saveBtn.style.display = 'none';
+            editBtn.style.display = 'inline-block';
+            if (typeof playRetroSuccess === 'function') playRetroSuccess();
+        }
+
+        display.addEventListener('click', showEditor);
+        editBtn.addEventListener('click', showEditor);
+        saveBtn.addEventListener('click', saveAndClose);
+    })();
+
     // Run Pulse after a short delay so other modules populate first
     setTimeout(initPulse, 1500);
 
