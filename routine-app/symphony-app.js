@@ -190,44 +190,55 @@ document.addEventListener('DOMContentLoaded', () => {
             window.updateBudgetSummary();
         }
 
-        // Initialize/Update Pie Chart
-        const ctx = document.getElementById('financePieChart').getContext('2d');
-        if (window.financeChartInstance) {
-            window.financeChartInstance.destroy();
+        // Refresh Pulse financial snapshot
+        if (typeof window.refreshPulse === 'function') {
+            window.refreshPulse();
         }
 
-        window.financeChartInstance = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Net Pay', 'PAYE & ACC', 'Student Loan', 'KiwiSaver (3%)'],
-                datasets: [{
-                    data: [result.netWeekly, result.weeklyPayeAndAcc, result.weeklyStudentLoan, result.weeklyKiwiSaver],
-                    backgroundColor: [
-                        'rgba(52, 211, 153, 0.8)', // Green (Net)
-                        'rgba(239, 68, 68, 0.8)',  // Red (Tax)
-                        'rgba(245, 158, 11, 0.8)', // Orange (SL)
-                        'rgba(56, 189, 248, 0.8)'  // Blue (KS)
-                    ],
-                    borderColor: 'rgba(15, 23, 42, 1)',
-                    borderWidth: 2,
-                    hoverOffset: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'right',
-                        labels: {
-                            color: '#94a3b8',
-                            font: { size: 11 }
-                        }
+        // Initialize/Update Pie Chart (guarded — Chart.js may not be loaded from file:// protocol)
+        try {
+            if (typeof Chart !== 'undefined') {
+                const ctx = document.getElementById('financePieChart').getContext('2d');
+                if (window.financeChartInstance) {
+                    window.financeChartInstance.destroy();
+                }
+
+                window.financeChartInstance = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Net Pay', 'PAYE & ACC', 'Student Loan', 'KiwiSaver (3%)'],
+                        datasets: [{
+                            data: [result.netWeekly, result.weeklyPayeAndAcc, result.weeklyStudentLoan, result.weeklyKiwiSaver],
+                            backgroundColor: [
+                                'rgba(52, 211, 153, 0.8)', // Green (Net)
+                                'rgba(239, 68, 68, 0.8)',  // Red (Tax)
+                                'rgba(245, 158, 11, 0.8)', // Orange (SL)
+                                'rgba(56, 189, 248, 0.8)'  // Blue (KS)
+                            ],
+                            borderColor: 'rgba(15, 23, 42, 1)',
+                            borderWidth: 2,
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                                labels: {
+                                    color: '#94a3b8',
+                                    font: { size: 11 }
+                                }
+                            }
+                        },
+                        cutout: '65%'
                     }
-                },
-                cutout: '65%'
+                });
             }
-        });
+        } catch (chartErr) {
+            console.warn('Finance chart unavailable:', chartErr.message);
+        }
     }
 
     calculateFinance();
@@ -983,101 +994,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    function setupDragAndDropZones() {
-        const dropZones = document.querySelectorAll('.drop-zone');
-
-        dropZones.forEach(zone => {
-            zone.addEventListener('dragover', e => {
-                e.preventDefault(); // allow dropping
-                zone.classList.add('drag-over');
-            });
-
-            zone.addEventListener('dragleave', () => {
-                zone.classList.remove('drag-over');
-            });
-
-            zone.addEventListener('drop', e => {
-                e.preventDefault();
-                zone.classList.remove('drag-over');
-
-                const draggingEl = document.querySelector('.dragging');
-                if (draggingEl && draggedTaskObj) {
-                    // Visually move the element
-                    zone.appendChild(draggingEl);
-
-                    // Update the local object state to match the new zone
-                    draggedTaskObj.time_target = zone.dataset.time;
-                }
-            });
-        });
-
-        // Setup the "Lock In Schedule" Button
-        const lockBtn = document.getElementById('lock-in-btn');
-        if (lockBtn) {
-            lockBtn.addEventListener('click', lockInSchedule);
-        }
-    }
-
-    async function lockInSchedule() {
-        const lockBtn = document.getElementById('lock-in-btn');
-        const originalText = lockBtn.innerText;
-        lockBtn.innerText = "⏳ Syncing...";
-        lockBtn.style.opacity = '0.7';
-        lockBtn.style.pointerEvents = 'none';
-
-        try {
-            // Create a payload of all tasks and their current `time_target` from the local array
-            const updates = dynamicTasks.map(t => ({
-                id: t.id,
-                time_target: t.time_target
-            }));
-
-            // Supabase REST Bulk Upsert often fails if we don't pass the complete row data to satisfy NOT NULL constraints
-            // (even with merge-duplicates) because it evaluates the insert payload first.
-            // Using a Promise.all of individual PATCH requests is safest since we're only updating 5-10 items max.
-
-            const patchPromises = updates.map(update => {
-                return fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?id=eq.${update.id}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
-                    },
-                    body: JSON.stringify({ time_target: update.time_target })
-                });
-            });
-
-            const responses = await Promise.all(patchPromises);
-
-            // Check if any failed
-            const allOk = responses.every(r => r.ok);
-
-            if (allOk) {
-                lockBtn.innerText = "✅ Locked In";
-                lockBtn.style.background = "var(--glass-bg)";
-                lockBtn.style.color = "var(--accent-green)";
-                setTimeout(() => {
-                    lockBtn.innerText = originalText;
-                    lockBtn.style.background = "var(--accent-green)";
-                    lockBtn.style.color = "#000";
-                    lockBtn.style.opacity = '1';
-                    lockBtn.style.pointerEvents = 'auto';
-                }, 3000);
-            } else {
-                console.error("Failed to commit schedule bulk update:", await response.text());
-                lockBtn.innerText = "❌ Sync Failed";
-            }
-        } catch (error) {
-            console.error("Network error locking in schedule:", error);
-            lockBtn.innerText = "❌ Network Error";
-        }
-    }
 
     // Populate Lists
     const createListItems = (items, containerId) => {
         const container = document.getElementById(containerId);
+        if (!container) return; // Guard: container may not exist in HTML
         container.innerHTML = '';
 
         // Load list state
@@ -1543,27 +1464,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Doughnut chart
         const canvas = document.getElementById('foodMacroChart');
-        if (canvas && totals.protein + totals.carbs + totals.fats > 0) {
-            const ctx = canvas.getContext('2d');
-            if (window.foodChartInstance) window.foodChartInstance.destroy();
-            window.foodChartInstance = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Protein', 'Carbs', 'Fats'],
-                    datasets: [{
-                        data: [Math.round(totals.protein), Math.round(totals.carbs), Math.round(totals.fats)],
-                        backgroundColor: ['rgba(56,189,248,0.8)', 'rgba(251,191,36,0.8)', 'rgba(239,68,68,0.8)'],
-                        borderColor: 'rgba(15,23,42,1)',
-                        borderWidth: 2,
-                        hoverOffset: 4
-                    }]
-                },
-                options: {
-                    responsive: true, maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    cutout: '65%'
-                }
-            });
+        if (canvas && typeof Chart !== 'undefined' && totals.protein + totals.carbs + totals.fats > 0) {
+            try {
+                const ctx = canvas.getContext('2d');
+                if (window.foodChartInstance) window.foodChartInstance.destroy();
+                window.foodChartInstance = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Protein', 'Carbs', 'Fats'],
+                        datasets: [{
+                            data: [Math.round(totals.protein), Math.round(totals.carbs), Math.round(totals.fats)],
+                            backgroundColor: ['rgba(56,189,248,0.8)', 'rgba(251,191,36,0.8)', 'rgba(239,68,68,0.8)'],
+                            borderColor: 'rgba(15,23,42,1)',
+                            borderWidth: 2,
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        cutout: '65%'
+                    }
+                });
+            } catch (e) { console.warn('Food chart unavailable:', e.message); }
         }
 
         // Food log list
@@ -1677,7 +1600,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderGradeChart(days = 14) {
         const history = getFoodHistory();
         const canvas = document.getElementById('gradeHistoryChart');
-        if (!canvas) return;
+        if (!canvas || typeof Chart === 'undefined') return;
         const ctx = canvas.getContext('2d');
 
         // Get last N days
@@ -1750,7 +1673,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderMacroHistoryChart() {
         const history = getFoodHistory();
         const canvas = document.getElementById('macroHistoryChart');
-        if (!canvas) return;
+        if (!canvas || typeof Chart === 'undefined') return;
         const ctx = canvas.getContext('2d');
 
         const sorted = history.sort((a, b) => new Date(a.date) - new Date(b.date)).slice(-30);
@@ -4276,7 +4199,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const canvas = document.getElementById('budgetPieChart');
-            if (canvas && (essentialTotal + flexibleTotal + Math.max(0, disposable)) > 0) {
+            if (canvas && typeof Chart !== 'undefined' && (essentialTotal + flexibleTotal + Math.max(0, disposable)) > 0) {
                 const ctx = canvas.getContext('2d');
                 if (window.budgetChartInstance) window.budgetChartInstance.destroy();
                 window.budgetChartInstance = new Chart(ctx, {
@@ -4454,22 +4377,26 @@ document.addEventListener('DOMContentLoaded', () => {
             pulseMedical.innerHTML = '<div>No medical flags loaded.</div>';
         }
 
-        // 5. Financial Snapshot
+        // 5. Financial Snapshot — use computed values directly, not DOM text
         try {
-            const netPay = document.getElementById('finance-net-pay');
-            const gross = document.getElementById('finance-gross');
-            const hours = document.getElementById('finance-hours');
-            if (netPay && gross && hours) {
+            const netWeekly = window.currentNetWeekly || 0;
+            const hoursVal = document.getElementById('input-hours');
+            const hours = hoursVal ? (parseFloat(hoursVal.value) || 28.5) : 28.5;
+            const hourlyRate = 24.00;
+            const grossWeekly = hourlyRate * hours;
+            const formatCurrency = (num) => '$' + num.toFixed(2);
+
+            if (netWeekly > 0) {
                 pulseFinance.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: baseline;">
                         <span>Est. Weekly Net:</span>
-                        <span style="font-size: 1.5rem; font-weight: 700; color: var(--accent-green);">${netPay.innerText}</span>
+                        <span style="font-size: 1.5rem; font-weight: 700; color: var(--accent-green);">${formatCurrency(netWeekly)}</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; margin-top: 0.25rem;">
-                        <span>Gross:</span><span>${gross.innerText}</span>
+                        <span>Gross:</span><span>${formatCurrency(grossWeekly)}</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; margin-top: 0.25rem;">
-                        <span>Hours:</span><span>${hours.innerText}</span>
+                        <span>Hours:</span><span>${hours} hrs</span>
                     </div>`;
             } else {
                 pulseFinance.innerHTML = '<div>Open the Finances tab to calculate.</div>';
@@ -4522,8 +4449,10 @@ document.addEventListener('DOMContentLoaded', () => {
         saveBtn.addEventListener('click', saveAndClose);
     })();
 
-    // Run Pulse after a short delay so other modules populate first
-    setTimeout(initPulse, 1500);
+    // Run Pulse after a reasonable delay so async modules (calendar, logistics, supps) populate first.
+    // Also expose initPulse globally so other modules can trigger a refresh.
+    window.refreshPulse = initPulse;
+    setTimeout(initPulse, 3000);
 
     // --- Dynamic Task Config Lock In ---
     const lockInBtn = document.getElementById('lock-in-config-btn');
@@ -4543,8 +4472,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Logic shifted to top of file ---
-
-    // Trigger Supabase fetch
-    fetchSupabaseData();
+    // --- All init functions called above ---
 });
