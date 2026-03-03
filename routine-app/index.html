@@ -17,6 +17,115 @@
         <div class="blur-blob blob-2"></div>
     </div>
 
+    <!-- UI ERROR LOGGER (Injected first) -->
+    <div id="sys-error-overlay"
+        style="display: none; position: fixed; bottom: 20px; right: 20px; width: 400px; max-width: 90vw; background: #c0c0c0; border: 2px outset #ffffff; border-top: 2px outset #ffffff; border-left: 2px outset #ffffff; border-bottom: 2px inset #808080; border-right: 2px inset #808080; z-index: 99999; font-family: 'MS Sans Serif', 'VT323', monospace; color: #000; padding: 0;">
+        <div style="background: #000080; color: #fff; padding: 4px 8px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; cursor: pointer;"
+            onclick="document.getElementById('sys-error-overlay').style.display = 'none';">
+            <span>⚠️ System Diagnostic Logger</span>
+            <span
+                style="background: #c0c0c0; color: #000; border: 1px outset #fff; padding: 0 4px; font-size: 10px;">X</span>
+        </div>
+        <div id="sys-error-content"
+            style="padding: 8px; font-size: 0.9rem; max-height: 250px; overflow-y: auto; background: #fff; border: 2px inset #808080; margin: 4px;">
+            <i>Waiting for events...</i>
+        </div>
+        <div style="padding: 4px; display: flex; gap: 4px;">
+            <button onclick="clearErrorLog()"
+                style="flex: 1; padding: 2px; background: #c0c0c0; border: 2px outset #fff; font-family: 'VT323', monospace;">Clear</button>
+            <button onclick="downloadErrorLog()"
+                style="flex: 1; padding: 2px; background: #c0c0c0; border: 2px outset #fff; font-family: 'VT323', monospace;">Export</button>
+        </div>
+    </div>
+
+    <!-- MAIN ERROR SCRIPT -->
+    <script>
+        const ERROR_LOG_KEY = 'sys_error_events';
+        window._sysErrors = [];
+
+        function getSavedErrors() {
+            try { return JSON.parse(localStorage.getItem(ERROR_LOG_KEY)) || []; }
+            catch (e) { return []; }
+        }
+
+        function saveError(type, msg, source, line) {
+            const errors = getSavedErrors();
+            const timestamp = new Date().toISOString();
+            const errObj = { timestamp, type, msg, source, line };
+            errors.unshift(errObj); // Add to beginning
+            if (errors.length > 50) errors.pop(); // Keep last 50
+            try { localStorage.setItem(ERROR_LOG_KEY, JSON.stringify(errors)); } catch (e) { }
+            updateOverlay(errObj);
+        }
+
+        function updateOverlay(errStr) {
+            const overlay = document.getElementById('sys-error-overlay');
+            const content = document.getElementById('sys-error-content');
+            overlay.style.display = 'block';
+            let formatted = `[${new Date(errStr.timestamp).toLocaleTimeString()}] <b>${errStr.type}</b>:<br>${errStr.msg}`;
+            if (errStr.source) formatted += `<br><small>${errStr.source}:${errStr.line || '?'}</small>`;
+
+            const div = document.createElement('div');
+            div.style.borderBottom = "1px solid #ccc";
+            div.style.marginBottom = "4px";
+            div.style.paddingBottom = "4px";
+            div.innerHTML = formatted;
+
+            if (content.innerHTML.includes('Waiting for events')) {
+                content.innerHTML = '';
+            }
+            content.insertBefore(div, content.firstChild);
+        }
+
+        function clearErrorLog() {
+            localStorage.removeItem(ERROR_LOG_KEY);
+            document.getElementById('sys-error-content').innerHTML = '<i>Waiting for events...</i>';
+            document.getElementById('sys-error-overlay').style.display = 'none';
+        }
+
+        function downloadErrorLog() {
+            const errors = getSavedErrors();
+            const blob = new Blob([JSON.stringify(errors, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `sys_errors_${new Date().getTime()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // 1. Uncaught Exceptions (e.g. ReferenceError)
+        window.onerror = function (msg, url, lineNo, columnNo, error) {
+            saveError('UNCAUGHT', msg, url, lineNo);
+            return false;
+        };
+
+        // 2. Unhandled Promise Rejections (e.g. failed fetch not caught)
+        window.addEventListener('unhandledrejection', function (event) {
+            saveError('PROMISE', event.reason?.message || event.reason, '', '');
+        });
+
+        // 3. Intercept console.error to show in the logger as well
+        const originalConsoleError = console.error;
+        console.error = function (...args) {
+            const msg = args.map(a => typeof a === 'object' ? JSON.stringify(a) : a).join(' ');
+            saveError('CONSOLE', msg, 'symphony-app.js', '');
+            originalConsoleError.apply(console, args);
+        };
+
+        // Load existing errors on boot
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = getSavedErrors();
+            if (saved.length > 0 && confirm('Previous system errors detected in memory. Show trace logger?')) {
+                const overlay = document.getElementById('sys-error-overlay');
+                const content = document.getElementById('sys-error-content');
+                content.innerHTML = '';
+                saved.slice(0, 5).forEach(err => updateOverlay(err)); // Show top 5
+                overlay.style.display = 'block';
+            }
+        });
+    </script>
+
     <!-- Lock Screen -->
     <div id="lock-screen" class="glass-panel lock-container">
         <h2><span class="icon">🔒</span> The Life Hub Access</h2>
@@ -134,6 +243,13 @@
                         <h3 style="margin: 0 0 0.75rem 0; color: var(--accent-red); font-size: 1rem;">
                             💊 Supp Alerts
                         </h3>
+
+                        <!-- Daily Protocol Tracker -->
+                        <div id="pulse-supps-daily"
+                            style="font-size: 0.95rem; font-weight: bold; margin-bottom: 0.5rem; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 0.5rem; color: var(--text-primary);">
+                            Loading Daily Status...
+                        </div>
+
                         <div id="pulse-supps"
                             style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
                             Loading...
@@ -1111,6 +1227,21 @@
                         <div class="workout-rules" style="font-size: 0.85rem; margin-bottom: 1rem;">
                             <strong>⚠️ Critical:</strong> NAC — no Selenium blends (TSH borderline low).
                             Vit D load = 30,000IU/day — get 25(OH)D test at 8 weeks. ~16-18 total caps/day.
+                        </div>
+
+                        <!-- Supplement Date Navigator -->
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 0.5rem; border: 1px solid var(--glass-border); border-radius: 4px; margin-bottom: 1rem;">
+                            <button id="supp-date-prev"
+                                style="background: #c0c0c0; border: 2px outset var(--win-highlight); cursor: pointer; padding: 2px 12px; font-family: 'VT323', monospace; font-weight: bold; color: #000;">◄
+                                Prev Day</button>
+                            <div id="supp-date-display"
+                                style="font-weight: bold; font-size: 1.1rem; color: var(--accent-blue); font-family: 'VT323', monospace; letter-spacing: 1px;">
+                                Today
+                            </div>
+                            <button id="supp-date-next"
+                                style="background: #c0c0c0; border: 2px outset var(--win-highlight); cursor: pointer; padding: 2px 12px; font-family: 'VT323', monospace; font-weight: bold; color: #000;"
+                                disabled>Next Day ►</button>
                         </div>
 
                         <!-- Supplement Timing Sub-Accordions -->

@@ -13,6 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(updateDate, 60000); // refresh every minute
     }
 
+    // --- Supplement History State ---
+    window.bioTrackingDate = new Date();
+
+    function getLocalDateString(dateObj) {
+        const year = dateObj.getFullYear();
+        const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+        const day = String(dateObj.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
     // --- Accordion Toggle via Event Delegation ---
     // Placed at the very top of DOMContentLoaded to ensure registration
     // even if subsequent initialization functions fail silently.
@@ -243,18 +253,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     calculateFinance();
 
+    // Set up finance input listeners
     const hoursInput = document.getElementById('input-hours');
     if (hoursInput) {
-        hoursInput.addEventListener('input', calculateFinance);
+        // Load on boot
+        const savedHours = localStorage.getItem('symphony_finance_hours');
+        if (savedHours) hoursInput.value = savedHours;
+
+        hoursInput.addEventListener('input', () => {
+            localStorage.setItem('symphony_finance_hours', hoursInput.value);
+            calculateFinance();
+        });
     }
 
     const holidayInput = document.getElementById('input-holiday');
     if (holidayInput) {
+        // Load on boot
+        const savedHoliday = localStorage.getItem('symphony_finance_holiday') === 'true';
+        if (savedHoliday) holidayInput.classList.add('checked');
+
         holidayInput.addEventListener('click', () => {
             holidayInput.classList.toggle('checked');
+            localStorage.setItem('symphony_finance_holiday', holidayInput.classList.contains('checked'));
             calculateFinance();
         });
     }
+
+    // Initial calculation
+    calculateFinance();
 
     unlockBtn.addEventListener('click', () => {
         if (passwordInput.value === CORRECT_PASSWORD) {
@@ -1001,8 +1027,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!container) return; // Guard: container may not exist in HTML
         container.innerHTML = '';
 
+        // Determine storage key (inject date if it's a supplement list)
+        let storageKey = 'symphony_list_state_' + containerId;
+        const isSuppList = containerId.startsWith('supp-');
+        if (isSuppList) {
+            storageKey = `symphony_list_state_${getLocalDateString(window.bioTrackingDate)}_${containerId}`;
+
+            // Migration logic: If today, move old legacy data to the new dated structure to prevent data loss
+            const legacyKey = 'symphony_list_state_' + containerId;
+            const legacyData = localStorage.getItem(legacyKey);
+            if (legacyData && getLocalDateString(window.bioTrackingDate) === getLocalDateString(new Date())) {
+                localStorage.setItem(storageKey, legacyData);
+                localStorage.removeItem(legacyKey);
+                console.log(`Migrated legacy supp data to ${storageKey}`);
+            }
+        }
+
         // Load list state
-        const savedListState = JSON.parse(localStorage.getItem('symphony_list_state_' + containerId) || '{}');
+        const savedListState = JSON.parse(localStorage.getItem(storageKey) || '{}');
 
         items.forEach((itemObj, index) => {
             // Handle both simple strings and objects with points/sync data
@@ -1033,17 +1075,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Save state
                 savedListState[index] = isNowChecked;
-                localStorage.setItem('symphony_list_state_' + containerId, JSON.stringify(savedListState));
+                localStorage.setItem(storageKey, JSON.stringify(savedListState));
 
                 if (containerId === 'daily-list') updatePoints();
 
                 // Trigger Supplement Sync if newly checked
+                // History note: This deliberately triggers even for past days, enabling retro-logging
                 if (!wasChecked && isNowChecked && window.triggerSuppSync) {
                     const syncName = this.getAttribute('data-supp-sync');
                     const syncDose = parseInt(this.getAttribute('data-supp-dose')) || 1;
                     if (syncName) {
                         window.triggerSuppSync(syncName, syncDose);
                     }
+                }
+
+                // Refresh Pulse UI if applicable
+                if (typeof window.refreshPulse === 'function') {
+                    window.refreshPulse();
                 }
             });
 
@@ -2515,35 +2563,84 @@ document.addEventListener('DOMContentLoaded', () => {
     createListItems(dogTrainingTasks, 'dog-training-list');
 
     // Create supplement tasks (now moved exclusively to the Bio tab)
-    // We pass extra properties for Supps Vault syncing
-    // AM — Empty Stomach (30 min before food)
-    const supplementsAM_Empty = [
-        { text: "☀️ Solgar NAC 600mg × 2 caps (1200mg) — Empty stomach, 30 min before breakfast", points: 2, suppSync: "NAC", suppDose: 2 }
-    ];
-    createListItems(supplementsAM_Empty, 'supp-am-empty-body');
+    // Wrap in a function to allow re-rendering when the date changes
+    function renderSupplements() {
+        // Update the date display
+        const dateDisplay = document.getElementById('supp-date-display');
+        const nextBtn = document.getElementById('supp-date-next');
 
-    // AM — With Breakfast
-    const supplementsAM_Food = [
-        { text: "🧬 Doctor's Best Vitamin K2 MK-7 × 2 caps (200mcg) — With food (fat-soluble)", points: 2, suppSync: "Vitamin K2", suppDose: 2 },
-        { text: "🐟 Go Healthy Fish Oil + D3 10,000IU × 1 cap — With food", points: 1, suppSync: "Fish Oil", suppDose: 1 },
-        { text: "🧠 Natroceutics Activated B-Complex + L-Theanine × 1 cap — With breakfast", points: 1, suppSync: "B-Complex", suppDose: 1 },
-        { text: "🔥 Sanderson Turmeric 28,000+ × 2 caps — With food (needs fat)", points: 2, suppSync: "Turmeric", suppDose: 2 },
-        { text: "🩸 Even Blood Sugar Babe × 2 caps — With biggest carb meal", points: 2, suppSync: "Blood Sugar Babe", suppDose: 2 },
-        { text: "💊 Phloe Bowel & Gut Health × 2 caps — Before breakfast", points: 1, suppSync: "Phloe", suppDose: 2 }
-    ];
-    createListItems(supplementsAM_Food, 'supp-am-food-body');
+        if (dateDisplay) {
+            const todayStr = getLocalDateString(new Date());
+            const activeStr = getLocalDateString(window.bioTrackingDate);
 
-    // PM — With Dinner
-    const supplementsPM_Dinner = [
-        { text: "🐟 Go Healthy Fish Oil + D3 × 2 caps — With dinner (Attia split protocol)", points: 2, suppSync: "Fish Oil", suppDose: 2 }
-    ];
-    createListItems(supplementsPM_Dinner, 'supp-pm-dinner-body');
+            if (todayStr === activeStr) {
+                dateDisplay.textContent = "Today";
+                if (nextBtn) nextBtn.disabled = true;
+            } else {
+                const dayName = window.bioTrackingDate.toLocaleDateString('en-NZ', { weekday: 'short' });
+                const monthName = window.bioTrackingDate.toLocaleDateString('en-NZ', { month: 'short' });
+                const dayNum = window.bioTrackingDate.getDate();
+                dateDisplay.textContent = `${dayName}, ${dayNum} ${monthName}`;
+                if (nextBtn) nextBtn.disabled = false;
+            }
+        }
 
-    // PM — Before Bed
-    const supplementsPM = [
-        { text: "🌙 Swisse Magnesium Glycinate × 3 caps (450mg elemental) — 30-60 min before bed", points: 2, suppSync: "Magnesium Glycinate", suppDose: 3 }
-    ];
-    createListItems(supplementsPM, 'supp-pm-bed-body');
+        // AM — Empty Stomach (30 min before food)
+        const supplementsAM_Empty = [
+            { text: "☀️ Solgar NAC 600mg × 2 caps (1200mg) — Empty stomach, 30 min before breakfast", points: 2, suppSync: "NAC", suppDose: 2 }
+        ];
+        createListItems(supplementsAM_Empty, 'supp-am-empty-body');
+
+        // AM — With Breakfast
+        const supplementsAM_Food = [
+            { text: "🧬 Doctor's Best Vitamin K2 MK-7 × 2 caps (200mcg) — With food (fat-soluble)", points: 2, suppSync: "Vitamin K2", suppDose: 2 },
+            { text: "🐟 Go Healthy Fish Oil + D3 10,000IU × 1 cap — With food", points: 1, suppSync: "Fish Oil", suppDose: 1 },
+            { text: "🧠 Natroceutics Activated B-Complex + L-Theanine × 1 cap — With breakfast", points: 1, suppSync: "B-Complex", suppDose: 1 },
+            { text: "🔥 Sanderson Turmeric 28,000+ × 2 caps — With food (needs fat)", points: 2, suppSync: "Turmeric", suppDose: 2 },
+            { text: "🩸 Even Blood Sugar Babe × 2 caps — With biggest carb meal", points: 2, suppSync: "Blood Sugar Babe", suppDose: 2 },
+            { text: "💊 Phloe Bowel & Gut Health × 2 caps — Before breakfast", points: 1, suppSync: "Phloe", suppDose: 2 }
+        ];
+        createListItems(supplementsAM_Food, 'supp-am-food-body');
+
+        // PM — With Dinner
+        const supplementsPM_Dinner = [
+            { text: "🐟 Go Healthy Fish Oil + D3 × 2 caps — With dinner (Attia split protocol)", points: 2, suppSync: "Fish Oil", suppDose: 2 }
+        ];
+        createListItems(supplementsPM_Dinner, 'supp-pm-dinner-body');
+
+        // PM — Before Bed
+        const supplementsPM = [
+            { text: "🌙 Swisse Magnesium Glycinate × 3 caps (450mg elemental) — 30-60 min before bed", points: 2, suppSync: "Magnesium Glycinate", suppDose: 3 }
+        ];
+        createListItems(supplementsPM, 'supp-pm-bed-body');
+
+        if (typeof window.refreshPulse === 'function') window.refreshPulse();
+    }
+
+    // Attach listeners to navigation buttons
+    const prevBtn = document.getElementById('supp-date-prev');
+    const nextBtn = document.getElementById('supp-date-next');
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            window.bioTrackingDate.setDate(window.bioTrackingDate.getDate() - 1);
+            renderSupplements();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const todayStr = getLocalDateString(new Date());
+            const activeStr = getLocalDateString(window.bioTrackingDate);
+            if (todayStr !== activeStr) {
+                window.bioTrackingDate.setDate(window.bioTrackingDate.getDate() + 1);
+                renderSupplements();
+            }
+        });
+    }
+
+    // Initial Render
+    renderSupplements();
 
     // Create Reminders (Mental Load)
     const activeReminders = [
@@ -4340,7 +4437,48 @@ document.addEventListener('DOMContentLoaded', () => {
             pulseLogistics.innerHTML = '<div>Could not load logistics.</div>';
         }
 
-        // 3. Low Stock Supplements
+        // 3. Daily Supplements Progress
+        try {
+            const dailyPulseSupps = document.getElementById('pulse-supps-daily');
+            if (dailyPulseSupps) {
+                const todayStr = getLocalDateString(new Date());
+                const keys = [
+                    `symphony_list_state_${todayStr}_supp-am-empty-body`,
+                    `symphony_list_state_${todayStr}_supp-am-food-body`,
+                    `symphony_list_state_${todayStr}_supp-pm-dinner-body`,
+                    `symphony_list_state_${todayStr}_supp-pm-bed-body`
+                ];
+
+                // Hardcoded supplement counts for each bucket based on the arrays in `renderSupplements`
+                const expectedCounts = [1, 6, 1, 1];
+                let totalSupps = 0;
+                let completedSupps = 0;
+
+                keys.forEach((key, index) => {
+                    totalSupps += expectedCounts[index];
+                    const state = JSON.parse(localStorage.getItem(key) || '{}');
+                    // state is an object: { "0": true, "1": false, ... }
+                    completedSupps += Object.values(state).filter(val => val === true).length;
+                });
+
+                const pct = totalSupps > 0 ? Math.round((completedSupps / totalSupps) * 100) : 0;
+                let statusColor = 'var(--accent-red)';
+                if (pct === 100) statusColor = 'var(--accent-green)';
+                else if (pct >= 50) statusColor = 'var(--accent-yellow)';
+
+                dailyPulseSupps.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <span>Protocol Adherence:</span>
+                        <span style="color: ${statusColor};">${completedSupps}/${totalSupps} (${pct}%)</span>
+                    </div>
+                `;
+            }
+        } catch (e) {
+            const dailyPulseSupps = document.getElementById('pulse-supps-daily');
+            if (dailyPulseSupps) dailyPulseSupps.innerHTML = '<div>Could not load daily supp status.</div>';
+        }
+
+        // 4. Low Stock Supplements
         try {
             const suppLocal = localStorage.getItem('symphony_supp_inventory_local');
             const supps = suppLocal ? JSON.parse(suppLocal) : [];
@@ -4427,6 +4565,12 @@ document.addEventListener('DOMContentLoaded', () => {
             saveBtn.style.display = 'inline-block';
             editor.focus();
         }
+
+        // Live auto-save to prevent data loss if crash occurs before clicking 'Save'
+        editor.addEventListener('input', () => {
+            localStorage.setItem(MORNING_KEY, editor.value);
+            display.innerText = editor.value || 'Click here to write your morning intentions...';
+        });
 
         function saveAndClose() {
             const text = editor.value.trim();
