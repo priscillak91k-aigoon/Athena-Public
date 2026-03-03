@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Munro Caravan Move — Logistics Plan</title>
+    <title>Munro Caravan Move — Final Logistics Plan</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
@@ -28,16 +28,13 @@
                 background: #fff;
                 color: #1e293b;
                 padding: 1rem;
+                font-size: 11pt;
             }
 
-            .badge {
-                background: #f1f5f9 !important;
-                color: #1e293b !important;
+            .badge,
+            .section {
+                background: #fafafa !important;
                 border: 1px solid #cbd5e1 !important;
-            }
-
-            table {
-                border-color: #cbd5e1 !important;
             }
 
             th {
@@ -45,14 +42,10 @@
                 color: #1e293b !important;
             }
 
-            td {
+            td,
+            th {
                 border-color: #e2e8f0 !important;
                 color: #1e293b !important;
-            }
-
-            .section {
-                border-color: #e2e8f0 !important;
-                background: #fafafa !important;
             }
 
             .phone-script {
@@ -71,6 +64,12 @@
                 color: #92400e !important;
             }
 
+            .note {
+                background: #eff6ff !important;
+                border-color: #3b82f6 !important;
+                color: #1e40af !important;
+            }
+
             .green {
                 color: #16a34a !important;
             }
@@ -83,6 +82,10 @@
             h2,
             h3 {
                 color: #0f172a !important;
+            }
+
+            .no-print {
+                display: none !important;
             }
         }
 
@@ -139,16 +142,10 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        tr:last-child td {
+        .total-row td {
             font-weight: 700;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 2px 10px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            font-size: 1rem;
+            border-top: 2px solid rgba(56, 189, 248, 0.3);
         }
 
         .green {
@@ -167,6 +164,16 @@
             margin: 1rem 0;
             font-size: 0.9rem;
             color: #fbbf24;
+        }
+
+        .note {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #93c5fd;
         }
 
         .phone-script {
@@ -204,9 +211,16 @@
             padding-left: 0;
         }
 
+        .checklist li {
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
         .checklist li::before {
-            content: "☐ ";
-            font-size: 1.1rem;
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 1rem;
         }
 
         .tip {
@@ -220,17 +234,87 @@
             border-top: 1px dashed rgba(255, 255, 255, 0.15);
             margin: 2rem 0;
         }
+
+        .diagram {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            white-space: pre;
+            overflow-x: auto;
+            color: #94a3b8;
+        }
     </style>
 </head>
 
 <body>
 
     <h1>🚐 1977 Munro Caravan Move</h1>
-    <p class="subtitle">Logistics Plan — Budget: $400 | Dunedin, NZ</p>
+    <p class="subtitle">Final Logistics Plan — Dunedin, NZ | Revised with SJ's corrections</p>
+
+    <!-- STRATEGY OVERVIEW -->
+    <h2>🧠 Strategy Overview</h2>
+    <div class="section">
+        <table>
+            <tr>
+                <th>Element</th>
+                <th>Requirement</th>
+                <th>Sheets</th>
+            </tr>
+            <tr>
+                <td><strong>Caravan runway</strong></td>
+                <td>Smooth movement, minimal stop-starts</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td><strong>Quad runway</strong></td>
+                <td>Quad needs its own track (can't drive on bare soggy ground)</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td><strong>Jockey wheel (during move)</strong></td>
+                <td>Stays UP. Only comes down for micro-positioning once in place</td>
+                <td>0</td>
+            </tr>
+            <tr class="total-row">
+                <td><strong>TOTAL SHEETS</strong></td>
+                <td></td>
+                <td class="green"><strong>6</strong></td>
+            </tr>
+        </table>
+        <p class="tip"><strong>Crew:</strong> 4 people ideal — 1 on Quad, 1 guiding caravan, 2 leapfrogging plywood
+            sheets. One smooth, continuous movement.</p>
+    </div>
+
+    <!-- VISUAL DIAGRAM -->
+    <h2>🗺️ Formation Diagram</h2>
+    <div class="diagram">
+        DIRECTION OF TRAVEL ──────────────►
+
+        ┌─────────────┐ ┌─────────────┐
+        │ QUAD PLY 1 │ │ QUAD PLY 2 │ ← Person leapfrogs these
+        │ (1.2m wide)│ │ (1.2m wide)│
+        └──────┬──────┘ └─────────────┘
+        │
+        [QUAD]═══════TOW BAR═══════[CARAVAN]
+        │ │
+        ┌──────┴──────┐ ┌──────────────┐│ ┌─────────────┐ ┌─────────────┐
+        │ (grass gap)│ │ CARAVAN ││ │ CARAVAN │ │ CARAVAN │
+        │ │ │ PLY 1 ││ │ PLY 2 │ │ PLY 3→4 │
+        └─────────────┘ │ (under ││ │ (ahead, │ │ leapfrog │
+        │ wheels) ││ │ next step) │ └────────────┘
+        └─────────────┘│ └──────────────┘
+        │
+        Jockey wheel UP ↑</div>
 
     <!-- BUDGET -->
-    <h2>💰 Budget Breakdown ($400 Cap)</h2>
+    <h2>💰 Shopping List — Lowest Cost</h2>
     <div class="section">
+        <h3>From ITM Dunedin (03 455 0220)</h3>
         <table>
             <tr>
                 <th>Item</th>
@@ -239,13 +323,13 @@
                 <th>Total</th>
             </tr>
             <tr>
-                <td>15mm CD Structural Ply (2400×1200)</td>
-                <td>3</td>
+                <td>15mm CD Structural Ply 2400×1200 (untreated)</td>
+                <td>6</td>
                 <td>~$96</td>
-                <td>$289</td>
+                <td>$578</td>
             </tr>
             <tr>
-                <td>4×2 Timber Offcut (~1.2m)</td>
+                <td>4×2 Timber offcut ~1.2m (jockey wheel pad)</td>
                 <td>1</td>
                 <td>~$12</td>
                 <td>$12</td>
@@ -253,132 +337,205 @@
             <tr>
                 <td>Delivery (Dunedin metro)</td>
                 <td>1</td>
-                <td>~$50–80</td>
+                <td>~$50-80</td>
                 <td>~$65</td>
             </tr>
-            <tr>
-                <td><strong>ESTIMATED TOTAL</strong></td>
+            <tr class="total-row">
+                <td><strong>SUBTOTAL (Move Day)</strong></td>
                 <td></td>
                 <td></td>
-                <td class="green"><strong>~$366</strong></td>
+                <td><strong>~$655</strong></td>
             </tr>
         </table>
-        <p class="tip">~$34 spare for contingencies. If 15mm is out of stock, 17mm is ~$4 more/sheet ($12 extra total —
-            still under $400).</p>
+
+        <h3>Permanent Parking Pads (Bunnings South Dunedin)</h3>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Unit</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>Concrete paver 400×400mm (under each tyre)</td>
+                <td>2</td>
+                <td>~$5</td>
+                <td>$10</td>
+            </tr>
+            <tr>
+                <td>Concrete paver 400×400mm (under corner steadies)</td>
+                <td>4</td>
+                <td>~$5</td>
+                <td>$20</td>
+            </tr>
+            <tr class="total-row">
+                <td><strong>SUBTOTAL (Permanent Pads)</strong></td>
+                <td></td>
+                <td></td>
+                <td><strong>~$30</strong></td>
+            </tr>
+        </table>
+
+        <table>
+            <tr class="total-row">
+                <td colspan="3"><strong>GRAND TOTAL</strong></td>
+                <td class="green" style="font-size:1.2rem;"><strong>~$685</strong></td>
+            </tr>
+        </table>
+
+        <div class="note">
+            💡 <strong>Why 15mm not 17mm?</strong> Munro is sub-900kg. Each tyre carries ~225kg. 15mm structural CD is
+            rated for this and saves ~$4/sheet ($24 total). If ITM is out of 15mm, 17mm is ~$100/sheet ($24 extra, still
+            fine).
+        </div>
     </div>
 
-    <!-- SUPPLIER -->
-    <h2>📞 Supplier: ITM Dunedin</h2>
+    <!-- PHONE SCRIPT -->
+    <h2>📞 Phone Script — ITM Dunedin</h2>
     <div class="section">
-        <p><strong>Phone:</strong> 03 455 0220</p>
-        <p><strong>Backup:</strong> PlaceMakers Dunedin — 03 466 4409 ($96 flat delivery, slightly higher total)</p>
+        <p><strong>Number:</strong> 03 455 0220</p>
+        <p><strong>Backup:</strong> PlaceMakers — 03 466 4409 (flat $96 delivery)</p>
 
-        <h3>Phone Script</h3>
         <div class="phone-script">
-            <p>"Hi, I'm after a few sheets of plywood for delivery please."</p>
-            <p>"I need <strong>3 sheets of 15mm CD Structural Ply, untreated, 2400 by 1200</strong>."</p>
-            <p>"And also just <strong>one length of 4-by-2, about 1.2 metres</strong> — can be an offcut, doesn't need
-                to be treated."</p>
-            <p>"What's the price per sheet on the ply?"</p>
-            <p><strong>(Write it down)</strong></p>
-            <p>"And what's delivery to <strong>[YOUR NEW ADDRESS]</strong>?"</p>
-            <p><strong>(Write it down)</strong></p>
-            <p>"Sweet. I don't have an exact date yet — can I lock in the order and confirm the delivery day later?"</p>
-            <p>"Cheers, thanks heaps."</p>
+            <p>"Hi, I'm after some plywood for delivery please."</p>
+            <p>"I need <strong>6 sheets of 15mm CD Structural Ply, untreated, 2400 by 1200</strong>."</p>
+            <p>"And <strong>one length of 4-by-2, about 1.2 metres</strong> — can be an offcut, doesn't need to be
+                treated."</p>
+            <p>"What's the per-sheet price on the ply?"</p>
+            <p><strong>✍️ Write it down: $______ × 6 = $______</strong></p>
+            <p>"And delivery to <strong>[YOUR NEW ADDRESS]</strong>?"</p>
+            <p><strong>✍️ Write it down: Delivery = $______</strong></p>
+            <p>"Sweet. I don't have an exact date yet — can I lock the order and confirm the delivery day later?"</p>
+            <p>"Cheers."</p>
         </div>
 
         <div class="warn">
-            ⚠️ <strong>If total exceeds $400:</strong> Drop to 2 sheets + timber (~$205 + delivery). Works if the run to
-            the canopy spot is under 5m (2 sheets = 4.8m runway end-to-end).
+            ⚠️ If 15mm is out of stock → ask for <strong>17mm CD Structural</strong> (~$4 more/sheet).<br>
+            ⚠️ If delivery is over $80 → ask <em>"Do you have a flat-rate option?"</em> or try PlaceMakers ($96 flat).
         </div>
     </div>
 
     <hr>
 
-    <!-- PLYWOOD STRATEGY -->
-    <h2>🪵 Plywood Specs (Validated)</h2>
+    <!-- MOVE-DAY EXECUTION -->
+    <h2>📋 Move-Day Execution Checklist</h2>
     <div class="section">
-        <p><strong>15mm CD Structural Ply</strong> — untreated is fine (temporary use, not permanent).</p>
-        <ul>
-            <li><strong>Why 15mm, not 17mm?</strong> — The Munro is sub-900kg. Each tyre carries ~225kg max. 15mm
-                structural CD is rated for this. Saves ~$4/sheet and is lighter to manhandle.</li>
-            <li><strong>Why structural, not reject?</strong> — Reject/seconds grade has internal voids and delamination
-                risk. Under concentrated tyre point-loads on soggy ground, one bad spot = the sheet snaps and the wheel
-                punches through into mud. <span class="red">Not worth saving $30/sheet.</span></li>
-            <li><strong>Why not 12mm?</strong> — Would flex under load and let mud swallow the edges.</li>
-        </ul>
-    </div>
-
-    <!-- 3-SHEET METHOD -->
-    <h2>🔁 The 3-Sheet Leapfrog Method</h2>
-    <div class="section">
-        <ol>
-            <li><strong>Sheet 1 &amp; 2:</strong> Lay under the Munro's wheels (one per wheel track, or side-by-side if
-                access is narrow)</li>
-            <li><strong>Sheet 3:</strong> Place ahead of the van as the "next step"</li>
-            <li>Quad tows the Munro forward onto Sheet 3</li>
-            <li>Grab Sheet 1 from behind → leap it to the front</li>
-            <li>Repeat until you reach the canopy spot</li>
-            <li><strong>Final position:</strong> Slide the 4×2 timber under the jockey wheel as a permanent pad</li>
-        </ol>
-        <p class="tip"><strong>Jockey wheel trick:</strong> Don't waste a full sheet on it. Let the jockey wheel ride on
-            the edge of whichever sheet the left tyre is on.</p>
-        <p class="tip"><strong>If the run is under ~7m:</strong> Lay all 3 sheets end-to-end (3 × 2.4m = 7.2m) — no
-            leapfrogging needed at all.</p>
-    </div>
-
-    <!-- MOVE-DAY PLAN -->
-    <h2>📋 Move-Day Execution</h2>
-    <div class="section">
+        <h3>🌅 Pre-Move (Morning — aim for 7-8 AM)</h3>
         <ul class="checklist">
-            <li>Book delivery for <strong>morning of move day</strong> (7–8 AM while ground has overnight firmness)</li>
-            <li>Drop Munro tyre pressure to <strong>20–25 psi</strong> (increases footprint, grips the ply)</li>
-            <li>Lay the first 2 sheets under the Munro's wheels</li>
-            <li>Place Sheet 3 ahead, begin leapfrog</li>
-            <li>One person on the Quad, one person guiding jockey wheel + shuffling sheets</li>
-            <li>If Quad spins on ply — <strong>STOP</strong>. Reposition. Don't force it.</li>
-            <li><strong>DO NOT snatch-pull</strong> with a 4WD — 1970s steel drawbar will bend</li>
-            <li>Once in position, place 4×2 timber under jockey wheel</li>
-            <li>Re-inflate tyres to normal pressure</li>
-            <li>Stack ply sheets against fence (reusable)</li>
+            <li>Book delivery for <strong>morning of move day</strong> (ground is firmest before sun hits it)</li>
+            <li>Confirm 4 people available: 1 Quad driver, 1 caravan guide, 2 ply shufflers</li>
+            <li>Drop Munro tyre pressure to <strong>20–25 psi</strong> (increases footprint, grips ply)</li>
+            <li>Raise jockey wheel <strong>fully up and locked</strong></li>
+            <li>Pick up concrete pavers from Bunnings (can do day before)</li>
+        </ul>
+
+        <h3>� The Move</h3>
+        <ol>
+            <li><strong>Lay Track:</strong> Place 2 caravan sheets end-to-end under wheels (4.8m runway). Place 1 Quad
+                sheet alongside.</li>
+            <li><strong>Begin:</strong> Quad tows Munro forward onto the runway. Caravan guide walks alongside.</li>
+            <li><strong>Leapfrog (Caravan):</strong> As the Munro rolls forward, ply shufflers grab the rear caravan
+                sheet → run it to the front → lay it down.</li>
+            <li><strong>Leapfrog (Quad):</strong> Same technique — grab rear Quad sheet → place ahead of Quad.</li>
+            <li><strong>Repeat</strong> until the Munro reaches the canopy spot.</li>
+            <li><strong>If Quad spins on ply → STOP.</strong> Reposition. Don't force it.</li>
+        </ol>
+
+        <div class="warn">
+            ⚠️ <strong>DO NOT</strong> snatch-pull the Munro with a 4WD — 1970s steel drawbar will bend.
+        </div>
+
+        <h3>🏁 Final Positioning</h3>
+        <ol>
+            <li>Once Munro is within ~1m of final spot, <strong>lower jockey wheel</strong>.</li>
+            <li>Disconnect from Quad. Use jockey wheel for micro-adjustments by hand.</li>
+            <li>Place <strong>concrete pavers</strong> under each tyre (×2) and each corner steady (×4).</li>
+            <li>Place <strong>4×2 timber + ply scrap</strong> under jockey wheel as permanent pad.</li>
+            <li>Re-inflate tyres to normal pressure.</li>
+            <li>Deploy corner steadies onto pavers. Level the caravan.</li>
+            <li>Chock wheels.</li>
+        </ol>
+
+        <h3>🧹 Post-Move</h3>
+        <ul class="checklist">
+            <li>Stack plywood sheets and lean against fence — reusable for future projects</li>
+            <li>Check nothing sunk or shifted after 24 hours</li>
         </ul>
     </div>
 
-    <!-- CONTACTS -->
-    <h2>📱 Key Contacts</h2>
+    <!-- PERMANENT PARKING -->
+    <h2>🧱 Permanent Parking Setup</h2>
+    <div class="section">
+        <p>To prevent the Munro sinking and going off-balance over winter:</p>
+        <table>
+            <tr>
+                <th>Contact Point</th>
+                <th>What Goes Under It</th>
+                <th>Why</th>
+            </tr>
+            <tr>
+                <td><strong>Each tyre</strong> (×2)</td>
+                <td>400×400mm concrete paver</td>
+                <td>Distributes weight, stops mud swallow</td>
+            </tr>
+            <tr>
+                <td><strong>Jockey wheel</strong></td>
+                <td>4×2 timber on ply scrap</td>
+                <td>Jockey wheel acts like a knife in soft ground</td>
+            </tr>
+            <tr>
+                <td><strong>Corner steadies</strong> (×4)</td>
+                <td>400×400mm concrete paver each</td>
+                <td>Prevents leg-sinking and tilt</td>
+            </tr>
+        </table>
+        <div class="note">
+            💡 <strong>Long-term tip:</strong> If you notice the Munro settling unevenly over months, jack one side and
+            add a second paver to shim it level.
+        </div>
+    </div>
+
+    <!-- SUPPLIER CONTACTS -->
+    <h2>📱 Supplier Contacts</h2>
     <div class="section">
         <table>
             <tr>
                 <th>Supplier</th>
                 <th>Phone</th>
-                <th>Notes</th>
+                <th>Product</th>
+                <th>~Price/Sheet</th>
             </tr>
             <tr>
-                <td>ITM Dunedin</td>
+                <td><strong>ITM Dunedin</strong> ⭐</td>
                 <td>03 455 0220</td>
-                <td>Cheapest structural ply + delivery</td>
+                <td>15mm CD Structural</td>
+                <td>~$96</td>
             </tr>
             <tr>
                 <td>PlaceMakers Dunedin</td>
                 <td>03 466 4409</td>
-                <td>$96 flat delivery, backup option</td>
+                <td>15mm CD Structural</td>
+                <td>~$96-100</td>
             </tr>
             <tr>
                 <td>Carters Dunedin</td>
                 <td>03 455 2400</td>
-                <td>Quote-only, good for bulk</td>
+                <td>Quote only</td>
+                <td>Quote</td>
             </tr>
             <tr>
-                <td>Bunnings South Dunedin</td>
+                <td>Bunnings Sth Dunedin</td>
                 <td>03 466 3220</td>
-                <td>Most expensive ($124/sheet) but no quote needed</td>
+                <td>17mm H3.2 (treated)</td>
+                <td>$124</td>
             </tr>
         </table>
+        <p class="tip">Bunnings South Dunedin for the concrete pavers — no phone call needed, just grab and go.</p>
     </div>
 
     <hr>
     <p style="text-align: center; color: #64748b; font-size: 0.8rem; margin-top: 1rem;">
-        Generated by Athena — March 2026
+        Generated by Athena — 3 March 2026 | Revised with SJ's corrections
     </p>
 
 </body>

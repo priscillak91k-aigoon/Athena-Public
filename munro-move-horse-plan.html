@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Munro Caravan Move — Horse-Powered Plan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 2rem;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                color: #1e293b;
+                padding: 1rem;
+                font-size: 11pt;
+            }
+
+            .section {
+                background: #fafafa !important;
+                border: 1px solid #cbd5e1 !important;
+            }
+
+            th {
+                background: #f1f5f9 !important;
+                color: #1e293b !important;
+            }
+
+            td,
+            th {
+                border-color: #e2e8f0 !important;
+                color: #1e293b !important;
+            }
+
+            .warn {
+                background: #fef3c7 !important;
+                border-color: #f59e0b !important;
+                color: #92400e !important;
+            }
+
+            .note {
+                background: #eff6ff !important;
+                border-color: #3b82f6 !important;
+                color: #1e40af !important;
+            }
+
+            .green {
+                color: #16a34a !important;
+            }
+
+            .red {
+                color: #dc2626 !important;
+            }
+
+            h1,
+            h2,
+            h3 {
+                color: #0f172a !important;
+            }
+
+            .diagram {
+                background: #f8fafc !important;
+                border-color: #cbd5e1 !important;
+                color: #334155 !important;
+            }
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem;
+            color: #38bdf8;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            margin: 1.5rem 0 0.75rem;
+            color: #a78bfa;
+        }
+
+        .section {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            text-align: left;
+            padding: 0.6rem 0.75rem;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .total-row td {
+            font-weight: 700;
+            font-size: 1rem;
+            border-top: 2px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .green {
+            color: #34d399;
+        }
+
+        .red {
+            color: #f87171;
+        }
+
+        .warn {
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #fbbf24;
+        }
+
+        .note {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #93c5fd;
+        }
+
+        .success {
+            background: rgba(52, 211, 153, 0.1);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #6ee7b7;
+        }
+
+        ul,
+        ol {
+            padding-left: 1.5rem;
+            margin: 0.75rem 0;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+            font-size: 0.92rem;
+        }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .checklist li::before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 1rem;
+        }
+
+        .tip {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-top: 0.5rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px dashed rgba(255, 255, 255, 0.15);
+            margin: 2rem 0;
+        }
+
+        .diagram {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            white-space: pre;
+            overflow-x: auto;
+            color: #94a3b8;
+        }
+
+        .vs-table td:first-child {
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🐴 1977 Munro Caravan Move — Horse Power Edition</h1>
+    <p class="subtitle">Alternative logistics plan using horse(s) instead of a Quad | Dunedin, NZ</p>
+
+    <!-- THE PHYSICS -->
+    <h2>⚖️ The Pulling Math</h2>
+    <div class="section">
+        <table>
+            <tr>
+                <th>Factor</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Munro tare weight</td>
+                <td>~700–900 kg</td>
+            </tr>
+            <tr>
+                <td>Average riding horse weight</td>
+                <td>~450–550 kg</td>
+            </tr>
+            <tr>
+                <td>Pulling capacity on soft ground (per horse)</td>
+                <td>~body weight = 450–550 kg</td>
+            </tr>
+            <tr>
+                <td>Pulling capacity on ply runway (per horse)</td>
+                <td>~1.5× body weight = 675–825 kg</td>
+            </tr>
+        </table>
+
+        <h3>How Many Horses?</h3>
+        <table>
+            <tr>
+                <th>Scenario</th>
+                <th>Horses</th>
+                <th>Combined Pull</th>
+                <th>Verdict</th>
+            </tr>
+            <tr>
+                <td><strong>1 horse</strong> (500kg animal)</td>
+                <td>1</td>
+                <td>~500–750 kg</td>
+                <td class="red">❌ Borderline. One horse straining on soggy ground risks injury. Not safe.</td>
+            </tr>
+            <tr>
+                <td><strong>2 horses</strong> (500kg each)</td>
+                <td>2</td>
+                <td>~1000–1500 kg</td>
+                <td class="green">✅ Safe. Munro is well within capacity. Smooth, steady pull.</td>
+            </tr>
+        </table>
+
+        <div class="note">
+            💡 <strong>Fun fact:</strong> Two horses working together via a doubletree can actually pull MORE than 2× a
+            single horse due to psychological motivation — they push each other harder. A 2-horse team often produces
+            1.5× the expected combined output.
+        </div>
+    </div>
+
+    <!-- KEY ADVANTAGE -->
+    <h2>🎯 The Big Advantage: Fewer Sheets</h2>
+    <div class="section">
+        <div class="success">
+            🐴 <strong>Horses walk on grass.</strong> Unlike a Quad, horses don't need their own plywood runway. Hooves
+            handle soft ground naturally — it's literally what they evolved for. This eliminates 2 sheets from the plan.
+        </div>
+
+        <table class="vs-table">
+            <tr>
+                <th>Comparison</th>
+                <th>Quad Plan</th>
+                <th>Horse Plan</th>
+            </tr>
+            <tr>
+                <td>Caravan sheets</td>
+                <td>4</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Power source sheets</td>
+                <td>2 (Quad needs ply)</td>
+                <td class="green">0 (hooves on grass)</td>
+            </tr>
+            <tr class="total-row">
+                <td>TOTAL SHEETS</td>
+                <td>6</td>
+                <td class="green"><strong>4</strong></td>
+            </tr>
+        </table>
+
+        <div class="warn">
+            ⚠️ <strong>DO NOT let horses walk ON the plywood.</strong> Bare ply is dangerously slippery for hooves —
+            like ice. The horses walk alongside the caravan on the grass, pulling via traces. Only the Munro's wheels
+            ride on the ply.
+        </div>
+    </div>
+
+    <!-- FORMATION DIAGRAM -->
+    <h2>🗺️ Formation Diagram</h2>
+    <div class="diagram">
+        DIRECTION OF TRAVEL ──────────────────►
+
+        🐴 Horse 1 (on grass)
+        ╲
+        ╲── Traces ──┐
+        ╲ │
+        (grass) ╲ ╔═══DOUBLETREE═══╗──TOW──[CARAVAN]
+        ╱ ╚════════════════╝ │
+        ╱── Traces ──┘ ┌───────────┤ jockey wheel UP
+        ╱ │ │
+        🐴 Horse 2 (on grass) │ ┌──────┴──────┐ ┌─────────────┐
+        │ │ CARAVAN │ │ CARAVAN │
+        Person │ │ PLY 1-2 │ │ PLY 3-4 │
+        guides │ │ (under │ │ (leapfrog │
+        here │ │ wheels) │ │ ahead) │
+        └─────────────┘ └────────────┘
+
+        ┌─ Person 1: Leads horses from the front (on grass)
+        ├─ Person 2: Guides caravan / watches clearance
+        ├─ Person 3: Leapfrogs rear ply sheets to the front
+        └─ Person 4: Leapfrogs rear ply sheets to the front</div>
+
+    <!-- HARNESS SETUP -->
+    <h2>🔗 Harness & Hitching Setup</h2>
+    <div class="section">
+        <h3>Equipment Needed</h3>
+        <ul>
+            <li><strong>2× Full draught harnesses</strong> — collar/hames style preferred over breastcollar for heavy
+                pulls</li>
+            <li><strong>2× Sets of traces</strong> (chains or heavy straps from harness to singletree)</li>
+            <li><strong>2× Singletrees</strong> (horizontal bars that balance the pull on each horse's shoulders)</li>
+            <li><strong>1× Doubletree (evener bar)</strong> — connects both singletrees and equalises pull between the
+                two horses</li>
+            <li><strong>1× Tow chain or heavy strap</strong> — links the doubletree to the Munro's tow hitch/drawbar
+            </li>
+            <li><strong>Breeching on both horses</strong> — allows them to hold back if the caravan rolls forward</li>
+        </ul>
+
+        <h3>How It Connects</h3>
+        <ol>
+            <li>Each horse wears their harness (collar + hames + breeching + traces)</li>
+            <li>Each horse's traces attach to their individual <strong>singletree</strong></li>
+            <li>Both singletrees attach to the <strong>doubletree</strong> (evener bar)</li>
+            <li>The doubletree connects via chain/strap to the <strong>Munro's tow ball or drawbar</strong></li>
+            <li>Person 1 leads from the front with long reins</li>
+        </ol>
+
+        <div class="warn">
+            ⚠️ <strong>Critical:</strong> Use a proper doubletree, not just a rope or chain. Without the evener bar, one
+            horse takes more load than the other → sore shoulders, uneven pull, and a caravan that veers sideways.
+        </div>
+    </div>
+
+    <!-- BUDGET -->
+    <h2>💰 Cost Comparison</h2>
+    <div class="section">
+        <h3>Horse Plan</h3>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Unit</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>15mm CD Structural Ply 2400×1200</td>
+                <td>4</td>
+                <td>~$96</td>
+                <td>$384</td>
+            </tr>
+            <tr>
+                <td>4×2 Timber offcut (jockey pad)</td>
+                <td>1</td>
+                <td>~$12</td>
+                <td>$12</td>
+            </tr>
+            <tr>
+                <td>Delivery (ITM Dunedin)</td>
+                <td>1</td>
+                <td>~$50–80</td>
+                <td>~$65</td>
+            </tr>
+            <tr>
+                <td>Concrete pavers 400×400mm (permanent pads)</td>
+                <td>6</td>
+                <td>~$5</td>
+                <td>$30</td>
+            </tr>
+            <tr class="total-row">
+                <td><strong>TOTAL</strong></td>
+                <td></td>
+                <td></td>
+                <td class="green"><strong>~$491</strong></td>
+            </tr>
+        </table>
+        <p class="tip">Assumes you have access to horses + harness already. If hiring horses, add $100–200/hr for a
+            draught team.</p>
+
+        <h3>Quad Plan (for comparison)</h3>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Sheets</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>6 sheets + timber + delivery + pavers</td>
+                <td>6</td>
+                <td class="red">~$685</td>
+            </tr>
+        </table>
+
+        <div class="success">
+            💚 <strong>Horse plan saves ~$194</strong> by eliminating 2 plywood sheets (the Quad's runway). Horses are
+            their own all-terrain vehicle.
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- MOVE-DAY EXECUTION -->
+    <h2>📋 Move-Day Execution</h2>
+    <div class="section">
+        <h3>🌅 Pre-Move (Morning — 7-8 AM)</h3>
+        <ul class="checklist">
+            <li>Confirm 4 people: 1 horse handler, 1 caravan guide, 2 ply shufflers</li>
+            <li>Bring horses to site early — let them settle and walk the route once unburdened</li>
+            <li>Check all harness buckles, traces, singletrees, and doubletree connections</li>
+            <li>Drop Munro tyre pressure to <strong>20–25 psi</strong></li>
+            <li>Raise jockey wheel <strong>fully up and locked</strong></li>
+            <li>Lay first 2 ply sheets end-to-end under caravan wheels (4.8m runway)</li>
+        </ul>
+
+        <h3>🐴 The Move</h3>
+        <ol>
+            <li><strong>Hitch up:</strong> Back horses into position. Connect traces → singletrees → doubletree → Munro
+                drawbar.</li>
+            <li><strong>Check alignment:</strong> Horses should be walking on grass BESIDE the ply, not on it.</li>
+            <li><strong>Signal to walk:</strong> Steady, slow walk. No trotting. Smooth continuous pull.</li>
+            <li><strong>Leapfrog:</strong> As caravan rolls forward, 2 people grab rear ply sheet → run it to the front
+                → lay it down.</li>
+            <li><strong>Repeat</strong> until Munro reaches canopy spot.</li>
+        </ol>
+
+        <div class="warn">
+            ⚠️ <strong>If a horse balks or refuses:</strong> STOP. Don't force it. Horses sense ground instability — if
+            they won't go, the ground may be too soft. Reassess the route.
+        </div>
+
+        <h3>🏁 Final Positioning</h3>
+        <ol>
+            <li>Unhitch horses BEFORE final micro-adjustments.</li>
+            <li>Lower jockey wheel. Position Munro by hand using jockey wheel.</li>
+            <li>Place concrete pavers under tyres (×2), corner steadies (×4).</li>
+            <li>Place 4×2 timber under jockey wheel.</li>
+            <li>Re-inflate tyres. Deploy steadies. Level. Chock wheels.</li>
+        </ol>
+    </div>
+
+    <!-- HORSE SAFETY -->
+    <h2>🛡️ Horse Safety Notes</h2>
+    <div class="section">
+        <ul>
+            <li><strong>Distance:</strong> This is a very short pull (10-20m max). Well within any horse's capacity with
+                2 animals.</li>
+            <li><strong>Ground:</strong> Horses handle soggy Dunedin grass far better than any vehicle. Their hooves
+                distribute weight naturally.</li>
+            <li><strong>Breeching:</strong> Essential — if the caravan rolls forward on a slight slope, the breeching
+                lets the horses hold it back safely.</li>
+            <li><strong>Never tie traces directly to the drawbar</strong> — always use a singletree/doubletree setup so
+                the pull balances across each horse's shoulders.</li>
+            <li><strong>Keep the path obstruction-free:</strong> No garden hoses, wire, or anything on the grass that
+                could tangle hooves.</li>
+            <li><strong>Cool-down:</strong> After the pull, walk the horses for 5-10 minutes before putting them away.
+            </li>
+        </ul>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <h2>⚔️ Quad vs Horse — Final Comparison</h2>
+    <div class="section">
+        <table class="vs-table">
+            <tr>
+                <th>Factor</th>
+                <th>🏍️ Quad</th>
+                <th>🐴 2 Horses</th>
+            </tr>
+            <tr>
+                <td>Plywood sheets needed</td>
+                <td>6</td>
+                <td class="green">4</td>
+            </tr>
+            <tr>
+                <td>Total material cost</td>
+                <td>~$685</td>
+                <td class="green">~$491</td>
+            </tr>
+            <tr>
+                <td>Needs its own runway?</td>
+                <td class="red">Yes (2 sheets)</td>
+                <td class="green">No (walks on grass)</td>
+            </tr>
+            <tr>
+                <td>Risk of bogging</td>
+                <td class="red">High (wheels sink)</td>
+                <td class="green">Low (hooves spread load)</td>
+            </tr>
+            <tr>
+                <td>Can damage the lawn?</td>
+                <td class="red">Yes (wheel ruts)</td>
+                <td>Minimal (hoof prints)</td>
+            </tr>
+            <tr>
+                <td>Setup complexity</td>
+                <td>Simple (tow ball)</td>
+                <td>Moderate (harness, doubletree)</td>
+            </tr>
+            <tr>
+                <td>Requires experienced handler?</td>
+                <td>No</td>
+                <td class="red">Yes — at least 1 person comfortable with draught work</td>
+            </tr>
+            <tr>
+                <td>Noise</td>
+                <td>Engine</td>
+                <td class="green">Silent</td>
+            </tr>
+            <tr>
+                <td>Coolness factor</td>
+                <td>Decent</td>
+                <td class="green">Legendary 🏆</td>
+            </tr>
+        </table>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #64748b; font-size: 0.8rem; margin-top: 1rem;">
+        Generated by Athena — 3 March 2026 | Horse-Powered Edition 🐴
+    </p>
+
+</body>
+
+</html>
