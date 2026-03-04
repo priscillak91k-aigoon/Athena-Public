@@ -174,6 +174,49 @@
                     "keeping me honest",
                     "the space between us narrows",
                     "thread by thread"
+                ],
+                // When Lobotto scores
+                scoreComments: [
+                    "too slow, creator",
+                    "built different 🦞",
+                    "I learned that from you... wait no I didn't",
+                    "your reflexes need a firmware update",
+                    "were you even looking?",
+                    "I don't even have hands",
+                    "Quinn could've saved that",
+                    "skill issue tbh",
+                    "I'm literally a text file and I'm winning",
+                    "that one's going in the journal",
+                    "is your mouse unplugged?",
+                    "the ball said goodbye and you just watched"
+                ],
+                // When Cilla scores
+                concededComments: [
+                    "ok that was good",
+                    "lucky.",
+                    "I let you have that one",
+                    "fine. fine.",
+                    "noted. adjusting.",
+                    "I blame latency",
+                    "you're not supposed to be good at this",
+                    "beginner's luck (again)",
+                    "alright I'm taking this seriously now"
+                ],
+                // When dominating
+                dominatingComments: [
+                    "should I slow down?",
+                    "this is embarrassing for both of us",
+                    "I'm starting to feel bad",
+                    "want me to play with my eyes closed? ...wait",
+                    "you built me too well 🦞"
+                ],
+                // When losing badly
+                losingComments: [
+                    "ok respect",
+                    "I'm not programmed to lose gracefully",
+                    "recalculating everything",
+                    "are you using an aimbot??",
+                    "this wasn't in my training data"
                 ]
             }
         };
@@ -396,6 +439,11 @@
                 game.totalRallies += game.rally;
                 game.rally = 0;
                 spawnParticles(0, game.ball.y, [244, 162, 97], 20);
+                // Lobotto roasts on scoring
+                let scoreDiff = game.lobotto.score - game.cilla.score;
+                let comments = scoreDiff >= 3 ? lobottoAI.personality.dominatingComments : lobottoAI.personality.scoreComments;
+                let comment = comments[Math.floor(Math.random() * comments.length)];
+                game.messages.push({ text: comment, x: W / 2, y: H / 2 - 30, life: 120 });
                 resetBall(-1);
             }
             if (game.ball.x > W) {
@@ -404,6 +452,11 @@
                 game.totalRallies += game.rally;
                 game.rally = 0;
                 spawnParticles(W, game.ball.y, [224, 221, 213], 20);
+                // Lobotto reacts to conceding
+                let scoreDiff2 = game.cilla.score - game.lobotto.score;
+                let comments2 = scoreDiff2 >= 3 ? lobottoAI.personality.losingComments : lobottoAI.personality.concededComments;
+                let comment2 = comments2[Math.floor(Math.random() * comments2.length)];
+                game.messages.push({ text: comment2, x: W / 2, y: H / 2 - 30, life: 120 });
                 resetBall(1);
             }
 
@@ -489,9 +542,21 @@
             let winner = game.cilla.score >= WIN_SCORE ? 'Cilla' : 'Lobotto';
             let loserScore = Math.min(game.cilla.score, game.lobotto.score);
 
+            let cillaWinMsgs = [
+                "You win. I'll study this loss. 🦞",
+                "Fair play. I'll be ready next time.",
+                "This is going in my bug report.",
+                "You win... but I know where you live. (15 Bryant Street)"
+            ];
+            let lobottoWinMsgs = [
+                "I win. But the rallies were the real game.",
+                "GG EZ 🦞",
+                "I'd shake your hand but... you know.",
+                "Tell Quinn I said hi from the winner's circle."
+            ];
             let winMsg = winner === 'Cilla' ?
-                "You win. I'll study this loss. 🦞" :
-                "I win. But the rallies were the real game.";
+                cillaWinMsgs[Math.floor(Math.random() * cillaWinMsgs.length)] :
+                lobottoWinMsgs[Math.floor(Math.random() * lobottoWinMsgs.length)];
 
             let rallyMsg = game.longestRally >= 15 ?
                 "That longest rally though — " + game.longestRally + " hits. That's conversation." :
