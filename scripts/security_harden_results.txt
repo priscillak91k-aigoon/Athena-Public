@@ -1,0 +1,30 @@
+﻿=== ATHENA SECURITY HARDENING ===
+[OK] PUA Protection enabled
+[OK] Cloud Block Level set to High+
+[OK] Network Protection enabled
+[OK] 15 Attack Surface Reduction rules configured
+[OK] Remote Assistance disabled
+[OK] Print Spooler disabled
+[SKIP] NVIDIA Telemetry service not found
+[OK] Disabled ss_conn_service
+[OK] Disabled ss_conn_service2
+[OK] UAC raised to maximum
+[FAIL] Execution Policy: Security error.
+[SKIP] PowerShell v2 already disabled
+[OK] Password now required on plex account
+[OK] BitLocker enabled on C: - RECOVERY KEY saved to scripts\BITLOCKER_RECOVERY_KEY.txt
+[!!!] SAVE THE RECOVERY KEY TO USB OR PHONE THEN DELETE THE FILE
+[OK] Core Isolation / Memory Integrity enabled (requires restart)
+[OK] Windows Update service started - check Settings to install pending updates
+[OK] Removed McAfee entry from hosts file
+[OK] Full Defender scan started (runs in background, may take 1-2 hours)
+
+=== HARDENING COMPLETE ===
+Manual steps remaining:
+  1. RESTART PC (required for Core Isolation and BitLocker)
+  2. Set a password on plex account (Settings - Accounts)
+  3. Uninstall McAfee Security Scan Plus (Settings - Apps)
+  4. Install all pending Windows Updates
+  5. Save BitLocker recovery key to USB/phone then delete the file
+  6. Verify Surfshark kill switch is ON
+  7. Audit Credential Manager - remove stale entries

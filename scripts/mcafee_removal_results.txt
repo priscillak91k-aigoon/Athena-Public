@@ -1,0 +1,15 @@
+﻿=== MCAFEE PURGE ===
+Found: McAfee Security Scan Plus
+  Uninstall string: "C:\Program Files (x86)\McAfee Security Scan\uninstall.exe"
+  [OK] Uninstall exit code: 0
+[OK] Removed folder: C:\ProgramData\McAfee
+[OK] Removed folder: C:\Users\prisc\AppData\Local\McAfee
+[OK] Removed folder: C:\Users\prisc\AppData\Roaming\McAfee
+[OK] Removed registry key: HKLM:\Software\WOW6432Node\McAfee
+
+=== VERIFICATION ===
+[CONFIRMED] McAfee not found in installed programs
+[CONFIRMED] No McAfee folders remain
+[CONFIRMED] No McAfee scheduled tasks remain
+
+=== MCAFEE PURGE COMPLETE ===

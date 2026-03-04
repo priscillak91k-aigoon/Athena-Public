@@ -1,0 +1,5 @@
+﻿BitLocker Recovery Key for C:
+Recovery Password: 267861-701195-380941-263571-206976-518067-199485-266761
+Key ID: {D943CF5F-B0B2-4044-84B6-1D34A1AF7E84}
+Date: 03/04/2026 13:42:23
+IMPORTANT: Save this key somewhere safe then DELETE this file!

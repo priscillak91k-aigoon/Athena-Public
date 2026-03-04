@@ -1,0 +1,526 @@
+﻿
+=== STARTUP PROGRAMS ===
+
+Name                        Command                                                                                    
+----                        -------                                                                                    
+OneDriveSetup               C:\Windows\System32\OneDriveSetup.exe /thfirstsetup                                        
+OneDriveSetup               C:\Windows\System32\OneDriveSetup.exe /thfirstsetup                                        
+OneDrive                    "C:\Users\prisc\AppData\Local\Microsoft\OneDrive\OneDrive.exe" /background                 
+Steam                       "C:\Program Files (x86)\Steam\steam.exe" -silent                                           
+Adobe Acrobat Synchronizer  "C:\Program Files\Adobe\Acrobat DC\Acrobat\AdobeCollabSync.exe"                            
+Discord                     "C:\Users\prisc\AppData\Local\Discord\Update.exe" --processStart Discord.exe               
+McAfee Security Scan Plus   C:\PROGRA~2\MCAFEE~1\426E41~1.790\SSSCHE~1.EXE                                             
+SecurityHealth              %windir%\system32\SecurityHealthSystray.exe                                                
+RtkAudUService              "C:\WINDOWS\System32\DriverStore\FileRepository\realtekservice.inf_amd64_26f0df01c9da165...
+Logitech Download Assistant C:\Windows\system32\rundll32.exe C:\Windows\System32\LogiLDA.dll,LogiFetch                 
+
+
+
+
+=== NON-MICROSOFT SCHEDULED TASKS ===
+
+TaskName                                                                       TaskPath                       State
+--------                                                                       --------                       -----
+Adobe Acrobat Update Task                                                      \                              Ready
+BraveSoftwareUpdateTaskMachineCore{4FD6B765-4BCC-4655-BBB3-63ED7ED768FD}       \                              Ready
+BraveSoftwareUpdateTaskMachineUA{5A31C4D6-95BA-4360-AFB4-2D7DF912CC5C}         \                              Ready
+McUpdaterModuleTask                                                            \                            Running
+MicrosoftEdgeUpdateTaskMachineCore                                             \                              Ready
+MicrosoftEdgeUpdateTaskMachineUA                                               \                              Ready
+MSI_GamebarConnect                                                             \                            Running
+MSI_GamebarTool                                                                \                            Running
+MSI_TraceFPS                                                                   \                            Running
+NVIDIA App SelfUpdate_{B2FE1952-0186-46C3-BAEC-A80AA35AC5B8}                   \                              Ready
+nWizard_{B2FE1952-0186-46C3-BAEC-A80AA35AC5B8}                                 \                              Ready
+OneDrive Reporting Task-S-1-5-21-3126550908-2810976114-2690961538-1002         \                              Ready
+OneDrive Reporting Task-S-1-5-21-3126550908-2810976114-2690961538-1003         \                              Ready
+OneDrive Standalone Update Task-S-1-5-21-3126550908-2810976114-2690961538-1002 \                              Ready
+OneDrive Standalone Update Task-S-1-5-21-3126550908-2810976114-2690961538-1003 \                              Ready
+OneDrive Standalone Update Task-S-1-5-21-3126550908-2810976114-2690961538-500  \                              Ready
+OneDrive Startup Task-S-1-5-21-3126550908-2810976114-2690961538-1002           \                              Ready
+OneDrive Startup Task-S-1-5-21-3126550908-2810976114-2690961538-1003           \                              Ready
+QNAPRAIDMgrAutoLaunch                                                          \                            Running
+SecurityScannerScheduler                                                       \                            Running
+GoogleUpdaterTaskSystem147.0.7703.0{1C9C8496-193B-421E-91A1-AB7FB7AB8694}      \GoogleSystem\GoogleUpdater\   Ready
+
+
+
+
+=== AUTO-START RUNNING SERVICES ===
+
+Name                           DisplayName                                                           StartName         
+----                           -----------                                                           ---------         
+AdobeARMservice                Adobe Acrobat Update Service                                          LocalSystem       
+AudioEndpointBuilder           Windows Audio Endpoint Builder                                        LocalSystem       
+Audiosrv                       Windows Audio                                                         NT AUTHORITY\Local
+                                                                                                     Service           
+BFE                            Base Filtering Engine                                                 NT AUTHORITY\Local
+                                                                                                     Service           
+BrokerInfrastructure           Background Tasks Infrastructure Service                               LocalSystem       
+camsvc                         Capability Access Manager Service                                     LocalSystem       
+CDPSvc                         Connected Devices Platform Service                                    NT AUTHORITY\Local
+                                                                                                     Service           
+CoreMessagingRegistrar         CoreMessaging                                                         NT AUTHORITY\Local
+                                                                                                     Service           
+cplspcon                       Intel(R) Content Protection HDCP Service                              LocalSystem       
+DcomLaunch                     DCOM Server Process Launcher                                          LocalSystem       
+DeviceInstall                  Device Install Service                                                LocalSystem       
+Dhcp                           DHCP Client                                                           NT Authority\Local
+                                                                                                     Service           
+DiagTrack                      Connected User Experiences and Telemetry                              LocalSystem       
+DispBrokerDesktopSvc           Display Policy Service                                                NT AUTHORITY\Local
+                                                                                                     Service           
+Dnscache                       DNS Client                                                            NT AUTHORITY\Netwo
+                                                                                                     rkService         
+DPS                            Diagnostic Policy Service                                             NT AUTHORITY\Local
+                                                                                                     Service           
+DusmSvc                        Data Usage                                                            NT Authority\Local
+                                                                                                     Service           
+EventLog                       Windows Event Log                                                     NT AUTHORITY\Local
+                                                                                                     Service           
+EventSystem                    COM+ Event System                                                     NT AUTHORITY\Local
+                                                                                                     Service           
+FontCache                      Windows Font Cache Service                                            NT AUTHORITY\Local
+                                                                                                     Service           
+GamingServices                 Gaming Services                                                       LocalSystem       
+GamingServicesNet              Gaming Services                                                       NT AUTHORITY\Local
+                                                                                                     Service           
+gpsvc                          Group Policy Client                                                   LocalSystem       
+igccservice                    Intel(R) Graphics Command Center Service                              LocalSystem       
+igfxCUIService2.0.0.0          Intel(R) HD Graphics Control Panel Service                            LocalSystem       
+InventorySvc                   Inventory and Compatibility Appraisal service                         LocalSystem       
+iphlpsvc                       IP Helper                                                             LocalSystem       
+jhi_service                    Intel(R) Dynamic Application Loader Host Interface Service            LocalSystem       
+LanmanServer                   Server                                                                LocalSystem       
+LanmanWorkstation              Workstation                                                           NT AUTHORITY\Netwo
+                                                                                                     rkService         
+LMS                            Intel(R) Management and Security Application Local Management Service LocalSystem       
+logi_lamparray_service         Logitech LampArray Service                                            LocalSystem       
+LSM                            Local Session Manager                                                 LocalSystem       
+MDCoreSvc                      MDCoreSvc                                                             LocalSystem       
+mpssvc                         Windows Defender Firewall                                             NT Authority\Local
+                                                                                                     Service           
+MSI_Center_Service             MSI Center Service                                                    LocalSystem       
+NbfcService                    NoteBook FanControl Service                                           LocalSystem       
+Netman                         Network Connections                                                   LocalSystem       
+netprofm                       Network List Service                                                  NT AUTHORITY\Netwo
+                                                                                                     rkService         
+NlaSvc                         Network Location Awareness                                            NT AUTHORITY\Netwo
+                                                                                                     rkService         
+nsi                            Network Store Interface Service                                       NT Authority\Local
+                                                                                                     Service           
+NvContainerLocalSystem         NVIDIA LocalSystem Container                                          LocalSystem       
+NVDisplay.ContainerLocalSystem NVIDIA Display Container LS                                           LocalSystem       
+NVWMI                          NVWMI                                                                 LocalSystem       
+PcaSvc                         Program Compatibility Assistant Service                               LocalSystem       
+PlexUpdateService              Plex Update Service                                                   LocalSystem       
+PlugPlay                       Plug and Play                                                         LocalSystem       
+Power                          Power                                                                 LocalSystem       
+ProfSvc                        User Profile Service                                                  LocalSystem       
+RpcEptMapper                   RPC Endpoint Mapper                                                   NT AUTHORITY\Netwo
+                                                                                                     rkService         
+RpcSs                          Remote Procedure Call (RPC)                                           NT AUTHORITY\Netwo
+                                                                                                     rkService         
+RtkAudioUniversalService       Realtek Audio Universal Service                                       LocalSystem       
+SamSs                          Security Accounts Manager                                             LocalSystem       
+Schedule                       Task Scheduler                                                        LocalSystem       
+SENS                           System Event Notification Service                                     LocalSystem       
+ShellHWDetection               Shell Hardware Detection                                              LocalSystem       
+Spooler                        Print Spooler                                                         LocalSystem       
+ss_conn_service                SAMSUNG Mobile Connectivity Service                                   LocalSystem       
+ss_conn_service2               SAMSUNG Mobile Connectivity Service V2                                LocalSystem       
+StateRepository                State Repository Service                                              LocalSystem       
+StiSvc                         Windows Image Acquisition (WIA)                                       NT Authority\Local
+                                                                                                     Service           
+StorSvc                        Storage Service                                                       LocalSystem       
+Surfshark Service              Surfshark Service                                                     LocalSystem       
+SynTPEnhService                SynTPEnhService                                                       LocalSystem       
+SysMain                        SysMain                                                               LocalSystem       
+SystemEventsBroker             System Events Broker                                                  LocalSystem       
+TextInputManagementService     Text Input Management Service                                         LocalSystem       
+Themes                         Themes                                                                LocalSystem       
+TrkWks                         Distributed Link Tracking Client                                      LocalSystem       
+UserManager                    User Manager                                                          LocalSystem       
+UsoSvc                         Update Orchestrator Service                                           LocalSystem       
+Wcmsvc                         Windows Connection Manager                                            NT Authority\Local
+                                                                                                     Service           
+whesvc                         Windows Health and Optimized Experiences                              LocalSystem       
+WinDefend                      Microsoft Defender Antivirus Service                                  LocalSystem       
+Winmgmt                        Windows Management Instrumentation                                    localSystem       
+WlanSvc                        WLAN AutoConfig                                                       LocalSystem       
+WpnService                     Windows Push Notifications System Service                             LocalSystem       
+WSAIFabricSvc                  WSAIFabricSvc                                                         NT AUTHORITY\Local
+                                                                                                     Service           
+wscsvc                         Security Center                                                       NT AUTHORITY\Local
+                                                                                                     Service           
+WSearch                        Windows Search                                                        LocalSystem       
+WwanSvc                        WWAN AutoConfig                                                       localSystem       
+cbdhsvc_2556f2b1               Clipboard User Service_2556f2b1                                                         
+CDPUserSvc_2556f2b1            Connected Devices Platform User Service_2556f2b1                                        
+OneSyncSvc_2556f2b1            Sync Host_2556f2b1                                                                      
+webthreatdefusersvc_2556f2b1   Web Threat Defense User Service_2556f2b1                                                
+WpnUserService_2556f2b1        Windows Push Notifications User Service_2556f2b1                                        
+
+
+
+
+=== INSTALLED SOFTWARE ===
+
+DisplayName                                                        DisplayVersion     Publisher                        
+-----------                                                        --------------     ---------                        
+Adobe Acrobat (64-bit)                                             25.001.21223       Adobe                            
+Adobe Refresh Manager                                              1.8.0              Adobe Systems Incorporated       
+Brave                                                              145.1.87.191       Brave Software Inc               
+Documentation Manager                                              24.20.0.4          Intel Corporation                
+Git                                                                2.53.0             The Git Development Community    
+Google Chrome                                                      145.0.7632.117     Google LLC                       
+HWiNFO® 64                                                         8.40               Martin Malik, REALiX s.r.o.      
+Intel(R) Chipset Device Software                                   10.1.17903.8106    Intel Corporation                
+Intel(R) Chipset Device Software                                   10.1.17903.8106    Intel(R) Corporation             
+Intel(R) Wireless Bluetooth(R)                                     20.120.0.3         Intel Corporation                
+Intel® Software Installer                                          24.20.0.4          Intel Corporation                
+LatencyMon 7.31                                                    7.31               Resplendence Software Projects...
+McAfee Security Scan Plus                                          4.2.790.1          McAfee, LLC                      
+Microsoft .NET Core Host - 3.1.32 (x86)                            24.192.31915       Microsoft Corporation            
+Microsoft .NET Core Host FX Resolver - 3.1.32 (x86)                24.192.31915       Microsoft Corporation            
+Microsoft .NET Core Runtime - 3.1.32 (x86)                         24.192.31915       Microsoft Corporation            
+Microsoft .NET Host - 10.0.2 (x64)                                 80.8.45513         Microsoft Corporation            
+Microsoft .NET Host FX Resolver - 10.0.2 (x64)                     80.8.45513         Microsoft Corporation            
+Microsoft .NET Runtime - 10.0.2 (x64)                              80.8.45513         Microsoft Corporation            
+Microsoft Edge                                                     145.0.3800.82      Microsoft Corporation            
+Microsoft Edge WebView2 Runtime                                    145.0.3800.82      Microsoft Corporation            
+Microsoft GameInput                                                10.1.26100.6879    Microsoft Corporation            
+Microsoft Update Health Tools                                      5.72.0.0           Microsoft Corporation            
+Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.17       9.0.30729          Microsoft Corporation            
+Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.44.35211 14.44.35211.0      Microsoft Corporation            
+Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.44.35211 14.44.35211.0      Microsoft Corporation            
+Microsoft Visual C++ 2022 X64 Additional Runtime - 14.44.35211     14.44.35211        Microsoft Corporation            
+Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.44.35211        14.44.35211        Microsoft Corporation            
+Microsoft Visual C++ 2022 X86 Additional Runtime - 14.44.35211     14.44.35211        Microsoft Corporation            
+Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.44.35211        14.44.35211        Microsoft Corporation            
+Microsoft Windows Desktop Runtime - 10.0.2 (x64)                   80.8.45513         Microsoft Corporation            
+Microsoft Windows Desktop Runtime - 3.1.32 (x86)                   24.192.31915       Microsoft Corporation            
+Microsoft Windows Desktop Runtime - 3.1.32 (x86)                   3.1.32.31915       Microsoft Corporation            
+Microsoft Windows Desktop Runtime 10.0.2 (x64)                     10.0.2.50000       Microsoft Corporation            
+MSI Center SDK                                                     3.2026.0123.01     MSI                              
+NoteBook FanControl                                                1.6.3.0            Stefan Hirschmann - StagWare     
+NoteBook FanControl                                                1.6.3.0            Stefan Hirschmann - StagWare     
+Notepad++ (64-bit x64)                                             8.9.2              Notepad++ Team                   
+NvCpl                                                              1.0                NVIDIA Corporation               
+NVIDIA AIUser Container                                            1.48               NVIDIA Corporation               
+NVIDIA App 11.0.6.383                                              11.0.6.383         NVIDIA Corporation               
+NVIDIA Backend                                                     11.0.6.383         NVIDIA Corporation               
+NVIDIA Container                                                   1.48               NVIDIA Corporation               
+NVIDIA FrameView SDK 1.5.11821.36727370                            1.5.11821.36727370 NVIDIA Corporation               
+NVIDIA Graphics Driver 591.59                                      591.59             NVIDIA Corporation               
+NVIDIA HD Audio Driver 1.4.5.7                                     1.4.5.7            NVIDIA Corporation               
+NVIDIA Install Application                                         2.1002.438.0       NVIDIA Corporation               
+NVIDIA LocalSystem Container                                       1.48               NVIDIA Corporation               
+NVIDIA MessageBus 3 for NvApp                                      3.20               NVIDIA Corporation               
+NVIDIA NvDLISR                                                     1.0                NVIDIA Corporation               
+NVIDIA RTX Desktop Manager 205.38                                  205.38             NVIDIA Corporation               
+NVIDIA Session Container                                           1.48               NVIDIA Corporation               
+NVIDIA ShadowPlay 11.0.6.0                                         11.0.6.0           NVIDIA Corporation               
+NVIDIA Telemetry Client                                            19.5.6.0           NVIDIA Corporation               
+NVIDIA USBC Driver 1.52.831.832                                    1.52.831.832       NVIDIA Corporation               
+NVIDIA User Container                                              1.48               NVIDIA Corporation               
+NVIDIA Virtual Audio 4.65.0.12                                     4.65.0.12          NVIDIA Corporation               
+NVIDIA Watchdog Plugin for NvContainer                             1.48               NVIDIA Corporation               
+PawnIO                                                             2.0.1.0            namazso                          
+Plex Media Server 1.42.2.10156 (x64)                               1.42.2.10156       Plex, Inc.                       
+Python 3.12.8 Core Interpreter (64-bit)                            3.12.8150.0        Python Software Foundation       
+Python 3.12.8 Development Libraries (64-bit)                       3.12.8150.0        Python Software Foundation       
+Python 3.12.8 Documentation (64-bit)                               3.12.8150.0        Python Software Foundation       
+Python 3.12.8 Executables (64-bit)                                 3.12.8150.0        Python Software Foundation       
+Python 3.12.8 pip Bootstrap (64-bit)                               3.12.8150.0        Python Software Foundation       
+Python 3.12.8 Standard Library (64-bit)                            3.12.8150.0        Python Software Foundation       
+Python 3.12.8 Tcl/Tk Support (64-bit)                              3.12.8150.0        Python Software Foundation       
+Python 3.12.8 Test Suite (64-bit)                                  3.12.8150.0        Python Software Foundation       
+Python Launcher                                                    3.12.8150.0        Python Software Foundation       
+QNAP External RAID Manager                                         1.4.9.1317         QNAP Systems, Inc.               
+Realtek Card Reader                                                10.0.17763.31244   Realtek Semiconductor Corp.      
+Realtek Ethernet Controller Driver                                 10.31.828.2018     Realtek                          
+Recuva                                                             1.54               Piriform                         
+RivaTuner Statistics Server 7.3.7                                  7.3.7              Unwinder                         
+Samsung USB Driver for Mobile Phones                               1.9.0.0            Samsung Electronics Co., Ltd.    
+Secret World Legends                                                                  Funcom                           
+Sid Meier's Civilization V                                                            2K Games, Inc.                   
+Sid Meier's Civilization V                                                            Firaxis Games                    
+Sons Of The Forest                                                                    Endnight Games Ltd               
+Space Colony                                                                          Firefly Studios                  
+Steam                                                              2.10.91.91         Valve Corporation                
+Surfshark                                                          6.2.0999           Surfshark                        
+Surfshark                                                          6.2.0999           Surfshark                        
+Update for x64-based Windows Systems (KB5001716)                   8.94.0.0           Microsoft Corporation            
+
+
+
+
+=== POWERSHELL EXECUTION POLICY ===
+
+        Scope ExecutionPolicy
+        ----- ---------------
+MachinePolicy       Undefined
+   UserPolicy       Undefined
+      Process          Bypass
+  CurrentUser       Undefined
+ LocalMachine       Undefined
+
+
+
+
+=== DEVICE GUARD / CREDENTIAL GUARD ===
+
+
+AvailableSecurityProperties                  : {1, 2, 3, 4...}
+CodeIntegrityPolicyEnforcementStatus         : 1
+InstanceIdentifier                           : 4ff40742-2649-41b8-bdd1-e80fad1cce80
+RequiredSecurityProperties                   : {0}
+SecurityFeaturesEnabled                      : {0}
+SecurityServicesConfigured                   : {0}
+SecurityServicesRunning                      : {0}
+SmmIsolationLevel                            : 0
+UsermodeCodeIntegrityPolicyEnforcementStatus : 0
+Version                                      : 1.0
+VirtualizationBasedSecurityStatus            : 0
+VirtualMachineIsolation                      : False
+VirtualMachineIsolationProperties            : {0}
+PSComputerName                               : 
+CimClass                                     : root/Microsoft/Windows/DeviceGuard:Win32_DeviceGuard
+CimInstanceProperties                        : {AvailableSecurityProperties, CodeIntegrityPolicyEnforcementStatus, 
+                                               InstanceIdentifier, RequiredSecurityProperties...}
+CimSystemProperties                          : Microsoft.Management.Infrastructure.CimSystemProperties
+
+
+
+
+
+=== SECURE BOOT ===
+Enabled: True
+
+=== TPM STATUS ===
+
+
+TpmPresent          : True
+TpmReady            : True
+TpmEnabled          : True
+TpmActivated        : True
+ManufacturerVersion : 5.63.3353.0                     
+
+
+
+
+
+=== RISKY OPTIONAL FEATURES ===
+TelnetClient: Disabled
+TFTP: Disabled
+SMB1Protocol: Disabled
+
+=== DNS SERVERS ===
+
+InterfaceAlias ServerAddresses           
+-------------- ---------------           
+Ethernet       {9.9.9.9, 149.112.112.112}
+Wi-Fi          {1.1.1.1, 1.0.0.1}        
+
+
+
+
+=== NETWORK PROFILES ===
+
+Name                    InterfaceAlias NetworkCategory
+----                    -------------- ---------------
+Simply the Breast 2.4 3 Wi-Fi                   Public
+
+
+
+
+=== EXPLOIT PROTECTION (SYSTEM) ===
+
+
+Dep             : Microsoft.Samples.PowerShell.Commands.DEPPolicy
+Aslr            : Microsoft.Samples.PowerShell.Commands.ASLRPolicy
+StrictHandle    : Microsoft.Samples.PowerShell.Commands.StrictHandlePolicy
+SystemCall      : Microsoft.Samples.PowerShell.Commands.SystemCallPolicy
+ExtensionPoint  : Microsoft.Samples.PowerShell.Commands.ExtensionPointPolicy
+DynamicCode     : Microsoft.Samples.PowerShell.Commands.DynamicCodePolicy
+Cfg             : Microsoft.Samples.PowerShell.Commands.CFGPolicy
+BinarySignature : Microsoft.Samples.PowerShell.Commands.BinarySignaturePolicy
+FontDisable     : Microsoft.Samples.PowerShell.Commands.FontDisablePolicy
+ImageLoad       : Microsoft.Samples.PowerShell.Commands.ImageLoadPolicy
+Payload         : Microsoft.Samples.PowerShell.Commands.PayloadPolicy
+ChildProcess    : Microsoft.Samples.PowerShell.Commands.ChildProcessPolicy
+UserShadowStack : Microsoft.Samples.PowerShell.Commands.UserShadowStackPolicy
+Sehop           : Microsoft.Samples.PowerShell.Commands.SEHOPPolicy
+Heap            : Microsoft.Samples.PowerShell.Commands.HeapPolicy
+ProcessName     : System
+Source          : System Defaults
+Id              : 0
+
+
+
+
+
+=== AUDIT POLICY ===
+System audit policy
+
+Category/Subcategory                      Setting
+System
+  Security System Extension               No Auditing
+
+  System Integrity                        Success and Failure
+
+  IPsec Driver                            No Auditing
+
+  Other System Events                     Success and Failure
+
+  Security State Change                   Success
+
+Logon/Logoff
+  Logon                                   Success and Failure
+
+  Logoff                                  Success
+
+  Account Lockout                         Success
+
+  IPsec Main Mode                         No Auditing
+
+  IPsec Quick Mode                        No Auditing
+
+  IPsec Extended Mode                     No Auditing
+
+  Special Logon                           Success
+
+  Other Logon/Logoff Events               No Auditing
+
+  Network Policy Server                   Success and Failure
+
+  User / Device Claims                    No Auditing
+
+  Group Membership                        No Auditing
+
+  Access Rights                           No Auditing
+
+Object Access
+  File System                             No Auditing
+
+  Registry                                No Auditing
+
+  Kernel Object                           No Auditing
+
+  SAM                                     No Auditing
+
+  Certification Services                  No Auditing
+
+  Application Generated                   No Auditing
+
+  Handle Manipulation                     No Auditing
+
+  File Share                              No Auditing
+
+  Filtering Platform Packet Drop          No Auditing
+
+  Filtering Platform Connection           No Auditing
+
+  Other Object Access Events              No Auditing
+
+  Detailed File Share                     No Auditing
+
+  Removable Storage                       No Auditing
+
+  Central Policy Staging                  No Auditing
+
+Privilege Use
+  Non Sensitive Privilege Use             No Auditing
+
+  Other Privilege Use Events              No Auditing
+
+  Sensitive Privilege Use                 No Auditing
+
+Detailed Tracking
+  Process Creation                        No Auditing
+
+  Process Termination                     No Auditing
+
+  DPAPI Activity                          No Auditing
+
+  RPC Events                              No Auditing
+
+  Plug and Play Events                    No Auditing
+
+  Token Right Adjusted Events             No Auditing
+
+Policy Change
+  Audit Policy Change                     Success
+
+  Authentication Policy Change            Success
+
+  Authorization Policy Change             No Auditing
+
+  MPSSVC Rule-Level Policy Change         No Auditing
+
+  Filtering Platform Policy Change        No Auditing
+
+  Other Policy Change Events              No Auditing
+
+Account Management
+  Computer Account Management             No Auditing
+
+  Security Group Management               Success
+
+  Distribution Group Management           No Auditing
+
+  Application Group Management            No Auditing
+
+  Other Account Management Events         No Auditing
+
+  User Account Management                 Success
+
+DS Access
+  Directory Service Access                No Auditing
+
+  Directory Service Changes               No Auditing
+
+  Directory Service Replication           No Auditing
+
+  Detailed Directory Service Replication  No Auditing
+
+Account Logon
+  Kerberos Service Ticket Operations      No Auditing
+
+  Other Account Logon Events              No Auditing
+
+  Kerberos Authentication Service         No Auditing
+
+  Credential Validation                   No Auditing
+
+
+
+=== RECENT FAILED LOGINS (last 10) ===
+No recent failed login events found (or Security log not accessible)
+
+=== SMB SHARES ===
+
+Name   Path       Description  
+----   ----       -----------  
+ADMIN$ C:\WINDOWS Remote Admin 
+C$     C:\        Default share
+IPC$              Remote IPC   
+
+
+
+
+=== HOSTS FILE (non-comment entries) ===
+0.0.0.1	mssplus.mcafee.com
+
+=== STORED CREDENTIALS (Credential Manager) ===
+Total stored credentials: 31
+
+=== REMOTE ASSISTANCE ===
+Enabled: YES - VULNERABLE
+
+=== WINDOWS RECALL ===
+Not installed (Good)
+
+=== EDGE EXTENSIONS ===
+Found 2 extension directories at C:\Users\prisc\AppData\Local\Microsoft\Edge\User Data\Default\Extensions

@@ -11,11 +11,17 @@ description: Boot the Athena system and load context
 
 // turbo
 
-- [ ] Load `.framework/v8.0-alpha/modules/Core_Identity.md` — Laws, Identity, RSI
+- [ ] Load `.context/about_priscilla.md` — User identity, biometrics, preferences, active projects
+- [ ] Load `.context/heuristics.md` — Pre-compiled gut rules and pattern shortcuts
+- [ ] Load `.context/case_studies.md` — Documented problem-solution patterns
+- [ ] Load `.context/decision_journal.md` — Decision log with reasoning and outcomes
+- [ ] Load `.context/thinking_log.md` — Latest subconscious analysis (auto-generated every 4hrs)
+- [ ] Load `.context/dream_changelog.md` — Audit trail of self-modifications
+- [ ] Load `examples/framework/Core_Identity.md` — Laws, Identity, RSI
 - [ ] Load `.context/project_state.md` — Current workspace state
 - [ ] Create new session log in `session_logs/`
 
-**Confirm**: "⚡ Ready. (Core Identity loaded. Session XX started.)"
+**Confirm**: "⚡ Ready. (Core Identity loaded. Context loaded. Session XX started.)"
 
 ## Phase 2: Triple-Lock Reminder
 
