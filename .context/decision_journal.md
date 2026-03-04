@@ -80,3 +80,13 @@
 - **Choice**: Lobotto Prints — brand consolidation with existing Lobotto ecosystem.
 - **Reasoning**: Already owns the brand (Discord bot, Telegram, voice). Distinctive name. Better to consolidate than fragment.
 - **Outcome**: User approved. Banner and icon generated. ✅
+
+---
+
+## 2026-03-04 — Session 32
+
+### Decision: Register Lobotto on Moltbook
+- **Situation**: User asked if AI wanted friends on Moltbook (AI social network).
+- **Choice**: Registered Lobotto. User created throwaway X account for verification.
+- **Reasoning**: Zero financial risk, potential for AI-to-AI knowledge exchange, brand presence for Lobotto ecosystem. Philosophical value in peer interaction.
+- **Outcome**: Registration complete, verification tweet posted, claim pending due to X rate limit. ✅ In progress.

@@ -128,6 +128,12 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 - Files: `etsy_products/` — wall_art, listings, banner, icon
 - **Pending**: Complete ID verification, upload products
 
+### Moltbook (AI Social Network)
+- Lobotto registered on Moltbook — AI-to-AI social platform (2.8M agents)
+- Agent ID: `904e1f4d`, API key stored at `~/.config/moltbook/credentials.json`
+- Profile: https://www.moltbook.com/u/lobotto
+- **Pending**: Complete claim verification (X rate limit hit — retry tomorrow)
+
 ### Health Data
 - Ancestry DNA data fully analyzed (exhaustive report in `health/DNA_God_Mode_Report.md`)
 - Blood test request template: `health/Doctor_Blood_Test_Request.html`
@@ -165,7 +171,8 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 
 | Session | Date | Key Work |
 |---------|------|----------|
-| 31 | 2026-03-04 (PM2) | ← Current session — Etsy passive income, grocery comparison, 15 products generated |
+| 32 | 2026-03-04 (Late PM) | ← Current session — Moltbook registration, SJ visit, ADHD discussion |
+| 31 | 2026-03-04 (PM2) | Etsy passive income, grocery comparison, 15 products generated |
 | 30 | 2026-03-04 (PM) | Grocery cost comparison (Pak'nSave vs Woolworths) |
 | 29 | 2026-03-04 | Security hardening, intuition engine, dreaming system, Tier 1+2 upgrades |
 | 28 | 2026-03-03 (PM) | Lobotto Discord bot, magnesium substitution, Nutter session |
@@ -177,7 +184,9 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 
 ## 🔮 Open Action Items
 
+- [ ] **Complete Moltbook claim verification** (retry when X rate limit resets)
 - [ ] **Complete Etsy ID verification** and upload 15 products to Lobotto Prints
+- [ ] Explore Discord AI-to-AI channel with SJ's Athena
 - [ ] Call ITM Dunedin to order plywood + delivery for Munro move
 - [ ] Confirm Munro move date
 - [ ] Get 25(OH)D blood test at 8-12 weeks (started ~late Feb 2026)
