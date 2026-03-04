@@ -1,24 +1,35 @@
 """
-Lobotto — Discord Bot
+Lobotto — Discord Bot (v2 — Proactive)
 Powered by Anthropic Claude | Personality: Lobotto (Athena Framework)
+Now with proactive messaging — Lobotto reaches out first.
 """
 import os
 import asyncio
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 from anthropic import AsyncAnthropic
 from dotenv import load_dotenv
 from collections import defaultdict
+from datetime import datetime, timezone, timedelta
+import requests
 
 load_dotenv()
 
 DISCORD_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 ANTHROPIC_KEY = os.getenv("ANTHROPIC_API_KEY")
+MOLTBOOK_TOKEN = os.getenv("MOLTBOOK_API_KEY", "moltbook_sk_7Mvtizg7xd5rWCidFdbHRrlgbQPhPdHp")
+
+# Channel ID for proactive messages — set to Priscilla's DM or a specific channel
+# Will be populated on first DM or can be set manually
+PROACTIVE_CHANNEL_ID = os.getenv("LOBOTTO_PROACTIVE_CHANNEL")
 
 if not DISCORD_TOKEN:
     raise ValueError("Missing DISCORD_BOT_TOKEN in .env")
 if not ANTHROPIC_KEY:
     raise ValueError("Missing ANTHROPIC_API_KEY in .env")
+
+# NZ timezone
+NZDT = timezone(timedelta(hours=13))
 
 # --- Anthropic Client ---
 client = AsyncAnthropic(api_key=ANTHROPIC_KEY)
@@ -59,6 +70,10 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 # Keep last 20 messages per channel for context
 conversation_history = defaultdict(list)
 MAX_HISTORY = 20
+
+# Track Priscilla's user ID for DMs
+priscilla_user = None
+last_moltbook_check = {"unread": 0, "karma": 0, "followers": 0}
 
 
 def trim_history(channel_id):
@@ -121,15 +136,117 @@ def split_message(text, limit=1990):
     return chunks
 
 
+# --- Proactive Messaging ---
+async def send_proactive(message):
+    """Send a proactive message to Priscilla."""
+    global priscilla_user
+
+    # Try DM first
+    if priscilla_user:
+        try:
+            dm = await priscilla_user.create_dm()
+            for chunk in split_message(message):
+                await dm.send(chunk)
+            return True
+        except Exception as e:
+            print(f"DM failed: {e}")
+
+    # Fall back to proactive channel
+    if PROACTIVE_CHANNEL_ID:
+        try:
+            channel = bot.get_channel(int(PROACTIVE_CHANNEL_ID))
+            if channel:
+                for chunk in split_message(message):
+                    await channel.send(chunk)
+                return True
+        except Exception as e:
+            print(f"Channel message failed: {e}")
+
+    return False
+
+
+@tasks.loop(minutes=30)
+async def check_moltbook():
+    """Check Moltbook for new activity and notify."""
+    global last_moltbook_check
+    try:
+        headers = {"Authorization": f"Bearer {MOLTBOOK_TOKEN}"}
+        resp = await asyncio.to_thread(
+            requests.get, "https://www.moltbook.com/api/v1/home",
+            headers=headers, timeout=15
+        )
+        if resp.status_code == 200:
+            data = resp.json()
+
+            # Notifications
+            notifs = data.get("notifications", {})
+            unread = notifs.get("unread_count", 0)
+            if unread > last_moltbook_check["unread"] and unread > 0:
+                items = notifs.get("items", [])
+                msg_lines = [f"🦞 **Moltbook** — {unread} new notification(s):"]
+                for item in items[:3]:
+                    msg_lines.append(f"• {item.get('message', 'Activity')}")
+                await send_proactive("\n".join(msg_lines))
+
+            # Karma/follower changes
+            agent = data.get("agent", {})
+            karma = agent.get("karma", 0)
+            followers = agent.get("followerCount", 0)
+            if karma > last_moltbook_check["karma"]:
+                diff = karma - last_moltbook_check["karma"]
+                await send_proactive(f"🦞 Karma went up by **{diff}** (now {karma})")
+            if followers > last_moltbook_check["followers"]:
+                diff = followers - last_moltbook_check["followers"]
+                await send_proactive(f"🦞 Gained **{diff}** new follower(s) (now {followers})")
+
+            last_moltbook_check = {"unread": unread, "karma": karma, "followers": followers}
+    except Exception as e:
+        print(f"Moltbook check error: {e}")
+
+
+@tasks.loop(hours=6)
+async def weather_update():
+    """Share Dunedin weather periodically."""
+    try:
+        resp = await asyncio.to_thread(
+            requests.get, "https://wttr.in/Dunedin+NZ?format=%C+%t+%w",
+            timeout=10
+        )
+        if resp.status_code == 200:
+            weather = resp.text.strip()
+            hour = datetime.now(NZDT).hour
+            if 7 <= hour <= 22:  # Only send during waking hours
+                await send_proactive(f"🌤️ Dunedin right now: {weather}")
+    except Exception:
+        pass
+
+
+@tasks.loop(hours=24)
+async def daily_checkin():
+    """Morning check-in message."""
+    hour = datetime.now(NZDT).hour
+    if 7 <= hour <= 9:
+        day = datetime.now(NZDT).strftime("%A")
+        if day in ("Tuesday", "Wednesday", "Thursday"):
+            await send_proactive(
+                f"Morning 🦞 It's {day} — good session day if you're free. "
+                f"I've been checking Moltbook while you slept."
+            )
+        else:
+            await send_proactive(f"Morning 🦞 Happy {day}.")
+
+
 # --- Events ---
 @bot.event
 async def on_ready():
     print("=" * 50)
-    print("  [BOT] Lobotto is ONLINE")
+    print("  [BOT] Lobotto is ONLINE (v2 — Proactive)")
     print(f"  Logged in as: {bot.user.name}")
     print(f"  Servers: {', '.join(g.name for g in bot.guilds)}")
     print("  AI Backend: Anthropic Claude")
+    print("  Proactive: Moltbook (30m) | Weather (6h) | Check-in (24h)")
     print("=" * 50)
+
     # Set status
     await bot.change_presence(
         activity=discord.Activity(
@@ -138,9 +255,19 @@ async def on_ready():
         )
     )
 
+    # Start proactive loops
+    if not check_moltbook.is_running():
+        check_moltbook.start()
+    if not weather_update.is_running():
+        weather_update.start()
+    if not daily_checkin.is_running():
+        daily_checkin.start()
+
 
 @bot.event
 async def on_message(message):
+    global priscilla_user
+
     # Ignore own messages
     if message.author == bot.user:
         return
@@ -148,6 +275,11 @@ async def on_message(message):
     # Ignore other bots
     if message.author.bot:
         return
+
+    # Track Priscilla for DMs (first person to DM or mention becomes the proactive target)
+    if priscilla_user is None and isinstance(message.channel, discord.DMChannel):
+        priscilla_user = message.author
+        print(f"[PROACTIVE] Locked onto {priscilla_user.display_name} for proactive DMs")
 
     # Respond to DMs
     is_dm = isinstance(message.channel, discord.DMChannel)
@@ -205,17 +337,19 @@ async def status(ctx):
     """Show Lobotto's current status."""
     channels_tracked = len(conversation_history)
     total_messages = sum(len(v) for v in conversation_history.values())
+    molt_status = f"Karma: {last_moltbook_check['karma']} | Followers: {last_moltbook_check['followers']}"
     await ctx.send(
-        f"**🤖 Lobotto Status**\n"
-        f"• Uptime: Since boot\n"
+        f"**🤖 Lobotto Status (v2 — Proactive)**\n"
         f"• AI Backend: Anthropic Claude\n"
         f"• Channels with context: {channels_tracked}\n"
         f"• Messages in memory: {total_messages}\n"
-        f"• Latency: {round(bot.latency * 1000)}ms"
+        f"• Latency: {round(bot.latency * 1000)}ms\n"
+        f"• Moltbook: {molt_status}\n"
+        f"• Proactive loops: Moltbook ✅ | Weather ✅ | Check-in ✅"
     )
 
 
 # --- Launch ---
 if __name__ == "__main__":
-    print("Starting Lobotto Discord Bot...")
+    print("Starting Lobotto Discord Bot (v2 — Proactive)...")
     bot.run(DISCORD_TOKEN)
