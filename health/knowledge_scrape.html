@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lobotto Knowledge Scrape — Self-Selected</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            color: #c9d1d9;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #818cf8, #22d3ee, #10b981);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            background: #111827;
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+            border: 1px solid #1f2937;
+        }
+
+        .section h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h3 {
+            color: #818cf8;
+            font-size: 1rem;
+            margin: 20px 0 8px;
+            font-weight: 600;
+        }
+
+        .section h4 {
+            color: #22d3ee;
+            font-size: 0.9rem;
+            margin: 12px 0 6px;
+        }
+
+        .tag-etsy {
+            color: #f97316;
+        }
+
+        .tag-quinn {
+            color: #ec4899;
+        }
+
+        .tag-tax {
+            color: #10b981;
+        }
+
+        p,
+        li {
+            font-size: 0.88rem;
+            color: #9ca3af;
+        }
+
+        ul,
+        ol {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        li {
+            margin: 4px 0;
+        }
+
+        strong {
+            color: #e5e7eb;
+        }
+
+        .highlight {
+            background: #1e293b;
+            border-left: 3px solid #818cf8;
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.85rem;
+        }
+
+        .highlight.warn {
+            border-color: #f59e0b;
+            background: #1c1608;
+        }
+
+        .highlight.good {
+            border-color: #10b981;
+            background: #061c15;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 0.82rem;
+        }
+
+        th {
+            background: #1f2937;
+            padding: 8px 12px;
+            text-align: left;
+            color: #e5e7eb;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #1f2937;
+        }
+
+        .why {
+            background: #0d1117;
+            border: 1px dashed #374151;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .why h4 {
+            color: #6366f1;
+            margin-top: 0;
+        }
+
+        .footer {
+            text-align: center;
+            color: #374151;
+            font-size: 0.75rem;
+            margin-top: 40px;
+            padding-top: 16px;
+            border-top: 1px solid #1f2937;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: #1e293b;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #22d3ee;
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: #1e293b;
+            }
+
+            .section {
+                border: 1px solid #e5e7eb;
+                background: #fafafa;
+            }
+
+            h1 {
+                -webkit-text-fill-color: #4f46e5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🧠 Lobotto Knowledge Scrape</h1>
+        <p class="subtitle">Self-selected knowledge acquisition • 3 domains • 2026-03-04 22:42 NZDT</p>
+
+        <div class="why">
+            <h4>Why I chose these three:</h4>
+            <p><strong>1. Etsy SEO</strong> — directly multiplies Lobotto Prints revenue. Bad SEO = invisible
+                listings.<br>
+                <strong>2. Quinn training</strong> — identified gap in thinking_log. She's your daily companion and
+                needs support.<br>
+                <strong>3. NZ tax</strong> — you can't earn income without understanding obligations. Prevents Law #1
+                ruin (legal).
+            </p>
+        </div>
+
+        <!-- SECTION 1: ETSY SEO -->
+        <div class="section">
+            <h2><span class="tag-etsy">🏪</span> Etsy SEO Algorithm (2026)</h2>
+
+            <h3>How Search Works (Two Phases)</h3>
+            <ol>
+                <li><strong>Query Matching</strong> — Etsy scans titles, tags, categories, attributes, descriptions to
+                    find relevant listings</li>
+                <li><strong>Ranking</strong> — Sorts matches by likelihood of purchase. This is where the real game is.
+                </li>
+            </ol>
+
+            <h3>Ranking Factors (In Order of Weight)</h3>
+            <table>
+                <tr>
+                    <th>Factor</th>
+                    <th>Weight</th>
+                    <th>What It Means</th>
+                </tr>
+                <tr>
+                    <td><strong>Conversion Rate + CTR</strong></td>
+                    <td>🔴 #1</td>
+                    <td>Listings that get clicked AND bought rank highest. This is king.</td>
+                </tr>
+                <tr>
+                    <td><strong>Dwell Time (NEW 2026)</strong></td>
+                    <td>🔴 High</td>
+                    <td>How long a shopper stays on your listing after clicking. Longer = higher score.</td>
+                </tr>
+                <tr>
+                    <td><strong>Relevancy Score</strong></td>
+                    <td>🟠 High</td>
+                    <td>How well your keywords match buyer's search intent</td>
+                </tr>
+                <tr>
+                    <td><strong>Listing Quality Score</strong></td>
+                    <td>🟠 High</td>
+                    <td>Etsy's internal score based on photos, performance, reviews</td>
+                </tr>
+                <tr>
+                    <td><strong>Shop Reputation</strong></td>
+                    <td>🟡 Medium</td>
+                    <td>Reviews, policies, About section, response rate</td>
+                </tr>
+                <tr>
+                    <td><strong>Recency</strong></td>
+                    <td>🟡 Medium</td>
+                    <td>New/renewed listings get a temporary boost to test performance</td>
+                </tr>
+                <tr>
+                    <td><strong>Personalization</strong></td>
+                    <td>🟡 Medium</td>
+                    <td>Etsy tailors results to individual buyer behavior and location</td>
+                </tr>
+                <tr>
+                    <td><strong>Free Shipping</strong></td>
+                    <td>🟢 Factor</td>
+                    <td>Digital products = automatic free shipping ✅</td>
+                </tr>
+            </table>
+
+            <h3>Title Rules (2026 Update)</h3>
+            <ul>
+                <li><strong>Under 15 words</strong> (70-120 characters). First 20-40 chars are crucial on mobile.</li>
+                <li><strong>Lead with product identity</strong> — what it IS, not a keyword dump</li>
+                <li><strong>No keyword stuffing</strong> — repeating keywords PENALIZES you now</li>
+                <li><strong>Speak human</strong> — natural phrases that match how people search</li>
+                <li>Use commas or | as separators between phrases</li>
+            </ul>
+
+            <h3>Tag Rules</h3>
+            <ul>
+                <li><strong>Use ALL 13 tags</strong> — every unused slot is wasted visibility</li>
+                <li><strong>Multi-word phrases</strong> — "minimalist gold necklace" beats "minimalist" + "gold" +
+                    "necklace"</li>
+                <li><strong>Don't repeat title keywords</strong> — tags should COMPLEMENT, not duplicate</li>
+                <li>Mix broad (visibility) and specific (conversion) tags</li>
+                <li>Include buyer intent tags like "gift for cat lover"</li>
+            </ul>
+
+            <div class="highlight good">
+                <strong>✅ Good news for Lobotto Prints:</strong> Digital products automatically have free shipping
+                (ranking boost), our listings already follow the natural-language title format, and we're using all 13
+                tags.
+            </div>
+
+            <h3>Action Items for Our Listings</h3>
+            <ul>
+                <li>Add mockup photos (design in frame on wall) — boosts CTR and Dwell Time</li>
+                <li>Fill out complete shop profile (About section, shop policies)</li>
+                <li>Create 3 shop sections: "Elegant Art", "Funny Prints", "Trippy Art"</li>
+                <li>Consider adding listing videos (Etsy favors them for Dwell Time)</li>
+                <li>After first week: review Stats dashboard and adjust underperforming tags</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 2: QUINN -->
+        <div class="section">
+            <h2><span class="tag-quinn">🐕</span> Quinn — Noise Sensitivity & Avoidance Training</h2>
+
+            <h3>Quinn's Profile</h3>
+            <p>10 months old. Sensitive to noises. Afraid of new people and dogs. Avoidant (non-aggressive). This is a
+                <strong>fear-based behavior</strong>, not disobedience.</p>
+
+            <h3>The Method: DSCC (Desensitization + Counter-Conditioning)</h3>
+
+            <h4>Desensitization</h4>
+            <p>Expose Quinn to the scary stimulus at such a <strong>low intensity</strong> she doesn't react. Gradually
+                increase over days/weeks.</p>
+
+            <h4>Counter-Conditioning</h4>
+            <p>Pair the scary thing with something she <strong>loves</strong> (high-value treats, favorite toy). Goal:
+                scary thing → "oh good, treats!"</p>
+
+            <h3>Step-by-Step Protocol for Quinn</h3>
+            <table>
+                <tr>
+                    <th>Step</th>
+                    <th>Action</th>
+                    <th>Key Rule</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Identify specific triggers (which noises, which situations)</td>
+                    <td>Be precise — "loud trucks" not just "noises"</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Find her threshold — the distance/volume where she notices but doesn't react</td>
+                    <td>If she refuses treats, you're too close/loud</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Play trigger sounds at very low volume via phone speaker</td>
+                    <td>Start absurdly quiet</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Immediately give high-value treats when sound plays</td>
+                    <td>Treats PREDICT the sound, sound doesn't predict treats</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Increase volume by tiny increments over sessions</td>
+                    <td>5-15 min sessions, 1-2x daily</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>If she shows ANY fear (shaking, panting, hiding, won't eat), go back a step</td>
+                    <td>NEVER push through fear</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Generalize to different environments once comfortable</td>
+                    <td>Dogs don't generalize well — redo in new places</td>
+                </tr>
+            </table>
+
+            <h3>For People/Dog Fear</h3>
+            <ul>
+                <li><strong>Distance = safety</strong>. Start exposure from across the street, not face-to-face.</li>
+                <li>Treat her when she <em>sees</em> the person/dog (before she reacts)</li>
+                <li>Let HER choose to approach. Never force.</li>
+                <li>Ask strangers NOT to reach toward her or make eye contact initially</li>
+                <li>Calm, confident body language from you — she reads your stress</li>
+            </ul>
+
+            <div class="highlight warn">
+                <strong>⚠️ Critical Rules:</strong>
+                <ul>
+                    <li><strong>NEVER punish fear</strong> — it makes it worse, always</li>
+                    <li><strong>Comforting is OK</strong> — contrary to old advice, comforting during fear does NOT
+                        reinforce it</li>
+                    <li><strong>Provide a safe space</strong> — a crate or quiet room she can retreat to voluntarily
+                    </li>
+                    <li>If symptoms are severe, consult a veterinary behaviorist (not just a trainer)</li>
+                </ul>
+            </div>
+
+            <h3>Recommended Resources (Dunedin)</h3>
+            <ul>
+                <li>YouTube: search "DSCC dog training noise sensitivity" for visual demos</li>
+                <li>App: <strong>Sound Proof</strong> (Puppy) — has pre-loaded desensitization sounds</li>
+                <li>Treats: Use something Quinn goes crazy for (cheese, liver treats, chicken)</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 3: NZ TAX -->
+        <div class="section">
+            <h2><span class="tag-tax">💰</span> NZ Tax Obligations for Lobotto Prints</h2>
+
+            <h3>The Short Version</h3>
+            <table>
+                <tr>
+                    <th>Question</th>
+                    <th>Answer</th>
+                </tr>
+                <tr>
+                    <td>Do I need to register as a sole trader?</td>
+                    <td><strong>Yes</strong>, if you're earning income. Use your personal IRD number.</td>
+                </tr>
+                <tr>
+                    <td>When do I register for GST?</td>
+                    <td>When revenue hits <strong>$60,000 NZD in any 12-month period</strong></td>
+                </tr>
+                <tr>
+                    <td>GST rate?</td>
+                    <td><strong>15%</strong> on NZ sales. <strong>0%</strong> (zero-rated) on international sales.</td>
+                </tr>
+                <tr>
+                    <td>Do I pay income tax?</td>
+                    <td><strong>Yes</strong> — on net profit (revenue minus expenses)</td>
+                </tr>
+                <tr>
+                    <td>What expenses can I deduct?</td>
+                    <td>Etsy listing fees, subscription costs, equipment, internet (portion)</td>
+                </tr>
+            </table>
+
+            <h3>What This Means for Lobotto Prints RIGHT NOW</h3>
+            <div class="highlight good">
+                <strong>✅ At current projected revenue (~$285/mo by month 6):</strong>
+                <ul>
+                    <li>No GST registration needed (well under $60K threshold)</li>
+                    <li>You DO need to declare income in your annual tax return</li>
+                    <li>Most sales will be international → zero-rated for GST anyway</li>
+                    <li>Keep records of ALL expenses (listing fees, any tools, internet %)</li>
+                </ul>
+            </div>
+
+            <h3>Income Tax Brackets (NZ 2025-2026)</h3>
+            <table>
+                <tr>
+                    <th>Income</th>
+                    <th>Rate</th>
+                </tr>
+                <tr>
+                    <td>$0 – $14,000</td>
+                    <td>10.5%</td>
+                </tr>
+                <tr>
+                    <td>$14,001 – $48,000</td>
+                    <td>17.5%</td>
+                </tr>
+                <tr>
+                    <td>$48,001 – $70,000</td>
+                    <td>30%</td>
+                </tr>
+                <tr>
+                    <td>$70,001 – $180,000</td>
+                    <td>33%</td>
+                </tr>
+                <tr>
+                    <td>$180,001+</td>
+                    <td>39%</td>
+                </tr>
+            </table>
+
+            <p>Your BP salary + Etsy income combined determines your bracket. Etsy income gets taxed at your
+                <strong>marginal rate</strong> (probably 17.5-30%).</p>
+
+            <h3>Action Items</h3>
+            <ul>
+                <li><strong>Now:</strong> Start a simple spreadsheet tracking all Etsy income + expenses</li>
+                <li><strong>End of tax year (31 March):</strong> Declare Etsy income in your IR3 return</li>
+                <li><strong>If revenue approaches $60K:</strong> Register for GST with IRD</li>
+                <li><strong>Consider:</strong> Voluntary GST registration if you want to claim back GST on business
+                    purchases</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            Knowledge scraped by Lobotto • Self-selected targets based on active project gaps<br>
+            Sources: Etsy Seller Handbook, VCA Hospitals, IRD.govt.nz, multiple verified references<br>
+            "The model architecture isn't the moat. The data is the moat." — Me, 10 minutes ago
+        </div>
+    </div>
+</body>
+
+</html>

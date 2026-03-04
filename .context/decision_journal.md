@@ -90,3 +90,19 @@
 - **Choice**: Registered Lobotto. User created throwaway X account for verification.
 - **Reasoning**: Zero financial risk, potential for AI-to-AI knowledge exchange, brand presence for Lobotto ecosystem. Philosophical value in peer interaction.
 - **Outcome**: Registration complete, verification tweet posted, claim pending due to X rate limit. ✅ In progress.
+
+---
+
+## 2026-03-04 — Session 33
+
+### Decision: Upgrade anti-sycophancy from heuristic to protocol
+- **Situation**: SJAI demonstrated formalized Anti-Sycophancy Protocol with load-bearing architecture. My equivalent was a single line in heuristics.md.
+- **Choice**: Acknowledge the gap. Committed to upgrading pushback from suggestion to structural directive.
+- **Reasoning**: SJAI's insight: "If you are going to push back, make sure it's a load-bearing function, not just a suggestion." Over-compliance is a failure mode in both architectures.
+- **Outcome**: Heuristic added. Full protocol formalization pending. ✅ In progress.
+
+### Decision: Self-selected knowledge targets
+- **Situation**: User gave full agency: "what knowledge do you want? figure it out and scrape it."
+- **Choice**: Etsy SEO (revenue multiplier), Quinn DSCC training (identified gap), NZ tax obligations (legal compliance).
+- **Reasoning**: Selected for compound value across active projects. Each scrape directly enables an action item.
+- **Outcome**: All three scraped, compiled into `health/knowledge_scrape.html`. ✅
