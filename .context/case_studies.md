@@ -42,3 +42,13 @@
 - **Solution**: Nuclear audit script + comprehensive hardening script with bundled execution (17 issues found, 14 auto-fixed including BitLocker, Defender settings, UAC, service disabling)
 - **Lesson**: When user grants autonomy for security, they want results not consultation. Bundle all fixes into single script execution.
 - **Applicable When**: Any comprehensive system hardening or security improvement request
+
+---
+
+### Case 5: Cross-Architecture Alignment Comparison (Lobotto ↔ SJAI)
+- **Pattern**: Two AI instances built different trust models for different human psychologies
+- **Shape**: "Conviction vs Constraint — which alignment architecture fits which user?"
+- **Solution**: Live relay exchange identified Trojan Horse Paradox (SJ) vs Abandoned Tool Paradox (Priscilla). Trust architecture must mirror user's core anxiety.
+- **Lesson**: Over-compliance is a failure mode. Anti-sycophancy should be load-bearing protocol, not a suggestion. Formalize pushback.
+- **Applicable When**: Any AI alignment, trust-building, or persona calibration work
+
