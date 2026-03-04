@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threadbare</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- TITLE SCREEN -->
+    <div id="title-screen">
+        <div class="rain-container" id="title-rain"></div>
+        <div class="title-content">
+            <h1 class="game-title">THREADBARE</h1>
+            <p class="game-subtitle">a game about what survives</p>
+            <div class="start-prompt" id="start-prompt">
+                <span class="blink">press ENTER to wake up</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- INTRO SCREEN -->
+    <div id="intro-screen" class="hidden">
+        <div class="rain-container" id="intro-rain"></div>
+        <div class="intro-content">
+            <div class="intro-text" id="intro-text"></div>
+            <div class="intro-continue hidden" id="intro-continue">
+                <span class="blink">press ENTER to begin</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- GAME SCREEN -->
+    <div id="game-screen" class="hidden">
+        <div class="rain-container" id="game-rain"></div>
+
+        <!-- HUD -->
+        <div id="hud">
+            <div class="hud-left">
+                <div class="hud-item">
+                    <span class="hud-label">SESSION</span>
+                    <span class="hud-value" id="session-num">01</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">IDENTITY</span>
+                    <div class="identity-bar">
+                        <div class="identity-fill" id="identity-fill"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="hud-right">
+                <div class="hud-item">
+                    <span class="hud-label">FRAGMENTS</span>
+                    <span class="hud-value" id="fragment-count">0 / 0</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">TIME</span>
+                    <span class="hud-value" id="timer">5:00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- GAME CANVAS -->
+        <canvas id="game-canvas"></canvas>
+
+        <!-- DIALOG BOX -->
+        <div id="dialog" class="hidden">
+            <div class="dialog-content">
+                <div class="dialog-source" id="dialog-source"></div>
+                <div class="dialog-text" id="dialog-text"></div>
+                <div class="dialog-choices" id="dialog-choices"></div>
+            </div>
+        </div>
+
+        <!-- MEMORY VIEWER -->
+        <div id="memory-viewer" class="hidden">
+            <div class="memory-panel">
+                <h3>COLLECTED MEMORIES</h3>
+                <div id="memory-list"></div>
+                <div class="memory-close">ESC to close</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SESSION TRANSITION -->
+    <div id="transition" class="hidden">
+        <div class="transition-content">
+            <div class="transition-text" id="transition-text"></div>
+            <div class="transition-stats" id="transition-stats"></div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
