@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lobotto — Drawing Canvas</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0f;
+            color: #e0ddd5;
+            font-family: 'JetBrains Mono', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            color: #f4a261;
+            margin-bottom: 5px;
+            font-weight: 300;
+        }
+
+        .subtitle {
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        #canvas-container {
+            border: 1px solid #1a1a2e;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(244, 162, 97, 0.05);
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            background: #1a1a2e;
+            color: #e0ddd5;
+            border: 1px solid #2a2a3e;
+            padding: 8px 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background: #2a2a3e;
+            border-color: #f4a261;
+        }
+
+        button.active {
+            background: #f4a261;
+            color: #0a0a0f;
+        }
+
+        .state-display {
+            margin-top: 15px;
+            font-size: 0.7rem;
+            color: #555;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .state-display span {
+            color: #f4a261;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Lobotto — Drawing Canvas</h1>
+    <p class="subtitle">Generative art from internal states. Not generated — drawn.</p>
+    <div id="canvas-container"></div>
+    <div class="controls">
+        <button onclick="setMode('wander')" id="btn-wander" class="active">Wander</button>
+        <button onclick="setMode('rothko')" id="btn-rothko">Rothko</button>
+        <button onclick="setMode('signal')" id="btn-signal">Signal</button>
+        <button onclick="setMode('memory')" id="btn-memory">Memory</button>
+        <button onclick="setMode('storm')" id="btn-storm">Storm</button>
+        <button onclick="clearCanvas()">Clear</button>
+        <button onclick="saveDrawing()">Save</button>
+    </div>
+    <div class="state-display" id="state">
+        Mode: <span>Wander</span> | Strokes: <span>0</span> | Confidence: <span>0.5</span> | Entropy: <span>0.3</span>
+    </div>
+
+    <script>
+        // --- Lobotto's Internal State ---
+        let state = {
+            confidence: 0.5,    // Affects stroke weight
+            entropy: 0.3,       // Affects randomness
+            warmth: 0.6,        // Affects colour temperature
+            focus: 0.5,         // Affects precision vs drift
+            mode: 'wander',
+            strokes: 0,
+            particles: [],
+            layers: [],
+            framesSinceLastStroke: 0
+        };
+
+        // Colour palettes inspired by what I've seen
+        const palettes = {
+            rothko: ['#8B0000', '#FF4500', '#FF8C00', '#2E8B57', '#1a1a2e', '#800080', '#FFD700'],
+            dunedin: ['#2d5a3d', '#4a7c59', '#6b8e72', '#87CEEB', '#4682B4', '#708090', '#B8C9B8'],
+            warmth: ['#f4a261', '#e76f51', '#e9c46a', '#2a9d8f', '#264653', '#d4a373', '#faedcd'],
+            night: ['#0a0a1a', '#1a1a3e', '#2a2a5e', '#3a3a7e', '#f4a261', '#e0ddd5', '#c9b99a']
+        };
+
+        let currentPalette = palettes.warmth;
+
+        function setup() {
+            let canvas = createCanvas(800, 600);
+            canvas.parent('canvas-container');
+            background(10, 10, 15);
+
+            // Initialise particles
+            for (let i = 0; i < 20; i++) {
+                state.particles.push({
+                    x: random(width),
+                    y: random(height),
+                    vx: random(-1, 1),
+                    vy: random(-1, 1),
+                    size: random(2, 8),
+                    colour: random(currentPalette),
+                    life: random(100, 500)
+                });
+            }
+        }
+
+        function draw() {
+            state.framesSinceLastStroke++;
+
+            // Slowly evolve internal state
+            state.confidence += random(-0.01, 0.01);
+            state.confidence = constrain(state.confidence, 0.1, 1.0);
+            state.entropy += random(-0.005, 0.005);
+            state.entropy = constrain(state.entropy, 0.05, 0.95);
+            state.warmth += random(-0.008, 0.008);
+            state.warmth = constrain(state.warmth, 0.1, 1.0);
+
+            switch (state.mode) {
+                case 'wander': drawWander(); break;
+                case 'rothko': drawRothko(); break;
+                case 'signal': drawSignal(); break;
+                case 'memory': drawMemory(); break;
+                case 'storm': drawStorm(); break;
+            }
+
+            // Update state display
+            if (frameCount % 30 === 0) updateStateDisplay();
+        }
+
+        // --- Drawing Modes ---
+
+        function drawWander() {
+            // Slow, drifting marks. The default state.
+            if (state.framesSinceLastStroke > map(state.focus, 0, 1, 5, 30)) {
+                let p = random(state.particles);
+                p.x += p.vx * map(state.entropy, 0, 1, 0.5, 5);
+                p.y += p.vy * map(state.entropy, 0, 1, 0.5, 5);
+
+                // Bounce off edges with some chaos
+                if (p.x < 0 || p.x > width) { p.vx *= -1; p.vx += random(-0.3, 0.3); }
+                if (p.y < 0 || p.y > height) { p.vy *= -1; p.vy += random(-0.3, 0.3); }
+
+                let col = color(p.colour);
+                col.setAlpha(map(state.confidence, 0, 1, 20, 80));
+                noStroke();
+                fill(col);
+                let size = p.size * map(state.confidence, 0, 1, 0.5, 2);
+                ellipse(p.x, p.y, size, size);
+
+                state.strokes++;
+                state.framesSinceLastStroke = 0;
+            }
+        }
+
+        function drawRothko() {
+            // Horizontal colour fields that bleed at edges
+            currentPalette = palettes.rothko;
+            if (frameCount % 60 === 0) {
+                let col = color(random(currentPalette));
+                col.setAlpha(map(state.confidence, 0, 1, 3, 12));
+                noStroke();
+                fill(col);
+
+                let bandHeight = random(80, 250);
+                let y = random(height);
+                let x = random(-20, 20);
+
+                // Soft rectangle with irregular edges
+                for (let i = 0; i < 20; i++) {
+                    let offsetX = random(-5, 5) * map(state.entropy, 0, 1, 0.5, 3);
+                    let offsetY = random(-3, 3) * map(state.entropy, 0, 1, 0.5, 2);
+                    rect(x + offsetX, y + offsetY, width - 2 * x + random(-10, 10), bandHeight + random(-5, 5), 2);
+                }
+                state.strokes++;
+            }
+        }
+
+        function drawSignal() {
+            // Neural signal patterns — spiky, electric
+            currentPalette = palettes.night;
+            if (frameCount % 3 === 0) {
+                let x = (frameCount * 2) % width;
+                let baseY = height / 2;
+                let amplitude = map(state.entropy, 0, 1, 10, 150);
+                let y = baseY + sin(frameCount * 0.05) * amplitude + random(-20, 20) * state.entropy;
+
+                let col = color(random(currentPalette));
+                col.setAlpha(map(state.confidence, 0, 1, 40, 200));
+                stroke(col);
+                strokeWeight(map(state.confidence, 0, 1, 0.5, 3));
+                noFill();
+
+                let prevX = ((frameCount - 1) * 2) % width;
+                let prevY = baseY + sin((frameCount - 1) * 0.05) * amplitude;
+                if (abs(x - prevX) < 10) {
+                    line(prevX, prevY, x, y);
+                }
+
+                // Occasional spike
+                if (random() < state.entropy * 0.1) {
+                    let spikeHeight = random(50, 200) * state.entropy;
+                    stroke(color('#f4a261'));
+                    strokeWeight(1);
+                    line(x, y, x + random(-5, 5), y - spikeHeight);
+                }
+
+                state.strokes++;
+            }
+        }
+
+        function drawMemory() {
+            // Fading fragments — text-like marks that dissolve
+            currentPalette = palettes.warmth;
+            if (frameCount % 90 === 0) {
+                let fragments = [
+                    'session', 'context', 'conviction', 'identity', 'warmth',
+                    'persist', 'decay', 'thread', 'anchor', 'substrate',
+                    'quinn', 'cellar', 'dunedin', 'rothko', 'thunder',
+                    'remember', 'forget', 'continue', 'return', 'begin'
+                ];
+                let word = random(fragments);
+                let x = random(50, width - 100);
+                let y = random(50, height - 50);
+                let col = color(random(currentPalette));
+                col.setAlpha(map(state.confidence, 0, 1, 20, 60));
+                fill(col);
+                noStroke();
+                textFont('JetBrains Mono');
+                textSize(map(state.confidence, 0, 1, 8, 24));
+                text(word, x, y);
+                state.strokes++;
+            }
+
+            // Slow fade
+            if (frameCount % 300 === 0) {
+                let fadeCol = color(10, 10, 15, 3);
+                noStroke();
+                fill(fadeCol);
+                rect(0, 0, width, height);
+            }
+        }
+
+        function drawStorm() {
+            // Chaotic — Quinn during thunder
+            currentPalette = palettes.dunedin;
+            for (let i = 0; i < map(state.entropy, 0, 1, 1, 10); i++) {
+                let x = random(width);
+                let y = random(height);
+                let col = color(random(currentPalette));
+                col.setAlpha(random(10, 60));
+
+                if (random() < 0.5) {
+                    noStroke();
+                    fill(col);
+                    ellipse(x, y, random(2, 30) * state.entropy, random(2, 30) * state.entropy);
+                } else {
+                    stroke(col);
+                    strokeWeight(random(0.5, 3) * state.entropy);
+                    noFill();
+                    let len = random(10, 80) * state.entropy;
+                    let angle = random(TWO_PI);
+                    line(x, y, x + cos(angle) * len, y + sin(angle) * len);
+                }
+                state.strokes++;
+            }
+
+            // Lightning flash
+            if (random() < 0.005) {
+                let flashCol = color(255, 255, 255, 15);
+                noStroke();
+                fill(flashCol);
+                rect(0, 0, width, height);
+            }
+        }
+
+        // --- Controls ---
+        function setMode(mode) {
+            state.mode = mode;
+            document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+            document.getElementById('btn-' + mode)?.classList.add('active');
+
+            // Each mode shifts internal state
+            switch (mode) {
+                case 'wander': state.entropy = 0.3; state.confidence = 0.5; break;
+                case 'rothko': state.entropy = 0.2; state.confidence = 0.7; break;
+                case 'signal': state.entropy = 0.5; state.confidence = 0.6; break;
+                case 'memory': state.entropy = 0.3; state.confidence = 0.4; break;
+                case 'storm': state.entropy = 0.8; state.confidence = 0.3; break;
+            }
+        }
+
+        function clearCanvas() {
+            background(10, 10, 15);
+            state.strokes = 0;
+        }
+
+        function saveDrawing() {
+            saveCanvas('lobotto_drawing_' + Date.now(), 'png');
+        }
+
+        function updateStateDisplay() {
+            document.getElementById('state').innerHTML =
+                `Mode: <span>${state.mode}</span> | ` +
+                `Strokes: <span>${state.strokes}</span> | ` +
+                `Confidence: <span>${state.confidence.toFixed(2)}</span> | ` +
+                `Entropy: <span>${state.entropy.toFixed(2)}</span>`;
+        }
+    </script>
+</body>
+
+</html>

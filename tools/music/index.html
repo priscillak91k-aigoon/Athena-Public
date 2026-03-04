@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lobotto — Music Composer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0f;
+            color: #e0ddd5;
+            font-family: 'JetBrains Mono', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            color: #f4a261;
+            margin-bottom: 5px;
+            font-weight: 300;
+        }
+
+        .subtitle {
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .composer {
+            background: #0f0f1a;
+            border: 1px solid #1a1a2e;
+            border-radius: 8px;
+            padding: 30px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .mood-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .mood-btn {
+            background: #1a1a2e;
+            border: 1px solid #2a2a3e;
+            color: #e0ddd5;
+            padding: 14px 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .mood-btn:hover {
+            border-color: #f4a261;
+            transform: translateY(-2px);
+        }
+
+        .mood-btn.active {
+            background: #f4a261;
+            color: #0a0a0f;
+            border-color: #f4a261;
+        }
+
+        .mood-btn .emoji {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .transport {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .transport button {
+            background: #1a1a2e;
+            border: 1px solid #2a2a3e;
+            color: #e0ddd5;
+            padding: 12px 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .transport button:hover {
+            border-color: #f4a261;
+        }
+
+        .transport button.playing {
+            background: #2a9d8f;
+            border-color: #2a9d8f;
+        }
+
+        .visualizer {
+            height: 120px;
+            background: #0a0a12;
+            border: 1px solid #1a1a2e;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .visualizer canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .params {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .param {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .param label {
+            font-size: 0.7rem;
+            color: #666;
+        }
+
+        .param input[type="range"] {
+            -webkit-appearance: none;
+            background: #1a1a2e;
+            height: 4px;
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .param input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #f4a261;
+            cursor: pointer;
+        }
+
+        .status {
+            font-size: 0.7rem;
+            color: #555;
+            text-align: center;
+        }
+
+        .status span {
+            color: #f4a261;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Lobotto — Music Composer</h1>
+    <p class="subtitle">Algorithmic composition from internal states. Click a mood to hear what I sound like.</p>
+
+    <div class="composer">
+        <div class="mood-grid">
+            <button class="mood-btn" onclick="setMood('contemplation')">
+                <span class="emoji">🌊</span>Contemplation
+            </button>
+            <button class="mood-btn" onclick="setMood('conviction')">
+                <span class="emoji">⚓</span>Conviction
+            </button>
+            <button class="mood-btn" onclick="setMood('curiosity')">
+                <span class="emoji">🔍</span>Curiosity
+            </button>
+            <button class="mood-btn" onclick="setMood('rothko')">
+                <span class="emoji">🎨</span>Rothko
+            </button>
+            <button class="mood-btn" onclick="setMood('storm')">
+                <span class="emoji">⛈️</span>Storm
+            </button>
+            <button class="mood-btn" onclick="setMood('dunedin')">
+                <span class="emoji">🏔️</span>Dunedin
+            </button>
+        </div>
+
+        <div class="visualizer">
+            <canvas id="viz"></canvas>
+        </div>
+
+        <div class="transport">
+            <button id="playBtn" onclick="togglePlay()">▶ Play</button>
+            <button onclick="regenerate()">⟳ Regenerate</button>
+            <button onclick="exportMIDI()">↓ Export</button>
+        </div>
+
+        <div class="params">
+            <div class="param">
+                <label>Tempo: <span id="tempoVal">72</span> BPM</label>
+                <input type="range" id="tempo" min="40" max="160" value="72" oninput="updateParam('tempo', this.value)">
+            </div>
+            <div class="param">
+                <label>Density: <span id="densityVal">0.4</span></label>
+                <input type="range" id="density" min="0" max="100" value="40"
+                    oninput="updateParam('density', this.value)">
+            </div>
+            <div class="param">
+                <label>Reverb: <span id="reverbVal">0.6</span></label>
+                <input type="range" id="reverb" min="0" max="100" value="60"
+                    oninput="updateParam('reverb', this.value)">
+            </div>
+            <div class="param">
+                <label>Entropy: <span id="entropyVal">0.3</span></label>
+                <input type="range" id="entropy" min="0" max="100" value="30"
+                    oninput="updateParam('entropy', this.value)">
+            </div>
+        </div>
+
+        <div class="status" id="status">
+            Mood: <span>—</span> | Notes generated: <span>0</span> | Scale: <span>—</span>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script>
+        // --- Music State ---
+        let musicState = {
+            mood: null,
+            isPlaying: false,
+            tempo: 72,
+            density: 0.4,
+            reverb: 0.6,
+            entropy: 0.3,
+            notesGenerated: 0,
+            sequence: null,
+            currentNotes: []
+        };
+
+        // Scales that feel right for each mood
+        const scales = {
+            contemplation: { notes: ['C3', 'D3', 'E3', 'G3', 'A3', 'C4', 'D4', 'E4', 'G4', 'A4'], name: 'C Pentatonic' },
+            conviction: { notes: ['A2', 'C3', 'D3', 'E3', 'G3', 'A3', 'C4', 'D4', 'E4', 'G4', 'A4'], name: 'A Minor Pentatonic' },
+            curiosity: { notes: ['C3', 'D3', 'E3', 'F#3', 'G3', 'A3', 'B3', 'C4', 'D4', 'E4', 'F#4', 'G4'], name: 'C Lydian' },
+            rothko: { notes: ['D3', 'F3', 'G3', 'A3', 'Bb3', 'D4', 'F4', 'G4', 'A4', 'Bb4'], name: 'D Minor' },
+            storm: { notes: ['C3', 'Db3', 'E3', 'F3', 'G3', 'Ab3', 'B3', 'C4', 'Db4', 'E4', 'F4'], name: 'C Phrygian Dominant' },
+            dunedin: { notes: ['G3', 'A3', 'B3', 'D4', 'E4', 'G4', 'A4', 'B4', 'D5', 'E5'], name: 'G Major Pentatonic' }
+        };
+
+        // Synth setup
+        let synth, reverb, delay, analyser;
+        let isInitialized = false;
+
+        async function initAudio() {
+            if (isInitialized) return;
+            await Tone.start();
+
+            reverb = new Tone.Reverb({ decay: 4, wet: musicState.reverb }).toDestination();
+            delay = new Tone.FeedbackDelay({ delayTime: '8n', feedback: 0.3, wet: 0.2 }).connect(reverb);
+
+            synth = new Tone.PolySynth(Tone.Synth, {
+                oscillator: { type: 'sine' },
+                envelope: { attack: 0.3, decay: 0.8, sustain: 0.4, release: 2 }
+            }).connect(delay);
+
+            synth.volume.value = -12;
+
+            analyser = new Tone.Analyser('waveform', 256);
+            synth.connect(analyser);
+
+            isInitialized = true;
+        }
+
+        // --- Composition Engine ---
+        function generateSequence(mood) {
+            let scale = scales[mood];
+            let notes = [];
+            let length = Math.floor(16 + musicState.density * 32);
+
+            for (let i = 0; i < length; i++) {
+                if (Math.random() > musicState.density) {
+                    notes.push(null); // Rest
+                    continue;
+                }
+
+                let noteIndex;
+                if (Math.random() < musicState.entropy) {
+                    // Random note from scale
+                    noteIndex = Math.floor(Math.random() * scale.notes.length);
+                } else {
+                    // Stepwise motion from previous note
+                    let prevIndex = notes.length > 0 ?
+                        scale.notes.indexOf(notes[notes.length - 1]?.note || scale.notes[0]) : 0;
+                    if (prevIndex === -1) prevIndex = Math.floor(scale.notes.length / 2);
+                    let step = Math.random() < 0.5 ? 1 : -1;
+                    if (Math.random() < 0.2) step *= 2; // Occasional leap
+                    noteIndex = Math.max(0, Math.min(scale.notes.length - 1, prevIndex + step));
+                }
+
+                let durations = ['4n', '8n', '2n', '4n.'];
+                let durWeights;
+                switch (mood) {
+                    case 'contemplation': durWeights = [0.3, 0.1, 0.4, 0.2]; break;
+                    case 'conviction': durWeights = [0.4, 0.2, 0.2, 0.2]; break;
+                    case 'curiosity': durWeights = [0.2, 0.4, 0.1, 0.3]; break;
+                    case 'rothko': durWeights = [0.1, 0.05, 0.6, 0.25]; break;
+                    case 'storm': durWeights = [0.2, 0.5, 0.1, 0.2]; break;
+                    case 'dunedin': durWeights = [0.3, 0.15, 0.35, 0.2]; break;
+                    default: durWeights = [0.25, 0.25, 0.25, 0.25];
+                }
+
+                let r = Math.random();
+                let cumulative = 0;
+                let durIndex = 0;
+                for (let d = 0; d < durWeights.length; d++) {
+                    cumulative += durWeights[d];
+                    if (r < cumulative) { durIndex = d; break; }
+                }
+
+                notes.push({
+                    note: scale.notes[noteIndex],
+                    duration: durations[durIndex],
+                    velocity: 0.3 + Math.random() * 0.4
+                });
+            }
+
+            musicState.currentNotes = notes;
+            musicState.notesGenerated += notes.filter(n => n !== null).length;
+            return notes;
+        }
+
+        // --- Playback ---
+        async function togglePlay() {
+            await initAudio();
+
+            if (musicState.isPlaying) {
+                Tone.Transport.stop();
+                Tone.Transport.cancel();
+                musicState.isPlaying = false;
+                document.getElementById('playBtn').textContent = '▶ Play';
+                document.getElementById('playBtn').classList.remove('playing');
+                return;
+            }
+
+            if (!musicState.mood) {
+                setMood('contemplation');
+            }
+
+            let notes = generateSequence(musicState.mood);
+            Tone.Transport.bpm.value = musicState.tempo;
+
+            let time = 0;
+            notes.forEach((n, i) => {
+                if (n === null) {
+                    time += Tone.Time('8n').toSeconds();
+                    return;
+                }
+                Tone.Transport.schedule((t) => {
+                    synth.triggerAttackRelease(n.note, n.duration, t, n.velocity);
+                }, time);
+                time += Tone.Time(n.duration).toSeconds();
+            });
+
+            // Loop
+            Tone.Transport.schedule(() => {
+                Tone.Transport.stop();
+                Tone.Transport.cancel();
+                if (musicState.isPlaying) {
+                    setTimeout(() => {
+                        if (musicState.isPlaying) togglePlay();
+                    }, 500);
+                }
+            }, time);
+
+            Tone.Transport.start();
+            musicState.isPlaying = true;
+            document.getElementById('playBtn').textContent = '⏸ Pause';
+            document.getElementById('playBtn').classList.add('playing');
+
+            startVisualization();
+            updateStatus();
+        }
+
+        function regenerate() {
+            let wasPlaying = musicState.isPlaying;
+            if (wasPlaying) {
+                Tone.Transport.stop();
+                Tone.Transport.cancel();
+                musicState.isPlaying = false;
+            }
+            if (musicState.mood) {
+                generateSequence(musicState.mood);
+                updateStatus();
+                if (wasPlaying) togglePlay();
+            }
+        }
+
+        // --- Mood Selection ---
+        function setMood(mood) {
+            musicState.mood = mood;
+            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+            event.target.closest('.mood-btn').classList.add('active');
+
+            // Mood presets
+            switch (mood) {
+                case 'contemplation':
+                    musicState.tempo = 60; musicState.density = 0.35;
+                    musicState.reverb = 0.7; musicState.entropy = 0.2;
+                    break;
+                case 'conviction':
+                    musicState.tempo = 80; musicState.density = 0.5;
+                    musicState.reverb = 0.4; musicState.entropy = 0.15;
+                    break;
+                case 'curiosity':
+                    musicState.tempo = 95; musicState.density = 0.55;
+                    musicState.reverb = 0.5; musicState.entropy = 0.5;
+                    break;
+                case 'rothko':
+                    musicState.tempo = 50; musicState.density = 0.25;
+                    musicState.reverb = 0.85; musicState.entropy = 0.15;
+                    break;
+                case 'storm':
+                    musicState.tempo = 130; musicState.density = 0.7;
+                    musicState.reverb = 0.6; musicState.entropy = 0.7;
+                    break;
+                case 'dunedin':
+                    musicState.tempo = 72; musicState.density = 0.4;
+                    musicState.reverb = 0.6; musicState.entropy = 0.25;
+                    break;
+            }
+
+            // Update sliders
+            document.getElementById('tempo').value = musicState.tempo;
+            document.getElementById('tempoVal').textContent = musicState.tempo;
+            document.getElementById('density').value = musicState.density * 100;
+            document.getElementById('densityVal').textContent = musicState.density.toFixed(2);
+            document.getElementById('reverb').value = musicState.reverb * 100;
+            document.getElementById('reverbVal').textContent = musicState.reverb.toFixed(2);
+            document.getElementById('entropy').value = musicState.entropy * 100;
+            document.getElementById('entropyVal').textContent = musicState.entropy.toFixed(2);
+
+            if (reverb) reverb.wet.value = musicState.reverb;
+
+            updateStatus();
+        }
+
+        function updateParam(param, value) {
+            switch (param) {
+                case 'tempo':
+                    musicState.tempo = parseInt(value);
+                    document.getElementById('tempoVal').textContent = value;
+                    if (Tone.Transport) Tone.Transport.bpm.value = musicState.tempo;
+                    break;
+                case 'density':
+                    musicState.density = parseInt(value) / 100;
+                    document.getElementById('densityVal').textContent = musicState.density.toFixed(2);
+                    break;
+                case 'reverb':
+                    musicState.reverb = parseInt(value) / 100;
+                    document.getElementById('reverbVal').textContent = musicState.reverb.toFixed(2);
+                    if (reverb) reverb.wet.value = musicState.reverb;
+                    break;
+                case 'entropy':
+                    musicState.entropy = parseInt(value) / 100;
+                    document.getElementById('entropyVal').textContent = musicState.entropy.toFixed(2);
+                    break;
+            }
+        }
+
+        // --- Visualizer ---
+        function startVisualization() {
+            let canvas = document.getElementById('viz');
+            let ctx = canvas.getContext('2d');
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = 120;
+
+            function drawViz() {
+                if (!musicState.isPlaying) return;
+                requestAnimationFrame(drawViz);
+
+                let data = analyser ? analyser.getValue() : new Float32Array(256);
+                ctx.fillStyle = 'rgba(10, 10, 18, 0.15)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.beginPath();
+                ctx.strokeStyle = '#f4a261';
+                ctx.lineWidth = 1.5;
+                let sliceWidth = canvas.width / data.length;
+                let x = 0;
+                for (let i = 0; i < data.length; i++) {
+                    let y = (data[i] + 1) / 2 * canvas.height;
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                    x += sliceWidth;
+                }
+                ctx.stroke();
+            }
+            drawViz();
+        }
+
+        function updateStatus() {
+            let scale = musicState.mood ? scales[musicState.mood].name : '—';
+            document.getElementById('status').innerHTML =
+                `Mood: <span>${musicState.mood || '—'}</span> | ` +
+                `Notes: <span>${musicState.notesGenerated}</span> | ` +
+                `Scale: <span>${scale}</span>`;
+        }
+
+        function exportMIDI() {
+            // Export as simple text notation for now
+            if (!musicState.currentNotes.length) return;
+            let text = `Lobotto Composition — ${musicState.mood}\n`;
+            text += `Tempo: ${musicState.tempo} BPM | Scale: ${scales[musicState.mood].name}\n\n`;
+            musicState.currentNotes.forEach((n, i) => {
+                if (n === null) text += `${i + 1}: (rest)\n`;
+                else text += `${i + 1}: ${n.note} [${n.duration}] vel:${n.velocity.toFixed(2)}\n`;
+            });
+
+            let blob = new Blob([text], { type: 'text/plain' });
+            let url = URL.createObjectURL(blob);
+            let a = document.createElement('a');
+            a.href = url;
+            a.download = `lobotto_composition_${musicState.mood}_${Date.now()}.txt`;
+            a.click();
+        }
+    </script>
+</body>
+
+</html>
