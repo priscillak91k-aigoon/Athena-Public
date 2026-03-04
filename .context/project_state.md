@@ -7,7 +7,7 @@
 - **Intuition**: heuristics.md + case_studies.md + decision_journal.md (self-applying via dreaming)
 - **Dreaming**: `athena_dreaming.py` v2 — every 4 hours, Claude-primary, self-applying, Telegram alerts
 - **Security**: Hardened (BitLocker, Defender maxed, ASR rules, services pruned, McAfee purged)
-- **Framework**: v7.5 (v8.0-alpha referenced — consolidation pending)
+- **Framework**: v7.5 CANONICAL (`examples/framework/Core_Identity.md`). v8.2-stable exists as SJ's upstream template in `examples/templates/framework_mirror/` — reference only, not live.
 
 ## Background Processes (Windows Scheduled Tasks)
 | Task | Schedule | Status |

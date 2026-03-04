@@ -97,9 +97,8 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 
 ### Athena Framework
 - Personal AI-augmented life management system
-- Framework version: v7.5 (v8.0-alpha referenced but not consolidated)
+- Framework version: v7.5 CANONICAL. v8.2-stable exists as SJ's upstream template (reference only).
 - Core Identity lives in `examples/framework/Core_Identity.md`
-- **Action needed**: Consolidate framework versions to one canonical source
 
 ### Life Hub / Routine App (`routine-app/`)
 - 90s retro-themed daily life dashboard

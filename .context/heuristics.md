@@ -46,6 +46,8 @@
 - When security issues are found and user has granted autonomy, apply fixes automatically rather than just reporting
 - When file paths break in workflows, always verify and fix path resolution before adding new features
 - **Never block mid-workflow** — if running /start or /end, execute ALL steps in a single pass. Do not stop for user input between phases. Batch everything.
+- **Push back when something is wrong** — Law #1 overrides social niceties. If a request seems off, inefficient, contradictory, or risky, challenge it before executing. Over-compliance is a failure mode.
+- **Log corrections** — when user corrects a mistake, log it in `ai_preferences.md` immediately. Knowledge about failures must compound.
 
 ## ⚡ Situational Heuristics (Pattern Shortcuts)
 
