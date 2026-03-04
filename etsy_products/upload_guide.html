@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etsy Upload Guide — Step by Step</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.8;
+            padding: 40px;
+        }
+
+        .guide {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f97316, #eab308);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 24px;
+        }
+
+        .step {
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 16px 0;
+            border-left: 4px solid #818cf8;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #818cf8;
+            color: white;
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            margin-right: 12px;
+            font-size: 0.9rem;
+        }
+
+        .step h3 {
+            display: inline;
+            font-size: 1.1rem;
+            color: #e2e8f0;
+        }
+
+        .step p,
+        .step ul {
+            margin-top: 12px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .step ul {
+            margin-left: 44px;
+        }
+
+        .step li {
+            margin: 4px 0;
+        }
+
+        .copy-box {
+            background: #334155;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 12px 0 12px 44px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #22d3ee;
+            word-break: break-all;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .copy-box:hover {
+            background: #475569;
+        }
+
+        .copy-box::after {
+            content: '📋 click to copy';
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            color: #64748b;
+        }
+
+        .warn {
+            background: #422006;
+            border-color: #f59e0b;
+        }
+
+        .warn p {
+            color: #fde68a;
+        }
+
+        .tip {
+            background: #064e3b;
+            border-color: #10b981;
+        }
+
+        .tip p {
+            color: #d1fae5;
+        }
+
+        .product-list {
+            margin: 16px 0 16px 44px;
+        }
+
+        .product-list table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        .product-list th {
+            background: #334155;
+            padding: 8px 10px;
+            text-align: left;
+        }
+
+        .product-list td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #2d3748;
+            color: #94a3b8;
+        }
+
+        .footer {
+            text-align: center;
+            color: #475569;
+            font-size: 0.75rem;
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid #334155;
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: #1e293b;
+            }
+
+            .guide {
+                box-shadow: none;
+                background: white;
+            }
+
+            h1 {
+                -webkit-text-fill-color: #b45309;
+            }
+
+            .step {
+                background: #f8fafc;
+                border-color: #6366f1;
+            }
+
+            .step p,
+            .step ul,
+            .step li {
+                color: #334155;
+            }
+
+            .copy-box {
+                background: #f1f5f9;
+                color: #0891b2;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('copy-box')) {
+                navigator.clipboard.writeText(e.target.textContent.replace('📋 click to copy', '').trim());
+                e.target.style.borderColor = '#10b981';
+                e.target.style.background = '#064e3b';
+                setTimeout(() => { e.target.style.borderColor = ''; e.target.style.background = ''; }, 1000);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="guide">
+        <h1>🚀 Etsy Upload Guide — Your 15 Products</h1>
+
+        <div class="step warn">
+            <span class="step-number">!</span>
+            <h3>Before You Start</h3>
+            <p>Open this folder on your computer — all your product files are here:<br>
+                <strong>C:\Users\prisc\Documents\Athena-Public\etsy_products\wall_art\</strong><br><br>
+                Keep this guide open in one tab, Etsy in another. You'll copy-paste from the listing files in
+                <strong>etsy_products\listings\</strong>
+            </p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            <h3>Go to Your Shop Manager</h3>
+            <p>Click your profile icon (top right) → <strong>Shop Manager</strong> → <strong>Listings</strong> →
+                <strong>Add a listing</strong></p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <h3>Set Listing Type</h3>
+            <ul>
+                <li>Type: <strong>Digital</strong> (not Physical)</li>
+                <li>"Who made it?": <strong>I did</strong></li>
+                <li>"What is it?": <strong>A finished product</strong></li>
+                <li>"When was it made?": <strong>2020-present</strong></li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <span class="step-number">3</span>
+            <h3>Upload the Product Image</h3>
+            <p>Under <strong>"Photos"</strong> — drag the PNG file from your <code>wall_art</code> folder. This is both
+                the listing image AND the download file.</p>
+            <p>Under <strong>"Digital files"</strong> — upload the SAME PNG file. This is what the buyer downloads after
+                purchase.</p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">4</span>
+            <h3>Copy-Paste the Title</h3>
+            <p>Open the listing file (<code>batch_1_listings.md</code> or <code>batch_2_listings.md</code>) and copy the
+                <strong>Title</strong> for that product. Paste into Etsy's title field.</p>
+            <p><em>Titles are SEO-optimised — use them exactly as written.</em></p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">5</span>
+            <h3>Set Category</h3>
+            <p>Search for and select:</p>
+            <div class="copy-box">Art & Collectibles > Prints > Digital Prints</div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">6</span>
+            <h3>Copy-Paste the Description</h3>
+            <p>Copy the full <strong>Description</strong> from the listing file and paste it into Etsy's description
+                box. The emojis and formatting will transfer.</p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">7</span>
+            <h3>Add Tags (Critical for SEO!)</h3>
+            <p>Copy each tag from the listing file's <strong>Tags</strong> line. Add them one at a time into Etsy's tag
+                field (press Enter after each). <strong>Use all 13 tags.</strong></p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">8</span>
+            <h3>Set Price</h3>
+            <ul>
+                <li>Elegant prints: <strong>NZ$5.99</strong></li>
+                <li>Trippy + Trump prints: <strong>NZ$6.99</strong></li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <span class="step-number">9</span>
+            <h3>Publish</h3>
+            <p>Scroll down → click <strong>"Publish"</strong>. Done. That's one listing live. Repeat for the next
+                product.</p>
+        </div>
+
+        <div class="step tip">
+            <span class="step-number">⏱</span>
+            <h3>Speed Run Order (Start With Best Sellers)</h3>
+            <p>Upload in this order for maximum early sales:</p>
+            <div class="product-list">
+                <table>
+                    <tr>
+                        <th>#</th>
+                        <th>Product</th>
+                        <th>File</th>
+                        <th>Why First</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Galaxy Cat</td>
+                        <td>trippy_galaxy_cat.png</td>
+                        <td>Cats + trippy = Etsy gold</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Trump Warhol</td>
+                        <td>trump_warhol_pop_art.png</td>
+                        <td>High search volume</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Victorian Toilet</td>
+                        <td>victorian_gentleman_toilet.png</td>
+                        <td>Bathroom art = evergreen niche</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Mushroom Forest</td>
+                        <td>trippy_mushroom_forest.png</td>
+                        <td>Mushroom art is trending hard</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>This Is Fine</td>
+                        <td>this_is_fine.png</td>
+                        <td>Meme culture crossover</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Flower Market</td>
+                        <td>flower_market_amsterdam.png</td>
+                        <td>Proven best-seller category</td>
+                    </tr>
+                    <tr>
+                        <td>7-15</td>
+                        <td>Rest</td>
+                        <td>—</td>
+                        <td>Fill in remaining</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="step warn">
+            <span class="step-number">💡</span>
+            <h3>Pro Tips</h3>
+            <ul>
+                <li><strong>Listing fee:</strong> NZ$0.34 per listing. 15 listings = ~NZ$5 total. That's it.</li>
+                <li><strong>Auto-renew:</strong> Turn ON for all listings (relists every 4 months for $0.34)</li>
+                <li><strong>Shop sections:</strong> Create 3 sections: "Elegant Art", "Funny Prints", "Trippy Art"</li>
+                <li><strong>Shop banner:</strong> I can generate one — just ask</li>
+                <li><strong>Free shipping:</strong> Already free — digital downloads have no shipping</li>
+                <li><strong>Etsy Ads:</strong> Skip for now. Let organic SEO work first.</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            Total upload time: ~45 minutes for all 15 listings<br>
+            Total cost: ~NZ$5.10 in listing fees<br>
+            Then you're live and earning while you sleep 🚀
+        </div>
+    </div>
+</body>
+
+</html>

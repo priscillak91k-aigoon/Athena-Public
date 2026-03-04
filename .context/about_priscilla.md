@@ -121,6 +121,13 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 - Plans: `munro-move-plan.html`, `munro-move-horse-plan.html`
 - **Pending**: Call ITM Dunedin (03 455 0220) to order materials
 
+### Lobotto Prints (Etsy Shop)
+- Digital art Etsy shop — passive income stream
+- 15 products generated (elegant, funny/satirical, trippy psychedelic)
+- Shop branding, listing copy, and upload guide ready
+- Files: `etsy_products/` — wall_art, listings, banner, icon
+- **Pending**: Complete ID verification, upload products
+
 ### Health Data
 - Ancestry DNA data fully analyzed (exhaustive report in `health/DNA_God_Mode_Report.md`)
 - Blood test request template: `health/Doctor_Blood_Test_Request.html`
@@ -158,7 +165,8 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 
 | Session | Date | Key Work |
 |---------|------|----------|
-| 30 | 2026-03-04 (PM) | ← Current session — grocery cost comparison (Pak'nSave vs Woolworths) |
+| 31 | 2026-03-04 (PM2) | ← Current session — Etsy passive income, grocery comparison, 15 products generated |
+| 30 | 2026-03-04 (PM) | Grocery cost comparison (Pak'nSave vs Woolworths) |
 | 29 | 2026-03-04 | Security hardening, intuition engine, dreaming system, Tier 1+2 upgrades |
 | 28 | 2026-03-03 (PM) | Lobotto Discord bot, magnesium substitution, Nutter session |
 | 27 | 2026-03-03 (PM) | Supplement history/Pulse integration, Munro logistics, Telegram bot |
@@ -169,13 +177,13 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 
 ## 🔮 Open Action Items
 
+- [ ] **Complete Etsy ID verification** and upload 15 products to Lobotto Prints
 - [ ] Call ITM Dunedin to order plywood + delivery for Munro move
 - [ ] Confirm Munro move date
 - [ ] Get 25(OH)D blood test at 8-12 weeks (started ~late Feb 2026)
 - [ ] Schedule annual blood donation (ferritin management)
 - [ ] Set up persistent Telegram bot process (background service or cloud)
 - [ ] Consolidate Athena framework to single canonical version
-- [ ] Update `project_state.md` (currently stale since 2026-02-11)
 
 ---
 

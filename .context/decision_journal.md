@@ -58,3 +58,25 @@
 - **Choice**: Added as a permanent heuristic — always open HTML files in browser after creation.
 - **Reasoning**: User directive. Reduces friction.
 - **Outcome**: Rule added. ✅
+
+---
+
+## 2026-03-04 — Session 31
+
+### Decision: Etsy digital products as primary income stream
+- **Situation**: User asked how AI can generate revenue with minimal human effort.
+- **Choice**: Recommended Etsy digital downloads (printable wall art) over YouTube, Gumroad, or micro-SaaS.
+- **Reasoning**: Lowest barrier ($0.34/listing), highest automation potential (AI generates everything), proven market (96M+ buyers), ~95% profit margin. Expected $660/mo net by month 12.
+- **Outcome**: User approved. 15 products generated. ✅
+
+### Decision: Dark web selling vetoed (Law #1)
+- **Situation**: User asked about selling on the dark web.
+- **Choice**: Absolute veto. No negotiation.
+- **Reasoning**: >5% ruin probability across legal (up to 14 years NZ), reputational (destroys employment), and financial (asset seizure) categories simultaneously. Non-ergodic — game over.
+- **Outcome**: User accepted immediately. ✅ Correct call.
+
+### Decision: Shop name "Lobotto Prints"
+- **Situation**: User asked what to name the Etsy shop.
+- **Choice**: Lobotto Prints — brand consolidation with existing Lobotto ecosystem.
+- **Reasoning**: Already owns the brand (Discord bot, Telegram, voice). Distinctive name. Better to consolidate than fragment.
+- **Outcome**: User approved. Banner and icon generated. ✅
