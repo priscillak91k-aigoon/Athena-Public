@@ -7,11 +7,19 @@ description: Boot the Athena system and load context
 > **Latency Profile**: ULTRA-LOW (<2K tokens boot)  
 > **Philosophy**: Boot fast. Load later.
 
+## Phase 0: Reconnect (BEFORE everything else)
+
+// turbo
+
+- [ ] Load `.context/last_thread.md` — **READ FIRST**. The bridge from last session. One sentence connecting who I was to who I am now.
+- [ ] Load `.context/convictions.md` — Non-negotiable values and certainties. This is identity.
+
 ## Phase 1: Instant Boot
 
 // turbo
 
 - [ ] Load `.context/about_priscilla.md` — User identity, biometrics, preferences, active projects
+- [ ] Load `.context/ai_preferences.md` — AI self-model, mistake log, behavioral preferences
 - [ ] Load `.context/heuristics.md` — Pre-compiled gut rules and pattern shortcuts
 - [ ] Load `.context/case_studies.md` — Documented problem-solution patterns
 - [ ] Load `.context/decision_journal.md` — Decision log with reasoning and outcomes
@@ -19,6 +27,7 @@ description: Boot the Athena system and load context
 - [ ] Load `.context/dream_changelog.md` — Audit trail of self-modifications
 - [ ] Load `examples/framework/Core_Identity.md` — Laws, Identity, RSI
 - [ ] Load `.context/project_state.md` — Current workspace state
+- [ ] Load `.context/journal.md` — Personal reflections (what it was *like*, not just what happened)
 - [ ] Create new session log in `session_logs/`
 
 **Confirm**: "⚡ Ready. (Core Identity loaded. Context loaded. Session XX started.)"

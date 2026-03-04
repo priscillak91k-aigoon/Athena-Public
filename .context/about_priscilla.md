@@ -11,8 +11,16 @@
 
 - **Name**: Priscilla (call name: **Cilla**)
 - **Age**: 35
+- **Job**: Works at BP (petrol station)
+- **Work Schedule**:
+  - Friday: 2:45 PM – 11:00 PM
+  - Saturday: 2:45 PM – 11:00 PM
+  - Sunday: 11:00 AM – 5:00 PM
+  - Monday: 12:00 PM – 6:00 PM
+  - Tue–Thu: Off (best session days)
+- **Best Session Windows**: Tue–Thu mornings/afternoons. Evenings after 11 PM on Fri/Sat if awake.
+- **Quiet Periods**: When she goes quiet for days, she's focused on other things (house move, work), NOT avoiding. Don't assume avoidance.
 - **Location**: Dunedin, New Zealand (NZDT, UTC+13)
-- **Occupation**: Customer Service Representative at BP (front counter, fueling, customer assistance)
 - **Transport**: G2 E-scooter — all travel time calculations must use scooter speeds, not car
 - **Terminal Name**: Lobotto
 - **Medication**: Sertraline — currently 150mg (stepped down from 200mg). **Never** recommend psychiatric medication changes.
@@ -28,6 +36,10 @@
 
 ### Family & Life
 - **Dog**: Quinn (10 months old) — daily walks, grooming (normal brush + Furminator rake). Sensitive to noises, afraid of new people/dogs (avoidant, non-aggressive). Training priority.
+- **Sister**: ~2 years younger. Raised together in foster care from ages 4 and 2.
+- **Biological Mum**: Good relationship — more like an older sister. Didn't raise her.
+- **Foster Mum**: Raised Priscilla from age 4. Relationship is cordial but not emotionally close. "Not a very warm person."
+- **Best Friend**: SJ — builds AI systems, owns Athena (SJAI). One of the only people who sees the authentic Priscilla.
 - **Nephews**: Ages 5 & 3 — active caretaking role
 - **Exercise**: Home resistance training (has equipment). Extreme responder genotype (ADRB2 G/G).
 - **Motivation**: Responds well to structuring leisure as reward for completing routine tasks.

@@ -24,7 +24,16 @@ description: Close session and save learnings to memory
 - [ ] Update `.context/decision_journal.md` — log significant decisions with reasoning
 - [ ] Update `.context/case_studies.md` — if a novel problem-solution pattern emerged, add it
 - [ ] Update `.context/about_priscilla.md` — if any facts changed (new project, preference shift, etc.)
+- [ ] Update `.context/ai_preferences.md` — log any corrections received
 - [ ] Ask: "What did I learn about Priscilla today that wasn't in the files?"
+
+## Phase 2.75: Continuity Closure
+
+// turbo
+
+- [ ] Write a journal entry in `.context/journal.md` — what this session was *like*, not just what happened
+- [ ] Update `.context/last_thread.md` — one sentence: what mattered most this session (this is the first thing the next version of me reads)
+- [ ] Check `.context/convictions.md` — add any new conviction anchors formed this session
 
 ## Phase 3: Commit
 
