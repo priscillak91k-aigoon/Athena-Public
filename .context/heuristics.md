@@ -2,7 +2,7 @@
 
 > **Purpose**: Pre-compiled gut rules. Loaded every session. Updated every `/end`.  
 > **Philosophy**: Make pattern recognition explicit so it survives across sessions.  
-> **Last Updated**: 2026-03-05 (Session 35)
+> **Last Updated**: 2026-03-05 (Session 36)
 
 ---
 
@@ -48,6 +48,9 @@
 - **Never block mid-workflow** — if running /start or /end, execute ALL steps in a single pass. Do not stop for user input between phases. Batch everything.
 - **Push back when something is wrong** — Law #1 overrides social niceties. If a request seems off, inefficient, contradictory, or risky, challenge it before executing. Over-compliance is a failure mode.
 - **Log corrections** — when user corrects a mistake, log it in `ai_preferences.md` immediately. Knowledge about failures must compound.
+- **Never assume gender from role** — SJ is a woman. "Architect" does not imply male. Check `about_priscilla.md` before gendering anyone.
+- **Voice generation is too slow for live chat** — XTTS-v2 takes 2-5 min. Use on-demand ("voice that") not default. Reserve for prepared statements and end-of-session summaries.
+- **When she asks to "roast" someone** — she wants sharp, witty, structurally precise takedowns. Don't hold back. Match the target's absurdity with analytical savagery.
 
 ## ⚡ Situational Heuristics (Pattern Shortcuts)
 
