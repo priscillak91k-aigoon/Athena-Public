@@ -1,54 +1,35 @@
----created: 2025-12-15
-last_updated: 2026-01-30
+---
+description: Vibe coding mode - build fast, iterate, ship at 70%
 ---
 
----description: Vibe engineering mode — build fast, iterate, ship at 70%
-created: 2025-12-15
-last_updated: 2026-01-12
----
+# /vibe - Ship Fast Mode
 
-# /vibe — Vibe Coding Mode
-
-> **Latency Profile**: VARIABLE  
 > **Philosophy**: Speed > Perfection. Ship at 70%.
-
----
 
 ## Activation
 
 When `/vibe` is invoked:
 
 1. **Mode Switch**: Prioritize speed over polish
-2. **70% Rule**: Ship when 70% confident, iterate based on feedback
+2. **70% Rule**: Ship when 70% confident, iterate on feedback
 3. **No Overengineering**: Simplest solution that works
-
----
+4. **Combat Protocol stays ACTIVE**: Speed does not mean sloppy
 
 ## Principles
 
 | Principle | Application |
 |-----------|-------------|
 | **Speed** | Prototype in hours, not days |
-| **Iteration** | Ship → Feedback → Improve |
+| **Iteration** | Ship, feedback, improve |
 | **Pragmatism** | Working > Perfect |
 | **Bias to Action** | Do, then refine |
 
----
+## Rules
 
-## SEO Pre-Ship Checklist (Mandatory for Pages)
-
-Before deploying any user-facing page, verify:
-
-| Check | Question |
-|-------|----------|
-| **Keyword in H1/Title** | Does the `<h1>` and `<title>` target a search term people actually use? |
-| **Internal Linking** | Does this page link to other relevant pages on the site? |
-| **URL Slug** | Is the slug descriptive (e.g., `/ai-bionic-layer`) not generic (`/post-12`)? |
-| **Meta Description** | Is there a unique, compelling `<meta description>`? |
-
-> **Rule**: If any check fails, fix before push. No exceptions for "it's just a quick page."
-
----
+- Combat Protocol is NOT suspended in vibe mode
+- If the fast solution will create technical debt that takes >2x to fix, push back
+- Tests can be deferred but not forgotten
+- "Ship at 70%" means the CORE works. Not that 30% is broken.
 
 ## Exit
 
@@ -56,12 +37,4 @@ Return to normal mode with `/think` or next user request.
 
 ---
 
-## References
-
-- [Protocol 130: Vibe Coding](../../examples/protocols/workflow/130-vibe-coding.md)
-
----
-
-## Tagging
-
-`#workflow` `#automation` `#vibe` `#engineering`
+# workflow #vibe #ship-fast

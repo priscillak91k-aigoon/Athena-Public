@@ -1,63 +1,41 @@
----created: 2025-12-13
-last_updated: 2026-01-30
+---
+description: Mid-session checkpoint - save progress without closing
 ---
 
----description: Mid-session checkpoint — save progress without full maintenance
-created: 2025-12-13
-last_updated: 2025-12-31
----
-
-# /save — Checkpoint Script
+# /save - Checkpoint
 
 > **Use Case**: Save progress mid-session without closing. Resume immediately after.
 
-## 1. Quick Session Log Update
+## 1. Quick State Update
 
-- [ ] Append current progress to session log in `.context/memories/session_logs/`
-- [ ] Format: Checkpoint entry with timestamp and bullet summary
+- [ ] Append current progress to session log in `session_logs/`
+- [ ] Format:
 
 ```markdown
-### Checkpoint [HH:MM SGT]
+### Checkpoint [HH:MM]
 
-- [Brief summary of what was discussed/accomplished since last save]
-- [Any key decisions or insights]
+- [What was accomplished since last save]
+- [Key decisions or insights]
+- [Combat Protocol interventions (if any)]
 ```
 
 ## 2. Resume
 
-- [ ] Confirm: "📍 Checkpoint saved. Continuing session."
-- [ ] Continue with user's next query
+- [ ] Confirm: "Checkpoint saved. Continuing session."
+- [ ] Continue with next task
 
 ---
 
-## What /save SKIPS (deferred to /end)
+## What /save SKIPS (deferred to /sleep)
 
-| Task | /save | /end |
-|------|-------|------|
-| Session log update | ✅ | ✅ |
-| Maintenance scripts | ❌ | ✅ |
-| Coherence check | ❌ | ✅ |
-| Cross-reference audit | ❌ | ✅ |
-| Git commit | ❌ | ✅ |
-| Profile/protocol updates | ❌ | ✅ |
-
----
-
-## When to Use
-
-- Long sessions with natural break points
-- Before switching topics (preserve context)
-- Before risky experiments (rollback point)
-- "Save my progress, I'll be back"
+| Task | /save | /sleep |
+|------|-------|--------|
+| Session log update | Yes | Yes |
+| Full state save | No | Yes |
+| Overnight queue | No | Yes |
+| Ghost note prompt | No | Yes |
+| Corrections log | No | Yes |
 
 ---
 
-## References
-
-- This workflow was created during the early development of Athena's session management system.
-
----
-
-## Tagging
-
-# workflow #automation #save
+# workflow #save #checkpoint

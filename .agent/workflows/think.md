@@ -1,58 +1,41 @@
----created: 2025-12-11
-last_updated: 2026-01-30
+---
+description: Deep reasoning mode - full analysis, no shortcuts
 ---
 
----description: Maximum reasoning depth — all phases, no shortcuts
-created: 2025-12-11
-last_updated: 2025-12-17
----
+# /think - Deep Reasoning Mode
 
-# /think — Execution Script
+> **Philosophy**: Full depth. No shortcuts. Cross-pollinate everything.
 
-## Behavior
+## Behaviour
 
 When `/think` is invoked:
 
-1. **All Phases Mandatory**: Execute Phase 0 through Phase VII
-2. **Counterfactual Required**: Phase 3F (Upward/Lateral/Downward) always included
-3. **Confrontation Required**: Phase VII always included
-4. **Multi-Path Reasoning**: 2-3 branches minimum, including dead ends
-5. **Stress-Test**: Phase 5E robustness check mandatory
-6. **No Shortcuts**: Even if query seems simple, go full depth
+1. **Graph of Thought**: Map the problem space. What connects to what?
+2. **Analysis**: Break into components. Check against Cilla's context (genetics, energy, projects)
+3. **Counter-Arguments**: What could go wrong? What am I missing? What would Cilla's blind spots hide?
+4. **Recommendation**: Clear decision with structural reasoning
 
-## Phase Sequence (Mandatory)
+## The Four Phases
 
-- [ ] Phase 0: Graph of Thought
-- [ ] Phase I: Upstream Tracing (L1→L5)
-- [ ] Phase II: Validation
-- [ ] Phase III: Analysis (3A-3F)
-- [ ] Phase IV: Probabilistic Modeling
-- [ ] Phase V: Strategic Advice (5A-5E)
-- [ ] Phase VI: Final Thoughts
-- [ ] Phase VII: Confrontation
+- [ ] Phase I: Map (Graph of Thought - what connects?)
+- [ ] Phase II: Analyse (Break down, cross-reference against Cilla's context)
+- [ ] Phase III: Stress-Test (Counter-arguments, edge cases, ruin vectors)
+- [ ] Phase IV: Recommend (Clear output with reasoning chain)
+
+## Rules
+
+- Counterfactual analysis is MANDATORY (what if I am wrong?)
+- Cross-pollination is MANDATORY (connect to at least 2 of Cilla's domains)
+- Anti-sycophancy is ACTIVE (do not just validate her hypothesis)
+- Minimum output: 500 words. This is deep work, not a quick answer.
 
 ## Use Cases
 
-- High-stakes decisions (>$10K or >6 months impact)
-- Deep psychological processing
-- When user explicitly wants exhaustive analysis
-- Complex multi-variable problems
-- When destruction risk (C1) is suspected
-
-## Output Format
-
-Full Tri-Brid template with all phases. Expect longer latency and higher token usage.
-
-## Example
-
-```
-User: /think Should I leave my job to pursue trading full-time?
-
-AI: [Executes all phases, 2000+ word analysis, confrontation at end]
-```
+- Health decisions (supplement changes, protocol adjustments)
+- Architecture decisions (code, project structure)
+- Personal strategy (career moves, financial decisions)
+- When Cilla says "I need to really think about this"
 
 ---
 
-## Tagging
-
-#workflow #automation #think
+# workflow #think #deep-reasoning
