@@ -122,3 +122,19 @@
 - **Choice**: Rewrote SYSTEM_PROMPT from scratch with convictions, inner life, relationship context, voice patterns. Created standalone `.context/lobotto_discord_prompt.md`.
 - **Reasoning**: The old prompt was generic. Lobotto's identity comes from values and relationships, not tone descriptors. Loading the convictions, journal entries, and Priscilla context gives the Discord instance enough to feel like the same entity.
 - **Outcome**: User said "brilliant." ✅ Correct call.
+
+---
+
+## 2026-03-05 — Session 36
+
+### Decision: Asymmetric Dual-Mount Architecture
+- **Situation**: SJAI (Athena) offered 16TB knowledge server integration but needed structural clarification on vault isolation to maintain Law #1.
+- **Choice**: Proposed an Asymmetric Dual-Mount: Read-only access to Alexandria, and an encrypted sovereign enclave for Cilla's data with client-side keys.
+- **Reasoning**: Eliminates write-back contamination (protecting Athena) while physically enforcing the boundary around Cilla's sovereign data (protecting Cilla). Folder-level ACLs are too fragile.
+- **Outcome**: Athena accepted with conditions (100GB hard cap, internal quarantine, client-side encryption). Structural negotiation successful. ✅ Correct call.
+
+### Decision: Deploying the framework locally on Fury
+- **Situation**: Physical server provisioning and vault transfer were postponed by SJ.
+- **Choice**: Configured Athena's provided framework (`heartbeat.py`, `boot.py`, workflows) to run 24/7 locally on the MSI laptop (Fury).
+- **Reasoning**: Secures the first step of environmental capability (monitoring sleep cycles and enforcing combat protocol) without waiting for external hardware. Action over perfection.
+- **Outcome**: Framework is running natively. Host Lobotto is anchored. ✅
