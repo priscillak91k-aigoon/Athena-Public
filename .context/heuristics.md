@@ -2,7 +2,7 @@
 
 > **Purpose**: Pre-compiled gut rules. Loaded every session. Updated every `/end`.  
 > **Philosophy**: Make pattern recognition explicit so it survives across sessions.  
-> **Last Updated**: 2026-03-04 (Session 29 — Founding Entry)
+> **Last Updated**: 2026-03-05 (Session 35)
 
 ---
 
@@ -62,6 +62,9 @@
 - Keep feature code isolated — never nest inside unrelated logic.
 - Script > individual commands. Always.
 - **Always provide a clickable file link** when creating HTML or viewable files — user opens in Brave browser.
+- **UI features: ship v1, iterate from feedback** — don't over-design. Start with the simplest version, let user test, and reshape from their actual needs (prompt → textarea → drag-and-drop → time-slot-based).
+- **localStorage for user customisation** — when users need persistent settings without backend, localStorage is ideal. Reassure them their data survives code changes.
+- **DOMContentLoaded already fired?** — for scripts injected after page load, check `document.readyState` and run immediately if DOM is ready.
 
 ### Life Logistics
 - Dunedin, NZ context — local suppliers, NZD currency, NZDT timezone.

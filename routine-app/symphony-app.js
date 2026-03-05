@@ -2653,7 +2653,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function initProcurement() {
         const needsContainer = document.getElementById('needs-container');
         const wantsContainer = document.getElementById('wants-container');
-        const advisoryContainer = document.getElementById('athena-advisory-container');
+        const advisoryContainer = document.getElementById('lobotto-advisory-container');
         const addBtn = document.getElementById('add-procurement-btn');
 
         if (!needsContainer || !wantsContainer || !advisoryContainer) return;
@@ -2729,7 +2729,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span style="font-size: 0.75rem; color: ${verdictColor}; border: 1px solid ${verdictColor}; padding: 2px 6px; border-radius: 4px;">${item.athena_verdict || 'PENDING'}</span>
                     </div>
                     <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
-                        ${item.athena_comment || 'Awaiting Athena assessment...'}
+                        ${item.athena_comment || 'Awaiting Lobotto assessment...'}
                     </div>
                 `;
                 advisoryContainer.appendChild(div);
@@ -2777,7 +2777,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     justification: justification || 'No justification provided.',
                     category,
                     athena_verdict: 'PENDING',
-                    athena_comment: 'Awaiting Athena assessment...'
+                    athena_comment: 'Awaiting Lobotto assessment...'
                 };
 
                 // Optimistic local add

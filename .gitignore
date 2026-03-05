@@ -61,3 +61,7 @@ TAG_INDEX_*.md
 .nosey_nutter/
 
 .nosey_nutter/
+
+# Personal photos - never commit
+phots/
+

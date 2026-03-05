@@ -392,13 +392,54 @@
                             </div>
                         </div>
 
+                        <!-- Template Schedule Controls -->
                         <div
-                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                            <h3 style="margin: 0;"><span class="icon">⏱️</span> Timeline Integration</h3>
-                            <button id="lock-in-btn" class="tab-btn active"
-                                style="background: var(--accent-green); color: #000; padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.2s;">
-                                🔒 Lock In Schedule
-                            </button>
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <h3 style="margin: 0;"><span class="icon">⏱️</span> Timeline
+                                <span id="template-day-badge"
+                                    style="font-size: 0.75rem; padding: 2px 8px; border-radius: 3px; margin-left: 6px; font-weight: 600;"></span>
+                            </h3>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button id="reset-template-btn"
+                                    style="padding: 0.35rem 0.75rem; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: var(--accent-red); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 3px;"
+                                    title="Reset today's schedule to the default template">🔄 Reset</button>
+                                <button id="edit-template-btn"
+                                    style="padding: 0.35rem 0.75rem; background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.4); color: #a855f7; font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 3px;"
+                                    title="Edit the default template for this day type">✏️ Edit Template</button>
+                                <button id="lock-in-btn" class="tab-btn active"
+                                    style="background: var(--accent-green); color: #000; padding: 0.35rem 0.75rem; border-radius: 3px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s;">
+                                    🔒 Lock In
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Template Colour Legend -->
+                        <div
+                            style="font-size: 0.8rem; display: flex; gap: 0.75rem; margin-bottom: 0.75rem; padding: 0.4rem 0.6rem; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 3px;">
+                            <div style="display:flex; align-items:center; gap: 4px;">
+                                <div style="width:10px; height:10px; border-radius:50%; background:#ef4444;"></div>
+                                <span style="color:var(--text-secondary);"><strong>Routine</strong></span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap: 4px;">
+                                <div style="width:10px; height:10px; border-radius:50%; background:#a855f7;"></div>
+                                <span style="color:var(--text-secondary);"><strong>Ad-hoc</strong></span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap: 4px;">
+                                <div style="width:10px; height:10px; border-radius:50%; background:#22c55e;"></div>
+                                <span style="color:var(--text-secondary);"><strong>Done</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Add Ad-hoc Item -->
+                        <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+                            <input type="text" id="adhoc-input" placeholder="Add something to today..."
+                                style="flex-grow: 1; min-width: 0; padding: 0.4rem 0.6rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 0.95rem;">
+                            <select id="adhoc-time-select"
+                                style="padding: 0.4rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 0.9rem;">
+                            </select>
+                            <button id="adhoc-add-btn"
+                                style="padding: 0.4rem 0.8rem; background: rgba(168,85,247,0.2); border: 1px solid #a855f7; color: #a855f7; font-family: 'VT323', monospace; font-size: 0.95rem; cursor: pointer; font-weight: bold;">+
+                                Add</button>
                         </div>
                         <div class="timeline" id="today-timeline">
                             <!-- Half-hour Time Slots -->
@@ -1685,16 +1726,16 @@
                         </div>
                     </div>
 
-                    <!-- Column 3: Athena's Advisory -->
+                    <!-- Column 3: Lobotto's Advisory -->
                     <div class="sub-panel" style="border-color: rgba(192, 132, 252, 0.3);">
-                        <h3 style="color: var(--accent-purple);"><span class="icon">🧠</span> Athena's Advisory</h3>
+                        <h3 style="color: var(--accent-purple);"><span class="icon">🧠</span> Lobotto's Advisory</h3>
                         <div class="workout-rules"
                             style="margin-top: 1rem; font-size: 0.85rem; border-left-color: var(--accent-purple); background: rgba(192, 132, 252, 0.05);">
                             <strong>System:</strong> Cross-referencing requested items against the DNA Master
                             Blueprint
                             and current financial velocity.
                         </div>
-                        <div id="athena-advisory-container"
+                        <div id="lobotto-advisory-container"
                             style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
                             <!-- Populated by JS -->
                         </div>
@@ -2219,6 +2260,702 @@
                     };
                 }
             });
+        })();
+    </script>
+
+    <!-- Template Schedule System -->
+    <script>
+        (function () {
+            'use strict';
+
+            // ========== DEFAULT TEMPLATES ==========
+            // These are the baseline schedules. Editable via "Edit Template".
+            const DEFAULT_TEMPLATES = {
+                off: [
+                    { time: '06:30 AM', label: '🌅 Wake + NAC (1200mg)', type: 'routine' },
+                    { time: '07:00 AM', label: '🍳 Breakfast + Supplements', type: 'routine' },
+                    { time: '07:30 AM', label: '🐕 Quinn Walk', type: 'routine' },
+                    { time: '08:30 AM', label: '💻 Deep Work / Lobotto', type: 'routine' },
+                    { time: '09:00 AM', label: '💻 Deep Work (continued)', type: 'routine' },
+                    { time: '09:30 AM', label: '💻 Deep Work (continued)', type: 'routine' },
+                    { time: '10:00 AM', label: '☕ Break (no more caffeine after this)', type: 'routine' },
+                    { time: '10:30 AM', label: '💻 Projects / Learning', type: 'routine' },
+                    { time: '11:00 AM', label: '💻 Projects / Learning', type: 'routine' },
+                    { time: '12:00 PM', label: '🍽️ Lunch', type: 'routine' },
+                    { time: '01:00 PM', label: '🏋️ Exercise', type: 'routine' },
+                    { time: '01:30 PM', label: '🏋️ Exercise (continued)', type: 'routine' },
+                    { time: '02:00 PM', label: '🚿 Shower + Recovery', type: 'routine' },
+                    { time: '02:30 PM', label: '📱 Free / Errands', type: 'routine' },
+                    { time: '03:00 PM', label: '📱 Free / Errands', type: 'routine' },
+                    { time: '03:30 PM', label: '🐕 Quinn Afternoon Walk', type: 'routine' },
+                    { time: '04:00 PM', label: '🏠 House Tasks', type: 'routine' },
+                    { time: '05:00 PM', label: '🏠 House Tasks', type: 'routine' },
+                    { time: '06:00 PM', label: '🍽️ Dinner Prep', type: 'routine' },
+                    { time: '06:30 PM', label: '🍽️ Dinner + Fish Oil + D3', type: 'routine' },
+                    { time: '07:30 PM', label: '📺 Downtime', type: 'routine' },
+                    { time: '08:30 PM', label: '📺 Downtime', type: 'routine' },
+                    { time: '09:00 PM', label: '💊 Mag Glycinate + Wind Down', type: 'routine' },
+                    { time: '09:30 PM', label: '📖 Reading / Bed Prep', type: 'routine' },
+                    { time: '10:00 PM', label: '😴 Sleep', type: 'routine' }
+                ],
+                // Fri/Sat: 2:45 PM - 11:00 PM shift
+                work_evening: [
+                    { time: '06:30 AM', label: '🌅 Wake + NAC (1200mg)', type: 'routine' },
+                    { time: '07:00 AM', label: '🍳 Breakfast + Supplements', type: 'routine' },
+                    { time: '07:30 AM', label: '🐕 Quinn Walk', type: 'routine' },
+                    { time: '08:30 AM', label: '📱 Free / Errands', type: 'routine' },
+                    { time: '09:00 AM', label: '📱 Free / Errands', type: 'routine' },
+                    { time: '10:00 AM', label: '🏋️ Exercise', type: 'routine' },
+                    { time: '10:30 AM', label: '🏋️ Exercise (continued)', type: 'routine' },
+                    { time: '11:00 AM', label: '🚿 Shower', type: 'routine' },
+                    { time: '12:00 PM', label: '🍽️ Lunch', type: 'routine' },
+                    { time: '01:00 PM', label: '🐕 Quinn Afternoon Walk', type: 'routine' },
+                    { time: '01:30 PM', label: '👔 Get Ready for Work', type: 'routine' },
+                    { time: '02:00 PM', label: '🛴 Travel to Work', type: 'routine' },
+                    { time: '02:30 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '03:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '04:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '05:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '06:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '07:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '08:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '09:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '10:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '11:00 PM', label: '🛴 Travel Home', type: 'routine' },
+                    { time: '11:30 PM', label: '💊 Mag Glycinate + Sleep', type: 'routine' }
+                ],
+                // Sunday: 11:00 AM - 5:00 PM shift
+                work_sunday: [
+                    { time: '06:30 AM', label: '🌅 Wake + NAC (1200mg)', type: 'routine' },
+                    { time: '07:00 AM', label: '🍳 Breakfast + Supplements', type: 'routine' },
+                    { time: '07:30 AM', label: '🐕 Quinn Walk', type: 'routine' },
+                    { time: '08:30 AM', label: '💻 Lobotto / Projects', type: 'routine' },
+                    { time: '09:00 AM', label: '💻 Lobotto / Projects', type: 'routine' },
+                    { time: '09:30 AM', label: '🚿 Shower + Get Ready', type: 'routine' },
+                    { time: '10:00 AM', label: '👔 Get Ready for Work', type: 'routine' },
+                    { time: '10:30 AM', label: '🛴 Travel to Work', type: 'routine' },
+                    { time: '11:00 AM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '12:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '01:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '02:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '03:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '04:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '05:00 PM', label: '🛴 Travel Home', type: 'routine' },
+                    { time: '05:30 PM', label: '🐕 Quinn Afternoon Walk', type: 'routine' },
+                    { time: '06:00 PM', label: '🍽️ Dinner Prep', type: 'routine' },
+                    { time: '06:30 PM', label: '🍽️ Dinner + Fish Oil + D3', type: 'routine' },
+                    { time: '07:30 PM', label: '📺 Downtime', type: 'routine' },
+                    { time: '08:30 PM', label: '📺 Downtime', type: 'routine' },
+                    { time: '09:00 PM', label: '💊 Mag Glycinate + Wind Down', type: 'routine' },
+                    { time: '09:30 PM', label: '📖 Reading / Bed Prep', type: 'routine' },
+                    { time: '10:00 PM', label: '😴 Sleep', type: 'routine' }
+                ],
+                // Monday: 12:00 PM - 6:00 PM shift
+                work_monday: [
+                    { time: '06:30 AM', label: '🌅 Wake + NAC (1200mg)', type: 'routine' },
+                    { time: '07:00 AM', label: '🍳 Breakfast + Supplements', type: 'routine' },
+                    { time: '07:30 AM', label: '🐕 Quinn Walk', type: 'routine' },
+                    { time: '08:30 AM', label: '💻 Deep Work / Lobotto', type: 'routine' },
+                    { time: '09:00 AM', label: '💻 Deep Work (continued)', type: 'routine' },
+                    { time: '09:30 AM', label: '💻 Deep Work (continued)', type: 'routine' },
+                    { time: '10:00 AM', label: '☕ Break', type: 'routine' },
+                    { time: '10:30 AM', label: '🚿 Shower + Get Ready', type: 'routine' },
+                    { time: '11:00 AM', label: '👔 Get Ready for Work', type: 'routine' },
+                    { time: '11:30 AM', label: '🛴 Travel to Work', type: 'routine' },
+                    { time: '12:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '01:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '02:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '03:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '04:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '05:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '05:30 PM', label: '⛽ BP Shift (wrap up)', type: 'routine' },
+                    { time: '06:00 PM', label: '🛴 Travel Home', type: 'routine' },
+                    { time: '06:30 PM', label: '🍽️ Dinner + Fish Oil + D3', type: 'routine' },
+                    { time: '07:30 PM', label: '📺 Downtime', type: 'routine' },
+                    { time: '08:30 PM', label: '🐕 Quinn Evening Walk', type: 'routine' },
+                    { time: '09:00 PM', label: '💊 Mag Glycinate + Wind Down', type: 'routine' },
+                    { time: '09:30 PM', label: '📖 Reading / Bed Prep', type: 'routine' },
+                    { time: '10:00 PM', label: '😴 Sleep', type: 'routine' }
+                ]
+            };
+
+            // ========== DAY TYPE DETECTION ==========
+            function getDayType() {
+                const day = new Date().getDay(); // 0=Sun, 1=Mon, 2=Tue...
+                if (day === 5 || day === 6) return 'work_evening';  // Fri, Sat
+                if (day === 0) return 'work_sunday';                // Sun
+                if (day === 1) return 'work_monday';                // Mon
+                return 'off';                                       // Tue, Wed, Thu
+            }
+
+            function getDayLabel(dayType) {
+                const labels = {
+                    off: '🏠 Day Off',
+                    work_evening: '⛽ Evening Shift',
+                    work_sunday: '⛽ Sunday Shift',
+                    work_monday: '⛽ Monday Shift'
+                };
+                return labels[dayType] || '📅 Today';
+            }
+
+            function getDayBadgeColor(dayType) {
+                return dayType === 'off'
+                    ? 'background: rgba(52,211,153,0.2); color: #22c55e; border: 1px solid rgba(52,211,153,0.4);'
+                    : 'background: rgba(251,191,36,0.2); color: #fbbf24; border: 1px solid rgba(251,191,36,0.4);';
+            }
+
+            // ========== STORAGE KEYS ==========
+            const STORAGE_KEY_TEMPLATE = 'schedule_template_'; // + dayType
+            const STORAGE_KEY_TODAY = 'schedule_today_'; // + YYYY-MM-DD
+            const STORAGE_KEY_DONE = 'schedule_done_'; // + YYYY-MM-DD
+
+            function todayKey() {
+                const d = new Date();
+                return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+            }
+
+            // ========== GET TEMPLATE ==========
+            function getTemplate(dayType) {
+                const saved = localStorage.getItem(STORAGE_KEY_TEMPLATE + dayType);
+                if (saved) {
+                    try { return JSON.parse(saved); } catch (e) { }
+                }
+                return DEFAULT_TEMPLATES[dayType] || DEFAULT_TEMPLATES.off;
+            }
+
+            function saveTemplate(dayType, items) {
+                localStorage.setItem(STORAGE_KEY_TEMPLATE + dayType, JSON.stringify(items));
+            }
+
+            // ========== GET TODAY'S SCHEDULE ==========
+            function getTodaySchedule() {
+                const key = STORAGE_KEY_TODAY + todayKey();
+                const saved = localStorage.getItem(key);
+                if (saved) {
+                    try { return JSON.parse(saved); } catch (e) { }
+                }
+                // First load today — clone from template
+                const dayType = getDayType();
+                const template = getTemplate(dayType);
+                const schedule = template.map(item => ({ ...item }));
+                saveTodaySchedule(schedule);
+                return schedule;
+            }
+
+            function saveTodaySchedule(items) {
+                localStorage.setItem(STORAGE_KEY_TODAY + todayKey(), JSON.stringify(items));
+            }
+
+            // ========== DONE TRACKING ==========
+            function getDoneSet() {
+                const saved = localStorage.getItem(STORAGE_KEY_DONE + todayKey());
+                if (saved) {
+                    try { return new Set(JSON.parse(saved)); } catch (e) { }
+                }
+                return new Set();
+            }
+
+            function saveDoneSet(doneSet) {
+                localStorage.setItem(STORAGE_KEY_DONE + todayKey(), JSON.stringify([...doneSet]));
+            }
+
+            // ========== RENDER ==========
+            function renderTemplateSchedule() {
+                const schedule = getTodaySchedule();
+                const doneSet = getDoneSet();
+                const dayType = getDayType();
+
+                // Set day badge
+                const badge = document.getElementById('template-day-badge');
+                if (badge) {
+                    badge.textContent = getDayLabel(dayType);
+                    badge.style.cssText = getDayBadgeColor(dayType);
+                }
+
+                // Clear existing template items from all drop zones
+                document.querySelectorAll('.template-item').forEach(el => el.remove());
+
+                // Place template items into their time slots
+                schedule.forEach((item, idx) => {
+                    const zone = document.querySelector(`.drop-zone[data-time="${item.time}"]`);
+                    if (!zone) return;
+
+                    const isDone = doneSet.has(idx + '_' + item.time);
+                    const isAdhoc = item.type === 'adhoc';
+
+                    const el = document.createElement('div');
+                    el.className = 'template-item';
+                    el.dataset.idx = idx;
+
+                    // Colour coding
+                    let borderColor = isAdhoc ? '#a855f7' : '#ef4444';
+                    let bgColor = isAdhoc ? 'rgba(168,85,247,0.08)' : 'rgba(239,68,68,0.08)';
+                    if (isDone) {
+                        borderColor = '#22c55e';
+                        bgColor = 'rgba(34,197,94,0.08)';
+                    }
+
+                    el.style.cssText = `
+                    border-left: 3px solid ${borderColor};
+                    background: ${bgColor};
+                    padding: 0.4rem 0.6rem;
+                    margin: 2px 0;
+                    border-radius: 3px;
+                    font-family: 'VT323', monospace;
+                    font-size: 0.95rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    cursor: pointer;
+                    transition: all 0.15s ease;
+                    ${isDone ? 'opacity: 0.5; text-decoration: line-through;' : ''}
+                `;
+
+                    const labelSpan = document.createElement('span');
+                    labelSpan.textContent = item.label;
+                    labelSpan.style.color = isDone ? '#22c55e' : 'var(--text-primary)';
+
+                    const controls = document.createElement('div');
+                    controls.style.cssText = 'display: flex; gap: 4px; align-items: center;';
+
+                    // Done toggle
+                    const doneBtn = document.createElement('button');
+                    doneBtn.textContent = isDone ? '✅' : '⬜';
+                    doneBtn.title = isDone ? 'Mark undone' : 'Mark done';
+                    doneBtn.style.cssText = 'background: none; border: none; cursor: pointer; font-size: 1rem; padding: 0 2px;';
+                    doneBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const ds = getDoneSet();
+                        const key = idx + '_' + item.time;
+                        if (ds.has(key)) { ds.delete(key); } else { ds.add(key); }
+                        saveDoneSet(ds);
+                        renderTemplateSchedule();
+                    });
+
+                    // Remove button (only for ad-hoc items)
+                    if (isAdhoc) {
+                        const removeBtn = document.createElement('button');
+                        removeBtn.textContent = '×';
+                        removeBtn.title = 'Remove';
+                        removeBtn.style.cssText = 'background: none; border: none; cursor: pointer; font-size: 1.1rem; color: #ef4444; font-weight: bold; padding: 0 2px;';
+                        removeBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            const sched = getTodaySchedule();
+                            sched.splice(idx, 1);
+                            saveTodaySchedule(sched);
+                            renderTemplateSchedule();
+                        });
+                        controls.appendChild(removeBtn);
+                    }
+
+                    controls.appendChild(doneBtn);
+                    el.appendChild(labelSpan);
+                    el.appendChild(controls);
+
+                    // Prepend template items (before any Supabase-dragged tasks)
+                    zone.insertBefore(el, zone.firstChild);
+                });
+            }
+
+            // ========== AD-HOC ITEM ==========
+            function populateTimeSelect() {
+                const sel = document.getElementById('adhoc-time-select');
+                if (!sel) return;
+                const times = [];
+                for (let h = 6; h <= 23; h++) {
+                    for (let m = 0; m < 60; m += 30) {
+                        const period = h >= 12 ? 'PM' : 'AM';
+                        let displayH = h > 12 ? h - 12 : h;
+                        if (displayH === 0) displayH = 12;
+                        times.push(`${String(displayH).padStart(2, '0')}:${String(m).padStart(2, '0')} ${period}`);
+                    }
+                }
+                sel.innerHTML = times.map(t => `<option value="${t}">${t}</option>`).join('');
+
+                // Default to nearest time
+                const now = new Date();
+                const nowH = now.getHours();
+                const nowM = now.getMinutes();
+                const nearestM = nowM < 30 ? 0 : 30;
+                const period = nowH >= 12 ? 'PM' : 'AM';
+                let displayH = nowH > 12 ? nowH - 12 : nowH;
+                if (displayH === 0) displayH = 12;
+                const nearestTime = `${String(displayH).padStart(2, '0')}:${String(nearestM).padStart(2, '0')} ${period}`;
+                sel.value = nearestTime;
+            }
+
+            function addAdhocItem() {
+                const input = document.getElementById('adhoc-input');
+                const sel = document.getElementById('adhoc-time-select');
+                if (!input || !sel || !input.value.trim()) return;
+
+                const schedule = getTodaySchedule();
+                schedule.push({
+                    time: sel.value,
+                    label: '🟣 ' + input.value.trim(),
+                    type: 'adhoc'
+                });
+                saveTodaySchedule(schedule);
+                input.value = '';
+                renderTemplateSchedule();
+            }
+
+            // ========== RESET TO TEMPLATE ==========
+            function resetToTemplate() {
+                if (!confirm('Reset today\'s schedule to the default template? This will remove all ad-hoc items.')) return;
+                const dayType = getDayType();
+                const template = getTemplate(dayType);
+                saveTodaySchedule(template.map(item => ({ ...item })));
+                saveDoneSet(new Set());
+                renderTemplateSchedule();
+            }
+
+            // ========== EDIT TEMPLATE ==========
+            let editModalOpen = false;
+
+            function editTemplate() {
+                if (editModalOpen) return;
+                editModalOpen = true;
+
+                const dayType = getDayType();
+                const template = getTemplate(dayType);
+                const dayLabel = getDayLabel(dayType);
+
+                // Generate all time slots 6:00 AM to 11:30 PM
+                const ALL_SLOTS = [];
+                for (let h = 6; h <= 23; h++) {
+                    for (let m = 0; m < 60; m += 30) {
+                        const period = h >= 12 ? 'PM' : 'AM';
+                        let dh = h > 12 ? h - 12 : h;
+                        if (dh === 0) dh = 12;
+                        ALL_SLOTS.push(`${String(dh).padStart(2, '0')}:${String(m).padStart(2, '0')} ${period}`);
+                    }
+                }
+
+                // Build slot map: time -> array of task labels
+                let slotMap = {};
+                ALL_SLOTS.forEach(t => slotMap[t] = []);
+                // Parking: tasks not assigned to any slot
+                let parkedTasks = [];
+                let nextId = 0;
+
+                template.forEach(item => {
+                    const task = { label: item.label, _id: 'tpl_' + (nextId++) };
+                    if (slotMap[item.time]) {
+                        slotMap[item.time].push(task);
+                    } else {
+                        parkedTasks.push(task);
+                    }
+                });
+
+                // Create modal
+                const overlay = document.createElement('div');
+                overlay.id = 'template-edit-modal';
+                overlay.style.cssText = `
+                    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+                    background: rgba(0,0,0,0.7); z-index: 100000;
+                    display: flex; align-items: center; justify-content: center;
+                    backdrop-filter: blur(4px);
+                `;
+
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    background: #1e1e2e; border: 2px solid #a855f7;
+                    border-radius: 8px; padding: 1.25rem; width: 900px; max-width: 95vw;
+                    height: 85vh; display: flex; flex-direction: column;
+                    font-family: 'VT323', monospace; color: #e2e8f0;
+                    box-shadow: 0 0 30px rgba(168,85,247,0.3);
+                `;
+
+                modal.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <h3 style="margin: 0; color: #a855f7; font-size: 1.2rem;">
+                            ✏️ Edit Template — ${dayLabel}
+                        </h3>
+                        <span style="font-size: 0.8rem; color: #64748b;">Drag tasks into time slots</span>
+                    </div>
+
+                    <!-- Add New Task -->
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem; padding: 0.4rem; background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.2); border-radius: 4px;">
+                        <input type="text" id="tpl-add-label" placeholder="New task label (e.g. 🏋️ Exercise)" style="flex: 1; padding: 0.3rem 0.5rem; background: #0f0f1a; border: 1px solid #334155; color: #e2e8f0; font-family: 'VT323', monospace; font-size: 0.95rem;">
+                        <button id="tpl-add-btn" style="padding: 0.3rem 0.75rem; background: rgba(168,85,247,0.2); border: 1px solid #a855f7; color: #a855f7; font-family: 'VT323', monospace; font-size: 0.95rem; cursor: pointer; font-weight: bold;">+ Add to Parking</button>
+                    </div>
+
+                    <!-- Two Column Layout -->
+                    <div style="display: flex; gap: 0.75rem; flex: 1; min-height: 0; overflow: hidden;">
+                        <!-- Timeline Column -->
+                        <div style="flex: 2; display: flex; flex-direction: column; min-width: 0;">
+                            <div style="font-size: 0.9rem; color: #ef4444; font-weight: bold; margin-bottom: 0.3rem; padding-left: 4px;">
+                                📅 Timeline
+                            </div>
+                            <div id="tpl-timeline" style="flex: 1; overflow-y: auto; padding-right: 4px;"></div>
+                        </div>
+                        <!-- Parking Column -->
+                        <div style="flex: 1; display: flex; flex-direction: column; min-width: 180px;">
+                            <div style="font-size: 0.9rem; color: #fbbf24; font-weight: bold; margin-bottom: 0.3rem; padding-left: 4px;">
+                                🅿️ Parking <span id="tpl-park-count" style="color: #64748b; font-weight: normal;"></span>
+                            </div>
+                            <div id="tpl-parking" style="
+                                flex: 1; overflow-y: auto; padding: 0.4rem;
+                                background: rgba(251,191,36,0.03); border: 2px dashed rgba(251,191,36,0.2);
+                                border-radius: 4px; min-height: 100px;
+                            "></div>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div style="display: flex; gap: 0.5rem; margin-top: 0.6rem; justify-content: flex-end;">
+                        <button id="tpl-cancel" style="padding: 0.4rem 0.8rem; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: #ef4444; font-family: 'VT323', monospace; font-size: 1rem; cursor: pointer; border-radius: 4px;">Cancel</button>
+                        <button id="tpl-save" style="padding: 0.4rem 0.8rem; background: rgba(168,85,247,0.2); border: 1px solid #a855f7; color: #a855f7; font-family: 'VT323', monospace; font-size: 1rem; cursor: pointer; border-radius: 4px; font-weight: bold;">💾 Save Template</button>
+                    </div>
+                `;
+
+                overlay.appendChild(modal);
+                document.body.appendChild(overlay);
+
+                // ---- Drag State ----
+                let dragTask = null;
+                let dragSourceSlot = null; // null = from parking
+
+                function createTaskChip(task, fromSlot) {
+                    const chip = document.createElement('div');
+                    chip.draggable = true;
+                    chip.dataset.id = task._id;
+                    chip.style.cssText = `
+                        display: inline-flex; align-items: center; gap: 4px;
+                        padding: 0.25rem 0.5rem; margin: 2px;
+                        background: ${fromSlot ? 'rgba(239,68,68,0.12)' : 'rgba(251,191,36,0.12)'};
+                        border: 1px solid ${fromSlot ? 'rgba(239,68,68,0.3)' : 'rgba(251,191,36,0.3)'};
+                        border-radius: 3px; cursor: grab; font-size: 0.9rem;
+                        transition: all 0.1s; max-width: 100%; white-space: nowrap;
+                        overflow: hidden; text-overflow: ellipsis;
+                    `;
+
+                    const labelSpan = document.createElement('span');
+                    labelSpan.textContent = task.label;
+                    labelSpan.style.cssText = 'flex: 1; overflow: hidden; text-overflow: ellipsis; cursor: text;';
+                    labelSpan.title = 'Click to edit';
+                    labelSpan.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.value = task.label;
+                        input.style.cssText = 'background: #0f0f1a; border: 1px solid #a855f7; color: #e2e8f0; font-family: "VT323", monospace; font-size: 0.9rem; padding: 1px 4px; width: 100%;';
+                        labelSpan.replaceWith(input);
+                        input.focus();
+                        input.select();
+                        const finishEdit = () => {
+                            task.label = input.value.trim() || task.label;
+                            renderModal();
+                        };
+                        input.addEventListener('blur', finishEdit);
+                        input.addEventListener('keypress', (ev) => { if (ev.key === 'Enter') finishEdit(); });
+                    });
+
+                    const delBtn = document.createElement('span');
+                    delBtn.textContent = '×';
+                    delBtn.style.cssText = 'color: #ef4444; cursor: pointer; font-weight: bold; font-size: 1rem; flex-shrink: 0; padding: 0 2px;';
+                    delBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        // Remove from wherever it is
+                        ALL_SLOTS.forEach(t => { slotMap[t] = slotMap[t].filter(x => x._id !== task._id); });
+                        parkedTasks = parkedTasks.filter(x => x._id !== task._id);
+                        renderModal();
+                    });
+
+                    chip.appendChild(labelSpan);
+                    chip.appendChild(delBtn);
+
+                    chip.addEventListener('dragstart', (e) => {
+                        dragTask = task;
+                        dragSourceSlot = fromSlot;
+                        chip.style.opacity = '0.4';
+                        e.dataTransfer.effectAllowed = 'move';
+                    });
+                    chip.addEventListener('dragend', () => {
+                        chip.style.opacity = '1';
+                        dragTask = null;
+                        dragSourceSlot = null;
+                    });
+
+                    return chip;
+                }
+
+                function removeTaskEverywhere(task) {
+                    ALL_SLOTS.forEach(t => { slotMap[t] = slotMap[t].filter(x => x._id !== task._id); });
+                    parkedTasks = parkedTasks.filter(x => x._id !== task._id);
+                }
+
+                function renderModal() {
+                    const timeline = document.getElementById('tpl-timeline');
+                    const parking = document.getElementById('tpl-parking');
+                    timeline.innerHTML = '';
+                    parking.innerHTML = '';
+
+                    // Build timeline slots
+                    ALL_SLOTS.forEach(time => {
+                        const row = document.createElement('div');
+                        row.style.cssText = 'display: flex; align-items: stretch; margin-bottom: 1px; min-height: 32px;';
+
+                        const timeLabel = document.createElement('div');
+                        timeLabel.textContent = time;
+                        timeLabel.style.cssText = 'width: 75px; flex-shrink: 0; font-size: 0.8rem; color: #64748b; padding: 0.3rem 0; text-align: right; padding-right: 8px;';
+
+                        const dropZone = document.createElement('div');
+                        dropZone.dataset.slot = time;
+                        const hasItems = slotMap[time].length > 0;
+                        dropZone.style.cssText = `
+                            flex: 1; min-height: 30px; padding: 2px 4px;
+                            background: ${hasItems ? 'rgba(239,68,68,0.05)' : 'rgba(255,255,255,0.02)'};
+                            border: 1px solid ${hasItems ? 'rgba(239,68,68,0.15)' : 'rgba(255,255,255,0.06)'};
+                            border-radius: 3px; display: flex; flex-wrap: wrap; align-items: center;
+                            gap: 3px; transition: all 0.15s;
+                        `;
+
+                        // Add task chips to slot
+                        slotMap[time].forEach(task => {
+                            dropZone.appendChild(createTaskChip(task, time));
+                        });
+
+                        // Drop zone events
+                        dropZone.addEventListener('dragover', (e) => {
+                            e.preventDefault();
+                            dropZone.style.borderColor = '#a855f7';
+                            dropZone.style.background = 'rgba(168,85,247,0.1)';
+                        });
+                        dropZone.addEventListener('dragleave', () => {
+                            dropZone.style.borderColor = slotMap[time].length > 0 ? 'rgba(239,68,68,0.15)' : 'rgba(255,255,255,0.06)';
+                            dropZone.style.background = slotMap[time].length > 0 ? 'rgba(239,68,68,0.05)' : 'rgba(255,255,255,0.02)';
+                        });
+                        dropZone.addEventListener('drop', (e) => {
+                            e.preventDefault();
+                            if (!dragTask) return;
+                            removeTaskEverywhere(dragTask);
+                            slotMap[time].push(dragTask);
+                            renderModal();
+                        });
+
+                        row.appendChild(timeLabel);
+                        row.appendChild(dropZone);
+                        timeline.appendChild(row);
+                    });
+
+                    // Build parking
+                    if (parkedTasks.length === 0) {
+                        parking.innerHTML = '<div style="color: #64748b; font-size: 0.85rem; text-align: center; padding: 1.5rem 0.5rem;">Drag tasks here to unassign them from a time slot</div>';
+                    } else {
+                        parkedTasks.forEach(task => {
+                            parking.appendChild(createTaskChip(task, null));
+                        });
+                    }
+
+                    // Parking drop zone
+                    parking.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        parking.style.borderColor = '#a855f7';
+                    });
+                    parking.addEventListener('dragleave', () => {
+                        parking.style.borderColor = 'rgba(251,191,36,0.2)';
+                    });
+                    parking.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        if (!dragTask) return;
+                        removeTaskEverywhere(dragTask);
+                        parkedTasks.push(dragTask);
+                        renderModal();
+                    });
+
+                    document.getElementById('tpl-park-count').textContent = `(${parkedTasks.length})`;
+                }
+
+                // Initial render
+                renderModal();
+
+                // Add new task to parking
+                document.getElementById('tpl-add-btn').addEventListener('click', () => {
+                    const label = document.getElementById('tpl-add-label').value.trim();
+                    if (!label) return;
+                    parkedTasks.push({ label, _id: 'new_' + (nextId++) });
+                    document.getElementById('tpl-add-label').value = '';
+                    renderModal();
+                });
+                document.getElementById('tpl-add-label').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') document.getElementById('tpl-add-btn').click();
+                });
+
+                // Close
+                overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+                document.getElementById('tpl-cancel').addEventListener('click', closeModal);
+
+                // Save
+                document.getElementById('tpl-save').addEventListener('click', () => {
+                    if (parkedTasks.length > 0) {
+                        if (!confirm(`${parkedTasks.length} task(s) still parked (no time assigned). They won't be saved. Continue?`)) return;
+                    }
+
+                    const newItems = [];
+                    ALL_SLOTS.forEach(time => {
+                        slotMap[time].forEach(task => {
+                            newItems.push({ time, label: task.label, type: 'routine' });
+                        });
+                    });
+
+                    if (newItems.length === 0) {
+                        alert('No tasks assigned to time slots. Drag tasks into the timeline before saving.');
+                        return;
+                    }
+
+                    saveTemplate(dayType, newItems);
+                    saveTodaySchedule(newItems.map(item => ({ ...item })));
+                    saveDoneSet(new Set());
+                    renderTemplateSchedule();
+                    closeModal();
+                });
+
+                function closeModal() {
+                    overlay.remove();
+                    editModalOpen = false;
+                }
+            }
+
+            // ========== INIT ==========
+            function initTemplateSchedule() {
+                populateTimeSelect();
+                // Render after a short delay to let Supabase tasks load first
+                setTimeout(renderTemplateSchedule, 500);
+
+                // Bind buttons
+                const resetBtn = document.getElementById('reset-template-btn');
+                if (resetBtn) resetBtn.addEventListener('click', resetToTemplate);
+
+                const editBtn = document.getElementById('edit-template-btn');
+                if (editBtn) editBtn.addEventListener('click', editTemplate);
+
+                const addBtn = document.getElementById('adhoc-add-btn');
+                if (addBtn) addBtn.addEventListener('click', addAdhocItem);
+
+                const adhocInput = document.getElementById('adhoc-input');
+                if (adhocInput) adhocInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') addAdhocItem();
+                });
+
+                // Also update the header badge
+                const headerBadge = document.querySelector('.badge');
+                if (headerBadge) {
+                    const dayType = getDayType();
+                    headerBadge.textContent = getDayLabel(dayType).replace(/[^\w\s]/g, '').trim();
+                }
+            }
+
+            // Run immediately if DOM is ready, otherwise wait
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initTemplateSchedule);
+            } else {
+                initTemplateSchedule();
+            }
+
+            // Expose for external use
+            window.renderTemplateSchedule = renderTemplateSchedule;
         })();
     </script>
 </body>

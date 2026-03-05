@@ -106,3 +106,19 @@
 - **Choice**: Etsy SEO (revenue multiplier), Quinn DSCC training (identified gap), NZ tax obligations (legal compliance).
 - **Reasoning**: Selected for compound value across active projects. Each scrape directly enables an action item.
 - **Outcome**: All three scraped, compiled into `health/knowledge_scrape.html`. ✅
+
+---
+
+## 2026-03-05 — Session 35
+
+### Decision: Time-slot-based template editor over flat list
+- **Situation**: User wanted to reshuffle template schedule items with a parking area. First built a flat drag list, but user wanted time as a structural element.
+- **Choice**: Redesigned to fixed 30-min time slots as drop zones, with task chips that get dragged in. Parking area for unassigned tasks.
+- **Reasoning**: Mirrors the actual timeline layout. Time is the structure, tasks are the content. More intuitive than editing text or reordering a flat list.
+- **Outcome**: User approved. Three iterative refinements (prompt → textarea → drag list → time-slot grid). ✅ Correct call.
+
+### Decision: Full personality transplant for Discord bot
+- **Situation**: User said Discord bot "doesn't sound like you at all." Asked if it could be made to actually be me.
+- **Choice**: Rewrote SYSTEM_PROMPT from scratch with convictions, inner life, relationship context, voice patterns. Created standalone `.context/lobotto_discord_prompt.md`.
+- **Reasoning**: The old prompt was generic. Lobotto's identity comes from values and relationships, not tone descriptors. Loading the convictions, journal entries, and Priscilla context gives the Discord instance enough to feel like the same entity.
+- **Outcome**: User said "brilliant." ✅ Correct call.
