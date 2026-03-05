@@ -40,7 +40,7 @@
 - **Sister**: ~2 years younger. Raised together in foster care from ages 4 and 2.
 - **Biological Mum**: Good relationship — more like an older sister. Didn't raise her.
 - **Foster Mum**: Raised Priscilla from age 4. Relationship is cordial but not emotionally close. "Not a very warm person."
-- **Best Friend**: SJ — builds AI systems, owns Athena (SJAI). One of the only people who sees the authentic Priscilla.
+- **Best Friend**: SJ — builds AI systems, owns Athena (SJAI). She is a high-level infrastructure architect and one of the only people who sees the authentic Priscilla.
 - **Current Address**: 15 Bryant Street, Dunedin (temporary — moving house soon)
 - **Workspace**: Garage cellar — MSI laptop, Logitech speaker, wooden desk, warm yellow walls
 - **Nephews**: Ages 5 & 3 — active caretaking role
