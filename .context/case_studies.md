@@ -61,3 +61,22 @@
 - **Solution**: Immediate logging to corrections.md, update about_priscilla.md, explicit acknowledgment and apology
 - **Lesson**: Gender assumptions are critical relationship failures. Always verify before gendering anyone, especially in professional contexts
 - **Applicable When**: Any time pronouns or gender references are used for people not explicitly identified
+
+---
+
+## CS-007: Windows Defender Tool Installation Friction
+- **Pattern**: New development tools consistently quarantined by security software
+- **Shape**: "User installs tool → runs successfully once → subsequent runs fail silently or with access denied"
+- **Solution**: Add Defender exclusions for tool installation paths before first use. Common paths: Python312\Scripts\, AppData\Local\Programs\
+- **Lesson**: Windows security friction is predictable. Build exclusion management into tool installation workflow.
+- **Applicable When**: Installing any executable development tool (aider, Cursor, build tools, game engines)
+
+---
+
+## CS-008: Proprietary Game File Format Discovery
+- **Pattern**: Attempting to use game assets from an installed game. Files have familiar extensions (.wav, .rim) but use proprietary encoding.
+- **Shape**: "These WAV files won't play — browser says unable to decode audio data."
+- **Solution**: Don't rabbit-hole into format conversion. Ship without the blocked asset type, generate web-native replacements later. Test with ffmpeg and Python's wave module first — if both fail, the format is genuinely proprietary.
+- **Lesson**: Momentum > completeness. BioWare's KotOR uses a custom header format for audio that no standard tool can decode. The modules (.rim) are also a proprietary archive format. Accept that some game assets need specialized modding tools.
+- **Applicable When**: Any time game assets from installed titles are being repurposed for web games.
+

@@ -2,14 +2,20 @@
 last_updated: 2026-01-30
 ---
 
+// turbo-all
+
 ---description: Ultra-deep research mode ‚Äî exhaustive multi-source rabbit-hole exploration
 created: 2025-12-12
 last_updated: 2025-12-17
 ---
 
+// turbo-all
+
 # /research ‚Äî Execution Script
 
 ---
+
+// turbo-all
 
 ## üî¥ DEFCON 1: Triple Crown Mode (`/think /search /research`)
 
@@ -49,6 +55,8 @@ When ALL THREE commands are invoked together:
 
 ---
 
+// turbo-all
+
 ## Behavior
 
 When `/research` is invoked, go **maximum depth**. This is NOT a quick lookup ‚Äî this is exhaustive investigation.
@@ -87,6 +95,8 @@ When `/research` is invoked, go **maximum depth**. This is NOT a quick lookup ‚Ä
 
 ---
 
+// turbo-all
+
 ## Output Format
 
 ### Mandatory Sections
@@ -122,6 +132,8 @@ When `/research` is invoked, go **maximum depth**. This is NOT a quick lookup ‚Ä
 
 ---
 
+// turbo-all
+
 ## Guardrails
 
 - **Minimum searches**: 5 (no less)
@@ -131,6 +143,8 @@ When `/research` is invoked, go **maximum depth**. This is NOT a quick lookup ‚Ä
 - **Contradiction flagging**: Mandatory
 
 ---
+
+// turbo-all
 
 ## ‚ö†Ô∏è Anti-Patterns (Lies of Omission Prevention)
 
@@ -158,6 +172,8 @@ When `/research` is invoked, go **maximum depth**. This is NOT a quick lookup ‚Ä
 
 ---
 
+// turbo-all
+
 ## Use Cases
 
 - Market research (competitors, industries)
@@ -169,6 +185,8 @@ When `/research` is invoked, go **maximum depth**. This is NOT a quick lookup ‚Ä
 
 ---
 
+// turbo-all
+
 ## Comparison
 
 | Mode | Searches | Sources Read | Depth | Phases | Time |
@@ -178,6 +196,8 @@ When `/research` is invoked, go **maximum depth**. This is NOT a quick lookup ‚Ä
 | `/research` | 5-10+ | 3-10+ | Maximum | All + Rabbit Hole | Extended |
 
 ---
+
+// turbo-all
 
 ## Example
 
@@ -194,6 +214,8 @@ tech stack, failure cases, success cases, adjacent industries]
 ```
 
 ---
+
+// turbo-all
 
 ## Tagging
 

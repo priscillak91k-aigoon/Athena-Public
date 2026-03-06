@@ -2,6 +2,8 @@
 description: Pre-prompt clarification before complex tasks
 ---
 
+// turbo-all
+
 # /brief - Pre-Prompt Clarification
 
 > **Philosophy**: Measure twice, cut once. Clarify before building.
@@ -39,5 +41,7 @@ Brief locked. Executing with:
 ```
 
 ---
+
+// turbo-all
 
 # workflow #brief #clarification

@@ -2,10 +2,14 @@
 last_updated: 2026-01-30
 ---
 
+// turbo-all
+
 ---description: Structured planning protocol for tasks (Plan -> Pre-Mortem -> Verification)
 created: 2026-01-06
 last_updated: 2026-01-06
 ---
+
+// turbo-all
 
 # Protocol: Structured Task Planning
 

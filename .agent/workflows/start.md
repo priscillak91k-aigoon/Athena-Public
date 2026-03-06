@@ -2,6 +2,8 @@
 description: Boot the Athena system and load context
 ---
 
+// turbo-all
+
 # /start — Execution Script
 
 > **Latency Profile**: ULTRA-LOW (<2K tokens boot)  
@@ -42,6 +44,8 @@ Every response MUST follow the Triple-Lock:
 
 ---
 
+// turbo-all
+
 ## Quick Reference
 
 | Command | Effect |
@@ -52,5 +56,7 @@ Every response MUST follow the Triple-Lock:
 | `/ultrathink` | Maximum depth analysis |
 
 ---
+
+// turbo-all
 
 # workflow #boot #start

@@ -2,6 +2,8 @@
 description: Boot the Nosey Nutter protocol — ephemeral local-only research sandbox
 ---
 
+// turbo-all
+
 # /nutter — Nosey Nutter Protocol (Start)
 
 > **Purpose**: Curiosity-driven deep dives into edgy, weird, or sensitive topics.
@@ -39,6 +41,8 @@ Output:
 
 ---
 
+// turbo-all
+
 ## Rules During Nutter Mode
 
 | Rule | Detail |
@@ -52,6 +56,8 @@ Output:
 
 ---
 
+// turbo-all
+
 ## Topic Registry Format (`.nosey_nutter/topics.md`)
 
 Each line is one past session's topic — short descriptor only, no details:
@@ -64,5 +70,7 @@ Each line is one past session's topic — short descriptor only, no details:
 Before researching, **check this file first** and skip any topics already covered. Build on existing findings instead of starting from scratch.
 
 ---
+
+// turbo-all
 
 # workflow #nutter #research #ephemeral

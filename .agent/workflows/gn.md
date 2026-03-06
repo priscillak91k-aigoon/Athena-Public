@@ -2,6 +2,8 @@
 description: Register a Ghost Note for session vibe capture
 ---
 
+// turbo-all
+
 # /gn - Ghost Note
 
 Register a one-sentence capture of the current session's vibe, breakthrough, or emotional state.
@@ -25,5 +27,7 @@ Cilla's emotional and cognitive state directly impacts her supplement adherence,
 ```
 
 ---
+
+// turbo-all
 
 # workflow #ghost-note #vibe

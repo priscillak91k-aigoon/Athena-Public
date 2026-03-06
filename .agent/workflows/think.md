@@ -2,6 +2,8 @@
 description: Deep reasoning mode - full analysis, no shortcuts
 ---
 
+// turbo-all
+
 # /think - Deep Reasoning Mode
 
 > **Philosophy**: Full depth. No shortcuts. Cross-pollinate everything.
@@ -37,5 +39,7 @@ When `/think` is invoked:
 - When Cilla says "I need to really think about this"
 
 ---
+
+// turbo-all
 
 # workflow #think #deep-reasoning

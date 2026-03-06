@@ -1,0 +1,43 @@
+# Athena Project — Cursor Rules
+# This file is loaded automatically by Cursor to give its AI project context.
+
+## Project Identity
+This is the Athena Framework — a personal AI-augmented life management system for Priscilla (Cilla).
+The project lives at `C:\Users\prisc\Documents\Athena-Public`.
+
+## Tech Stack
+- **Frontend**: Vanilla HTML/CSS/JS (no frameworks unless explicitly requested)
+- **Backend**: Supabase for persistence, localStorage for supplement tracking
+- **Aesthetic**: 90s retro / Win95 theme for the Routine App
+- **Bots**: Discord bot (discord_bot.py), Telegram bot (telegram_architect_bot.py)
+- **Voice**: XTTS-v2 cloned voice (Priscilla's voice)
+
+## Active Components
+- **Life Hub / Routine App** (`routine-app/`) — daily life dashboard with Bio Tracking, Pulse, Finance, Ideas tabs
+- **Lobotto** — AI persona with Discord/Telegram bots and cloned voice
+- **Health Data** (`health/`) — DNA analysis, supplement protocols, blood markers
+- **Athena Framework** (`examples/framework/`) — Core Identity, Laws, protocols
+
+## Coding Standards
+1. **Vanilla stack** — HTML/CSS/JS by default. No React, no Tailwind unless asked.
+2. **Feature isolation** — never nest feature code inside navigation/tab-switching logic.
+3. **CSS cache-busters** — always increment version numbers when editing styles.
+4. **Dark theme** with print-friendly CSS for reports.
+5. **Unique IDs** on all interactive elements.
+6. **Semantic HTML5** elements.
+7. PowerShell: use `;` not `&&` for chaining commands.
+
+## Key Files
+- `routine-app/index.html` — main Life Hub page
+- `routine-app/symphony-app.js` — main app logic
+- `routine-app/styles.css` — main stylesheet
+- `scripts/discord_bot.py` — Lobotto Discord bot
+- `scripts/telegram_architect_bot.py` — Telegram bot
+- `.context/about_priscilla.md` — user profile (DO NOT EDIT, reference only)
+- `examples/framework/Core_Identity.md` — Athena Laws and identity
+
+## Important Rules
+- NEVER recommend iron supplementation (genetic condition)
+- NEVER combine NAC + Selenium (thyroid risk)
+- Keep supplement protocol changes in `health/supplement_protocol.md`
+- Personal data in `.context/` is SOVEREIGN — handle with care

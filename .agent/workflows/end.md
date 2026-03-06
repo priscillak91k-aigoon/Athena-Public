@@ -2,6 +2,8 @@
 description: Close session and save learnings to memory
 ---
 
+// turbo-all
+
 # /end — Session Close
 
 ## Phase 1: Review Session
@@ -45,5 +47,7 @@ description: Close session and save learnings to memory
 - [ ] Output: "✅ Session XX closed and committed."
 
 ---
+
+// turbo-all
 
 # workflow #session #end

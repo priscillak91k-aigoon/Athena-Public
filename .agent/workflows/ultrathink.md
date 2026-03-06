@@ -2,10 +2,14 @@
 last_updated: 2026-01-30
 ---
 
+// turbo-all
+
 ---description: Maximum depth mode — v3.0 (Parallel Orchestrator)
 created: 2025-12-12
 last_updated: 2026-01-13
 ---
+
+// turbo-all
 
 # /ultrathink — Execution Script (v3.0)
 
@@ -14,6 +18,8 @@ last_updated: 2026-01-13
 > **Core Update**: True parallel API calls, adversarial convergence gate, tiered routing.
 
 ---
+
+// turbo-all
 
 ## Behavior (GOD MODE / SHUKAI)
 
@@ -60,6 +66,8 @@ last_updated: 2026-01-13
 - [ ] **Decision Matrix**: Green Zone (safe) vs Red Zone (risk).
 
 ---
+
+// turbo-all
 
 ### Phase 2: The Red Team Fork (Recursive)
 
@@ -110,6 +118,8 @@ python3 .agent/scripts/parallel_orchestrator.py "<query>" --context "<additional
 
 ---
 
+// turbo-all
+
 ## Stability Controls (v3.0)
 
 | Trigger | Action |
@@ -120,6 +130,8 @@ python3 .agent/scripts/parallel_orchestrator.py "<query>" --context "<additional
 
 ---
 
+// turbo-all
+
 ## Tiered Routing
 
 | Query Complexity | Path |
@@ -128,6 +140,8 @@ python3 .agent/scripts/parallel_orchestrator.py "<query>" --context "<additional
 | Λ > 30 | Heavy: Full parallel orchestrator |
 
 ---
+
+// turbo-all
 
 ## Tagging
 

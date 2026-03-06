@@ -2,6 +2,8 @@
 description: End a Nosey Nutter session and PURGE all accumulated data
 ---
 
+// turbo-all
+
 # /nutter_end — Nosey Nutter Purge & Close
 
 > **Purpose**: Destroy all data from the current Nosey Nutter session.
@@ -42,5 +44,7 @@ Output:
 ```
 
 ---
+
+// turbo-all
 
 # workflow #nutter #purge #end

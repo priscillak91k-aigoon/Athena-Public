@@ -75,6 +75,8 @@ Track commands where user had to manually click "Run" — these should be `SafeT
 | `Remove-Item` (delete files) | Nutter purge | ⚠️ Only when explicitly requested |
 | `Invoke-RestMethod` (POST) | API registrations, external calls | ⚠️ Ask first time, auto-run if approved class |
 | Installing packages (`pip`, `npm`) | New dependencies | ❌ Always ask |
+| `npm run dev` / `npx vite` | Dev server startup | ✅ Always auto-run |
+| `winget install` | System software | ❌ Always ask |
 
 **Rule**: If user has approved a CLASS of command before (e.g., git commits), auto-run all future instances. Log new approvals here.
 

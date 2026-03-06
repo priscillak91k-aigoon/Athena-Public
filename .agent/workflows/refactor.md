@@ -2,10 +2,14 @@
 last_updated: 2026-01-30
 ---
 
+// turbo-all
+
 ---description: Full workspace refactor — deep audit, Supabase sync, and remediation
 created: 2025-12-16
 last_updated: 2026-01-11
 ---
+
+// turbo-all
 
 # /refactor — Ultimate System Optimization
 
@@ -15,6 +19,8 @@ last_updated: 2026-01-11
 > **Flags**: `--dry-run` to preview changes without committing.
 
 ---
+
+// turbo-all
 
 ## Phase 0: Mode Activation
 
@@ -26,6 +32,8 @@ last_updated: 2026-01-11
 - If `--dry-run` flag passed: Execute all phases but **skip commits**. Log actions to `/tmp/refactor_dryrun.log`.
 
 ---
+
+// turbo-all
 
 ## Phase 0.5: Determine Refactor Level (MANDATORY)
 
@@ -41,6 +49,8 @@ last_updated: 2026-01-11
 **Decision**: "Proceeding with Level [X] Refactor."
 
 ---
+
+// turbo-all
 
 ## Phase 1: Invoke /diagnose (~5 min)
 
@@ -58,6 +68,8 @@ echo "=== Phase 1: Running /diagnose ==="
 
 ---
 
+// turbo-all
+
 ## Phase 2: Pre-Remediation Checkpoint
 
 > **Goal**: Reversibility before destructive changes.
@@ -72,6 +84,8 @@ git add -A && git commit -m "checkpoint: pre-refactor $(date +%Y-%m-%d-%H%M)" --
 
 ---
 
+// turbo-all
+
 ## Phase 3: Remediation & Integrity Check
 
 > **Rule**: Fix all issues. No broken windows.
@@ -85,6 +99,8 @@ git add -A && git commit -m "checkpoint: pre-refactor $(date +%Y-%m-%d-%H%M)" --
 
 ---
 
+// turbo-all
+
 ## Phase 4: Optimization Pass
 
 > **Goal**: Proactive improvements beyond just fixing bugs.
@@ -96,6 +112,8 @@ git add -A && git commit -m "checkpoint: pre-refactor $(date +%Y-%m-%d-%H%M)" --
 5. **Update** cross-references
 
 ---
+
+// turbo-all
 
 ## Phase 4.5: Session Log Archive (~10s)
 
@@ -112,6 +130,8 @@ python3 .agent/scripts/compress_sessions.py --archive-days 7 2>/dev/null || echo
 
 ---
 
+// turbo-all
+
 ## Phase 5: Supabase Memory Sync (~30s)
 
 // turbo
@@ -124,6 +144,8 @@ python3 .agent/scripts/supabase_sync.py
 > Sync sessions and case studies to cloud vector database.
 
 ---
+
+// turbo-all
 
 ## Phase 5.7: Cache Maintenance (~20s)
 
@@ -140,6 +162,8 @@ python3 .agent/scripts/summarize_protocols.py
 
 ---
 
+// turbo-all
+
 ## Phase 5.5: Context Compression Cache (~30s)
 
 > **Goal**: Pre-generate compressed summaries for heavy files.
@@ -154,6 +178,8 @@ python3 .agent/scripts/compress_context.py --dir .agent/scripts --output .contex
 > **Note**: Remove `--mock` flag once `GOOGLE_API_KEY` is set in `.env`.
 
 ---
+
+// turbo-all
 
 ## Phase 6: Verification Gate (~10s)
 
@@ -170,6 +196,8 @@ python3 .agent/scripts/orphan_detector.py
 
 ---
 
+// turbo-all
+
 ## Phase 6.5: Index Regeneration (~10s)
 
 > **Goal**: Regenerate TAG_INDEX after any file changes.
@@ -183,6 +211,8 @@ python3 .agent/scripts/generate_tag_index.py
 > Updates `TAG_INDEX.md` with current file tags.
 
 ---
+
+// turbo-all
 
 ## Phase 6.6: Regression Test Validation
 
@@ -203,6 +233,8 @@ echo "=== Phase 6.5: Regression Tests ==="
 
 ---
 
+// turbo-all
+
 ## Phase 7: Telemetry Logging
 
 // turbo
@@ -212,6 +244,8 @@ echo "$(date +%Y-%m-%d-%H:%M),refactor,complete" >> .context/metrics/refactor_lo
 ```
 
 ---
+
+// turbo-all
 
 ## Phase 8: Session Log Append (Auto-Template)
 
@@ -236,6 +270,8 @@ fi
 
 ---
 
+// turbo-all
+
 ## Phase 9: Commit (~15s)
 
 > **Gate**: Only runs if Phase 8 succeeded AND `--dry-run` not set.
@@ -252,6 +288,8 @@ python3 .agent/scripts/git_commit.py
 
 ---
 
+// turbo-all
+
 ## Quick Reference
 
 | Command | Effect | Time |
@@ -264,6 +302,8 @@ python3 .agent/scripts/git_commit.py
 
 ---
 
+// turbo-all
+
 ## Rollback
 
 ```bash
@@ -273,6 +313,8 @@ git reset --hard <checkpoint-hash>
 
 ---
 
+// turbo-all
+
 ## References
 
 - [/diagnose](./diagnose.md) — Read-only diagnostics
@@ -280,6 +322,8 @@ git reset --hard <checkpoint-hash>
 - [/vibe](./vibe.md) — Vibe engineering mode
 
 ---
+
+// turbo-all
 
 ## Tagging
 

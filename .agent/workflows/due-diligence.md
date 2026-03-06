@@ -2,10 +2,14 @@
 last_updated: 2026-01-30
 ---
 
+// turbo-all
+
 ---description: Real-world due diligence workflow — structured analysis for investment decisions
 created: 2025-12-24
 last_updated: 2025-12-24
 ---
+
+// turbo-all
 
 # /due-diligence — Execution Script
 
@@ -13,6 +17,8 @@ last_updated: 2025-12-24
 > **When to use**: Friend asks for money, startup pitch, "silent partner" offer, franchise opportunity
 
 ---
+
+// turbo-all
 
 ## Behavior
 
@@ -25,6 +31,8 @@ When `/due-diligence` or `/dd` is invoked, activate structured analysis mode:
 > **CROSS-MODEL VALIDATION**: For any deal >$10K, submit draft analysis to 3+ SOTA models for blind review before finalizing.
 
 ---
+
+// turbo-all
 
 ## Phase 0: Kill Switch Check (5 min)
 
@@ -41,6 +49,8 @@ Before ANY financial modeling:
 
 ---
 
+// turbo-all
+
 ## Phase 1: Framework Cascade (15 min)
 
 // turbo
@@ -53,6 +63,8 @@ Apply all relevant frameworks:
 - [ ] **Funding Source Ladder**: Why is THEIR capital source significant?
 
 ---
+
+// turbo-all
 
 ## Phase 2: Financial Model (15 min)
 
@@ -78,6 +90,8 @@ EV = Σ (Probability × 3-Year Return) - Initial Investment
 
 ---
 
+// turbo-all
+
 ## Phase 3: Human-AI Discussion (10 min)
 
 Prompt the user for:
@@ -90,6 +104,8 @@ Prompt the user for:
 Recalibrate model based on feedback.
 
 ---
+
+// turbo-all
 
 ## Phase 4: Cross-Model Peer Review (15 min)
 
@@ -106,6 +122,8 @@ Integrate non-redundant feedback.
 
 ---
 
+// turbo-all
+
 ## Phase 5: Final Synthesis (10 min)
 
 Produce final report with:
@@ -116,6 +134,8 @@ Produce final report with:
 4. **DD Checklist** (What to verify before signing)
 
 ---
+
+// turbo-all
 
 ## Output Structure
 
@@ -143,6 +163,8 @@ Produce final report with:
 
 ---
 
+// turbo-all
+
 ## Quick Reference: Red Flags
 
 | Signal | Implication |
@@ -154,6 +176,8 @@ Produce final report with:
 | Operator has no industry experience | Expensive learning curve on YOUR money |
 
 ---
+
+// turbo-all
 
 ## Example
 
@@ -184,6 +208,8 @@ AI:
 ```
 
 ---
+
+// turbo-all
 
 ## Tagging
 

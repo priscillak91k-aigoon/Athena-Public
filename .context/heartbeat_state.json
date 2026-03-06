@@ -1,8 +1,13 @@
 {
-  "last_beat": "2026-03-06T14:28:14.954980",
-  "boot_count": 0,
-  "sleep_events": [],
+  "last_beat": "2026-03-06T21:06:21.336480",
+  "boot_count": 1,
+  "sleep_events": [
+    {
+      "wake_time": "2026-03-06T17:08:46.893316",
+      "sleep_duration_minutes": 38
+    }
+  ],
   "total_uptime_seconds": 0,
-  "last_dream_time": "2026-03-06T13:07:18.114374",
-  "dream_count": 1
+  "last_dream_time": "2026-03-06T17:08:46.905216",
+  "dream_count": 2
 }

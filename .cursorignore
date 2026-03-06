@@ -1,0 +1,19 @@
+# Cursor Ignore — files Cursor should NOT index or modify
+
+# Personal/sensitive context
+.context/
+health/
+session_logs/
+
+# Nutter sandbox (ephemeral research)
+.nutter/
+
+# Media files
+*.wav
+*.mp3
+
+# Etsy products (generated assets)
+etsy_products/
+
+# Git internals
+.git/

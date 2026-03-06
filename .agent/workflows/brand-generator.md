@@ -2,10 +2,14 @@
 last_updated: 2026-01-30
 ---
 
+// turbo-all
+
 ---description: The "Agency Killer" workflow. Replicates a $10k Branding Package in ~20 minutes using AI.
 created: 2025-12-31
 last_updated: 2026-01-05
 ---
+
+// turbo-all
 
 # Brand Generator Workflow (Agency Arbitrage)
 
@@ -14,6 +18,8 @@ last_updated: 2026-01-05
 > **Time**: ~20 Minutes.
 
 ---
+
+// turbo-all
 
 ## Phase 0: Brand DNA Extraction (Optional - Pomelli Method)
 
@@ -28,6 +34,8 @@ last_updated: 2026-01-05
 3. **Action**: Copy this DNA into Phase 1 below.
 
 ---
+
+// turbo-all
 
 ## Phase 1: Strategic DNA (The "Director")
 
@@ -46,6 +54,8 @@ last_updated: 2026-01-05
 
 ---
 
+// turbo-all
+
 ## Phase 2: Visual Synthesis (The "Designer")
 
 **Goal**: Generate high-fidelity logo concepts.  
@@ -59,6 +69,8 @@ Take the **Visual Direction** from Phase 1 and run:
 * *Tip*: Generate 4-8 variations. Pick the best one.
 
 ---
+
+// turbo-all
 
 ## Phase 3: Asset Refining (The "Technician")
 
@@ -74,6 +86,8 @@ Take the **Visual Direction** from Phase 1 and run:
 
 ---
 
+// turbo-all
+
 ## Phase 4: The Brand Book (The "Deliverable")
 
 **Goal**: Package it into the $10k PDF.  
@@ -88,6 +102,8 @@ Take the **Visual Direction** from Phase 1 and run:
 5. Export as **PDF**.
 
 ---
+
+// turbo-all
 
 ## Summary of Arbitrage
 

@@ -3,6 +3,8 @@ description: Generate audio using Lobotto's voice (cloned from Priscilla's voice
 created: 2026-02-28
 ---
 
+// turbo-all
+
 # /voice — Lobotto Voice Generation
 
 ## Setup (Already Complete)

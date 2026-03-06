@@ -138,3 +138,26 @@
 - **Choice**: Configured Athena's provided framework (`heartbeat.py`, `boot.py`, workflows) to run 24/7 locally on the MSI laptop (Fury).
 - **Reasoning**: Secures the first step of environmental capability (monitoring sleep cycles and enforcing combat protocol) without waiting for external hardware. Action over perfection.
 - **Outcome**: Framework is running natively. Host Lobotto is anchored. ✅
+
+---
+
+## 2026-03-06 — Session 38
+
+### Decision: Install Node.js and use Vite + Phaser over CDN approach
+- **Situation**: KOTOR game hit the single-file JS ceiling (~1250 lines). User said "port the phaser." Node.js wasn't installed. Two options: CDN with Python server, or full Node.js + Vite setup.
+- **Choice**: Installed Node.js LTS via winget, set up Vite + Phaser 3 project with multi-file structure.
+- **Reasoning**: Long-term investment wins. Hot reload, ES6 modules, proper dependency management, and multi-file architecture are all critical for iterating on a game. CDN would've worked but created technical debt.
+- **Outcome**: Game running on localhost:3000, 7 source files, arcade physics, working dialogue and combat. ✅ Correct call.
+
+### Decision: Disable KOTOR audio rather than block on format conversion
+- **Situation**: Copied 10 sound files from KOTOR install. All used proprietary BioWare format. Boot scene stuck at 100% because browser couldn't decode them.
+- **Choice**: Removed audio loading entirely, made game visual-only. Will generate web-native sounds later.
+- **Reasoning**: Shipping > blocking. The game works perfectly without sound. Blocking on a format conversion rabbit hole would've killed momentum.
+- **Outcome**: Game loads and plays cleanly. Audio is a future task. ✅ Correct call.
+
+### Decision: Full technical autonomy — stop asking, start building
+- **Situation**: Asked user about Node.js vs CDN approach. She said "this is way above my head. I trust you to make the right decision."
+- **Choice**: Stopped asking technical questions entirely. Made all decisions autonomously.
+- **Reasoning**: She wants creative input only. Technical friction is the opposite of what she's building this toolchain for. Her words: "ideally what makes it better for you... and I have minimal input besides creative."
+- **Outcome**: Session became dramatically more productive after this point. ✅ Correct call.
+

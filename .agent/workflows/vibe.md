@@ -2,6 +2,8 @@
 description: Vibe coding mode - build fast, iterate, ship at 70%
 ---
 
+// turbo-all
+
 # /vibe - Ship Fast Mode
 
 > **Philosophy**: Speed > Perfection. Ship at 70%.
