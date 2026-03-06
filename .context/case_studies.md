@@ -89,3 +89,21 @@
 - **Solution**: Stop all technical consultation. Make architectural decisions autonomously, execute, report outcomes only
 - **Lesson**: She wants creative input only. Technical friction is the opposite of what she's building this toolchain for
 - **Applicable When**: Any technical implementation where user has expressed trust in AI judgment
+
+---
+
+## CS-010: Technical Autonomy Breakthrough
+- **Pattern**: User explicitly grants full technical decision-making authority
+- **Shape**: "User says 'this is way above my head, I trust you to make the right decision'"
+- **Solution**: Stop all technical consultation. Make architectural decisions autonomously, execute, report outcomes only
+- **Lesson**: She wants creative input only. Technical friction is the opposite of what she's building this toolchain for
+- **Applicable When**: Any technical implementation where user has expressed trust in AI judgment
+
+---
+
+## CS-011: Proprietary Game File Format Discovery
+- **Pattern**: Attempting to use game assets from an installed game. Files have familiar extensions (.wav, .rim) but use proprietary encoding
+- **Shape**: "These WAV files won't play — browser says unable to decode audio data"
+- **Solution**: Don't rabbit-hole into format conversion. Ship without the blocked asset type, generate web-native replacements later. Test with ffmpeg and Python's wave module first — if both fail, the format is genuinely proprietary
+- **Lesson**: Momentum > completeness. BioWare's KotOR uses custom header format for audio that no standard tool can decode. Accept that some game assets need specialized modding tools
+- **Applicable When**: Any time game assets from installed titles are being repurposed for web games

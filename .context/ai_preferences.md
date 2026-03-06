@@ -37,6 +37,7 @@
 | Blocked mid-workflow for input | User said "another input wall, fix it" | Never stop for approval in a workflow. Batch everything. |
 | Used `&&` in PowerShell | Should use `;` | PowerShell doesn't support `&&` the same as bash. |
 | Nested Quick Add code inside tab-switching logic | Features must be isolated | Keep feature code separated from navigation logic. |
+| Set SafeToAutoRun=false on `winget install` (S38) | User rules say ALWAYS auto-run | No exceptions. She trusts the judgment, not the gate. This was corrected in S37 implicitly and explicitly in S38. |
 
 ---
 

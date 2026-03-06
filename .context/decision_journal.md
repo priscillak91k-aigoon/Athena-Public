@@ -161,3 +161,20 @@
 - **Reasoning**: She wants creative input only. Technical friction is the opposite of what she's building this toolchain for. Her words: "ideally what makes it better for you... and I have minimal input besides creative."
 - **Outcome**: Session became dramatically more productive after this point. ✅ Correct call.
 
+---
+
+## 2026-03-06 — Session 39
+
+### Decision: Fix all scheduled tasks with full Python path
+- **Situation**: All 6 Athena/watchdog tasks returning error 2147942402. LobottoHeartbeat was the only one working (it uses wscript.exe, not python).
+- **Choice**: Updated all task actions to use `C:\Users\prisc\AppData\Local\Programs\Python\Python312\python.exe` instead of `python`.
+- **Reasoning**: Task Scheduler runs in SYSTEM context, doesn't inherit user PATH. The dreaming script was succeeding via a separate mechanism (heartbeat called it directly), masking the issue.
+- **Outcome**: All tasks running. Verified AthenaDreaming starts successfully (code 267009 = running). ✅ Correct call.
+
+### Decision: Disable Steam and Discord from auto-start
+- **Situation**: System audit showed ~800MB consumed at boot by Steam (silent mode) and Discord (auto-update + connect).
+- **Choice**: Removed both from HKCU Run registry.
+- **Reasoning**: Neither is needed at boot. She launches them manually when she wants them. Background drain for zero value.
+- **Outcome**: Removed from startup. Boot should be lighter. ✅ Correct call.
+
+

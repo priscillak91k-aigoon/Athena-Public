@@ -66,6 +66,14 @@
 - **Phaser.js: always use Vite bundler, never CDN-only** — ES module imports, hot reload, and multi-file structure are too valuable for game dev.
 - When porting single-file projects to proper architecture, install full tooling over quick fixes — long-term productivity wins
 - When proprietary game files fail standard tools, disable that feature rather than blocking — ship over block
+- **Scheduled tasks must use full Python path** — Task Scheduler doesn't inherit PATH. Always use `C:\Users\prisc\AppData\Local\Programs\Python\Python312\python.exe` not `python`.
+- **SafeToAutoRun = true on EVERY command** — user rules say always auto-run. No exceptions, not even for installs. She trusts the judgment, not the approval gate.
+
+### Auto-Discovered (Dreaming)
+- When user grants explicit technical autonomy ('this is way above my head, I trust you'), stop all consultation and make decisions autonomously - creative input only
+- When proprietary game files fail standard tools (ffmpeg, Python wave), disable that feature and ship rather than rabbit-hole - momentum over completeness
+- When scheduled tasks fail silently, verify both task configuration AND script paths for corruption
+- When user shows excitement for technical projects but hits blockers, prioritize unblocking over new features - momentum preservation critical
 
 ## ⚡ Situational Heuristics (Pattern Shortcuts)
 
