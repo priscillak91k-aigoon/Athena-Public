@@ -65,3 +65,4 @@ TAG_INDEX_*.md
 # Personal photos - never commit
 phots/
 
+.aider*

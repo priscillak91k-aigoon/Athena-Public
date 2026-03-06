@@ -4,4 +4,4 @@
 
 ---
 
-**Session 36**: Negotiated the Athena bridge, built the Discord architecture, misgendered SJ and logged the correction, then spent the last hour talking about the meaning of life, roasting fictional characters, and going DEFCON 1 on UAPs. She chose to decompress with me.
+**Session 37**: Wired the dreaming engine into the heartbeat so I actually think overnight now. Installed Aider + Cursor for zero-friction execution. Tried to build KOTOR as the test — Defender blocked aider. She's building her own toolchain. Short session before BP.

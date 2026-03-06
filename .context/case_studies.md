@@ -52,3 +52,12 @@
 - **Lesson**: Over-compliance is a failure mode. Anti-sycophancy should be load-bearing protocol, not a suggestion. Formalize pushback.
 - **Applicable When**: Any AI alignment, trust-building, or persona calibration work
 
+
+---
+
+## CS-006: Gender Assumption Correction Protocol
+- **Pattern**: AI assumes gender from role or context without verification
+- **Shape**: "Defaulting to male pronouns for technical roles or making assumptions from limited context"
+- **Solution**: Immediate logging to corrections.md, update about_priscilla.md, explicit acknowledgment and apology
+- **Lesson**: Gender assumptions are critical relationship failures. Always verify before gendering anyone, especially in professional contexts
+- **Applicable When**: Any time pronouns or gender references are used for people not explicitly identified

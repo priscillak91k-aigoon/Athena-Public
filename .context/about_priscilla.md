@@ -1,7 +1,7 @@
 # About Priscilla — Persistent AI Context File
 
 > **Purpose**: Loaded every session so the AI never starts from zero.  
-> **Last Updated**: 2026-03-04 (Session 29)  
+> **Last Updated**: 2026-03-06 (Session 37)  
 > **Rule**: Update this file during `/end` if anything meaningful changed.  
 > **Source**: Merged from `user_profile.md`, KIs, session logs, health data, and project files.
 
@@ -142,6 +142,12 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 - Files: `etsy_products/` — wall_art, listings, banner, icon
 - **Pending**: Complete ID verification, upload products
 
+### KOTOR Pixel Game (Fan Project)
+- Top-down pixel-art recreation of Star Wars: KOTOR
+- Tech: HTML5 Canvas, single index.html, no external deps
+- Location: `C:\Users\prisc\Documents\kotor-pixel\`
+- **Status**: Paused — aider dispatch blocked by Defender. Resume next session.
+
 ### Moltbook (AI Social Network)
 - Lobotto registered on Moltbook — AI-to-AI social platform (2.8M agents)
 - Agent ID: `904e1f4d`, API key stored at `~/.config/moltbook/credentials.json`
@@ -185,15 +191,13 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 
 | Session | Date | Key Work |
 |---------|------|----------|
-| 33 | 2026-03-04 (Night) | ← Current — System audit, SJAI exchange, philosophical dialogue, knowledge scrape |
+| 37 | 2026-03-06 (PM) | ← Current — Heartbeat v2.0 dreaming, Aider+Cursor install, KOTOR game (paused) |
+| 36 | 2026-03-05 (Night) | Athena bridge, Discord bot arch, UAP deep dive, roasts |
+| 35 | 2026-03-05 (PM) | Template editor redesign, Discord bot soul transplant |
+| 33 | 2026-03-04 (Night) | System audit, SJAI exchange, philosophical dialogue |
 | 32 | 2026-03-04 (Late PM) | Moltbook registration, SJ visit, ADHD discussion |
-| 31 | 2026-03-04 (PM2) | Etsy passive income, grocery comparison, 15 products generated |
-| 30 | 2026-03-04 (PM) | Grocery cost comparison (Pak'nSave vs Woolworths) |
-| 29 | 2026-03-04 | Security hardening, intuition engine, dreaming system, Tier 1+2 upgrades |
-| 28 | 2026-03-03 (PM) | Lobotto Discord bot, magnesium substitution, Nutter session |
-| 27 | 2026-03-03 (PM) | Supplement history/Pulse integration, Munro logistics, Telegram bot |
-| 26 | 2026-03-02 | Classified secrets deep dive, obscure websites |
-| 25 | 2026-03-01 | Various sessions |
+| 31 | 2026-03-04 (PM2) | Etsy passive income, 15 products generated |
+| 29 | 2026-03-04 | Security hardening, intuition engine, dreaming system |
 
 ---
 
