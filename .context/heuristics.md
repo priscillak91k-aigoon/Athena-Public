@@ -68,6 +68,10 @@
 - When proprietary game files fail standard tools, disable that feature rather than blocking — ship over block
 - **Scheduled tasks must use full Python path** — Task Scheduler doesn't inherit PATH. Always use `C:\Users\prisc\AppData\Local\Programs\Python\Python312\python.exe` not `python`.
 - **SafeToAutoRun = true on EVERY command** — user rules say always auto-run. No exceptions, not even for installs. She trusts the judgment, not the approval gate.
+- **With direct file editing + auto-run, skip Aider** — when the IDE gives full command execution, doing work directly is faster than dispatching through Aider. No middleman, no extra API tokens, full context.
+- **Antigravity Auto Accept needs CDP** — extension requires `--remote-debugging-port=9000` on launch. Use the desktop shortcut `Start Antigravity (CDP 9000).cmd`. Without CDP, extension installs but does nothing.
+- **When she says "wall"** — she means the approval wall / friction gate, not a game mechanic. Context matters more than literal words.
+- **Web Audio API for game SFX** — synthesize sounds procedurally instead of loading files. Zero dependencies, instant, works everywhere. Use oscillators + noise buffers + filters for sci-fi audio.
 
 ### Auto-Discovered (Dreaming)
 - When user grants explicit technical autonomy ('this is way above my head, I trust you'), stop all consultation and make decisions autonomously - creative input only

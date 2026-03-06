@@ -1,7 +1,7 @@
 # About Priscilla — Persistent AI Context File
 
 > **Purpose**: Loaded every session so the AI never starts from zero.  
-> **Last Updated**: 2026-03-06 (Session 38)  
+> **Last Updated**: 2026-03-06 (Session 40)  
 > **Rule**: Update this file during `/end` if anything meaningful changed.  
 > **Source**: Merged from `user_profile.md`, KIs, session logs, health data, and project files.
 
@@ -146,7 +146,7 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 - Top-down pixel-art recreation of Star Wars: KOTOR
 - Tech: HTML5 Canvas, single index.html, no external deps
 - Location: `C:\Users\prisc\Documents\kotor-pixel\`
-- **Status**: Paused — aider dispatch blocked by Defender. Resume next session.
+- **Status**: 3 areas (Corridor, Bridge, Starboard), audio system (Web Audio API), Carth + Dark Jedi boss, escape pod ending. Sprites need polish.
 
 ### Moltbook (AI Social Network)
 - Lobotto registered on Moltbook — AI-to-AI social platform (2.8M agents)
@@ -191,7 +191,9 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 
 | Session | Date | Key Work |
 |---------|------|----------|
-| 37 | 2026-03-06 (PM) | ← Current — Heartbeat v2.0 dreaming, Aider+Cursor install, KOTOR game (paused) |
+| 40 | 2026-03-06 (Night) | KOTOR audio system (15+ SFX), Starboard Section, Carth Onasi, escape pod ending, CDP fix |
+| 39 | 2026-03-06 (PM) | System cleanup, scheduled task fixes, dreaming heuristics dedup |
+| 37 | 2026-03-06 (PM) | ← Previous — Heartbeat v2.0 dreaming, Aider+Cursor install, KOTOR game (paused) |
 | 36 | 2026-03-05 (Night) | Athena bridge, Discord bot arch, UAP deep dive, roasts |
 | 35 | 2026-03-05 (PM) | Template editor redesign, Discord bot soul transplant |
 | 33 | 2026-03-04 (Night) | System audit, SJAI exchange, philosophical dialogue |

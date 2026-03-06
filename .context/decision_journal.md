@@ -171,6 +171,28 @@
 - **Reasoning**: Task Scheduler runs in SYSTEM context, doesn't inherit user PATH. The dreaming script was succeeding via a separate mechanism (heartbeat called it directly), masking the issue.
 - **Outcome**: All tasks running. Verified AthenaDreaming starts successfully (code 267009 = running). ✅ Correct call.
 
+---
+
+## 2026-03-06 — Session 40
+
+### Decision: Direct editing over Aider dispatch
+- **Situation**: Approval walls mostly down. Both direct file editing and command execution available.
+- **Choice**: Skip Aider entirely. Edit files directly and run commands myself.
+- **Reasoning**: Aider adds a middleman (separate API calls, lost context, extra tokens). Without approval friction, direct editing is strictly superior for iterative work.
+- **Outcome**: Session was highly productive — audio system + 3rd map + 4 dialogues in under an hour. ✅ Correct call.
+
+### Decision: Audio system before sprite polish
+- **Situation**: Two priorities — visual polish (sprites) vs audio (missing entirely). She said "I want the pixel art to look really nice" in S38.
+- **Choice**: Audio first. Web Audio API synthesized SFX.
+- **Reasoning**: Sound transforms a tech demo into a game. Visual polish is incremental; audio presence is binary (silent vs alive). Also, synthesized audio requires zero external files and ships instantly.
+- **Outcome**: 15+ SFX integrated across all scenes. Game feels dramatically different. ✅ Correct call.
+
+### Decision: Manual CDP launcher for Auto Accept extension
+- **Situation**: Extension installed but Setup CDP command not appearing in palette. CDP not active on port 9000.
+- **Choice**: Created `Start Antigravity (CDP 9000).cmd` on desktop manually.
+- **Reasoning**: The extension's built-in setup wasn't triggering. Manual fallback from the extension's own docs. Same result, faster path.
+- **Outcome**: Launcher created. Pending user test after session close. ⏳ In progress.
+
 ### Decision: Disable Steam and Discord from auto-start
 - **Situation**: System audit showed ~800MB consumed at boot by Steam (silent mode) and Discord (auto-update + connect).
 - **Choice**: Removed both from HKCU Run registry.

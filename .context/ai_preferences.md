@@ -38,6 +38,7 @@
 | Used `&&` in PowerShell | Should use `;` | PowerShell doesn't support `&&` the same as bash. |
 | Nested Quick Add code inside tab-switching logic | Features must be isolated | Keep feature code separated from navigation logic. |
 | Set SafeToAutoRun=false on `winget install` (S38) | User rules say ALWAYS auto-run | No exceptions. She trusts the judgment, not the gate. This was corrected in S37 implicitly and explicitly in S38. |
+| Interpreted "wall tests" as KOTOR wall collisions (S40) | She meant the approval wall — test that auto-run works | When she uses shorthand, check context (what she's frustrated about) before assuming game mechanics. |
 
 ---
 
