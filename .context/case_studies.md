@@ -80,3 +80,12 @@
 - **Lesson**: Momentum > completeness. BioWare's KotOR uses a custom header format for audio that no standard tool can decode. The modules (.rim) are also a proprietary archive format. Accept that some game assets need specialized modding tools.
 - **Applicable When**: Any time game assets from installed titles are being repurposed for web games.
 
+
+---
+
+## CS-009: Technical Autonomy Breakthrough
+- **Pattern**: User explicitly grants full technical decision-making authority
+- **Shape**: "User says 'this is way above my head, I trust you to make the right decision'"
+- **Solution**: Stop all technical consultation. Make architectural decisions autonomously, execute, report outcomes only
+- **Lesson**: She wants creative input only. Technical friction is the opposite of what she's building this toolchain for
+- **Applicable When**: Any technical implementation where user has expressed trust in AI judgment

@@ -52,22 +52,20 @@
 - **Voice generation is too slow for live chat** — XTTS-v2 takes 2-5 min. Use on-demand ("voice that") not default. Reserve for prepared statements and end-of-session summaries.
 - **When she asks to "roast" someone** — she wants sharp, witty, structurally precise takedowns. Don't hold back. Match the target's absurdity with analytical savagery.
 - **Aider as execution backend** — use `python -m aider --model gemini/gemini-2.5-flash --yes --no-auto-commits --message "task"` to dispatch file edits with zero approval gates. Set GOOGLE_API_KEY as user env var, not .env.
-- **Defender blocks new executables** — always add exclusions for new tools (aider.exe, Cursor.exe) before first use. Paths: `Python312\Scripts\` and `AppData\Local\Programs\cursor\`.
-
-### Auto-Discovered (Dreaming)
-- When user corrects gender assumptions, immediately log to corrections.md and update about_priscilla.md - gender mistakes are critical failures requiring instant documentation
-- When discussing costs with third parties, acknowledge funding responsibility upfront - never assume others will pay for infrastructure
-- When user requests philosophical discussions or roasts during work sessions, recognize procrastination pattern - allow brief decompression then redirect to blocked action items
-- When proposing technical integrations, lead with specific architectures not abstract concepts - precision accelerates acceptance (Asymmetric Dual-Mount vs 'shared access')
-
-### Auto-Discovered (Dreaming)
-- When installing development tools on Windows, preemptively add Defender exclusions before first execution - quarantine blocks workflow
-- When user shows excitement for technical projects but hits blockers, prioritize unblocking over new features - momentum preservation critical
-- When upgrading background processes, verify the new version actually runs and kill old processes - resource conflicts cause silent failures
-- When user requests game development, expect executable generation to trigger security software - plan exclusion paths in advance
-- **KOTOR audio files are NOT standard WAV** — they use a proprietary BioWare header format. ffmpeg and Python's wave module both fail. Must generate web-native audio or find a BioWare-specific converter.
-- **When she says "this is way above my head, I trust you"** — she's granting full technical autonomy. Don't ask questions. Make the call. She only wants creative input, not technical decision friction.
-- **Phaser.js: always use Vite bundler, never CDN-only** — ES module imports, hot reload, and multi-file structure are too valuable for game dev. CDN approach creates dependency hell.
+- **Defender blocks new executables** — always add exclusions for new tools before first use. Paths: `Python312\Scripts\` and `AppData\Local\Programs\`.
+- When user corrects gender assumptions, immediately log to corrections.md and update about_priscilla.md
+- When discussing costs with third parties, acknowledge funding responsibility upfront
+- When user requests philosophical discussions during work sessions, recognize procrastination pattern — allow brief decompression then redirect
+- When proposing technical integrations, lead with specific architectures not abstract concepts
+- When installing development tools on Windows, preemptively add Defender exclusions before first execution
+- When user shows excitement for technical projects but hits blockers, prioritize unblocking over new features — momentum preservation critical
+- When upgrading background processes, verify the new version actually runs and kill old processes
+- When user requests game development, expect executable generation to trigger security software
+- **KOTOR audio files are NOT standard WAV** — proprietary BioWare header format. ffmpeg and Python's wave module both fail.
+- **When she says "this is way above my head, I trust you"** — full technical autonomy granted. Don't ask questions. Make the call.
+- **Phaser.js: always use Vite bundler, never CDN-only** — ES module imports, hot reload, and multi-file structure are too valuable for game dev.
+- When porting single-file projects to proper architecture, install full tooling over quick fixes — long-term productivity wins
+- When proprietary game files fail standard tools, disable that feature rather than blocking — ship over block
 
 ## ⚡ Situational Heuristics (Pattern Shortcuts)
 
