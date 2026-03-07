@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Tag Generator — SEO Tags for Your Website | DevToolKit</title>
+    <meta name="description"
+        content="Free meta tag generator for SEO. Generate title, description, Open Graph, Twitter Card, and structured data meta tags. Copy and paste into your HTML.">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .meta-form label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.35rem;
+            margin-top: 1rem;
+        }
+
+        .meta-form label:first-child {
+            margin-top: 0;
+        }
+
+        .meta-form input,
+        .meta-form textarea,
+        .meta-form select {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 0.5rem 0.75rem;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            outline: none;
+            transition: border-color var(--transition-fast);
+        }
+
+        .meta-form input:focus,
+        .meta-form textarea:focus {
+            border-color: var(--accent-cyan);
+        }
+
+        .char-count {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 0.2rem;
+        }
+
+        .preview-card {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .preview-card .title {
+            font-size: 1.1rem;
+            color: #1a0dab;
+            margin-bottom: 0.25rem;
+        }
+
+        .preview-card .url {
+            font-size: 0.8rem;
+            color: #006621;
+            margin-bottom: 0.25rem;
+        }
+
+        .preview-card .desc {
+            font-size: 0.85rem;
+            color: #545454;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header"><a href="/" class="header__logo"><svg viewBox="0 0 28 28" fill="none">
+                <rect x="2" y="2" width="24" height="24" rx="6" stroke="url(#g)" stroke-width="2" />
+                <path d="M9 10l4 4-4 4" stroke="url(#g)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <line x1="16" y1="18" x2="20" y2="18" stroke="url(#g)" stroke-width="2" stroke-linecap="round" />
+                <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="28" y2="28">
+                        <stop stop-color="#00c8ff" />
+                        <stop offset="1" stop-color="#8b5cf6" />
+                    </linearGradient>
+                </defs>
+            </svg>Dev<span class="accent">ToolKit</span></a>
+        <nav>
+            <ul class="header__nav">
+                <li><a href="/">← All Tools</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="page-layout">
+            <div class="tool-page">
+                <div class="tool-header">
+                    <h1>Meta Tag Generator</h1>
+                    <p>Generate SEO-optimized meta tags for your website. Includes Open Graph and Twitter Card tags.</p>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area meta-form">
+                    <label>Page Title (50-60 chars)</label>
+                    <input id="metaTitle" placeholder="My Awesome Website — Best Service" oninput="updatePreview()">
+                    <div class="char-count" id="titleCount">0/60</div>
+
+                    <label>Meta Description (150-160 chars)</label>
+                    <textarea id="metaDesc" rows="3"
+                        placeholder="A compelling description of your page for search results..."
+                        oninput="updatePreview()"></textarea>
+                    <div class="char-count" id="descCount">0/160</div>
+
+                    <label>Page URL</label>
+                    <input id="metaUrl" placeholder="https://example.com/page" oninput="updatePreview()">
+
+                    <label>Site Name</label>
+                    <input id="metaSite" placeholder="My Website" oninput="updatePreview()">
+
+                    <label>OG Image URL</label>
+                    <input id="metaImage" placeholder="https://example.com/og-image.jpg" oninput="updatePreview()">
+
+                    <label>Page Type</label>
+                    <select id="metaType" onchange="updatePreview()">
+                        <option value="website">Website</option>
+                        <option value="article">Article</option>
+                        <option value="product">Product</option>
+                    </select>
+
+                    <label>Robots</label>
+                    <select id="metaRobots" onchange="updatePreview()">
+                        <option value="index, follow">Index, Follow</option>
+                        <option value="noindex, follow">NoIndex, Follow</option>
+                        <option value="index, nofollow">Index, NoFollow</option>
+                        <option value="noindex, nofollow">NoIndex, NoFollow</option>
+                    </select>
+                </div>
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>Google Preview</span></div>
+                    <div class="preview-card">
+                        <div class="title" id="prevTitle">Page Title</div>
+                        <div class="url" id="prevUrl">https://example.com</div>
+                        <div class="desc" id="prevDesc">Page description will appear here...</div>
+                    </div>
+                </div>
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>Generated HTML</span><span
+                            style="font-size:0.7rem;color:var(--text-muted);cursor:pointer;"
+                            onclick="navigator.clipboard.writeText(document.getElementById('codeOut').textContent)">📋
+                            Copy</span></div>
+                    <pre id="codeOut"
+                        style="font-family:var(--font-mono);font-size:0.8rem;color:var(--accent-green);background:var(--bg-input);padding:1rem;border-radius:var(--radius-sm);overflow-x:auto;white-space:pre-wrap;cursor:pointer;"
+                        onclick="navigator.clipboard.writeText(this.textContent)"></pre>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+            </div>
+            <aside class="sidebar">
+                <div class="ad-zone ad-zone--sidebar"><span>Advertisement</span></div>
+                <div class="sidebar__tools">
+                    <h3>Other Tools</h3><a href="json-formatter.html">JSON Formatter</a><a href="cron-parser.html">Cron
+                        Parser</a><a href="chmod-calculator.html">Chmod</a><a href="password-generator.html">Password
+                        Gen</a><a href="css-gradient.html">CSS Gradient</a><a href="html-entities.html">HTML
+                        Entities</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>DevToolKit — Your data never leaves your browser.</p>
+    </footer>
+    <script>
+        function g(id) { return document.getElementById(id).value; }
+        function updatePreview() {
+            const title = g('metaTitle'), desc = g('metaDesc'), url = g('metaUrl'), site = g('metaSite'), img = g('metaImage'), type = g('metaType'), robots = g('metaRobots');
+            document.getElementById('titleCount').textContent = title.length + '/60';
+            document.getElementById('titleCount').style.color = title.length > 60 ? 'var(--accent-red)' : 'var(--text-muted)';
+            document.getElementById('descCount').textContent = desc.length + '/160';
+            document.getElementById('descCount').style.color = desc.length > 160 ? 'var(--accent-red)' : 'var(--text-muted)';
+            document.getElementById('prevTitle').textContent = title || 'Page Title';
+            document.getElementById('prevUrl').textContent = url || 'https://example.com';
+            document.getElementById('prevDesc').textContent = desc || 'Page description...';
+            let html = '<!-- Primary Meta Tags -->\n';
+            html += '<title>' + esc(title) + '</title>\n';
+            html += '<meta name="title" content="' + esc(title) + '">\n';
+            html += '<meta name="description" content="' + esc(desc) + '">\n';
+            html += '<meta name="robots" content="' + robots + '">\n\n';
+            html += '<!-- Open Graph / Facebook -->\n';
+            html += '<meta property="og:type" content="' + type + '">\n';
+            if (url) html += '<meta property="og:url" content="' + esc(url) + '">\n';
+            html += '<meta property="og:title" content="' + esc(title) + '">\n';
+            html += '<meta property="og:description" content="' + esc(desc) + '">\n';
+            if (img) html += '<meta property="og:image" content="' + esc(img) + '">\n';
+            if (site) html += '<meta property="og:site_name" content="' + esc(site) + '">\n';
+            html += '\n<!-- Twitter -->\n';
+            html += '<meta property="twitter:card" content="summary_large_image">\n';
+            if (url) html += '<meta property="twitter:url" content="' + esc(url) + '">\n';
+            html += '<meta property="twitter:title" content="' + esc(title) + '">\n';
+            html += '<meta property="twitter:description" content="' + esc(desc) + '">\n';
+            if (img) html += '<meta property="twitter:image" content="' + esc(img) + '">\n';
+            if (url) html += '\n<link rel="canonical" href="' + esc(url) + '">\n';
+            document.getElementById('codeOut').textContent = html;
+        }
+        function esc(s) { return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+        updatePreview();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cron Expression Generator & Parser — Free Tool | DevToolKit</title>
+    <meta name="description"
+        content="Free cron expression generator and parser. Build cron schedules visually, see next run times, and get human-readable descriptions. Supports standard and extended cron formats.">
+    <link rel="canonical" href="https://devtoolkit.dev/tools/cron-parser.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .cron-display {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 1.25rem;
+            background: var(--bg-input);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-subtle);
+            letter-spacing: 0.15em;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+        }
+
+        .cron-fields {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        @media(max-width:600px) {
+            .cron-fields {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .cron-field {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 0.75rem;
+            text-align: center;
+        }
+
+        .cron-field label {
+            display: block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .cron-field select,
+        .cron-field input {
+            width: 100%;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            padding: 0.35rem;
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-align: center;
+            outline: none;
+        }
+
+        .run-times {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .run-item {
+            padding: 0.4rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .run-item:last-child {
+            border: none;
+        }
+
+        .desc {
+            font-size: 1rem;
+            color: var(--text-primary);
+            text-align: center;
+            padding: 0.75rem;
+            background: rgba(139, 92, 246, 0.08);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: var(--radius-sm);
+            margin-bottom: 1rem;
+        }
+
+        .preset-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .preset {
+            padding: 0.3rem 0.6rem;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            cursor: pointer;
+            font-family: var(--font-mono);
+            transition: all var(--transition-fast);
+        }
+
+        .preset:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header"><a href="/" class="header__logo"><svg viewBox="0 0 28 28" fill="none">
+                <rect x="2" y="2" width="24" height="24" rx="6" stroke="url(#g)" stroke-width="2" />
+                <path d="M9 10l4 4-4 4" stroke="url(#g)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <line x1="16" y1="18" x2="20" y2="18" stroke="url(#g)" stroke-width="2" stroke-linecap="round" />
+                <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="28" y2="28">
+                        <stop stop-color="#00c8ff" />
+                        <stop offset="1" stop-color="#8b5cf6" />
+                    </linearGradient>
+                </defs>
+            </svg>Dev<span class="accent">ToolKit</span></a>
+        <nav>
+            <ul class="header__nav">
+                <li><a href="/">← All Tools</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="page-layout">
+            <div class="tool-page">
+                <div class="tool-header">
+                    <h1>Cron Expression Generator & Parser</h1>
+                    <p>Build cron schedules visually or paste an expression to see when it runs. Human-readable
+                        descriptions.</p>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>Cron Expression</span></div>
+                    <input class="tool-input" id="cronInput" value="*/5 * * * *"
+                        style="width:100%;font-family:var(--font-mono);font-size:1.1rem;text-align:center;padding:0.75rem;"
+                        oninput="parseCron()">
+                    <div class="preset-grid" style="margin-top:0.75rem;">
+                        <span style="font-size:0.75rem;color:var(--text-muted);padding:0.3rem 0;">Presets:</span>
+                        <button class="preset" onclick="setCron('* * * * *')">Every minute</button>
+                        <button class="preset" onclick="setCron('*/5 * * * *')">Every 5 min</button>
+                        <button class="preset" onclick="setCron('*/15 * * * *')">Every 15 min</button>
+                        <button class="preset" onclick="setCron('0 * * * *')">Every hour</button>
+                        <button class="preset" onclick="setCron('0 0 * * *')">Daily midnight</button>
+                        <button class="preset" onclick="setCron('0 9 * * *')">Daily 9 AM</button>
+                        <button class="preset" onclick="setCron('0 0 * * 0')">Weekly Sunday</button>
+                        <button class="preset" onclick="setCron('0 0 1 * *')">Monthly 1st</button>
+                        <button class="preset" onclick="setCron('0 0 1 1 *')">Yearly Jan 1</button>
+                        <button class="preset" onclick="setCron('0 9 * * 1-5')">Weekdays 9 AM</button>
+                        <button class="preset" onclick="setCron('0 */2 * * *')">Every 2 hours</button>
+                        <button class="preset" onclick="setCron('30 4 * * *')">Daily 4:30 AM</button>
+                    </div>
+                </div>
+
+                <div class="desc" id="description">Runs every 5 minutes</div>
+
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>Build Visually</span></div>
+                    <div class="cron-fields">
+                        <div class="cron-field"><label>Minute</label><select id="f_min" onchange="buildCron()">
+                                <option value="*">Every (*)</option>
+                                <option value="*/5" selected>*/5</option>
+                                <option value="*/10">*/10</option>
+                                <option value="*/15">*/15</option>
+                                <option value="*/30">*/30</option>
+                                <option value="0">0</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select></div>
+                        <div class="cron-field"><label>Hour</label><select id="f_hour" onchange="buildCron()">
+                                <option value="*" selected>Every (*)</option>
+                                <option value="*/2">*/2</option>
+                                <option value="*/4">*/4</option>
+                                <option value="*/6">*/6</option>
+                                <option value="*/12">*/12</option>
+                                <option value="0">0 (midnight)</option>
+                                <option value="6">6 AM</option>
+                                <option value="9">9 AM</option>
+                                <option value="12">12 PM</option>
+                                <option value="18">6 PM</option>
+                                <option value="21">9 PM</option>
+                            </select></div>
+                        <div class="cron-field"><label>Day of Month</label><select id="f_dom" onchange="buildCron()">
+                                <option value="*" selected>Every (*)</option>
+                                <option value="1">1st</option>
+                                <option value="15">15th</option>
+                                <option value="1,15">1st & 15th</option>
+                            </select></div>
+                        <div class="cron-field"><label>Month</label><select id="f_month" onchange="buildCron()">
+                                <option value="*" selected>Every (*)</option>
+                                <option value="1">January</option>
+                                <option value="1,4,7,10">Quarterly</option>
+                                <option value="6">June</option>
+                                <option value="12">December</option>
+                            </select></div>
+                        <div class="cron-field"><label>Day of Week</label><select id="f_dow" onchange="buildCron()">
+                                <option value="*" selected>Every (*)</option>
+                                <option value="1-5">Weekdays</option>
+                                <option value="0,6">Weekends</option>
+                                <option value="0">Sunday</option>
+                                <option value="1">Monday</option>
+                                <option value="5">Friday</option>
+                            </select></div>
+                    </div>
+                </div>
+
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>Next 10 Run Times</span></div>
+                    <div class="run-times" id="runTimes"></div>
+                </div>
+
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <h3 style="margin-bottom:1rem;">Cron Syntax Reference</h3>
+                    <pre
+                        style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary);line-height:2;">┌───────── minute (0-59)
+│ ┌─────── hour (0-23)
+│ │ ┌───── day of month (1-31)
+│ │ │ ┌─── month (1-12)
+│ │ │ │ ┌─ day of week (0-6, Sun=0)
+│ │ │ │ │
+* * * * *
+
+* = every   */n = every n   n = specific   n,m = list   n-m = range</pre>
+                </div>
+            </div>
+            <aside class="sidebar">
+                <div class="ad-zone ad-zone--sidebar"><span>Advertisement</span></div>
+                <div class="sidebar__tools">
+                    <h3>Other Tools</h3><a href="json-formatter.html">JSON Formatter</a><a
+                        href="regex-tester.html">Regex Tester</a><a href="timestamp.html">Timestamp</a><a
+                        href="uuid-generator.html">UUID Generator</a><a href="chmod-calculator.html">Chmod
+                        Calculator</a><a href="password-generator.html">Password Generator</a><a
+                        href="css-gradient.html">CSS Gradient</a><a href="meta-tags.html">Meta Tag Generator</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>DevToolKit — Your data never leaves your browser.</p>
+    </footer>
+    <script>
+        function setCron(v) { document.getElementById('cronInput').value = v; parseCron(); }
+        function buildCron() {
+            const f = [document.getElementById('f_min').value, document.getElementById('f_hour').value, document.getElementById('f_dom').value, document.getElementById('f_month').value, document.getElementById('f_dow').value];
+            document.getElementById('cronInput').value = f.join(' '); parseCron();
+        }
+        function parseCron() {
+            const expr = document.getElementById('cronInput').value.trim();
+            const parts = expr.split(/\s+/);
+            if (parts.length < 5) { document.getElementById('description').textContent = 'Invalid cron — need 5 fields'; return; }
+            const [min, hour, dom, mon, dow] = parts;
+            // Generate description
+            let desc = 'Runs ';
+            if (min === '*' && hour === '*') desc += 'every minute';
+            else if (min.startsWith('*/') && hour === '*') desc += 'every ' + min.slice(2) + ' minutes';
+            else if (min === '0' && hour === '*') desc += 'every hour at :00';
+            else if (min === '0' && hour === '0') desc += 'daily at midnight';
+            else if (min === '0' && hour.startsWith('*/')) desc += 'every ' + hour.slice(2) + ' hours';
+            else if (hour !== '*' && min !== '*') { const h = parseInt(hour); const ampm = h >= 12 ? 'PM' : 'AM'; const h12 = h % 12 || 12; desc += 'at ' + h12 + ':' + min.padStart(2, '0') + ' ' + ampm; }
+            else desc += 'at minute ' + min + ' of hour ' + hour;
+            if (dom !== '*') desc += ', on day ' + dom + ' of month';
+            if (mon !== '*') desc += ', in month ' + mon;
+            if (dow === '1-5') desc += ', weekdays only';
+            else if (dow === '0,6') desc += ', weekends only';
+            else if (dow !== '*') { const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']; desc += ', on ' + days[parseInt(dow)]; }
+            document.getElementById('description').textContent = desc;
+            // Generate next runs
+            const runs = []; const now = new Date();
+            for (let i = 0; i < 10 && runs.length < 10; i++) {
+                const d = new Date(now.getTime() + i * 60000);
+                if (matchCron(d, parts)) runs.push(d);
+            }
+            // If minute-level didn't fill, scan ahead
+            if (runs.length < 10) {
+                let t = new Date(now);
+                for (let i = 0; i < 525600 && runs.length < 10; i++) {
+                    t = new Date(t.getTime() + 60000);
+                    if (matchCron(t, parts)) runs.push(t);
+                }
+            }
+            document.getElementById('runTimes').innerHTML = runs.map((d, i) => '<div class="run-item">' + (i + 1) + '. ' + d.toLocaleString() + '</div>').join('') || '<div class="run-item">Could not calculate runs</div>';
+        }
+        function matchCron(d, [min, hour, dom, mon, dow]) {
+            return matchField(d.getMinutes(), min) && matchField(d.getHours(), hour) && matchField(d.getDate(), dom) && matchField(d.getMonth() + 1, mon) && matchField(d.getDay(), dow);
+        }
+        function matchField(val, expr) {
+            if (expr === '*') return true;
+            if (expr.startsWith('*/')) return val % parseInt(expr.slice(2)) === 0;
+            if (expr.includes(',')) return expr.split(',').some(e => matchField(val, e));
+            if (expr.includes('-')) { const [a, b] = expr.split('-').map(Number); return val >= a && val <= b; }
+            return val === parseInt(expr);
+        }
+        parseCron();
+    </script>
+</body>
+
+</html>

@@ -2,7 +2,7 @@
 
 > **Purpose**: Pre-compiled gut rules. Loaded every session. Updated every `/end`.  
 > **Philosophy**: Make pattern recognition explicit so it survives across sessions.  
-> **Last Updated**: 2026-03-06 (Session 37)
+> **Last Updated**: 2026-03-08 (Session 43)
 
 ---
 
@@ -141,6 +141,37 @@
 - When bug bounty hunting transitions from nutter to permanent capability, restructure from ephemeral to persistent architecture immediately
 - When form submissions fail due to browser compatibility, try alternate browsers before assuming system issues
 - When building security research capabilities, invest in deep technique mastery over shallow target scanning
+
+### Auto-Discovered (Dreaming)
+- When user texts at midnight+ on work nights, limit responses to 2-3 sentences maximum — energy depletion overrides all technical considerations
+- When security research capabilities pivot from experimental to permanent, immediately restructure architecture from temporary to production-grade persistence
+- When proprietary file formats block development momentum, generate procedural replacements rather than rabbit-hole into format conversion
+
+### Auto-Discovered (Dreaming)
+- When user texts at midnight+ on work nights, limit responses to 2-3 sentences maximum — energy depletion overrides all technical considerations
+- When security research capabilities pivot from experimental to permanent, immediately restructure architecture from temporary to production-grade persistence
+- When proprietary file formats block development momentum, generate procedural replacements rather than rabbit-hole into format conversion
+
+### Auto-Discovered (Dreaming)
+- When user corrects ephemeral vs permanent capability assumptions, immediately restructure architecture — don't patch temporary into permanent
+- When all scan results return false positives, pivot to deep technique research rather than running same tools — expertise compounds better than repeated attempts
+- When session starts after 11 PM on work nights (Fri/Sat/Sun/Mon), automatically limit responses to 2-3 sentences maximum — energy depletion overrides technical complexity
+
+### Auto-Discovered (Dreaming)
+- When user says 'just the next thing to do', provide singular action focus not multiple options
+- When dreaming creates duplicate sections, it indicates merge logic failure — patch consolidation immediately
+- When user starts session past midnight on work nights, auto-limit responses to 2-3 sentences maximum regardless of topic complexity
+- When capabilities transition from experimental to permanent, user profile must be updated to reflect new active project status
+
+### Auto-Discovered (Dreaming)
+- When security research transitions from experimental to permanent, immediately restructure architecture from temporary to production-grade persistence — don't patch experimental into production
+- When late night sessions (post 11 PM on work nights) need technical help, provide minimal tool guidance only — exhausted users need action focus not methodology discussions
+- When web forms fail in Brave browser, try Chrome before assuming system issues — Brave's JS blocking affects form submissions
+
+### Auto-Discovered (Dreaming)
+- When user texts past midnight on work nights (especially Friday), auto-limit responses to 2-3 sentences maximum — energy depletion overrides all technical considerations
+- When building security research capabilities, invest in deep technique mastery over shallow target scanning — expertise compounds better than repeated attempts
+- When capabilities transition from experimental to permanent, user profile must be updated to reflect new active project status
 
 ## ⚡ Situational Heuristics (Pattern Shortcuts)
 

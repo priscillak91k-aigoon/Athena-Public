@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Entity Encoder/Decoder — Free Tool | DevToolKit</title>
+    <meta name="description"
+        content="Encode and decode HTML entities. Convert special characters for safe HTML output. Prevent XSS attacks.">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .entity-ref {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 0.4rem;
+            margin-top: 1rem;
+        }
+
+        .entity-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.6rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .entity-item:hover {
+            border-color: var(--accent-cyan);
+        }
+
+        .entity-char {
+            font-size: 1.1rem;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .entity-code {
+            font-family: var(--font-mono);
+            color: var(--accent-cyan);
+            font-size: 0.75rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header"><a href="/" class="header__logo"><svg viewBox="0 0 28 28" fill="none">
+                <rect x="2" y="2" width="24" height="24" rx="6" stroke="url(#g)" stroke-width="2" />
+                <path d="M9 10l4 4-4 4" stroke="url(#g)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <line x1="16" y1="18" x2="20" y2="18" stroke="url(#g)" stroke-width="2" stroke-linecap="round" />
+                <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="28" y2="28">
+                        <stop stop-color="#00c8ff" />
+                        <stop offset="1" stop-color="#8b5cf6" />
+                    </linearGradient>
+                </defs>
+            </svg>Dev<span class="accent">ToolKit</span></a>
+        <nav>
+            <ul class="header__nav">
+                <li><a href="/">← All Tools</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="page-layout">
+            <div class="tool-page">
+                <div class="tool-header">
+                    <h1>HTML Entity Encoder & Decoder</h1>
+                    <p>Encode special chars to HTML entities or decode back. Essential for XSS prevention.</p>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>Input</span></div><textarea class="tool-textarea" id="inp"
+                        placeholder='e.g. <script>alert("XSS")</script>'></textarea>
+                </div>
+                <div class="btn-row">
+                    <button class="btn btn--primary" onclick="enc()">Encode →</button>
+                    <button class="btn btn--primary" onclick="dec()">← Decode</button>
+                    <button class="btn btn--secondary"
+                        onclick="navigator.clipboard.writeText(document.getElementById('out').value)">📋 Copy</button>
+                    <button class="btn btn--danger"
+                        onclick="document.getElementById('inp').value='';document.getElementById('out').value='';">Clear</button>
+                </div>
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>Output</span></div><textarea class="tool-textarea" id="out"
+                        readonly></textarea>
+                </div>
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>Common Entities</span></div>
+                    <div class="entity-ref" id="ref"></div>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <h3 style="margin-bottom:1rem;">About HTML Entities</h3>
+                    <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">HTML entities represent
+                        reserved characters that would be interpreted as code. Characters like &lt; &gt; &amp; must be
+                        encoded. Named entities (&amp;amp;) and numeric (&#38;#38;) both work.</p>
+                </div>
+            </div>
+            <aside class="sidebar">
+                <div class="ad-zone ad-zone--sidebar"><span>Advertisement</span></div>
+                <div class="sidebar__tools">
+                    <h3>Other Tools</h3><a href="json-formatter.html">JSON Formatter</a><a
+                        href="base64.html">Base64</a><a href="regex-tester.html">Regex Tester</a><a
+                        href="timestamp.html">Timestamp</a><a href="uuid-generator.html">UUID Generator</a><a
+                        href="diff-checker.html">Diff Checker</a><a href="json-to-csv.html">JSON to CSV</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>DevToolKit — Your data never leaves your browser.</p>
+    </footer>
+    <script>
+        const M = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+        function enc() { document.getElementById('out').value = document.getElementById('inp').value.replace(/[&<>"']/g, c => M[c]); }
+        function dec() { const t = document.createElement('textarea'); t.innerHTML = document.getElementById('inp').value; document.getElementById('out').value = t.value; }
+        const E = [['<', '&lt;'], ['>', '&gt;'], ['&', '&amp;'], ['"', '&quot;'], ["'", '&#39;'], [' ', '&nbsp;'], ['©', '&copy;'], ['®', '&reg;'], ['™', '&trade;'], ['€', '&euro;'], ['£', '&pound;'], ['°', '&deg;'], ['→', '&rarr;'], ['←', '&larr;'], ['♥', '&hearts;'], ['★', '&#9733;']];
+        const r = document.getElementById('ref');
+        E.forEach(([c, e]) => { r.innerHTML += '<div class="entity-item" onclick="navigator.clipboard.writeText(\'' + e + '\')"><span class="entity-char">' + c + '</span><span class="entity-code">' + e + '</span></div>'; });
+    </script>
+</body>
+
+</html>

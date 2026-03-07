@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Encode & Decode — Free Online Tool | DevToolKit</title>
+    <meta name="description"
+        content="Free online URL encoder and decoder. Encode special characters for URLs or decode percent-encoded strings. Perfect for query strings and API development.">
+    <link rel="canonical" href="https://devtoolkit.dev/tools/url-encoder.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"URL Encode/Decode","url":"https://devtoolkit.dev/tools/url-encoder.html","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+
+<body>
+    <header class="header"><a href="/" class="header__logo"><svg viewBox="0 0 28 28" fill="none">
+                <rect x="2" y="2" width="24" height="24" rx="6" stroke="url(#g)" stroke-width="2" />
+                <path d="M9 10l4 4-4 4" stroke="url(#g)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <line x1="16" y1="18" x2="20" y2="18" stroke="url(#g)" stroke-width="2" stroke-linecap="round" />
+                <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="28" y2="28">
+                        <stop stop-color="#00c8ff" />
+                        <stop offset="1" stop-color="#8b5cf6" />
+                    </linearGradient>
+                </defs>
+            </svg>Dev<span class="accent">ToolKit</span></a>
+        <nav>
+            <ul class="header__nav">
+                <li><a href="/">← All Tools</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="page-layout">
+            <div class="tool-page">
+                <div class="tool-header">
+                    <h1>URL Encode & Decode</h1>
+                    <p>Encode special characters for use in URLs or decode percent-encoded strings back to readable
+                        text.</p>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>Input</span><select class="tool-select" id="mode">
+                            <option value="component">encodeURIComponent</option>
+                            <option value="uri">encodeURI</option>
+                        </select></div><textarea class="tool-textarea" id="inp"
+                        placeholder="Enter text to encode or a URL-encoded string to decode..."></textarea>
+                </div>
+                <div class="btn-row">
+                    <button class="btn btn--primary" onclick="enc()">Encode →</button>
+                    <button class="btn btn--primary" onclick="dec()">← Decode</button>
+                    <button class="btn btn--secondary"
+                        onclick="navigator.clipboard.writeText(document.getElementById('out').value)">📋 Copy</button>
+                    <button class="btn btn--danger"
+                        onclick="document.getElementById('inp').value='';document.getElementById('out').value='';">Clear</button>
+                </div>
+                <div id="st" class="status"></div>
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>Output</span></div><textarea class="tool-textarea" id="out"
+                        placeholder="Result..." readonly></textarea>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <h3 style="margin-bottom:1rem;">About URL Encoding</h3>
+                    <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">URL encoding
+                        (percent-encoding) converts special characters into a format that can be safely transmitted in
+                        URLs. Characters like spaces, &, =, and ? have special meaning in URLs and must be encoded when
+                        used as data. <code>encodeURIComponent</code> encodes all special characters (for query
+                        parameter values), while <code>encodeURI</code> preserves URL structure characters like : / ? #
+                        @ &.</p>
+                </div>
+            </div>
+            <aside class="sidebar">
+                <div class="ad-zone ad-zone--sidebar"><span>Advertisement</span></div>
+                <div class="sidebar__tools">
+                    <h3>Other Tools</h3><a href="json-formatter.html">JSON Formatter</a><a
+                        href="base64.html">Base64</a><a href="regex-tester.html">Regex Tester</a><a
+                        href="jwt-decoder.html">JWT Decoder</a><a href="hash-generator.html">Hash Generator</a><a
+                        href="color-picker.html">Color Converter</a><a href="lorem-ipsum.html">Lorem Ipsum</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>DevToolKit — Free developer tools. Your data never leaves your browser.</p>
+    </footer>
+    <script>
+        const s = document.getElementById('st');
+        function sh(m, t) { s.textContent = m; s.className = 'status show status--' + t; if (t === 'success') setTimeout(() => s.classList.remove('show'), 3000); }
+        function enc() { const m = document.getElementById('mode').value; const v = document.getElementById('inp').value; document.getElementById('out').value = m === 'component' ? encodeURIComponent(v) : encodeURI(v); sh('✓ Encoded', 'success'); }
+        function dec() { try { document.getElementById('out').value = decodeURIComponent(document.getElementById('inp').value); sh('✓ Decoded', 'success'); } catch (e) { sh('✗ ' + e.message, 'error'); } }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Gradient Generator — Free Online Tool | DevToolKit</title>
+    <meta name="description"
+        content="Free CSS gradient generator. Create linear and radial gradients visually. Copy CSS code instantly. Beautiful preset gradients included.">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .grad-preview {
+            width: 100%;
+            height: 200px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-subtle);
+            margin-bottom: 1rem;
+            transition: background 0.3s;
+        }
+
+        .grad-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media(max-width:600px) {
+            .grad-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .grad-ctrl {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 0.75rem;
+        }
+
+        .grad-ctrl label {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
+            font-weight: 600;
+        }
+
+        .color-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .color-row input[type=color] {
+            width: 40px;
+            height: 32px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: none;
+        }
+
+        .color-row input[type=range] {
+            flex: 1;
+            accent-color: var(--accent-cyan);
+        }
+
+        .code-box {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            padding: 1rem;
+            background: var(--bg-input);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+            color: var(--accent-green);
+            cursor: pointer;
+            word-break: break-all;
+            transition: all var(--transition-fast);
+        }
+
+        .code-box:hover {
+            border-color: var(--accent-cyan);
+        }
+
+        .presets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .preset-swatch {
+            height: 50px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all var(--transition-fast);
+        }
+
+        .preset-swatch:hover {
+            border-color: var(--accent-cyan);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header"><a href="/" class="header__logo"><svg viewBox="0 0 28 28" fill="none">
+                <rect x="2" y="2" width="24" height="24" rx="6" stroke="url(#g)" stroke-width="2" />
+                <path d="M9 10l4 4-4 4" stroke="url(#g)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <line x1="16" y1="18" x2="20" y2="18" stroke="url(#g)" stroke-width="2" stroke-linecap="round" />
+                <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="28" y2="28">
+                        <stop stop-color="#00c8ff" />
+                        <stop offset="1" stop-color="#8b5cf6" />
+                    </linearGradient>
+                </defs>
+            </svg>Dev<span class="accent">ToolKit</span></a>
+        <nav>
+            <ul class="header__nav">
+                <li><a href="/">← All Tools</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="page-layout">
+            <div class="tool-page">
+                <div class="tool-header">
+                    <h1>CSS Gradient Generator</h1>
+                    <p>Create beautiful CSS gradients visually. Copy the CSS code with one click.</p>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <div class="grad-preview" id="preview"></div>
+                    <div class="grad-controls">
+                        <div class="grad-ctrl">
+                            <label>Type</label>
+                            <select class="tool-select" id="type" onchange="update()"
+                                style="width:100%;margin-bottom:0.5rem;">
+                                <option value="linear">Linear</option>
+                                <option value="radial">Radial</option>
+                            </select>
+                            <label>Angle (linear)</label>
+                            <input type="range" id="angle" min="0" max="360" value="135" oninput="update()"
+                                style="width:100%;">
+                            <div style="text-align:center;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);"
+                                id="angleVal">135°</div>
+                        </div>
+                        <div class="grad-ctrl">
+                            <label>Color 1</label>
+                            <div class="color-row"><input type="color" id="c1" value="#00c8ff" oninput="update()"><input
+                                    type="range" id="s1" min="0" max="100" value="0" oninput="update()"><span
+                                    style="font-size:0.7rem;color:var(--text-muted);" id="s1v">0%</span></div>
+                            <label>Color 2</label>
+                            <div class="color-row"><input type="color" id="c2" value="#8b5cf6" oninput="update()"><input
+                                    type="range" id="s2" min="0" max="100" value="100" oninput="update()"><span
+                                    style="font-size:0.7rem;color:var(--text-muted);" id="s2v">100%</span></div>
+                            <label>Color 3 (optional)</label>
+                            <div class="color-row"><input type="color" id="c3" value="#ec4899" oninput="update()"><label
+                                    style="font-size:0.75rem;cursor:pointer;"><input type="checkbox" id="useC3"
+                                        onchange="update()"> Enable</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>CSS Code</span><span
+                            style="font-size:0.7rem;color:var(--text-muted);">Click to copy</span></div>
+                    <div class="code-box" id="cssCode" onclick="navigator.clipboard.writeText(this.textContent)"></div>
+                </div>
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>Preset Gradients</span></div>
+                    <div class="presets-grid" id="presets"></div>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+            </div>
+            <aside class="sidebar">
+                <div class="ad-zone ad-zone--sidebar"><span>Advertisement</span></div>
+                <div class="sidebar__tools">
+                    <h3>Other Tools</h3><a href="color-picker.html">Color Converter</a><a
+                        href="json-formatter.html">JSON Formatter</a><a href="cron-parser.html">Cron Parser</a><a
+                        href="chmod-calculator.html">Chmod Calculator</a><a href="password-generator.html">Password
+                        Generator</a><a href="meta-tags.html">Meta Tags</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>DevToolKit — Your data never leaves your browser.</p>
+    </footer>
+    <script>
+        const presetData = [
+            ['#667eea', '#764ba2'], ['#f093fb', '#f5576c'], ['#4facfe', '#00f2fe'], ['#43e97b', '#38f9d7'],
+            ['#fa709a', '#fee140'], ['#a18cd1', '#fbc2eb'], ['#fccb90', '#d57eeb'], ['#e0c3fc', '#8ec5fc'],
+            ['#f5576c', '#ff9a9e'], ['#0c3483', '#a2b6df'], ['#667eea', '#f093fb'], ['#6a11cb', '#2575fc'],
+            ['#ff9a9e', '#fad0c4'], ['#a1c4fd', '#c2e9fb'], ['#d4fc79', '#96e6a1'], ['#84fab0', '#8fd3f4'],
+            ['#ffecd2', '#fcb69f'], ['#ff0844', '#ffb199'], ['#30cfd0', '#330867'], ['#b721ff', '#21d4fd'],
+        ];
+        const presetsEl = document.getElementById('presets');
+        presetData.forEach(([a, b]) => {
+            const d = document.createElement('div'); d.className = 'preset-swatch'; d.style.background = 'linear-gradient(135deg,' + a + ',' + b + ')';
+            d.onclick = () => { document.getElementById('c1').value = a; document.getElementById('c2').value = b; document.getElementById('useC3').checked = false; update(); };
+            presetsEl.appendChild(d);
+        });
+        function update() {
+            const type = document.getElementById('type').value;
+            const angle = document.getElementById('angle').value;
+            const c1 = document.getElementById('c1').value;
+            const c2 = document.getElementById('c2').value;
+            const s1 = document.getElementById('s1').value;
+            const s2 = document.getElementById('s2').value;
+            document.getElementById('angleVal').textContent = angle + '°';
+            document.getElementById('s1v').textContent = s1 + '%';
+            document.getElementById('s2v').textContent = s2 + '%';
+            let stops = c1 + ' ' + s1 + '%, ' + c2 + ' ' + s2 + '%';
+            if (document.getElementById('useC3').checked) stops += ', ' + document.getElementById('c3').value + ' 100%';
+            let css;
+            if (type === 'linear') css = 'linear-gradient(' + angle + 'deg, ' + stops + ')';
+            else css = 'radial-gradient(circle, ' + stops + ')';
+            document.getElementById('preview').style.background = css;
+            document.getElementById('cssCode').textContent = 'background: ' + css + ';';
+        }
+        update();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT Decoder — Free Online JSON Web Token Tool | DevToolKit</title>
+    <meta name="description"
+        content="Free online JWT decoder. Decode and inspect JSON Web Tokens — view header, payload, claims, expiration, and signature info. No data is sent to any server.">
+    <link rel="canonical" href="https://devtoolkit.dev/tools/jwt-decoder.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"JWT Decoder","url":"https://devtoolkit.dev/tools/jwt-decoder.html","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <style>
+        .jwt-section {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--bg-input);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .jwt-section h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .jwt-section pre {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .jwt-header-section {
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        .jwt-payload-section {
+            border-left: 3px solid var(--accent-purple);
+        }
+
+        .jwt-sig-section {
+            border-left: 3px solid var(--accent-pink);
+        }
+
+        .claim-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.35rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 0.85rem;
+        }
+
+        .claim-row:last-child {
+            border: none;
+        }
+
+        .claim-key {
+            color: var(--accent-cyan);
+            font-family: var(--font-mono);
+        }
+
+        .claim-val {
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            text-align: right;
+            max-width: 60%;
+        }
+
+        .claim-exp {
+            color: var(--accent-red);
+        }
+
+        .claim-ok {
+            color: var(--accent-green);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header"><a href="/" class="header__logo"><svg viewBox="0 0 28 28" fill="none">
+                <rect x="2" y="2" width="24" height="24" rx="6" stroke="url(#g)" stroke-width="2" />
+                <path d="M9 10l4 4-4 4" stroke="url(#g)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <line x1="16" y1="18" x2="20" y2="18" stroke="url(#g)" stroke-width="2" stroke-linecap="round" />
+                <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="28" y2="28">
+                        <stop stop-color="#00c8ff" />
+                        <stop offset="1" stop-color="#8b5cf6" />
+                    </linearGradient>
+                </defs>
+            </svg>Dev<span class="accent">ToolKit</span></a>
+        <nav>
+            <ul class="header__nav">
+                <li><a href="/">← All Tools</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="page-layout">
+            <div class="tool-page">
+                <div class="tool-header">
+                    <h1>JWT Decoder</h1>
+                    <p>Paste a JSON Web Token to decode its header, payload, and inspect claims. Everything runs
+                        locally.</p>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>JWT Token</span></div><textarea class="tool-textarea"
+                        id="jwtInput" placeholder="Paste your JWT here (eyJhbGciOiJ...)"></textarea>
+                </div>
+                <div class="btn-row"><button class="btn btn--primary" onclick="decodeJWT()">Decode Token</button><button
+                        class="btn btn--danger" onclick="clearAll()">Clear</button></div>
+                <div id="status" class="status"></div>
+                <div id="results"></div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <h3 style="margin-bottom:1rem;">About JWTs</h3>
+                    <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">JSON Web Tokens (JWT) are
+                        compact, URL-safe tokens used for authentication and information exchange. A JWT has three
+                        parts: Header (algorithm & type), Payload (claims like user ID, expiration), and Signature
+                        (verification). JWTs are widely used in OAuth 2.0, API authentication, and single sign-on (SSO)
+                        systems. This decoder only reads the token — it does NOT verify the signature.</p>
+                </div>
+            </div>
+            <aside class="sidebar">
+                <div class="ad-zone ad-zone--sidebar"><span>Advertisement</span></div>
+                <div class="sidebar__tools">
+                    <h3>Other Tools</h3><a href="json-formatter.html">JSON Formatter</a><a
+                        href="base64.html">Base64</a><a href="url-encoder.html">URL Encode/Decode</a><a
+                        href="regex-tester.html">Regex Tester</a><a href="hash-generator.html">Hash Generator</a><a
+                        href="color-picker.html">Color Converter</a><a href="lorem-ipsum.html">Lorem Ipsum</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>DevToolKit — Free developer tools. Your data never leaves your browser.</p>
+    </footer>
+    <script>
+        const st = document.getElementById('status'), res = document.getElementById('results');
+        function sh(m, t) { st.textContent = m; st.className = 'status show status--' + t; }
+        function b64d(s) { try { return JSON.parse(atob(s.replace(/-/g, '+').replace(/_/g, '/'))); } catch (e) { return null; } }
+        function ts(v) { if (!v) return 'N/A'; const d = new Date(v * 1000); return d.toISOString().replace('T', ' ').replace('.000Z', ''); }
+        function decodeJWT() {
+            const token = document.getElementById('jwtInput').value.trim();
+            const parts = token.split('.');
+            if (parts.length !== 3) { sh('✗ Invalid JWT — must have 3 parts separated by dots', 'error'); res.innerHTML = ''; return; }
+            const header = b64d(parts[0]), payload = b64d(parts[1]);
+            if (!header || !payload) { sh('✗ Failed to decode JWT parts', 'error'); return; }
+            const now = Math.floor(Date.now() / 1000);
+            const expired = payload.exp && payload.exp < now;
+            let html = '<div class="jwt-section jwt-header-section"><h3>Header</h3><pre>' + JSON.stringify(header, null, 2) + '</pre></div>';
+            html += '<div class="jwt-section jwt-payload-section"><h3>Payload</h3><pre>' + JSON.stringify(payload, null, 2) + '</pre></div>';
+            html += '<div class="jwt-section"><h3>Claims</h3>';
+            const claims = { 'iss': 'Issuer', 'sub': 'Subject', 'aud': 'Audience', 'exp': 'Expires', 'iat': 'Issued At', 'nbf': 'Not Before', 'jti': 'JWT ID' };
+            for (const [k, v] of Object.entries(payload)) {
+                const label = claims[k] || k;
+                let val = v;
+                if (['exp', 'iat', 'nbf'].includes(k) && typeof v === 'number') val = ts(v);
+                let cls = '';
+                if (k === 'exp') cls = expired ? 'claim-exp' : 'claim-ok';
+                html += '<div class="claim-row"><span class="claim-key">' + label + '</span><span class="claim-val ' + cls + '">' + val + (k === 'exp' ? (expired ? ' ⚠ EXPIRED' : ' ✓ Valid') : '') + '</span></div>';
+            }
+            html += '</div>';
+            html += '<div class="jwt-section jwt-sig-section"><h3>Signature</h3><pre style="font-size:0.75rem;color:var(--text-muted);word-break:break-all;">' + parts[2] + '</pre><p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.5rem;">⚠ Signature not verified (client-side only)</p></div>';
+            res.innerHTML = html;
+            sh('✓ JWT decoded — ' + (expired ? '⚠ Token EXPIRED' : 'Token valid'), 'success');
+        }
+        function clearAll() { document.getElementById('jwtInput').value = ''; res.innerHTML = ''; st.className = 'status'; }
+    </script>
+</body>
+
+</html>

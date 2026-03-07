@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorem Ipsum Generator — Free Placeholder Text | DevToolKit</title>
+    <meta name="description"
+        content="Free Lorem Ipsum generator. Generate placeholder text by paragraphs, sentences, or words. One-click copy for designers and developers.">
+    <link rel="canonical" href="https://devtoolkit.dev/tools/lorem-ipsum.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Lorem Ipsum Generator","url":"https://devtoolkit.dev/tools/lorem-ipsum.html","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+
+<body>
+    <header class="header"><a href="/" class="header__logo"><svg viewBox="0 0 28 28" fill="none">
+                <rect x="2" y="2" width="24" height="24" rx="6" stroke="url(#g)" stroke-width="2" />
+                <path d="M9 10l4 4-4 4" stroke="url(#g)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <line x1="16" y1="18" x2="20" y2="18" stroke="url(#g)" stroke-width="2" stroke-linecap="round" />
+                <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="28" y2="28">
+                        <stop stop-color="#00c8ff" />
+                        <stop offset="1" stop-color="#8b5cf6" />
+                    </linearGradient>
+                </defs>
+            </svg>Dev<span class="accent">ToolKit</span></a>
+        <nav>
+            <ul class="header__nav">
+                <li><a href="/">← All Tools</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="page-layout">
+            <div class="tool-page">
+                <div class="tool-header">
+                    <h1>Lorem Ipsum Generator</h1>
+                    <p>Generate placeholder text for your designs. Choose paragraphs, sentences, or words.</p>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem;">
+                        <span style="font-size:0.85rem;color:var(--text-secondary);">Generate</span>
+                        <input class="tool-input" id="count" type="number" value="3" min="1" max="50"
+                            style="width:80px;">
+                        <select class="tool-select" id="unit">
+                            <option value="paragraphs">Paragraphs</option>
+                            <option value="sentences">Sentences</option>
+                            <option value="words">Words</option>
+                        </select>
+                        <label
+                            style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:var(--text-secondary);cursor:pointer;"><input
+                                type="checkbox" id="startClassic" checked> Start with "Lorem ipsum..."</label>
+                    </div>
+                    <div class="btn-row"><button class="btn btn--primary" onclick="gen()">Generate</button><button
+                            class="btn btn--secondary"
+                            onclick="navigator.clipboard.writeText(document.getElementById('out').value)">📋
+                            Copy</button><button class="btn btn--danger"
+                            onclick="document.getElementById('out').value='';">Clear</button></div>
+                </div>
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>Output</span><span id="wc">0 words</span></div><textarea
+                        class="tool-textarea" id="out" style="min-height:300px;" readonly
+                        placeholder="Click Generate..."></textarea>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <h3 style="margin-bottom:1rem;">About Lorem Ipsum</h3>
+                    <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">Lorem Ipsum is placeholder
+                        text used since the 1500s in typesetting and web design. It helps designers and developers
+                        preview layouts without being distracted by meaningful content. The standard passage comes from
+                        a Latin text by Cicero from 45 BC, with words altered over the centuries.</p>
+                </div>
+            </div>
+            <aside class="sidebar">
+                <div class="ad-zone ad-zone--sidebar"><span>Advertisement</span></div>
+                <div class="sidebar__tools">
+                    <h3>Other Tools</h3><a href="json-formatter.html">JSON Formatter</a><a
+                        href="base64.html">Base64</a><a href="url-encoder.html">URL Encode/Decode</a><a
+                        href="regex-tester.html">Regex Tester</a><a href="jwt-decoder.html">JWT Decoder</a><a
+                        href="hash-generator.html">Hash Generator</a><a href="color-picker.html">Color Converter</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>DevToolKit — Free developer tools. Your data never leaves your browser.</p>
+    </footer>
+    <script>
+        const W = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum'.split(' ');
+        const CLASSIC = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+        function rw() { return W[Math.floor(Math.random() * W.length)]; }
+        function cap(s) { return s[0].toUpperCase() + s.slice(1); }
+        function sentence() { const len = 8 + Math.floor(Math.random() * 12); let s = []; for (let i = 0; i < len; i++) { let w = rw(); if (i > 0 && Math.random() < 0.15) w += ','; s.push(w); } return cap(s.join(' ')) + '.'; }
+        function paragraph() { const len = 3 + Math.floor(Math.random() * 5); const sents = []; for (let i = 0; i < len; i++)sents.push(sentence()); return sents.join(' '); }
+        function gen() {
+            const n = parseInt(document.getElementById('count').value) || 3;
+            const unit = document.getElementById('unit').value;
+            const classic = document.getElementById('startClassic').checked;
+            let result = '';
+            if (unit === 'paragraphs') { const ps = []; for (let i = 0; i < n; i++) { let p = paragraph(); if (i === 0 && classic) p = CLASSIC + ' ' + p; ps.push(p); } result = ps.join('\n\n'); }
+            else if (unit === 'sentences') { const ss = []; for (let i = 0; i < n; i++) { let s = sentence(); if (i === 0 && classic) s = CLASSIC; ss.push(s); } result = ss.join(' '); }
+            else { const ws = []; if (classic) { ws.push(...'Lorem ipsum dolor sit amet'.split(' ')); } while (ws.length < n) ws.push(rw()); result = ws.slice(0, n).join(' '); }
+            document.getElementById('out').value = result;
+            document.getElementById('wc').textContent = result.split(/\s+/).length + ' words';
+        }
+        gen();
+    </script>
+</body>
+
+</html>

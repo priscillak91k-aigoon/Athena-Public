@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chmod Calculator — Linux File Permissions | DevToolKit</title>
+    <meta name="description"
+        content="Free chmod calculator. Convert between numeric (755) and symbolic (rwxr-xr-x) Linux file permissions. Visual permission builder with explanation.">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .perm-display {
+            font-family: var(--font-mono);
+            font-size: 2.5rem;
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-input);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-subtle);
+            color: var(--accent-cyan);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .perm-symbolic {
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--accent-purple);
+            margin-bottom: 1.5rem;
+        }
+
+        .perm-grid {
+            display: grid;
+            grid-template-columns: 100px repeat(3, 1fr);
+            gap: 0;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .perm-cell {
+            padding: 0.75rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-subtle);
+            border-right: 1px solid var(--border-subtle);
+            font-size: 0.85rem;
+        }
+
+        .perm-cell:last-child {
+            border-right: none;
+        }
+
+        .perm-header {
+            background: var(--bg-input);
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .perm-label {
+            background: var(--bg-input);
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-align: left;
+            padding-left: 1rem;
+        }
+
+        .perm-check {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .perm-check input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--accent-cyan);
+        }
+
+        .perm-check label {
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .cmd-preview {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            padding: 1rem;
+            background: var(--bg-input);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+            color: var(--accent-green);
+            margin-top: 0.75rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .cmd-preview:hover {
+            border-color: var(--accent-cyan);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header"><a href="/" class="header__logo"><svg viewBox="0 0 28 28" fill="none">
+                <rect x="2" y="2" width="24" height="24" rx="6" stroke="url(#g)" stroke-width="2" />
+                <path d="M9 10l4 4-4 4" stroke="url(#g)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <line x1="16" y1="18" x2="20" y2="18" stroke="url(#g)" stroke-width="2" stroke-linecap="round" />
+                <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="28" y2="28">
+                        <stop stop-color="#00c8ff" />
+                        <stop offset="1" stop-color="#8b5cf6" />
+                    </linearGradient>
+                </defs>
+            </svg>Dev<span class="accent">ToolKit</span></a>
+        <nav>
+            <ul class="header__nav">
+                <li><a href="/">← All Tools</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="page-layout">
+            <div class="tool-page">
+                <div class="tool-header">
+                    <h1>Chmod Calculator</h1>
+                    <p>Calculate Linux/Unix file permissions. Toggle read, write, execute for owner, group, and others.
+                    </p>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>Enter Numeric Value</span></div>
+                    <input class="tool-input" id="numInput" type="text" value="755" maxlength="4"
+                        style="width:100%;font-family:var(--font-mono);font-size:1.5rem;text-align:center;padding:0.75rem;"
+                        oninput="fromNumeric()">
+                </div>
+                <div class="perm-display" id="numDisplay">755</div>
+                <div class="perm-symbolic" id="symDisplay">rwxr-xr-x</div>
+                <div class="tool-area" style="padding:0;">
+                    <div class="perm-grid">
+                        <div class="perm-cell perm-header"></div>
+                        <div class="perm-cell perm-header">Read (4)</div>
+                        <div class="perm-cell perm-header">Write (2)</div>
+                        <div class="perm-cell perm-header">Execute (1)</div>
+                        <div class="perm-cell perm-label">Owner</div>
+                        <div class="perm-cell perm-check"><input type="checkbox" id="or" checked
+                                onchange="calc()"><label for="or">r</label></div>
+                        <div class="perm-cell perm-check"><input type="checkbox" id="ow" checked
+                                onchange="calc()"><label for="ow">w</label></div>
+                        <div class="perm-cell perm-check"><input type="checkbox" id="ox" checked
+                                onchange="calc()"><label for="ox">x</label></div>
+                        <div class="perm-cell perm-label">Group</div>
+                        <div class="perm-cell perm-check"><input type="checkbox" id="gr" checked
+                                onchange="calc()"><label for="gr">r</label></div>
+                        <div class="perm-cell perm-check"><input type="checkbox" id="gw" onchange="calc()"><label
+                                for="gw">w</label></div>
+                        <div class="perm-cell perm-check"><input type="checkbox" id="gx" checked
+                                onchange="calc()"><label for="gx">x</label></div>
+                        <div class="perm-cell perm-label">Others</div>
+                        <div class="perm-cell perm-check"><input type="checkbox" id="pr" checked
+                                onchange="calc()"><label for="pr">r</label></div>
+                        <div class="perm-cell perm-check"><input type="checkbox" id="pw" onchange="calc()"><label
+                                for="pw">w</label></div>
+                        <div class="perm-cell perm-check"><input type="checkbox" id="px" checked
+                                onchange="calc()"><label for="px">x</label></div>
+                    </div>
+                </div>
+                <div class="btn-row">
+                    <button class="btn btn--secondary" onclick="setPerms(777)">777</button>
+                    <button class="btn btn--secondary" onclick="setPerms(755)">755</button>
+                    <button class="btn btn--secondary" onclick="setPerms(750)">750</button>
+                    <button class="btn btn--secondary" onclick="setPerms(700)">700</button>
+                    <button class="btn btn--secondary" onclick="setPerms(644)">644</button>
+                    <button class="btn btn--secondary" onclick="setPerms(600)">600</button>
+                    <button class="btn btn--secondary" onclick="setPerms(400)">400</button>
+                </div>
+                <div class="cmd-preview" id="cmdPreview" onclick="navigator.clipboard.writeText(this.textContent)">chmod
+                    755 filename</div>
+                <p style="font-size:0.7rem;color:var(--text-muted);margin-top:0.35rem;">Click to copy command</p>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <h3 style="margin-bottom:1rem;">About File Permissions</h3>
+                    <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">Unix/Linux file permissions
+                        control who can read, write, and execute files. Each permission type has a numeric value: Read
+                        (4), Write (2), Execute (1). These are summed for each class: Owner, Group, and Others. Common
+                        patterns: 755 (owner full, others read+execute), 644 (owner read+write, others read-only), 600
+                        (owner read+write only).</p>
+                </div>
+            </div>
+            <aside class="sidebar">
+                <div class="ad-zone ad-zone--sidebar"><span>Advertisement</span></div>
+                <div class="sidebar__tools">
+                    <h3>Other Tools</h3><a href="json-formatter.html">JSON Formatter</a><a
+                        href="regex-tester.html">Regex Tester</a><a href="cron-parser.html">Cron Parser</a><a
+                        href="timestamp.html">Timestamp</a><a href="password-generator.html">Password Generator</a><a
+                        href="css-gradient.html">CSS Gradient</a><a href="meta-tags.html">Meta Tags</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>DevToolKit — Your data never leaves your browser.</p>
+    </footer>
+    <script>
+        const ids = { o: ['or', 'ow', 'ox'], g: ['gr', 'gw', 'gx'], p: ['pr', 'pw', 'px'] };
+        function calc() {
+            const o = (el('or') ? 4 : 0) + (el('ow') ? 2 : 0) + (el('ox') ? 1 : 0);
+            const g = (el('gr') ? 4 : 0) + (el('gw') ? 2 : 0) + (el('gx') ? 1 : 0);
+            const p = (el('pr') ? 4 : 0) + (el('pw') ? 2 : 0) + (el('px') ? 1 : 0);
+            const num = '' + o + g + p;
+            document.getElementById('numDisplay').textContent = num;
+            document.getElementById('numInput').value = num;
+            const sym = toSym(o) + toSym(g) + toSym(p);
+            document.getElementById('symDisplay').textContent = sym;
+            document.getElementById('cmdPreview').textContent = 'chmod ' + num + ' filename';
+        }
+        function el(id) { return document.getElementById(id).checked; }
+        function toSym(n) { return (n & 4 ? 'r' : '-') + (n & 2 ? 'w' : '-') + (n & 1 ? 'x' : '-'); }
+        function fromNumeric() {
+            const v = document.getElementById('numInput').value;
+            if (v.length === 3 && /^[0-7]{3}$/.test(v)) setPerms(parseInt(v));
+        }
+        function setPerms(n) {
+            const s = String(n).padStart(3, '0');
+            const digits = [parseInt(s[0]), parseInt(s[1]), parseInt(s[2])];
+            [['or', 'ow', 'ox'], ['gr', 'gw', 'gx'], ['pr', 'pw', 'px']].forEach((group, i) => {
+                document.getElementById(group[0]).checked = !!(digits[i] & 4);
+                document.getElementById(group[1]).checked = !!(digits[i] & 2);
+                document.getElementById(group[2]).checked = !!(digits[i] & 1);
+            });
+            calc();
+        }
+        calc();
+    </script>
+</body>
+
+</html>

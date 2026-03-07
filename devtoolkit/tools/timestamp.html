@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unix Timestamp Converter — Free Online Tool | DevToolKit</title>
+    <meta name="description"
+        content="Free Unix timestamp converter. Convert between Unix timestamps and human-readable dates. Current timestamp, date math, and timezone support.">
+    <link rel="canonical" href="https://devtoolkit.dev/tools/timestamp.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Unix Timestamp Converter","url":"https://devtoolkit.dev/tools/timestamp.html","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <style>
+        .ts-live {
+            font-family: var(--font-mono);
+            font-size: 2rem;
+            color: var(--accent-cyan);
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-input);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .ts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media(max-width:600px) {
+            .ts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ts-box {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+        }
+
+        .ts-box label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header"><a href="/" class="header__logo"><svg viewBox="0 0 28 28" fill="none">
+                <rect x="2" y="2" width="24" height="24" rx="6" stroke="url(#g)" stroke-width="2" />
+                <path d="M9 10l4 4-4 4" stroke="url(#g)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <line x1="16" y1="18" x2="20" y2="18" stroke="url(#g)" stroke-width="2" stroke-linecap="round" />
+                <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="28" y2="28">
+                        <stop stop-color="#00c8ff" />
+                        <stop offset="1" stop-color="#8b5cf6" />
+                    </linearGradient>
+                </defs>
+            </svg>Dev<span class="accent">ToolKit</span></a>
+        <nav>
+            <ul class="header__nav">
+                <li><a href="/">← All Tools</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="page-layout">
+            <div class="tool-page">
+                <div class="tool-header">
+                    <h1>Unix Timestamp Converter</h1>
+                    <p>Convert between Unix timestamps and human-readable dates. Live clock showing the current
+                        timestamp.</p>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <div class="tool-area__label"><span>Current Unix Timestamp</span></div>
+                    <div class="ts-live" id="liveTs"></div>
+                    <div style="text-align:center;font-size:0.85rem;color:var(--text-secondary);" id="liveDate"></div>
+                </div>
+                <div class="tool-area">
+                    <div class="ts-grid">
+                        <div class="ts-box">
+                            <label>Unix Timestamp → Date</label>
+                            <input class="tool-input" id="tsInput" type="number" placeholder="e.g. 1700000000"
+                                style="width:100%;margin-bottom:0.5rem;">
+                            <button class="btn btn--primary" onclick="tsToDate()" style="width:100%;">Convert →</button>
+                            <div id="tsResult"
+                                style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.85rem;color:var(--text-primary);">
+                            </div>
+                        </div>
+                        <div class="ts-box">
+                            <label>Date → Unix Timestamp</label>
+                            <input class="tool-input" id="dateInput" type="datetime-local"
+                                style="width:100%;margin-bottom:0.5rem;">
+                            <button class="btn btn--primary" onclick="dateToTs()" style="width:100%;">← Convert</button>
+                            <div id="dateResult"
+                                style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.85rem;color:var(--text-primary);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-row"><button class="btn btn--secondary"
+                        onclick="document.getElementById('tsInput').value=Math.floor(Date.now()/1000);">Use
+                        Current</button><button class="btn btn--secondary" onclick="quickTs(3600)">+1
+                        Hour</button><button class="btn btn--secondary" onclick="quickTs(86400)">+1 Day</button><button
+                        class="btn btn--secondary" onclick="quickTs(604800)">+1 Week</button></div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <h3 style="margin-bottom:1rem;">About Unix Timestamps</h3>
+                    <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">A Unix timestamp (Epoch
+                        time) is the number of seconds since January 1, 1970 00:00:00 UTC. It's widely used in
+                        programming, databases, APIs, and logging systems because it's timezone-independent and easy to
+                        compute with. Millisecond timestamps (13 digits) are also supported.</p>
+                </div>
+            </div>
+            <aside class="sidebar">
+                <div class="ad-zone ad-zone--sidebar"><span>Advertisement</span></div>
+                <div class="sidebar__tools">
+                    <h3>Other Tools</h3><a href="json-formatter.html">JSON Formatter</a><a
+                        href="base64.html">Base64</a><a href="url-encoder.html">URL Encode/Decode</a><a
+                        href="regex-tester.html">Regex Tester</a><a href="jwt-decoder.html">JWT Decoder</a><a
+                        href="hash-generator.html">Hash Generator</a><a href="color-picker.html">Color Converter</a><a
+                        href="uuid-generator.html">UUID Generator</a><a href="markdown-preview.html">Markdown
+                        Preview</a><a href="diff-checker.html">Diff Checker</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>DevToolKit — Free developer tools. Your data never leaves your browser.</p>
+    </footer>
+    <script>
+        function tick() { const n = Math.floor(Date.now() / 1000); document.getElementById('liveTs').textContent = n; document.getElementById('liveDate').textContent = new Date().toISOString(); }
+        tick(); setInterval(tick, 1000);
+        function tsToDate() { const v = document.getElementById('tsInput').value; if (!v) return; let ts = parseInt(v); if (v.length > 10) ts = Math.floor(ts / 1000); const d = new Date(ts * 1000); document.getElementById('tsResult').innerHTML = '<strong>UTC:</strong> ' + d.toUTCString() + '<br><strong>Local:</strong> ' + d.toLocaleString() + '<br><strong>ISO:</strong> ' + d.toISOString(); }
+        function dateToTs() { const v = document.getElementById('dateInput').value; if (!v) return; const d = new Date(v); const ts = Math.floor(d.getTime() / 1000); document.getElementById('dateResult').innerHTML = '<strong>Seconds:</strong> ' + ts + '<br><strong>Milliseconds:</strong> ' + d.getTime(); }
+        function quickTs(offset) { const ts = Math.floor(Date.now() / 1000) + offset; document.getElementById('tsInput').value = ts; tsToDate(); }
+        document.getElementById('dateInput').value = new Date().toISOString().slice(0, 16);
+    </script>
+</body>
+
+</html>

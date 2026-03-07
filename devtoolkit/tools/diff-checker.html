@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Diff Checker — Free Online Tool | DevToolKit</title>
+    <meta name="description"
+        content="Free online text diff checker. Compare two texts side-by-side and see the differences highlighted. Perfect for code review and document comparison.">
+    <link rel="canonical" href="https://devtoolkit.dev/tools/diff-checker.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .diff-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media(max-width:768px) {
+            .diff-split {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .diff-result {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .diff-line {
+            padding: 0.15rem 0.75rem;
+            border-radius: 2px;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .diff-line.add {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-green);
+            border-left: 3px solid var(--accent-green);
+        }
+
+        .diff-line.del {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--accent-red);
+            border-left: 3px solid var(--accent-red);
+        }
+
+        .diff-line.same {
+            color: var(--text-secondary);
+            border-left: 3px solid transparent;
+        }
+
+        .diff-stats {
+            display: flex;
+            gap: 1.5rem;
+            padding: 0.75rem 1rem;
+            background: var(--bg-input);
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header"><a href="/" class="header__logo"><svg viewBox="0 0 28 28" fill="none">
+                <rect x="2" y="2" width="24" height="24" rx="6" stroke="url(#g)" stroke-width="2" />
+                <path d="M9 10l4 4-4 4" stroke="url(#g)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <line x1="16" y1="18" x2="20" y2="18" stroke="url(#g)" stroke-width="2" stroke-linecap="round" />
+                <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="28" y2="28">
+                        <stop stop-color="#00c8ff" />
+                        <stop offset="1" stop-color="#8b5cf6" />
+                    </linearGradient>
+                </defs>
+            </svg>Dev<span class="accent">ToolKit</span></a>
+        <nav>
+            <ul class="header__nav">
+                <li><a href="/">← All Tools</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="page-layout">
+            <div class="tool-page">
+                <div class="tool-header">
+                    <h1>Text Diff Checker</h1>
+                    <p>Compare two texts and see the differences highlighted line by line.</p>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="diff-split">
+                    <div class="tool-area">
+                        <div class="tool-area__label"><span>Original Text</span></div><textarea class="tool-textarea"
+                            id="textA" placeholder="Paste original text here..."></textarea>
+                    </div>
+                    <div class="tool-area">
+                        <div class="tool-area__label"><span>Changed Text</span></div><textarea class="tool-textarea"
+                            id="textB" placeholder="Paste changed text here..."></textarea>
+                    </div>
+                </div>
+                <div class="btn-row"><button class="btn btn--primary" onclick="compare()">Compare</button><button
+                        class="btn btn--secondary" onclick="swap()">↔ Swap</button><button class="btn btn--danger"
+                        onclick="document.getElementById('textA').value='';document.getElementById('textB').value='';document.getElementById('diffResult').innerHTML='';">Clear</button>
+                </div>
+                <div id="stats" class="diff-stats" style="display:none;"></div>
+                <div class="tool-area" style="display:none;" id="resultArea">
+                    <div class="tool-area__label"><span>Differences</span></div>
+                    <div id="diffResult" class="diff-result"></div>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <h3 style="margin-bottom:1rem;">About Diff Checking</h3>
+                    <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">A diff (difference) checker
+                        compares two texts and highlights changes between them. It's essential for code review, document
+                        versioning, and debugging. Added lines are shown in green (+), removed lines in red (-), and
+                        unchanged lines in gray. This tool uses a line-by-line comparison algorithm.</p>
+                </div>
+            </div>
+            <aside class="sidebar">
+                <div class="ad-zone ad-zone--sidebar"><span>Advertisement</span></div>
+                <div class="sidebar__tools">
+                    <h3>Other Tools</h3><a href="json-formatter.html">JSON Formatter</a><a
+                        href="base64.html">Base64</a><a href="regex-tester.html">Regex Tester</a><a
+                        href="timestamp.html">Timestamp</a><a href="uuid-generator.html">UUID Generator</a><a
+                        href="markdown-preview.html">Markdown Preview</a><a href="json-to-csv.html">JSON to CSV</a><a
+                        href="html-entities.html">HTML Entities</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>DevToolKit — Free developer tools. Your data never leaves your browser.</p>
+    </footer>
+    <script>
+        function compare() {
+            const a = document.getElementById('textA').value.split('\n');
+            const b = document.getElementById('textB').value.split('\n');
+            const result = []; let added = 0, removed = 0, same = 0;
+            // Simple LCS-based diff
+            const max = Math.max(a.length, b.length);
+            let ai = 0, bi = 0;
+            while (ai < a.length || bi < b.length) {
+                if (ai < a.length && bi < b.length && a[ai] === b[bi]) {
+                    result.push({ type: 'same', text: a[ai] }); same++; ai++; bi++;
+                } else if (bi < b.length && (ai >= a.length || !a.slice(ai).includes(b[bi]))) {
+                    result.push({ type: 'add', text: b[bi] }); added++; bi++;
+                } else if (ai < a.length && (bi >= b.length || !b.slice(bi).includes(a[ai]))) {
+                    result.push({ type: 'del', text: a[ai] }); removed++; ai++;
+                } else {
+                    // Look ahead for sync point
+                    let foundB = b.indexOf(a[ai], bi);
+                    if (foundB > bi) { for (let i = bi; i < foundB; i++) { result.push({ type: 'add', text: b[i] }); added++; } bi = foundB; }
+                    else { result.push({ type: 'del', text: a[ai] }); removed++; ai++; }
+                }
+            }
+            let html = '';
+            result.forEach(r => {
+                const prefix = r.type === 'add' ? '+ ' : r.type === 'del' ? '- ' : '  ';
+                html += '<div class="diff-line ' + r.type + '">' + prefix + esc(r.text) + '</div>';
+            });
+            document.getElementById('diffResult').innerHTML = html;
+            document.getElementById('resultArea').style.display = 'block';
+            const st = document.getElementById('stats'); st.style.display = 'flex';
+            st.innerHTML = '<span style="color:var(--accent-green);">+ ' + added + ' added</span><span style="color:var(--accent-red);">- ' + removed + ' removed</span><span style="color:var(--text-muted);">= ' + same + ' unchanged</span><span style="color:var(--text-secondary);">' + result.length + ' total lines</span>';
+        }
+        function swap() { const a = document.getElementById('textA'), b = document.getElementById('textB'); const t = a.value; a.value = b.value; b.value = t; }
+        function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    </script>
+</body>
+
+</html>

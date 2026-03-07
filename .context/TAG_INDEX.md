@@ -1,6 +1,6 @@
 # Tag Index
 
-> **Generated**: 2026-02-27 10:47
+> **Generated**: 2026-03-07 18:38
 
 ---
 
@@ -59,6 +59,9 @@
 ## #academic
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [REFERENCES.md](docs\REFERENCES.md)
+
+## #accountability
+- [Combat_Protocol.md](framework\Combat_Protocol.md)
 
 ## #accuracy
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
@@ -129,6 +132,9 @@
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [Case_Sam_Altman_AI_Future.md](docs\case-studies\Case_Sam_Altman_AI_Future.md)
 
+## #air-gapped
+- [Privacy_Protocol.md](framework\Privacy_Protocol.md)
+
 ## #altman-laws
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [232-ai-trajectory-alignment.md](docs\protocols\content\232-ai-trajectory-alignment.md)
@@ -152,6 +158,9 @@
 ## #anti-karason
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [68-anti-karason-protocol.md](examples\protocols\safety\68-anti-karason-protocol.md)
+
+## #anti-sycophancy
+- [Combat_Protocol.md](framework\Combat_Protocol.md)
 
 ## #anti_fantasy
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
@@ -352,6 +361,9 @@
 - [64-commitment-device-framework.md](examples\protocols\decision\64-commitment-device-framework.md)
 - [162-product-market-operations-fit.md](examples\protocols\strategy\162-product-market-operations-fit.md)
 
+## #c0c0c0
+- [symphony-app.js](routine-app\symphony-app.js)
+
 ## #c7f9cc
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [generate_graph_vis.py](src\athena\generators\generate_graph_vis.py)
@@ -499,7 +511,6 @@
 
 ## #context
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
-- [project_state.md](.context\project_state.md)
 - [85-token-hygiene.md](examples\protocols\architecture\85-token-hygiene.md)
 - [Engineering_Infrastructure_Hub.md](examples\protocols\engineering\Engineering_Infrastructure_Hub.md)
 - [73-contextual-pre-action-check.md](examples\protocols\workflow\73-contextual-pre-action-check.md)
@@ -544,6 +555,9 @@
 ## #creative
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [74-iterative-creative-production.md](examples\protocols\workflow\74-iterative-creative-production.md)
+
+## #d1d5db
+- [game.js](games\threadbare\game.js)
 
 ## #de-escalation
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
@@ -687,6 +701,9 @@
 - [405-jit-context-injection.md](examples\protocols\workflow\405-jit-context-injection.md)
 - [411_Dynamic_Skill_Injection.md](examples\templates\framework_mirror\v8.2-stable\protocols\411_Dynamic_Skill_Injection.md)
 
+## #e8d5b7
+- [game.js](games\threadbare\game.js)
+
 ## #early-warning
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [72-proactive-extrapolation-framework.md](examples\protocols\workflow\72-proactive-extrapolation-framework.md)
@@ -705,6 +722,7 @@
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [README.md](README.md)
 - [Quadrant_IV.md](docs\concepts\Quadrant_IV.md)
+- [game.js](games\threadbare\game.js)
 - [symphony-app.js](routine-app\symphony-app.js)
 
 ## #efficiency
@@ -775,6 +793,7 @@
 - [88-conversation-branching.md](examples\protocols\engineering\88-conversation-branching.md)
 
 ## #f1f5f9
+- [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [symphony-app.js](routine-app\symphony-app.js)
 
 ## #f472b6
@@ -785,23 +804,32 @@
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [TRILATERAL_FEEDBACK.md](docs\TRILATERAL_FEEDBACK.md)
 - [Quadrant_IV.md](docs\concepts\Quadrant_IV.md)
+- [game.js](games\threadbare\game.js)
 
 ## #f97316
+- [TAG_INDEX.md](.context\TAG_INDEX.md)
+- [game.js](games\threadbare\game.js)
 - [symphony-app.js](routine-app\symphony-app.js)
 
 ## #fbbf24
+- [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [symphony-app.js](routine-app\symphony-app.js)
 
 ## #fca5a5
+- [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [symphony-app.js](routine-app\symphony-app.js)
 
 ## #ff0000
+- [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [symphony-app.js](routine-app\symphony-app.js)
 
 ## #ff6b6b
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [generate_graph_vis.py](src\athena\generators\generate_graph_vis.py)
 - [generate_sfw_graph.py](src\athena\generators\generate_sfw_graph.py)
+
+## #ff8c00
+- [symphony-app.js](routine-app\symphony-app.js)
 
 ## #ffe66d
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
@@ -821,6 +849,7 @@
 
 ## #ffffff
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
+- [game.js](games\threadbare\game.js)
 - [generate_graph_vis.py](src\athena\generators\generate_graph_vis.py)
 - [generate_sfw_graph.py](src\athena\generators\generate_sfw_graph.py)
 
@@ -1620,6 +1649,7 @@
 - [74-iterative-creative-production.md](examples\protocols\workflow\74-iterative-creative-production.md)
 - [81-forge-iteration.md](examples\protocols\workflow\81-forge-iteration.md)
 - [auto_tagger.py](examples\scripts\auto_tagger.py)
+- [Combat_Protocol.md](framework\Combat_Protocol.md)
 - [auto_tagger.py](scripts\auto_tagger.py)
 
 ## #protocol-012
@@ -1644,6 +1674,9 @@
 - [112-form-substance-gap.md](examples\protocols\pattern-detection\112-form-substance-gap.md)
 - [auto_tagger.py](examples\scripts\auto_tagger.py)
 - [auto_tagger.py](scripts\auto_tagger.py)
+
+## #pulse-supps-daily
+- [session_2026-03-03-1300.md](session_logs\session_2026-03-03-1300.md)
 
 ## #python
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
@@ -1875,6 +1908,7 @@
 - [419-sandboxed-execution-modes.md](docs\protocols\419-sandboxed-execution-modes.md)
 - [412_DM_Pairing_Gate.md](examples\templates\framework_mirror\v8.2-stable\protocols\412_DM_Pairing_Gate.md)
 - [415_Sandboxed_Execution_Modes.md](examples\templates\framework_mirror\v8.2-stable\protocols\415_Sandboxed_Execution_Modes.md)
+- [Privacy_Protocol.md](framework\Privacy_Protocol.md)
 
 ## #self-healing
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
@@ -1957,6 +1991,7 @@
 ## #sovereign
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [106-min-max-optimization.md](examples\protocols\strategy\106-min-max-optimization.md)
+- [Privacy_Protocol.md](framework\Privacy_Protocol.md)
 
 ## #sovereignty
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
@@ -2186,6 +2221,9 @@
 ## #timeline-projection
 - [TAG_INDEX.md](.context\TAG_INDEX.md)
 - [188-stpp-timeline-projection.md](examples\protocols\decision\188-stpp-timeline-projection.md)
+
+## #today
+- [symphony-app.js](routine-app\symphony-app.js)
 
 ## #topology
 - [TAG_INDEX.md](.context\TAG_INDEX.md)

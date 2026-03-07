@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UUID Generator — Free Online Tool | DevToolKit</title>
+    <meta name="description"
+        content="Free online UUID generator. Generate v4 UUIDs instantly in bulk. Copy individual or all UUIDs. No server required — generated locally in your browser.">
+    <link rel="canonical" href="https://devtoolkit.dev/tools/uuid-generator.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"UUID Generator","url":"https://devtoolkit.dev/tools/uuid-generator.html","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <style>
+        .uuid-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 0.75rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            margin-bottom: 0.4rem;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            transition: all var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .uuid-item:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 200, 255, 0.05);
+        }
+
+        .uuid-item .num {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            min-width: 24px;
+        }
+
+        .uuid-item .val {
+            flex: 1;
+            color: var(--text-primary);
+            letter-spacing: 0.02em;
+        }
+
+        .uuid-item .copy-btn {
+            padding: 0.2rem 0.5rem;
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            background: none;
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .uuid-item .copy-btn:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header"><a href="/" class="header__logo"><svg viewBox="0 0 28 28" fill="none">
+                <rect x="2" y="2" width="24" height="24" rx="6" stroke="url(#g)" stroke-width="2" />
+                <path d="M9 10l4 4-4 4" stroke="url(#g)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <line x1="16" y1="18" x2="20" y2="18" stroke="url(#g)" stroke-width="2" stroke-linecap="round" />
+                <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="28" y2="28">
+                        <stop stop-color="#00c8ff" />
+                        <stop offset="1" stop-color="#8b5cf6" />
+                    </linearGradient>
+                </defs>
+            </svg>Dev<span class="accent">ToolKit</span></a>
+        <nav>
+            <ul class="header__nav">
+                <li><a href="/">← All Tools</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="page-layout">
+            <div class="tool-page">
+                <div class="tool-header">
+                    <h1>UUID Generator</h1>
+                    <p>Generate universally unique identifiers (UUID v4). Click any UUID to copy it.</p>
+                </div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem;flex-wrap:wrap;">
+                        <span style="font-size:0.85rem;color:var(--text-secondary);">Generate</span>
+                        <input class="tool-input" id="count" type="number" value="5" min="1" max="100"
+                            style="width:80px;">
+                        <span style="font-size:0.85rem;color:var(--text-secondary);">UUIDs</span>
+                        <label
+                            style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:var(--text-secondary);cursor:pointer;"><input
+                                type="checkbox" id="uppercase"> UPPERCASE</label>
+                        <label
+                            style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:var(--text-secondary);cursor:pointer;"><input
+                                type="checkbox" id="noDashes"> No dashes</label>
+                    </div>
+                    <div class="btn-row">
+                        <button class="btn btn--primary" onclick="gen()">Generate</button>
+                        <button class="btn btn--secondary" onclick="copyAll()">📋 Copy All</button>
+                        <button class="btn btn--danger"
+                            onclick="document.getElementById('results').innerHTML='';">Clear</button>
+                    </div>
+                </div>
+                <div id="results"></div>
+                <div class="ad-zone ad-zone--banner"><span>Advertisement</span></div>
+                <div class="tool-area">
+                    <h3 style="margin-bottom:1rem;">About UUIDs</h3>
+                    <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">A UUID (Universally Unique
+                        Identifier) is a 128-bit label used to uniquely identify information. Version 4 UUIDs are
+                        randomly generated and have an extremely low probability of collision (1 in 5.3×10³⁶). They're
+                        used in databases, APIs, distributed systems, and session management. Format: 8-4-4-4-12
+                        hexadecimal characters.</p>
+                </div>
+            </div>
+            <aside class="sidebar">
+                <div class="ad-zone ad-zone--sidebar"><span>Advertisement</span></div>
+                <div class="sidebar__tools">
+                    <h3>Other Tools</h3><a href="json-formatter.html">JSON Formatter</a><a
+                        href="base64.html">Base64</a><a href="regex-tester.html">Regex Tester</a><a
+                        href="timestamp.html">Timestamp Converter</a><a href="hash-generator.html">Hash Generator</a><a
+                        href="markdown-preview.html">Markdown Preview</a><a href="diff-checker.html">Diff Checker</a><a
+                        href="json-to-csv.html">JSON to CSV</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>DevToolKit — Free developer tools. Your data never leaves your browser.</p>
+    </footer>
+    <script>
+        function uuidv4() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => { const r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16); }); }
+        function gen() {
+            const n = parseInt(document.getElementById('count').value) || 5;
+            const upper = document.getElementById('uppercase').checked;
+            const noDash = document.getElementById('noDashes').checked;
+            const el = document.getElementById('results');
+            let html = '';
+            for (let i = 0; i < n; i++) {
+                let u = uuidv4();
+                if (upper) u = u.toUpperCase();
+                if (noDash) u = u.replace(/-/g, '');
+                html += '<div class="uuid-item" onclick="navigator.clipboard.writeText(this.querySelector(\'.val\').textContent);this.querySelector(\'.copy-btn\').textContent=\'✓\';setTimeout(()=>this.querySelector(\'.copy-btn\').textContent=\'Copy\',1000);"><span class="num">' + (i + 1) + '</span><span class="val">' + u + '</span><button class="copy-btn">Copy</button></div>';
+            }
+            el.innerHTML = html;
+        }
+        function copyAll() { const vals = Array.from(document.querySelectorAll('.val')).map(e => e.textContent).join('\n'); if (vals) navigator.clipboard.writeText(vals); }
+        gen();
+    </script>
+</body>
+
+</html>

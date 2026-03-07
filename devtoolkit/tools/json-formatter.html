@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter & Validator — Free Online Tool | DevToolKit</title>
+    <meta name="description"
+        content="Free online JSON formatter and validator. Beautify, minify, and validate JSON data instantly. Syntax highlighting, error detection, tree view.">
+    <link rel="canonical" href="https://devtoolkit.dev/tools/json-formatter.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"JSON Formatter & Validator","url":"https://devtoolkit.dev/tools/json-formatter.html","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+</head>
+
+<body>
+    <header class="header">
+        <a href="/" class="header__logo">
+            <svg viewBox="0 0 28 28" fill="none">
+                <rect x="2" y="2" width="24" height="24" rx="6" stroke="url(#g)" stroke-width="2" />
+                <path d="M9 10l4 4-4 4" stroke="url(#g)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <line x1="16" y1="18" x2="20" y2="18" stroke="url(#g)" stroke-width="2" stroke-linecap="round" />
+                <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="28" y2="28">
+                        <stop stop-color="#00c8ff" />
+                        <stop offset="1" stop-color="#8b5cf6" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            Dev<span class="accent">ToolKit</span>
+        </a>
+        <nav>
+            <ul class="header__nav">
+                <li><a href="/">← All Tools</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="page-layout">
+            <div class="tool-page">
+                <div class="tool-header">
+                    <h1>JSON Formatter & Validator</h1>
+                    <p>Paste your JSON to format, validate, and beautify it. All processing happens locally in your
+                        browser.</p>
+                </div>
+
+                <div class="ad-zone ad-zone--banner" id="ad-top"><span>Advertisement</span></div>
+
+                <div class="tool-area">
+                    <div class="tool-area__label">
+                        <span>Input</span>
+                        <span id="charCount">0 chars</span>
+                    </div>
+                    <textarea class="tool-textarea" id="jsonInput"
+                        placeholder='Paste your JSON here, e.g. {"name": "DevToolKit", "version": 1}'></textarea>
+                </div>
+
+                <div class="btn-row">
+                    <button class="btn btn--primary" onclick="formatJSON()">Format / Beautify</button>
+                    <button class="btn btn--secondary" onclick="minifyJSON()">Minify</button>
+                    <button class="btn btn--secondary" onclick="validateJSON()">Validate Only</button>
+                    <button class="btn btn--secondary" onclick="copyOutput()">📋 Copy</button>
+                    <button class="btn btn--danger" onclick="clearAll()">Clear</button>
+                </div>
+
+                <div id="status" class="status"></div>
+
+                <div class="tool-area">
+                    <div class="tool-area__label">
+                        <span>Output</span>
+                        <select class="tool-select" id="indentSize">
+                            <option value="2">2 spaces</option>
+                            <option value="4">4 spaces</option>
+                            <option value="\t">Tab</option>
+                        </select>
+                    </div>
+                    <textarea class="tool-textarea" id="jsonOutput" placeholder="Formatted output will appear here..."
+                        readonly style="min-height:300px;"></textarea>
+                </div>
+
+                <div class="ad-zone ad-zone--banner" id="ad-mid"><span>Advertisement</span></div>
+
+                <div class="tool-area">
+                    <h3 style="margin-bottom:1rem;">What is JSON?</h3>
+                    <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">JSON (JavaScript Object
+                        Notation) is a lightweight data interchange format. It's easy for humans to read and write, and
+                        easy for machines to parse and generate. JSON is commonly used for APIs, configuration files,
+                        and data storage. This tool helps you format messy JSON into readable, indented output, validate
+                        JSON syntax, and minify JSON for production use.</p>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="ad-zone ad-zone--sidebar" id="ad-side"><span>Advertisement</span></div>
+                <div class="sidebar__tools">
+                    <h3>Other Tools</h3>
+                    <a href="base64.html">Base64 Encode/Decode</a>
+                    <a href="url-encoder.html">URL Encode/Decode</a>
+                    <a href="regex-tester.html">Regex Tester</a>
+                    <a href="jwt-decoder.html">JWT Decoder</a>
+                    <a href="hash-generator.html">Hash Generator</a>
+                    <a href="color-picker.html">Color Converter</a>
+                    <a href="lorem-ipsum.html">Lorem Ipsum Generator</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>DevToolKit — Free developer tools. Your data never leaves your browser.</p>
+    </footer>
+
+    <script>
+        const input = document.getElementById('jsonInput');
+        const output = document.getElementById('jsonOutput');
+        const statusEl = document.getElementById('status');
+        const charCount = document.getElementById('charCount');
+
+        input.addEventListener('input', () => {
+            charCount.textContent = input.value.length.toLocaleString() + ' chars';
+        });
+
+        function getIndent() {
+            const v = document.getElementById('indentSize').value;
+            return v === '\\t' ? '\t' : parseInt(v);
+        }
+
+        function showStatus(msg, type) {
+            statusEl.textContent = msg;
+            statusEl.className = 'status show status--' + type;
+            if (type === 'success') setTimeout(() => statusEl.classList.remove('show'), 3000);
+        }
+
+        function formatJSON() {
+            try {
+                const parsed = JSON.parse(input.value);
+                output.value = JSON.stringify(parsed, null, getIndent());
+                showStatus('✓ Valid JSON — formatted successfully', 'success');
+            } catch (e) {
+                output.value = '';
+                showStatus('✗ Invalid JSON: ' + e.message, 'error');
+            }
+        }
+
+        function minifyJSON() {
+            try {
+                const parsed = JSON.parse(input.value);
+                output.value = JSON.stringify(parsed);
+                showStatus('✓ JSON minified — ' + output.value.length.toLocaleString() + ' chars', 'success');
+            } catch (e) {
+                showStatus('✗ Invalid JSON: ' + e.message, 'error');
+            }
+        }
+
+        function validateJSON() {
+            try {
+                const parsed = JSON.parse(input.value);
+                const keys = typeof parsed === 'object' ? Object.keys(parsed).length : 0;
+                showStatus('✓ Valid JSON — ' + (Array.isArray(parsed) ? parsed.length + ' items' : keys + ' keys'), 'success');
+            } catch (e) {
+                showStatus('✗ Invalid JSON: ' + e.message, 'error');
+            }
+        }
+
+        function copyOutput() {
+            if (output.value) {
+                navigator.clipboard.writeText(output.value);
+                showStatus('✓ Copied to clipboard', 'success');
+            }
+        }
+
+        function clearAll() {
+            input.value = '';
+            output.value = '';
+            charCount.textContent = '0 chars';
+            statusEl.className = 'status';
+        }
+    </script>
+</body>
+
+</html>
