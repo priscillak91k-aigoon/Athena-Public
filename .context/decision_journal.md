@@ -199,4 +199,16 @@
 - **Reasoning**: Neither is needed at boot. She launches them manually when she wants them. Background drain for zero value.
 - **Outcome**: Removed from startup. Boot should be lighter. ✅ Correct call.
 
+### Decision: Invest session in research over exploitation (Session 42)
+- **Situation**: All existing scan findings were false positives or locked down. Postman 403 bypass returned 0 results. No actionable leads remaining.
+- **Choice**: Stopped chasing diminishing returns. Invested entire session in nuclear research across 10 vulnerability domains to build expertise.
+- **Reasoning**: Better to build the arsenal once than keep running the same blunt scanner. ROI from expertise compounds across every future session.
+- **Outcome**: Created comprehensive playbook and 3 operational workflows. ✅ Correct call — next session starts from a fundamentally stronger position.
+
+### Decision: Promote bounty hunting from ephemeral to permanent system (Session 42)
+- **Situation**: User corrected that bounty hunting should not live in `.nosey_nutter/` (which can be purged with `/nutter_end`).
+- **Choice**: Created permanent `bounty_ops/` directory (gitignored), moved playbook to `.context/`, built persistent hunt log.
+- **Reasoning**: She thinks in systems. A capability that persists and carries state is worth more than any single finding.
+- **Outcome**: Architecture: `.context/BOUNTY_PLAYBOOK.md` (knowledge) + `bounty_ops/` (operations) + 3 workflows. ✅ Correct call.
+
 

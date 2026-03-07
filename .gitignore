@@ -60,6 +60,9 @@ TAG_INDEX_*.md
 # Nosey Nutter Protocol (NEVER commit — ephemeral research sandbox)
 .nosey_nutter/
 
+# Bug Bounty Operations (NEVER commit — contains target scan data and exploits)
+bounty_ops/
+
 .nosey_nutter/
 
 # Personal photos - never commit
