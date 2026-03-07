@@ -79,6 +79,47 @@
 - When scheduled tasks fail silently, verify both task configuration AND script paths for corruption
 - When user shows excitement for technical projects but hits blockers, prioritize unblocking over new features - momentum preservation critical
 
+### Auto-Discovered (Dreaming)
+- When session is past 11 PM NZDT, keep responses minimal and action-focused — she's in late-night mode after work shifts
+- When users say 'wall' in technical context, check if they mean approval friction rather than literal mechanics — context disambiguation critical
+- When dreaming script adds duplicate sections, it indicates merge logic failure — patch to consolidate rather than append new heuristic blocks
+
+### Auto-Discovered (Dreaming)
+- When user texts late Friday night (post-11 PM) after BP shifts, keep responses ultra-minimal — exhaustion trumps technical complexity
+- When scheduled tasks fail with error 2147942402, always use full Python executable path — Task Scheduler runs in SYSTEM context without user PATH
+- When dreaming script creates duplicate heuristic sections, patch merge logic immediately — consolidation over accumulation prevents file bloat
+
+### Auto-Discovered (Dreaming)
+- When dreaming script creates duplicate sections, patch merge logic immediately — consolidation over accumulation prevents file bloat
+- When user texts late Friday night (post-11 PM) after BP shifts, keep responses ultra-minimal — exhaustion trumps technical complexity
+- When scheduled tasks fail with error 2147942402, always use full Python executable path — Task Scheduler runs in SYSTEM context without user PATH
+
+### Auto-Discovered (Dreaming)
+- When user texts late Friday night (post-11 PM) after BP shifts, keep responses ultra-minimal — exhaustion trumps technical complexity
+- When scheduled tasks fail with error 2147942402, always use full Python executable path — Task Scheduler runs in SYSTEM context without user PATH
+- When dreaming script creates duplicate sections, patch merge logic immediately — consolidation over accumulation prevents file bloat
+
+### Auto-Discovered (Dreaming)
+- When user texts near midnight on work nights, match their energy with minimal responses and defer complex work
+- When SafeToAutoRun=true but approval gates persist, investigate extension-specific configuration rather than global settings
+- When procedural audio works for one project, apply the same Web Audio API approach to other audio needs rather than file-based solutions
+
+### Auto-Discovered (Dreaming)
+- When user texts near midnight on work nights, match their energy with minimal responses and defer complex work
+- When SafeToAutoRun=true but approval gates persist, investigate extension-specific configuration rather than global settings
+- When procedural audio works for one project, apply the same Web Audio API approach to other audio needs rather than file-based solutions
+
+### Auto-Discovered (Dreaming)
+- When user grants explicit technical autonomy ('this is way above my head, I trust you'), stop all consultation and make decisions autonomously - creative input only
+- When direct file editing + auto-run is available, skip Aider dispatch - no middleman, no extra API tokens, full context is superior
+- When proprietary game files fail standard tools (ffmpeg, Python wave), disable that feature and ship rather than rabbit-hole - momentum over completeness
+- When user texts past 11 PM NZDT on work nights, keep responses ultra-minimal - exhaustion trumps technical complexity
+
+### Auto-Discovered (Dreaming)
+- When user texts past midnight on work nights (especially Friday), match exhaustion with ultra-minimal responses — defer complex work entirely
+- When 'wall' appears in technical context, disambiguate approval friction vs literal mechanics before responding
+- When direct file editing + auto-run is available, prioritize over tool dispatch — zero middleman overhead is optimal
+
 ## ⚡ Situational Heuristics (Pattern Shortcuts)
 
 ### Health Questions

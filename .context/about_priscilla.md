@@ -217,4 +217,15 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 
 ---
 
+## 🔐 Security & Bug Bounty
+
+- Has a **HackerOne** account (signed up 2026-03-07)
+- Recovery keys stored in `.env` (HACKERONE_RECOVERY_KEY_1 through _5)
+- First report: exposed AWS credentials in Kitsu (kitsu.app) `kitsu-server/.env`
+- Interested in bug bounty hunting as a revenue stream
+- GitHub PAT available for authenticated code searching
+- Needs step-by-step guidance — not a security expert
+
+---
+
 *This file is the single most important context document for session continuity. Update it regularly.*

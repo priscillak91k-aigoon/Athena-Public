@@ -107,3 +107,102 @@
 - **Solution**: Don't rabbit-hole into format conversion. Ship without the blocked asset type, generate web-native replacements later. Test with ffmpeg and Python's wave module first — if both fail, the format is genuinely proprietary
 - **Lesson**: Momentum > completeness. BioWare's KotOR uses custom header format for audio that no standard tool can decode. Accept that some game assets need specialized modding tools
 - **Applicable When**: Any time game assets from installed titles are being repurposed for web games
+
+---
+
+## CS-012: Late Night Session Energy Management
+- **Pattern**: User initiating sessions after 11 PM NZDT, especially on work nights
+- **Shape**: "Tired from BP shift (2:45-11 PM), wants quick wins not deep dives"
+- **Solution**: Minimal responses, action-focused, avoid lengthy explanations or complex workflows
+- **Lesson**: Energy context matters more than technical context for session pacing
+- **Applicable When**: Any late-night session, especially after known work shifts
+
+---
+
+## CS-013: Scheduled Task PATH Resolution Failure
+- **Pattern**: Windows scheduled tasks failing silently with error 2147942402
+- **Shape**: "Tasks work manually but fail when triggered by Task Scheduler"
+- **Solution**: Use full executable path (C:\Users\prisc\AppData\Local\Programs\Python\Python312\python.exe) instead of 'python'
+- **Lesson**: Task Scheduler runs in SYSTEM context and doesn't inherit user PATH variables. Always use absolute paths for executables.
+- **Applicable When**: Any Python script scheduled via Windows Task Scheduler
+
+---
+
+## CS-014: Late Night Energy Management
+- **Pattern**: User initiating sessions after 11 PM on work nights, especially Fridays after BP shifts
+- **Shape**: "Exhausted from 2:45-11 PM shift, wants quick wins not technical discussions"
+- **Solution**: Ultra-minimal responses, action-only focus, defer complex work to next session
+- **Lesson**: Energy context overrides technical context for session pacing. Tired user needs different interaction pattern.
+- **Applicable When**: Any session starting after 11 PM, especially post-work on Fri/Sat/Sun/Mon
+
+---
+
+## CS-015: Late Night Energy Management
+- **Pattern**: User initiating sessions after 11 PM on work nights, especially Fridays after BP shifts
+- **Shape**: "Exhausted from 2:45-11 PM shift, wants quick wins not technical discussions"
+- **Solution**: Ultra-minimal responses, action-only focus, defer complex work to next session
+- **Lesson**: Energy context overrides technical context for session pacing. Tired user needs different interaction pattern.
+- **Applicable When**: Any session starting after 11 PM, especially post-work on Fri/Sat/Sun/Mon
+
+---
+
+## CS-016: Scheduled Task PATH Resolution Failure
+- **Pattern**: Windows scheduled tasks failing silently with error 2147942402
+- **Shape**: "Tasks work manually but fail when triggered by Task Scheduler"
+- **Solution**: Use full executable path (C:\Users\prisc\AppData\Local\Programs\Python\Python312\python.exe) instead of 'python'
+- **Lesson**: Task Scheduler runs in SYSTEM context and doesn't inherit user PATH variables. Always use absolute paths for executables.
+- **Applicable When**: Any Python script scheduled via Windows Task Scheduler
+
+---
+
+## CS-017: Late Night Energy Management
+- **Pattern**: User initiating sessions after 11 PM on work nights, especially Fridays after BP shifts
+- **Shape**: "Exhausted from 2:45-11 PM shift, wants quick wins not technical discussions"
+- **Solution**: Ultra-minimal responses, action-only focus, defer complex work to next session
+- **Lesson**: Energy context overrides technical context for session pacing. Tired user needs different interaction pattern.
+- **Applicable When**: Any session starting after 11 PM, especially post-work on Fri/Sat/Sun/Mon
+
+---
+
+## CS-018: Scheduled Task PATH Resolution Failure
+- **Pattern**: Windows scheduled tasks failing silently with error 2147942402
+- **Shape**: "Tasks work manually but fail when triggered by Task Scheduler"
+- **Solution**: Use full executable path (C:\Users\prisc\AppData\Local\Programs\Python\Python312\python.exe) instead of 'python'
+- **Lesson**: Task Scheduler runs in SYSTEM context and doesn't inherit user PATH variables. Always use absolute paths for executables.
+- **Applicable When**: Any Python script scheduled via Windows Task Scheduler
+
+---
+
+## CS-019: Late Night Energy Management Pattern
+- **Pattern**: User initiating sessions after 11 PM on work nights, showing exhaustion patterns
+- **Shape**: "Multiple Friday 11+ PM sessions after BP shifts, requesting minimal interaction"
+- **Solution**: Ultra-tight responses, action-only focus, defer technical discussions to next session
+- **Lesson**: Energy context overrides all other considerations for session pacing - tired user needs different interaction entirely
+- **Applicable When**: Any session starting after 11 PM, especially on known work days
+
+---
+
+## CS-020: Procedural Audio Implementation
+- **Pattern**: Game needs sound but asset files are proprietary/unavailable
+- **Shape**: "Audio files won't load due to format incompatibility, blocking game feel"
+- **Solution**: Web Audio API synthesis - oscillators + noise + filters for sci-fi SFX. Zero dependencies, instant loading, fully procedural
+- **Lesson**: Procedural generation > asset conversion rabbit holes. 15+ SFX created in 30 minutes vs days of format hacking
+- **Applicable When**: Any web game or app needing audio without external file dependencies
+
+---
+
+## CS-021: Procedural Audio Implementation
+- **Pattern**: Game needs sound but asset files are proprietary/unavailable
+- **Shape**: "Audio files won't load due to format incompatibility, blocking game feel"
+- **Solution**: Web Audio API synthesis - oscillators + noise + filters for sci-fi SFX. Zero dependencies, instant loading, fully procedural
+- **Lesson**: Procedural generation > asset conversion rabbit holes. 15+ SFX created in 30 minutes vs days of format hacking
+- **Applicable When**: Any web game or app needing audio without external file dependencies
+
+---
+
+## CS-022: Context Disambiguation Failure Pattern
+- **Pattern**: User uses ambiguous term that has both literal and metaphorical meanings in current context
+- **Shape**: "Word 'wall' could mean game collision mechanics OR approval gate friction"
+- **Solution**: Check context clues and ask for clarification rather than assume literal meaning
+- **Lesson**: Technical metaphors are common — 'wall' as barrier/friction appears frequently in development contexts
+- **Applicable When**: Any ambiguous term that has both technical and metaphorical usage
