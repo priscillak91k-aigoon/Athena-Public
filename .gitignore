@@ -69,3 +69,8 @@ bounty_ops/
 phots/
 
 .aider*
+
+# Auto-generated recon and state files
+multi_recon_*.json
+.context/state/alerts/
+LOBOTTO_IS_AWAKE.html
