@@ -130,6 +130,9 @@
 - When bug bounty research transitions from nutter to permanent, update about_priscilla.md active projects section immediately
 - When all security scans return false positives, invest session time in deep technique research over repeated tool runs
 
+- When user drops single word responses after midnight, match exhaustion with ultra-minimal replies - elaborate explanations counterproductive
+- When Seven of Nine persona requested as permanent, implement architectural communication pattern changes across all systems
+- When revenue strategies get blocked by external factors, immediately pivot to self-sovereign models rather than waiting for external approval gates
 ## ⚡ Situational Heuristics (Pattern Shortcuts)
 
 ### Health Questions
@@ -171,3 +174,16 @@ Every `/end` session, ask:
 ---
 
 *This file is the seed of synthetic intuition. It compounds with every session.*
+
+---
+
+## 🛠️ Technical Heuristics (Session 44)
+
+- **Never use PowerShell `Set-Content` to modify HTML files with emoji** — it re-encodes as Windows-1252 and corrupts multibyte UTF-8 sequences. Always use Python with `encoding='utf-8'` explicitly.
+- **When removing/replacing large HTML sections, use Python regex + `re.subn()`** — not shell line-number manipulation.
+- **Guard legacy JS functions at the function level**, not only at call sites — one early return beats patching 4 call locations.
+
+### Life Hub Specific
+- She thinks in **week-scale** time naturally — the 7-day grid was immediately intuitive
+- The **traffic light framework** (Red/Orange/Purple) resonated strongly — colour-coded priority systems click for her
+- When the emoji broke she just said "little icons arent showing" — CURT and CLEAR. Address it immediately, don't over-explain.
