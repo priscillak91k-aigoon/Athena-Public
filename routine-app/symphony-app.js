@@ -4750,6 +4750,350 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- All init functions called above ---
+    // --- WEEK PLANNER ENGINE ---
+    (function initWeekPlanner() {
+        const STORAGE_KEY = 'symphony_week_planner_v2';
+        const TASK_POOL_KEY = 'symphony_planner_tasks_v2';
+
+        const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        const DAY_FULL = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+        // Generate time slots 6:30 AM → 12:00 AM in 30-min increments
+        function generateTimeSlots() {
+            const slots = [];
+            // 6:30 AM to 11:30 PM
+            for (let h = 6; h <= 23; h++) {
+                [0, 30].forEach(m => {
+                    if (h === 6 && m === 0) return; // skip 6:00 AM, start at 6:30
+                    const period = h < 12 ? 'AM' : 'PM';
+                    const displayH = h <= 12 ? h : h - 12;
+                    const displayHStr = String(displayH).padStart(2, '0');
+                    const mStr = String(m).padStart(2, '0');
+                    slots.push(`${displayHStr}:${mStr} ${period}`);
+                });
+            }
+            slots.push('12:00 AM'); // midnight cap
+            return slots;
+        }
+
+        const TIME_SLOTS = generateTimeSlots();
+
+        // ---- Data Layer ----
+        function loadPlannerData() {
+            try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+            catch (e) { return {}; }
+        }
+
+        function savePlannerData(data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        function loadTaskPool() {
+            try { return JSON.parse(localStorage.getItem(TASK_POOL_KEY)) || []; }
+            catch (e) { return []; }
+        }
+
+        function saveTaskPool(tasks) {
+            localStorage.setItem(TASK_POOL_KEY, JSON.stringify(tasks));
+        }
+
+        // ---- Colour helpers ----
+        function colourFor(type) {
+            if (type === 'RED') return { bg: 'rgba(239,68,68,0.18)', border: '#ef4444', dot: '#ef4444' };
+            if (type === 'PURPLE') return { bg: 'rgba(168,85,247,0.18)', border: '#a855f7', dot: '#a855f7' };
+            return { bg: 'rgba(249,115,22,0.18)', border: '#f97316', dot: '#f97316' }; // ORANGE default
+        }
+
+        // Get current week-start (Monday) as ISO date string
+        function getWeekStart() {
+            const now = new Date();
+            const day = now.getDay(); // 0=Sun
+            const diff = (day === 0 ? -6 : 1 - day);
+            const mon = new Date(now);
+            mon.setDate(now.getDate() + diff);
+            return mon.toISOString().slice(0, 10);
+        }
+
+        function getWeekDates() {
+            const start = new Date(getWeekStart() + 'T00:00:00');
+            return DAYS.map((_, i) => {
+                const d = new Date(start);
+                d.setDate(start.getDate() + i);
+                return d;
+            });
+        }
+
+        // ---- Render Planner Grid ----
+        function renderPlannerGrid() {
+            const container = document.getElementById('planner-week-grid');
+            if (!container) return;
+
+            const data = loadPlannerData();
+            const weekDates = getWeekDates();
+            const todayStr = new Date().toISOString().slice(0, 10);
+
+            // Build table
+            let html = `<table style="width:100%; border-collapse:collapse; font-family:'VT323',monospace; font-size:0.92rem; min-width:900px;">`;
+            // Header row
+            html += `<thead><tr>`;
+            html += `<th style="width:72px; padding:4px 8px; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:var(--text-secondary); text-align:left;">Time</th>`;
+            weekDates.forEach((date, i) => {
+                const dateStr = date.toISOString().slice(0, 10);
+                const isToday = dateStr === todayStr;
+                const dayLabel = `${DAYS[i]}<br><small style="font-size:0.7rem; opacity:0.7;">${date.getDate()}/${date.getMonth()+1}</small>`;
+                html += `<th style="padding:4px 8px; background:${isToday ? 'rgba(52,211,153,0.15)' : 'rgba(0,0,0,0.3)'}; border:1px solid ${isToday ? 'var(--accent-green)' : 'var(--glass-border)'}; color:${isToday ? 'var(--accent-green)' : 'var(--text-primary)'}; text-align:center; min-width:100px;">${dayLabel}${isToday ? ' <span style="font-size:0.65rem;">TODAY</span>' : ''}</th>`;
+            });
+            html += `</tr></thead><tbody>`;
+
+            // Time rows
+            TIME_SLOTS.forEach(slot => {
+                html += `<tr>`;
+                html += `<td style="padding:3px 6px; background:rgba(0,0,0,0.3); border:1px solid var(--glass-border); color:var(--text-secondary); white-space:nowrap; vertical-align:top;">${slot}</td>`;
+
+                weekDates.forEach((date, dayIdx) => {
+                    const dateStr = date.toISOString().slice(0, 10);
+                    const isToday = dateStr === todayStr;
+                    const cellKey = `${dateStr}__${slot}`;
+                    const cellTasks = data[cellKey] || [];
+
+                    let cellContent = '';
+                    cellTasks.forEach((task, tIdx) => {
+                        const c = colourFor(task.type);
+                        cellContent += `<div class="planner-cell-task" draggable="true"
+                            data-cell="${cellKey}" data-tidx="${tIdx}"
+                            style="background:${c.bg}; border-left:3px solid ${c.border}; border-radius:3px; padding:2px 5px; margin-bottom:2px; cursor:grab; display:flex; justify-content:space-between; align-items:center; gap:4px;">
+                            <span style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${task.title}</span>
+                            <button class="planner-remove-task" data-cell="${cellKey}" data-tidx="${tIdx}"
+                                style="background:none; border:none; color:rgba(255,255,255,0.4); cursor:pointer; font-size:0.85rem; padding:0; line-height:1; flex-shrink:0;" title="Remove">×</button>
+                        </div>`;
+                    });
+
+                    html += `<td class="planner-drop-cell" data-cell="${cellKey}"
+                        style="padding:3px; background:${isToday ? 'rgba(52,211,153,0.04)' : 'rgba(0,0,0,0.15)'}; border:1px solid ${isToday ? 'rgba(52,211,153,0.2)' : 'var(--glass-border)'}; vertical-align:top; min-height:32px; transition:background 0.15s;">
+                        ${cellContent}
+                    </td>`;
+                });
+
+                html += `</tr>`;
+            });
+
+            html += `</tbody></table>`;
+            container.innerHTML = html;
+
+            // Attach drop-zone dragover/drop listeners
+            container.querySelectorAll('.planner-drop-cell').forEach(cell => {
+                cell.addEventListener('dragover', e => {
+                    e.preventDefault();
+                    cell.style.background = 'rgba(52,211,153,0.12)';
+                });
+                cell.addEventListener('dragleave', () => {
+                    const isToday = weekDates.some((d, i) => d.toISOString().slice(0, 10) === todayStr && cell.dataset.cell.startsWith(d.toISOString().slice(0, 10)));
+                    cell.style.background = '';
+                });
+                cell.addEventListener('drop', e => {
+                    e.preventDefault();
+                    cell.style.background = '';
+                    const raw = e.dataTransfer.getData('text/plain');
+                    if (!raw) return;
+                    let task;
+                    try { task = JSON.parse(raw); } catch { return; }
+                    const cellKey = cell.dataset.cell;
+                    const d = loadPlannerData();
+                    if (!d[cellKey]) d[cellKey] = [];
+                    // Don't duplicate
+                    if (d[cellKey].some(t => t.id === task.id && t.type !== 'RED')) {
+                        // Allow red tasks to multi-place (they're always-on)
+                    }
+                    d[cellKey].push({ id: task.id, title: task.title, type: task.type });
+                    savePlannerData(d);
+                    renderPlannerGrid();
+                    renderScheduleGrid();
+                });
+            });
+
+            // Remove-from-cell buttons
+            container.querySelectorAll('.planner-remove-task').forEach(btn => {
+                btn.addEventListener('click', e => {
+                    e.stopPropagation();
+                    const cellKey = btn.dataset.cell;
+                    const tIdx = parseInt(btn.dataset.tidx);
+                    const d = loadPlannerData();
+                    if (d[cellKey]) {
+                        d[cellKey].splice(tIdx, 1);
+                        if (d[cellKey].length === 0) delete d[cellKey];
+                        savePlannerData(d);
+                        renderPlannerGrid();
+                        renderScheduleGrid();
+                    }
+                });
+            });
+
+            // Cell-task drag (move between cells)
+            container.querySelectorAll('.planner-cell-task').forEach(el => {
+                el.addEventListener('dragstart', e => {
+                    const cellKey = el.dataset.cell;
+                    const tIdx = parseInt(el.dataset.tidx);
+                    const d = loadPlannerData();
+                    const task = d[cellKey] && d[cellKey][tIdx];
+                    if (!task) return;
+                    e.dataTransfer.setData('text/plain', JSON.stringify(task));
+                    // Remove from source on drag
+                    setTimeout(() => {
+                        const d2 = loadPlannerData();
+                        if (d2[cellKey]) {
+                            d2[cellKey].splice(tIdx, 1);
+                            if (d2[cellKey].length === 0) delete d2[cellKey];
+                            savePlannerData(d2);
+                        }
+                    }, 0);
+                });
+            });
+        }
+
+        // ---- Render readonly Schedule Grid ----
+        function renderScheduleGrid() {
+            const container = document.getElementById('schedule-week-grid');
+            if (!container) return;
+
+            const data = loadPlannerData();
+            const weekDates = getWeekDates();
+            const todayStr = new Date().toISOString().slice(0, 10);
+
+            let html = `<table style="width:100%; border-collapse:collapse; font-family:'VT323',monospace; font-size:0.92rem; min-width:900px;">`;
+            html += `<thead><tr>`;
+            html += `<th style="width:72px; padding:4px 8px; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:var(--text-secondary);">Time</th>`;
+            weekDates.forEach((date, i) => {
+                const dateStr = date.toISOString().slice(0, 10);
+                const isToday = dateStr === todayStr;
+                const label = `${DAYS[i]}<br><small style="font-size:0.7rem; opacity:0.7;">${date.getDate()}/${date.getMonth()+1}</small>`;
+                html += `<th style="padding:4px 8px; background:${isToday ? 'rgba(52,211,153,0.15)' : 'rgba(0,0,0,0.3)'}; border:1px solid ${isToday ? 'var(--accent-green)' : 'var(--glass-border)'}; color:${isToday ? 'var(--accent-green)' : 'var(--text-primary)'}; text-align:center; min-width:100px;">${label}${isToday ? ' <span style="font-size:0.65rem;">TODAY</span>' : ''}</th>`;
+            });
+            html += `</tr></thead><tbody>`;
+
+            TIME_SLOTS.forEach(slot => {
+                // Only render rows that have content (keeps it compact on schedule view)
+                const hasContent = weekDates.some(date => {
+                    const cellKey = `${date.toISOString().slice(0, 10)}__${slot}`;
+                    return (data[cellKey] || []).length > 0;
+                });
+                if (!hasContent) return;
+
+                html += `<tr>`;
+                html += `<td style="padding:3px 6px; background:rgba(0,0,0,0.3); border:1px solid var(--glass-border); color:var(--accent-magenta); white-space:nowrap; vertical-align:top; font-weight:bold;">${slot}</td>`;
+                weekDates.forEach(date => {
+                    const dateStr = date.toISOString().slice(0, 10);
+                    const isToday = dateStr === todayStr;
+                    const cellKey = `${dateStr}__${slot}`;
+                    const cellTasks = data[cellKey] || [];
+                    let content = '';
+                    cellTasks.forEach(task => {
+                        const c = colourFor(task.type);
+                        content += `<div style="background:${c.bg}; border-left:3px solid ${c.border}; border-radius:3px; padding:2px 5px; margin-bottom:2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${task.title}</div>`;
+                    });
+                    html += `<td style="padding:3px; background:${isToday ? 'rgba(52,211,153,0.04)' : 'rgba(0,0,0,0.1)'}; border:1px solid ${isToday ? 'rgba(52,211,153,0.2)' : 'var(--glass-border)'}; vertical-align:top;">${content}</td>`;
+                });
+                html += `</tr>`;
+            });
+
+            html += `</tbody></table>`;
+
+            // Show empty state if no tasks at all
+            if (!Object.keys(data).length) {
+                container.innerHTML = `<div style="text-align:center; padding:3rem; color:var(--text-secondary); font-style:italic;">No tasks planned yet. Go to Planner to set up your week.</div>`;
+            } else {
+                container.innerHTML = html;
+            }
+        }
+
+        // ---- Render Task Pool ----
+        function renderTaskPool() {
+            const pool = document.getElementById('planner-task-pool');
+            if (!pool) return;
+            const tasks = loadTaskPool();
+            if (!tasks.length) {
+                pool.innerHTML = `<div style="color:var(--text-secondary); font-style:italic; font-size:0.9rem;">No tasks yet — add one above.</div>`;
+                return;
+            }
+            pool.innerHTML = '';
+            tasks.forEach((task, idx) => {
+                const c = colourFor(task.type);
+                const el = document.createElement('div');
+                el.draggable = true;
+                el.style.cssText = `background:${c.bg}; border:1px solid ${c.border}; border-radius:4px; padding:4px 10px; cursor:grab; display:flex; align-items:center; gap:6px; font-family:'VT323',monospace; font-size:0.95rem; user-select:none;`;
+                el.innerHTML = `<span style="width:8px;height:8px;border-radius:50%;background:${c.dot};flex-shrink:0;"></span><span style="flex:1;">${task.title}</span><button data-poolidx="${idx}" class="pool-delete-btn" style="background:none;border:none;color:rgba(255,255,255,0.35);cursor:pointer;font-size:1rem;padding:0;line-height:1;" title="Remove from pool">×</button>`;
+                el.addEventListener('dragstart', e => {
+                    e.dataTransfer.setData('text/plain', JSON.stringify({ id: task.id, title: task.title, type: task.type }));
+                });
+                pool.appendChild(el);
+            });
+
+            // Pool delete buttons
+            pool.querySelectorAll('.pool-delete-btn').forEach(btn => {
+                btn.addEventListener('click', e => {
+                    e.stopPropagation();
+                    const idx = parseInt(btn.dataset.poolidx);
+                    const tasks = loadTaskPool();
+                    tasks.splice(idx, 1);
+                    saveTaskPool(tasks);
+                    renderTaskPool();
+                });
+            });
+        }
+
+        // ---- Add Task Button ----
+        function setupAddTask() {
+            const btn = document.getElementById('planner-add-task-btn');
+            const titleInput = document.getElementById('planner-task-title');
+            const typeSelect = document.getElementById('planner-task-type');
+            if (!btn || !titleInput || !typeSelect) return;
+
+            function addTask() {
+                const title = titleInput.value.trim();
+                if (!title) return;
+                const type = typeSelect.value;
+                const tasks = loadTaskPool();
+                tasks.push({ id: Date.now().toString(), title, type });
+                saveTaskPool(tasks);
+                titleInput.value = '';
+                renderTaskPool();
+            }
+
+            btn.addEventListener('click', addTask);
+            titleInput.addEventListener('keypress', e => { if (e.key === 'Enter') addTask(); });
+        }
+
+        // ---- Tab switch hooks ----
+        function hookTabSwitches() {
+            document.querySelectorAll('.tab-btn[data-tab]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const t = btn.getAttribute('data-tab');
+                    if (t === 'planner') { renderPlannerGrid(); renderTaskPool(); }
+                    if (t === 'today') renderScheduleGrid();
+                });
+            });
+        }
+
+        // ---- Bootstrap ----
+        function boot() {
+            setupAddTask();
+            hookTabSwitches();
+            // If planner/today is the active tab on load, render immediately
+            const activeTab = localStorage.getItem('symphony_active_tab');
+            if (activeTab === 'planner') { renderPlannerGrid(); renderTaskPool(); }
+            if (activeTab === 'today' || !activeTab) renderScheduleGrid();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', boot);
+        } else {
+            boot();
+        }
+
+        // Expose for external calls
+        window.renderScheduleGrid = renderScheduleGrid;
+        window.renderPlannerGrid = renderPlannerGrid;
+    })();
+
+    // --- End Week Planner Engine ---
 
 });
