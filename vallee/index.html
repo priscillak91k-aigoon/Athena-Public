@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE VALLÉE HYPOTHESIS — They Are Not From Space</title>
+    <meta name="description"
+        content="Jacques Vallée's control system theory: UAPs are not extraterrestrial craft — they are a phenomenon that has been manipulating human consciousness for millennia.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=VT323&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --green: #00ff41;
+            --green-dim: #00a829;
+            --red: #ff2222;
+            --amber: #ffab00;
+            --bg: #000000;
+            --bg2: #050a05;
+            --panel: rgba(0, 255, 65, 0.04);
+            --border: rgba(0, 255, 65, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--green);
+            font-family: 'Share Tech Mono', monospace;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Scanlines overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.15) 2px,
+                    rgba(0, 0, 0, 0.15) 4px);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Noise vignette */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.7) 100%);
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .classified-stamp {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.4rem;
+            color: var(--red);
+            border: 2px solid var(--red);
+            display: inline-block;
+            padding: 4px 16px;
+            margin-bottom: 1.5rem;
+            transform: rotate(-2deg);
+            text-shadow: 0 0 10px var(--red);
+            animation: flicker 4s infinite;
+        }
+
+        @keyframes flicker {
+
+            0%,
+            95%,
+            100% {
+                opacity: 1;
+            }
+
+            96% {
+                opacity: 0.4;
+            }
+
+            97% {
+                opacity: 1;
+            }
+
+            98% {
+                opacity: 0.2;
+            }
+
+            99% {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 6vw, 4rem);
+            font-weight: 900;
+            letter-spacing: 0.05rem;
+            text-shadow: 0 0 30px var(--green), 0 0 60px var(--green-dim);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .subheading {
+            font-family: 'VT323', monospace;
+            font-size: 1.4rem;
+            color: var(--amber);
+            letter-spacing: 0.15rem;
+            margin-bottom: 1rem;
+        }
+
+        .header-meta {
+            font-size: 0.75rem;
+            color: var(--green-dim);
+            letter-spacing: 0.1rem;
+        }
+
+        /* TICKER */
+        .ticker-wrap {
+            background: rgba(0, 255, 65, 0.08);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+            padding: 8px 0;
+            white-space: nowrap;
+        }
+
+        .ticker {
+            display: inline-block;
+            animation: ticker 40s linear infinite;
+            font-size: 0.8rem;
+            letter-spacing: 0.05rem;
+            color: var(--amber);
+        }
+
+        @keyframes ticker {
+            from {
+                transform: translateX(100vw);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* MAIN GRID */
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            display: grid;
+            gap: 2rem;
+        }
+
+        /* PANEL */
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .panel::before {
+            content: attr(data-label);
+            position: absolute;
+            top: -0.7rem;
+            left: 1rem;
+            background: var(--bg);
+            padding: 0 0.5rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.2rem;
+            color: var(--green-dim);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .panel-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--green);
+            text-shadow: 0 0 10px var(--green-dim);
+        }
+
+        .panel p,
+        .panel li {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: rgba(0, 255, 65, 0.85);
+        }
+
+        .panel ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .panel ul li::before {
+            content: '> ';
+            color: var(--amber);
+        }
+
+        .panel ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* HERO STATEMENT */
+        .hero-statement {
+            background: rgba(255, 170, 0, 0.05);
+            border: 1px solid rgba(255, 170, 0, 0.3);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-statement .quote {
+            font-family: 'VT323', monospace;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--amber);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .hero-statement .attribution {
+            font-size: 0.8rem;
+            color: var(--green-dim);
+            letter-spacing: 0.1rem;
+        }
+
+        /* GRID 2-col */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 700px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* EVIDENCE TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+        }
+
+        th {
+            text-align: left;
+            padding: 8px 12px;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--border);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.1rem;
+            color: var(--amber);
+        }
+
+        td {
+            padding: 8px 12px;
+            border: 1px solid rgba(0, 255, 65, 0.1);
+            vertical-align: top;
+            line-height: 1.6;
+            color: rgba(0, 255, 65, 0.85);
+        }
+
+        tr:hover td {
+            background: rgba(0, 255, 65, 0.04);
+        }
+
+        /* REDACTED */
+        .redacted {
+            background: var(--green);
+            color: var(--green);
+            user-select: none;
+            cursor: pointer;
+            padding: 0 4px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .redacted.revealed {
+            background: transparent;
+            color: var(--red);
+        }
+
+        /* PROBABILITY BARS */
+        .prob-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .prob-label {
+            width: 160px;
+            font-size: 0.78rem;
+            flex-shrink: 0;
+            color: rgba(0, 255, 65, 0.7);
+        }
+
+        .prob-bar-wrap {
+            flex: 1;
+            background: rgba(0, 255, 65, 0.08);
+            height: 14px;
+            border: 1px solid var(--border);
+        }
+
+        .prob-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green-dim), var(--green));
+            transition: width 1.5s ease;
+            width: 0%;
+        }
+
+        .prob-bar.amber {
+            background: linear-gradient(90deg, #a06900, var(--amber));
+        }
+
+        .prob-bar.red {
+            background: linear-gradient(90deg, #800000, var(--red));
+        }
+
+        .prob-pct {
+            width: 40px;
+            text-align: right;
+            font-size: 0.8rem;
+        }
+
+        /* TERMINAL */
+        .terminal {
+            background: #000;
+            border: 1px solid var(--green-dim);
+            padding: 1rem;
+            font-family: 'VT323', monospace;
+            font-size: 1rem;
+            min-height: 120px;
+            position: relative;
+        }
+
+        .terminal-output {
+            color: var(--green);
+            line-height: 1.6;
+        }
+
+        .cursor-blink {
+            display: inline-block;
+            width: 10px;
+            height: 1em;
+            background: var(--green);
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* CTA BUTTON */
+        .cta-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.15rem;
+            padding: 10px 24px;
+            border: 1px solid var(--green);
+            background: transparent;
+            color: var(--green);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--green);
+            color: #000;
+            box-shadow: 0 0 20px var(--green);
+        }
+
+        .btn.amber {
+            border-color: var(--amber);
+            color: var(--amber);
+        }
+
+        .btn.amber:hover {
+            background: var(--amber);
+            color: #000;
+        }
+
+        /* VIDEO-style embed box */
+        .declassified-doc {
+            border: 1px solid var(--border);
+            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .doc-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            font-size: 0.7rem;
+            color: var(--green-dim);
+            border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .doc-body {
+            font-size: 0.85rem;
+            line-height: 1.8;
+            color: rgba(0, 255, 65, 0.8);
+        }
+
+        /* GLITCH */
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 2px;
+            top: 0;
+            color: var(--red);
+            clip-path: inset(20% 0 60% 0);
+            animation: glitch-clip 6s infinite;
+        }
+
+        @keyframes glitch-clip {
+
+            0%,
+            90%,
+            100% {
+                clip-path: inset(100% 0 0 0);
+                transform: translateX(0);
+            }
+
+            91% {
+                clip-path: inset(20% 0 60% 0);
+                transform: translateX(-3px);
+            }
+
+            93% {
+                clip-path: inset(60% 0 20% 0);
+                transform: translateX(3px);
+            }
+
+            95% {
+                clip-path: inset(40% 0 40% 0);
+                transform: translateX(-2px);
+            }
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.75rem;
+            color: var(--green-dim);
+            letter-spacing: 0.1rem;
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 5px var(--green-dim);
+            }
+
+            50% {
+                box-shadow: 0 0 20px var(--green), 0 0 40px var(--green-dim);
+            }
+        }
+
+        .ufo-ascii {
+            font-family: 'VT323', monospace;
+            font-size: 0.85rem;
+            color: var(--amber);
+            white-space: pre;
+            line-height: 1.3;
+            text-align: center;
+            margin: 1rem 0;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="classified-stamp">⚠ DECLASSIFIED — FOIA REQUEST #2024-UOP-7741 ⚠</div>
+        <h1 class="glitch" data-text="THE VALLÉE HYPOTHESIS">THE VALLÉE HYPOTHESIS</h1>
+        <div class="subheading">They Are Not From Space. They Never Were.</div>
+        <div class="header-meta">DOCUMENT_ID: VH-0051 | CLEARANCE: UNCLASSIFIED | LAST MODIFIED: ████████</div>
+    </header>
+
+    <div class="ticker-wrap">
+        <span class="ticker">
+            ☐ PROJECT BLUE BOOK NEVER EXPLAINED 22% OF CASES &nbsp;░░░&nbsp;
+            ☐ VALLÉE COUNTED 3,000+ HUMANOID ENCOUNTER REPORTS BEFORE 1970 &nbsp;░░░&nbsp;
+            ☐ UAP INCIDENTS CORRELATE WITH SOCIAL UPHEAVAL — NOT TECHNOLOGICAL PROGRESS &nbsp;░░░&nbsp;
+            ☐ THE PHENOMENON PREDATES THE SPACE AGE BY MILLENNIA &nbsp;░░░&nbsp;
+            ☐ NIMITZ ENCOUNTER DECLASSIFIED 2020 — CRAFT MOVED AT 5,000 MPH WITH NO HEAT SIGNATURE &nbsp;░░░&nbsp;
+            ☐ VALLÉE: "THE UFO IS A WINDOW INTO ANOTHER UNIVERSE" &nbsp;░░░&nbsp;
+            ☐ 1947 ROSWELL DEBRIS NEVER PUBLICLY IDENTIFIED &nbsp;░░░&nbsp;
+        </span>
+    </div>
+
+    <main>
+
+        <!-- CORE THESIS -->
+        <div class="hero-statement">
+            <div class="quote">"The UFO phenomenon represents evidence for other dimensions beyond spacetime;<br>the
+                UFOs may not come from outer space but from a multiverse which is all around us."</div>
+            <div class="attribution">— JACQUES VALLÉE, Computer Scientist, Astronomer, Intelligence Consultant, 1975
+            </div>
+        </div>
+
+        <!-- WHO IS VALLÉE -->
+        <div class="panel" data-label="FILE 01 — SUBJECT">
+            <div class="panel-title">WHO IS JACQUES VALLÉE</div>
+            <p>Jacques Vallée is not a crackpot. He's a computer scientist who worked on ARPANET (the precursor to the
+                internet), an astronomer who catalogued Mars with NASA at JPL, and a venture capitalist. He is also the
+                only person in UFO research that the US government has consulted seriously on multiple occasions. He was
+                the inspiration for the French scientist character in <em>Close Encounters of the Third Kind</em>.
+                Spielberg chose him because he represented the serious side of the field.</p>
+            <br>
+            <p>His thesis, developed over 50 years, is not that UFOs are fake. It is that the conventional explanation —
+                interplanetary spacecraft piloted by biological beings — is demonstrably wrong. And he proves it with
+                math.</p>
+        </div>
+
+        <!-- THE ARGUMENT -->
+        <div class="grid-2">
+            <div class="panel" data-label="FILE 02 — THE CORE ARGUMENT">
+                <div class="panel-title">WHY IT CAN'T BE SPACECRAFT</div>
+                <ul>
+                    <li>Sightings have occurred at a rate impossible to explain by interstellar travel logistics</li>
+                    <li>Craft violate known physics — right-angle turns at hypersonic speeds, no sonic boom</li>
+                    <li>Occupant reports describe beings that evolved alongside human mythology (faeries, demons, angels
+                        — same functional description, different cultural costume)</li>
+                    <li>Encounters frequently cause lasting psychological transformation, not radiation sickness</li>
+                    <li>The phenomenon interacts differently in response to human belief systems — it shapeshifts</li>
+                    <li>No physical hardware has ever been independently verified</li>
+                </ul>
+            </div>
+
+            <div class="panel" data-label="FILE 03 — THE CONTROL SYSTEM">
+                <div class="panel-title">THE CONTROL SYSTEM THEORY</div>
+                <p>Vallée argues the phenomenon functions as a <strong>control system</strong> — something that
+                    deliberately regulates human belief and behaviour by presenting itself at the edge of credibility.
+                    Always enough evidence to be taken seriously. Never enough to be proven.</p>
+                <br>
+                <p>It has done this across every major civilisation. The content changes. The structure doesn't.
+                    Medieval peasants reported encounters with glowing aerial craft piloted by beings from "the land
+                    below." We call them flying saucers. The encounter mechanics are identical.</p>
+                <br>
+                <p>The control system is not necessarily malevolent. It may be <em>instructional</em>. The question is:
+                    who — or what — is doing the teaching?</p>
+            </div>
+        </div>
+
+        <!-- PROBABILITY BARS -->
+        <div class="panel" data-label="FILE 04 — PROBABILITY ASSESSMENT">
+            <div class="panel-title">COMPETING HYPOTHESIS PLAUSIBILITY [ANALYST ASSESSMENT]</div>
+            <div id="prob-bars">
+                <div class="prob-row">
+                    <div class="prob-label">Interplanetary Origin</div>
+                    <div class="prob-bar-wrap">
+                        <div class="prob-bar red" data-w="12"></div>
+                    </div>
+                    <div class="prob-pct">12%</div>
+                </div>
+                <div class="prob-row">
+                    <div class="prob-label">Interdimensional/Control</div>
+                    <div class="prob-bar-wrap">
+                        <div class="prob-bar" data-w="71"></div>
+                    </div>
+                    <div class="prob-pct">71%</div>
+                </div>
+                <div class="prob-row">
+                    <div class="prob-label">Classified Human Tech</div>
+                    <div class="prob-bar-wrap">
+                        <div class="prob-bar amber" data-w="35"></div>
+                    </div>
+                    <div class="prob-pct">35%</div>
+                </div>
+                <div class="prob-row">
+                    <div class="prob-label">Mass Misperception</div>
+                    <div class="prob-bar-wrap">
+                        <div class="prob-bar red" data-w="8"></div>
+                    </div>
+                    <div class="prob-pct">8%</div>
+                </div>
+                <div class="prob-row">
+                    <div class="prob-label">Unknown (Novel Category)</div>
+                    <div class="prob-bar-wrap">
+                        <div class="prob-bar amber" data-w="58"></div>
+                    </div>
+                    <div class="prob-pct">58%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EVIDENCE TABLE -->
+        <div class="panel" data-label="FILE 05 — EVIDENCE LOG">
+            <div class="panel-title">KEY CASE FILES</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>INCIDENT</th>
+                        <th>DATE</th>
+                        <th>SIGNIFICANCE FOR VALLÉE THESIS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>USS Nimitz Encounter</td>
+                        <td>2004-11-14</td>
+                        <td>Military radar + pilot visual + FLIR camera. Craft descended from 80,000ft to sea level in
+                            under 1 second — no heat signature. Physics violation confirmed by multiple independent
+                            systems.</td>
+                    </tr>
+                    <tr>
+                        <td>Valleilala / Humanoid Wave</td>
+                        <td>1954</td>
+                        <td>Over 200 independently reported humanoid encounters across France in a 3-month window. No
+                            coordinated communication possible. Reports cluster spatially around rural areas — not
+                            airports or military bases.</td>
+                    </tr>
+                    <tr>
+                        <td>Travis Walton Abduction</td>
+                        <td>1975-11-05</td>
+                        <td>5 independent witnesses passed polygraph. Subject missing 5 days. Not the case Vallée
+                            endorses, but it illustrates: the event was socially disruptive in proportion to its
+                            ambiguity.</td>
+                    </tr>
+                    <tr>
+                        <td>Colares, Brazil</td>
+                        <td>1977</td>
+                        <td>Brazilian Air Force investigation (Operation Prato). Craft fired beams of light at
+                            civilians, causing burn injuries. Officially classified until 2004. Physician documented 35+
+                            cases of radiation exposure.</td>
+                    </tr>
+                    <tr>
+                        <td>Westall, Victoria AU</td>
+                        <td>1966-04-06</td>
+                        <td>200+ schoolchildren + teachers witness craft land and depart. Students interviewed
+                            separately describe identical craft. Witnesses pressured to recant. Grass circles found.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>The "Miracle of Fátima"</td>
+                        <td>1917-10-13</td>
+                        <td>70,000 witnesses report the sun "dancing." Vallée: aerial luminous disc performing
+                            impossible manoeuvres — identical structure to modern UAP reports. The phenomenon adapts its
+                            interpretation to the audience.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- TERMINAL -->
+        <div class="panel" data-label="FILE 06 — ANALYST NOTES">
+            <div class="panel-title">TERMINAL OUTPUT — PATTERN ANALYSIS</div>
+            <div class="terminal">
+                <div class="terminal-output" id="terminal-text"></div>
+                <span class="cursor-blink"></span>
+            </div>
+        </div>
+
+        <!-- THE REDACTED SECTION -->
+        <div class="panel" data-label="FILE 07 — PARTIALLY DECLASSIFIED">
+            <div class="panel-title">WHAT VALLÉE ACTUALLY BELIEVES [CLICK TO REVEAL]</div>
+            <div class="doc-body">
+                <p>In private correspondence and later interviews, Vallée expanded beyond the published books. He
+                    believes the phenomenon is <span class="redacted" onclick="this.classList.toggle('revealed')">not
+                        passive observation but active manipulation</span>. That there is an <span class="redacted"
+                        onclick="this.classList.toggle('revealed')">intelligence operating across time</span>, not
+                    space. That human consciousness itself may be the <span class="redacted"
+                        onclick="this.classList.toggle('revealed')">technology being modified</span>.</p>
+                <br>
+                <p>He told filmmaker James Fox in 2021: <em>"The phenomenon is real. It is not what ufologists think it
+                        is. It is not what the government thinks it is. It is not what anyone has publicly stated. And
+                        the people who know most about it are the people who talk about it the least."</em></p>
+                <br>
+                <p>His final published conclusion: the phenomenon has a <span class="redacted"
+                        onclick="this.classList.toggle('revealed')">non-human intelligence component</span> that has
+                    been <span class="redacted" onclick="this.classList.toggle('revealed')">present in human experience
+                        since before recorded history</span>, and it is deliberately <span class="redacted"
+                        onclick="this.classList.toggle('revealed')">structurally unknowable by design</span>.</p>
+            </div>
+        </div>
+
+        <!-- ASCII UFO -->
+        <div class="panel" data-label="FILE 08 — VISUALISATION">
+            <div class="ufo-ascii">
+                _____
+                / \
+                ___/ o o \___
+                / \ / \
+                /~~~~~˘˘˘˘˘˘˘~~~~~\
+                | | |
+                _|_|_|_
+                \___/</div>
+            <div class="cta-row">
+                <a href="https://www.jacquesvallee.net" target="_blank" rel="noopener noreferrer" class="btn">OFFICIAL
+                    VALLÉE ARCHIVE</a>
+                <a href="https://archive.org/details/westernernetnufo" target="_blank" rel="noopener noreferrer"
+                    class="btn amber">DECLASSIFIED DOCUMENTS</a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>THIS DOCUMENT IS PROVIDED FOR INFORMATIONAL PURPOSES ONLY.</p>
+        <p style="margin-top:0.5rem;">THE TRUTH DOES NOT REQUIRE YOUR BELIEF.</p>
+        <p style="margin-top:0.5rem; color: rgba(0,255,65,0.3);">// SIGNAL ENDS //</p>
+    </footer>
+
+    <script>
+        // Animate probability bars on load
+        setTimeout(() => {
+            document.querySelectorAll('.prob-bar').forEach(bar => {
+                bar.style.width = bar.dataset.w + '%';
+            });
+        }, 300);
+
+        // Terminal typewriter
+        const lines = [
+            '> INITIALISING PATTERN ANALYSIS...',
+            '> CROSS-REFERENCING 3,847 INCIDENT REPORTS...',
+            '> ANOMALY DETECTED: Encounter reports cluster near major belief-system transitions.',
+            '> ANOMALY DETECTED: Sighting frequency spikes correlate with periods of social instability.',
+            '> ANOMALY DETECTED: Craft behaviour is consistent with being observed — it performs.',
+            '> CONCLUSION: The phenomenon does not behave like a probe. It behaves like a mirror.',
+            '> CONCLUSION: The question is not what they are. It is what we become after.',
+            '> [ANALYSIS COMPLETE — UNCERTAINTY INDEX: HIGH]',
+        ];
+
+        let lineIdx = 0;
+        let charIdx = 0;
+        const output = document.getElementById('terminal-text');
+
+        function typeNext() {
+            if (lineIdx >= lines.length) return;
+            const line = lines[lineIdx];
+            if (charIdx < line.length) {
+                output.innerHTML = output.innerHTML.replace(/\n$/, '') + line[charIdx];
+                charIdx++;
+                setTimeout(typeNext, charIdx === 1 ? 120 : 22);
+            } else {
+                output.innerHTML += '\n';
+                lineIdx++;
+                charIdx = 0;
+                setTimeout(typeNext, lineIdx < 3 ? 400 : 600);
+            }
+        }
+
+        setTimeout(typeNext, 800);
+
+        // Random glitch flash
+        setInterval(() => {
+            if (Math.random() < 0.1) {
+                document.body.style.filter = 'hue-rotate(90deg)';
+                setTimeout(() => { document.body.style.filter = ''; }, 80);
+            }
+        }, 3000);
+    </script>
+
+</body>
+
+</html>

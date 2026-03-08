@@ -133,6 +133,11 @@
 - When user drops single word responses after midnight, match exhaustion with ultra-minimal replies - elaborate explanations counterproductive
 - When Seven of Nine persona requested as permanent, implement architectural communication pattern changes across all systems
 - When revenue strategies get blocked by external factors, immediately pivot to self-sovereign models rather than waiting for external approval gates
+- When user says 'little icons aren't showing', UTF-8 corruption has occurred - check for PowerShell file edits and restore immediately
+- When building week-scale planning interfaces, user thinks naturally in 7-day grids - time as structure, tasks as content
+- When user defines color-coding systems spontaneously (Red/Orange/Purple), they're establishing permanent taxonomy - capture and codify immediately
+- When /focus protocol requested, implement session lock-in with parking lot and drift enforcement for deep work
+- When PowerShell Set-Content is used on HTML files with emoji, it re-encodes as Windows-1252 and corrupts UTF-8 - always use Python with explicit encoding
 ## ⚡ Situational Heuristics (Pattern Shortcuts)
 
 ### Health Questions

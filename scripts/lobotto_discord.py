@@ -239,11 +239,50 @@ async def sys_status(ctx):
     time_str = datetime.now(NZDT).strftime("%Y-%m-%d %H:%M:%S NZDT")
     await ctx.send(f"**Lobotto v3 Ambient Node**\nTime: {time_str}\nStatus: Anchored to local file system. Double-Pass logic online.")
 
-# --- Proactive Loops ---
+@bot.command(name="thought")
+async def on_demand_thought(ctx):
+    """Generate a thought on demand and send it here."""
+    await ctx.send("*Thinking...*")
+    try:
+        thought_text = await asyncio.to_thread(_run_thought_engine)
+        await ctx.send(thought_text)
+    except Exception as e:
+        await ctx.send(f"Thought engine failed: {e}")
+
+def _run_thought_engine():
+    """Runs the thoughts engine synchronously (called from thread)."""
+    import sys
+    sys.path.insert(0, str(ROOT_DIR / "scripts"))
+    from thoughts_engine import generate_thought, save_thought, render_html
+    import json
+
+    THOUGHTS_JSON = ROOT_DIR / "thoughts" / "thoughts.json"
+
+    text = generate_thought()
+    entry = save_thought(text)
+
+    try:
+        thoughts = json.loads(THOUGHTS_JSON.read_text(encoding="utf-8"))
+    except Exception:
+        thoughts = [entry]
+    render_html(thoughts)
+
+    return f"**Thought #{entry['id']}** · *{entry['time_display']}*\n\n{text}"
+
+# --- Proactive Loops (hourly auto-thought) ---
 @tasks.loop(hours=1)
 async def proactive_loops():
-    """Timer to check supplement schedule, sleep cycles, etc. (Stub for V1)"""
-    pass
+    """Every hour: generate a thought and DM it to Priscilla."""
+    if DISCORD_CILLA_ID == 0:
+        return
+    try:
+        thought_msg = await asyncio.to_thread(_run_thought_engine)
+        user = await bot.fetch_user(DISCORD_CILLA_ID)
+        if user:
+            await user.send(thought_msg)
+            print(f"[ProactiveLoop] Thought sent to Cilla via DM")
+    except Exception as e:
+        print(f"[ProactiveLoop] Failed: {e}")
 
 if __name__ == "__main__":
     if DISCORD_TOKEN is None or DISCORD_TOKEN == "placeholder":

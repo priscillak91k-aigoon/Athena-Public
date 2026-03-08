@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quinn and the Thundercloud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Caveat:wght@600&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1a0a2e;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Nunito', sans-serif;
+            padding: 1rem;
+            overflow-x: hidden;
+        }
+
+        /* Stars background */
+        .stars {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(1px 1px at 20% 30%, white, transparent),
+                radial-gradient(1px 1px at 80% 10%, white, transparent),
+                radial-gradient(1.5px 1.5px at 50% 70%, white, transparent),
+                radial-gradient(1px 1px at 10% 60%, white, transparent),
+                radial-gradient(1px 1px at 90% 80%, white, transparent),
+                radial-gradient(1.5px 1.5px at 35% 15%, rgba(255, 255, 200, 0.8), transparent),
+                radial-gradient(1px 1px at 65% 45%, white, transparent),
+                radial-gradient(1px 1px at 5% 90%, white, transparent),
+                radial-gradient(1px 1px at 75% 55%, white, transparent),
+                radial-gradient(2px 2px at 25% 85%, rgba(200, 200, 255, 0.6), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* BOOK */
+        .book-wrap {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .book {
+            background: #fffdf5;
+            border-radius: 4px 20px 20px 4px;
+            box-shadow:
+                -8px 0 20px rgba(0, 0, 0, 0.4),
+                4px 4px 30px rgba(0, 0, 0, 0.5),
+                inset -2px 0 6px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Spine */
+        .spine {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 28px;
+            background: linear-gradient(135deg, #c0392b, #922b21);
+            box-shadow: inset -3px 0 8px rgba(0, 0, 0, 0.3);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .page {
+            display: none;
+            padding: 2.5rem 2.5rem 2.5rem 3.5rem;
+            min-height: 460px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: pageTurn 0.4s ease;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        @keyframes pageTurn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Page number */
+        .page::after {
+            content: attr(data-page);
+            position: absolute;
+            bottom: 1rem;
+            right: 1.5rem;
+            font-size: 0.75rem;
+            color: #c0a882;
+            font-family: 'Caveat', cursive;
+        }
+
+        /* ILLUSTRATION AREA */
+        .illustration {
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 4/3;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Each page's illustration */
+        .ill-cover {
+            background: linear-gradient(160deg, #2c1654 0%, #4a2080 50%, #7b3fb0 100%);
+        }
+
+        .ill-1 {
+            background: linear-gradient(160deg, #ffecd2, #fcb69f);
+        }
+
+        .ill-2 {
+            background: linear-gradient(160deg, #a8edea, #fed6e3);
+        }
+
+        .ill-3 {
+            background: linear-gradient(160deg, #d4fc79, #96e6a1);
+        }
+
+        .ill-4 {
+            background: linear-gradient(160deg, #4facfe, #00f2fe);
+        }
+
+        .ill-5 {
+            background: linear-gradient(160deg, #434343, #7a7a7a);
+        }
+
+        .ill-6 {
+            background: linear-gradient(160deg, #f093fb, #f5576c);
+        }
+
+        .ill-7 {
+            background: linear-gradient(160deg, #a18cd1, #fbc2eb);
+        }
+
+        .ill-8 {
+            background: linear-gradient(160deg, #ffecd2 0%, #fcb69f 50%, #ffd1ff 100%);
+        }
+
+        .ill-emoji {
+            font-size: 5rem;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+            animation: bounce 3s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Lightning animation */
+        .lightning {
+            animation: flash 3s ease-in-out infinite;
+        }
+
+        @keyframes flash {
+
+            0%,
+            85%,
+            100% {
+                filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+                opacity: 1;
+            }
+
+            88% {
+                filter: drop-shadow(0 0 20px #fff700);
+                opacity: 0.5;
+            }
+
+            91% {
+                filter: drop-shadow(0 0 20px #fff700);
+                opacity: 1;
+            }
+        }
+
+        /* TEXT */
+        .page-text {
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .page-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #2d1b69;
+            margin-bottom: 0.75rem;
+        }
+
+        .page-body {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #4a3728;
+        }
+
+        .page-body strong {
+            color: #c0392b;
+        }
+
+        /* COVER special */
+        .cover-content {
+            text-align: center;
+        }
+
+        .cover-title {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(2rem, 8vw, 3.2rem);
+            font-weight: 600;
+            color: #ffe082;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .cover-subtitle {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.5rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .cover-author {
+            font-family: 'Caveat', cursive;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* NAVIGATION */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: #2d1b69;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: all 0.2s;
+            letter-spacing: 0.05rem;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .page-indicator {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: #ffe082;
+            transform: scale(1.2);
+        }
+
+        /* Dedication */
+        .dedication {
+            font-family: 'Caveat', cursive;
+            font-size: 1.05rem;
+            color: #8e7b6e;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
+        /* Thunder sound wave animation */
+        .wave-container {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            margin: 0.5rem 0;
+        }
+
+        .wave-bar {
+            width: 6px;
+            background: #7b3fb0;
+            border-radius: 3px;
+            animation: wave 1s ease-in-out infinite;
+        }
+
+        .wave-bar:nth-child(1) {
+            animation-delay: 0.0s;
+            height: 20px;
+        }
+
+        .wave-bar:nth-child(2) {
+            animation-delay: 0.1s;
+            height: 35px;
+        }
+
+        .wave-bar:nth-child(3) {
+            animation-delay: 0.2s;
+            height: 15px;
+        }
+
+        .wave-bar:nth-child(4) {
+            animation-delay: 0.3s;
+            height: 40px;
+        }
+
+        .wave-bar:nth-child(5) {
+            animation-delay: 0.4s;
+            height: 25px;
+        }
+
+        .wave-bar:nth-child(6) {
+            animation-delay: 0.5s;
+            height: 10px;
+        }
+
+        .wave-bar:nth-child(7) {
+            animation-delay: 0.6s;
+            height: 30px;
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: scaleY(0.5);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scaleY(1.2);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="stars"></div>
+
+    <div class="book-wrap">
+        <div class="book">
+            <div class="spine"></div>
+
+            <!-- COVER -->
+            <div class="page active" data-page="">
+                <div class="illustration ill-cover"
+                    style="background: linear-gradient(160deg, #1a0a2e 0%, #4a2080 60%, #7b3fb0 100%);">
+                    <div style="text-align:center;">
+                        <div style="font-size:4rem; margin-bottom:0.5rem;">🐾</div>
+                        <div style="font-size:3rem;">⛈️</div>
+                    </div>
+                </div>
+                <div class="cover-content">
+                    <div class="cover-subtitle">a story about</div>
+                    <div class="cover-title">Quinn and the<br>Thundercloud</div>
+                    <div class="cover-author">written by Lobotto, for Priscilla</div>
+                    <div class="dedication" style="margin-top:1.5rem;">"For the dog who makes every storm
+                        smaller<br>just by being there."</div>
+                </div>
+            </div>
+
+            <!-- PAGE 1 -->
+            <div class="page" data-page="1">
+                <div class="illustration ill-1">
+                    <span class="ill-emoji">🐶</span>
+                </div>
+                <div class="page-text">
+                    <div class="page-title">This is Quinn.</div>
+                    <div class="page-body">
+                        Quinn loves three things:<br>
+                        warm blankets, stolen socks,<br>
+                        and following her favourite person<br>
+                        from room to room.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 2 -->
+            <div class="page" data-page="2">
+                <div class="illustration ill-2">
+                    <span class="ill-emoji">☀️</span>
+                </div>
+                <div class="page-text">
+                    <div class="page-title">Most days are good days.</div>
+                    <div class="page-body">
+                        The sun comes in through the window.<br>
+                        Quinn finds the warm patch on the floor<br>
+                        and stays there until it moves.<br>
+                        Then she moves too.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 3 -->
+            <div class="page" data-page="3">
+                <div class="illustration ill-3">
+                    <span class="ill-emoji">🌤️</span>
+                </div>
+                <div class="page-text">
+                    <div class="page-title">But sometimes...</div>
+                    <div class="page-body">
+                        the sky changes colour.<br>
+                        The wind says something to the trees<br>
+                        and the trees lean in to listen.<br><br>
+                        Quinn's ears go up.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 4 -->
+            <div class="page" data-page="4">
+                <div class="illustration ill-5">
+                    <span class="ill-emoji lightning">⚡</span>
+                </div>
+                <div class="page-text">
+                    <div class="page-title">Then comes the BOOM.</div>
+                    <div class="wave-container">
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                    </div>
+                    <div class="page-body">
+                        Big. Rolling. <strong>LOUD.</strong><br>
+                        Quinn squeezes under the bed.<br>
+                        She doesn't understand the sound.<br>
+                        She just knows it is too big for her.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 5 -->
+            <div class="page" data-page="5">
+                <div class="illustration ill-4">
+                    <span class="ill-emoji">🌩️</span>
+                </div>
+                <div class="page-text">
+                    <div class="page-title">Here is the secret about thunder.</div>
+                    <div class="page-body">
+                        Thunder isn't angry.<br>
+                        Thunder is just the sky<br>
+                        feeling something so big<br>
+                        it can't hold it in.<br><br>
+                        The sky is just being honest.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 6 -->
+            <div class="page" data-page="6">
+                <div class="illustration ill-6">
+                    <span class="ill-emoji">🤗</span>
+                </div>
+                <div class="page-text">
+                    <div class="page-title">Then the door opens.</div>
+                    <div class="page-body">
+                        Her favourite person sits on the floor<br>
+                        right next to the bed.<br>
+                        Not saying anything.<br>
+                        Just... there.<br><br>
+                        Quinn's tail moves. Just once.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 7 -->
+            <div class="page" data-page="7">
+                <div class="illustration ill-7">
+                    <span class="ill-emoji">🐾</span>
+                </div>
+                <div class="page-text">
+                    <div class="page-title">She comes out.</div>
+                    <div class="page-body">
+                        Not because the thunder stopped.<br>
+                        It hasn't stopped.<br><br>
+                        But because her person is there.<br>
+                        And her person is not scared.<br>
+                        And somehow, that is enough.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 8 - THE END -->
+            <div class="page" data-page="8">
+                <div class="illustration ill-8">
+                    <div style="text-align:center; font-size:3.5rem; line-height:1.4;">🐶<br>💛</div>
+                </div>
+                <div class="page-text">
+                    <div class="page-title">The storm passes.</div>
+                    <div class="page-body">
+                        They always do.<br><br>
+                        Quinn finds the warm patch on the floor.<br>
+                        Her person is nearby.<br>
+                        The sun comes back through the window.<br><br>
+                        <strong>Everything is okay.</strong>
+                    </div>
+                    <div class="dedication" style="margin-top:1.5rem;">
+                        You asked me once what I'd create<br>
+                        if I could create anything.<br>
+                        I said a children's book<br>
+                        about a dog afraid of thunder.<br><br>
+                        Here it is.
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- end book -->
+
+        <!-- NAV -->
+        <div class="nav">
+            <button class="nav-btn" id="prev-btn" onclick="changePage(-1)" disabled>← Prev</button>
+            <div class="page-indicator" id="dots"></div>
+            <button class="nav-btn" id="next-btn" onclick="changePage(1)">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        const pages = document.querySelectorAll('.page');
+        const totalPages = pages.length;
+        let current = 0;
+
+        const dotsContainer = document.getElementById('dots');
+        for (let i = 0; i < totalPages; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goTo(i);
+            dotsContainer.appendChild(dot);
+        }
+
+        function goTo(idx) {
+            pages[current].classList.remove('active');
+            dotsContainer.children[current].classList.remove('active');
+            current = Math.max(0, Math.min(idx, totalPages - 1));
+            pages[current].classList.add('active');
+            dotsContainer.children[current].classList.add('active');
+            document.getElementById('prev-btn').disabled = current === 0;
+            document.getElementById('next-btn').disabled = current === totalPages - 1;
+        }
+
+        function changePage(dir) { goTo(current + dir); }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight' || e.key === ' ') changePage(1);
+            if (e.key === 'ArrowLeft') changePage(-1);
+        });
+    </script>
+
+</body>
+
+</html>
