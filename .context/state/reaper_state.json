@@ -1,16 +1,10 @@
 {
   "scanned_targets": [
-    "Nextcloud",
-    "Imgur",
-    "Postman",
-    "Sentry",
     "Loom",
-    "Mattermost",
-    "Shopify",
-    "Grammarly",
-    "Mapbox"
+    "Imgur",
+    "Automattic"
   ],
-  "last_run": "2026-03-08T19:33:19.137228",
-  "total_runs": 21,
+  "last_run": "2026-03-08T19:55:48.149175",
+  "total_runs": 22,
   "findings_count": 0
 }
