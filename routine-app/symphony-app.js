@@ -583,6 +583,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function fetchTasksAndRenderTimeline() {
+        // Legacy guard: if the old planner DOM no longer exists, do nothing
+        if (!document.getElementById('today-timeline') && !document.getElementById('pool-today')) return;
         try {
             // First time UI setup
             setupDragAndDropZones();
