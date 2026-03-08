@@ -6,7 +6,7 @@ Scans current session log for:
 1. Placeholder content (unharvested insights)
 2. Insight patterns that may not have been filed to case_studies/protocols
 
-Usage: python3 .agent/scripts/harvest_check.py
+Usage: python3 scripts/harvest_check.py
 
 Runs as part of /end workflow.
 """

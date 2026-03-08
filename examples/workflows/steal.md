@@ -33,7 +33,7 @@ User provides external content (article, GitHub repo, code, framework, Reddit po
    | **Zero** — No value | Silent acknowledgment, no artifacts |
 
 3. **Integration Types** (if High/Medium):
-   - **Code pattern** → Create script in `.agent/scripts/`
+   - **Code pattern** → Create script in `scripts/`
    - **Workflow pattern** → Create/update workflow in `.agent/workflows/`
    - **Protocol/skill** → Create in `.agent/skills/protocols/`
    - **Business insight** → Add to `System_Principles.md` or case study

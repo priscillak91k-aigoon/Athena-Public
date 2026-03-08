@@ -16,7 +16,7 @@ Standard RAG retrieves chunks based on *keyword similarity*.
 
 ## 2. The Architecture
 
-- **Wrapper**: `.agent/scripts/lightrag_wrapper.py`
+- **Wrapper**: `scripts/lightrag_wrapper.py`
 - **Storage**: `.context/memory_bank/lightrag_store/`
 - **Models**:
   - LLM: `mistral` (via Ollama)
@@ -30,10 +30,10 @@ Standard RAG retrieves chunks based on *keyword similarity*.
 
 ```bash
 # Index specific directory
-python3 .agent/scripts/lightrag_wrapper.py --index --dir .agent/skills/protocols/
+python3 scripts/lightrag_wrapper.py --index --dir .agent/skills/protocols/
 
 # Index active context
-python3 .agent/scripts/lightrag_wrapper.py --index --dir .context/memory_bank/
+python3 scripts/lightrag_wrapper.py --index --dir .context/memory_bank/
 ```
 
 ### B. Querying (The Reasoning Phase)
@@ -41,7 +41,7 @@ python3 .agent/scripts/lightrag_wrapper.py --index --dir .context/memory_bank/
 *Use this for complex, multi-hop questions.*
 
 ```bash
-python3 .agent/scripts/lightrag_wrapper.py --query "Explain the relationship between Law #1 and the Kelly Criterion" --mode hybrid
+python3 scripts/lightrag_wrapper.py --query "Explain the relationship between Law #1 and the Kelly Criterion" --mode hybrid
 ```
 
 **Modes**:

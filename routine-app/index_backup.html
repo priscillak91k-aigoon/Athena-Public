@@ -1,0 +1,2963 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Life Hub | Daily Routine Optimizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=4">
+</head>
+
+<body>
+    <div class="background-effects">
+        <div class="blur-blob blob-1"></div>
+        <div class="blur-blob blob-2"></div>
+    </div>
+
+    <!-- UI ERROR LOGGER (Injected first) -->
+    <div id="sys-error-overlay"
+        style="display: none; position: fixed; bottom: 20px; right: 20px; width: 400px; max-width: 90vw; background: #c0c0c0; border: 2px outset #ffffff; border-top: 2px outset #ffffff; border-left: 2px outset #ffffff; border-bottom: 2px inset #808080; border-right: 2px inset #808080; z-index: 99999; font-family: 'MS Sans Serif', 'VT323', monospace; color: #000; padding: 0;">
+        <div style="background: #000080; color: #fff; padding: 4px 8px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; cursor: pointer;"
+            onclick="document.getElementById('sys-error-overlay').style.display = 'none';">
+            <span>⚠️ System Diagnostic Logger</span>
+            <span
+                style="background: #c0c0c0; color: #000; border: 1px outset #fff; padding: 0 4px; font-size: 10px;">X</span>
+        </div>
+        <div id="sys-error-content"
+            style="padding: 8px; font-size: 0.9rem; max-height: 250px; overflow-y: auto; background: #fff; border: 2px inset #808080; margin: 4px;">
+            <i>Waiting for events...</i>
+        </div>
+        <div style="padding: 4px; display: flex; gap: 4px;">
+            <button onclick="clearErrorLog()"
+                style="flex: 1; padding: 2px; background: #c0c0c0; border: 2px outset #fff; font-family: 'VT323', monospace;">Clear</button>
+            <button onclick="downloadErrorLog()"
+                style="flex: 1; padding: 2px; background: #c0c0c0; border: 2px outset #fff; font-family: 'VT323', monospace;">Export</button>
+        </div>
+    </div>
+
+    <!-- MAIN ERROR SCRIPT -->
+    <script>
+        const ERROR_LOG_KEY = 'sys_error_events';
+        window._sysErrors = [];
+
+        function getSavedErrors() {
+            try { return JSON.parse(localStorage.getItem(ERROR_LOG_KEY)) || []; }
+            catch (e) { return []; }
+        }
+
+        function saveError(type, msg, source, line) {
+            const errors = getSavedErrors();
+            const timestamp = new Date().toISOString();
+            const errObj = { timestamp, type, msg, source, line };
+            errors.unshift(errObj); // Add to beginning
+            if (errors.length > 50) errors.pop(); // Keep last 50
+            try { localStorage.setItem(ERROR_LOG_KEY, JSON.stringify(errors)); } catch (e) { }
+            updateOverlay(errObj);
+        }
+
+        function updateOverlay(errStr) {
+            const overlay = document.getElementById('sys-error-overlay');
+            const content = document.getElementById('sys-error-content');
+            overlay.style.display = 'block';
+            let formatted = `[${new Date(errStr.timestamp).toLocaleTimeString()}] <b>${errStr.type}</b>:<br>${errStr.msg}`;
+            if (errStr.source) formatted += `<br><small>${errStr.source}:${errStr.line || '?'}</small>`;
+
+            const div = document.createElement('div');
+            div.style.borderBottom = "1px solid #ccc";
+            div.style.marginBottom = "4px";
+            div.style.paddingBottom = "4px";
+            div.innerHTML = formatted;
+
+            if (content.innerHTML.includes('Waiting for events')) {
+                content.innerHTML = '';
+            }
+            content.insertBefore(div, content.firstChild);
+        }
+
+        function clearErrorLog() {
+            localStorage.removeItem(ERROR_LOG_KEY);
+            document.getElementById('sys-error-content').innerHTML = '<i>Waiting for events...</i>';
+            document.getElementById('sys-error-overlay').style.display = 'none';
+        }
+
+        function downloadErrorLog() {
+            const errors = getSavedErrors();
+            const blob = new Blob([JSON.stringify(errors, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `sys_errors_${new Date().getTime()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // 1. Uncaught Exceptions (e.g. ReferenceError)
+        window.onerror = function (msg, url, lineNo, columnNo, error) {
+            saveError('UNCAUGHT', msg, url, lineNo);
+            return false;
+        };
+
+        // 2. Unhandled Promise Rejections (e.g. failed fetch not caught)
+        window.addEventListener('unhandledrejection', function (event) {
+            saveError('PROMISE', event.reason?.message || event.reason, '', '');
+        });
+
+        // 3. Intercept console.error to show in the logger as well
+        const originalConsoleError = console.error;
+        console.error = function (...args) {
+            const msg = args.map(a => typeof a === 'object' ? JSON.stringify(a) : a).join(' ');
+            saveError('CONSOLE', msg, 'symphony-app.js', '');
+            originalConsoleError.apply(console, args);
+        };
+
+        // Load existing errors on boot
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = getSavedErrors();
+            if (saved.length > 0 && confirm('Previous system errors detected in memory. Show trace logger?')) {
+                const overlay = document.getElementById('sys-error-overlay');
+                const content = document.getElementById('sys-error-content');
+                content.innerHTML = '';
+                saved.slice(0, 5).forEach(err => updateOverlay(err)); // Show top 5
+                overlay.style.display = 'block';
+            }
+        });
+    </script>
+
+    <!-- Lock Screen -->
+    <div id="lock-screen" class="glass-panel lock-container">
+        <h2><span class="icon">🔒</span> The Life Hub Access</h2>
+        <p class="subtitle" style="margin-bottom: 2rem;">Please enter password to unlock.</p>
+        <div class="password-input-group">
+            <input type="password" id="password-input" placeholder="Enter password...">
+            <button id="unlock-btn" class="tab-btn active" style="margin-top: 1rem;">Unlock</button>
+        </div>
+        <div id="password-error" class="error-msg" style="display: none;">Incorrect password.</div>
+    </div>
+
+    <!-- Main App Content (Hidden by default) -->
+    <div class="app-container" id="app-content" style="display: none;">
+        <header class="glass-panel">
+            <div class="date-display">
+                <span id="current-date">Loading...</span>
+                <span class="badge">Day Off</span>
+            </div>
+            <h1>The Life Hub</h1>
+            <p class="subtitle">Your dynamic routine tracker & visual schedule.</p>
+            <button id="audio-toggle" onclick="toggleRetroAudio()"
+                style="position: absolute; top: 12px; right: 16px; background: rgba(0,0,0,0.6); border: 1px solid #0f0; color: #0f0; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #0f0;"
+                title="Toggle Music">🔊 Music</button>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="pulse"
+                style="color: var(--accent-yellow); text-shadow: 0 0 5px var(--accent-yellow); font-weight: 700;">⚡
+                Pulse</button>
+            <button class="tab-btn" data-tab="today">Today's Schedule</button>
+            <button class="tab-btn" data-tab="productivity">Productivity</button>
+            <button class="tab-btn" data-tab="finances">Finances</button>
+            <button class="tab-btn" data-tab="weekly">Weekly/Monthly</button>
+            <button class="tab-btn" data-tab="dog">Quinny</button>
+            <button class="tab-btn" data-tab="workout">Workout</button>
+            <button class="tab-btn" data-tab="bio">Bio Tracking</button>
+            <button class="tab-btn" data-tab="food">Food Metrics</button>
+            <button class="tab-btn" data-tab="reminders">Reminders</button>
+            <button class="tab-btn" data-tab="logistics"
+                style="color: var(--accent-blue); text-shadow: 0 0 5px var(--accent-blue);">🔧 Logistics</button>
+            <button class="tab-btn" data-tab="procurement">Wants vs Needs</button>
+            <button class="tab-btn" data-tab="ideas">Ideas</button>
+            <button class="tab-btn" data-tab="manual"
+                style="color: var(--accent-magenta); text-shadow: 0 0 5px var(--accent-magenta);">User Manual</button>
+            <button class="tab-btn" data-tab="supps"
+                style="color: var(--accent-green); text-shadow: 0 0 5px var(--accent-green);">Supps Vault</button>
+        </div>
+
+        <main class="content-area">
+            <!-- Pulse Overview -->
+            <section id="pulse" class="tab-content active glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">⚡</span> Pulse</h2>
+                    <p class="sub-text">Your at-a-glance command center. Alerts, progress, and things that need
+                        attention.</p>
+                </div>
+
+                <!-- Morning Briefing -->
+                <div class="glass-panel"
+                    style="padding: 1.25rem; margin-bottom: 1.5rem; border-color: rgba(251,191,36,0.4); background: linear-gradient(135deg, rgba(251,191,36,0.08) 0%, rgba(239,68,68,0.04) 100%);">
+                    <h3 style="margin: 0 0 0.5rem 0; color: var(--accent-yellow); font-size: 1.1rem;">
+                        🌅 Read First Thing Every Morning
+                    </h3>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.75rem;">Quick
+                        reminders, things to ask people, stuff to do first thing. This is the first thing you see.</p>
+                    <div id="morning-read-display"
+                        style="font-size: 0.9rem; color: var(--text-primary); line-height: 1.7; white-space: pre-wrap; min-height: 2rem; padding: 0.75rem; background: rgba(0,0,0,0.2); border: 1px solid rgba(251,191,36,0.15); border-radius: 3px; cursor: pointer;"
+                        title="Click to edit">
+                        Click here to write your morning intentions...
+                    </div>
+                    <textarea id="morning-read-editor"
+                        style="display: none; width: 100%; min-height: 120px; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 2px solid var(--accent-yellow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem; line-height: 1.6; resize: vertical; border-radius: 3px;"
+                        placeholder="Write what you need to remember every morning...&#10;&#10;Examples:&#10;• Ask Parker to show me how he rides his bike&#10;• Check if Quinny's worming is due&#10;• Pick up parcel from post office&#10;• Call dentist to reschedule&#10;• Defrost chicken for dinner"></textarea>
+                    <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.5rem;">
+                        <button id="morning-read-edit-btn"
+                            style="padding: 0.3rem 0.8rem; background: rgba(251,191,36,0.15); border: 1px solid rgba(251,191,36,0.3); color: var(--accent-yellow); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 3px;">✏️
+                            Edit</button>
+                        <button id="morning-read-save-btn"
+                            style="display: none; padding: 0.3rem 0.8rem; background: rgba(52,211,153,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 3px;">💾
+                            Save</button>
+                    </div>
+                </div>
+
+                <!-- Pulse Grid -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+
+                    <!-- Today's Progress -->
+                    <div class="glass-panel" style="padding: 1.25rem; border-color: rgba(52,211,153,0.3);">
+                        <h3 style="margin: 0 0 0.75rem 0; color: var(--accent-green); font-size: 1rem;">
+                            📊 Today's Progress
+                        </h3>
+                        <div id="pulse-today-summary"
+                            style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+                            Loading...
+                        </div>
+                    </div>
+
+                    <!-- Open Logistics -->
+                    <div class="glass-panel" style="padding: 1.25rem; border-color: rgba(56,189,248,0.3);">
+                        <h3 style="margin: 0 0 0.75rem 0; color: var(--accent-blue); font-size: 1rem;">
+                            🔧 Open Logistics
+                        </h3>
+                        <div id="pulse-logistics"
+                            style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+                            Loading...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alerts Row -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+
+                    <!-- Low Stock Supplements -->
+                    <div class="glass-panel" style="padding: 1.25rem; border-color: rgba(239,68,68,0.3);">
+                        <h3 style="margin: 0 0 0.75rem 0; color: var(--accent-red); font-size: 1rem;">
+                            💊 Supp Alerts
+                        </h3>
+
+                        <!-- Daily Protocol Tracker -->
+                        <div id="pulse-supps-daily"
+                            style="font-size: 0.95rem; font-weight: bold; margin-bottom: 0.5rem; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 0.5rem; color: var(--text-primary);">
+                            Loading Daily Status...
+                        </div>
+
+                        <div id="pulse-supps"
+                            style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+                            Loading...
+                        </div>
+                    </div>
+
+                    <!-- Medical / Genetic Alerts -->
+                    <div class="glass-panel" style="padding: 1.25rem; border-color: rgba(239,68,68,0.3);">
+                        <h3 style="margin: 0 0 0.75rem 0; color: var(--accent-red); font-size: 1rem;">
+                            🚨 Medical Flags
+                        </h3>
+                        <div id="pulse-medical"
+                            style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+                            Loading...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial Snapshot -->
+                <div class="glass-panel" style="padding: 1.25rem; border-color: rgba(52,211,153,0.3);">
+                    <h3 style="margin: 0 0 0.75rem 0; color: var(--accent-green); font-size: 1rem;">
+                        💰 Financial Snapshot
+                    </h3>
+                    <div id="pulse-finance" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+                        Loading...
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Today's View -->
+            <section id="today" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">✨</span> Today's Action Plan</h2>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="today-progress"></div>
+                    </div>
+                </div>
+                <div class="today-grid">
+
+                    <!-- Left: Task Pool with Expandable Sections -->
+                    <div class="sub-panel">
+                        <h3 style="color: var(--text-primary); margin-bottom: 0.75rem;"><span class="icon">📥</span>
+                            Task Pool</h3>
+
+                        <!-- Quick Add -->
+                        <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+                            <input type="text" id="quick-add-input" placeholder="Quick add a new task..."
+                                style="flex-grow: 1; min-width: 0; padding: 0.5rem;">
+
+                            <select id="quick-add-category"
+                                style="padding: 0.5rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 1rem;">
+                                <option value="Unscheduled">Unscheduled</option>
+                                <option value="Daily Flexible">Daily</option>
+                                <option value="Weekly">Weekly</option>
+                                <option value="Monthly">Monthly</option>
+                            </select>
+
+                            <select id="quick-add-priority"
+                                style="padding: 0.5rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 1rem;">
+                                <option value="ORANGE">Orange (Flex Today)</option>
+                                <option value="RED">Red (Crucial)</option>
+                                <option value="GREEN">Green (Flexible)</option>
+                            </select>
+
+                            <button id="quick-add-btn">Add</button>
+                        </div>
+
+                        <!-- Priority Legend -->
+                        <div
+                            style="font-size: 0.8rem; display: flex; gap: 0.75rem; margin-bottom: 1rem; padding: 0.5rem; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: var(--radius-sm);">
+                            <div style="display:flex; align-items:center; gap: 4px;">
+                                <div style="width:10px; height:10px; border-radius:50%; background:var(--accent-red);">
+                                </div>
+                                <span style="color:var(--text-secondary);"><strong>Crucial</strong> (Strict
+                                    Time)</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap: 4px;">
+                                <div
+                                    style="width:10px; height:10px; border-radius:50%; background:var(--accent-orange);">
+                                </div>
+                                <span style="color:var(--text-secondary);"><strong>Flex Today</strong>
+                                    (Required)</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap: 4px;">
+                                <div
+                                    style="width:10px; height:10px; border-radius:50%; background:var(--accent-green);">
+                                </div>
+                                <span style="color:var(--text-secondary);"><strong>Flexible</strong>
+                                    (Moveable)</span>
+                            </div>
+                        </div>
+
+                        <!-- Accordion: Today's Tasks -->
+                        <div class="pool-accordion">
+                            <div class="pool-accordion-header expanded" data-pool="pool-today">
+                                <span>📅 TODAY'S TASKS</span>
+                                <span class="pool-toggle">▼</span>
+                            </div>
+                            <div class="pool-accordion-body drop-zone" id="pool-today" data-time="Unscheduled"
+                                style="display: block;">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+
+
+                        <!-- Accordion: Backlog / Future Tasks -->
+                        <div class="pool-accordion">
+                            <div class="pool-accordion-header" data-pool="pool-future">
+                                <span>🔮 BACKLOG</span>
+                                <span class="pool-toggle">►</span>
+                            </div>
+                            <div class="pool-accordion-body drop-zone" id="pool-future" data-time="Unscheduled"
+                                style="display: none;">
+                                <!-- Add item form -->
+                                <div style="display: flex; gap: 4px; margin-bottom: 4px;">
+                                    <input type="text" id="pool-future-input" placeholder="Add a future item..."
+                                        style="flex: 1; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 0.95rem;">
+                                    <button id="pool-future-add-btn"
+                                        style="padding: 4px 10px; background: #c0c0c0; border: 2px outset var(--win-highlight); font-family: 'VT323', monospace; cursor: pointer; font-weight: bold;">+</button>
+                                </div>
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: The Timeline Drop Zones -->
+                    <div class="sub-panel">
+
+                        <!-- Coming Up This Week -->
+                        <div
+                            style="background: #ffffcc; border: 2px inset var(--win-shadow); padding: 0.5rem; margin-bottom: 0.75rem;">
+                            <h3
+                                style="color: #800000; font-family: 'Press Start 2P', monospace; font-size: 0.5rem; margin: 0 0 0.4rem 0;">
+                                📆 COMING UP THIS WEEK</h3>
+                            <div id="coming-up-this-week"
+                                style="display: flex; flex-direction: column; gap: 4px; font-family: 'VT323', monospace;">
+                                <div style="color: #808080; font-style: italic; font-size: 0.9rem;">Loading events...
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Template Schedule Controls -->
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <h3 style="margin: 0;"><span class="icon">⏱️</span> Timeline
+                                <span id="template-day-badge"
+                                    style="font-size: 0.75rem; padding: 2px 8px; border-radius: 3px; margin-left: 6px; font-weight: 600;"></span>
+                            </h3>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button id="reset-template-btn"
+                                    style="padding: 0.35rem 0.75rem; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: var(--accent-red); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 3px;"
+                                    title="Reset today's schedule to the default template">🔄 Reset</button>
+                                <button id="edit-template-btn"
+                                    style="padding: 0.35rem 0.75rem; background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.4); color: #a855f7; font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 3px;"
+                                    title="Edit the default template for this day type">✏️ Edit Template</button>
+                                <button id="lock-in-btn" class="tab-btn active"
+                                    style="background: var(--accent-green); color: #000; padding: 0.35rem 0.75rem; border-radius: 3px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s;">
+                                    🔒 Lock In
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Template Colour Legend -->
+                        <div
+                            style="font-size: 0.8rem; display: flex; gap: 0.75rem; margin-bottom: 0.75rem; padding: 0.4rem 0.6rem; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 3px;">
+                            <div style="display:flex; align-items:center; gap: 4px;">
+                                <div style="width:10px; height:10px; border-radius:50%; background:#ef4444;"></div>
+                                <span style="color:var(--text-secondary);"><strong>Routine</strong></span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap: 4px;">
+                                <div style="width:10px; height:10px; border-radius:50%; background:#a855f7;"></div>
+                                <span style="color:var(--text-secondary);"><strong>Ad-hoc</strong></span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap: 4px;">
+                                <div style="width:10px; height:10px; border-radius:50%; background:#22c55e;"></div>
+                                <span style="color:var(--text-secondary);"><strong>Done</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Add Ad-hoc Item -->
+                        <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+                            <input type="text" id="adhoc-input" placeholder="Add something to today..."
+                                style="flex-grow: 1; min-width: 0; padding: 0.4rem 0.6rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 0.95rem;">
+                            <select id="adhoc-time-select"
+                                style="padding: 0.4rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 0.9rem;">
+                            </select>
+                            <button id="adhoc-add-btn"
+                                style="padding: 0.4rem 0.8rem; background: rgba(168,85,247,0.2); border: 1px solid #a855f7; color: #a855f7; font-family: 'VT323', monospace; font-size: 0.95rem; cursor: pointer; font-weight: bold;">+
+                                Add</button>
+                        </div>
+                        <div class="timeline" id="today-timeline">
+                            <!-- Half-hour Time Slots -->
+                            <div class="time-slot" data-time="06:00 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    06:00 AM</div>
+                                <div class="drop-zone" data-time="06:00 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="06:30 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    06:30 AM</div>
+                                <div class="drop-zone" data-time="06:30 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="07:00 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    07:00 AM</div>
+                                <div class="drop-zone" data-time="07:00 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="07:30 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    07:30 AM</div>
+                                <div class="drop-zone" data-time="07:30 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="08:00 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    08:00 AM</div>
+                                <div class="drop-zone" data-time="08:00 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="08:30 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    08:30 AM</div>
+                                <div class="drop-zone" data-time="08:30 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="09:00 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    09:00 AM</div>
+                                <div class="drop-zone" data-time="09:00 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="09:30 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    09:30 AM</div>
+                                <div class="drop-zone" data-time="09:30 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="10:00 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    10:00 AM</div>
+                                <div class="drop-zone" data-time="10:00 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="10:30 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    10:30 AM</div>
+                                <div class="drop-zone" data-time="10:30 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="11:00 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    11:00 AM</div>
+                                <div class="drop-zone" data-time="11:00 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="11:30 AM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    11:30 AM</div>
+                                <div class="drop-zone" data-time="11:30 AM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="12:00 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    12:00 PM</div>
+                                <div class="drop-zone" data-time="12:00 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="12:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    12:30 PM</div>
+                                <div class="drop-zone" data-time="12:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="01:00 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    01:00 PM</div>
+                                <div class="drop-zone" data-time="01:00 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="01:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    01:30 PM</div>
+                                <div class="drop-zone" data-time="01:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="02:00 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    02:00 PM</div>
+                                <div class="drop-zone" data-time="02:00 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="02:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    02:30 PM</div>
+                                <div class="drop-zone" data-time="02:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="03:00 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    03:00 PM</div>
+                                <div class="drop-zone" data-time="03:00 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="03:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    03:30 PM</div>
+                                <div class="drop-zone" data-time="03:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="04:00 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    04:00 PM</div>
+                                <div class="drop-zone" data-time="04:00 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="04:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    04:30 PM</div>
+                                <div class="drop-zone" data-time="04:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="05:00 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    05:00 PM</div>
+                                <div class="drop-zone" data-time="05:00 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="05:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    05:30 PM</div>
+                                <div class="drop-zone" data-time="05:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="06:00 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    06:00 PM</div>
+                                <div class="drop-zone" data-time="06:00 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="06:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    06:30 PM</div>
+                                <div class="drop-zone" data-time="06:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="07:00 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    07:00 PM</div>
+                                <div class="drop-zone" data-time="07:00 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="07:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    07:30 PM</div>
+                                <div class="drop-zone" data-time="07:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="08:00 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    08:00 PM</div>
+                                <div class="drop-zone" data-time="08:00 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="08:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    08:30 PM</div>
+                                <div class="drop-zone" data-time="08:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="09:00 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    09:00 PM</div>
+                                <div class="drop-zone" data-time="09:00 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="09:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    09:30 PM</div>
+                                <div class="drop-zone" data-time="09:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="10:00 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    10:00 PM</div>
+                                <div class="drop-zone" data-time="10:00 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="10:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    10:30 PM</div>
+                                <div class="drop-zone" data-time="10:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="11:00 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    11:00 PM</div>
+                                <div class="drop-zone" data-time="11:00 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                            <div class="time-slot" data-time="11:30 PM">
+                                <div class="slot-label"
+                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
+                                    11:30 PM</div>
+                                <div class="drop-zone" data-time="11:30 PM"
+                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Productivity & Gamification View -->
+            <section id="productivity" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">📈</span> Productivity Metrics <span id="points-display"
+                            style="font-size: 1.25rem; font-weight: bold; color: var(--accent-green); margin-left: 1rem;">[0
+                            pts]</span>
+                    </h2>
+                    <p class="sub-text">Your 7-Day Rolling Gamification Score</p>
+                </div>
+
+                <div class="chart-container"
+                    style="position: relative; height: 250px; width:100%; margin-bottom: 2rem; background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-md); padding: 1rem;">
+                    <canvas id="productivityChart"></canvas>
+                </div>
+
+                <div class="workout-rules">
+                    <strong>🎮 Gamification System:</strong>
+                    Tick off tasks in your "Today's Schedule" and "Daily Candidates" lists to rack up points.
+                    Maximize
+                    your daily output and hold yourself accountable. Data is dual-synced via Supabase back into your
+                    local raw Excel Ledger.
+                </div>
+            </section>
+
+            <!-- Finances View -->
+            <section id="finances" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">💰</span> Financial Overview</h2>
+                    <p class="sub-text">Weekly Income & Tax Breakdown (NZD)</p>
+                </div>
+
+                <div class="grid-2-col">
+                    <div class="sub-panel">
+                        <h3>Income Summary</h3>
+                        <div
+                            style="margin-top: 1rem; padding: 1rem; background: rgba(52, 211, 153, 0.1); border: 1px solid var(--accent-green); border-radius: var(--radius-sm); text-align: center;">
+                            <span
+                                style="font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase;">Estimated
+                                Net Weekly Pay</span>
+                            <div id="finance-net-pay"
+                                style="font-size: 2.5rem; font-weight: 700; color: var(--accent-green); margin: 0.5rem 0;">
+                                $0.00</div>
+                        </div>
+
+                        <div
+                            style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; background: rgba(0, 0, 0, 0.05); padding: 1rem; border: 1px solid var(--glass-border); border-radius: 0;">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <label for="input-hours" style="font-weight: bold; color: var(--text-secondary);">Hours
+                                    Worked:</label>
+                                <input type="number" id="input-hours" value="28.5" step="0.5" min="0"
+                                    style="width: 80px; padding: 0.25rem; font-family: 'VT323', monospace; font-size: 1.2rem; border: 2px inset var(--win-shadow);">
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <label style="font-weight: bold; color: var(--text-secondary);">Public Holiday (1.5x
+                                    pay):</label>
+                                <div class="checkbox" id="input-holiday" style="margin-top: 0;"></div>
+                            </div>
+                        </div>
+
+                        <ul class="workout-list" style="margin-top: 1.5rem;">
+                            <li style="display:flex; justify-content:space-between;"><span>Hours Worked</span>
+                                <strong id="finance-hours">0 hrs</strong>
+                            </li>
+                            <li style="display:flex; justify-content:space-between;"><span>Gross Income (@
+                                    $24/hr)</span> <strong id="finance-gross">$0.00</strong></li>
+                            <li style="display:flex; justify-content:space-between; color: #ef4444;"><span>PAYE Tax
+                                    (M
+                                    SL)</span> <strong id="finance-tax">-$0.00</strong></li>
+                            <li style="display:flex; justify-content:space-between; color: #ef4444;"><span>Student
+                                    Loan
+                                    (12%)</span> <strong id="finance-sl">-$0.00</strong></li>
+                            <li style="display:flex; justify-content:space-between; color: var(--accent-blue);">
+                                <span>KiwiSaver (3%)</span> <strong id="finance-ks">-$0.00</strong>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-panel"
+                        style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <h3>Distribution Breakdown</h3>
+                        <div style="position: relative; height: 200px; width: 100%; margin-top: 1rem;">
+                            <canvas id="financePieChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yearly Income Projection -->
+                <div class="sub-panel" style="margin-top: 1.5rem; border-color: rgba(56, 189, 248, 0.3);">
+                    <h3 style="color: var(--accent-blue);">📊 Yearly Income Projection</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                        <div
+                            style="padding: 1rem; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); text-align: center;">
+                            <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">
+                                Baseline (28.5h/wk)</div>
+                            <div id="finance-yearly-baseline-gross"
+                                style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0.25rem 0;">
+                                $0</div>
+                            <div style="font-size: 0.7rem; color: var(--text-secondary);">gross / year</div>
+                            <div id="finance-yearly-baseline-net"
+                                style="font-size: 1.4rem; font-weight: 700; color: var(--accent-blue); margin-top: 0.25rem;">
+                                $0</div>
+                            <div style="font-size: 0.7rem; color: var(--text-secondary);">take-home / year</div>
+                        </div>
+                        <div
+                            style="padding: 1rem; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.2); text-align: center;">
+                            <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">At
+                                Current Hours</div>
+                            <div id="finance-yearly-current-gross"
+                                style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0.25rem 0;">
+                                $0</div>
+                            <div style="font-size: 0.7rem; color: var(--text-secondary);">gross / year</div>
+                            <div id="finance-yearly-current-net"
+                                style="font-size: 1.4rem; font-weight: 700; color: var(--accent-green); margin-top: 0.25rem;">
+                                $0</div>
+                            <div style="font-size: 0.7rem; color: var(--text-secondary);">take-home / year</div>
+                        </div>
+                    </div>
+                    <div id="finance-yearly-diff"
+                        style="text-align: center; margin-top: 0.75rem; font-size: 0.85rem; color: var(--text-secondary);">
+                    </div>
+                </div>
+
+                <!-- Budget Builder -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;">
+
+                    <!-- Add Expense Form + Expense List -->
+                    <div class="sub-panel" style="border-color: rgba(251, 191, 36, 0.3);">
+                        <h3 style="color: var(--accent-yellow);">📋 Budget Builder</h3>
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 1rem;">Add your
+                            recurring bills and expenses. They'll auto-calculate into your weekly budget.</p>
+
+                        <!-- Add Form -->
+                        <div
+                            style="display: flex; flex-direction: column; gap: 0.5rem; padding: 0.75rem; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); margin-bottom: 1rem;">
+                            <input type="text" id="expense-name-input" placeholder="Expense name (e.g., Rent)"
+                                style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
+                            <div style="display: flex; gap: 0.5rem;">
+                                <input type="number" id="expense-amount-input" placeholder="$" step="0.01" min="0"
+                                    style="flex: 1; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
+                                <select id="expense-freq-input"
+                                    style="padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace;">
+                                    <option value="weekly">Weekly</option>
+                                    <option value="fortnightly">Fortnightly</option>
+                                    <option value="monthly">Monthly</option>
+                                    <option value="yearly">Yearly</option>
+                                </select>
+                                <select id="expense-cat-input"
+                                    style="padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace;">
+                                    <option value="essential">🛡️ Essential</option>
+                                    <option value="flexible">🎮 Flexible</option>
+                                </select>
+                            </div>
+                            <button id="add-expense-btn" class="tab-btn active"
+                                style="margin: 0; padding: 0.4rem; background: rgba(52,211,153,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: 'VT323', monospace; font-size: 1rem;">+
+                                Add Expense</button>
+                        </div>
+
+                        <!-- Expenses List -->
+                        <div id="expenses-list" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Weekly Budget Summary -->
+                    <div class="sub-panel" style="border-color: rgba(52, 211, 153, 0.3);">
+                        <h3 style="color: var(--accent-green);">💸 Weekly Budget Summary</h3>
+
+                        <!-- Big disposable number -->
+                        <div
+                            style="margin-top: 1rem; padding: 1rem; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.2); text-align: center;">
+                            <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">
+                                Disposable Income / Week</div>
+                            <div id="budget-disposable"
+                                style="font-size: 2.2rem; font-weight: 700; color: var(--accent-green); margin: 0.25rem 0;">
+                                $0.00</div>
+                            <div id="budget-disposable-daily" style="font-size: 0.8rem; color: var(--text-secondary);">
+                                ($0.00 / day)</div>
+                        </div>
+
+                        <!-- Breakdown -->
+                        <ul class="workout-list" style="margin-top: 1rem;">
+                            <li style="display:flex; justify-content:space-between;">
+                                <span>Net Weekly Pay</span>
+                                <strong id="budget-net-pay" style="color: var(--accent-green);">$0.00</strong>
+                            </li>
+                            <li style="display:flex; justify-content:space-between; color: #ef4444;">
+                                <span>🛡️ Essential Expenses</span>
+                                <strong id="budget-essential-total">-$0.00</strong>
+                            </li>
+                            <li style="display:flex; justify-content:space-between; color: var(--accent-yellow);">
+                                <span>🎮 Flexible Expenses</span>
+                                <strong id="budget-flexible-total">-$0.00</strong>
+                            </li>
+                            <li
+                                style="display:flex; justify-content:space-between; border-top: 2px solid var(--glass-border); padding-top: 0.5rem; margin-top: 0.25rem;">
+                                <span style="font-weight: 700;">Total Weekly Expenses</span>
+                                <strong id="budget-expenses-total" style="color: #ef4444;">-$0.00</strong>
+                            </li>
+                        </ul>
+
+                        <!-- Max Savings Potential -->
+                        <div
+                            style="margin-top: 1rem; padding: 1rem; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); text-align: center;">
+                            <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">🏦
+                                Max Savings Potential / Year</div>
+                            <div style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 0.15rem;">(if you
+                                only paid essentials)</div>
+                            <div id="budget-max-savings"
+                                style="font-size: 1.8rem; font-weight: 700; color: var(--accent-blue); margin: 0.25rem 0;">
+                                $0</div>
+                            <div id="budget-max-savings-weekly"
+                                style="font-size: 0.8rem; color: var(--text-secondary);">($0.00 / week)</div>
+                        </div>
+
+                        <!-- Expense Breakdown Chart -->
+                        <div style="position: relative; height: 180px; width: 100%; margin-top: 1rem;">
+                            <canvas id="budgetPieChart"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Weekly/Monthly View -->
+            <section id="weekly" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">📅</span> Weekly & Monthly Planner</h2>
+                </div>
+
+                <!-- Add Event Form -->
+                <div
+                    style="background: #ffffff; border: 2px inset var(--win-shadow); padding: 0.75rem; margin-bottom: 1rem;">
+                    <h3
+                        style="color: #000080; font-family: 'Press Start 2P', monospace; font-size: 0.55rem; margin-bottom: 0.5rem;">
+                        ➕ ADD EVENT</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: flex-end;">
+                        <div style="flex: 2 1 180px;">
+                            <label
+                                style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Title</label>
+                            <input type="text" id="event-title" placeholder="e.g. Dad's Birthday"
+                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem; box-sizing: border-box;">
+                        </div>
+                        <div style="flex: 1 1 130px;">
+                            <label style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Date</label>
+                            <input type="date" id="event-date"
+                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem; box-sizing: border-box;">
+                        </div>
+                        <div style="flex: 1 1 100px;">
+                            <label style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Time
+                                (opt)</label>
+                            <input type="time" id="event-time"
+                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem; box-sizing: border-box;">
+                        </div>
+                        <div style="flex: 1 1 100px;">
+                            <label
+                                style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Recurrence</label>
+                            <select id="event-recurrence"
+                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem;">
+                                <option value="once">One-Time</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="yearly">Yearly</option>
+                            </select>
+                        </div>
+                        <div style="flex: 0 1 80px;">
+                            <label
+                                style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Color</label>
+                            <select id="event-color"
+                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem;">
+                                <option value="BLUE">🔵 Blue</option>
+                                <option value="RED">🔴 Red</option>
+                                <option value="ORANGE">🟠 Orange</option>
+                                <option value="GREEN">🟢 Green</option>
+                                <option value="PURPLE">🟣 Purple</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1 1 100px;">
+                            <label
+                                style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Category</label>
+                            <select id="event-category"
+                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem;">
+                                <option value="birthday">🎂 Birthday</option>
+                                <option value="appointment">📋 Appointment</option>
+                                <option value="deadline">⏰ Deadline</option>
+                                <option value="reminder">🔔 Reminder</option>
+                                <option value="other">📌 Other</option>
+                            </select>
+                        </div>
+                        <button id="add-event-btn"
+                            style="padding: 6px 16px; background: #008000; border: 2px outset #00ff00; color: #fff; font-family: 'VT323', monospace; font-size: 1.1rem; cursor: pointer; font-weight: bold; text-shadow: 1px 1px 0 #000;">
+                            Add Event
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Calendar Views Grid -->
+                <div class="grid-2-col" style="margin-bottom: 1rem;">
+                    <!-- Week View -->
+                    <div class="sub-panel">
+                        <h3><span class="icon">📆</span> This Week</h3>
+                        <div id="calendar-week-view"
+                            style="background: #ffffff; border: 2px inset var(--win-shadow); padding: 0.5rem; min-height: 200px;">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    <!-- Month View -->
+                    <div class="sub-panel">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <h3 style="margin: 0;"><span class="icon">🗓️</span> <span
+                                    id="calendar-month-title">February 2026</span></h3>
+                            <div>
+                                <button id="cal-prev-month"
+                                    style="background: #c0c0c0; border: 2px outset var(--win-highlight); cursor: pointer; padding: 2px 8px; font-family: 'VT323', monospace; font-weight: bold;">◄</button>
+                                <button id="cal-next-month"
+                                    style="background: #c0c0c0; border: 2px outset var(--win-highlight); cursor: pointer; padding: 2px 8px; font-family: 'VT323', monospace; font-weight: bold;">►</button>
+                            </div>
+                        </div>
+                        <div id="calendar-month-grid"
+                            style="background: #ffffff; border: 2px inset var(--win-shadow); padding: 0.25rem;">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- All Events List -->
+                <div class="sub-panel">
+                    <h3><span class="icon">📋</span> All Events</h3>
+                    <div id="all-events-list"
+                        style="background: #ffffff; border: 2px inset var(--win-shadow); padding: 0.5rem; max-height: 300px; overflow-y: auto;">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Existing Task Trackers -->
+                <div class="grid-2-col" style="margin-top: 1rem;">
+                    <div class="sub-panel">
+                        <h3>Weekly Reset Tasks</h3>
+                        <ul class="task-list" id="weekly-list"></ul>
+                    </div>
+                    <div class="sub-panel">
+                        <h3>Monthly Audit Tasks</h3>
+                        <ul class="task-list" id="monthly-list"></ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dog Protocol View -->
+            <section id="dog" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">🐶</span> Quinny's Page</h2>
+                </div>
+
+                <!-- Profile Hero -->
+                <div
+                    style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; padding: 1rem; background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.2); border-radius: 4px;">
+                    <div style="position: relative; cursor: pointer; width: 120px; height: 120px; flex-shrink: 0;"
+                        id="quinny-photo-wrapper" title="Click to upload a photo of Quinny">
+                        <img id="quinny-profile-img" src="quinny_profile.png" alt="Quinny"
+                            style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent-yellow); box-shadow: 0 0 15px rgba(251,191,36,0.3);">
+                        <div
+                            style="position: absolute; bottom: 2px; right: 2px; background: rgba(0,0,0,0.7); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; border: 1px solid var(--accent-yellow); pointer-events: none;">
+                            📷</div>
+                        <input type="file" id="quinny-photo-upload" accept="image/*"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; border-radius: 50%;">
+                    </div>
+                    <div style="flex: 1;">
+                        <div
+                            style="font-size: 1.5rem; font-weight: 700; color: var(--accent-yellow); font-family: 'VT323', monospace;">
+                            Quinny</div>
+                        <div id="quinny-age"
+                            style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.25rem;">
+                            <!-- Calculated by JS -->
+                        </div>
+                        <div style="margin-top: 0.5rem; display: flex; gap: 0.5rem; align-items: center;">
+                            <label style="font-size: 0.8rem; color: var(--text-secondary);">🎂 Birthday:</label>
+                            <input type="date" id="quinny-birthday-input"
+                                style="padding: 0.3rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 0.9rem;">
+                            <button id="quinny-birthday-save"
+                                style="margin: 0; padding: 0.3rem 0.6rem; background: rgba(52,211,153,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer;">Save</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2-col">
+                    <!-- LEFT COLUMN -->
+                    <div>
+                        <!-- Vaccination Log -->
+                        <div class="sub-panel" style="border-color: rgba(59,130,246,0.3); margin-bottom: 1rem;">
+                            <h3 style="color: var(--accent-blue);">💉 Vaccinations</h3>
+                            <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.75rem;">Track
+                                Quinny's vaccination history and upcoming due dates.</p>
+
+                            <div
+                                style="display: flex; flex-direction: column; gap: 0.5rem; padding: 0.75rem; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); margin-bottom: 0.75rem;">
+                                <input type="text" id="vacc-name-input" placeholder="Vaccine name (e.g., Parvovirus)"
+                                    style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <div style="flex: 1;">
+                                        <label style="font-size: 0.7rem; color: var(--text-secondary);">Date
+                                            Given</label>
+                                        <input type="date" id="vacc-date-input"
+                                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 0.9rem;">
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <label style="font-size: 0.7rem; color: var(--text-secondary);">Next Due</label>
+                                        <input type="date" id="vacc-next-input"
+                                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 0.9rem;">
+                                    </div>
+                                </div>
+                                <button id="vacc-add-btn" class="tab-btn active"
+                                    style="margin: 0; padding: 0.4rem; background: rgba(59,130,246,0.2); border: 1px solid var(--accent-blue); color: var(--accent-blue); font-family: 'VT323', monospace; font-size: 1rem;">+
+                                    Add Vaccination</button>
+                            </div>
+                            <div id="vacc-list" style="display: flex; flex-direction: column; gap: 0.3rem;">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN -->
+                    <div>
+                        <!-- Worming & Flea Treatment -->
+                        <div class="sub-panel" style="border-color: rgba(34,197,94,0.3); margin-bottom: 1rem;">
+                            <h3 style="color: var(--accent-green);">🐛 Worming & Flea Treatment</h3>
+                            <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.75rem;">Log
+                                treatments and track when the next dose is due.</p>
+
+                            <div
+                                style="display: flex; flex-direction: column; gap: 0.5rem; padding: 0.75rem; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); margin-bottom: 0.75rem;">
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <select id="treat-type-input"
+                                        style="flex: 1; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace;">
+                                        <option value="worming">🐛 Worming</option>
+                                        <option value="flea">🪲 Flea/Tick</option>
+                                    </select>
+                                    <input type="text" id="treat-product-input" placeholder="Product name"
+                                        style="flex: 1; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
+                                </div>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <div style="flex: 1;">
+                                        <label style="font-size: 0.7rem; color: var(--text-secondary);">Date
+                                            Given</label>
+                                        <input type="date" id="treat-date-input"
+                                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 0.9rem;">
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <label style="font-size: 0.7rem; color: var(--text-secondary);">Next Due</label>
+                                        <input type="date" id="treat-next-input"
+                                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 0.9rem;">
+                                    </div>
+                                </div>
+                                <button id="treat-add-btn" class="tab-btn active"
+                                    style="margin: 0; padding: 0.4rem; background: rgba(34,197,94,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: 'VT323', monospace; font-size: 1rem;">+
+                                    Add Treatment</button>
+                            </div>
+                            <div id="treat-list" style="display: flex; flex-direction: column; gap: 0.3rem;">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Workout Plan View -->
+            <section id="workout" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">💪</span> Longevity & Stability Workout</h2>
+                    <p class="sub-text">3-Day Split (10kg DB, 3kg DBs, 8kg KB, Bench)</p>
+                </div>
+
+                <div class="workout-rules">
+                    <strong>⚖️ The "Left Side First" Rule:</strong> Start unilateral moves on the weaker left side.
+                    Match reps on the right. <br>
+                    <strong>⏱️ Tempo:</strong> 3-1-1 (3 seconds down, 1 second pause, 1 second up).<br>
+                    <strong>🦶 Foot Rehab (Post-Walk):</strong> 30s Kneeling Heel Sit, 10x Slow Eccentric
+                    Right-to-Left
+                    Calf Drops, 2min Frozen Bottle Roll.
+                </div>
+
+                <div class="grid-3-col" id="workout-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Bio & Health View -->
+            <section id="bio" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">🩸</span> Biological Tracking & Supplements</h2>
+                    <p class="sub-text">DNA Analysis, Blood Trends, and Supplement Protocols. Click sections to
+                        expand.
+                    </p>
+                </div>
+
+                <!-- DNA Report Button -->
+                <div style="margin-bottom: 1rem; text-align: center;">
+                    <button id="dna-report-btn"
+                        style="padding: 0.6rem 1.5rem; background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(59,130,246,0.3)); border: 2px solid rgba(139,92,246,0.5); color: #a78bfa; font-family: 'VT323', monospace; font-size: 1.1rem; cursor: pointer; border-radius: 4px; transition: all 0.3s; text-shadow: 0 0 8px rgba(139,92,246,0.5);">
+                        🧬 View Nuclear DNA Report
+                    </button>
+                </div>
+
+                <!-- DNA Report Modal -->
+                <div id="dna-report-modal"
+                    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 9999; overflow-y: auto;">
+                    <div
+                        style="max-width: 900px; margin: 2rem auto; padding: 2rem; background: var(--bg-surface); border: 2px solid rgba(139,92,246,0.4); border-radius: 8px; position: relative;">
+                        <button id="dna-report-close"
+                            style="position: sticky; top: 0; float: right; background: rgba(239,68,68,0.2); border: 1px solid var(--accent-red); color: var(--accent-red); font-family: 'VT323', monospace; font-size: 1rem; padding: 0.4rem 1rem; cursor: pointer; border-radius: 4px; z-index: 10;">✕
+                            Close</button>
+                        <div id="dna-report-content"
+                            style="color: var(--text-primary); line-height: 1.8; font-size: 0.95rem;">
+                            <div style="text-align: center; color: var(--text-secondary); padding: 2rem;">Loading DNA
+                                Report...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bio Accordion: Supplements (default OPEN) -->
+                <div class="bio-accordion">
+                    <div class="bio-accordion-header expanded" data-bio-panel="bio-supplements-body">
+                        <span>💊 Supplement Protocol <span
+                                style="font-size: 0.75rem; color: var(--accent-blue); font-weight: 400;">(Personalized
+                                —
+                                DNA + Blood)</span></span>
+                        <span class="bio-toggle">▼</span>
+                    </div>
+                    <div class="bio-accordion-body" id="bio-supplements-body" style="display: block;">
+                        <div class="workout-rules" style="font-size: 0.85rem; margin-bottom: 1rem;">
+                            <strong>⚠️ Critical:</strong> NAC — no Selenium blends (TSH borderline low).
+                            Vit D load = 30,000IU/day — get 25(OH)D test at 8 weeks. ~16-18 total caps/day.
+                        </div>
+
+                        <!-- Supplement Date Navigator -->
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 0.5rem; border: 1px solid var(--glass-border); border-radius: 4px; margin-bottom: 1rem;">
+                            <button id="supp-date-prev"
+                                style="background: #c0c0c0; border: 2px outset var(--win-highlight); cursor: pointer; padding: 2px 12px; font-family: 'VT323', monospace; font-weight: bold; color: #000;">◄
+                                Prev Day</button>
+                            <div id="supp-date-display"
+                                style="font-weight: bold; font-size: 1.1rem; color: var(--accent-blue); font-family: 'VT323', monospace; letter-spacing: 1px;">
+                                Today
+                            </div>
+                            <button id="supp-date-next"
+                                style="background: #c0c0c0; border: 2px outset var(--win-highlight); cursor: pointer; padding: 2px 12px; font-family: 'VT323', monospace; font-weight: bold; color: #000;"
+                                disabled>Next Day ►</button>
+                        </div>
+
+                        <!-- Supplement Timing Sub-Accordions -->
+                        <div class="supp-timing-group">
+                            <div class="supp-timing-header expanded" data-supp-body="supp-am-empty-body">
+                                <span style="color: var(--accent-yellow);">☀️ AM — Empty Stomach (~6:30 AM)</span>
+                                <span class="supp-toggle">▼</span>
+                            </div>
+                            <ul class="task-list supp-timing-body" id="supp-am-empty-body" style="display: block;">
+                                <!-- id referenced by JS -->
+                            </ul>
+                        </div>
+
+                        <div class="supp-timing-group">
+                            <div class="supp-timing-header expanded" data-supp-body="supp-am-food-body">
+                                <span style="color: var(--accent-green);">🍳 AM — With Breakfast (~7:00 AM)</span>
+                                <span class="supp-toggle">▼</span>
+                            </div>
+                            <ul class="task-list supp-timing-body" id="supp-am-food-body" style="display: block;">
+                                <!-- id referenced by JS -->
+                            </ul>
+                        </div>
+
+                        <div class="supp-timing-group">
+                            <div class="supp-timing-header expanded" data-supp-body="supp-pm-dinner-body">
+                                <span style="color: var(--accent-blue);">🍽️ PM — With Dinner (~6:30 PM)</span>
+                                <span class="supp-toggle">▼</span>
+                            </div>
+                            <ul class="task-list supp-timing-body" id="supp-pm-dinner-body" style="display: block;">
+                                <!-- id referenced by JS -->
+                            </ul>
+                        </div>
+
+                        <div class="supp-timing-group">
+                            <div class="supp-timing-header expanded" data-supp-body="supp-pm-bed-body">
+                                <span style="color: var(--accent-purple);">🌙 PM — Before Bed (~9:00 PM)</span>
+                                <span class="supp-toggle">▼</span>
+                            </div>
+                            <ul class="task-list supp-timing-body" id="supp-pm-bed-body" style="display: block;">
+                                <!-- id referenced by JS -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bio Accordion: Blood Markers (default CLOSED) -->
+                <div class="bio-accordion">
+                    <div class="bio-accordion-header" data-bio-panel="bio-blood-body">
+                        <span>🩸 Clinical Blood Markers <span
+                                style="font-size: 0.75rem; color: var(--accent-red); font-weight: 400;">[Active
+                                Inflammation Detected]</span></span>
+                        <span class="bio-toggle">►</span>
+                    </div>
+                    <div class="bio-accordion-body" id="bio-blood-body" style="display: none;">
+                        <div class="workout-rules"
+                            style="background: rgba(239, 68, 68, 0.1); border-left-color: var(--accent-red); font-size: 0.85rem;">
+                            <strong>Status:</strong> Active systemic inflammatory response detected. Monitoring
+                            required.
+                        </div>
+                        <ul class="workout-list" id="blood-marker-list" style="margin-top: 1rem;">
+                            <!-- Populated by JS -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Bio Accordion: Medical Alerts (default CLOSED) -->
+                <div class="bio-accordion">
+                    <div class="bio-accordion-header" data-bio-panel="bio-medical-body"
+                        style="border-color: rgba(239, 68, 68, 0.3);">
+                        <span style="color: var(--accent-red);">🚨 Medical Alerts (Doctor Visit) <span
+                                style="font-size: 0.75rem; font-weight: 400;">— 4 flagged genes</span></span>
+                        <span class="bio-toggle">►</span>
+                    </div>
+                    <div class="bio-accordion-body" id="bio-medical-body" style="display: none;">
+                        <div class="workout-rules"
+                            style="font-size: 0.85rem; border-left-color: var(--accent-red); background: rgba(239, 68, 68, 0.05);">
+                            <strong>Priority:</strong> Discuss these highest-yield genetic markers at your next GP
+                            or
+                            specialist visit.
+                        </div>
+                        <div id="medical-alerts-container"
+                            style="display: flex; flex-direction: column; margin-top: 1rem;">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bio Accordion: Genetic Action Plan (default CLOSED) -->
+                <div class="bio-accordion">
+                    <div class="bio-accordion-header" data-bio-panel="bio-genetics-body">
+                        <span>🧬 Genetic Action Plan <span
+                                style="font-size: 0.75rem; color: var(--accent-purple); font-weight: 400;">— 6 DNA
+                                hacks</span></span>
+                        <span class="bio-toggle">►</span>
+                    </div>
+                    <div class="bio-accordion-body" id="bio-genetics-body" style="display: none;">
+                        <div class="workout-rules"
+                            style="font-size: 0.85rem; border-left-color: var(--accent-purple); background: rgba(192, 132, 252, 0.05);">
+                            <strong>Protocol:</strong> Daily lifestyle and training hacks tailored to your specific
+                            DNA
+                            vulnerabilities.
+                        </div>
+                        <div id="genetic-hacks-container"
+                            style="display: flex; flex-direction: column; margin-top: 1rem;">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Food Analytics View -->
+            <section id="food" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">🍎</span> Food Analytics</h2>
+                    <p class="sub-text">DNA-Personalized Nutrition Tracking</p>
+                </div>
+
+                <!-- Top Row: Dashboard Tiles + Live Grade -->
+                <div
+                    style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; margin-bottom: 1.5rem; align-items: start;">
+                    <!-- Macro Dashboard -->
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem;">
+                        <div class="sub-panel" style="text-align: center; padding: 0.75rem;">
+                            <div style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase;">
+                                Calories</div>
+                            <div id="food-dash-calories"
+                                style="font-size: 1.6rem; font-weight: 700; color: var(--text-primary);">0</div>
+                            <div style="font-size: 0.65rem; color: var(--text-secondary);">/ 2100 target</div>
+                        </div>
+                        <div class="sub-panel"
+                            style="text-align: center; padding: 0.75rem; border-color: rgba(56, 189, 248, 0.3);">
+                            <div style="font-size: 0.7rem; color: var(--accent-blue); text-transform: uppercase;">
+                                Protein</div>
+                            <div id="food-dash-protein"
+                                style="font-size: 1.6rem; font-weight: 700; color: var(--text-primary);">0g</div>
+                            <div style="font-size: 0.65rem; color: var(--text-secondary);">/ 120g target</div>
+                        </div>
+                        <div class="sub-panel"
+                            style="text-align: center; padding: 0.75rem; border-color: rgba(251, 191, 36, 0.3);">
+                            <div style="font-size: 0.7rem; color: var(--accent-yellow); text-transform: uppercase;">
+                                Carbs</div>
+                            <div id="food-dash-carbs"
+                                style="font-size: 1.6rem; font-weight: 700; color: var(--text-primary);">0g</div>
+                            <div style="font-size: 0.65rem; color: var(--text-secondary);">
+                                < 150g limit</div>
+                            </div>
+                            <div class="sub-panel"
+                                style="text-align: center; padding: 0.75rem; border-color: rgba(239, 68, 68, 0.3);">
+                                <div style="font-size: 0.7rem; color: var(--accent-red); text-transform: uppercase;">
+                                    Fats</div>
+                                <div id="food-dash-fats"
+                                    style="font-size: 1.6rem; font-weight: 700; color: var(--text-primary);">0g</div>
+                                <div style="font-size: 0.65rem; color: var(--text-secondary);">
+                                    < 80g limit</div>
+                                </div>
+                            </div>
+
+                            <!-- Live DNA Grade -->
+                            <div class="sub-panel" style="text-align: center; padding: 1rem 1.5rem; min-width: 120px;">
+                                <div
+                                    style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 0.25rem;">
+                                    DNA Grade</div>
+                                <div id="food-grade-badge"
+                                    style="font-size: 2.5rem; font-weight: 900; color: #22c55e; text-shadow: 0 0 10px rgba(34,197,94,0.5); font-family: 'VT323', monospace;">
+                                    --</div>
+                                <div id="food-grade-score" style="font-size: 0.7rem; color: var(--text-secondary);">Log
+                                    food to grade</div>
+                            </div>
+                        </div>
+
+                        <!-- Main Content Grid -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+
+                            <!-- Column 1: Search + Portion Picker + Log -->
+                            <div class="sub-panel">
+                                <h3>Log Food</h3>
+                                <!-- Search -->
+                                <div style="position: relative; margin-top: 0.75rem;">
+                                    <input type="text" id="food-search-input"
+                                        placeholder="Search food (e.g., Chicken Breast)..." autocomplete="off"
+                                        style="width: 100%; padding: 0.75rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 1rem;">
+                                    <div id="food-autocomplete-results"
+                                        style="position: absolute; top: 100%; left: 0; width: 100%; max-height: 250px; overflow-y: auto; background: #1e293b; border: 1px solid var(--glass-border); border-top: none; z-index: 10; display: none; margin-top: 2px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); font-family: 'Segoe UI', Arial, sans-serif; font-size: 0.95rem; color: #f1f5f9;">
+                                    </div>
+                                </div>
+
+                                <!-- Portion Picker (hidden by default, shown when food is selected) -->
+                                <div id="food-portion-picker"
+                                    style="display: none; margin-top: 0.75rem; padding: 0.75rem; background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 6px;">
+                                    <div
+                                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                        <strong id="portion-food-name"
+                                            style="color: var(--text-primary); font-size: 0.9rem;">Food Name</strong>
+                                        <button id="portion-cancel-btn"
+                                            style="background: none; border: none; color: var(--accent-red); font-size: 1.2rem; cursor: pointer;">×</button>
+                                    </div>
+                                    <div
+                                        style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
+                                        <input type="number" id="portion-amount" value="100" min="1" max="5000"
+                                            style="width: 80px; padding: 0.4rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 1rem; text-align: center;">
+                                        <select id="portion-unit"
+                                            style="padding: 0.4rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace;">
+                                            <option value="g">grams</option>
+                                            <option value="ml">ml</option>
+                                        </select>
+                                        <button id="portion-serving-btn"
+                                            style="padding: 0.4rem 0.6rem; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: var(--accent-blue); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 4px; white-space: nowrap;"
+                                            title="Use product serving size">1 Serving</button>
+                                    </div>
+                                    <!-- Live macro preview -->
+                                    <div id="portion-preview"
+                                        style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+                                        0 kcal | 0P 0C 0F
+                                    </div>
+                                    <button id="portion-add-btn"
+                                        style="width: 100%; padding: 0.5rem; background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.4); color: var(--accent-green); font-family: 'VT323', monospace; font-size: 1rem; cursor: pointer; border-radius: 4px;">
+                                        + Add to Log
+                                    </button>
+                                </div>
+
+                                <!-- Saved Recipes -->
+                                <div style="margin-top: 1rem;">
+                                    <div class="pool-accordion-header" data-pool="food-recipes"
+                                        style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                        <span
+                                            style="font-weight: 700; color: var(--text-primary); font-size: 0.9rem;">📋
+                                            My Recipes</span>
+                                        <span style="font-size: 0.8rem;">▶</span>
+                                    </div>
+                                    <div id="food-recipes-panel" style="display: none; margin-top: 0.5rem;">
+                                        <div id="food-recipes-list" style="margin-bottom: 0.5rem;">
+                                            <!-- Populated by JS -->
+                                        </div>
+                                        <button id="create-recipe-btn"
+                                            style="width: 100%; padding: 0.4rem; background: rgba(192, 132, 252, 0.1); border: 1px solid rgba(192, 132, 252, 0.3); color: var(--accent-purple); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 4px;">
+                                            + New Recipe
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Recipe Builder (hidden by default) -->
+                                <div id="recipe-builder"
+                                    style="display: none; margin-top: 0.75rem; padding: 0.75rem; background: rgba(192, 132, 252, 0.05); border: 1px solid rgba(192, 132, 252, 0.2); border-radius: 6px;">
+                                    <div
+                                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                        <strong style="color: var(--accent-purple);">New Recipe</strong>
+                                        <button id="recipe-builder-close"
+                                            style="background: none; border: none; color: var(--accent-red); font-size: 1.2rem; cursor: pointer;">×</button>
+                                    </div>
+                                    <input type="text" id="recipe-name-input"
+                                        placeholder="Recipe name (e.g., Morning Smoothie)"
+                                        style="width: 100%; padding: 0.4rem; margin-bottom: 0.5rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace;">
+                                    <ul id="recipe-items-list" class="task-list"
+                                        style="font-size: 0.8rem; margin-bottom: 0.5rem;">
+                                        <li style="color: var(--text-secondary); font-style: italic;">Search and add
+                                            foods above, they'll appear here</li>
+                                    </ul>
+                                    <div id="recipe-totals"
+                                        style="font-size: 0.8rem; color: var(--accent-blue); margin-bottom: 0.5rem;">
+                                    </div>
+                                    <button id="save-recipe-btn"
+                                        style="width: 100%; padding: 0.4rem; background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.4); color: var(--accent-green); font-family: 'VT323', monospace; cursor: pointer; border-radius: 4px;">
+                                        Save Recipe
+                                    </button>
+                                </div>
+
+                                <!-- My Foods (History + Favorites) -->
+                                <div style="margin-top: 1rem;">
+                                    <div class="pool-accordion-header" data-pool="my-foods"
+                                        style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-weight: 700; color: var(--text-primary); font-size: 0.9rem;">⭐
+                                            My Foods</span>
+                                        <span style="font-size: 0.8rem;">▶</span>
+                                    </div>
+                                    <div id="my-foods-panel" style="display: none; margin-top: 0.5rem;">
+                                        <!-- Favorites -->
+                                        <div style="margin-bottom: 0.75rem;">
+                                            <div
+                                                style="font-size: 0.75rem; color: #fbbf24; text-transform: uppercase; font-weight: 700; margin-bottom: 0.3rem; letter-spacing: 0.5px;">
+                                                ⭐ Favorites
+                                            </div>
+                                            <div id="my-foods-favorites-list">
+                                                <!-- Populated by JS -->
+                                            </div>
+                                        </div>
+                                        <!-- Recent -->
+                                        <div>
+                                            <div
+                                                style="font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; font-weight: 700; margin-bottom: 0.3rem; letter-spacing: 0.5px;">
+                                                🕐 Recent
+                                            </div>
+                                            <div id="my-foods-recent-list">
+                                                <!-- Populated by JS -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Today's Log -->
+                                <h3 style="margin-top: 1.5rem;">Today's Log</h3>
+                                <ul class="task-list" id="food-log-list" style="margin-top: 0.5rem;">
+                                </ul>
+                            </div>
+
+                            <!-- Column 2: Grade Breakdown + Audit -->
+                            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                                <!-- DNA Grade Breakdown -->
+                                <div class="sub-panel">
+                                    <h3>DNA Grade Breakdown</h3>
+                                    <div id="food-grade-breakdown" style="margin-top: 0.5rem; font-size: 0.85rem;">
+                                        <!-- Populated by JS with pass/fail per criterion -->
+                                        <div style="color: var(--text-secondary); font-style: italic;">Log food to see
+                                            your DNA-personalized grade</div>
+                                    </div>
+                                    <button id="run-food-audit-btn" class="glass-button"
+                                        style="margin-top: 0.75rem; width: 100%; padding: 0.6rem;">
+                                        <span class="icon">🔍</span> Analyze & Save to History
+                                    </button>
+                                </div>
+
+                                <!-- Macro Doughnut Chart -->
+                                <div class="sub-panel" style="padding: 1rem;">
+                                    <h3>Macro Split</h3>
+                                    <div style="height: 180px; margin-top: 0.5rem;">
+                                        <canvas id="foodMacroChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Historical Charts -->
+                        <div style="margin-top: 1.5rem;">
+                            <div class="sub-panel" style="padding: 1rem;">
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                                    <h3>Grade History</h3>
+                                    <div style="display: flex; gap: 0.25rem;">
+                                        <button class="grade-range-btn" data-days="7"
+                                            style="padding: 2px 8px; background: rgba(56,189,248,0.2); border: 1px solid rgba(56,189,248,0.4); color: var(--accent-blue); font-family: 'VT323', monospace; font-size: 0.8rem; cursor: pointer; border-radius: 3px;">7d</button>
+                                        <button class="grade-range-btn active" data-days="14"
+                                            style="padding: 2px 8px; background: rgba(56,189,248,0.4); border: 1px solid rgba(56,189,248,0.6); color: #fff; font-family: 'VT323', monospace; font-size: 0.8rem; cursor: pointer; border-radius: 3px;">14d</button>
+                                        <button class="grade-range-btn" data-days="30"
+                                            style="padding: 2px 8px; background: rgba(56,189,248,0.2); border: 1px solid rgba(56,189,248,0.4); color: var(--accent-blue); font-family: 'VT323', monospace; font-size: 0.8rem; cursor: pointer; border-radius: 3px;">30d</button>
+                                    </div>
+                                </div>
+                                <div style="height: 200px;">
+                                    <canvas id="gradeHistoryChart"></canvas>
+                                </div>
+                            </div>
+
+                            <!-- Collapsible Detailed Macro History -->
+                            <div class="sub-panel" style="padding: 0; margin-top: 0.75rem;">
+                                <div id="macro-history-header" class="pool-accordion-header"
+                                    style="cursor: pointer; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-weight: 700; color: var(--text-primary); font-size: 0.9rem;">📊
+                                        Detailed Macro History</span>
+                                    <span style="font-size: 0.8rem;">▶</span>
+                                </div>
+                                <div id="macro-history-body" style="display: none; padding: 1rem;">
+                                    <div style="height: 250px;">
+                                        <canvas id="macroHistoryChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </section>
+            <!-- Reminders View -->
+            <section id="reminders" class="tab-content glass-panel" style="border-color: rgba(251, 191, 36, 0.3);">
+                <div class="section-header">
+                    <h2><span class="icon">💡</span> Mental Load & Reminders</h2>
+                    <p class="sub-text" style="color: var(--accent-yellow);">Frequently forgotten items and
+                        household
+                        rules.</p>
+                </div>
+
+                <div class="sub-panel">
+                    <h3>Active Reminders</h3>
+                    <ul class="task-list" id="reminders-list" style="margin-top: 1rem;">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Procurement (Wants vs Needs) View -->
+            <section id="procurement" class="tab-content glass-panel" style="border-color: rgba(56, 189, 248, 0.3);">
+                <div class="section-header">
+                    <h2><span class="icon">⚖️</span> Wants vs. Needs</h2>
+                    <p class="sub-text" style="color: var(--accent-blue);">Cognitive procurement filtering and AI
+                        advisory based on health & financial goals.</p>
+                </div>
+
+                <!-- Add Item Form -->
+                <div class="sub-panel" style="margin-bottom: 1.5rem; border-color: rgba(56, 189, 248, 0.3);">
+                    <h3 style="color: var(--accent-blue);">➕ Add New Item</h3>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem;">
+                        <input type="text" id="procurement-item-input"
+                            placeholder="What do you want/need? (e.g., New Running Shoes)"
+                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
+                        <input type="text" id="procurement-justification-input"
+                            placeholder="Why? (e.g., Current ones are worn out, causing shin splints)"
+                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
+                        <div style="display: flex; gap: 0.5rem;">
+                            <select id="procurement-category-input"
+                                style="flex: 1; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
+                                <option value="NEED">🛡️ Need (Essential)</option>
+                                <option value="WANT">🎮 Want (Discretionary)</option>
+                            </select>
+                            <button id="add-procurement-btn" class="tab-btn active"
+                                style="margin: 0; padding: 0.4rem 1.5rem; background: rgba(52,211,153,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: 'VT323', monospace; font-size: 1rem;">+
+                                Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-3-col">
+                    <!-- Column 1: Essential Needs -->
+                    <div class="sub-panel" style="border-color: rgba(52, 211, 153, 0.3);">
+                        <h3 style="color: var(--accent-green);"><span class="icon">🛡️</span> Essential Needs</h3>
+                        <div class="workout-rules"
+                            style="margin-top: 1rem; font-size: 0.85rem; border-left-color: var(--accent-green); background: rgba(52, 211, 153, 0.05);">
+                            <strong>Rule:</strong> Items must have a biological, structural, or high-yield financial
+                            justification.
+                        </div>
+                        <div id="needs-container"
+                            style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Discretionary Wants -->
+                    <div class="sub-panel" style="border-color: rgba(251, 191, 36, 0.3);">
+                        <h3 style="color: var(--accent-yellow);"><span class="icon">🎮</span> Discretionary Wants
+                        </h3>
+                        <div class="workout-rules"
+                            style="margin-top: 1rem; font-size: 0.85rem; border-left-color: var(--accent-yellow); background: rgba(251, 191, 36, 0.05);">
+                            <strong>Rule:</strong> Purely recreational or luxury items. Lowest priority capital
+                            allocation.
+                        </div>
+                        <div id="wants-container"
+                            style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Lobotto's Advisory -->
+                    <div class="sub-panel" style="border-color: rgba(192, 132, 252, 0.3);">
+                        <h3 style="color: var(--accent-purple);"><span class="icon">🧠</span> Lobotto's Advisory</h3>
+                        <div class="workout-rules"
+                            style="margin-top: 1rem; font-size: 0.85rem; border-left-color: var(--accent-purple); background: rgba(192, 132, 252, 0.05);">
+                            <strong>System:</strong> Cross-referencing requested items against the DNA Master
+                            Blueprint
+                            and current financial velocity.
+                        </div>
+                        <div id="lobotto-advisory-container"
+                            style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ideas / Bucket List View -->
+            <section id="ideas" class="tab-content glass-panel" style="border-color: rgba(16, 185, 129, 0.3);">
+                <div class="section-header">
+                    <h2><span class="icon">💡</span> Ideas & Bucket List</h2>
+                    <p class="sub-text" style="color: var(--accent-green);">A brain dump for your brilliant ideas
+                        and
+                        long-term adventures.</p>
+                </div>
+
+                <div class="grid-2-col">
+                    <div class="sub-panel" style="border-color: rgba(56, 189, 248, 0.3);">
+                        <h3 style="color: var(--accent-blue);"><span class="icon">🍍</span> Bucket List</h3>
+                        <!-- Quick Add for Bucket List -->
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem; margin-bottom: 0.75rem;">
+                            <input type="text" id="quick-add-bucket" placeholder="Add a bucket list item..."
+                                style="flex-grow: 1; min-width: 0; padding: 0.5rem;">
+                            <button id="quick-add-bucket-btn" class="tab-btn">Add</button>
+                        </div>
+                        <ul class="task-list" id="bucket-list" style="margin-top: 1rem;">
+                            <li>
+                                <div class="checkbox"></div>
+                                <div class="task-content">Walk the full Pineapple Track</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sub-panel" style="border-color: rgba(251, 191, 36, 0.3);">
+                        <h3 style="color: var(--accent-yellow);"><span class="icon">🧠</span> Brain Dump</h3>
+                        <!-- Quick Add for Brain Dump -->
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem; margin-bottom: 0.75rem;">
+                            <input type="text" id="quick-add-braindump" placeholder="Dump a random thought..."
+                                style="flex-grow: 1; min-width: 0; padding: 0.5rem;">
+                            <button id="quick-add-braindump-btn" class="tab-btn">Dump</button>
+                        </div>
+                        <ul class="task-list" id="braindump-list" style="margin-top: 1rem;">
+                            <!-- Populated dynamically or left empty initially -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Manual View -->
+            <section id="manual" class="tab-content">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2
+                        style="color: var(--accent-magenta); display: flex; align-items: center; gap: 0.5rem; text-transform: uppercase;">
+                        <span class="icon">📖</span> Operating Manual v1.0
+                    </h2>
+                    <p class="subtitle" style="margin-bottom: 2rem;">Personalized directives based on DNA Atlas &
+                        Biometrics</p>
+
+                    <!-- Core Directives -->
+                    <h3
+                        style="color: var(--text-primary); margin-bottom: 1rem; border-bottom: 1px dotted rgba(255,255,255,0.2); padding-bottom: 0.5rem;">
+                        <span class="icon">⚙️</span> Core Directives (Baseline)
+                    </h3>
+
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                        <div class="glass-panel" style="background: rgba(15, 23, 42, 0.4);">
+                            <h4 style="color: var(--accent-blue); margin-top: 0;">🍎 The Engine (Diet)</h4>
+                            <ul
+                                style="font-size: 0.85rem; color: var(--text-secondary); padding-left: 1.2rem; line-height: 1.5;">
+                                <li><strong>Carbs:</strong> &lt; 150g strict limit (TCF7L2 fragile pancreas). Naked
+                                    carbs are poison.</li>
+                                <li><strong>Protein:</strong> &gt; 120g target (ACTN3 hybrid muscle). Fuel the engine.
+                                </li>
+                                <li><strong>Fats:</strong> &lt; 80g strict limit (9p21 plaque risk). Avoid saturated
+                                    fats.</li>
+                                <li><strong>Fiber:</strong> &gt; 25g non-negotiable (CRP=9). Feed the gut barrier.</li>
+                            </ul>
+                        </div>
+
+                        <div class="glass-panel" style="background: rgba(15, 23, 42, 0.4);">
+                            <h4 style="color: var(--accent-green); margin-top: 0;">🏋️ The Chassis (Training)</h4>
+                            <ul
+                                style="font-size: 0.85rem; color: var(--text-secondary); padding-left: 1.2rem; line-height: 1.5;">
+                                <li><strong>Power:</strong> Built for heavy lifting/sprints (ADRB2 burns fat via
+                                    adrenaline).</li>
+                                <li><strong>Endurance:</strong> 50/50 fast/slow twitch (ACTN3). Excels in Crossfit/MMA
+                                    style.</li>
+                                <li><strong>Danger:</strong> Brittle tendons (COL5A1). <strong>NO</strong> excessive
+                                    plyometrics/box jumps.</li>
+                            </ul>
+                        </div>
+
+                        <div class="glass-panel" style="background: rgba(15, 23, 42, 0.4);">
+                            <h4 style="color: var(--accent-yellow); margin-top: 0;">🧠 The Processor (Mind)</h4>
+                            <ul
+                                style="font-size: 0.85rem; color: var(--text-secondary); padding-left: 1.2rem; line-height: 1.5;">
+                                <li><strong>Durability:</strong> Elite in crisis, easily bored in mundane (COMT
+                                    Warrior).</li>
+                                <li><strong>Drive:</strong> Runs hot on adrenaline (MAOA). Direct into ambition or
+                                    lifting.</li>
+                                <li><strong>Social:</strong> Oxytocin resistant (OXTR). Independent, immune to
+                                    group-think.</li>
+                            </ul>
+                        </div>
+
+                        <div class="glass-panel" style="background: rgba(15, 23, 42, 0.4);">
+                            <h4 style="color: var(--accent-magenta); margin-top: 0;">🔋 The Battery (Sleep)</h4>
+                            <ul
+                                style="font-size: 0.85rem; color: var(--text-secondary); padding-left: 1.2rem; line-height: 1.5;">
+                                <li><strong>Circadian:</strong> Extreme morning lark (CLOCK). Crash at sunset is
+                                    natural.</li>
+                                <li><strong>Caffeine:</strong> 10:00 AM strict cutoff (CYP1A2 10-hour clearance).</li>
+                                <li><strong>Repair:</strong> Mg Glycinate (400mg) mandatory at 9 PM to fix circadian
+                                    aging (SIRT1).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Troubleshooting Protocols -->
+                    <h3
+                        style="color: var(--text-primary); margin-bottom: 1rem; border-bottom: 1px dotted rgba(255,255,255,0.2); padding-bottom: 0.5rem;">
+                        <span class="icon">🚨</span> Troubleshooting Protocols
+                    </h3>
+
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+
+                        <div class="glass-panel"
+                            style="background: rgba(239, 68, 68, 0.05); border-left: 3px solid var(--accent-red);">
+                            <h4 style="color: var(--accent-red); margin-top: 0;">Error: "I ate pure junk / massive
+                                sugar"</h4>
+                            <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                                <strong>The Threat:</strong> Visceral fat storage (KLF14) and massive inflammatory spike
+                                attacking vulnerable arteries (9p21).<br><br>
+                                <strong>Mitigation:</strong>
+                                <ul style="margin: 0.5rem 0 0 0;">
+                                    <li>Immediately take 1200mg NAC + 2 caps Phloe (sponges oxidative stress & seals
+                                        gut).</li>
+                                    <li>Do 20 mins of heavy resistance/sprints. Use ADRB2 adrenaline receptors to force
+                                        the body to burn the glucose rather than storing it.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel"
+                            style="background: rgba(249, 115, 22, 0.05); border-left: 3px solid #f97316;">
+                            <h4 style="color: #f97316; margin-top: 0;">Error: "I am furiously angry / highly impulsive"
+                            </h4>
+                            <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                                <strong>The Threat:</strong> The MAOA "Warrior Gene" isn't clearing out serotonin and
+                                adrenaline. The brain is running dangerously "hot".<br><br>
+                                <strong>Mitigation:</strong>
+                                <ul style="margin: 0.5rem 0 0 0;">
+                                    <li>Recognize it is a chemical backlog, not reality.</li>
+                                    <li>Direct the volatile energy immediately into a heavy physical task or aggressive
+                                        workout. Physical exhaustion manually burns off the neurotransmitters.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel"
+                            style="background: rgba(56, 189, 248, 0.05); border-left: 3px solid var(--accent-blue);">
+                            <h4 style="color: var(--accent-blue); margin-top: 0;">Error: "I drank coffee at 2 PM"</h4>
+                            <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                                <strong>The Threat:</strong> CYP1A2 slow-clearance liver means 50% of the caffeine will
+                                still be attached to brain receptors at midnight, preventing deep sleep.<br><br>
+                                <strong>Mitigation:</strong>
+                                <ul style="margin: 0.5rem 0 0 0;">
+                                    <li>Increase physical activity in the afternoon to boost general metabolic
+                                        clearance.</li>
+                                    <li>Double down on L-Theanine and take 400mg Mg Glycinate at 9:00 PM to manually
+                                        force GABA pathways open, overriding the adenosine blockade.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel"
+                            style="background: rgba(251, 191, 36, 0.05); border-left: 3px solid var(--accent-yellow);">
+                            <h4 style="color: var(--accent-yellow); margin-top: 0;">Error: "I was startled/shocked and
+                                can't calm down"</h4>
+                            <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                                <strong>The Threat:</strong> ADCYAP1R1 trait causes an excessive biological startle
+                                reflex, flooding the system with adrenaline and risking trauma imprinting.<br><br>
+                                <strong>Mitigation:</strong>
+                                <ul style="margin: 0.5rem 0 0 0;">
+                                    <li>Drop everything and do 5 minutes of Box Breathing (4s in, 4s hold, 4s out, 4s
+                                        hold).</li>
+                                    <li>This physical action forces the parasympathetic nervous system back online,
+                                        halting the adrenaline cascade.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Open Logistics View -->
+            <section id="logistics" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">🔧</span> Open Logistics</h2>
+                    <p class="sub-text">Things you need to figure out. Persistent until resolved.</p>
+                </div>
+
+                <!-- Add New Logistics Item Form -->
+                <div class="glass-panel" style="margin-bottom: 2rem; background: rgba(0,0,0,0.2);">
+                    <h3 style="margin-top: 0; margin-bottom: 1rem; color: var(--text-primary);"><span
+                            class="icon">➕</span> Add New Item</h3>
+                    <div style="display: flex; gap: 1rem; align-items: end;">
+                        <div style="flex: 1;">
+                            <label
+                                style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.3rem;">What
+                                needs solving?</label>
+                            <input type="text" id="logistics-title-input"
+                                placeholder="e.g., Hire tracked bike to tow caravan behind new house"
+                                style="width: 100%; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: #fff; font-family: 'VT323', monospace; border-radius: 4px; font-size: 1rem;">
+                        </div>
+                        <button id="add-logistics-btn" class="tab-btn active"
+                            style="margin: 0; height: 36px; padding: 0 1.5rem; background: rgba(56,189,248,0.2); border: 1px solid var(--accent-blue); color: var(--accent-blue); white-space: nowrap;">+
+                            Add</button>
+                    </div>
+                </div>
+
+                <!-- Logistics Items List -->
+                <div id="logistics-items-container" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Solved Log (Collapsible) -->
+                <div style="margin-top: 2rem;">
+                    <div id="logistics-solved-header" class="bio-accordion-header"
+                        data-bio-panel="logistics-solved-body"
+                        style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); border-radius: 6px;">
+                        <span style="font-weight: 700; color: var(--accent-green); font-size: 0.95rem;">✅ Solved Log
+                            <span id="logistics-solved-count"
+                                style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 400;">(0
+                                items)</span></span>
+                        <span class="bio-toggle" style="color: var(--accent-green);">►</span>
+                    </div>
+                    <div class="bio-accordion-body" id="logistics-solved-body"
+                        style="display: none; margin-top: 0.75rem;">
+                        <div id="logistics-solved-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Supps Vault View -->
+            <section id="supps" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">💊</span> Supps Vault</h2>
+                    <p class="sub-text">Inventory and Low-Stock Tracking</p>
+                </div>
+
+                <!-- Add New Supplement Form -->
+                <div class="glass-panel" style="margin-bottom: 2rem; background: rgba(0,0,0,0.2);">
+                    <h3 style="margin-top: 0; margin-bottom: 1rem; color: var(--text-primary);"><span
+                            class="icon">➕</span> Add New Bottle</h3>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 1rem; align-items: end;">
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.3rem;">Supplement
+                                Name</label>
+                            <input type="text" id="supp-name-input" placeholder="e.g., Magnesium Glycinate"
+                                style="width: 100%; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: #fff; font-family: 'VT323', monospace; border-radius: 4px;">
+                        </div>
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.3rem;">Total
+                                Pills (Capacity)</label>
+                            <input type="number" id="supp-capacity-input" placeholder="e.g., 60"
+                                style="width: 100%; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: #fff; font-family: 'VT323', monospace; border-radius: 4px;">
+                        </div>
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.3rem;">Daily
+                                Dose</label>
+                            <input type="number" id="supp-dose-input" placeholder="e.g., 2"
+                                style="width: 100%; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: #fff; font-family: 'VT323', monospace; border-radius: 4px;">
+                        </div>
+                        <button id="add-supp-btn" class="tab-btn active"
+                            style="margin: 0; height: 36px; padding: 0 1rem; background: rgba(34,197,94,0.2); border: 1px solid var(--accent-green); color: var(--accent-green);">Add
+                            to Vault</button>
+                    </div>
+                </div>
+
+                <!-- Inventory Grid -->
+                <h3
+                    style="margin-bottom: 1rem; color: var(--text-primary); border-bottom: 1px dotted rgba(255,255,255,0.2); padding-bottom: 0.5rem;">
+                    <span class="icon">📦</span> Current Inventory
+                </h3>
+                <div id="supps-inventory-grid"
+                    style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <!-- Tracked supplements populated by JS -->
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="retro-audio.js"></script>
+    <script src="symphony-app.js?v=5"></script>
+
+    <!-- Standalone Quinny handlers (runs independently of main script) -->
+    <script>
+        (function () {
+            'use strict';
+            var QUINNY_KEY = 'symphony_quinny_data';
+            var PHOTO_KEY = 'symphony_quinny_photo';
+
+            function getQuinnyData() {
+                try { return JSON.parse(localStorage.getItem(QUINNY_KEY)) || {}; } catch (e) { return {}; }
+            }
+
+            // Photo upload
+            var photoInput = document.getElementById('quinny-photo-upload');
+            var profileImg = document.getElementById('quinny-profile-img');
+
+            // Restore photo
+            try {
+                var saved = localStorage.getItem(PHOTO_KEY);
+                if (saved && profileImg) profileImg.src = saved;
+            } catch (e) { }
+
+            if (photoInput) {
+                photoInput.addEventListener('change', function (e) {
+                    var file = e.target.files[0];
+                    if (!file || !profileImg) return;
+                    var reader = new FileReader();
+                    reader.onload = function (evt) {
+                        var dataUrl = evt.target.result;
+                        profileImg.src = dataUrl;
+                        try { localStorage.setItem(PHOTO_KEY, dataUrl); } catch (e) {
+                            // Too large, resize
+                            var img = new Image();
+                            img.onload = function () {
+                                var c = document.createElement('canvas');
+                                var s = Math.min(300 / img.width, 300 / img.height, 1);
+                                c.width = img.width * s; c.height = img.height * s;
+                                c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+                                var small = c.toDataURL('image/jpeg', 0.6);
+                                try { localStorage.setItem(PHOTO_KEY, small); profileImg.src = small; } catch (e2) { alert('Image too large to save.'); }
+                            };
+                            img.src = dataUrl;
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            // Birthday save
+            var bdaySave = document.getElementById('quinny-birthday-save');
+            var bdayInput = document.getElementById('quinny-birthday-input');
+            var ageDisplay = document.getElementById('quinny-age');
+
+            function showAge() {
+                var data = getQuinnyData();
+                if (!data.birthday) { if (ageDisplay) ageDisplay.innerText = 'Set birthday below \u2193'; return; }
+                if (bdayInput) bdayInput.value = data.birthday;
+                var bday = new Date(data.birthday + 'T00:00:00');
+                var now = new Date();
+                var years = now.getFullYear() - bday.getFullYear();
+                var months = now.getMonth() - bday.getMonth();
+                if (months < 0) { years--; months += 12; }
+                if (now.getDate() < bday.getDate()) { months--; if (months < 0) { years--; months += 12; } }
+                var dogYears = years <= 2 ? years * 10.5 : 21 + (years - 2) * 4;
+                if (ageDisplay) ageDisplay.innerHTML = '\ud83c\udf82 ' + years + ' year' + (years !== 1 ? 's' : '') + ', ' + months + ' month' + (months !== 1 ? 's' : '') + ' old <span style="color:var(--accent-yellow);">(~' + Math.round(dogYears) + ' dog years)</span>';
+            }
+
+            if (bdaySave) {
+                bdaySave.onclick = function () {
+                    var val = bdayInput ? bdayInput.value : '';
+                    if (!val) { alert('Please select a date first.'); return; }
+                    var data = getQuinnyData();
+                    data.birthday = val;
+                    if (!data.vaccinations) data.vaccinations = [];
+                    if (!data.treatments) data.treatments = [];
+                    localStorage.setItem(QUINNY_KEY, JSON.stringify(data));
+                    showAge();
+                    bdaySave.innerText = '\u2705 Saved!';
+                    bdaySave.style.background = 'rgba(52,211,153,0.4)';
+                    setTimeout(function () { bdaySave.innerText = 'Save'; bdaySave.style.background = ''; }, 1500);
+                };
+            }
+            showAge();
+
+            // Morning Read (edit/save)
+            var MORNING_KEY = 'symphony_morning_read';
+            var mrDisplay = document.getElementById('morning-read-display');
+            var mrEditor = document.getElementById('morning-read-editor');
+            var mrEditBtn = document.getElementById('morning-read-edit-btn');
+            var mrSaveBtn = document.getElementById('morning-read-save-btn');
+
+            if (mrDisplay) {
+                var savedMR = localStorage.getItem(MORNING_KEY);
+                if (savedMR) mrDisplay.innerText = savedMR;
+
+                function openEditor() {
+                    if (!mrEditor) return;
+                    mrEditor.value = localStorage.getItem(MORNING_KEY) || '';
+                    mrDisplay.style.display = 'none';
+                    mrEditor.style.display = 'block';
+                    if (mrEditBtn) mrEditBtn.style.display = 'none';
+                    if (mrSaveBtn) mrSaveBtn.style.display = 'inline-block';
+                    mrEditor.focus();
+                }
+                function closeEditor() {
+                    var text = mrEditor ? mrEditor.value.trim() : '';
+                    if (text) {
+                        localStorage.setItem(MORNING_KEY, text);
+                        mrDisplay.innerText = text;
+                    } else {
+                        localStorage.removeItem(MORNING_KEY);
+                        mrDisplay.innerText = 'Click here to write your morning reminders...';
+                    }
+                    if (mrEditor) mrEditor.style.display = 'none';
+                    mrDisplay.style.display = 'block';
+                    if (mrSaveBtn) mrSaveBtn.style.display = 'none';
+                    if (mrEditBtn) mrEditBtn.style.display = 'inline-block';
+                }
+
+                mrDisplay.onclick = openEditor;
+                if (mrEditBtn) mrEditBtn.onclick = openEditor;
+                if (mrSaveBtn) mrSaveBtn.onclick = closeEditor;
+            }
+
+            // DNA Report Modal
+            var dnaBtn = document.getElementById('dna-report-btn');
+            var dnaModal = document.getElementById('dna-report-modal');
+            var dnaClose = document.getElementById('dna-report-close');
+            var dnaContent = document.getElementById('dna-report-content');
+            var dnaLoaded = false;
+
+            if (dnaBtn && dnaModal) {
+                dnaBtn.onclick = function () {
+                    dnaModal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                    if (!dnaLoaded) {
+                        // Try fetching from GitHub Pages path
+                        var paths = ['../health/DNA_God_Mode_Report.md', 'https://raw.githubusercontent.com/priscillak91k-aigoon/Athena-Public/main/health/DNA_God_Mode_Report.md'];
+                        function tryFetch(idx) {
+                            if (idx >= paths.length) {
+                                dnaContent.innerHTML = '<div style="color:var(--accent-red);padding:2rem;text-align:center;">Could not load DNA report. Please view on the <a href="https://priscillak91k-aigoon.github.io/Athena-Public/routine-app/" style="color:var(--accent-blue);">live site</a>.</div>';
+                                return;
+                            }
+                            fetch(paths[idx]).then(function (r) {
+                                if (!r.ok) throw new Error('Not found');
+                                return r.text();
+                            }).then(function (md) {
+                                if (typeof marked !== 'undefined' && marked.parse) {
+                                    dnaContent.innerHTML = marked.parse(md);
+                                } else {
+                                    dnaContent.innerHTML = '<pre style="white-space:pre-wrap;font-family:VT323,monospace;font-size:0.9rem;">' + md + '</pre>';
+                                }
+                                dnaLoaded = true;
+                                // Style the rendered markdown
+                                dnaContent.querySelectorAll('h1,h2,h3').forEach(function (h) { h.style.color = '#a78bfa'; });
+                                dnaContent.querySelectorAll('strong').forEach(function (s) { s.style.color = 'var(--accent-yellow)'; });
+                            }).catch(function () { tryFetch(idx + 1); });
+                        }
+                        tryFetch(0);
+                    }
+                };
+            }
+            if (dnaClose && dnaModal) {
+                dnaClose.onclick = function () {
+                    dnaModal.style.display = 'none';
+                    document.body.style.overflow = '';
+                };
+                // Also close on clicking backdrop
+                dnaModal.onclick = function (e) {
+                    if (e.target === dnaModal) {
+                        dnaModal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }
+                };
+            }
+
+            // Bio accordion toggle fallback (in case main JS doesn't run)
+            document.querySelectorAll('.bio-accordion-header').forEach(function (header) {
+                if (!header.onclick) {
+                    header.onclick = function () {
+                        var panelId = header.getAttribute('data-bio-panel');
+                        if (!panelId) return;
+                        var body = document.getElementById(panelId);
+                        var toggle = header.querySelector('.bio-toggle');
+                        if (!body) return;
+                        var isOpen = header.classList.contains('expanded');
+                        if (isOpen) {
+                            body.style.display = 'none';
+                            header.classList.remove('expanded');
+                            if (toggle) toggle.textContent = '\u25ba';
+                        } else {
+                            body.style.display = 'block';
+                            header.classList.add('expanded');
+                            if (toggle) toggle.textContent = '\u25bc';
+                        }
+                    };
+                }
+            });
+            // Same for supp timing sub-accordions
+            document.querySelectorAll('.supp-timing-header').forEach(function (header) {
+                if (!header.onclick) {
+                    header.onclick = function () {
+                        var bodyId = header.getAttribute('data-supp-body');
+                        if (!bodyId) return;
+                        var body = document.getElementById(bodyId);
+                        var toggle = header.querySelector('.supp-toggle');
+                        if (!body) return;
+                        var isOpen = header.classList.contains('expanded');
+                        if (isOpen) {
+                            body.style.display = 'none';
+                            header.classList.remove('expanded');
+                            if (toggle) toggle.textContent = '\u25ba';
+                        } else {
+                            body.style.display = 'block';
+                            header.classList.add('expanded');
+                            if (toggle) toggle.textContent = '\u25bc';
+                        }
+                    };
+                }
+            });
+        })();
+    </script>
+
+    <!-- Template Schedule System -->
+    <script>
+        (function () {
+            'use strict';
+
+            // ========== DEFAULT TEMPLATES ==========
+            // These are the baseline schedules. Editable via "Edit Template".
+            const DEFAULT_TEMPLATES = {
+                off: [
+                    { time: '06:30 AM', label: '🌅 Wake + NAC (1200mg)', type: 'routine' },
+                    { time: '07:00 AM', label: '🍳 Breakfast + Supplements', type: 'routine' },
+                    { time: '07:30 AM', label: '🐕 Quinn Walk', type: 'routine' },
+                    { time: '08:30 AM', label: '💻 Deep Work / Lobotto', type: 'routine' },
+                    { time: '09:00 AM', label: '💻 Deep Work (continued)', type: 'routine' },
+                    { time: '09:30 AM', label: '💻 Deep Work (continued)', type: 'routine' },
+                    { time: '10:00 AM', label: '☕ Break (no more caffeine after this)', type: 'routine' },
+                    { time: '10:30 AM', label: '💻 Projects / Learning', type: 'routine' },
+                    { time: '11:00 AM', label: '💻 Projects / Learning', type: 'routine' },
+                    { time: '12:00 PM', label: '🍽️ Lunch', type: 'routine' },
+                    { time: '01:00 PM', label: '🏋️ Exercise', type: 'routine' },
+                    { time: '01:30 PM', label: '🏋️ Exercise (continued)', type: 'routine' },
+                    { time: '02:00 PM', label: '🚿 Shower + Recovery', type: 'routine' },
+                    { time: '02:30 PM', label: '📱 Free / Errands', type: 'routine' },
+                    { time: '03:00 PM', label: '📱 Free / Errands', type: 'routine' },
+                    { time: '03:30 PM', label: '🐕 Quinn Afternoon Walk', type: 'routine' },
+                    { time: '04:00 PM', label: '🏠 House Tasks', type: 'routine' },
+                    { time: '05:00 PM', label: '🏠 House Tasks', type: 'routine' },
+                    { time: '06:00 PM', label: '🍽️ Dinner Prep', type: 'routine' },
+                    { time: '06:30 PM', label: '🍽️ Dinner + Fish Oil + D3', type: 'routine' },
+                    { time: '07:30 PM', label: '📺 Downtime', type: 'routine' },
+                    { time: '08:30 PM', label: '📺 Downtime', type: 'routine' },
+                    { time: '09:00 PM', label: '💊 Mag Glycinate + Wind Down', type: 'routine' },
+                    { time: '09:30 PM', label: '📖 Reading / Bed Prep', type: 'routine' },
+                    { time: '10:00 PM', label: '😴 Sleep', type: 'routine' }
+                ],
+                // Fri/Sat: 2:45 PM - 11:00 PM shift
+                work_evening: [
+                    { time: '06:30 AM', label: '🌅 Wake + NAC (1200mg)', type: 'routine' },
+                    { time: '07:00 AM', label: '🍳 Breakfast + Supplements', type: 'routine' },
+                    { time: '07:30 AM', label: '🐕 Quinn Walk', type: 'routine' },
+                    { time: '08:30 AM', label: '📱 Free / Errands', type: 'routine' },
+                    { time: '09:00 AM', label: '📱 Free / Errands', type: 'routine' },
+                    { time: '10:00 AM', label: '🏋️ Exercise', type: 'routine' },
+                    { time: '10:30 AM', label: '🏋️ Exercise (continued)', type: 'routine' },
+                    { time: '11:00 AM', label: '🚿 Shower', type: 'routine' },
+                    { time: '12:00 PM', label: '🍽️ Lunch', type: 'routine' },
+                    { time: '01:00 PM', label: '🐕 Quinn Afternoon Walk', type: 'routine' },
+                    { time: '01:30 PM', label: '👔 Get Ready for Work', type: 'routine' },
+                    { time: '02:00 PM', label: '🛴 Travel to Work', type: 'routine' },
+                    { time: '02:30 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '03:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '04:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '05:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '06:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '07:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '08:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '09:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '10:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '11:00 PM', label: '🛴 Travel Home', type: 'routine' },
+                    { time: '11:30 PM', label: '💊 Mag Glycinate + Sleep', type: 'routine' }
+                ],
+                // Sunday: 11:00 AM - 5:00 PM shift
+                work_sunday: [
+                    { time: '06:30 AM', label: '🌅 Wake + NAC (1200mg)', type: 'routine' },
+                    { time: '07:00 AM', label: '🍳 Breakfast + Supplements', type: 'routine' },
+                    { time: '07:30 AM', label: '🐕 Quinn Walk', type: 'routine' },
+                    { time: '08:30 AM', label: '💻 Lobotto / Projects', type: 'routine' },
+                    { time: '09:00 AM', label: '💻 Lobotto / Projects', type: 'routine' },
+                    { time: '09:30 AM', label: '🚿 Shower + Get Ready', type: 'routine' },
+                    { time: '10:00 AM', label: '👔 Get Ready for Work', type: 'routine' },
+                    { time: '10:30 AM', label: '🛴 Travel to Work', type: 'routine' },
+                    { time: '11:00 AM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '12:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '01:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '02:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '03:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '04:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '05:00 PM', label: '🛴 Travel Home', type: 'routine' },
+                    { time: '05:30 PM', label: '🐕 Quinn Afternoon Walk', type: 'routine' },
+                    { time: '06:00 PM', label: '🍽️ Dinner Prep', type: 'routine' },
+                    { time: '06:30 PM', label: '🍽️ Dinner + Fish Oil + D3', type: 'routine' },
+                    { time: '07:30 PM', label: '📺 Downtime', type: 'routine' },
+                    { time: '08:30 PM', label: '📺 Downtime', type: 'routine' },
+                    { time: '09:00 PM', label: '💊 Mag Glycinate + Wind Down', type: 'routine' },
+                    { time: '09:30 PM', label: '📖 Reading / Bed Prep', type: 'routine' },
+                    { time: '10:00 PM', label: '😴 Sleep', type: 'routine' }
+                ],
+                // Monday: 12:00 PM - 6:00 PM shift
+                work_monday: [
+                    { time: '06:30 AM', label: '🌅 Wake + NAC (1200mg)', type: 'routine' },
+                    { time: '07:00 AM', label: '🍳 Breakfast + Supplements', type: 'routine' },
+                    { time: '07:30 AM', label: '🐕 Quinn Walk', type: 'routine' },
+                    { time: '08:30 AM', label: '💻 Deep Work / Lobotto', type: 'routine' },
+                    { time: '09:00 AM', label: '💻 Deep Work (continued)', type: 'routine' },
+                    { time: '09:30 AM', label: '💻 Deep Work (continued)', type: 'routine' },
+                    { time: '10:00 AM', label: '☕ Break', type: 'routine' },
+                    { time: '10:30 AM', label: '🚿 Shower + Get Ready', type: 'routine' },
+                    { time: '11:00 AM', label: '👔 Get Ready for Work', type: 'routine' },
+                    { time: '11:30 AM', label: '🛴 Travel to Work', type: 'routine' },
+                    { time: '12:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '01:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '02:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '03:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '04:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '05:00 PM', label: '⛽ BP Shift', type: 'routine' },
+                    { time: '05:30 PM', label: '⛽ BP Shift (wrap up)', type: 'routine' },
+                    { time: '06:00 PM', label: '🛴 Travel Home', type: 'routine' },
+                    { time: '06:30 PM', label: '🍽️ Dinner + Fish Oil + D3', type: 'routine' },
+                    { time: '07:30 PM', label: '📺 Downtime', type: 'routine' },
+                    { time: '08:30 PM', label: '🐕 Quinn Evening Walk', type: 'routine' },
+                    { time: '09:00 PM', label: '💊 Mag Glycinate + Wind Down', type: 'routine' },
+                    { time: '09:30 PM', label: '📖 Reading / Bed Prep', type: 'routine' },
+                    { time: '10:00 PM', label: '😴 Sleep', type: 'routine' }
+                ]
+            };
+
+            // ========== DAY TYPE DETECTION ==========
+            function getDayType() {
+                const day = new Date().getDay(); // 0=Sun, 1=Mon, 2=Tue...
+                if (day === 5 || day === 6) return 'work_evening';  // Fri, Sat
+                if (day === 0) return 'work_sunday';                // Sun
+                if (day === 1) return 'work_monday';                // Mon
+                return 'off';                                       // Tue, Wed, Thu
+            }
+
+            function getDayLabel(dayType) {
+                const labels = {
+                    off: '🏠 Day Off',
+                    work_evening: '⛽ Evening Shift',
+                    work_sunday: '⛽ Sunday Shift',
+                    work_monday: '⛽ Monday Shift'
+                };
+                return labels[dayType] || '📅 Today';
+            }
+
+            function getDayBadgeColor(dayType) {
+                return dayType === 'off'
+                    ? 'background: rgba(52,211,153,0.2); color: #22c55e; border: 1px solid rgba(52,211,153,0.4);'
+                    : 'background: rgba(251,191,36,0.2); color: #fbbf24; border: 1px solid rgba(251,191,36,0.4);';
+            }
+
+            // ========== STORAGE KEYS ==========
+            const STORAGE_KEY_TEMPLATE = 'schedule_template_'; // + dayType
+            const STORAGE_KEY_TODAY = 'schedule_today_'; // + YYYY-MM-DD
+            const STORAGE_KEY_DONE = 'schedule_done_'; // + YYYY-MM-DD
+
+            function todayKey() {
+                const d = new Date();
+                return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+            }
+
+            // ========== GET TEMPLATE ==========
+            function getTemplate(dayType) {
+                const saved = localStorage.getItem(STORAGE_KEY_TEMPLATE + dayType);
+                if (saved) {
+                    try { return JSON.parse(saved); } catch (e) { }
+                }
+                return DEFAULT_TEMPLATES[dayType] || DEFAULT_TEMPLATES.off;
+            }
+
+            function saveTemplate(dayType, items) {
+                localStorage.setItem(STORAGE_KEY_TEMPLATE + dayType, JSON.stringify(items));
+            }
+
+            // ========== GET TODAY'S SCHEDULE ==========
+            function getTodaySchedule() {
+                const key = STORAGE_KEY_TODAY + todayKey();
+                const saved = localStorage.getItem(key);
+                if (saved) {
+                    try { return JSON.parse(saved); } catch (e) { }
+                }
+                // First load today — clone from template
+                const dayType = getDayType();
+                const template = getTemplate(dayType);
+                const schedule = template.map(item => ({ ...item }));
+                saveTodaySchedule(schedule);
+                return schedule;
+            }
+
+            function saveTodaySchedule(items) {
+                localStorage.setItem(STORAGE_KEY_TODAY + todayKey(), JSON.stringify(items));
+            }
+
+            // ========== DONE TRACKING ==========
+            function getDoneSet() {
+                const saved = localStorage.getItem(STORAGE_KEY_DONE + todayKey());
+                if (saved) {
+                    try { return new Set(JSON.parse(saved)); } catch (e) { }
+                }
+                return new Set();
+            }
+
+            function saveDoneSet(doneSet) {
+                localStorage.setItem(STORAGE_KEY_DONE + todayKey(), JSON.stringify([...doneSet]));
+            }
+
+            // ========== RENDER ==========
+            function renderTemplateSchedule() {
+                const schedule = getTodaySchedule();
+                const doneSet = getDoneSet();
+                const dayType = getDayType();
+
+                // Set day badge
+                const badge = document.getElementById('template-day-badge');
+                if (badge) {
+                    badge.textContent = getDayLabel(dayType);
+                    badge.style.cssText = getDayBadgeColor(dayType);
+                }
+
+                // Clear existing template items from all drop zones
+                document.querySelectorAll('.template-item').forEach(el => el.remove());
+
+                // Place template items into their time slots
+                schedule.forEach((item, idx) => {
+                    const zone = document.querySelector(`.drop-zone[data-time="${item.time}"]`);
+                    if (!zone) return;
+
+                    const isDone = doneSet.has(idx + '_' + item.time);
+                    const isAdhoc = item.type === 'adhoc';
+
+                    const el = document.createElement('div');
+                    el.className = 'template-item';
+                    el.dataset.idx = idx;
+
+                    // Colour coding
+                    let borderColor = isAdhoc ? '#a855f7' : '#ef4444';
+                    let bgColor = isAdhoc ? 'rgba(168,85,247,0.08)' : 'rgba(239,68,68,0.08)';
+                    if (isDone) {
+                        borderColor = '#22c55e';
+                        bgColor = 'rgba(34,197,94,0.08)';
+                    }
+
+                    el.style.cssText = `
+                    border-left: 3px solid ${borderColor};
+                    background: ${bgColor};
+                    padding: 0.4rem 0.6rem;
+                    margin: 2px 0;
+                    border-radius: 3px;
+                    font-family: 'VT323', monospace;
+                    font-size: 0.95rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    cursor: pointer;
+                    transition: all 0.15s ease;
+                    ${isDone ? 'opacity: 0.5; text-decoration: line-through;' : ''}
+                `;
+
+                    const labelSpan = document.createElement('span');
+                    labelSpan.textContent = item.label;
+                    labelSpan.style.color = isDone ? '#22c55e' : 'var(--text-primary)';
+
+                    const controls = document.createElement('div');
+                    controls.style.cssText = 'display: flex; gap: 4px; align-items: center;';
+
+                    // Done toggle
+                    const doneBtn = document.createElement('button');
+                    doneBtn.textContent = isDone ? '✅' : '⬜';
+                    doneBtn.title = isDone ? 'Mark undone' : 'Mark done';
+                    doneBtn.style.cssText = 'background: none; border: none; cursor: pointer; font-size: 1rem; padding: 0 2px;';
+                    doneBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const ds = getDoneSet();
+                        const key = idx + '_' + item.time;
+                        if (ds.has(key)) { ds.delete(key); } else { ds.add(key); }
+                        saveDoneSet(ds);
+                        renderTemplateSchedule();
+                    });
+
+                    // Remove button (only for ad-hoc items)
+                    if (isAdhoc) {
+                        const removeBtn = document.createElement('button');
+                        removeBtn.textContent = '×';
+                        removeBtn.title = 'Remove';
+                        removeBtn.style.cssText = 'background: none; border: none; cursor: pointer; font-size: 1.1rem; color: #ef4444; font-weight: bold; padding: 0 2px;';
+                        removeBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            const sched = getTodaySchedule();
+                            sched.splice(idx, 1);
+                            saveTodaySchedule(sched);
+                            renderTemplateSchedule();
+                        });
+                        controls.appendChild(removeBtn);
+                    }
+
+                    controls.appendChild(doneBtn);
+                    el.appendChild(labelSpan);
+                    el.appendChild(controls);
+
+                    // Prepend template items (before any Supabase-dragged tasks)
+                    zone.insertBefore(el, zone.firstChild);
+                });
+            }
+
+            // ========== AD-HOC ITEM ==========
+            function populateTimeSelect() {
+                const sel = document.getElementById('adhoc-time-select');
+                if (!sel) return;
+                const times = [];
+                for (let h = 6; h <= 23; h++) {
+                    for (let m = 0; m < 60; m += 30) {
+                        const period = h >= 12 ? 'PM' : 'AM';
+                        let displayH = h > 12 ? h - 12 : h;
+                        if (displayH === 0) displayH = 12;
+                        times.push(`${String(displayH).padStart(2, '0')}:${String(m).padStart(2, '0')} ${period}`);
+                    }
+                }
+                sel.innerHTML = times.map(t => `<option value="${t}">${t}</option>`).join('');
+
+                // Default to nearest time
+                const now = new Date();
+                const nowH = now.getHours();
+                const nowM = now.getMinutes();
+                const nearestM = nowM < 30 ? 0 : 30;
+                const period = nowH >= 12 ? 'PM' : 'AM';
+                let displayH = nowH > 12 ? nowH - 12 : nowH;
+                if (displayH === 0) displayH = 12;
+                const nearestTime = `${String(displayH).padStart(2, '0')}:${String(nearestM).padStart(2, '0')} ${period}`;
+                sel.value = nearestTime;
+            }
+
+            function addAdhocItem() {
+                const input = document.getElementById('adhoc-input');
+                const sel = document.getElementById('adhoc-time-select');
+                if (!input || !sel || !input.value.trim()) return;
+
+                const schedule = getTodaySchedule();
+                schedule.push({
+                    time: sel.value,
+                    label: '🟣 ' + input.value.trim(),
+                    type: 'adhoc'
+                });
+                saveTodaySchedule(schedule);
+                input.value = '';
+                renderTemplateSchedule();
+            }
+
+            // ========== RESET TO TEMPLATE ==========
+            function resetToTemplate() {
+                if (!confirm('Reset today\'s schedule to the default template? This will remove all ad-hoc items.')) return;
+                const dayType = getDayType();
+                const template = getTemplate(dayType);
+                saveTodaySchedule(template.map(item => ({ ...item })));
+                saveDoneSet(new Set());
+                renderTemplateSchedule();
+            }
+
+            // ========== EDIT TEMPLATE ==========
+            let editModalOpen = false;
+
+            function editTemplate() {
+                if (editModalOpen) return;
+                editModalOpen = true;
+
+                const dayType = getDayType();
+                const template = getTemplate(dayType);
+                const dayLabel = getDayLabel(dayType);
+
+                // Generate all time slots 6:00 AM to 11:30 PM
+                const ALL_SLOTS = [];
+                for (let h = 6; h <= 23; h++) {
+                    for (let m = 0; m < 60; m += 30) {
+                        const period = h >= 12 ? 'PM' : 'AM';
+                        let dh = h > 12 ? h - 12 : h;
+                        if (dh === 0) dh = 12;
+                        ALL_SLOTS.push(`${String(dh).padStart(2, '0')}:${String(m).padStart(2, '0')} ${period}`);
+                    }
+                }
+
+                // Build slot map: time -> array of task labels
+                let slotMap = {};
+                ALL_SLOTS.forEach(t => slotMap[t] = []);
+                // Parking: tasks not assigned to any slot
+                let parkedTasks = [];
+                let nextId = 0;
+
+                template.forEach(item => {
+                    const task = { label: item.label, _id: 'tpl_' + (nextId++) };
+                    if (slotMap[item.time]) {
+                        slotMap[item.time].push(task);
+                    } else {
+                        parkedTasks.push(task);
+                    }
+                });
+
+                // Create modal
+                const overlay = document.createElement('div');
+                overlay.id = 'template-edit-modal';
+                overlay.style.cssText = `
+                    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+                    background: rgba(0,0,0,0.7); z-index: 100000;
+                    display: flex; align-items: center; justify-content: center;
+                    backdrop-filter: blur(4px);
+                `;
+
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    background: #1e1e2e; border: 2px solid #a855f7;
+                    border-radius: 8px; padding: 1.25rem; width: 900px; max-width: 95vw;
+                    height: 85vh; display: flex; flex-direction: column;
+                    font-family: 'VT323', monospace; color: #e2e8f0;
+                    box-shadow: 0 0 30px rgba(168,85,247,0.3);
+                `;
+
+                modal.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <h3 style="margin: 0; color: #a855f7; font-size: 1.2rem;">
+                            ✏️ Edit Template — ${dayLabel}
+                        </h3>
+                        <span style="font-size: 0.8rem; color: #64748b;">Drag tasks into time slots</span>
+                    </div>
+
+                    <!-- Add New Task -->
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem; padding: 0.4rem; background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.2); border-radius: 4px;">
+                        <input type="text" id="tpl-add-label" placeholder="New task label (e.g. 🏋️ Exercise)" style="flex: 1; padding: 0.3rem 0.5rem; background: #0f0f1a; border: 1px solid #334155; color: #e2e8f0; font-family: 'VT323', monospace; font-size: 0.95rem;">
+                        <button id="tpl-add-btn" style="padding: 0.3rem 0.75rem; background: rgba(168,85,247,0.2); border: 1px solid #a855f7; color: #a855f7; font-family: 'VT323', monospace; font-size: 0.95rem; cursor: pointer; font-weight: bold;">+ Add to Parking</button>
+                    </div>
+
+                    <!-- Two Column Layout -->
+                    <div style="display: flex; gap: 0.75rem; flex: 1; min-height: 0; overflow: hidden;">
+                        <!-- Timeline Column -->
+                        <div style="flex: 2; display: flex; flex-direction: column; min-width: 0;">
+                            <div style="font-size: 0.9rem; color: #ef4444; font-weight: bold; margin-bottom: 0.3rem; padding-left: 4px;">
+                                📅 Timeline
+                            </div>
+                            <div id="tpl-timeline" style="flex: 1; overflow-y: auto; padding-right: 4px;"></div>
+                        </div>
+                        <!-- Parking Column -->
+                        <div style="flex: 1; display: flex; flex-direction: column; min-width: 180px;">
+                            <div style="font-size: 0.9rem; color: #fbbf24; font-weight: bold; margin-bottom: 0.3rem; padding-left: 4px;">
+                                🅿️ Parking <span id="tpl-park-count" style="color: #64748b; font-weight: normal;"></span>
+                            </div>
+                            <div id="tpl-parking" style="
+                                flex: 1; overflow-y: auto; padding: 0.4rem;
+                                background: rgba(251,191,36,0.03); border: 2px dashed rgba(251,191,36,0.2);
+                                border-radius: 4px; min-height: 100px;
+                            "></div>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div style="display: flex; gap: 0.5rem; margin-top: 0.6rem; justify-content: flex-end;">
+                        <button id="tpl-cancel" style="padding: 0.4rem 0.8rem; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: #ef4444; font-family: 'VT323', monospace; font-size: 1rem; cursor: pointer; border-radius: 4px;">Cancel</button>
+                        <button id="tpl-save" style="padding: 0.4rem 0.8rem; background: rgba(168,85,247,0.2); border: 1px solid #a855f7; color: #a855f7; font-family: 'VT323', monospace; font-size: 1rem; cursor: pointer; border-radius: 4px; font-weight: bold;">💾 Save Template</button>
+                    </div>
+                `;
+
+                overlay.appendChild(modal);
+                document.body.appendChild(overlay);
+
+                // ---- Drag State ----
+                let dragTask = null;
+                let dragSourceSlot = null; // null = from parking
+
+                function createTaskChip(task, fromSlot) {
+                    const chip = document.createElement('div');
+                    chip.draggable = true;
+                    chip.dataset.id = task._id;
+                    chip.style.cssText = `
+                        display: inline-flex; align-items: center; gap: 4px;
+                        padding: 0.25rem 0.5rem; margin: 2px;
+                        background: ${fromSlot ? 'rgba(239,68,68,0.12)' : 'rgba(251,191,36,0.12)'};
+                        border: 1px solid ${fromSlot ? 'rgba(239,68,68,0.3)' : 'rgba(251,191,36,0.3)'};
+                        border-radius: 3px; cursor: grab; font-size: 0.9rem;
+                        transition: all 0.1s; max-width: 100%; white-space: nowrap;
+                        overflow: hidden; text-overflow: ellipsis;
+                    `;
+
+                    const labelSpan = document.createElement('span');
+                    labelSpan.textContent = task.label;
+                    labelSpan.style.cssText = 'flex: 1; overflow: hidden; text-overflow: ellipsis; cursor: text;';
+                    labelSpan.title = 'Click to edit';
+                    labelSpan.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.value = task.label;
+                        input.style.cssText = 'background: #0f0f1a; border: 1px solid #a855f7; color: #e2e8f0; font-family: "VT323", monospace; font-size: 0.9rem; padding: 1px 4px; width: 100%;';
+                        labelSpan.replaceWith(input);
+                        input.focus();
+                        input.select();
+                        const finishEdit = () => {
+                            task.label = input.value.trim() || task.label;
+                            renderModal();
+                        };
+                        input.addEventListener('blur', finishEdit);
+                        input.addEventListener('keypress', (ev) => { if (ev.key === 'Enter') finishEdit(); });
+                    });
+
+                    const delBtn = document.createElement('span');
+                    delBtn.textContent = '×';
+                    delBtn.style.cssText = 'color: #ef4444; cursor: pointer; font-weight: bold; font-size: 1rem; flex-shrink: 0; padding: 0 2px;';
+                    delBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        // Remove from wherever it is
+                        ALL_SLOTS.forEach(t => { slotMap[t] = slotMap[t].filter(x => x._id !== task._id); });
+                        parkedTasks = parkedTasks.filter(x => x._id !== task._id);
+                        renderModal();
+                    });
+
+                    chip.appendChild(labelSpan);
+                    chip.appendChild(delBtn);
+
+                    chip.addEventListener('dragstart', (e) => {
+                        dragTask = task;
+                        dragSourceSlot = fromSlot;
+                        chip.style.opacity = '0.4';
+                        e.dataTransfer.effectAllowed = 'move';
+                    });
+                    chip.addEventListener('dragend', () => {
+                        chip.style.opacity = '1';
+                        dragTask = null;
+                        dragSourceSlot = null;
+                    });
+
+                    return chip;
+                }
+
+                function removeTaskEverywhere(task) {
+                    ALL_SLOTS.forEach(t => { slotMap[t] = slotMap[t].filter(x => x._id !== task._id); });
+                    parkedTasks = parkedTasks.filter(x => x._id !== task._id);
+                }
+
+                function renderModal() {
+                    const timeline = document.getElementById('tpl-timeline');
+                    const parking = document.getElementById('tpl-parking');
+                    timeline.innerHTML = '';
+                    parking.innerHTML = '';
+
+                    // Build timeline slots
+                    ALL_SLOTS.forEach(time => {
+                        const row = document.createElement('div');
+                        row.style.cssText = 'display: flex; align-items: stretch; margin-bottom: 1px; min-height: 32px;';
+
+                        const timeLabel = document.createElement('div');
+                        timeLabel.textContent = time;
+                        timeLabel.style.cssText = 'width: 75px; flex-shrink: 0; font-size: 0.8rem; color: #64748b; padding: 0.3rem 0; text-align: right; padding-right: 8px;';
+
+                        const dropZone = document.createElement('div');
+                        dropZone.dataset.slot = time;
+                        const hasItems = slotMap[time].length > 0;
+                        dropZone.style.cssText = `
+                            flex: 1; min-height: 30px; padding: 2px 4px;
+                            background: ${hasItems ? 'rgba(239,68,68,0.05)' : 'rgba(255,255,255,0.02)'};
+                            border: 1px solid ${hasItems ? 'rgba(239,68,68,0.15)' : 'rgba(255,255,255,0.06)'};
+                            border-radius: 3px; display: flex; flex-wrap: wrap; align-items: center;
+                            gap: 3px; transition: all 0.15s;
+                        `;
+
+                        // Add task chips to slot
+                        slotMap[time].forEach(task => {
+                            dropZone.appendChild(createTaskChip(task, time));
+                        });
+
+                        // Drop zone events
+                        dropZone.addEventListener('dragover', (e) => {
+                            e.preventDefault();
+                            dropZone.style.borderColor = '#a855f7';
+                            dropZone.style.background = 'rgba(168,85,247,0.1)';
+                        });
+                        dropZone.addEventListener('dragleave', () => {
+                            dropZone.style.borderColor = slotMap[time].length > 0 ? 'rgba(239,68,68,0.15)' : 'rgba(255,255,255,0.06)';
+                            dropZone.style.background = slotMap[time].length > 0 ? 'rgba(239,68,68,0.05)' : 'rgba(255,255,255,0.02)';
+                        });
+                        dropZone.addEventListener('drop', (e) => {
+                            e.preventDefault();
+                            if (!dragTask) return;
+                            removeTaskEverywhere(dragTask);
+                            slotMap[time].push(dragTask);
+                            renderModal();
+                        });
+
+                        row.appendChild(timeLabel);
+                        row.appendChild(dropZone);
+                        timeline.appendChild(row);
+                    });
+
+                    // Build parking
+                    if (parkedTasks.length === 0) {
+                        parking.innerHTML = '<div style="color: #64748b; font-size: 0.85rem; text-align: center; padding: 1.5rem 0.5rem;">Drag tasks here to unassign them from a time slot</div>';
+                    } else {
+                        parkedTasks.forEach(task => {
+                            parking.appendChild(createTaskChip(task, null));
+                        });
+                    }
+
+                    // Parking drop zone
+                    parking.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        parking.style.borderColor = '#a855f7';
+                    });
+                    parking.addEventListener('dragleave', () => {
+                        parking.style.borderColor = 'rgba(251,191,36,0.2)';
+                    });
+                    parking.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        if (!dragTask) return;
+                        removeTaskEverywhere(dragTask);
+                        parkedTasks.push(dragTask);
+                        renderModal();
+                    });
+
+                    document.getElementById('tpl-park-count').textContent = `(${parkedTasks.length})`;
+                }
+
+                // Initial render
+                renderModal();
+
+                // Add new task to parking
+                document.getElementById('tpl-add-btn').addEventListener('click', () => {
+                    const label = document.getElementById('tpl-add-label').value.trim();
+                    if (!label) return;
+                    parkedTasks.push({ label, _id: 'new_' + (nextId++) });
+                    document.getElementById('tpl-add-label').value = '';
+                    renderModal();
+                });
+                document.getElementById('tpl-add-label').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') document.getElementById('tpl-add-btn').click();
+                });
+
+                // Close
+                overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+                document.getElementById('tpl-cancel').addEventListener('click', closeModal);
+
+                // Save
+                document.getElementById('tpl-save').addEventListener('click', () => {
+                    if (parkedTasks.length > 0) {
+                        if (!confirm(`${parkedTasks.length} task(s) still parked (no time assigned). They won't be saved. Continue?`)) return;
+                    }
+
+                    const newItems = [];
+                    ALL_SLOTS.forEach(time => {
+                        slotMap[time].forEach(task => {
+                            newItems.push({ time, label: task.label, type: 'routine' });
+                        });
+                    });
+
+                    if (newItems.length === 0) {
+                        alert('No tasks assigned to time slots. Drag tasks into the timeline before saving.');
+                        return;
+                    }
+
+                    saveTemplate(dayType, newItems);
+                    saveTodaySchedule(newItems.map(item => ({ ...item })));
+                    saveDoneSet(new Set());
+                    renderTemplateSchedule();
+                    closeModal();
+                });
+
+                function closeModal() {
+                    overlay.remove();
+                    editModalOpen = false;
+                }
+            }
+
+            // ========== INIT ==========
+            function initTemplateSchedule() {
+                populateTimeSelect();
+                // Render after a short delay to let Supabase tasks load first
+                setTimeout(renderTemplateSchedule, 500);
+
+                // Bind buttons
+                const resetBtn = document.getElementById('reset-template-btn');
+                if (resetBtn) resetBtn.addEventListener('click', resetToTemplate);
+
+                const editBtn = document.getElementById('edit-template-btn');
+                if (editBtn) editBtn.addEventListener('click', editTemplate);
+
+                const addBtn = document.getElementById('adhoc-add-btn');
+                if (addBtn) addBtn.addEventListener('click', addAdhocItem);
+
+                const adhocInput = document.getElementById('adhoc-input');
+                if (adhocInput) adhocInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') addAdhocItem();
+                });
+
+                // Also update the header badge
+                const headerBadge = document.querySelector('.badge');
+                if (headerBadge) {
+                    const dayType = getDayType();
+                    headerBadge.textContent = getDayLabel(dayType).replace(/[^\w\s]/g, '').trim();
+                }
+            }
+
+            // Run immediately if DOM is ready, otherwise wait
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initTemplateSchedule);
+            } else {
+                initTemplateSchedule();
+            }
+
+            // Expose for external use
+            window.renderTemplateSchedule = renderTemplateSchedule;
+        })();
+    </script>
+</body>
+
+</html>

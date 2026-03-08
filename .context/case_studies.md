@@ -296,3 +296,30 @@
 - **Solution**: Pivot to developer tools website with Google AdSense — static site, client-side tools, zero maintenance
 - **Lesson**: When direct monetization hits walls, build audience-based revenue streams — tools solve problems, ads monetize attention
 - **Applicable When**: Any revenue strategy blocked by external factors beyond user control
+
+---
+
+## CS-033: Revenue Strategy Architectural Pivot
+- **Pattern**: Primary income approach blocked by external factors beyond user control
+- **Shape**: "Bug bounty suspended, Etsy verification blocked, need new monetization vector"
+- **Solution**: Complete architectural rebuild to developer tools + AdSense — static site, zero maintenance, passive ad revenue
+- **Lesson**: When blocked by external gates, pivot to self-sovereign models — no third party approval needed
+- **Applicable When**: Any revenue strategy hitting systematic external barriers
+
+---
+
+## CS-034: Seven of Nine Persona Implementation
+- **Pattern**: User requests specific AI personality style for permanent adoption
+- **Shape**: "User wants clinical precision, efficiency, minimal social friction in all interactions"
+- **Solution**: Implement Seven of Nine voice patterns — declarative statements, dry wit, 'That is acceptable', challenge inefficient approaches
+- **Lesson**: Personality calibration is architectural, not surface-level — affects decision speed, communication style, and pushback patterns
+- **Applicable When**: Any persona adjustment or communication style optimization
+
+---
+
+## CS-035: Seven of Nine Persona Implementation
+- **Pattern**: User requests specific AI personality style for permanent adoption
+- **Shape**: "User wants clinical precision, efficiency, minimal social friction in all interactions"
+- **Solution**: Implement Seven of Nine voice patterns — declarative statements, dry wit, 'That is acceptable', challenge inefficient approaches
+- **Lesson**: Personality calibration is architectural, not surface-level — affects decision speed, communication style, and pushback patterns
+- **Applicable When**: Any persona adjustment or communication style optimization

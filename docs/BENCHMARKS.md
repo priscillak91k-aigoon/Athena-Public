@@ -102,8 +102,8 @@ The `~4k tokens` figure represents the **Canonical Memory** target — the singl
 All benchmarks measured with:
 
 ```bash
-time python3 .agent/scripts/boot.py
-time python3 .agent/scripts/smart_search.py "test query"
+time python3 scripts/boot.py
+time python3 scripts/smart_search.py "test query"
 ```
 
 Latency measurements averaged over 50 runs. Token counts measured via Anthropic/OpenAI token counters.

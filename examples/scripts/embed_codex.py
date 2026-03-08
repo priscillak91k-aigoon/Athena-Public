@@ -7,7 +7,7 @@ chunks them, embeds them using sentence-transformers, and stores
 them in a local ChromaDB instance.
 
 Usage:
-    python3 .agent/scripts/embed_codex.py
+    python3 scripts/embed_codex.py
 
 Output:
     Creates/updates .agent/chroma_db/ with vector embeddings.

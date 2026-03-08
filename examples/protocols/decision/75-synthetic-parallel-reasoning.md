@@ -50,7 +50,7 @@ INPUT
                                             ITERATE WITH FEEDBACK
 ```
 
-**Execution**: `python3 .agent/scripts/parallel_orchestrator.py "<query>"`
+**Execution**: `python3 scripts/parallel_orchestrator.py "<query>"`
 
 ---
 

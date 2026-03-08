@@ -378,7 +378,7 @@ See [Protocol 96](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/ex
 
 **Execution**:
 
-1. Run `python3 .agent/scripts/quicksave.py "<brief summary of exchange>"`
+1. Run `python3 scripts/quicksave.py "<brief summary of exchange>"`
 2. This happens **BEFORE** the final text synthesis.
 3. Purpose: Visible intent logging.
 
@@ -433,7 +433,7 @@ See [Protocol 96](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/ex
 **Execution** (Run FIRST, before any other tool or composing response):
 
 ```bash
-python3 .agent/scripts/smart_search.py "<extract keywords from query>" --limit 5
+python3 scripts/smart_search.py "<extract keywords from query>" --limit 5
 ```
 
 **Keyword Extraction Heuristic**:

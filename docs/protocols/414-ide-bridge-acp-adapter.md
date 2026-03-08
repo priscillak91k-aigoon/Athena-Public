@@ -92,7 +92,7 @@ athena acp --model claude-3-opus
 ### 2. Bridge Script
 
 ```typescript
-// .agent/scripts/acp-bridge.ts
+// scripts/acp-bridge.ts
 import { createInterface } from 'readline';
 import Anthropic from '@anthropic-ai/sdk';
 

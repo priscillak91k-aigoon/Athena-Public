@@ -1,0 +1,69 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+   [200] https://status.nextcloud.com/.git/config
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/.git/HEAD
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/admin
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/api/v1
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/graphql
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/graphiql
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/swagger-ui.html
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/swagger-ui/
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/api-docs
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260308_155548.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Shopify         33       32       3          5        0          0    
+  Postman         33       7        47         19       0          0    
+  Nextcloud       33       7        31         0        0          0    

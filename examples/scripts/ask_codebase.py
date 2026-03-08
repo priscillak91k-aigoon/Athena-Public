@@ -40,7 +40,7 @@ def main():
     context_path = Path(args.context)
     if not context_path.exists():
         print(f"Error: Context file not found: {context_path}")
-        print("Run: python3 .agent/scripts/compress_context.py --dir .agent/scripts --output .context/cache/scripts_compressed.md")
+        print("Run: python3 scripts/compress_context.py --dir .agent/scripts --output .context/cache/scripts_compressed.md")
         sys.exit(1)
     
     context = context_path.read_text(encoding="utf-8")

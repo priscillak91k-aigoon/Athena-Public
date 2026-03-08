@@ -11,7 +11,7 @@ import json
 try:
     from .gemini_client import GeminiClient
 except ImportError:
-    # Fallback if running as script from .agent/scripts/
+    # Fallback if running as script from scripts/
     import sys
 
     sys.path.append(os.path.dirname(os.path.abspath(__file__)))

@@ -7,8 +7,8 @@
 #           minimal context load using ONLY bash. No Python, no network,
 #           no external dependencies.
 #
-# Usage:    bash .agent/scripts/safe_boot.sh
-#           bash .agent/scripts/safe_boot.sh --verify  (test that it works)
+# Usage:    bash scripts/safe_boot.sh
+#           bash scripts/safe_boot.sh --verify  (test that it works)
 #
 # Output:   Concatenates Core_Identity.md + last 5 session log entries
 #           to stdout for manual context recovery.
@@ -152,5 +152,5 @@ echo "==========================================================================
 echo -e "${NC}"
 echo "To search locally:  grep -i '<term>' $TAG_INDEX_AM $TAG_INDEX_NZ"
 echo "To view a file:     cat '$ATHENA_ROOT/<path>'"
-echo "To attempt normal:  python3 $ATHENA_ROOT/.agent/scripts/boot.py"
+echo "To attempt normal:  python3 $ATHENA_ROOT/scripts/boot.py"
 echo ""

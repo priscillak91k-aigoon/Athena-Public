@@ -159,7 +159,7 @@ athena pairing approve-all
 ### 5. Approval Script
 
 ```python
-# .agent/scripts/pairing.py
+# scripts/pairing.py
 import argparse
 import json
 from pathlib import Path

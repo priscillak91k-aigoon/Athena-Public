@@ -1,5 +1,5 @@
 #!/bin/bash
-# .agent/scripts/parallel_session.sh
+# scripts/parallel_session.sh
 # Protocol 409: Parallel Worktree Orchestration
 # 
 # Usage:

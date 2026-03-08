@@ -20,7 +20,7 @@ last_updated: 2026-01-03
    - Write closing timestamp.
 
    ```bash
-   python3 .agent/scripts/shutdown.py
+   python3 scripts/shutdown.py
    ```
 
 // turbo
@@ -30,7 +30,7 @@ last_updated: 2026-01-03
 - Re-prime context.
 
    ```bash
-   python3 .agent/scripts/boot.py
+   python3 scripts/boot.py
    ```
 
 1. **Reset Task State**:

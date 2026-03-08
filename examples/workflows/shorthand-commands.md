@@ -14,7 +14,7 @@ Stage + commit dirty tree, then `git pull --rebase`, then `git push`.
 
 ```bash
 # Full form:
-python3 .agent/scripts/git_commit.py
+python3 scripts/git_commit.py
 git pull --rebase origin main
 git push
 ```
@@ -25,7 +25,7 @@ Scoped commit — YOUR changed files ONLY. Never stages the entire repo.
 
 ```bash
 # Use the scoped committer:
-python3 .agent/scripts/committer.py "feat: add doctor CLI" src/athena/cli/doctor.py
+python3 scripts/committer.py "feat: add doctor CLI" src/athena/cli/doctor.py
 
 # Safety: blocks ".", node_modules, .env, credentials
 # Multi-agent safe: only stages specified files
@@ -37,8 +37,8 @@ Stage everything, but in **grouped logical chunks** (one commit per component).
 
 ```bash
 # Group by component — do NOT mix unrelated changes:
-python3 .agent/scripts/committer.py "feat(cli): add doctor subcommand" src/athena/cli/doctor.py src/athena/__main__.py
-python3 .agent/scripts/committer.py "feat(scripts): add scoped committer" .agent/scripts/committer.py
+python3 scripts/committer.py "feat(cli): add doctor subcommand" src/athena/cli/doctor.py src/athena/__main__.py
+python3 scripts/committer.py "feat(scripts): add scoped committer" scripts/committer.py
 ```
 
 ### `push`

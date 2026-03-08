@@ -91,7 +91,7 @@ last_updated: 2026-01-13
 **Execution**:
 
 ```bash
-python3 .agent/scripts/parallel_orchestrator.py "<query>" --context "<additional context>"
+python3 scripts/parallel_orchestrator.py "<query>" --context "<additional context>"
 ```
 
 > [!WARNING]

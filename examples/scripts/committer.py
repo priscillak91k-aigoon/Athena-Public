@@ -7,8 +7,8 @@ Safety-first commit helper inspired by OpenClaw's `scripts/committer`.
 Prevents dangerous mass-staging and enforces multi-agent safety.
 
 Usage:
-    python3 .agent/scripts/committer.py "commit message" file1 file2 ...
-    python3 .agent/scripts/committer.py --force "commit message" file1  # clear stale lock
+    python3 scripts/committer.py "commit message" file1 file2 ...
+    python3 scripts/committer.py --force "commit message" file1  # clear stale lock
 
 Safety guardrails:
     - Blocks "." (entire repo staging)

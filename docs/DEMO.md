@@ -17,7 +17,7 @@
 ### Step 1: Boot the System
 
 ```bash
-python3 .agent/scripts/boot.py
+python3 scripts/boot.py
 ```
 
 **What happens:**
@@ -48,7 +48,7 @@ The boot sequence:
 ### Step 2: Semantic Search (Triple-Lock Step 1)
 
 ```bash
-python3 .agent/scripts/smart_search.py "decision frameworks risk"
+python3 scripts/smart_search.py "decision frameworks risk"
 ```
 
 **Output:**
@@ -91,7 +91,7 @@ Interact with the AI using the retrieved context. The system tracks:
 ### Step 4: Quicksave (Triple-Lock Step 3)
 
 ```bash
-python3 .agent/scripts/quicksave.py "Analyzed decision framework options. Selected SDR Calculator for risk assessment."
+python3 scripts/quicksave.py "Analyzed decision framework options. Selected SDR Calculator for risk assessment."
 ```
 
 **Output:**
@@ -107,7 +107,7 @@ This appends a checkpoint to your session log with timestamp and context.
 ### Step 5: End Session
 
 ```bash
-python3 .agent/scripts/end_session.py
+python3 scripts/end_session.py
 ```
 
 **What happens:**
@@ -122,7 +122,7 @@ python3 .agent/scripts/end_session.py
 ## Dashboard Check
 
 ```bash
-python3 .agent/scripts/athena_status.py
+python3 scripts/athena_status.py
 ```
 
 **Output:**

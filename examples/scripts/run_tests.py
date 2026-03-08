@@ -5,7 +5,7 @@ run_tests.py — Regression Test Runner for Core Identity Validation
 Validates that Core_Identity.md contains required structural elements.
 Part of /refactor Phase 6.6 validation.
 
-Usage: python3 .agent/scripts/run_tests.py
+Usage: python3 scripts/run_tests.py
 """
 
 import sys

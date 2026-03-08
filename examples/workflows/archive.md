@@ -7,7 +7,7 @@ description: Archive a URL (Article or YouTube) into the Library
 1. Archive the URL
 
    ```bash
-   python3 .agent/scripts/librarian/archive.py "{{url}}"
+   python3 scripts/librarian/archive.py "{{url}}"
    ```
 
 2. Confirm

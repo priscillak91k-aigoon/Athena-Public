@@ -21,7 +21,7 @@ last_updated: 2026-01-11
 ### Step 1: Run Hybrid Triangulation Search
 
 ```bash
-python3 .agent/scripts/smart_search.py "<keywords>" --limit 5
+python3 scripts/smart_search.py "<keywords>" --limit 5
 ```
 
 > **Mechanism**: Tier 1 (Exact Grep), Tier 2 (Semantic Vector), Tier 3 (Filename).

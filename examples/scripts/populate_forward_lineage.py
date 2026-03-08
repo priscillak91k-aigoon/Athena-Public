@@ -7,8 +7,8 @@ Reads all session logs, builds a session graph, and populates the `next_session`
 field to complete the bidirectional lineage chain.
 
 Usage:
-    python3 .agent/scripts/populate_forward_lineage.py
-    python3 .agent/scripts/populate_forward_lineage.py --dry-run
+    python3 scripts/populate_forward_lineage.py
+    python3 scripts/populate_forward_lineage.py --dry-run
 """
 
 import os

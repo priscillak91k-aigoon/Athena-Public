@@ -21,9 +21,9 @@ description: Visualize system architecture, database schema, or project structur
 ## Implementation Steps
 
 1. **Analyze Request**: Determine the scope (architecture, db, structure, or all).
-    - If `all`, run `python3 .agent/scripts/visualize_graph.py --all`
-    - If `architecture`, run `python3 .agent/scripts/visualize_graph.py --arch`
-    - If `database`, run `python3 .agent/scripts/visualize_graph.py --db`
+    - If `all`, run `python3 scripts/visualize_graph.py --all`
+    - If `architecture`, run `python3 scripts/visualize_graph.py --arch`
+    - If `database`, run `python3 scripts/visualize_graph.py --db`
     - If `structure`, run `tree -L 2 -I "node_modules|.git|.venv|__pycache__|dist|build"` (or equivalent)
 
 2. **Generate Artifact**: The script should output the diagram to `.context/visualizations/` using Mermaid or ASCII format.

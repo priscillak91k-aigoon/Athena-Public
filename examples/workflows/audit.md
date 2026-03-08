@@ -96,7 +96,7 @@ These files/paths are **NEVER** auto-modified by audit. Changes require explicit
 // turbo
 
 ```bash
-python3 .agent/scripts/cross_reference.py
+python3 scripts/cross_reference.py
 ```
 
 > **Rule**: If "Missing bidirectional links" > 0, fix them now.

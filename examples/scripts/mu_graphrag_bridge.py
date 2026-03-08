@@ -5,8 +5,8 @@ mu_graphrag_bridge.py — Bridge mu codebase intelligence to GraphRAG
 Exports mu's code structure as entities/relationships for the knowledge graph.
 
 Usage:
-    python3 .agent/scripts/mu_graphrag_bridge.py
-    python3 .agent/scripts/mu_graphrag_bridge.py --refresh  # Re-bootstrap first
+    python3 scripts/mu_graphrag_bridge.py
+    python3 scripts/mu_graphrag_bridge.py --refresh  # Re-bootstrap first
 
 Output:
     Updates .agent/graphrag/entities.json with code structure entities
@@ -127,7 +127,7 @@ def main():
     # Check mu is installed
     if not MU_BINARY.exists():
         print(f"❌ mu not found at {MU_BINARY}")
-        print("   Run: .agent/scripts/install_mu.sh")
+        print("   Run: scripts/install_mu.sh")
         sys.exit(1)
     
     # Refresh bootstrap if requested

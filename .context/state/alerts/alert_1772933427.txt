@@ -1,0 +1,60 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+hip.grammarly.com/graphql
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/graphiql
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/swagger-ui.html
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/swagger-ui/
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/api-docs
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+
+  INTERESTING 403s (bypass targets):
+    [403] https://config.extension.grammarly.com/.env
+    [403] https://config.extension.grammarly.com/.git/config
+    [403] https://config.extension.grammarly.com/admin
+    [403] https://config.extension.grammarly.com/graphql
+    [403] https://config.extension.grammarly.com/actuator/env
+    [403] https://static.grammarly.com/.env
+    [403] https://static.grammarly.com/.git/config
+    [403] https://static.grammarly.com/admin
+    [403] https://static.grammarly.com/graphql
+    [403] https://static.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260308_141939.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mattermost      33       4        0          3        0          3    
+  Mapbox          143      37       37         15       0          0    
+  Grammarly       233      102      32         32       1          0    

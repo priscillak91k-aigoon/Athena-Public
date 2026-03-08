@@ -75,7 +75,7 @@ sandbox:
 ### 1. Mode Detection
 
 ```python
-# .agent/scripts/sandbox.py
+# scripts/sandbox.py
 import os
 from pathlib import Path
 import yaml

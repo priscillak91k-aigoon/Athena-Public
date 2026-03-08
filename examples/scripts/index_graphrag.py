@@ -11,8 +11,8 @@ Steps:
 3. build_graph.py — Knowledge graph + communities
 
 Usage:
-    python3 .agent/scripts/index_graphrag.py
-    python3 .agent/scripts/index_graphrag.py --skip-embed  # Skip vector embedding
+    python3 scripts/index_graphrag.py
+    python3 scripts/index_graphrag.py --skip-embed  # Skip vector embedding
 """
 
 import sys
@@ -82,7 +82,7 @@ def main():
 
     if str(interpreter) == sys.executable and sys.version_info >= (3, 13):
         print("❌ Error: GraphRAG is incompatible with Python 3.13.")
-        print("   Please install the venv: `python3 .agent/scripts/setup_graphrag.py`")
+        print("   Please install the venv: `python3 scripts/setup_graphrag.py`")
         return
 
     steps = []
@@ -134,7 +134,7 @@ def main():
     print("=" * 60)
     print(f"\nCompleted steps: {', '.join(steps)}")
     print("\nQuery your knowledge base:")
-    print('  python3 .agent/scripts/query_graphrag.py "your query"')
+    print('  python3 scripts/query_graphrag.py "your query"')
     print("=" * 60)
 
 

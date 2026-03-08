@@ -1,0 +1,1397 @@
+{
+  "Shopify": {
+    "target": "Shopify",
+    "domain": "shopify.com",
+    "max_bounty": 50000,
+    "subdomains": [
+      "vpn.shopify.com",
+      "blog.shopify.com",
+      "ops.shopify.com",
+      "portal.shopify.com",
+      "static.shopify.com",
+      "wiki.shopify.com",
+      "graphql.shopify.com",
+      "admin.shopify.com",
+      "tools.shopify.com",
+      "jenkins.shopify.com",
+      "test.shopify.com",
+      "beta.shopify.com",
+      "qa.shopify.com",
+      "auth.shopify.com",
+      "docs.shopify.com",
+      "preview.shopify.com",
+      "ci.shopify.com",
+      "api.shopify.com",
+      "www.shopify.com",
+      "status.shopify.com",
+      "dev.shopify.com",
+      "git.shopify.com",
+      "app.shopify.com",
+      "internal.shopify.com",
+      "mail.shopify.com",
+      "monitor.shopify.com",
+      "staging.shopify.com",
+      "login.shopify.com",
+      "vault.shopify.com",
+      "cdn.shopify.com",
+      "dashboard.shopify.com",
+      "sandbox.shopify.com",
+      "stage.shopify.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "vpn.shopify.com",
+        "url": "https://vpn.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "ops.shopify.com",
+        "url": "https://ops.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "url": "https://admin.shopify.com",
+        "status": 403,
+        "title": "Verifying your connection...",
+        "server": "cloudflare",
+        "content_length": 10607
+      },
+      {
+        "subdomain": "beta.shopify.com",
+        "url": "https://beta.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "graphql.shopify.com",
+        "url": "https://graphql.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "jenkins.shopify.com",
+        "url": "https://jenkins.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "test.shopify.com",
+        "url": "https://test.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "tools.shopify.com",
+        "url": "https://tools.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "auth.shopify.com",
+        "url": "https://auth.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "qa.shopify.com",
+        "url": "https://qa.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "wiki.shopify.com",
+        "url": "https://wiki.shopify.com",
+        "status": 403,
+        "title": "Verifying your connection...",
+        "server": "cloudflare",
+        "content_length": 10648
+      },
+      {
+        "subdomain": "static.shopify.com",
+        "url": "https://static.shopify.com",
+        "status": 200,
+        "title": "Shopify CDN",
+        "server": "cloudflare",
+        "content_length": 70443
+      },
+      {
+        "subdomain": "api.shopify.com",
+        "url": "https://api.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 8619
+      },
+      {
+        "subdomain": "preview.shopify.com",
+        "url": "https://preview.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "docs.shopify.com",
+        "url": "https://docs.shopify.com",
+        "status": 403,
+        "title": "Verifying your connection...",
+        "server": "cloudflare",
+        "content_length": 10648
+      },
+      {
+        "subdomain": "ci.shopify.com",
+        "url": "https://ci.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "git.shopify.com",
+        "url": "https://git.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "monitor.shopify.com",
+        "url": "https://monitor.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "internal.shopify.com",
+        "url": "https://internal.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "staging.shopify.com",
+        "url": "https://staging.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "portal.shopify.com",
+        "url": "https://portal.shopify.com",
+        "status": 200,
+        "title": "Careers, Internships, and Jobs at Shopify | Shopify Careers - Shopify",
+        "server": "cloudflare",
+        "content_length": 218619
+      },
+      {
+        "subdomain": "cdn.shopify.com",
+        "url": "https://cdn.shopify.com",
+        "status": 200,
+        "title": "Shopify CDN",
+        "server": "cloudflare",
+        "content_length": 70443
+      },
+      {
+        "subdomain": "blog.shopify.com",
+        "url": "https://blog.shopify.com",
+        "status": 200,
+        "title": "Ecommerce Marketing Blog - Ecommerce News, Online Store Tips and More - Shopify",
+        "server": "cloudflare",
+        "content_length": 475923
+      },
+      {
+        "subdomain": "dashboard.shopify.com",
+        "url": "https://dashboard.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "www.shopify.com",
+        "url": "https://www.shopify.com",
+        "status": 200,
+        "title": "Shopify: The All-in-One Commerce Platform for Businesses - Shopify",
+        "server": "cloudflare",
+        "content_length": 601759
+      },
+      {
+        "subdomain": "status.shopify.com",
+        "url": "https://status.shopify.com",
+        "status": 200,
+        "title": "Shopify Status",
+        "server": "AtlassianEdge",
+        "content_length": 84750
+      },
+      {
+        "subdomain": "dev.shopify.com",
+        "url": "https://dev.shopify.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 239272
+      },
+      {
+        "subdomain": "stage.shopify.com",
+        "url": "https://stage.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "sandbox.shopify.com",
+        "url": "https://sandbox.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "app.shopify.com",
+        "url": "https://app.shopify.com",
+        "status": 200,
+        "title": "Shopify App Store",
+        "server": "cloudflare",
+        "content_length": 249811
+      },
+      {
+        "subdomain": "mail.shopify.com",
+        "url": "http://mail.shopify.com",
+        "status": 200,
+        "title": "Shopify - Sign In",
+        "server": "nginx",
+        "content_length": 35798
+      },
+      {
+        "subdomain": "vault.shopify.com",
+        "url": "https://vault.shopify.com",
+        "status": 200,
+        "title": "Shopify - Sign In",
+        "server": "nginx",
+        "content_length": 34037
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 10619,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 10664,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 10643,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 295,
+        "preview": "\n    <Html>\n      <body>\n        <div id=\"redirect\" data-url=\"https://admin.shopify.com/login?errorHint=no_cookie_session\"></div>\n        <script nonce=\"IBpZMKBQkS/qhYZV0w26Tg==\">window.location = dec"
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 10671,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 295,
+        "preview": "\n    <Html>\n      <body>\n        <div id=\"redirect\" data-url=\"https://admin.shopify.com/login?errorHint=no_cookie_session\"></div>\n        <script nonce=\"kDXrn9JpsVWxKJehhi0CNw==\">window.location = dec"
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 10689,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 295,
+        "preview": "\n    <Html>\n      <body>\n        <div id=\"redirect\" data-url=\"https://admin.shopify.com/login?errorHint=no_cookie_session\"></div>\n        <script nonce=\"+FF5tiUeXKsu4WRF8Ycm/w==\">window.location = dec"
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  },
+  "Postman": {
+    "target": "Postman",
+    "domain": "postman.com",
+    "max_bounty": 3000,
+    "subdomains": [
+      "graphql.postman.com",
+      "app.postman.com",
+      "cdn.postman.com",
+      "wiki.postman.com",
+      "jenkins.postman.com",
+      "internal.postman.com",
+      "ci.postman.com",
+      "status.postman.com",
+      "dashboard.postman.com",
+      "ops.postman.com",
+      "admin.postman.com",
+      "portal.postman.com",
+      "dev.postman.com",
+      "qa.postman.com",
+      "sandbox.postman.com",
+      "preview.postman.com",
+      "git.postman.com",
+      "stage.postman.com",
+      "tools.postman.com",
+      "test.postman.com",
+      "beta.postman.com",
+      "api.postman.com",
+      "docs.postman.com",
+      "vpn.postman.com",
+      "www.postman.com",
+      "static.postman.com",
+      "mail.postman.com",
+      "staging.postman.com",
+      "login.postman.com",
+      "monitor.postman.com",
+      "auth.postman.com",
+      "blog.postman.com",
+      "vault.postman.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "blog.postman.com",
+        "url": "https://blog.postman.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 6844
+      },
+      {
+        "subdomain": "status.postman.com",
+        "url": "https://status.postman.com",
+        "status": 200,
+        "title": "Postman Status",
+        "server": "AtlassianEdge",
+        "content_length": 832038
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "url": "https://sandbox.postman.com",
+        "status": 200,
+        "title": "Postman Dashboard",
+        "server": "cloudflare",
+        "content_length": 769
+      },
+      {
+        "subdomain": "static.postman.com",
+        "url": "https://static.postman.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "www.postman.com",
+        "url": "https://www.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 136139
+      },
+      {
+        "subdomain": "api.postman.com",
+        "url": "https://api.postman.com",
+        "status": 200,
+        "title": "Postman",
+        "server": "cloudflare",
+        "content_length": 99085
+      },
+      {
+        "subdomain": "auth.postman.com",
+        "url": "https://auth.postman.com",
+        "status": 404,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 89
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "blog.postman.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 6856,
+        "preview": ""
+      },
+      {
+        "subdomain": "blog.postman.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 6880,
+        "preview": ""
+      },
+      {
+        "subdomain": "blog.postman.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 6838,
+        "preview": ""
+      },
+      {
+        "subdomain": "blog.postman.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 6886,
+        "preview": ""
+      },
+      {
+        "subdomain": "blog.postman.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 6862,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.postman.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 6854,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.postman.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 6943,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.postman.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 6898,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.postman.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 6965,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.postman.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 25,
+        "preview": ""
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 6922,
+        "preview": ""
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 6947,
+        "preview": ""
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 769,
+        "preview": ""
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 769,
+        "preview": ""
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 67,
+        "preview": ""
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 769,
+        "preview": ""
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 769,
+        "preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" con"
+      },
+      {
+        "subdomain": "status.postman.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 919,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.postman.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 55712,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <!-- force IE browsers in compatibility mode to use their most aggressive rendering engine -->\n\n"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 6897,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 6922,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"imeY6qGknzEIhU+lDStwKw==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"imeY6qGknzEIhU+lDStwKw==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"Rr9rFI50WPS6yTVGf0YvWw==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"Rr9rFI50WPS6yTVGf0YvWw==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"y6mFPpR/bv0eBI1v0XLdNg==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"y6mFPpR/bv0eBI1v0XLdNg==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"OD+TtGx5Ha21UQx7dSE+WA==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"OD+TtGx5Ha21UQx7dSE+WA==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"2y+6pnDGmLcYoWYStcJFlw==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"2y+6pnDGmLcYoWYStcJFlw==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"Rs6qpCHx7UmZqQSOJ3KuuA==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"Rs6qpCHx7UmZqQSOJ3KuuA==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"3QRQI+M+lGp3cxRblck6KA==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"3QRQI+M+lGp3cxRblck6KA==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"oBaFwYIOhKgv9W8j2sDO9w==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"oBaFwYIOhKgv9W8j2sDO9w==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"Fyq9OGnUZAZUgSzdTCPyPQ==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"Fyq9OGnUZAZUgSzdTCPyPQ==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"7+4rz4uoN+bX2p4n7VDcZQ==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"7+4rz4uoN+bX2p4n7VDcZQ==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"rcqG9Pyiemq2zehvRi3TnA==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"rcqG9Pyiemq2zehvRi3TnA==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"n9FrSPpQVUFj/Aj7rcsbbg==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"n9FrSPpQVUFj/Aj7rcsbbg==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"pUUj42kU/dQx6GqGJra+xg==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"pUUj42kU/dQx6GqGJra+xg==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 99085,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 99085,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"zBcA2NfGiYDjCiGNPOMAnQ==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"zBcA2NfGiYDjCiGNPOMAnQ==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"ECxi1pmEWvdq6ngl7bDDPQ==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"ECxi1pmEWvdq6ngl7bDDPQ==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"VpwTLtsr4i8a/FKqMOiM7g==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"VpwTLtsr4i8a/FKqMOiM7g==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"43aZEiN2rAvUt8dpk8KlNw==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"43aZEiN2rAvUt8dpk8KlNw==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"MFyxPDuIfeA8PrYhYytOqg==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"MFyxPDuIfeA8PrYhYytOqg==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"3fosVeuEh2ewSbDQ1IV8ZQ==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"3fosVeuEh2ewSbDQ1IV8ZQ==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 201,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 3928,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"yLHHuqaUi78mcltpY4VURw==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"yLHHuqaUi78mcltpY4VURw==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"aDZpQvB48Z2nWPWbTk3U0g==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"aDZpQvB48Z2nWPWbTk3U0g==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"IlzH+fll8gHu2Kld88ZJHA==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"IlzH+fll8gHu2Kld88ZJHA==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"lFvFGNg+NY975AfkVY/RGQ==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"lFvFGNg+NY975AfkVY/RGQ==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "www.postman.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 99085,
+        "preview": "<!doctype html><html lang=\"en-US\" nonce=\"uVPDFo+cRDVdjLowjmcRBQ==\"><head><meta charset=\"UTF-8\"><title>Postman</title><!-- New Relic Integration --><script nonce=\"uVPDFo+cRDVdjLowjmcRBQ==\"> ;window.NRE"
+      },
+      {
+        "subdomain": "static.postman.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.postman.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.postman.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.postman.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.postman.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  },
+  "Nextcloud": {
+    "target": "Nextcloud",
+    "domain": "nextcloud.com",
+    "max_bounty": 10000,
+    "subdomains": [
+      "beta.nextcloud.com",
+      "dev.nextcloud.com",
+      "wiki.nextcloud.com",
+      "graphql.nextcloud.com",
+      "sandbox.nextcloud.com",
+      "jenkins.nextcloud.com",
+      "vpn.nextcloud.com",
+      "stage.nextcloud.com",
+      "ci.nextcloud.com",
+      "login.nextcloud.com",
+      "internal.nextcloud.com",
+      "git.nextcloud.com",
+      "tools.nextcloud.com",
+      "monitor.nextcloud.com",
+      "cdn.nextcloud.com",
+      "auth.nextcloud.com",
+      "qa.nextcloud.com",
+      "vault.nextcloud.com",
+      "preview.nextcloud.com",
+      "status.nextcloud.com",
+      "ops.nextcloud.com",
+      "www.nextcloud.com",
+      "docs.nextcloud.com",
+      "mail.nextcloud.com",
+      "admin.nextcloud.com",
+      "static.nextcloud.com",
+      "test.nextcloud.com",
+      "dashboard.nextcloud.com",
+      "blog.nextcloud.com",
+      "api.nextcloud.com",
+      "staging.nextcloud.com",
+      "app.nextcloud.com",
+      "portal.nextcloud.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "mail.nextcloud.com",
+        "url": "https://mail.nextcloud.com",
+        "status": 200,
+        "title": "Roundcube Webmail :: Welcome to Roundcube Webmail",
+        "server": "NCSA/1.42;",
+        "content_length": 5787
+      },
+      {
+        "subdomain": "docs.nextcloud.com",
+        "url": "https://docs.nextcloud.com",
+        "status": 200,
+        "title": "Nextcloud Documentation",
+        "server": "Apache",
+        "content_length": 36248
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "url": "https://status.nextcloud.com",
+        "status": 200,
+        "title": "Nextcloud Services",
+        "server": "",
+        "content_length": 2549
+      },
+      {
+        "subdomain": "portal.nextcloud.com",
+        "url": "https://portal.nextcloud.com",
+        "status": 200,
+        "title": "Nextcloud Portal",
+        "server": "NCSA/1.42;",
+        "content_length": 21580
+      },
+      {
+        "subdomain": "staging.nextcloud.com",
+        "url": "https://staging.nextcloud.com",
+        "status": 200,
+        "title": "",
+        "server": "Apache/2.4.52 (Ubuntu)",
+        "content_length": 134923
+      },
+      {
+        "subdomain": "auth.nextcloud.com",
+        "url": "https://auth.nextcloud.com",
+        "status": 200,
+        "title": "Keycloak Administration Console",
+        "server": "Apache/2.4.52 (Ubuntu)",
+        "content_length": 3764
+      },
+      {
+        "subdomain": "www.nextcloud.com",
+        "url": "https://www.nextcloud.com",
+        "status": 200,
+        "title": "",
+        "server": "Apache",
+        "content_length": 227302
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/metrics",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 1200,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 2549,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 25,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 1200,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/phpinfo.php",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "portal.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 24,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 179,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  }
+}

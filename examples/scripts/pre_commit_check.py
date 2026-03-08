@@ -5,7 +5,7 @@ pre_commit_check.py — Pre-commit code quality validation.
 Checks modified files for common issues before session close.
 Optional step in /end workflow.
 
-Usage: python3 .agent/scripts/pre_commit_check.py
+Usage: python3 scripts/pre_commit_check.py
 
 Checks:
 - Python syntax errors

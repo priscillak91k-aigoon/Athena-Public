@@ -26,7 +26,7 @@ last_updated: 2026-01-04
 
 1. **Construct Command**: Create a one-liner test.
     - Python: `python3 -c "from file import func; assert func() == expected"`
-    - Script: `python3 .agent/scripts/test_script.py`
+    - Script: `python3 scripts/test_script.py`
 2. **Execute**: Use `run_command`.
 3. **Analyze**: Did it exit code 0?
 
@@ -58,4 +58,4 @@ last_updated: 2026-01-04
 // turbo
 
 1. Check for `verify_deployment.py` availability.
-2. If available, run: `python3 .agent/scripts/verify_deployment.py --mode=check`
+2. If available, run: `python3 scripts/verify_deployment.py --mode=check`

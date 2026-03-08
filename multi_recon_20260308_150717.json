@@ -1,0 +1,2048 @@
+{
+  "Sentry": {
+    "target": "Sentry",
+    "domain": "sentry.io",
+    "max_bounty": 5000,
+    "subdomains": [
+      "mail.sentry.io",
+      "docs.sentry.io",
+      "monitor.sentry.io",
+      "preview.sentry.io",
+      "qa.sentry.io",
+      "api.sentry.io",
+      "test.sentry.io",
+      "vpn.sentry.io",
+      "login.sentry.io",
+      "jenkins.sentry.io",
+      "beta.sentry.io",
+      "www.sentry.io",
+      "auth.sentry.io",
+      "cdn.sentry.io",
+      "tools.sentry.io",
+      "dev.sentry.io",
+      "sandbox.sentry.io",
+      "app.sentry.io",
+      "graphql.sentry.io",
+      "git.sentry.io",
+      "dashboard.sentry.io",
+      "stage.sentry.io",
+      "ci.sentry.io",
+      "blog.sentry.io",
+      "staging.sentry.io",
+      "admin.sentry.io",
+      "ops.sentry.io",
+      "static.sentry.io",
+      "portal.sentry.io",
+      "internal.sentry.io",
+      "wiki.sentry.io",
+      "status.sentry.io",
+      "vault.sentry.io"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "docs.sentry.io",
+        "url": "https://docs.sentry.io",
+        "status": 200,
+        "title": "",
+        "server": "Vercel",
+        "content_length": 252230
+      },
+      {
+        "subdomain": "login.sentry.io",
+        "url": "https://login.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 20470
+      },
+      {
+        "subdomain": "api.sentry.io",
+        "url": "https://api.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 20460
+      },
+      {
+        "subdomain": "qa.sentry.io",
+        "url": "https://qa.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22816
+      },
+      {
+        "subdomain": "jenkins.sentry.io",
+        "url": "https://jenkins.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22866
+      },
+      {
+        "subdomain": "tools.sentry.io",
+        "url": "https://tools.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22846
+      },
+      {
+        "subdomain": "monitor.sentry.io",
+        "url": "https://monitor.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22866
+      },
+      {
+        "subdomain": "beta.sentry.io",
+        "url": "https://beta.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22836
+      },
+      {
+        "subdomain": "test.sentry.io",
+        "url": "https://test.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22836
+      },
+      {
+        "subdomain": "cdn.sentry.io",
+        "url": "https://cdn.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22826
+      },
+      {
+        "subdomain": "preview.sentry.io",
+        "url": "https://preview.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22866
+      },
+      {
+        "subdomain": "mail.sentry.io",
+        "url": "https://mail.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22836
+      },
+      {
+        "subdomain": "vpn.sentry.io",
+        "url": "https://vpn.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22826
+      },
+      {
+        "subdomain": "auth.sentry.io",
+        "url": "https://auth.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22836
+      },
+      {
+        "subdomain": "dev.sentry.io",
+        "url": "https://dev.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22826
+      },
+      {
+        "subdomain": "app.sentry.io",
+        "url": "https://app.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22826
+      },
+      {
+        "subdomain": "graphql.sentry.io",
+        "url": "https://graphql.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22866
+      },
+      {
+        "subdomain": "dashboard.sentry.io",
+        "url": "https://dashboard.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "sandbox.sentry.io",
+        "url": "https://sandbox.sentry.io",
+        "status": 200,
+        "title": "Sentry Sandbox",
+        "server": "nginx",
+        "content_length": 118203
+      },
+      {
+        "subdomain": "blog.sentry.io",
+        "url": "https://blog.sentry.io",
+        "status": 200,
+        "title": "",
+        "server": "Vercel",
+        "content_length": 278375
+      },
+      {
+        "subdomain": "www.sentry.io",
+        "url": "https://www.sentry.io",
+        "status": 200,
+        "title": "Application Performance Monitoring &amp; Error Tracking Software | Sentry",
+        "server": "nginx",
+        "content_length": 566248
+      },
+      {
+        "subdomain": "stage.sentry.io",
+        "url": "https://stage.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "git.sentry.io",
+        "url": "https://git.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "ci.sentry.io",
+        "url": "https://ci.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "staging.sentry.io",
+        "url": "https://staging.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "status.sentry.io",
+        "url": "https://status.sentry.io",
+        "status": 200,
+        "title": "Sentry Status",
+        "server": "AtlassianEdge",
+        "content_length": 1117168
+      },
+      {
+        "subdomain": "ops.sentry.io",
+        "url": "https://ops.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "static.sentry.io",
+        "url": "https://static.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "admin.sentry.io",
+        "url": "https://admin.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "portal.sentry.io",
+        "url": "https://portal.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "wiki.sentry.io",
+        "url": "https://wiki.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "internal.sentry.io",
+        "url": "https://internal.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "vault.sentry.io",
+        "url": "https://vault.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "docs.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 57,
+        "preview": ""
+      },
+      {
+        "subdomain": "docs.sentry.io",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 1007128,
+        "preview": ""
+      },
+      {
+        "subdomain": "tools.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "beta.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "login.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "monitor.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "qa.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "jenkins.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "preview.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "vpn.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "mail.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "test.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "dev.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": [
+      {
+        "bucket": "sentry-public",
+        "status": 200,
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ListBucketResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>sentry-public</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated"
+      }
+    ]
+  },
+  "Nextcloud": {
+    "target": "Nextcloud",
+    "domain": "nextcloud.com",
+    "max_bounty": 10000,
+    "subdomains": [
+      "staging.nextcloud.com",
+      "dashboard.nextcloud.com",
+      "test.nextcloud.com",
+      "monitor.nextcloud.com",
+      "login.nextcloud.com",
+      "mail.nextcloud.com",
+      "admin.nextcloud.com",
+      "blog.nextcloud.com",
+      "beta.nextcloud.com",
+      "vault.nextcloud.com",
+      "git.nextcloud.com",
+      "api.nextcloud.com",
+      "ops.nextcloud.com",
+      "graphql.nextcloud.com",
+      "sandbox.nextcloud.com",
+      "preview.nextcloud.com",
+      "static.nextcloud.com",
+      "vpn.nextcloud.com",
+      "wiki.nextcloud.com",
+      "ci.nextcloud.com",
+      "app.nextcloud.com",
+      "docs.nextcloud.com",
+      "tools.nextcloud.com",
+      "cdn.nextcloud.com",
+      "www.nextcloud.com",
+      "dev.nextcloud.com",
+      "jenkins.nextcloud.com",
+      "stage.nextcloud.com",
+      "status.nextcloud.com",
+      "internal.nextcloud.com",
+      "portal.nextcloud.com",
+      "auth.nextcloud.com",
+      "qa.nextcloud.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "status.nextcloud.com",
+        "url": "https://status.nextcloud.com",
+        "status": 200,
+        "title": "Nextcloud Services",
+        "server": "",
+        "content_length": 2549
+      },
+      {
+        "subdomain": "docs.nextcloud.com",
+        "url": "https://docs.nextcloud.com",
+        "status": 200,
+        "title": "Nextcloud Documentation",
+        "server": "Apache",
+        "content_length": 36248
+      },
+      {
+        "subdomain": "mail.nextcloud.com",
+        "url": "https://mail.nextcloud.com",
+        "status": 200,
+        "title": "Roundcube Webmail :: Welcome to Roundcube Webmail",
+        "server": "NCSA/1.42;",
+        "content_length": 5787
+      },
+      {
+        "subdomain": "portal.nextcloud.com",
+        "url": "https://portal.nextcloud.com",
+        "status": 200,
+        "title": "Nextcloud Portal",
+        "server": "NCSA/1.42;",
+        "content_length": 21580
+      },
+      {
+        "subdomain": "staging.nextcloud.com",
+        "url": "https://staging.nextcloud.com",
+        "status": 200,
+        "title": "",
+        "server": "Apache/2.4.52 (Ubuntu)",
+        "content_length": 134923
+      },
+      {
+        "subdomain": "auth.nextcloud.com",
+        "url": "https://auth.nextcloud.com",
+        "status": 200,
+        "title": "Keycloak Administration Console",
+        "server": "Apache/2.4.52 (Ubuntu)",
+        "content_length": 3764
+      },
+      {
+        "subdomain": "www.nextcloud.com",
+        "url": "https://www.nextcloud.com",
+        "status": 200,
+        "title": "",
+        "server": "Apache",
+        "content_length": 227302
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "portal.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 24,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/metrics",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 1200,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 2549,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 25,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 1200,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/phpinfo.php",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "staging.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 179,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  },
+  "Imgur": {
+    "target": "Imgur",
+    "domain": "imgur.com",
+    "max_bounty": 5000,
+    "subdomains": [
+      "status.imgur.com",
+      "app.imgur.com",
+      "login.imgur.com",
+      "test.imgur.com",
+      "blog.imgur.com",
+      "cdn.imgur.com",
+      "dashboard.imgur.com",
+      "qa.imgur.com",
+      "monitor.imgur.com",
+      "static.imgur.com",
+      "docs.imgur.com",
+      "ops.imgur.com",
+      "admin.imgur.com",
+      "vpn.imgur.com",
+      "git.imgur.com",
+      "internal.imgur.com",
+      "api.imgur.com",
+      "vault.imgur.com",
+      "wiki.imgur.com",
+      "stage.imgur.com",
+      "ci.imgur.com",
+      "auth.imgur.com",
+      "portal.imgur.com",
+      "sandbox.imgur.com",
+      "www.imgur.com",
+      "graphql.imgur.com",
+      "jenkins.imgur.com",
+      "dev.imgur.com",
+      "tools.imgur.com",
+      "mail.imgur.com",
+      "beta.imgur.com",
+      "staging.imgur.com",
+      "preview.imgur.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "status.imgur.com",
+        "url": "https://status.imgur.com",
+        "status": 200,
+        "title": "imgur Status",
+        "server": "AtlassianEdge",
+        "content_length": 85289
+      },
+      {
+        "subdomain": "static.imgur.com",
+        "url": "https://static.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "monitor.imgur.com",
+        "url": "https://monitor.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "admin.imgur.com",
+        "url": "https://admin.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "test.imgur.com",
+        "url": "https://test.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "dashboard.imgur.com",
+        "url": "https://dashboard.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "blog.imgur.com",
+        "url": "https://blog.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "login.imgur.com",
+        "url": "https://login.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "docs.imgur.com",
+        "url": "https://docs.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "internal.imgur.com",
+        "url": "https://internal.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "vault.imgur.com",
+        "url": "https://vault.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "wiki.imgur.com",
+        "url": "https://wiki.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "api.imgur.com",
+        "url": "https://api.imgur.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 65059
+      },
+      {
+        "subdomain": "auth.imgur.com",
+        "url": "https://auth.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "portal.imgur.com",
+        "url": "https://portal.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "stage.imgur.com",
+        "url": "https://stage.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "www.imgur.com",
+        "url": "https://www.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "graphql.imgur.com",
+        "url": "https://graphql.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "jenkins.imgur.com",
+        "url": "https://jenkins.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "tools.imgur.com",
+        "url": "https://tools.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "beta.imgur.com",
+        "url": "https://beta.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "staging.imgur.com",
+        "url": "https://staging.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "mail.imgur.com",
+        "url": "https://mail.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      },
+      {
+        "subdomain": "preview.imgur.com",
+        "url": "https://preview.imgur.com",
+        "status": 200,
+        "title": "Imgur: The magic of the Internet",
+        "server": "cat factory 1.0",
+        "content_length": 6675
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "status.imgur.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 919,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.imgur.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 55343,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <!-- force IE browsers in compatibility mode to use their most aggressive rendering engine -->\n\n"
+      },
+      {
+        "subdomain": "test.imgur.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "test.imgur.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "test.imgur.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "test.imgur.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "test.imgur.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "test.imgur.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "test.imgur.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "test.imgur.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "test.imgur.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 352,
+        "preview": ""
+      },
+      {
+        "subdomain": "test.imgur.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 355,
+        "preview": "<?xml version=\"1.0\"?>\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n    <allow-access-from domain=\"imgur.com\" secure=\"false\" "
+      },
+      {
+        "subdomain": "test.imgur.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "admin.imgur.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "admin.imgur.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "admin.imgur.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "admin.imgur.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "admin.imgur.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "admin.imgur.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.imgur.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.imgur.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "admin.imgur.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 352,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.imgur.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 355,
+        "preview": "<?xml version=\"1.0\"?>\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n    <allow-access-from domain=\"imgur.com\" secure=\"false\" "
+      },
+      {
+        "subdomain": "admin.imgur.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "login.imgur.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "login.imgur.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "login.imgur.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "login.imgur.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "login.imgur.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "login.imgur.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "login.imgur.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "login.imgur.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "login.imgur.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 352,
+        "preview": ""
+      },
+      {
+        "subdomain": "login.imgur.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 355,
+        "preview": "<?xml version=\"1.0\"?>\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n    <allow-access-from domain=\"imgur.com\" secure=\"false\" "
+      },
+      {
+        "subdomain": "login.imgur.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "dashboard.imgur.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "dashboard.imgur.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "dashboard.imgur.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "dashboard.imgur.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "dashboard.imgur.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "dashboard.imgur.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "dashboard.imgur.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "dashboard.imgur.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "dashboard.imgur.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 352,
+        "preview": ""
+      },
+      {
+        "subdomain": "dashboard.imgur.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 355,
+        "preview": "<?xml version=\"1.0\"?>\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n    <allow-access-from domain=\"imgur.com\" secure=\"false\" "
+      },
+      {
+        "subdomain": "dashboard.imgur.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "static.imgur.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "static.imgur.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "static.imgur.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "static.imgur.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "static.imgur.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "static.imgur.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.imgur.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.imgur.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "static.imgur.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 352,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.imgur.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 355,
+        "preview": "<?xml version=\"1.0\"?>\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n    <allow-access-from domain=\"imgur.com\" secure=\"false\" "
+      },
+      {
+        "subdomain": "static.imgur.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "monitor.imgur.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "monitor.imgur.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "monitor.imgur.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "monitor.imgur.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "monitor.imgur.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "monitor.imgur.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "monitor.imgur.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "monitor.imgur.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "monitor.imgur.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 352,
+        "preview": ""
+      },
+      {
+        "subdomain": "monitor.imgur.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 355,
+        "preview": "<?xml version=\"1.0\"?>\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n    <allow-access-from domain=\"imgur.com\" secure=\"false\" "
+      },
+      {
+        "subdomain": "monitor.imgur.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "docs.imgur.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "docs.imgur.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "docs.imgur.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "docs.imgur.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "docs.imgur.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "docs.imgur.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "docs.imgur.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "docs.imgur.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "docs.imgur.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 352,
+        "preview": ""
+      },
+      {
+        "subdomain": "docs.imgur.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 355,
+        "preview": "<?xml version=\"1.0\"?>\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n    <allow-access-from domain=\"imgur.com\" secure=\"false\" "
+      },
+      {
+        "subdomain": "docs.imgur.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "internal.imgur.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "internal.imgur.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "internal.imgur.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "internal.imgur.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "internal.imgur.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "internal.imgur.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "internal.imgur.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "internal.imgur.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "internal.imgur.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 352,
+        "preview": ""
+      },
+      {
+        "subdomain": "internal.imgur.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 355,
+        "preview": "<?xml version=\"1.0\"?>\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n    <allow-access-from domain=\"imgur.com\" secure=\"false\" "
+      },
+      {
+        "subdomain": "internal.imgur.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "wiki.imgur.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "wiki.imgur.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "wiki.imgur.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "wiki.imgur.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "wiki.imgur.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "wiki.imgur.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "wiki.imgur.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "wiki.imgur.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "wiki.imgur.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 352,
+        "preview": ""
+      },
+      {
+        "subdomain": "wiki.imgur.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 355,
+        "preview": "<?xml version=\"1.0\"?>\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n    <allow-access-from domain=\"imgur.com\" secure=\"false\" "
+      },
+      {
+        "subdomain": "wiki.imgur.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "portal.imgur.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "portal.imgur.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "portal.imgur.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "portal.imgur.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "portal.imgur.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "portal.imgur.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "portal.imgur.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "portal.imgur.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "portal.imgur.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 352,
+        "preview": ""
+      },
+      {
+        "subdomain": "portal.imgur.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 355,
+        "preview": "<?xml version=\"1.0\"?>\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n    <allow-access-from domain=\"imgur.com\" secure=\"false\" "
+      },
+      {
+        "subdomain": "portal.imgur.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "vault.imgur.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "vault.imgur.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "vault.imgur.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "vault.imgur.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "vault.imgur.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "vault.imgur.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "vault.imgur.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "vault.imgur.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "vault.imgur.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 352,
+        "preview": ""
+      },
+      {
+        "subdomain": "vault.imgur.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 355,
+        "preview": "<?xml version=\"1.0\"?>\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n    <allow-access-from domain=\"imgur.com\" secure=\"false\" "
+      },
+      {
+        "subdomain": "vault.imgur.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "auth.imgur.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "auth.imgur.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "auth.imgur.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "auth.imgur.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "auth.imgur.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "auth.imgur.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.imgur.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 5478,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.imgur.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "auth.imgur.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 352,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.imgur.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 355,
+        "preview": "<?xml version=\"1.0\"?>\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n    <allow-access-from domain=\"imgur.com\" secure=\"false\" "
+      },
+      {
+        "subdomain": "auth.imgur.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 5478,
+        "preview": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <link rel=\"icon\" type=\"image/png\" href=\"https://s.imgur.com/images/fa"
+      },
+      {
+        "subdomain": "api.imgur.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 352,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.imgur.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 388,
+        "preview": "<?xml version=\"1.0\"?>\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n    <allow-access-from domain=\"imgur.com\" />\n    <allow-a"
+      }
+    ],
+    "takeover_candidates": [
+      {
+        "subdomain": "app.imgur.com",
+        "service": "fastly.net",
+        "detail": "Server:  UnKnown\nAddress:  fe80::42ed:ff:fe79:e4ba\n\napp.imgur.com\tcanonical name = ipv4.imgur.map.fastly.net\n"
+      },
+      {
+        "subdomain": "cdn.imgur.com",
+        "service": "fastly.net",
+        "detail": "Server:  UnKnown\nAddress:  fe80::42ed:ff:fe79:e4ba\n\ncdn.imgur.com\tcanonical name = ipv4.imgur.map.fastly.net\n"
+      },
+      {
+        "subdomain": "qa.imgur.com",
+        "service": "fastly.net",
+        "detail": "Server:  UnKnown\nAddress:  fe80::42ed:ff:fe79:e4ba\n\nqa.imgur.com\tcanonical name = ipv4.imgur.map.fastly.net\n"
+      },
+      {
+        "subdomain": "ops.imgur.com",
+        "service": "fastly.net",
+        "detail": "Server:  UnKnown\nAddress:  fe80::42ed:ff:fe79:e4ba\n\nops.imgur.com\tcanonical name = ipv4.imgur.map.fastly.net\n"
+      },
+      {
+        "subdomain": "vpn.imgur.com",
+        "service": "fastly.net",
+        "detail": "Server:  UnKnown\nAddress:  fe80::42ed:ff:fe79:e4ba\n\nvpn.imgur.com\tcanonical name = ipv4.imgur.map.fastly.net\n"
+      },
+      {
+        "subdomain": "git.imgur.com",
+        "service": "fastly.net",
+        "detail": "Server:  UnKnown\nAddress:  fe80::42ed:ff:fe79:e4ba\n\ngit.imgur.com\tcanonical name = ipv4.imgur.map.fastly.net\n"
+      },
+      {
+        "subdomain": "ci.imgur.com",
+        "service": "fastly.net",
+        "detail": "Server:  UnKnown\nAddress:  fe80::42ed:ff:fe79:e4ba\n\nci.imgur.com\tcanonical name = ipv4.imgur.map.fastly.net\n"
+      },
+      {
+        "subdomain": "sandbox.imgur.com",
+        "service": "fastly.net",
+        "detail": "Server:  UnKnown\nAddress:  fe80::42ed:ff:fe79:e4ba\n\nsandbox.imgur.com\tcanonical name = ipv4.imgur.map.fastly.net\n"
+      },
+      {
+        "subdomain": "dev.imgur.com",
+        "service": "fastly.net",
+        "detail": "Server:  UnKnown\nAddress:  fe80::42ed:ff:fe79:e4ba\n\ndev.imgur.com\tcanonical name = ipv4.imgur.map.fastly.net\n"
+      }
+    ],
+    "s3_findings": []
+  }
+}

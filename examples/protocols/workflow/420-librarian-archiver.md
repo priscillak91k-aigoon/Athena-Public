@@ -25,8 +25,8 @@ The Librarian splits ingestion into two streams:
 
 ```bash
 # Unified Command
-python3 .agent/scripts/librarian/archive.py "https://example.com/article"
-python3 .agent/scripts/librarian/archive.py "https://youtube.com/watch?v=..."
+python3 scripts/librarian/archive.py "https://example.com/article"
+python3 scripts/librarian/archive.py "https://youtube.com/watch?v=..."
 ```
 
 ## 4. Dependencies

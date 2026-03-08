@@ -6,7 +6,7 @@ This script sets up a dedicated Python 3.12 virtual environment for GraphRAG,
 bypassing the system's Python 3.13 incompatibility.
 
 Usage:
-    python3 .agent/scripts/setup_graphrag.py
+    python3 scripts/setup_graphrag.py
 
 Requirements:
     - 'uv' (fast python package manager) must be installed.
@@ -77,7 +77,7 @@ def main():
         
         print("\n✅ Setup complete!")
         print(f"   Venv: {GRAPH_ENV_DIR}")
-        print("   You can now run: python3 .agent/scripts/index_graphrag.py")
+        print("   You can now run: python3 scripts/index_graphrag.py")
         
     except subprocess.CalledProcessError as e:
         print(f"\n❌ Setup failed: {e}")

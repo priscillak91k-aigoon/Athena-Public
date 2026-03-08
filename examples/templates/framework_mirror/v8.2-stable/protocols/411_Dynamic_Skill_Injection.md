@@ -134,7 +134,7 @@ During `/start`, inject trigger conditions summary:
 ### 1. Skill Discovery (Updated)
 
 ```python
-# .agent/scripts/skill_loader.py
+# scripts/skill_loader.py
 def discover_skills():
     """Discover all available skills with 5W1H metadata."""
     skills = {}
@@ -244,10 +244,10 @@ def inject_skill(skill_name: str, context: list) -> list:
 
 ```bash
 # Regenerate skill index with 5W1H validation
-python3 .agent/scripts/skill_loader.py --index > .agent/skills/SKILL_INDEX.md
+python3 scripts/skill_loader.py --index > .agent/skills/SKILL_INDEX.md
 
 # Validate all skills for 5W1H compliance
-python3 .agent/scripts/skill_loader.py --validate
+python3 scripts/skill_loader.py --validate
 ```
 
 ---

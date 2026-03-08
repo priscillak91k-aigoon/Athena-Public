@@ -22,12 +22,28 @@ VAULT_DIR = PROJECT_ROOT / "vault"
 SESSION_DIR = PROJECT_ROOT / "session_logs"
 STATE_FILE = CONTEXT_DIR / "session_state.json"
 CORRECTIONS_FILE = CONTEXT_DIR / "corrections.md"
+STATE_ARCHIVE_DIR = CONTEXT_DIR / "state" / "archive"
 
 
 def ensure_directories():
     """Create required directories if they don't exist."""
-    for d in [CONTEXT_DIR, VAULT_DIR, SESSION_DIR]:
+    for d in [CONTEXT_DIR, VAULT_DIR, SESSION_DIR, STATE_ARCHIVE_DIR]:
         d.mkdir(parents=True, exist_ok=True)
+        
+def init_thought_graph(session_id="default"):
+    """Initialize the thought graph for complex workflows (Protocol 250)."""
+    graph_file = CONTEXT_DIR / "state" / f"thought_graph_{session_id}.json"
+    if not graph_file.exists():
+        initial_state = {
+            "session_id": session_id,
+            "created_at": datetime.now().isoformat(),
+            "nodes": [],
+            "edges": [],
+            "status": "initialized"
+        }
+        graph_file.write_text(json.dumps(initial_state, indent=2), encoding="utf-8")
+        return True
+    return False
 
 
 def load_last_state():
@@ -103,6 +119,13 @@ def main():
         print(f"   Pending tasks: {pending_tasks}")
     else:
         print("   No previous state found (first boot or clean start)")
+        
+    # Protocol 250: Initialize thought graph
+    print("\n[2.5/5] Protocol 250 (Thought Graph):")
+    if init_thought_graph():
+        print("   Graph initialized: thought_graph_default.json")
+    else:
+        print("   Graph already exists: thought_graph_default.json")
 
     # Ghost note re-alignment
     print("\n[3/5] Vibe Re-alignment:")

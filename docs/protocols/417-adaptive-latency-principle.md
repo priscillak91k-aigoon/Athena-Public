@@ -62,7 +62,7 @@ Refer to the efficiency optimizations in:
 - `src/athena/memory/vectors.py` — Background embedding cache saves
 - `src/athena/core/config.py` — Cached project root discovery
 - `src/athena/sessions.py` — Lazy YAML loading
-- `.agent/scripts/quicksave.py` — Defered heavy imports
+- `scripts/quicksave.py` — Defered heavy imports
 - `src/athena/boot/orchestrator.py` — Parallelized boot sequence
 
 ## Related Protocols

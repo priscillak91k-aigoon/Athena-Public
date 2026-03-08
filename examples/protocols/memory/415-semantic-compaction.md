@@ -24,7 +24,7 @@ source: "Steal from Beads (Steve Yegge)"
 
 ## 3. Execution (The Script)
 
-Run `.agent/scripts/compact_context.py` to:
+Run `scripts/compact_context.py` to:
 
 1. **Scan** `activeContext.md` for the `## Active Tasks` section.
 2. **Count** `[x]` items.

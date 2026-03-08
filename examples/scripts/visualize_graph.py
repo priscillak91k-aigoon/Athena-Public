@@ -6,7 +6,7 @@ Generates an interactive HTML visualization of the knowledge graph
 using PyVis, matching the capability described in the reference article.
 
 Usage:
-    python3 .agent/scripts/visualize_graph.py
+    python3 scripts/visualize_graph.py
 """
 
 import pickle

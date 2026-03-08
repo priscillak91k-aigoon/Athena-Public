@@ -1,0 +1,3508 @@
+{
+  "Postman": {
+    "target": "Postman",
+    "domain": "postman.com",
+    "max_bounty": 3000,
+    "subdomains": [
+      "id.postman.com",
+      "2020-us-election-apis.postman.com",
+      "bifrost-https-v10.gw.postman.com",
+      "blog.postman.com",
+      "god.explore.postman.com",
+      "tools.postman.com",
+      "gw.postman.com",
+      "auth.postman.com",
+      "unique.26407897.us.postman.com",
+      "go.postman.com",
+      "docs.postman.com",
+      "skylab.postman.com",
+      "store.postman.com",
+      "phs.postman.com",
+      "bifrost-premium-v4.gw.postman.com",
+      "unique.abfae183.gw.eu.postman.com",
+      "www.staging1.blog.postman.com",
+      "vpn.postman.com",
+      "qa.postman.com",
+      "monitoring-api.gw.postman.com",
+      "app.postman.com",
+      "bifrost-web-public-v4.gw.postman.com",
+      "publish.postman.com",
+      "trace-receiver.postman.com",
+      "get.postman.com",
+      "unique.61934655.eu.postman.com",
+      "mail.postman.com",
+      "api.postman.com",
+      "cdn.postman.com",
+      "security.postman.com",
+      "ops.postman.com",
+      "design.postman.com",
+      "enc.eu.postman.com",
+      "mkt.bgp.postman.com",
+      "monitor.postman.com",
+      "static.postman.com",
+      "assets.publish.postman.com",
+      "bifrost-public-v4.gw.postman.com",
+      "edit.blog.postman.com",
+      "integrate.postman.com",
+      "quickstarts.postman.com",
+      "apisec.cdn.postman.com",
+      "preview.postman.com",
+      "bifrost-v4.gw.postman.com",
+      "id.gw.postman.com",
+      "support.postman.com",
+      "gw.us.postman.com",
+      "unique.26407897.enc.us.postman.com",
+      "gw.eu.postman.com",
+      "unique.26407827.gw.eu.postman.com",
+      "portal.postman.com",
+      "test.postman.com",
+      "vault.postman.com",
+      "lp.postman.com",
+      "blog.static.postman.com",
+      "dev.postman.com",
+      "status.postman.com",
+      "documenter.postman.com",
+      "bifrost-v3.gw.postman.com",
+      "design.learning.postman.com",
+      "admin.postman.com",
+      "app.srv.postman.com",
+      "mkt.cdn.postman.com",
+      "wiki.postman.com",
+      "events.postman.com",
+      "www.postman.com",
+      "unique.26407897.eu.postman.com",
+      "dashboard.postman.com",
+      "app.gw.postman.com",
+      "publish.gw.postman.com",
+      "onboarding.postman.com",
+      "bifrost-premium-https-v4.gw.postman.com",
+      "evs.cdp.postman.com",
+      "api.cdp.postman.com",
+      "jenkins.postman.com",
+      "bifrost-premium-v3.gw.postman.com",
+      "unique.26408900.enc.eu.postman.com",
+      "postcon.postman.com",
+      "unique.abfae182.eu.postman.com",
+      "unique.26407915.gw.postman.com",
+      "docs.api.postman.com",
+      "identity.postman.com",
+      "graphql.postman.com",
+      "bifrost-web-v4.gw.postman.com",
+      "git.postman.com",
+      "billing.srv.postman.com",
+      "developer.postman.com",
+      "ci.postman.com",
+      "bifrost-https-v4.gw.postman.com",
+      "unique.26407905.postman.com",
+      "skills.gw.postman.com",
+      "bifrost-public-https-v4.gw.postman.com",
+      "links.postman.com",
+      "iapub.gw.postman.com",
+      "bifrost-web.explore.postman.com",
+      "bfgp4.explore.postman.com",
+      "internal.postman.com",
+      "beta.postman.com",
+      "apifirst.postman.com",
+      "aws-marketplace.postman.com",
+      "www.blog.postman.com",
+      "prerendered.postman.com",
+      "us.postman.com",
+      "developers.postman.com",
+      "bfg3.explore.postman.com",
+      "staging1.blog.postman.com",
+      "stage.postman.com",
+      "privacy.postman.com",
+      "bifrost-web.gw.postman.com",
+      "bifrost-web-https-v4.gw.postman.com",
+      "wwww.postman.com",
+      "staging.postman.com",
+      "bfg4.explore.postman.com",
+      "god.gw.postman.com",
+      "pub.explore.postman.com",
+      "community.postman.com",
+      "bifrost-premium-https-v10.gw.postman.com",
+      "billing.gw.postman.com",
+      "covid-19-apis.postman.com",
+      "login.postman.com",
+      "documenter.gw.postman.com",
+      "academy.postman.com",
+      "unique.26407827.gw.us.postman.com",
+      "flow.cdn.postman.com",
+      "eu.postman.com",
+      "learning.postman.com",
+      "www.edit.blog.postman.com",
+      "marketing.postman.com",
+      "enc.us.postman.com",
+      "monitoring-orchestrator.srv.postman.com",
+      "sandbox.postman.com",
+      "ra.gw.postman.com",
+      "ra.explore.postman.com",
+      "problems-registry.api.postman.com",
+      "upflow-email.payments.postman.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "bifrost-https-v10.gw.postman.com",
+        "url": "https://bifrost-https-v10.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 83
+      },
+      {
+        "subdomain": "blog.postman.com",
+        "url": "https://blog.postman.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 6844
+      },
+      {
+        "subdomain": "skylab.postman.com",
+        "url": "https://skylab.postman.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 275
+      },
+      {
+        "subdomain": "go.postman.com",
+        "url": "https://go.postman.com",
+        "status": 200,
+        "title": "404 - Page not found",
+        "server": "cloudflare",
+        "content_length": 539
+      },
+      {
+        "subdomain": "monitoring-api.gw.postman.com",
+        "url": "https://monitoring-api.gw.postman.com",
+        "status": 401,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 188
+      },
+      {
+        "subdomain": "bifrost-web-public-v4.gw.postman.com",
+        "url": "https://bifrost-web-public-v4.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 85
+      },
+      {
+        "subdomain": "bifrost-premium-v4.gw.postman.com",
+        "url": "https://bifrost-premium-v4.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 84
+      },
+      {
+        "subdomain": "god.explore.postman.com",
+        "url": "https://god.explore.postman.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 7121
+      },
+      {
+        "subdomain": "apisec.cdn.postman.com",
+        "url": "https://apisec.cdn.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 0
+      },
+      {
+        "subdomain": "static.postman.com",
+        "url": "https://static.postman.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "bifrost-public-v4.gw.postman.com",
+        "url": "https://bifrost-public-v4.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 87
+      },
+      {
+        "subdomain": "assets.publish.postman.com",
+        "url": "https://assets.publish.postman.com",
+        "status": 403,
+        "title": "Attention Required! | Cloudflare",
+        "server": "cloudflare",
+        "content_length": 4540
+      },
+      {
+        "subdomain": "store.postman.com",
+        "url": "https://store.postman.com",
+        "status": 200,
+        "title": "Postman Merchandise Store\n &ndash; Postman Store",
+        "server": "cloudflare",
+        "content_length": 255207
+      },
+      {
+        "subdomain": "security.postman.com",
+        "url": "https://security.postman.com",
+        "status": 200,
+        "title": "Postman Customer Trust Portal",
+        "server": "cloudflare",
+        "content_length": 397325
+      },
+      {
+        "subdomain": "api.postman.com",
+        "url": "https://api.postman.com",
+        "status": 200,
+        "title": "Postman",
+        "server": "cloudflare",
+        "content_length": 99085
+      },
+      {
+        "subdomain": "quickstarts.postman.com",
+        "url": "https://quickstarts.postman.com",
+        "status": 200,
+        "title": "Postman Quickstarts",
+        "server": "GitHub.com",
+        "content_length": 47185
+      },
+      {
+        "subdomain": "integrate.postman.com",
+        "url": "https://integrate.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 86
+      },
+      {
+        "subdomain": "id.postman.com",
+        "url": "https://id.postman.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 7249
+      },
+      {
+        "subdomain": "bifrost-v4.gw.postman.com",
+        "url": "https://bifrost-v4.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 84
+      },
+      {
+        "subdomain": "auth.postman.com",
+        "url": "https://auth.postman.com",
+        "status": 404,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 89
+      },
+      {
+        "subdomain": "get.postman.com",
+        "url": "https://get.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 136139
+      },
+      {
+        "subdomain": "support.postman.com",
+        "url": "https://support.postman.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 6980
+      },
+      {
+        "subdomain": "documenter.postman.com",
+        "url": "https://documenter.postman.com",
+        "status": 200,
+        "title": "Postman Documenter",
+        "server": "cloudflare",
+        "content_length": 402
+      },
+      {
+        "subdomain": "design.postman.com",
+        "url": "https://design.postman.com",
+        "status": 200,
+        "title": "Sign in ã» Cloudflare Access",
+        "server": "cloudflare",
+        "content_length": 28974
+      },
+      {
+        "subdomain": "id.gw.postman.com",
+        "url": "https://id.gw.postman.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 7249
+      },
+      {
+        "subdomain": "status.postman.com",
+        "url": "https://status.postman.com",
+        "status": 200,
+        "title": "Postman Status",
+        "server": "AtlassianEdge",
+        "content_length": 832038
+      },
+      {
+        "subdomain": "mkt.cdn.postman.com",
+        "url": "https://mkt.cdn.postman.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "design.learning.postman.com",
+        "url": "https://design.learning.postman.com",
+        "status": 200,
+        "title": "Aether Icons for the Postman Docs",
+        "server": "",
+        "content_length": 1244234
+      },
+      {
+        "subdomain": "app.srv.postman.com",
+        "url": "https://app.srv.postman.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 7078
+      },
+      {
+        "subdomain": "bifrost-v3.gw.postman.com",
+        "url": "https://bifrost-v3.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 87
+      },
+      {
+        "subdomain": "events.postman.com",
+        "url": "https://events.postman.com",
+        "status": 404,
+        "title": "Error - 404",
+        "server": "",
+        "content_length": 1316
+      },
+      {
+        "subdomain": "www.postman.com",
+        "url": "https://www.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 136139
+      },
+      {
+        "subdomain": "lp.postman.com",
+        "url": "https://lp.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 136139
+      },
+      {
+        "subdomain": "bifrost-premium-https-v4.gw.postman.com",
+        "url": "https://bifrost-premium-https-v4.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 85
+      },
+      {
+        "subdomain": "app.gw.postman.com",
+        "url": "https://app.gw.postman.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 7099
+      },
+      {
+        "subdomain": "api.cdp.postman.com",
+        "url": "https://api.cdp.postman.com",
+        "status": 404,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 0
+      },
+      {
+        "subdomain": "evs.cdp.postman.com",
+        "url": "https://evs.cdp.postman.com",
+        "status": 404,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 49
+      },
+      {
+        "subdomain": "bifrost-web-v4.gw.postman.com",
+        "url": "https://bifrost-web-v4.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 81
+      },
+      {
+        "subdomain": "bifrost-premium-v3.gw.postman.com",
+        "url": "https://bifrost-premium-v3.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 83
+      },
+      {
+        "subdomain": "bifrost-https-v4.gw.postman.com",
+        "url": "https://bifrost-https-v4.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 83
+      },
+      {
+        "subdomain": "billing.srv.postman.com",
+        "url": "https://billing.srv.postman.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 7099
+      },
+      {
+        "subdomain": "skills.gw.postman.com",
+        "url": "https://skills.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 91
+      },
+      {
+        "subdomain": "identity.postman.com",
+        "url": "https://identity.postman.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 7249
+      },
+      {
+        "subdomain": "bifrost-public-https-v4.gw.postman.com",
+        "url": "https://bifrost-public-https-v4.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 83
+      },
+      {
+        "subdomain": "postcon.postman.com",
+        "url": "https://postcon.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 72119
+      },
+      {
+        "subdomain": "aws-marketplace.postman.com",
+        "url": "https://aws-marketplace.postman.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "iapub.gw.postman.com",
+        "url": "https://iapub.gw.postman.com",
+        "status": 404,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 106
+      },
+      {
+        "subdomain": "developer.postman.com",
+        "url": "https://developer.postman.com",
+        "status": 404,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 96612
+      },
+      {
+        "subdomain": "links.postman.com",
+        "url": "https://links.postman.com",
+        "status": 404,
+        "title": "",
+        "server": "iterable-links b20d",
+        "content_length": 9
+      },
+      {
+        "subdomain": "bfg3.explore.postman.com",
+        "url": "https://bfg3.explore.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 86
+      },
+      {
+        "subdomain": "privacy.postman.com",
+        "url": "https://privacy.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 1636
+      },
+      {
+        "subdomain": "bifrost-web.gw.postman.com",
+        "url": "https://bifrost-web.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 82
+      },
+      {
+        "subdomain": "wwww.postman.com",
+        "url": "https://wwww.postman.com",
+        "status": 530,
+        "title": "Origin DNS error | wwww.postman.com | Cloudflare",
+        "server": "cloudflare",
+        "content_length": 6581
+      },
+      {
+        "subdomain": "developers.postman.com",
+        "url": "https://developers.postman.com",
+        "status": 404,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 96612
+      },
+      {
+        "subdomain": "prerendered.postman.com",
+        "url": "https://prerendered.postman.com",
+        "status": 200,
+        "title": "Sign in ã» Cloudflare Access",
+        "server": "cloudflare",
+        "content_length": 31712
+      },
+      {
+        "subdomain": "bifrost-web-https-v4.gw.postman.com",
+        "url": "https://bifrost-web-https-v4.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 84
+      },
+      {
+        "subdomain": "bifrost-premium-https-v10.gw.postman.com",
+        "url": "https://bifrost-premium-https-v10.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 83
+      },
+      {
+        "subdomain": "god.gw.postman.com",
+        "url": "https://god.gw.postman.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 7099
+      },
+      {
+        "subdomain": "community.postman.com",
+        "url": "https://community.postman.com",
+        "status": 200,
+        "title": "Postman Community",
+        "server": "cloudflare",
+        "content_length": 20635
+      },
+      {
+        "subdomain": "covid-19-apis.postman.com",
+        "url": "https://covid-19-apis.postman.com",
+        "status": 200,
+        "title": "Postman",
+        "server": "cloudflare",
+        "content_length": 99085
+      },
+      {
+        "subdomain": "academy.postman.com",
+        "url": "https://academy.postman.com",
+        "status": 403,
+        "title": "ERROR: The request could not be satisfied",
+        "server": "CloudFront",
+        "content_length": 919
+      },
+      {
+        "subdomain": "documenter.gw.postman.com",
+        "url": "https://documenter.gw.postman.com",
+        "status": 200,
+        "title": "Postman Documenter",
+        "server": "cloudflare",
+        "content_length": 402
+      },
+      {
+        "subdomain": "billing.gw.postman.com",
+        "url": "https://billing.gw.postman.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 7099
+      },
+      {
+        "subdomain": "flow.cdn.postman.com",
+        "url": "https://flow.cdn.postman.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "learning.postman.com",
+        "url": "https://learning.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "Vercel",
+        "content_length": 1297183
+      },
+      {
+        "subdomain": "problems-registry.api.postman.com",
+        "url": "https://problems-registry.api.postman.com",
+        "status": 523,
+        "title": "problems-registry.api.postman.com | 523: Origin is unreachable",
+        "server": "cloudflare",
+        "content_length": 7204
+      },
+      {
+        "subdomain": "sandbox.postman.com",
+        "url": "https://sandbox.postman.com",
+        "status": 200,
+        "title": "Postman Dashboard",
+        "server": "cloudflare",
+        "content_length": 769
+      },
+      {
+        "subdomain": "ra.explore.postman.com",
+        "url": "https://ra.explore.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 87
+      },
+      {
+        "subdomain": "ra.gw.postman.com",
+        "url": "https://ra.gw.postman.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 84
+      },
+      {
+        "subdomain": "monitoring-orchestrator.srv.postman.com",
+        "url": "https://monitoring-orchestrator.srv.postman.com",
+        "status": 404,
+        "title": "Error",
+        "server": "nginx",
+        "content_length": 139
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "blog.postman.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 6856,
+        "preview": ""
+      },
+      {
+        "subdomain": "blog.postman.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 6880,
+        "preview": ""
+      },
+      {
+        "subdomain": "blog.postman.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 6880,
+        "preview": ""
+      },
+      {
+        "subdomain": "blog.postman.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 6844,
+        "preview": ""
+      },
+      {
+        "subdomain": "blog.postman.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 6883,
+        "preview": ""
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 539,
+        "preview": ""
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 539,
+        "preview": ""
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 539,
+        "preview": ""
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 539,
+        "preview": ""
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/phpinfo.php",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "go.postman.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "monitoring-api.gw.postman.com",
+        "path": "/metrics",
+        "status": 401,
+        "content_length": 195,
+        "preview": ""
+      },
+      {
+        "subdomain": "skylab.postman.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "skylab.postman.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "skylab.postman.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 263,
+        "preview": ""
+      },
+      {
+        "subdomain": "skylab.postman.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "skylab.postman.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "god.explore.postman.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 335,
+        "preview": ""
+      },
+      {
+        "subdomain": "assets.publish.postman.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 4540,
+        "preview": ""
+      },
+      {
+        "subdomain": "assets.publish.postman.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 4540,
+        "preview": ""
+      },
+      {
+        "subdomain": "assets.publish.postman.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 4540,
+        "preview": ""
+      },
+      {
+        "subdomain": "assets.publish.postman.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 4540,
+        "preview": ""
+      },
+      {
+        "subdomain": "assets.publish.postman.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 4540,
+        "preview": ""
+      },
+      {
+        "subdomain": "store.postman.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 255219,
+        "preview": "<!doctype html>\n<html class=\"no-js\" lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width,initi"
+      },
+      {
+        "subdomain": "store.postman.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 1209,
+        "preview": "{\"issuer\":\"https:\\/\\/shopify.com\\/authentication\\/5756682355\",\"token_endpoint\":\"https:\\/\\/shopify.com\\/authentication\\/5756682355\\/oauth\\/token\",\"authorization_endpoint\":\"https:\\/\\/shopify.com\\/authen"
+      },
+      {
+        "subdomain": "store.postman.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 6650,
+        "preview": ""
+      },
+      {
+        "subdomain": "store.postman.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 786,
+        "preview": ""
+      },
+      {
+        "subdomain": "store.postman.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 223,
+        "preview": "<?xml version=\"1.0\"?>\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n  <site-control permitted-cross-domain-policies=\"none\"/>\n"
+      },
+      {
+        "subdomain": "store.postman.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 255234,
+        "preview": "<!doctype html>\n<html class=\"no-js\" lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width,initi"
+      },
+      {
+        "subdomain": "store.postman.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 255234,
+        "preview": "<!doctype html>\n<html class=\"no-js\" lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width,initi"
+      },
+      {
+        "subdomain": "api.postman.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 6876,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.postman.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 6943,
+        "preview": ""
+      },
+      {
+        "subdomain": "apisec.cdn.postman.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "apisec.cdn.postman.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "apisec.cdn.postman.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "apisec.cdn.postman.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "apisec.cdn.postman.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.postman.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.postman.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.postman.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.postman.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.postman.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "security.postman.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 4958,
+        "preview": ""
+      },
+      {
+        "subdomain": "security.postman.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 5001,
+        "preview": ""
+      },
+      {
+        "subdomain": "security.postman.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 319,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  },
+  "Grammarly": {
+    "target": "Grammarly",
+    "domain": "grammarly.com",
+    "max_bounty": 100000,
+    "subdomains": [
+      "institution.grammarly.com",
+      "staging.grammarly.com",
+      "test.grammarly.com",
+      "tokenism-private.grammarly.com",
+      "vdusw-cs1.grammarly.com",
+      "preview.grammarly.com",
+      "contenthub.grammarly.com",
+      "officeaddin.grammarly.com",
+      "treatment.grammarly.com",
+      "ai-editor.grammarly.com",
+      "id.grammarly.com",
+      "lti-integration.grammarly.com",
+      "support.grammarly.com",
+      "engage.grammarly.com",
+      "subscription.grammarly.com",
+      "in.grammarly.com",
+      "billing.grammarly.com",
+      "invite.grammarly.com",
+      "rwsgfy.grammarly.com",
+      "internal.subscription.private.grammarly.com",
+      "chipmunk.grammarly.com",
+      "static.institution.grammarly.com",
+      "auth.private.grammarly.com",
+      "sentinel.private.grammarly.com",
+      "access-manager-private-torii.grammarly.com",
+      "answers.grammarly.com",
+      "static.fridge.grammarly.com",
+      "dashboard.grammarly.com",
+      "public-internal.redirect.grammarly.com",
+      "g-mail.internal.grammarly.com",
+      "go.grammarly.com",
+      "blog.grammarly.com",
+      "auth-private.grammarly.com",
+      "tokenism.grammarly.com",
+      "billing-nlb.grammarly.com",
+      "private.api.payments.grammarly.com",
+      "sso.grammarly.com",
+      "partners.grammarly.com",
+      "graphql.grammarly.com",
+      "capi-msdk.grammarly.com",
+      "stripe-integration.grammarly.com",
+      "speak.grammarly.com",
+      "content.grammarly.com",
+      "config-qa.extension.grammarly.com",
+      "snippets.grammarly.com",
+      "docs-uxr.grammarly.com",
+      "contenthub-static.grammarly.com",
+      "monitor.grammarly.com",
+      "gates.grammarly.com",
+      "private-api.payments.grammarly.com",
+      "rtmp.zoommarly.grammarly.com",
+      "auth-secure.grammarly.com",
+      "chipmunk-private.grammarly.com",
+      "apps.private.grammarly.com",
+      "admin-panel.grammarly.com",
+      "diagnostics.grammarly.com",
+      "qa.grammarly.com",
+      "git.grammarly.com",
+      "status.grammarly.com",
+      "dev.grammarly.com",
+      "tokens.grammarly.com",
+      "auth.grammarly.com",
+      "authorship.grammarly.com",
+      "vdusw-cs2.grammarly.com",
+      "apps-public.grammarly.com",
+      "denali-fb.grammarly.com",
+      "update-windows.grammarly.com",
+      "brand.grammarly.com",
+      "sentinel.grammarly.com",
+      "zoom-callbacks.grammarly.com",
+      "events.grammarly.com",
+      "ed.grammarly.com",
+      "skills-proxy.grammarly.com",
+      "download-bundle.grammarly.com",
+      "ci.grammarly.com",
+      "mise-private.grammarly.com",
+      "pages.send.grammarly.com",
+      "cdn.grammarly.com",
+      "k8s-capi-1.grammarly.com",
+      "access-manager.private.grammarly.com",
+      "iosapp.grammarly.com",
+      "login.grammarly.com",
+      "billing-ui.grammarly.com",
+      "fridge.grammarly.com",
+      "www.nspl.grammarly.com",
+      "sandbox.grammarly.com",
+      "assets.extension.grammarly.com",
+      "update-officeaddin.grammarly.com",
+      "vdeuc-cs2.grammarly.com",
+      "apps-uploads.grammarly.com",
+      "sombra.sombra-transcend.grammarly.com",
+      "admin.grammarly.com",
+      "private.login.grammarly.com",
+      "apps.grammarly.com",
+      "vdeuc-cs1.grammarly.com",
+      "stage.grammarly.com",
+      "config.extension.grammarly.com",
+      "m.grammarly.com",
+      "www.autoreport.grammarly.com",
+      "ua-gec-dataset.grammarly.com",
+      "api.grammarly.com",
+      "facade.private.grammarly.com",
+      "g-mail.grammarly.com",
+      "chargeback-prevention.grammarly.com",
+      "static-v2.institution.grammarly.com",
+      "internal.grammarly.com",
+      "click.notification.grammarly.com",
+      "js-static.grammarly.com",
+      "discount.grammarly.com",
+      "gnar.grammarly.com",
+      "sensei.grammarly.com",
+      "update.grammarly.com",
+      "js.grammarly.com",
+      "dox-private.grammarly.com",
+      "properties.grammarly.com",
+      "static-web.grammarly.com",
+      "api.payments.grammarly.com",
+      "corgi.grammarly.com",
+      "handbook.grammarly.com",
+      "zoommarly.grammarly.com",
+      "tokens.private.grammarly.com",
+      "developers.grammarly.com",
+      "iosapp-alpha.grammarly.com",
+      "vpn.grammarly.com",
+      "preprod.vox-static.grammarly.com",
+      "download-office-predeploy.grammarly.com",
+      "mercury.grammarly.com",
+      "bixby-internal.grammarly.com",
+      "download-office.grammarly.com",
+      "iosapp-beta.grammarly.com",
+      "account.grammarly.com",
+      "nexus-ext.grammarly.com",
+      "dox.grammarly.com",
+      "payments.grammarly.com",
+      "subscription.private.grammarly.com",
+      "ops.grammarly.com",
+      "tools.grammarly.com",
+      "autoreport.grammarly.com",
+      "vault.grammarly.com",
+      "ui.proofit.grammarly.com",
+      "knots.grammarly.com",
+      "geoproximity.bixby-internal.grammarly.com",
+      "image.send.grammarly.com",
+      "speak-prod.grammarly.com",
+      "capi.private.grammarly.com",
+      "portal.grammarly.com",
+      "nspl.grammarly.com",
+      "research.grammarly.com",
+      "denali-blue.grammarly.com",
+      "fb-app.grammarly.com",
+      "account-private.grammarly.com",
+      "gateway.grammarly.com",
+      "download-mac.grammarly.com",
+      "geoproximity.bixby.grammarly.com",
+      "msync.grammarly.com",
+      "bixby.grammarly.com",
+      "applet-bundles.grammarly.com",
+      "private-k8s-capi.grammarly.com",
+      "adminka.grammarly.com",
+      "click.grammarly.com",
+      "irbis.grammarly.com",
+      "redirect.internal.grammarly.com",
+      "knowledge.grammarly.com",
+      "uifoundation.grammarly.com",
+      "denali-static.grammarly.com",
+      "3p-access.grammarly.com",
+      "mail.grammarly.com",
+      "verifi-integration.grammarly.com",
+      "applet-bundles-static.grammarly.com",
+      "vpn1.grammarly.com",
+      "wiki.grammarly.com",
+      "contenthub-private.grammarly.com",
+      "sso.private.grammarly.com",
+      "docs.grammarly.com",
+      "demo.grammarly.com",
+      "datareport.grammarly.com",
+      "gate.grammarly.com",
+      "business-tour.grammarly.com",
+      "goldengate.grammarly.com",
+      "gstatic.grammarly.com",
+      "dc-02.corp.grammarly.com",
+      "email.recruiting.grammarly.com",
+      "static-id.grammarly.com",
+      "in-product.report.grammarly.com",
+      "coda.grammarly.com",
+      "www.blog.grammarly.com",
+      "skills.grammarly.com",
+      "download-editor.grammarly.com",
+      "click.send.grammarly.com",
+      "facade-private.grammarly.com",
+      "tech.grammarly.com",
+      "api.mise-private.grammarly.com",
+      "api.billing.grammarly.com",
+      "assets.grammarly.com",
+      "static.grammarly.com",
+      "static.sensei.grammarly.com",
+      "extension-popup-editor.grammarly.com",
+      "download-editor-predeploy.grammarly.com",
+      "torii-private.grammarly.com",
+      "speak-dev.grammarly.com",
+      "devoxx.grammarly.com",
+      "beta.grammarly.com",
+      "dockerhub.grammarly.com",
+      "sentinel-private.grammarly.com",
+      "vox-static.grammarly.com",
+      "sso-institutions.grammarly.com",
+      "nexus.grammarly.com",
+      "download-windows.grammarly.com",
+      "wstest.grammarly.com",
+      "developer-hub.grammarly.com",
+      "www.grammarly.com",
+      "qa.vox-static.grammarly.com",
+      "capi.grammarly.com",
+      "dc-01.corp.grammarly.com",
+      "g4d-meter.grammarly.com",
+      "in-product-test.report.grammarly.com",
+      "data-internal.grammarly.com",
+      "access-manager-torii-private.grammarly.com",
+      "qa.aicomposer.grammarly.com",
+      "data.grammarly.com",
+      "gitlab.grammarly.com",
+      "hello.grammarly.com",
+      "experiences.grammarly.com",
+      "login-static.grammarly.com",
+      "redirect.grammarly.com",
+      "app.grammarly.com",
+      "jenkins.grammarly.com",
+      "developer.grammarly.com",
+      "tokenism-relay.grammarly.com",
+      "msync-private.grammarly.com",
+      "tokenism-relay-private.grammarly.com",
+      "view.send.grammarly.com",
+      "k8s-capi-green.grammarly.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "engage.grammarly.com",
+        "url": "https://engage.grammarly.com",
+        "status": 403,
+        "title": "Access Denied",
+        "server": "AkamaiGHost",
+        "content_length": 372
+      },
+      {
+        "subdomain": "support.grammarly.com",
+        "url": "https://support.grammarly.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 6982
+      },
+      {
+        "subdomain": "subscription.grammarly.com",
+        "url": "https://subscription.grammarly.com",
+        "status": 401,
+        "title": "",
+        "server": "",
+        "content_length": 34
+      },
+      {
+        "subdomain": "treatment.grammarly.com",
+        "url": "https://treatment.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "url": "https://officeaddin.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 243
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "url": "https://rwsgfy.grammarly.com",
+        "status": 200,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "url": "https://lti-integration.grammarly.com",
+        "status": 200,
+        "title": "LTI Integration",
+        "server": "AmazonS3",
+        "content_length": 547
+      },
+      {
+        "subdomain": "in.grammarly.com",
+        "url": "https://in.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 31
+      },
+      {
+        "subdomain": "static.institution.grammarly.com",
+        "url": "https://static.institution.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 243
+      },
+      {
+        "subdomain": "id.grammarly.com",
+        "url": "https://id.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483146
+      },
+      {
+        "subdomain": "invite.grammarly.com",
+        "url": "https://invite.grammarly.com",
+        "status": 200,
+        "title": "Grammarly for Business | AI Writing Assistance for Teams of all Sizes",
+        "server": "",
+        "content_length": 634954
+      },
+      {
+        "subdomain": "static.fridge.grammarly.com",
+        "url": "https://static.fridge.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 243
+      },
+      {
+        "subdomain": "sso.grammarly.com",
+        "url": "https://sso.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "blog.grammarly.com",
+        "url": "https://blog.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Blog",
+        "server": "nginx/1.28.0",
+        "content_length": 169308
+      },
+      {
+        "subdomain": "capi-msdk.grammarly.com",
+        "url": "https://capi-msdk.grammarly.com",
+        "status": 404,
+        "title": "Error 404 No endpoint GET /.",
+        "server": "",
+        "content_length": 378
+      },
+      {
+        "subdomain": "answers.grammarly.com",
+        "url": "https://answers.grammarly.com",
+        "status": 200,
+        "title": "Your Go-To Guide for English Grammar | Grammarly",
+        "server": "",
+        "content_length": 283486
+      },
+      {
+        "subdomain": "stripe-integration.grammarly.com",
+        "url": "https://stripe-integration.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "contenthub-static.grammarly.com",
+        "url": "https://contenthub-static.grammarly.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 3363
+      },
+      {
+        "subdomain": "go.grammarly.com",
+        "url": "https://go.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482636
+      },
+      {
+        "subdomain": "config-qa.extension.grammarly.com",
+        "url": "https://config-qa.extension.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "gates.grammarly.com",
+        "url": "https://gates.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "partners.grammarly.com",
+        "url": "https://partners.grammarly.com",
+        "status": 200,
+        "title": "Superhuman",
+        "server": "",
+        "content_length": 45346
+      },
+      {
+        "subdomain": "status.grammarly.com",
+        "url": "https://status.grammarly.com",
+        "status": 200,
+        "title": "Service Status | Grammarly Status",
+        "server": "AtlassianEdge",
+        "content_length": 66986
+      },
+      {
+        "subdomain": "content.grammarly.com",
+        "url": "https://content.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482636
+      },
+      {
+        "subdomain": "auth.grammarly.com",
+        "url": "https://auth.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "tokens.grammarly.com",
+        "url": "https://tokens.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "authorship.grammarly.com",
+        "url": "https://authorship.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Authorship",
+        "server": "AmazonS3",
+        "content_length": 1498
+      },
+      {
+        "subdomain": "update-windows.grammarly.com",
+        "url": "https://update-windows.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 9
+      },
+      {
+        "subdomain": "apps-public.grammarly.com",
+        "url": "https://apps-public.grammarly.com",
+        "status": 401,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "events.grammarly.com",
+        "url": "https://events.grammarly.com",
+        "status": 200,
+        "title": "Goldcast",
+        "server": "cloudflare",
+        "content_length": 7970
+      },
+      {
+        "subdomain": "brand.grammarly.com",
+        "url": "https://brand.grammarly.com",
+        "status": 200,
+        "title": "Login - Grammarly",
+        "server": "frontify",
+        "content_length": 13031
+      },
+      {
+        "subdomain": "download-bundle.grammarly.com",
+        "url": "https://download-bundle.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 243
+      },
+      {
+        "subdomain": "ed.grammarly.com",
+        "url": "https://ed.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482636
+      },
+      {
+        "subdomain": "pages.send.grammarly.com",
+        "url": "https://pages.send.grammarly.com",
+        "status": 403,
+        "title": "403 - Forbidden: Access is denied.",
+        "server": "",
+        "content_length": 1233
+      },
+      {
+        "subdomain": "iosapp.grammarly.com",
+        "url": "https://iosapp.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Editor requires an update",
+        "server": "awselb/2.0",
+        "content_length": 1181
+      },
+      {
+        "subdomain": "login.grammarly.com",
+        "url": "https://login.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "fridge.grammarly.com",
+        "url": "https://fridge.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "update-officeaddin.grammarly.com",
+        "url": "https://update-officeaddin.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 9
+      },
+      {
+        "subdomain": "assets.extension.grammarly.com",
+        "url": "https://assets.extension.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "www.nspl.grammarly.com",
+        "url": "https://www.nspl.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483132
+      },
+      {
+        "subdomain": "apps-uploads.grammarly.com",
+        "url": "https://apps-uploads.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 278
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "url": "https://apps.grammarly.com",
+        "status": 401,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "config.extension.grammarly.com",
+        "url": "https://config.extension.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "m.grammarly.com",
+        "url": "https://m.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483138
+      },
+      {
+        "subdomain": "www.autoreport.grammarly.com",
+        "url": "https://www.autoreport.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483132
+      },
+      {
+        "subdomain": "api.grammarly.com",
+        "url": "https://api.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "g-mail.grammarly.com",
+        "url": "https://g-mail.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "chargeback-prevention.grammarly.com",
+        "url": "https://chargeback-prevention.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "click.notification.grammarly.com",
+        "url": "https://click.notification.grammarly.com",
+        "status": 400,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "discount.grammarly.com",
+        "url": "https://discount.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "gnar.grammarly.com",
+        "url": "https://gnar.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 45
+      },
+      {
+        "subdomain": "js.grammarly.com",
+        "url": "https://js.grammarly.com",
+        "status": 404,
+        "title": "Not found",
+        "server": "AmazonS3",
+        "content_length": 123
+      },
+      {
+        "subdomain": "properties.grammarly.com",
+        "url": "https://properties.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "static-web.grammarly.com",
+        "url": "https://static-web.grammarly.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 3363
+      },
+      {
+        "subdomain": "api.payments.grammarly.com",
+        "url": "https://api.payments.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "handbook.grammarly.com",
+        "url": "https://handbook.grammarly.com",
+        "status": 200,
+        "title": "Your Go-To Guide for English Grammar | Grammarly",
+        "server": "",
+        "content_length": 279402
+      },
+      {
+        "subdomain": "iosapp-alpha.grammarly.com",
+        "url": "https://iosapp-alpha.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "iosapp-beta.grammarly.com",
+        "url": "https://iosapp-beta.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Editor requires an update",
+        "server": "awselb/2.0",
+        "content_length": 1181
+      },
+      {
+        "subdomain": "download-office.grammarly.com",
+        "url": "https://download-office.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 243
+      },
+      {
+        "subdomain": "dox.grammarly.com",
+        "url": "https://dox.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "nginx-clojure",
+        "content_length": 52
+      },
+      {
+        "subdomain": "account.grammarly.com",
+        "url": "https://account.grammarly.com",
+        "status": 200,
+        "title": "Login | Grammarly",
+        "server": "",
+        "content_length": 311461
+      },
+      {
+        "subdomain": "autoreport.grammarly.com",
+        "url": "https://autoreport.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482636
+      },
+      {
+        "subdomain": "image.send.grammarly.com",
+        "url": "https://image.send.grammarly.com",
+        "status": 403,
+        "title": "Access Denied",
+        "server": "AkamaiGHost",
+        "content_length": 380
+      },
+      {
+        "subdomain": "nspl.grammarly.com",
+        "url": "https://nspl.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482628
+      },
+      {
+        "subdomain": "research.grammarly.com",
+        "url": "https://research.grammarly.com",
+        "status": 404,
+        "title": "Great Question",
+        "server": "cloudflare",
+        "content_length": 24801
+      },
+      {
+        "subdomain": "gateway.grammarly.com",
+        "url": "https://gateway.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "download-mac.grammarly.com",
+        "url": "https://download-mac.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 243
+      },
+      {
+        "subdomain": "applet-bundles.grammarly.com",
+        "url": "https://applet-bundles.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 0
+      },
+      {
+        "subdomain": "msync.grammarly.com",
+        "url": "https://msync.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "click.grammarly.com",
+        "url": "https://click.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483190
+      },
+      {
+        "subdomain": "irbis.grammarly.com",
+        "url": "https://irbis.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "denali-static.grammarly.com",
+        "url": "https://denali-static.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "knowledge.grammarly.com",
+        "url": "https://knowledge.grammarly.com",
+        "status": 200,
+        "title": "Knowledgeshare",
+        "server": "AmazonS3",
+        "content_length": 484
+      },
+      {
+        "subdomain": "verifi-integration.grammarly.com",
+        "url": "https://verifi-integration.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 89
+      },
+      {
+        "subdomain": "applet-bundles-static.grammarly.com",
+        "url": "https://applet-bundles-static.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 71
+      },
+      {
+        "subdomain": "3p-access.grammarly.com",
+        "url": "https://3p-access.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 9
+      },
+      {
+        "subdomain": "gate.grammarly.com",
+        "url": "https://gate.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "datareport.grammarly.com",
+        "url": "https://datareport.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "business-tour.grammarly.com",
+        "url": "https://business-tour.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Product Tour",
+        "server": "AmazonS3",
+        "content_length": 1446
+      },
+      {
+        "subdomain": "demo.grammarly.com",
+        "url": "https://demo.grammarly.com",
+        "status": 200,
+        "title": "Grammarly",
+        "server": "nginx",
+        "content_length": 21941
+      },
+      {
+        "subdomain": "goldengate.grammarly.com",
+        "url": "https://goldengate.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "email.recruiting.grammarly.com",
+        "url": "https://email.recruiting.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 19
+      },
+      {
+        "subdomain": "skills.grammarly.com",
+        "url": "https://skills.grammarly.com",
+        "status": 503,
+        "title": "503 Service Temporarily Unavailable",
+        "server": "awselb/2.0",
+        "content_length": 162
+      },
+      {
+        "subdomain": "www.blog.grammarly.com",
+        "url": "https://www.blog.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482638
+      },
+      {
+        "subdomain": "coda.grammarly.com",
+        "url": "https://coda.grammarly.com",
+        "status": 200,
+        "title": "Grammarly",
+        "server": "",
+        "content_length": 311777
+      },
+      {
+        "subdomain": "download-editor.grammarly.com",
+        "url": "https://download-editor.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 243
+      },
+      {
+        "subdomain": "click.send.grammarly.com",
+        "url": "https://click.send.grammarly.com",
+        "status": 403,
+        "title": "403 - Forbidden: Access is denied.",
+        "server": "",
+        "content_length": 1233
+      },
+      {
+        "subdomain": "tech.grammarly.com",
+        "url": "https://tech.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Engineering Blog",
+        "server": "nginx/1.28.0",
+        "content_length": 91557
+      },
+      {
+        "subdomain": "assets.grammarly.com",
+        "url": "https://assets.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "static.grammarly.com",
+        "url": "https://static.grammarly.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 3363
+      },
+      {
+        "subdomain": "download-windows.grammarly.com",
+        "url": "https://download-windows.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 243
+      },
+      {
+        "subdomain": "wstest.grammarly.com",
+        "url": "https://wstest.grammarly.com",
+        "status": 426,
+        "title": "",
+        "server": "",
+        "content_length": 16
+      },
+      {
+        "subdomain": "www.grammarly.com",
+        "url": "https://www.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482630
+      },
+      {
+        "subdomain": "capi.grammarly.com",
+        "url": "https://capi.grammarly.com",
+        "status": 404,
+        "title": "Error 404 No endpoint GET /.",
+        "server": "",
+        "content_length": 373
+      },
+      {
+        "subdomain": "data.grammarly.com",
+        "url": "https://data.grammarly.com",
+        "status": 404,
+        "title": "Error 404 Not Found",
+        "server": "",
+        "content_length": 423
+      },
+      {
+        "subdomain": "hello.grammarly.com",
+        "url": "https://hello.grammarly.com",
+        "status": 204,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "experiences.grammarly.com",
+        "url": "https://experiences.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 6823
+      },
+      {
+        "subdomain": "login-static.grammarly.com",
+        "url": "https://login-static.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "redirect.grammarly.com",
+        "url": "https://redirect.grammarly.com",
+        "status": 200,
+        "title": "Grammarly",
+        "server": "",
+        "content_length": 311843
+      },
+      {
+        "subdomain": "developer.grammarly.com",
+        "url": "https://developer.grammarly.com",
+        "status": 200,
+        "title": "Introduction | API Documentation",
+        "server": "AmazonS3",
+        "content_length": 22490
+      },
+      {
+        "subdomain": "app.grammarly.com",
+        "url": "https://app.grammarly.com",
+        "status": 200,
+        "title": "Grammarly",
+        "server": "",
+        "content_length": 311205
+      },
+      {
+        "subdomain": "view.send.grammarly.com",
+        "url": "https://view.send.grammarly.com",
+        "status": 200,
+        "title": "Error",
+        "server": "",
+        "content_length": 932
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "engage.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 380,
+        "preview": ""
+      },
+      {
+        "subdomain": "engage.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 391,
+        "preview": ""
+      },
+      {
+        "subdomain": "engage.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 377,
+        "preview": ""
+      },
+      {
+        "subdomain": "engage.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 379,
+        "preview": ""
+      },
+      {
+        "subdomain": "engage.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 388,
+        "preview": ""
+      },
+      {
+        "subdomain": "support.grammarly.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 2221,
+        "preview": ""
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 255,
+        "preview": ""
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 255,
+        "preview": ""
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 275,
+        "preview": ""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 547,
+        "preview": ""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 547,
+        "preview": ""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 547,
+        "preview": ""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 547,
+        "preview": ""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/phpinfo.php",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "treatment.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "treatment.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "treatment.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "treatment.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "treatment.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "treatment.grammarly.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 16,
+        "preview": ""
+      },
+      {
+        "subdomain": "subscription.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "subscription.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "subscription.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "subscription.grammarly.com",
+        "path": "/api/v1",
+        "status": 401,
+        "content_length": 34,
+        "preview": ""
+      },
+      {
+        "subdomain": "subscription.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "subscription.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "subscription.grammarly.com",
+        "path": "/health",
+        "status": 401,
+        "content_length": 34,
+        "preview": ""
+      },
+      {
+        "subdomain": "subscription.grammarly.com",
+        "path": "/robots.txt",
+        "status": 401,
+        "content_length": 34,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/phpinfo.php",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.institution.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.institution.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.institution.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.institution.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.institution.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "id.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.fridge.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 275,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.fridge.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 263,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.fridge.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.fridge.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 263,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.fridge.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "invite.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "sso.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "sso.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "sso.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "sso.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "sso.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "blog.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [
+      {
+        "subdomain": "static-id.grammarly.com",
+        "service": "cloudfront.net",
+        "detail": "Server:  UnKnown\nAddress:  fe80::42ed:ff:fe79:e4ba\n\nstatic-id.grammarly.com\tcanonical name = d1fziggc3ugjm3.cloudfront.net\n"
+      }
+    ],
+    "s3_findings": []
+  },
+  "Shopify": {
+    "target": "Shopify",
+    "domain": "shopify.com",
+    "max_bounty": 50000,
+    "subdomains": [
+      "auth.shopify.com",
+      "sandbox.shopify.com",
+      "monitor.shopify.com",
+      "docs.shopify.com",
+      "admin.shopify.com",
+      "tools.shopify.com",
+      "vpn.shopify.com",
+      "beta.shopify.com",
+      "ops.shopify.com",
+      "app.shopify.com",
+      "graphql.shopify.com",
+      "preview.shopify.com",
+      "ci.shopify.com",
+      "login.shopify.com",
+      "qa.shopify.com",
+      "cdn.shopify.com",
+      "mail.shopify.com",
+      "stage.shopify.com",
+      "test.shopify.com",
+      "vault.shopify.com",
+      "staging.shopify.com",
+      "blog.shopify.com",
+      "jenkins.shopify.com",
+      "portal.shopify.com",
+      "api.shopify.com",
+      "www.shopify.com",
+      "dashboard.shopify.com",
+      "status.shopify.com",
+      "dev.shopify.com",
+      "static.shopify.com",
+      "internal.shopify.com",
+      "git.shopify.com",
+      "wiki.shopify.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "admin.shopify.com",
+        "url": "https://admin.shopify.com",
+        "status": 403,
+        "title": "Verifying your connection...",
+        "server": "cloudflare",
+        "content_length": 10629
+      },
+      {
+        "subdomain": "auth.shopify.com",
+        "url": "https://auth.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "preview.shopify.com",
+        "url": "https://preview.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "ci.shopify.com",
+        "url": "https://ci.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "cdn.shopify.com",
+        "url": "https://cdn.shopify.com",
+        "status": 200,
+        "title": "Shopify CDN",
+        "server": "cloudflare",
+        "content_length": 70443
+      },
+      {
+        "subdomain": "tools.shopify.com",
+        "url": "https://tools.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "vpn.shopify.com",
+        "url": "https://vpn.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "monitor.shopify.com",
+        "url": "https://monitor.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "sandbox.shopify.com",
+        "url": "https://sandbox.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "graphql.shopify.com",
+        "url": "https://graphql.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "beta.shopify.com",
+        "url": "https://beta.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "docs.shopify.com",
+        "url": "https://docs.shopify.com",
+        "status": 403,
+        "title": "Verifying your connection...",
+        "server": "cloudflare",
+        "content_length": 10670
+      },
+      {
+        "subdomain": "qa.shopify.com",
+        "url": "https://qa.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "ops.shopify.com",
+        "url": "https://ops.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "stage.shopify.com",
+        "url": "https://stage.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "staging.shopify.com",
+        "url": "https://staging.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "test.shopify.com",
+        "url": "https://test.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "app.shopify.com",
+        "url": "https://app.shopify.com",
+        "status": 200,
+        "title": "Shopify App Store",
+        "server": "cloudflare",
+        "content_length": 249811
+      },
+      {
+        "subdomain": "api.shopify.com",
+        "url": "https://api.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 8619
+      },
+      {
+        "subdomain": "jenkins.shopify.com",
+        "url": "https://jenkins.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "dashboard.shopify.com",
+        "url": "https://dashboard.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "static.shopify.com",
+        "url": "https://static.shopify.com",
+        "status": 200,
+        "title": "Shopify CDN",
+        "server": "cloudflare",
+        "content_length": 70443
+      },
+      {
+        "subdomain": "blog.shopify.com",
+        "url": "https://blog.shopify.com",
+        "status": 200,
+        "title": "Ecommerce Marketing Blog - Ecommerce News, Online Store Tips and More - Shopify",
+        "server": "cloudflare",
+        "content_length": 481375
+      },
+      {
+        "subdomain": "www.shopify.com",
+        "url": "https://www.shopify.com",
+        "status": 200,
+        "title": "Shopify: The All-in-One Commerce Platform for Businesses - Shopify",
+        "server": "cloudflare",
+        "content_length": 601725
+      },
+      {
+        "subdomain": "internal.shopify.com",
+        "url": "https://internal.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "dev.shopify.com",
+        "url": "https://dev.shopify.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 239272
+      },
+      {
+        "subdomain": "git.shopify.com",
+        "url": "https://git.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "status.shopify.com",
+        "url": "https://status.shopify.com",
+        "status": 200,
+        "title": "Shopify Status",
+        "server": "AtlassianEdge",
+        "content_length": 84750
+      },
+      {
+        "subdomain": "wiki.shopify.com",
+        "url": "https://wiki.shopify.com",
+        "status": 403,
+        "title": "Verifying your connection...",
+        "server": "cloudflare",
+        "content_length": 10648
+      },
+      {
+        "subdomain": "portal.shopify.com",
+        "url": "https://portal.shopify.com",
+        "status": 200,
+        "title": "Careers, Internships, and Jobs at Shopify | Shopify Careers - Shopify",
+        "server": "cloudflare",
+        "content_length": 218784
+      },
+      {
+        "subdomain": "vault.shopify.com",
+        "url": "https://vault.shopify.com",
+        "status": 200,
+        "title": "Shopify - Sign In",
+        "server": "nginx",
+        "content_length": 33995
+      },
+      {
+        "subdomain": "mail.shopify.com",
+        "url": "http://mail.shopify.com",
+        "status": 200,
+        "title": "Shopify - Sign In",
+        "server": "nginx",
+        "content_length": 36056
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 10640,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 10643,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 10665,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 295,
+        "preview": "\n    <Html>\n      <body>\n        <div id=\"redirect\" data-url=\"https://admin.shopify.com/login?errorHint=no_cookie_session\"></div>\n        <script nonce=\"gMNOx5ka2gShFVbVBNVGAg==\">window.location = dec"
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 10649,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 295,
+        "preview": "\n    <Html>\n      <body>\n        <div id=\"redirect\" data-url=\"https://admin.shopify.com/login?errorHint=no_cookie_session\"></div>\n        <script nonce=\"YFCLe80UpMBDO6L3/XU7+Q==\">window.location = dec"
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 10667,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 295,
+        "preview": "\n    <Html>\n      <body>\n        <div id=\"redirect\" data-url=\"https://admin.shopify.com/login?errorHint=no_cookie_session\"></div>\n        <script nonce=\"+a5iRyDQzQzxly/vK/K4kQ==\">window.location = dec"
+      },
+      {
+        "subdomain": "cdn.shopify.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 80,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  }
+}

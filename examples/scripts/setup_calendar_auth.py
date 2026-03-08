@@ -24,11 +24,11 @@ def main():
             creds.refresh(Request())
         else:
             if not os.path.exists(CREDENTIALS_PATH):
-                print("❌ Error: credentials.json not found in .agent/scripts/")
+                print("❌ Error: credentials.json not found in scripts/")
                 print("1. Go to Google Cloud Console")
                 print("2. Create Project -> Enable Calendar API")
                 print("3. Create Desktop Credential -> Download JSON")
-                print("4. Rename to credentials.json and place in .agent/scripts/")
+                print("4. Rename to credentials.json and place in scripts/")
                 return
 
             flow = InstalledAppFlow.from_client_secrets_file(CREDENTIALS_PATH, SCOPES)

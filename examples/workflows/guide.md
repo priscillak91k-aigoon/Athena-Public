@@ -19,5 +19,5 @@ This workflow runs the `suggest_protocols.py` script, which scans your 290+ Prot
 // turbo
 
 ```bash
-python3 .agent/scripts/suggest_protocols.py "$@"
+python3 scripts/suggest_protocols.py "$@"
 ```

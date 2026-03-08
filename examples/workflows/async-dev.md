@@ -24,7 +24,7 @@ Start a new feature branch with isolated state.
 
 ```bash
 # Creates .context/features/{feature-name}/STATUS.md
-python3 .agent/scripts/scaffold_feature.py "feature-name" "Description"
+python3 scripts/scaffold_feature.py "feature-name" "Description"
 ```
 
 ### Phase 2: Research & Plan (Human + AI)
@@ -32,7 +32,7 @@ python3 .agent/scripts/scaffold_feature.py "feature-name" "Description"
 Run this block to generate the plan.
 **Tag**: `#planning`
 
-1. **Context**: `python3 .agent/scripts/supabase_search.py "keywords"`
+1. **Context**: `python3 scripts/supabase_search.py "keywords"`
 2. **Research**: Create `CODE_RESEARCH.md` in the feature directory.
 3. **Plan**: Create `IMPLEMENTATION_PLAN.md`.
 
@@ -53,7 +53,7 @@ Run this block to generate the plan.
 
 1. Read `STATUS.md`.
 2. Review code changes.
-3. Run `python3 .agent/scripts/verify_feature.py` (Future).
+3. Run `python3 scripts/verify_feature.py` (Future).
 
 ## 3. Artifacts
 

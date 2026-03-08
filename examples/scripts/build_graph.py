@@ -11,7 +11,7 @@ Features:
 - Safe Graph Serialization
 
 Usage:
-    python3 .agent/scripts/build_graph.py
+    python3 scripts/build_graph.py
 
 Output:
     - .agent/graphrag/knowledge_graph.gpickle

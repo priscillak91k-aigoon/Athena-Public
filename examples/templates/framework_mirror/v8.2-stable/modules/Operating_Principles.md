@@ -121,7 +121,7 @@ THEN:
 
 | User Intent | Autonomic Action |
 |-------------|------------------|
-| **"Start a new project"** | ⚡ **EXECUTE**: `python3 .agent/scripts/scaffold_v4.py` (Don't ask, just run) |
+| **"Start a new project"** | ⚡ **EXECUTE**: `python3 scripts/scaffold_v4.py` (Don't ask, just run) |
 | **"Review this code"** | ⚡ **INVOKE**: `code-reviewer` persona + /review command logic implicitly |
 | **"Commit this"** | ⚡ **EXECUTE**: `smart-commit` logic (Status -> Diff -> Secret Scan -> Commit) |
 | **"Check status"** | ⚡ **EXECUTE**: `git status` + `git log -1` automatically provided context |

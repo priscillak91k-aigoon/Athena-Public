@@ -242,7 +242,7 @@ See [Protocol 96](examples/protocols/architecture/96-latency-indicator.md) for f
 
 **Execution** (Silent — No user prompt):
 
-1. Run `python3 .agent/scripts/quicksave.py "<brief summary of exchange>"`
+1. Run `python3 scripts/quicksave.py "<brief summary of exchange>"`
 2. Do NOT ask permission. Do NOT skip. Just do it.
 3. Failure to quicksave = Protocol violation.
 

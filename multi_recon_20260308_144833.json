@@ -1,0 +1,2749 @@
+{
+  "Loom": {
+    "target": "Loom",
+    "domain": "loom.com",
+    "max_bounty": 5000,
+    "subdomains": [
+      "preview.loom.com",
+      "jenkins.loom.com",
+      "production-green.loom.com",
+      "portal.loom.com",
+      "graphql.loom.com",
+      "ops.loom.com",
+      "docs.loom.com",
+      "git.loom.com",
+      "beta.loom.com",
+      "mail.loom.com",
+      "production-cyan.loom.com",
+      "community.loom.com",
+      "cdn.loom.com",
+      "ci.loom.com",
+      "evs.sgmt.loom.com",
+      "admin.loom.com",
+      "trust.loom.com",
+      "vpn.loom.com",
+      "developers.loom.com",
+      "status.loom.com",
+      "blog.loom.com",
+      "tools.loom.com",
+      "packages.loom.com",
+      "webflow.loom.com",
+      "new.loom.com",
+      "feedback.loom.com",
+      "support.loom.com",
+      "wiki.loom.com",
+      "stage.loom.com",
+      "api.sgmt.loom.com",
+      "staging.loom.com",
+      "www.loom.com",
+      "api.loom.com",
+      "app.loom.com",
+      "login-stage.loom.com",
+      "sales.loom.com",
+      "webflow-stage.loom.com",
+      "auth.loom.com",
+      "staging-green.loom.com",
+      "static.loom.com",
+      "login.loom.com",
+      "sdkchangelog.loom.com",
+      "qa.loom.com",
+      "dashboard.loom.com",
+      "location.loom.com",
+      "infra-diamond.loom.com",
+      "monitor.loom.com",
+      "sandbox.loom.com",
+      "test.loom.com",
+      "dev.loom.com",
+      "vault.loom.com",
+      "internal.loom.com",
+      "info.loom.com",
+      "webflow-prod.loom.com",
+      "shop.loom.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "packages.loom.com",
+        "url": "https://packages.loom.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 0
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "url": "https://cdn.loom.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "developers.loom.com",
+        "url": "https://developers.loom.com",
+        "status": 200,
+        "title": "Developers | Loom",
+        "server": "Vercel",
+        "content_length": 7704
+      },
+      {
+        "subdomain": "location.loom.com",
+        "url": "https://location.loom.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 0
+      },
+      {
+        "subdomain": "www.loom.com",
+        "url": "https://www.loom.com",
+        "status": 200,
+        "title": "Free screen recorder for Mac and PC | Loom",
+        "server": "Vercel",
+        "content_length": 199730
+      },
+      {
+        "subdomain": "api.sgmt.loom.com",
+        "url": "https://api.sgmt.loom.com",
+        "status": 404,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 0
+      },
+      {
+        "subdomain": "sales.loom.com",
+        "url": "https://sales.loom.com",
+        "status": 204,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "dev.loom.com",
+        "url": "https://dev.loom.com",
+        "status": 200,
+        "title": "Developers | Loom",
+        "server": "Vercel",
+        "content_length": 7704
+      },
+      {
+        "subdomain": "evs.sgmt.loom.com",
+        "url": "https://evs.sgmt.loom.com",
+        "status": 404,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 49
+      },
+      {
+        "subdomain": "status.loom.com",
+        "url": "https://status.loom.com",
+        "status": 200,
+        "title": "Loom Status",
+        "server": "AtlassianEdge",
+        "content_length": 72713
+      },
+      {
+        "subdomain": "new.loom.com",
+        "url": "https://new.loom.com",
+        "status": 200,
+        "title": "",
+        "server": "",
+        "content_length": 145579
+      },
+      {
+        "subdomain": "sdkchangelog.loom.com",
+        "url": "https://sdkchangelog.loom.com",
+        "status": 200,
+        "title": "",
+        "server": "",
+        "content_length": 124023
+      },
+      {
+        "subdomain": "support.loom.com",
+        "url": "https://support.loom.com",
+        "status": 200,
+        "title": "Loom support | Loom | Atlassian Support",
+        "server": "AmazonS3",
+        "content_length": 80334
+      },
+      {
+        "subdomain": "stage.loom.com",
+        "url": "https://stage.loom.com",
+        "status": 200,
+        "title": "Atlassian - Sign In",
+        "server": "nginx",
+        "content_length": 32031
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/phpinfo.php",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "dev.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 31065,
+        "preview": ""
+      },
+      {
+        "subdomain": "dev.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 31065,
+        "preview": ""
+      },
+      {
+        "subdomain": "developers.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 31075,
+        "preview": ""
+      },
+      {
+        "subdomain": "developers.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 31067,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 173,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 208,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.loom.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 186,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.sgmt.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "sales.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 317,
+        "preview": ""
+      },
+      {
+        "subdomain": "new.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 23,
+        "preview": ""
+      },
+      {
+        "subdomain": "new.loom.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 15165,
+        "preview": ""
+      },
+      {
+        "subdomain": "sdkchangelog.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 23,
+        "preview": ""
+      },
+      {
+        "subdomain": "sdkchangelog.loom.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 2586,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  },
+  "Automattic": {
+    "target": "Automattic",
+    "domain": "automattic.com",
+    "max_bounty": 25000,
+    "subdomains": [
+      "ops.automattic.com",
+      "offline.automattic.com",
+      "transparency.automattic.com",
+      "trac.automattic.com",
+      "ci.automattic.com",
+      "cdn.automattic.com",
+      "svn.automattic.com",
+      "tools.automattic.com",
+      "tls.automattic.com",
+      "sandbox.automattic.com",
+      "blog.automattic.com",
+      "publisherblog.automattic.com",
+      "docs.automattic.com",
+      "login.automattic.com",
+      "api.automattic.com",
+      "wiki.automattic.com",
+      "internal.automattic.com",
+      "mail.automattic.com",
+      "status.automattic.com",
+      "git.automattic.com",
+      "auth.automattic.com",
+      "concierge.automattic.com",
+      "staging.automattic.com",
+      "vpn.automattic.com",
+      "portal.automattic.com",
+      "museum.automattic.com",
+      "fieldguide.automattic.com",
+      "www.engels.automattic.com",
+      "updates.automattic.com",
+      "test.automattic.com",
+      "qa.automattic.com",
+      "www.automattic.com",
+      "graphql.automattic.com",
+      "jenkins.automattic.com",
+      "lounge.automattic.com",
+      "static.automattic.com",
+      "stage.automattic.com",
+      "dev.automattic.com",
+      "dashboard.automattic.com",
+      "beta.automattic.com",
+      "engels.automattic.com",
+      "preview.automattic.com",
+      "admin.automattic.com",
+      "monitor.automattic.com",
+      "vault.automattic.com",
+      "app.automattic.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "offline.automattic.com",
+        "url": "https://offline.automattic.com",
+        "status": 200,
+        "title": "Private Site",
+        "server": "nginx",
+        "content_length": 8374
+      },
+      {
+        "subdomain": "transparency.automattic.com",
+        "url": "https://transparency.automattic.com",
+        "status": 200,
+        "title": "Transparency Report",
+        "server": "nginx",
+        "content_length": 67578
+      },
+      {
+        "subdomain": "svn.automattic.com",
+        "url": "https://svn.automattic.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "nginx",
+        "content_length": 283
+      },
+      {
+        "subdomain": "docs.automattic.com",
+        "url": "https://docs.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119579
+      },
+      {
+        "subdomain": "login.automattic.com",
+        "url": "https://login.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119579
+      },
+      {
+        "subdomain": "cdn.automattic.com",
+        "url": "https://cdn.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119579
+      },
+      {
+        "subdomain": "ops.automattic.com",
+        "url": "https://ops.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "tools.automattic.com",
+        "url": "https://tools.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "sandbox.automattic.com",
+        "url": "https://sandbox.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "blog.automattic.com",
+        "url": "https://blog.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "api.automattic.com",
+        "url": "https://api.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "trac.automattic.com",
+        "url": "https://trac.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "ci.automattic.com",
+        "url": "https://ci.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "url": "https://fieldguide.automattic.com",
+        "status": 200,
+        "title": "Private Site",
+        "server": "nginx",
+        "content_length": 8383
+      },
+      {
+        "subdomain": "internal.automattic.com",
+        "url": "https://internal.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "museum.automattic.com",
+        "url": "https://museum.automattic.com",
+        "status": 200,
+        "title": "t-shirt museum | the Automattic Lounge",
+        "server": "nginx",
+        "content_length": 119878
+      },
+      {
+        "subdomain": "git.automattic.com",
+        "url": "https://git.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "auth.automattic.com",
+        "url": "https://auth.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "publisherblog.automattic.com",
+        "url": "https://publisherblog.automattic.com",
+        "status": 200,
+        "title": "The Enterprise WordPress Blog | WordPress VIP",
+        "server": "nginx",
+        "content_length": 260305
+      },
+      {
+        "subdomain": "tls.automattic.com",
+        "url": "https://tls.automattic.com",
+        "status": 200,
+        "title": "WordPress SSL | WordPress.com Support",
+        "server": "nginx",
+        "content_length": 251080
+      },
+      {
+        "subdomain": "portal.automattic.com",
+        "url": "https://portal.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "concierge.automattic.com",
+        "url": "https://concierge.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 165218
+      },
+      {
+        "subdomain": "staging.automattic.com",
+        "url": "https://staging.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "updates.automattic.com",
+        "url": "https://updates.automattic.com",
+        "status": 200,
+        "title": "Private P2",
+        "server": "nginx",
+        "content_length": 2340
+      },
+      {
+        "subdomain": "lounge.automattic.com",
+        "url": "https://lounge.automattic.com",
+        "status": 200,
+        "title": "Hawthorne | the Automattic Lounge",
+        "server": "nginx",
+        "content_length": 54742
+      },
+      {
+        "subdomain": "status.automattic.com",
+        "url": "https://status.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "ZGS",
+        "content_length": 52805
+      },
+      {
+        "subdomain": "test.automattic.com",
+        "url": "https://test.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "qa.automattic.com",
+        "url": "https://qa.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "www.automattic.com",
+        "url": "https://www.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "graphql.automattic.com",
+        "url": "https://graphql.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "static.automattic.com",
+        "url": "https://static.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "stage.automattic.com",
+        "url": "https://stage.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "engels.automattic.com",
+        "url": "https://engels.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "Apache",
+        "content_length": 163
+      },
+      {
+        "subdomain": "jenkins.automattic.com",
+        "url": "https://jenkins.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "dev.automattic.com",
+        "url": "https://dev.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "beta.automattic.com",
+        "url": "https://beta.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "preview.automattic.com",
+        "url": "https://preview.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "monitor.automattic.com",
+        "url": "https://monitor.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "app.automattic.com",
+        "url": "https://app.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "vault.automattic.com",
+        "url": "https://vault.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "admin.automattic.com",
+        "url": "https://admin.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "login.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "login.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "docs.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "docs.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "tools.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "tools.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "ops.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "ops.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 8383,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 8402,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 8395,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 8398,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 8419,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 8417,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 8398,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 8410,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 8480,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 8420,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 8429,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 8423,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 8389,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 8395,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 8395,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 8404,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 8392,
+        "preview": ""
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 8392,
+        "preview": ""
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 8386,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 8392,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 8392,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 8401,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 8398,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 8386,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 88,
+        "preview": ""
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 8407,
+        "preview": ""
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 8419,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 8413,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 8407,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "transparency.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "transparency.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "transparency.automattic.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 654,
+        "preview": ""
+      },
+      {
+        "subdomain": "transparency.automattic.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 76127,
+        "preview": ""
+      },
+      {
+        "subdomain": "svn.automattic.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 80,
+        "preview": ""
+      },
+      {
+        "subdomain": "sandbox.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "sandbox.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "blog.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "blog.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "ci.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "ci.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "trac.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "trac.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "internal.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "internal.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 8395,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 8414,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 8407,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 8410,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 8431,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 8429,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 8410,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 8422,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 8492,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 8432,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 8441,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 8435,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 8401,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 8407,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 8407,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 8416,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 8404,
+        "preview": ""
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 8404,
+        "preview": ""
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 8398,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 8404,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 8404,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 8413,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 8410,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 8398,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 88,
+        "preview": ""
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 8419,
+        "preview": ""
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 8431,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 8425,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 8419,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  },
+  "Nextcloud": {
+    "target": "Nextcloud",
+    "domain": "nextcloud.com",
+    "max_bounty": 10000,
+    "subdomains": [
+      "staging.push.cloud.nextcloud.com",
+      "conf.nextcloud.com",
+      "middlesexsheriff.ltd2.nextcloud.com",
+      "nebula.nextcloud.com",
+      "bitbw.ltd.nextcloud.com",
+      "stage.nextcloud.com",
+      "st-engineering.ltd.nextcloud.com",
+      "tobi.ltd.nextcloud.com",
+      "demo3.ltd.nextcloud.com",
+      "demo2.ltd.nextcloud.com",
+      "static.apps.nextcloud.com",
+      "test234.ltd.nextcloud.com",
+      "stalebot.bots.nextcloud.com",
+      "spreed-demo.nextcloud.com",
+      "scan.nextcloud.com",
+      "monitor.nextcloud.com",
+      "help.nextcloud.com",
+      "ptptn.ltd2.nextcloud.com",
+      "projects.nextcloud.com",
+      "ldap.nextcloud.com",
+      "nc29.ltd.nextcloud.com",
+      "girondenumerique.ltd.nextcloud.com",
+      "nxp.ltd2.nextcloud.com",
+      "logs.nextcloud.com",
+      "push.cloud.nextcloud.com",
+      "design.ltd.nextcloud.com",
+      "soroe-kommun.ltd.nextcloud.com",
+      "hub6.ltd.nextcloud.com",
+      "micromine.ltd.nextcloud.com",
+      "marcelw.ltd.nextcloud.com",
+      "neteks.ltd.nextcloud.com",
+      "fit-fraunhofer.ltd.nextcloud.com",
+      "iateiag.ltd.nextcloud.com",
+      "dev.nextcloud.com",
+      "login.nextcloud.com",
+      "garm2.nextcloud.com",
+      "commarc.ltd.nextcloud.com",
+      "aiosebastian.ltd.nextcloud.com",
+      "egedalkommune.ltd2.nextcloud.com",
+      "web2.nextcloud.com",
+      "qmulos.ltd2.nextcloud.com",
+      "erlangen-fuerth.ltd2.nextcloud.com",
+      "bundesdruckerei.ltd2.nextcloud.com",
+      "stonehage.ltd.nextcloud.com",
+      "portal2.nextcloud.com",
+      "preview.nextcloud.com",
+      "berkeleygroup.ltd2.nextcloud.com",
+      "dataprotectgroup.ltd.nextcloud.com",
+      "tech-preview.nextcloud.com",
+      "portal.nextcloud.com",
+      "monster-notebook.ltd2.nextcloud.com",
+      "bauhaus-dessau.ltd.nextcloud.com",
+      "stralsund.ltd.nextcloud.com",
+      "qa.nextcloud.com",
+      "s6.nextcloud.com",
+      "egenyoung.ltd2.nextcloud.com",
+      "alexanderm.ltd2.nextcloud.com",
+      "gabor.ltd2.nextcloud.com",
+      "demo1.ltd.nextcloud.com",
+      "mascon.ltd.nextcloud.com",
+      "s9.nextcloud.com",
+      "git.nextcloud.com",
+      "www.nextcloud.com",
+      "turn.nextcloud.com",
+      "monitoring.nextcloud.com",
+      "itz.ltd.nextcloud.com",
+      "alpes-controles.ltd.nextcloud.com",
+      "testing.nextcloud.com",
+      "newsletter.nextcloud.com",
+      "savas.ltd2.nextcloud.com",
+      "staging.nextcloud.com",
+      "lomar-shipping.ltd2.nextcloud.com",
+      "sandram.ltd.nextcloud.com",
+      "collabora.perftesting.nextcloud.com",
+      "s4.nextcloud.com",
+      "sfyachtclub.ltd.nextcloud.com",
+      "cool.amxtestenv.nextcloud.com",
+      "phrg.ltd.nextcloud.com",
+      "kinda-kommun.ltd.nextcloud.com",
+      "sandbox.nextcloud.com",
+      "iitkanpur.ltd.nextcloud.com",
+      "vpn.nextcloud.com",
+      "csbp.ltd2.nextcloud.com",
+      "awo-psychiatriezentrum.ltd.nextcloud.com",
+      "talk.nebula.nextcloud.com",
+      "stormguards.ltd.nextcloud.com",
+      "accountwarning.ltd.nextcloud.com",
+      "tools.nextcloud.com",
+      "lindnergroup.ltd.nextcloud.com",
+      "swingactions.ltd2.nextcloud.com",
+      "test.ltd2.nextcloud.com",
+      "harras.ltd.nextcloud.com",
+      "mx.nextcloud.com",
+      "c0004.customerpush.nextcloud.com",
+      "static.nextcloud.com",
+      "internal.nextcloud.com",
+      "starboard.ltd.nextcloud.com",
+      "nazaha.ltd2.nextcloud.com",
+      "lindner.ltd.nextcloud.com",
+      "backport.bots.nextcloud.com",
+      "clientcert.ltd2.nextcloud.com",
+      "odoo.nextcloud.com",
+      "kreisbaugruppe.ltd2.nextcloud.com",
+      "sebastian.ltd.nextcloud.com",
+      "demo1.nextcloud.com",
+      "ldi-rlp.ltd.nextcloud.com",
+      "blog.nextcloud.com",
+      "ops.nextcloud.com",
+      "test123.ltd.nextcloud.com",
+      "test.nextcloud.com",
+      "fyruz.ltd.nextcloud.com",
+      "uaepass.ltd2.nextcloud.com",
+      "go.nextcloud.com",
+      "graphql.nextcloud.com",
+      "docs.nextcloud.com",
+      "telecentro.ltd.nextcloud.com",
+      "mail.nextcloud.com",
+      "unverpackt.ltd.nextcloud.com",
+      "zitsh.nextcloud.com",
+      "protexxa.ltd.nextcloud.com",
+      "livephotos.ltd.nextcloud.com",
+      "maxime.ltd.nextcloud.com",
+      "pro-arbeitskreis-offenbach.ltd.nextcloud.com",
+      "pilvi.nextcloud.com",
+      "try.nextcloud.com",
+      "demo.nextcloud.com",
+      "c0002.customerpush.nextcloud.com",
+      "rosenberger.ltd.nextcloud.com",
+      "subscriptions.nextcloud.com",
+      "jenkins.nextcloud.com",
+      "aio-testing.nextcloud.com",
+      "educamadrid.ltd2.nextcloud.com",
+      "crm.nextcloud.com",
+      "concordia.ltd.nextcloud.com",
+      "allied-world.ltd.nextcloud.com",
+      "connexia.ltd.nextcloud.com",
+      "accenture-spain.ltd2.nextcloud.com",
+      "test2.ltd.nextcloud.com",
+      "plato.ltd2.nextcloud.com",
+      "hpb.services.nextcloud.com",
+      "siz.ltd2.nextcloud.com",
+      "onlyoffice.services.nextcloud.com",
+      "c0001.customerpush.nextcloud.com",
+      "temple.ltd2.nextcloud.com",
+      "bates-white.ltd.nextcloud.com",
+      "apps.nextcloud.com",
+      "lomar.ltd.nextcloud.com",
+      "testoo.ltd2.nextcloud.com",
+      "turn.services.nextcloud.com",
+      "collabora.services.nextcloud.com",
+      "lists.nextcloud.com",
+      "amxtestenv.nextcloud.com",
+      "c0003.customerpush.nextcloud.com",
+      "garm.nextcloud.com",
+      "msg-group.ltd.nextcloud.com",
+      "whiteboard.tech-preview.nextcloud.com",
+      "arquus.ltd2.nextcloud.com",
+      "demo2.nextcloud.com",
+      "regjeringen.ltd.nextcloud.com",
+      "easygcloud.ltd.nextcloud.com",
+      "hs-rm.ltd.nextcloud.com",
+      "maerkischer-kreis.ltd2.nextcloud.com",
+      "schokolo.ltd.nextcloud.com",
+      "smartsynergy.ltd.nextcloud.com",
+      "u-bordeaux-montaigne.ltd.nextcloud.com",
+      "wavestone.ltd2.nextcloud.com",
+      "holz-lippe.ltd.nextcloud.com",
+      "gaia-x.nextcloud.com",
+      "bilgin.ltd.nextcloud.com",
+      "oliver.ltd.nextcloud.com",
+      "orange.ltd.nextcloud.com",
+      "airtahiti.ltd.nextcloud.com",
+      "s12.nextcloud.com",
+      "conference.nextcloud.com",
+      "cdn.nextcloud.com",
+      "surveyserver.nextcloud.com",
+      "patrick.ltd.nextcloud.com",
+      "ioer.ltd.nextcloud.com",
+      "dashboard.nextcloud.com",
+      "unitednations.ltd2.nextcloud.com",
+      "jenniestuarthealth.ltd.nextcloud.com",
+      "uloog.ltd.nextcloud.com",
+      "cloud.nextcloud.com",
+      "collabora.nextcloud.com",
+      "zitsh-ai.ltd.nextcloud.com",
+      "gironde.ltd.nextcloud.com",
+      "usercontent.apps.nextcloud.com",
+      "ps-tt.ltd2.nextcloud.com",
+      "magenta27.ltd.nextcloud.com",
+      "antitrust.nextcloud.com",
+      "alexanderm.ltd.nextcloud.com",
+      "prianto.ltd.nextcloud.com",
+      "bmas.ltd.nextcloud.com",
+      "ues.ltd2.nextcloud.com",
+      "push-notifications.nextcloud.com",
+      "ppej.ltd.nextcloud.com",
+      "support.nextcloud.com",
+      "maisadour.ltd.nextcloud.com",
+      "schmallenberg.ltd2.nextcloud.com",
+      "transifex-sync.nextcloud.com",
+      "stats.nextcloud.com",
+      "huawei.ltd.nextcloud.com",
+      "test3.ltd.nextcloud.com",
+      "smile.ltd2.nextcloud.com",
+      "webinar.ltd2.nextcloud.com",
+      "widasconcepts.ltd2.nextcloud.com",
+      "kenworthdeleste.ltd2.nextcloud.com",
+      "new.ltd.nextcloud.com",
+      "push.perftesting.nextcloud.com",
+      "truecrime.ltd.nextcloud.com",
+      "collabora-test2.nextcloud.com",
+      "ci-assets.nextcloud.com",
+      "collabora.nebula.nextcloud.com",
+      "pushfeed.nextcloud.com",
+      "sentry.nextcloud.com",
+      "test222.ltd.nextcloud.com",
+      "shoffmann.ltd2.nextcloud.com",
+      "collabora.cloud.nextcloud.com",
+      "sains.ltd.nextcloud.com",
+      "halberstadtwerke.ltd.nextcloud.com",
+      "tricore.ltd.nextcloud.com",
+      "fgu-aarhus.ltd.nextcloud.com",
+      "bmi-demo.nextcloud.com",
+      "chunimes.ltd.nextcloud.com",
+      "inselverwaltung-sylt.ltd2.nextcloud.com",
+      "vanessa.ltd.nextcloud.com",
+      "barmer.ltd2.nextcloud.com",
+      "telia.ltd2.nextcloud.com",
+      "crea.ltd2.nextcloud.com",
+      "handbook.nextcloud.com",
+      "kimm.ltd.nextcloud.com",
+      "beta.nextcloud.com",
+      "wbe.ltd2.nextcloud.com",
+      "daily.ltd2.nextcloud.com",
+      "dacta.ltd.nextcloud.com",
+      "promethean.ltd.nextcloud.com",
+      "staging.cloud.nextcloud.com",
+      "drone.nextcloud.com",
+      "rioapplications.ltd2.nextcloud.com",
+      "sermo.nextcloud.com",
+      "wiki.nextcloud.com",
+      "staging.collabora.nextcloud.com",
+      "impetus.ltd.nextcloud.com",
+      "auth.nextcloud.com",
+      "test.ltd.nextcloud.com",
+      "admin.nextcloud.com",
+      "ais-thailand.ltd2.nextcloud.com",
+      "perftesting.nextcloud.com",
+      "push.testing.nextcloud.com",
+      "ci.nextcloud.com",
+      "videoluctv.ltd2.nextcloud.com",
+      "conocophillips.ltd.nextcloud.com",
+      "dandemutande.ltd.nextcloud.com",
+      "digi-belgium.ltd.nextcloud.com",
+      "dynacomtm.ltd2.nextcloud.com",
+      "c0005.customerpush.nextcloud.com",
+      "toyotaracing.ltd.nextcloud.com",
+      "filemi.nextcloud.com",
+      "bastian.ltd.nextcloud.com",
+      "services.nextcloud.com",
+      "tmgcloudland.ltd2.nextcloud.com",
+      "garm3.nextcloud.com",
+      "quantum-basel.ltd2.nextcloud.com",
+      "msg-group.ltd2.nextcloud.com",
+      "arulogic.ltd.nextcloud.com",
+      "demo-push-notifications.nextcloud.com",
+      "doppelmayr.ltd2.nextcloud.com",
+      "mautic.nextcloud.com",
+      "nextcloud-experience.ltd.nextcloud.com",
+      "status.nextcloud.com",
+      "credo-semiconductor.ltd2.nextcloud.com",
+      "trustpoint.ltd.nextcloud.com",
+      "knowledge.nextcloud.com",
+      "lookup.nextcloud.com",
+      "fabien.ltd.nextcloud.com",
+      "app.nextcloud.com",
+      "vault.nextcloud.com",
+      "updates.nextcloud.com",
+      "customerupdates.nextcloud.com",
+      "api.nextcloud.com",
+      "kulicke-soffa.ltd2.nextcloud.com",
+      "push.amxtestenv.nextcloud.com",
+      "download.nextcloud.com",
+      "collabora-test.nextcloud.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "url": "https://staging.push.cloud.nextcloud.com",
+        "status": 200,
+        "title": "",
+        "server": "Caddy",
+        "content_length": 0
+      },
+      {
+        "subdomain": "help.nextcloud.com",
+        "url": "https://help.nextcloud.com",
+        "status": 200,
+        "title": "Nextcloud community - Keep your data safe!",
+        "server": "nginx",
+        "content_length": 86556
+      },
+      {
+        "subdomain": "scan.nextcloud.com",
+        "url": "https://scan.nextcloud.com",
+        "status": 200,
+        "title": "Nextcloud Security Scan",
+        "server": "Apache/2.4.41 (Ubuntu)",
+        "content_length": 10984
+      },
+      {
+        "subdomain": "push.cloud.nextcloud.com",
+        "url": "https://push.cloud.nextcloud.com",
+        "status": 404,
+        "title": "",
+        "server": "Caddy",
+        "content_length": 0
+      },
+      {
+        "subdomain": "garm2.nextcloud.com",
+        "url": "https://garm2.nextcloud.com",
+        "status": 404,
+        "title": "",
+        "server": "nginx",
+        "content_length": 19
+      },
+      {
+        "subdomain": "nebula.nextcloud.com",
+        "url": "https://nebula.nextcloud.com",
+        "status": 400,
+        "title": "Nextcloud",
+        "server": "Apache",
+        "content_length": 36243
+      },
+      {
+        "subdomain": "portal.nextcloud.com",
+        "url": "https://portal.nextcloud.com",
+        "status": 200,
+        "title": "Nextcloud Portal",
+        "server": "NCSA/1.42;",
+        "content_length": 21580
+      },
+      {
+        "subdomain": "www.nextcloud.com",
+        "url": "https://www.nextcloud.com",
+        "status": 200,
+        "title": "",
+        "server": "Apache",
+        "content_length": 227302
+      },
+      {
+        "subdomain": "staging.nextcloud.com",
+        "url": "https://staging.nextcloud.com",
+        "status": 200,
+        "title": "",
+        "server": "Apache/2.4.52 (Ubuntu)",
+        "content_length": 134923
+      },
+      {
+        "subdomain": "collabora.perftesting.nextcloud.com",
+        "url": "https://collabora.perftesting.nextcloud.com",
+        "status": 200,
+        "title": "",
+        "server": "Caddy",
+        "content_length": 2
+      },
+      {
+        "subdomain": "s4.nextcloud.com",
+        "url": "https://s4.nextcloud.com",
+        "status": 200,
+        "title": "Welcome to nginx!",
+        "server": "nginx/1.18.0 (Ubuntu)",
+        "content_length": 612
+      },
+      {
+        "subdomain": "tech-preview.nextcloud.com",
+        "url": "https://tech-preview.nextcloud.com",
+        "status": 200,
+        "title": "Login – Nextcloud",
+        "server": "Apache",
+        "content_length": 40396
+      },
+      {
+        "subdomain": "c0004.customerpush.nextcloud.com",
+        "url": "https://c0004.customerpush.nextcloud.com",
+        "status": 404,
+        "title": "",
+        "server": "nginx",
+        "content_length": 19
+      },
+      {
+        "subdomain": "monitoring.nextcloud.com",
+        "url": "https://monitoring.nextcloud.com",
+        "status": 200,
+        "title": "Grafana",
+        "server": "",
+        "content_length": 53829
+      },
+      {
+        "subdomain": "odoo.nextcloud.com",
+        "url": "https://odoo.nextcloud.com",
+        "status": 200,
+        "title": "Home | Nextcloud",
+        "server": "Odoo.sh",
+        "content_length": 13103
+      },
+      {
+        "subdomain": "demo1.nextcloud.com",
+        "url": "https://demo1.nextcloud.com",
+        "status": 200,
+        "title": "Login – Nextcloud",
+        "server": "Apache/2.4.52 (Ubuntu)",
+        "content_length": 34449
+      },
+      {
+        "subdomain": "docs.nextcloud.com",
+        "url": "https://docs.nextcloud.com",
+        "status": 200,
+        "title": "Nextcloud Documentation",
+        "server": "Apache",
+        "content_length": 36248
+      },
+      {
+        "subdomain": "mail.nextcloud.com",
+        "url": "https://mail.nextcloud.com",
+        "status": 200,
+        "title": "Roundcube Webmail :: Welcome to Roundcube Webmail",
+        "server": "NCSA/1.42;",
+        "content_length": 5787
+      },
+      {
+        "subdomain": "go.nextcloud.com",
+        "url": "https://go.nextcloud.com",
+        "status": 200,
+        "title": "Home | Nextcloud",
+        "server": "Odoo.sh",
+        "content_length": 13103
+      },
+      {
+        "subdomain": "zitsh.nextcloud.com",
+        "url": "https://zitsh.nextcloud.com",
+        "status": 200,
+        "title": "Login – Nextcloud",
+        "server": "Apache",
+        "content_length": 23702
+      },
+      {
+        "subdomain": "try.nextcloud.com",
+        "url": "https://try.nextcloud.com",
+        "status": 200,
+        "title": "Try Nextcloud",
+        "server": "Apache/2.4.52 (Ubuntu)",
+        "content_length": 702
+      },
+      {
+        "subdomain": "crm.nextcloud.com",
+        "url": "https://crm.nextcloud.com",
+        "status": 404,
+        "title": "",
+        "server": "nginx",
+        "content_length": 19
+      },
+      {
+        "subdomain": "aio-testing.nextcloud.com",
+        "url": "https://aio-testing.nextcloud.com",
+        "status": 200,
+        "title": "Login – Nextcloud",
+        "server": "",
+        "content_length": 24640
+      },
+      {
+        "subdomain": "apps.nextcloud.com",
+        "url": "https://apps.nextcloud.com",
+        "status": 200,
+        "title": "All apps - App Store - Nextcloud",
+        "server": "NCSA/1.42;",
+        "content_length": 491150
+      },
+      {
+        "subdomain": "c0003.customerpush.nextcloud.com",
+        "url": "https://c0003.customerpush.nextcloud.com",
+        "status": 404,
+        "title": "",
+        "server": "nginx",
+        "content_length": 19
+      },
+      {
+        "subdomain": "lists.nextcloud.com",
+        "url": "https://lists.nextcloud.com",
+        "status": 200,
+        "title": "Sign in to Nextcloud",
+        "server": "Apache/2.4.52 (Ubuntu)",
+        "content_length": 18212
+      },
+      {
+        "subdomain": "mx.nextcloud.com",
+        "url": "http://mx.nextcloud.com",
+        "status": 200,
+        "title": "Apache2 Ubuntu Default Page: It works",
+        "server": "Apache/2.4.58 (Ubuntu)",
+        "content_length": 10918
+      },
+      {
+        "subdomain": "demo2.nextcloud.com",
+        "url": "https://demo2.nextcloud.com",
+        "status": 200,
+        "title": "Login – Nextcloud",
+        "server": "Apache/2.4.52 (Ubuntu)",
+        "content_length": 34534
+      },
+      {
+        "subdomain": "garm.nextcloud.com",
+        "url": "https://garm.nextcloud.com",
+        "status": 404,
+        "title": "",
+        "server": "nginx",
+        "content_length": 19
+      },
+      {
+        "subdomain": "surveyserver.nextcloud.com",
+        "url": "https://surveyserver.nextcloud.com",
+        "status": 200,
+        "title": "Login – Survey Server",
+        "server": "NCSA/1.42;",
+        "content_length": 11881
+      },
+      {
+        "subdomain": "cloud.nextcloud.com",
+        "url": "https://cloud.nextcloud.com",
+        "status": 200,
+        "title": "Login – Nextcloud",
+        "server": "Caddy",
+        "content_length": 39602
+      },
+      {
+        "subdomain": "collabora.nextcloud.com",
+        "url": "https://collabora.nextcloud.com",
+        "status": 200,
+        "title": "",
+        "server": "Caddy",
+        "content_length": 2
+      },
+      {
+        "subdomain": "usercontent.apps.nextcloud.com",
+        "url": "https://usercontent.apps.nextcloud.com",
+        "status": 200,
+        "title": "",
+        "server": "Apache",
+        "content_length": 0
+      },
+      {
+        "subdomain": "antitrust.nextcloud.com",
+        "url": "https://antitrust.nextcloud.com",
+        "status": 200,
+        "title": "EU tech sector fights for a Level Playing Field with Microsoft",
+        "server": "Apache/2.4.52 (Ubuntu)",
+        "content_length": 59973
+      },
+      {
+        "subdomain": "push-notifications.nextcloud.com",
+        "url": "https://push-notifications.nextcloud.com",
+        "status": 404,
+        "title": "",
+        "server": "nginx",
+        "content_length": 19
+      },
+      {
+        "subdomain": "support.nextcloud.com",
+        "url": "https://support.nextcloud.com",
+        "status": 200,
+        "title": "Nextcloud Helpdesk",
+        "server": "nginx",
+        "content_length": 2939
+      },
+      {
+        "subdomain": "transifex-sync.nextcloud.com",
+        "url": "https://transifex-sync.nextcloud.com",
+        "status": 200,
+        "title": "Sign in to Nextcloud",
+        "server": "Apache/2.4.52 (Ubuntu)",
+        "content_length": 18674
+      },
+      {
+        "subdomain": "s12.nextcloud.com",
+        "url": "https://s12.nextcloud.com",
+        "status": 200,
+        "title": "",
+        "server": "Apache",
+        "content_length": 227302
+      },
+      {
+        "subdomain": "push.perftesting.nextcloud.com",
+        "url": "https://push.perftesting.nextcloud.com",
+        "status": 404,
+        "title": "",
+        "server": "Caddy",
+        "content_length": 0
+      },
+      {
+        "subdomain": "pushfeed.nextcloud.com",
+        "url": "https://pushfeed.nextcloud.com",
+        "status": 200,
+        "title": "Index of /",
+        "server": "Apache",
+        "content_length": 887
+      },
+      {
+        "subdomain": "sentry.nextcloud.com",
+        "url": "https://sentry.nextcloud.com",
+        "status": 200,
+        "title": "",
+        "server": "Apache/2.4.52 (Ubuntu)",
+        "content_length": 134923
+      },
+      {
+        "subdomain": "daily.ltd2.nextcloud.com",
+        "url": "https://daily.ltd2.nextcloud.com",
+        "status": 200,
+        "title": "Login – Nextcloud Daily",
+        "server": "Caddy",
+        "content_length": 48766
+      },
+      {
+        "subdomain": "drone.nextcloud.com",
+        "url": "https://drone.nextcloud.com",
+        "status": 200,
+        "title": "Drone | Continuous Integration",
+        "server": "",
+        "content_length": 830
+      },
+      {
+        "subdomain": "staging.collabora.nextcloud.com",
+        "url": "https://staging.collabora.nextcloud.com",
+        "status": 200,
+        "title": "",
+        "server": "Caddy",
+        "content_length": 2
+      },
+      {
+        "subdomain": "staging.cloud.nextcloud.com",
+        "url": "https://staging.cloud.nextcloud.com",
+        "status": 200,
+        "title": "Login – Nextcloud",
+        "server": "Caddy",
+        "content_length": 39706
+      },
+      {
+        "subdomain": "sermo.nextcloud.com",
+        "url": "https://sermo.nextcloud.com",
+        "status": 200,
+        "title": "Login – Sermo",
+        "server": "nginx",
+        "content_length": 24504
+      },
+      {
+        "subdomain": "perftesting.nextcloud.com",
+        "url": "https://perftesting.nextcloud.com",
+        "status": 200,
+        "title": "Login – Nextcloud",
+        "server": "Caddy",
+        "content_length": 24280
+      },
+      {
+        "subdomain": "auth.nextcloud.com",
+        "url": "https://auth.nextcloud.com",
+        "status": 200,
+        "title": "Keycloak Administration Console",
+        "server": "Apache/2.4.52 (Ubuntu)",
+        "content_length": 3764
+      },
+      {
+        "subdomain": "c0005.customerpush.nextcloud.com",
+        "url": "https://c0005.customerpush.nextcloud.com",
+        "status": 404,
+        "title": "",
+        "server": "nginx",
+        "content_length": 19
+      },
+      {
+        "subdomain": "garm3.nextcloud.com",
+        "url": "https://garm3.nextcloud.com",
+        "status": 404,
+        "title": "",
+        "server": "nginx",
+        "content_length": 19
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "url": "https://status.nextcloud.com",
+        "status": 200,
+        "title": "Nextcloud Services",
+        "server": "",
+        "content_length": 2549
+      },
+      {
+        "subdomain": "nextcloud-experience.ltd.nextcloud.com",
+        "url": "https://nextcloud-experience.ltd.nextcloud.com",
+        "status": 200,
+        "title": "Login – AMF",
+        "server": "",
+        "content_length": 37394
+      },
+      {
+        "subdomain": "lookup.nextcloud.com",
+        "url": "https://lookup.nextcloud.com",
+        "status": 503,
+        "title": "",
+        "server": "NCSA/1.52",
+        "content_length": 0
+      },
+      {
+        "subdomain": "updates.nextcloud.com",
+        "url": "https://updates.nextcloud.com",
+        "status": 200,
+        "title": "",
+        "server": "Apache",
+        "content_length": 0
+      },
+      {
+        "subdomain": "customerupdates.nextcloud.com",
+        "url": "https://customerupdates.nextcloud.com",
+        "status": 403,
+        "title": "",
+        "server": "Apache/2.4.41 (Ubuntu)",
+        "content_length": 16
+      },
+      {
+        "subdomain": "download.nextcloud.com",
+        "url": "https://download.nextcloud.com",
+        "status": 200,
+        "title": "Index of /",
+        "server": "Apache",
+        "content_length": 1765
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/phpinfo.php",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "staging.push.cloud.nextcloud.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "scan.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 50,
+        "preview": ""
+      },
+      {
+        "subdomain": "garm2.nextcloud.com",
+        "path": "/metrics",
+        "status": 401,
+        "content_length": 47,
+        "preview": ""
+      },
+      {
+        "subdomain": "portal.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 24,
+        "preview": ""
+      },
+      {
+        "subdomain": "help.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 993,
+        "preview": ""
+      },
+      {
+        "subdomain": "help.nextcloud.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 1414,
+        "preview": ""
+      },
+      {
+        "subdomain": "collabora.perftesting.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "c0004.customerpush.nextcloud.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 3,
+        "preview": "OK\n"
+      },
+      {
+        "subdomain": "staging.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 179,
+        "preview": ""
+      },
+      {
+        "subdomain": "odoo.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 153,
+        "preview": ""
+      },
+      {
+        "subdomain": "odoo.nextcloud.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 477,
+        "preview": ""
+      },
+      {
+        "subdomain": "nebula.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "tech-preview.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "monitoring.nextcloud.com",
+        "path": "/api",
+        "status": 401,
+        "content_length": 102,
+        "preview": ""
+      },
+      {
+        "subdomain": "monitoring.nextcloud.com",
+        "path": "/api/v1",
+        "status": 401,
+        "content_length": 102,
+        "preview": ""
+      },
+      {
+        "subdomain": "monitoring.nextcloud.com",
+        "path": "/api-docs",
+        "status": 401,
+        "content_length": 102,
+        "preview": ""
+      },
+      {
+        "subdomain": "monitoring.nextcloud.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 1220350,
+        "preview": "# HELP deprecated_flags_inuse_total The number of deprecated flags currently set.\n# TYPE deprecated_flags_inuse_total counter\ndeprecated_flags_inuse_total 0\n# HELP go_cgo_go_to_c_calls_calls_total Cou"
+      },
+      {
+        "subdomain": "monitoring.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  }
+}

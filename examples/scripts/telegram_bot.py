@@ -187,7 +187,7 @@ async def handle_end(update: Update, context: ContextTypes.DEFAULT_TYPE):
         else:
             # Fallback to quicksave
             subprocess.run(
-                ["python3", ".agent/scripts/quicksave.py", log_text[:500]],
+                ["python3", "scripts/quicksave.py", log_text[:500]],
                 cwd=workspace
             )
         
@@ -225,7 +225,7 @@ async def handle_log(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         import subprocess
         subprocess.run(
-            ["python3", ".agent/scripts/quicksave.py", f"Telegram Note: {text}"],
+            ["python3", "scripts/quicksave.py", f"Telegram Note: {text}"],
             cwd=Path(__file__).parent.parent.parent
         )
         await update.message.reply_text("✅ Logged.")
@@ -269,7 +269,7 @@ async def handle_voice(update: Update, context: ContextTypes.DEFAULT_TYPE):
         save_text = f"Voice Note Summary: {summary}" if summary else f"Voice Note: {transcript[:100]}..."
         import subprocess
         subprocess.run(
-            ["python3", ".agent/scripts/quicksave.py", save_text],
+            ["python3", "scripts/quicksave.py", save_text],
             cwd=Path(__file__).parent.parent.parent
         )
         await update.message.reply_text("✅ Logged.")
@@ -302,7 +302,7 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
         # Quicksave
         import subprocess
         subprocess.run(
-            ["python3", ".agent/scripts/quicksave.py", f"Analyzed Image: {analysis[:100]}..."],
+            ["python3", "scripts/quicksave.py", f"Analyzed Image: {analysis[:100]}..."],
             cwd=Path(__file__).parent.parent.parent
         )
         await update.message.reply_text("✅ Logged.")
@@ -360,7 +360,7 @@ async def handle_browse(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
         import subprocess
         subprocess.run(
-            ["python3", ".agent/scripts/quicksave.py", f"Visited: {url}"],
+            ["python3", "scripts/quicksave.py", f"Visited: {url}"],
             cwd=Path(__file__).parent.parent.parent
         )
 

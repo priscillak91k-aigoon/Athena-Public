@@ -263,7 +263,7 @@ If SDK fails or has circular dependency, agent must still boot to fix itself.
 
 ### 3. Archive Candidates (For Reference)
 
-Already archived in `.agent/scripts/archive/`:
+Already archived in `scripts/archive/`:
 
 - `analyzers/` — Old cost analysis versions (v2, v3)
 - `consolidated/` — Scripts folded into orchestrators

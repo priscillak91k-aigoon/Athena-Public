@@ -4,8 +4,8 @@ refactor.py — Master Orchestrator for /refactor workflow
 
 Philosophy: One command to rule them all.
 Usage:
-    python3 .agent/scripts/refactor.py
-    python3 .agent/scripts/refactor.py --dry-run
+    python3 scripts/refactor.py
+    python3 scripts/refactor.py --dry-run
 """
 
 import sys

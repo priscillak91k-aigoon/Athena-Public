@@ -11,8 +11,8 @@ Phase 2 (Sequential): Heavy compute that depends on Phase 1
 Phase 3 (Sequential): Commit
 
 Usage:
-    python3 .agent/scripts/batch_audit.py
-    python3 .agent/scripts/batch_audit.py --skip-graphrag  # Skip heavy indexing
+    python3 scripts/batch_audit.py
+    python3 scripts/batch_audit.py --skip-graphrag  # Skip heavy indexing
 """
 
 import sys

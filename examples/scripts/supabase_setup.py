@@ -42,7 +42,7 @@ def run_schema():
     except Exception as e:
         if "does not exist" in str(e):
             print("   ❌ 'sessions' table does NOT exist")
-            print("   → Please run the SQL in: .agent/scripts/supabase_schema.sql")
+            print("   → Please run the SQL in: scripts/supabase_schema.sql")
         else:
             print(f"   ⚠️  Unknown error: {e}")
     
@@ -52,7 +52,7 @@ def run_schema():
     except Exception as e:
         if "does not exist" in str(e):
             print("   ❌ 'case_studies' table does NOT exist")
-            print("   → Please run the SQL in: .agent/scripts/supabase_schema.sql")
+            print("   → Please run the SQL in: scripts/supabase_schema.sql")
         else:
             print(f"   ⚠️  Unknown error: {e}")
     
@@ -60,9 +60,9 @@ def run_schema():
     print("NEXT STEPS:")
     print("=" * 60)
     print("1. Go to Supabase Dashboard → SQL Editor")
-    print("2. Copy contents of: .agent/scripts/supabase_schema.sql")
+    print("2. Copy contents of: scripts/supabase_schema.sql")
     print("3. Run the SQL")
-    print("4. Then run: python .agent/scripts/supabase_sync.py")
+    print("4. Then run: python scripts/supabase_sync.py")
     print("=" * 60)
 
 

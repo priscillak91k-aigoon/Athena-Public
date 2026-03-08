@@ -14,7 +14,7 @@ Usage:
     python3 capture.py --dry-run "test thought"          # Preview without saving
 
 Alias suggestion:
-    alias think='python3 ~/Desktop/Project\\ Athena/.agent/scripts/capture.py'
+    alias think='python3 ~/Desktop/Project\\ Athena/scripts/capture.py'
 """
 
 import argparse
@@ -206,7 +206,7 @@ def sync_captures():
 def main():
     parser = argparse.ArgumentParser(
         description="Athena Shower Thought Capture",
-        epilog="Alias: alias think='python3 ~/Desktop/Project\\ Athena/.agent/scripts/capture.py'",
+        epilog="Alias: alias think='python3 ~/Desktop/Project\\ Athena/scripts/capture.py'",
     )
     parser.add_argument("thought", nargs="?", help="The thought to capture")
     parser.add_argument("--tags", nargs="+", help="Explicit tags")

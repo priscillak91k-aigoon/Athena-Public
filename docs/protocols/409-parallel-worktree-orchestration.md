@@ -25,7 +25,7 @@ When running multiple AI coding sessions in parallel (e.g., 2-4 Antigravity inst
 
 ```bash
 # Create a worktree for session N
-.agent/scripts/parallel_session.sh create $SESSION_ID
+scripts/parallel_session.sh create $SESSION_ID
 
 # Under the hood:
 git worktree add ../.worktrees/session-$SESSION_ID -b feature/session-$SESSION_ID
@@ -89,7 +89,7 @@ git branch -d feature/session-$SESSION_ID
 
 ```bash
 #!/bin/bash
-# .agent/scripts/parallel_session.sh
+# scripts/parallel_session.sh
 
 set -e
 

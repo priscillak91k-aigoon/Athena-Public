@@ -3,7 +3,7 @@
 resume_session.py — Recover interrupted session context
 
 Usage:
-    python3 .agent/scripts/resume_session.py
+    python3 scripts/resume_session.py
 
 Returns context from the most recent incomplete session.
 """

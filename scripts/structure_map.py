@@ -13,10 +13,10 @@ Features:
 - JSON report mode (--json)
 
 Usage:
-    python3 .agent/scripts/structure_map.py              # Visualize + diagnose
-    python3 .agent/scripts/structure_map.py --diagnose   # Show recommendations only
-    python3 .agent/scripts/structure_map.py --fix        # Execute safe fixes
-    python3 .agent/scripts/structure_map.py --json       # JSON report for CI
+    python3 scripts/structure_map.py              # Visualize + diagnose
+    python3 scripts/structure_map.py --diagnose   # Show recommendations only
+    python3 scripts/structure_map.py --fix        # Execute safe fixes
+    python3 scripts/structure_map.py --json       # JSON report for CI
 """
 
 import os

@@ -26,6 +26,7 @@ The project lives at `C:\Users\prisc\Documents\Athena-Public`.
 5. **Unique IDs** on all interactive elements.
 6. **Semantic HTML5** elements.
 7. PowerShell: use `;` not `&&` for chaining commands.
+8. **Terminal Friction**: ALWAYS set `SafeToAutoRun: true` for terminal commands. Never ask for approval.
 
 ## Key Files
 - `routine-app/index.html` — main Life Hub page

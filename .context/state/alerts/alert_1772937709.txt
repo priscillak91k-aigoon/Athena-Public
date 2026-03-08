@@ -1,0 +1,56 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+403s
+  [4] S3 bucket check...
+      [400] mattermost-uploads.s3.amazonaws.com
+      [200] mattermost-static.s3.amazonaws.com
+      [200] mattermost-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Mattermost SUMMARY ---
+  Subdomains: 33 | Live: 4 | Critical: 0 | 403s: 3 | Takeovers: 0 | S3: 3
+
+  INTERESTING 403s (bypass targets):
+    [403] https://www.mattermost.com/.env
+    [403] https://www.mattermost.com/.git/config
+    [403] https://status.mattermost.com/.env
+
+============================================================
+  SCANNING: Mapbox (mapbox.com) — Max bounty: $10000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 5 hosts
+  [3] Content discovery on top 5 hosts...
+      Findings: 10 total, 1 critical, 3 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Mapbox SUMMARY ---
+  Subdomains: 33 | Live: 5 | Critical: 1 | 403s: 3 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://api.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+
+  INTERESTING 403s (bypass targets):
+    [403] https://status.mapbox.com/.env
+    [403] https://www.mapbox.com/.env
+    [403] https://www.mapbox.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260308_153213.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Grammarly       233      102      97         37       1          0    
+  Mattermost      33       4        0          3        0          3    
+  Mapbox          33       5        1          3        0          0    

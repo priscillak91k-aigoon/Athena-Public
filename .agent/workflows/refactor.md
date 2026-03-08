@@ -123,7 +123,7 @@ git add -A && git commit -m "checkpoint: pre-refactor $(date +%Y-%m-%d-%H%M)" --
 
 ```bash
 # Archive sessions older than 7 days
-python3 .agent/scripts/compress_sessions.py --archive-days 7 2>/dev/null || echo "⚠️ Session archive skipped"
+python3 scripts/compress_sessions.py --archive-days 7 2>/dev/null || echo "⚠️ Session archive skipped"
 ```
 
 > **Note**: Moves old logs to `session_logs/archive/` for cleaner workspace.
@@ -137,8 +137,8 @@ python3 .agent/scripts/compress_sessions.py --archive-days 7 2>/dev/null || echo
 // turbo
 
 ```bash
-python3 .agent/scripts/compress_memory.py 2>/dev/null || echo "⚠️ Memory compression skipped"
-python3 .agent/scripts/supabase_sync.py
+python3 scripts/compress_memory.py 2>/dev/null || echo "⚠️ Memory compression skipped"
+python3 scripts/supabase_sync.py
 ```
 
 > Sync sessions and case studies to cloud vector database.
@@ -154,8 +154,8 @@ python3 .agent/scripts/supabase_sync.py
 // turbo
 
 ```bash
-python3 .agent/scripts/update_hot_manifest.py
-python3 .agent/scripts/summarize_protocols.py
+python3 scripts/update_hot_manifest.py
+python3 scripts/summarize_protocols.py
 ```
 
 > **Note**: Ensures boot prefetch and fast lookup context are up to date.
@@ -172,7 +172,7 @@ python3 .agent/scripts/summarize_protocols.py
 
 ```bash
 # Compress scripts for efficient context loading
-python3 .agent/scripts/compress_context.py --dir .agent/scripts --output .context/cache/scripts_compressed.md 2>/dev/null || echo "⚠️ Compression skipped (no API key or quota)"
+python3 scripts/compress_context.py --dir .agent/scripts --output .context/cache/scripts_compressed.md 2>/dev/null || echo "⚠️ Compression skipped (no API key or quota)"
 ```
 
 > **Note**: Remove `--mock` flag once `GOOGLE_API_KEY` is set in `.env`.
@@ -186,7 +186,7 @@ python3 .agent/scripts/compress_context.py --dir .agent/scripts --output .contex
 // turbo
 
 ```bash
-python3 .agent/scripts/orphan_detector.py
+python3 scripts/orphan_detector.py
 ```
 
 > **GATE**:
@@ -205,7 +205,7 @@ python3 .agent/scripts/orphan_detector.py
 // turbo
 
 ```bash
-python3 .agent/scripts/generate_tag_index.py
+python3 scripts/generate_tag_index.py
 ```
 
 > Updates `TAG_INDEX.md` with current file tags.
@@ -222,7 +222,7 @@ python3 .agent/scripts/generate_tag_index.py
 
 ```bash
 echo "=== Phase 6.5: Regression Tests ==="
-# Future: python3 .agent/scripts/run_tests.py
+# Future: python3 scripts/run_tests.py
 # For now: AI manually reviews test cases in .agent/tests/ if Core_Identity.md was modified
 ```
 
@@ -259,7 +259,7 @@ if [ -n "$CURRENT_SESSION" ]; then
   echo "" >> "$CURRENT_SESSION"
   echo "### Checkpoint [$(date +%H:%M) SGT] — /refactor complete" >> "$CURRENT_SESSION"
   echo "- Supabase synced: ✅" >> "$CURRENT_SESSION"
-  echo "- Orphans remaining: $(python3 .agent/scripts/orphan_detector.py 2>/dev/null | grep -c 'Orphan' || echo 0)" >> "$CURRENT_SESSION"
+  echo "- Orphans remaining: $(python3 scripts/orphan_detector.py 2>/dev/null | grep -c 'Orphan' || echo 0)" >> "$CURRENT_SESSION"
   echo "✅ Session log appended: $CURRENT_SESSION"
 else
   echo "⚠️ No session log found"
@@ -280,8 +280,8 @@ fi
 
 ```bash
 # Sanity check before commit
-python3 .agent/scripts/batch_audit.py --skip-graphrag || echo "⚠️ Audit warning"
-python3 .agent/scripts/git_commit.py
+python3 scripts/batch_audit.py --skip-graphrag || echo "⚠️ Audit warning"
+python3 scripts/git_commit.py
 ```
 
 **Output**: "✅ Workspace fully optimized. All systems clean."
@@ -298,7 +298,7 @@ python3 .agent/scripts/git_commit.py
 | `/refactor` | Full optimization (manual phases + automation) | ~10-15 min |
 | `/refactor --dry-run` | Preview changes | ~10 min |
 | `/reindex` | Supabase sync only | ~30s |
-| `python3 .agent/scripts/refactor.py` | Automated orchestrator (subset of /refactor) | ~5 min |
+| `python3 scripts/refactor.py` | Automated orchestrator (subset of /refactor) | ~5 min |
 
 ---
 

@@ -11,8 +11,8 @@ Single-call script that runs the entire /end close sequence:
   5. Compliance reset for next session
 
 Usage:
-    python3 .agent/scripts/shutdown.py
-    python3 .agent/scripts/shutdown.py --dry-run  # Preview changes without writing
+    python3 scripts/shutdown.py
+    python3 scripts/shutdown.py --dry-run  # Preview changes without writing
 
 Replaces 4+ separate script calls with 1 orchestrated call.
 """
@@ -691,7 +691,7 @@ def main():
         print("🌾 Harvest Check (Background)...")
         try:
             subprocess.Popen(
-                ["python3", ".agent/scripts/harvest_check.py"],
+                ["python3", "scripts/harvest_check.py"],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 start_new_session=True,
@@ -732,7 +732,7 @@ def main():
         print(f"\n{CYAN}🧹 Running Hygiene Protocol (Background)...{RESET}")
         try:
             subprocess.Popen(
-                ["python3", ".agent/scripts/compress_sessions.py"],
+                ["python3", "scripts/compress_sessions.py"],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 start_new_session=True,

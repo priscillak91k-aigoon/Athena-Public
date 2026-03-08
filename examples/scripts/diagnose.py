@@ -10,7 +10,7 @@ Single-call script that runs all /diagnose phases:
   5. Echo chamber check
 
 Usage:
-    python3 .agent/scripts/diagnose.py
+    python3 scripts/diagnose.py
 
 Read-only. No commits. Safe to run frequently.
 """

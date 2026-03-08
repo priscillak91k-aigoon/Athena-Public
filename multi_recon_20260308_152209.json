@@ -1,0 +1,1718 @@
+{
+  "Automattic": {
+    "target": "Automattic",
+    "domain": "automattic.com",
+    "max_bounty": 25000,
+    "subdomains": [
+      "publisherblog.automattic.com",
+      "graphql.automattic.com",
+      "admin.automattic.com",
+      "beta.automattic.com",
+      "transparency.automattic.com",
+      "monitor.automattic.com",
+      "tls.automattic.com",
+      "wiki.automattic.com",
+      "stage.automattic.com",
+      "status.automattic.com",
+      "engels.automattic.com",
+      "cdn.automattic.com",
+      "auth.automattic.com",
+      "updates.automattic.com",
+      "www.engels.automattic.com",
+      "sandbox.automattic.com",
+      "vault.automattic.com",
+      "dashboard.automattic.com",
+      "qa.automattic.com",
+      "fieldguide.automattic.com",
+      "jenkins.automattic.com",
+      "trac.automattic.com",
+      "docs.automattic.com",
+      "app.automattic.com",
+      "blog.automattic.com",
+      "static.automattic.com",
+      "tools.automattic.com",
+      "lounge.automattic.com",
+      "museum.automattic.com",
+      "www.automattic.com",
+      "login.automattic.com",
+      "git.automattic.com",
+      "ops.automattic.com",
+      "internal.automattic.com",
+      "api.automattic.com",
+      "concierge.automattic.com",
+      "dev.automattic.com",
+      "portal.automattic.com",
+      "preview.automattic.com",
+      "vpn.automattic.com",
+      "staging.automattic.com",
+      "offline.automattic.com",
+      "ci.automattic.com",
+      "test.automattic.com",
+      "mail.automattic.com",
+      "svn.automattic.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "transparency.automattic.com",
+        "url": "https://transparency.automattic.com",
+        "status": 200,
+        "title": "Transparency Report",
+        "server": "nginx",
+        "content_length": 67654
+      },
+      {
+        "subdomain": "engels.automattic.com",
+        "url": "https://engels.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "Apache",
+        "content_length": 163
+      },
+      {
+        "subdomain": "cdn.automattic.com",
+        "url": "https://cdn.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119581
+      },
+      {
+        "subdomain": "beta.automattic.com",
+        "url": "https://beta.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "graphql.automattic.com",
+        "url": "https://graphql.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "stage.automattic.com",
+        "url": "https://stage.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "monitor.automattic.com",
+        "url": "https://monitor.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "status.automattic.com",
+        "url": "https://status.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "ZGS",
+        "content_length": 52805
+      },
+      {
+        "subdomain": "auth.automattic.com",
+        "url": "https://auth.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "sandbox.automattic.com",
+        "url": "https://sandbox.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "updates.automattic.com",
+        "url": "https://updates.automattic.com",
+        "status": 200,
+        "title": "Private P2",
+        "server": "nginx",
+        "content_length": 2340
+      },
+      {
+        "subdomain": "admin.automattic.com",
+        "url": "https://admin.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "url": "https://fieldguide.automattic.com",
+        "status": 200,
+        "title": "Private Site",
+        "server": "nginx",
+        "content_length": 8386
+      },
+      {
+        "subdomain": "qa.automattic.com",
+        "url": "https://qa.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "vault.automattic.com",
+        "url": "https://vault.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "publisherblog.automattic.com",
+        "url": "https://publisherblog.automattic.com",
+        "status": 200,
+        "title": "The Enterprise WordPress Blog | WordPress VIP",
+        "server": "nginx",
+        "content_length": 260305
+      },
+      {
+        "subdomain": "lounge.automattic.com",
+        "url": "https://lounge.automattic.com",
+        "status": 200,
+        "title": "Hawthorne | the Automattic Lounge",
+        "server": "nginx",
+        "content_length": 54742
+      },
+      {
+        "subdomain": "docs.automattic.com",
+        "url": "https://docs.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "jenkins.automattic.com",
+        "url": "https://jenkins.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "museum.automattic.com",
+        "url": "https://museum.automattic.com",
+        "status": 200,
+        "title": "t-shirt museum | the Automattic Lounge",
+        "server": "nginx",
+        "content_length": 119878
+      },
+      {
+        "subdomain": "app.automattic.com",
+        "url": "https://app.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "trac.automattic.com",
+        "url": "https://trac.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "tls.automattic.com",
+        "url": "https://tls.automattic.com",
+        "status": 200,
+        "title": "WordPress SSL | WordPress.com Support",
+        "server": "nginx",
+        "content_length": 242771
+      },
+      {
+        "subdomain": "static.automattic.com",
+        "url": "https://static.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "blog.automattic.com",
+        "url": "https://blog.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "tools.automattic.com",
+        "url": "https://tools.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "www.automattic.com",
+        "url": "https://www.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "login.automattic.com",
+        "url": "https://login.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "git.automattic.com",
+        "url": "https://git.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "internal.automattic.com",
+        "url": "https://internal.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "dev.automattic.com",
+        "url": "https://dev.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "portal.automattic.com",
+        "url": "https://portal.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "ops.automattic.com",
+        "url": "https://ops.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "api.automattic.com",
+        "url": "https://api.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "concierge.automattic.com",
+        "url": "https://concierge.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 165218
+      },
+      {
+        "subdomain": "offline.automattic.com",
+        "url": "https://offline.automattic.com",
+        "status": 200,
+        "title": "Private Site",
+        "server": "nginx",
+        "content_length": 8374
+      },
+      {
+        "subdomain": "preview.automattic.com",
+        "url": "https://preview.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "staging.automattic.com",
+        "url": "https://staging.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "ci.automattic.com",
+        "url": "https://ci.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "test.automattic.com",
+        "url": "https://test.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "svn.automattic.com",
+        "url": "https://svn.automattic.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "nginx",
+        "content_length": 283
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "monitor.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "monitor.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "beta.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "beta.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "graphql.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "graphql.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "stage.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "stage.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "transparency.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "transparency.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "transparency.automattic.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 654,
+        "preview": ""
+      },
+      {
+        "subdomain": "transparency.automattic.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 76127,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "qa.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "qa.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "updates.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "updates.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "sandbox.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "sandbox.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 8395,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 8414,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 8407,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 8410,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 8431,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 8429,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 8410,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 8422,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 8492,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 8432,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 8441,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 8435,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 8401,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 8407,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 8407,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 8416,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 8404,
+        "preview": ""
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 8404,
+        "preview": ""
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 8398,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 8404,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 8404,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 8413,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 8410,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 8398,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 88,
+        "preview": ""
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 8419,
+        "preview": ""
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 8431,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 8425,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "fieldguide.automattic.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 8419,
+        "preview": "\t<!DOCTYPE html>\n\t<html lang=\"en\">\n\t<head>\n\t\t<title>Private Site</title>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width\" />\n\t\t<link rel=\"icon\" href=\"data:image/svg+xml;"
+      },
+      {
+        "subdomain": "vault.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "vault.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  },
+  "Shopify": {
+    "target": "Shopify",
+    "domain": "shopify.com",
+    "max_bounty": 50000,
+    "subdomains": [
+      "beta.shopify.com",
+      "mail.shopify.com",
+      "blog.shopify.com",
+      "login.shopify.com",
+      "tools.shopify.com",
+      "status.shopify.com",
+      "dashboard.shopify.com",
+      "portal.shopify.com",
+      "api.shopify.com",
+      "sandbox.shopify.com",
+      "git.shopify.com",
+      "ops.shopify.com",
+      "docs.shopify.com",
+      "www.shopify.com",
+      "ci.shopify.com",
+      "stage.shopify.com",
+      "wiki.shopify.com",
+      "cdn.shopify.com",
+      "jenkins.shopify.com",
+      "auth.shopify.com",
+      "app.shopify.com",
+      "static.shopify.com",
+      "staging.shopify.com",
+      "monitor.shopify.com",
+      "qa.shopify.com",
+      "vpn.shopify.com",
+      "admin.shopify.com",
+      "test.shopify.com",
+      "dev.shopify.com",
+      "vault.shopify.com",
+      "preview.shopify.com",
+      "graphql.shopify.com",
+      "internal.shopify.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "sandbox.shopify.com",
+        "url": "https://sandbox.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "tools.shopify.com",
+        "url": "https://tools.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "ops.shopify.com",
+        "url": "https://ops.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "beta.shopify.com",
+        "url": "https://beta.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "api.shopify.com",
+        "url": "https://api.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 8619
+      },
+      {
+        "subdomain": "dashboard.shopify.com",
+        "url": "https://dashboard.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "git.shopify.com",
+        "url": "https://git.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "ci.shopify.com",
+        "url": "https://ci.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "stage.shopify.com",
+        "url": "https://stage.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "docs.shopify.com",
+        "url": "https://docs.shopify.com",
+        "status": 403,
+        "title": "Verifying your connection...",
+        "server": "cloudflare",
+        "content_length": 10648
+      },
+      {
+        "subdomain": "auth.shopify.com",
+        "url": "https://auth.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "cdn.shopify.com",
+        "url": "https://cdn.shopify.com",
+        "status": 200,
+        "title": "Shopify CDN",
+        "server": "cloudflare",
+        "content_length": 70443
+      },
+      {
+        "subdomain": "jenkins.shopify.com",
+        "url": "https://jenkins.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "status.shopify.com",
+        "url": "https://status.shopify.com",
+        "status": 200,
+        "title": "Shopify Status",
+        "server": "AtlassianEdge",
+        "content_length": 84750
+      },
+      {
+        "subdomain": "portal.shopify.com",
+        "url": "https://portal.shopify.com",
+        "status": 200,
+        "title": "Careers, Internships, and Jobs at Shopify | Shopify Careers - Shopify",
+        "server": "cloudflare",
+        "content_length": 218424
+      },
+      {
+        "subdomain": "monitor.shopify.com",
+        "url": "https://monitor.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "wiki.shopify.com",
+        "url": "https://wiki.shopify.com",
+        "status": 403,
+        "title": "Verifying your connection...",
+        "server": "cloudflare",
+        "content_length": 10648
+      },
+      {
+        "subdomain": "static.shopify.com",
+        "url": "https://static.shopify.com",
+        "status": 200,
+        "title": "Shopify CDN",
+        "server": "cloudflare",
+        "content_length": 70443
+      },
+      {
+        "subdomain": "blog.shopify.com",
+        "url": "https://blog.shopify.com",
+        "status": 200,
+        "title": "Ecommerce Marketing Blog - Ecommerce News, Online Store Tips and More - Shopify",
+        "server": "cloudflare",
+        "content_length": 479679
+      },
+      {
+        "subdomain": "vpn.shopify.com",
+        "url": "https://vpn.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "www.shopify.com",
+        "url": "https://www.shopify.com",
+        "status": 200,
+        "title": "Shopify: The All-in-One Commerce Platform for Businesses - Shopify",
+        "server": "cloudflare",
+        "content_length": 601755
+      },
+      {
+        "subdomain": "qa.shopify.com",
+        "url": "https://qa.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "staging.shopify.com",
+        "url": "https://staging.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "url": "https://admin.shopify.com",
+        "status": 403,
+        "title": "Verifying your connection...",
+        "server": "cloudflare",
+        "content_length": 10607
+      },
+      {
+        "subdomain": "test.shopify.com",
+        "url": "https://test.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "graphql.shopify.com",
+        "url": "https://graphql.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "preview.shopify.com",
+        "url": "https://preview.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "internal.shopify.com",
+        "url": "https://internal.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "dev.shopify.com",
+        "url": "https://dev.shopify.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 239272
+      },
+      {
+        "subdomain": "app.shopify.com",
+        "url": "https://app.shopify.com",
+        "status": 200,
+        "title": "Shopify App Store",
+        "server": "cloudflare",
+        "content_length": 254368
+      },
+      {
+        "subdomain": "mail.shopify.com",
+        "url": "http://mail.shopify.com",
+        "status": 200,
+        "title": "Shopify - Sign In",
+        "server": "nginx",
+        "content_length": 36002
+      },
+      {
+        "subdomain": "vault.shopify.com",
+        "url": "https://vault.shopify.com",
+        "status": 200,
+        "title": "Shopify - Sign In",
+        "server": "nginx",
+        "content_length": 34045
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "cdn.shopify.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 80,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  },
+  "Loom": {
+    "target": "Loom",
+    "domain": "loom.com",
+    "max_bounty": 5000,
+    "subdomains": [
+      "location.loom.com",
+      "webflow-prod.loom.com",
+      "login-stage.loom.com",
+      "vpn.loom.com",
+      "login.loom.com",
+      "developers.loom.com",
+      "api.sgmt.loom.com",
+      "git.loom.com",
+      "internal.loom.com",
+      "mail.loom.com",
+      "ops.loom.com",
+      "support.loom.com",
+      "jenkins.loom.com",
+      "production-cyan.loom.com",
+      "portal.loom.com",
+      "app.loom.com",
+      "webflow.loom.com",
+      "stage.loom.com",
+      "staging.loom.com",
+      "packages.loom.com",
+      "feedback.loom.com",
+      "static.loom.com",
+      "graphql.loom.com",
+      "test.loom.com",
+      "ci.loom.com",
+      "staging-green.loom.com",
+      "status.loom.com",
+      "dev.loom.com",
+      "wiki.loom.com",
+      "beta.loom.com",
+      "infra-diamond.loom.com",
+      "admin.loom.com",
+      "evs.sgmt.loom.com",
+      "webflow-stage.loom.com",
+      "api.loom.com",
+      "community.loom.com",
+      "sandbox.loom.com",
+      "vault.loom.com",
+      "monitor.loom.com",
+      "sdkchangelog.loom.com",
+      "blog.loom.com",
+      "production-green.loom.com",
+      "www.loom.com",
+      "cdn.loom.com",
+      "dashboard.loom.com",
+      "preview.loom.com",
+      "qa.loom.com",
+      "new.loom.com",
+      "info.loom.com",
+      "tools.loom.com",
+      "sales.loom.com",
+      "auth.loom.com",
+      "trust.loom.com",
+      "shop.loom.com",
+      "docs.loom.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "location.loom.com",
+        "url": "https://location.loom.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 0
+      },
+      {
+        "subdomain": "developers.loom.com",
+        "url": "https://developers.loom.com",
+        "status": 200,
+        "title": "Developers | Loom",
+        "server": "Vercel",
+        "content_length": 7704
+      },
+      {
+        "subdomain": "dev.loom.com",
+        "url": "https://dev.loom.com",
+        "status": 200,
+        "title": "Developers | Loom",
+        "server": "Vercel",
+        "content_length": 7704
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "url": "https://packages.loom.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 0
+      },
+      {
+        "subdomain": "api.sgmt.loom.com",
+        "url": "https://api.sgmt.loom.com",
+        "status": 404,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 0
+      },
+      {
+        "subdomain": "www.loom.com",
+        "url": "https://www.loom.com",
+        "status": 200,
+        "title": "Free screen recorder for Mac and PC | Loom",
+        "server": "Vercel",
+        "content_length": 199730
+      },
+      {
+        "subdomain": "sales.loom.com",
+        "url": "https://sales.loom.com",
+        "status": 204,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "url": "https://cdn.loom.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "status.loom.com",
+        "url": "https://status.loom.com",
+        "status": 200,
+        "title": "Loom Status",
+        "server": "AtlassianEdge",
+        "content_length": 72713
+      },
+      {
+        "subdomain": "evs.sgmt.loom.com",
+        "url": "https://evs.sgmt.loom.com",
+        "status": 404,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 49
+      },
+      {
+        "subdomain": "sdkchangelog.loom.com",
+        "url": "https://sdkchangelog.loom.com",
+        "status": 200,
+        "title": "",
+        "server": "",
+        "content_length": 124023
+      },
+      {
+        "subdomain": "new.loom.com",
+        "url": "https://new.loom.com",
+        "status": 200,
+        "title": "",
+        "server": "",
+        "content_length": 145579
+      },
+      {
+        "subdomain": "support.loom.com",
+        "url": "https://support.loom.com",
+        "status": 200,
+        "title": "Loom support | Loom | Atlassian Support",
+        "server": "AmazonS3",
+        "content_length": 80334
+      },
+      {
+        "subdomain": "stage.loom.com",
+        "url": "https://stage.loom.com",
+        "status": 200,
+        "title": "Atlassian - Sign In",
+        "server": "nginx",
+        "content_length": 32087
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/phpinfo.php",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "dev.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 31060,
+        "preview": ""
+      },
+      {
+        "subdomain": "dev.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 31062,
+        "preview": ""
+      },
+      {
+        "subdomain": "developers.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 31067,
+        "preview": ""
+      },
+      {
+        "subdomain": "developers.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 31066,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 173,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 208,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.loom.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 186,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.sgmt.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "sales.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 317,
+        "preview": ""
+      },
+      {
+        "subdomain": "sdkchangelog.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 23,
+        "preview": ""
+      },
+      {
+        "subdomain": "sdkchangelog.loom.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 2586,
+        "preview": ""
+      },
+      {
+        "subdomain": "new.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 23,
+        "preview": ""
+      },
+      {
+        "subdomain": "new.loom.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 15165,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  }
+}

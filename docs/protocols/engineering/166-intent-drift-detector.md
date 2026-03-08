@@ -49,7 +49,7 @@ Before touching "working" code, ask:
 ### Mandatory Infrastructure (The "Steal" from r/vibecoding)
 
 1. **Explicit Intent Logging**: Every significant logical change MUST be documented in `.agent/TASK_LOG.md`. Explain *what* was changed and *why* (the intent), not just the output.
-2. **Visual Verification**: Use `python3 .agent/scripts/generate_puml.py` to refresh the visual architecture. Ensure current logic hasn't created unintended structural complexity.
+2. **Visual Verification**: Use `python3 scripts/generate_puml.py` to refresh the visual architecture. Ensure current logic hasn't created unintended structural complexity.
 
 ---
 

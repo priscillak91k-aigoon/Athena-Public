@@ -52,7 +52,7 @@ If the "Next Required Audit" date is more than 90 days in the past, assume catas
 
    ```bash
    cp -r .context/memories/ ~/athena_backup_$(date +%Y%m%d)/
-   cp -r .agent/scripts/ ~/athena_backup_$(date +%Y%m%d)/
+   cp -r scripts/ ~/athena_backup_$(date +%Y%m%d)/
    ```
 
 2. **Load Minimal Context**
@@ -63,8 +63,8 @@ If the "Next Required Audit" date is more than 90 days in the past, assume catas
 
 3. **Rebuild from First Principles**
    - Load only: `Core_Identity.md`, `project_state.md`, last 3 session logs
-   - Re-run: `python3 .agent/scripts/refactor.py`
-   - Verify: `python3 .agent/scripts/diagnose.py`
+   - Re-run: `python3 scripts/refactor.py`
+   - Verify: `python3 scripts/diagnose.py`
 
 4. **Update This File**
    - Set new audit date

@@ -29,9 +29,9 @@ User defines the objective.
 
 ```bash
 # Create isolated environments
-.agent/scripts/parallel_session.sh create swarm-fe
-.agent/scripts/parallel_session.sh create swarm-be
-.agent/scripts/parallel_session.sh create swarm-qa
+scripts/parallel_session.sh create swarm-fe
+scripts/parallel_session.sh create swarm-be
+scripts/parallel_session.sh create swarm-qa
 ```
 
 ### Phase 2: The Swarm (Build)

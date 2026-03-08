@@ -51,7 +51,7 @@ def archive(url):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python3 .agent/scripts/librarian/archive.py <URL>")
+        print("Usage: python3 scripts/librarian/archive.py <URL>")
         sys.exit(1)
 
     url = sys.argv[1]

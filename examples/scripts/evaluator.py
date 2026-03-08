@@ -10,11 +10,11 @@ Metrics:
     - Coverage: % of expected sources found across all results.
 
 Usage:
-    python3 .agent/scripts/evaluator.py                  # Full eval
-    python3 .agent/scripts/evaluator.py --category system # Filter by category
-    python3 .agent/scripts/evaluator.py --verbose         # Show per-query detail
-    python3 .agent/scripts/evaluator.py --baseline        # Save current run as baseline
-    python3 .agent/scripts/evaluator.py --compare         # Compare against baseline
+    python3 scripts/evaluator.py                  # Full eval
+    python3 scripts/evaluator.py --category system # Filter by category
+    python3 scripts/evaluator.py --verbose         # Show per-query detail
+    python3 scripts/evaluator.py --baseline        # Save current run as baseline
+    python3 scripts/evaluator.py --compare         # Compare against baseline
 """
 
 import json

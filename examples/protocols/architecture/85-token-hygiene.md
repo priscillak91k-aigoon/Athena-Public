@@ -53,7 +53,7 @@ Token budget is a non-renewable resource within a session. Proactive monitoring 
 Run periodically:
 
 ```bash
-python3 .agent/scripts/token_budget.py
+python3 scripts/token_budget.py
 ```
 
 ---

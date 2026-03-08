@@ -5,8 +5,8 @@ run_mcp.py — MCP Server Launch Script
 Ensures PYTHONPATH includes the SDK before starting the server.
 
 Usage:
-    python3 .agent/scripts/run_mcp.py           # stdio transport (IDE)
-    python3 .agent/scripts/run_mcp.py --sse     # SSE transport (remote)
+    python3 scripts/run_mcp.py           # stdio transport (IDE)
+    python3 scripts/run_mcp.py --sse     # SSE transport (remote)
 """
 
 import os

@@ -146,7 +146,7 @@ def generate_index(
         "",
         "> **Purpose**: Instant file retrieval via keywords.",
         f"> **Shard**: {shard_name} ({len(filtered_tags)} tags)",
-        "> **Auto-generated**: Run `python3 .agent/scripts/generate_tag_index.py` to update.",
+        "> **Auto-generated**: Run `python3 scripts/generate_tag_index.py` to update.",
         "",
         "---",
         "",

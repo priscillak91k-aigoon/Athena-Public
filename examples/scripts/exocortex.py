@@ -68,7 +68,7 @@ def build_index():
     """Builds a SQLite FTS index from the DBPedia TTL dump."""
     if not LOCAL_FILE.exists():
         print(
-            f"❌ Dump not found. Run 'python3 .agent/scripts/exocortex.py download' first."
+            f"❌ Dump not found. Run 'python3 scripts/exocortex.py download' first."
         )
         return
 
@@ -153,7 +153,7 @@ def search_db(term):
     """Searches the SQLite index."""
     if not DB_FILE.exists():
         print(
-            "❌ Index not built. Run 'python3 .agent/scripts/exocortex.py index' first."
+            "❌ Index not built. Run 'python3 scripts/exocortex.py index' first."
         )
         return
 

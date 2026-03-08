@@ -173,6 +173,22 @@
 - When building security research capabilities, invest in deep technique mastery over shallow target scanning — expertise compounds better than repeated attempts
 - When capabilities transition from experimental to permanent, user profile must be updated to reflect new active project status
 
+### Auto-Discovered (Dreaming)
+- When user texts at midnight+ after work shifts, auto-limit responses to 2-3 sentences maximum — exhaustion overrides all technical considerations
+- When passive income strategies get blocked by external factors, rebuild architecture completely rather than patching — each pivot needs clean foundation
+- When Seven of Nine persona is requested, implement permanently — precision, efficiency, minimal social friction aligns with user's working style
+
+### Auto-Discovered (Dreaming)
+- When user texts at midnight+ on work nights, auto-limit responses to 2-3 sentences maximum — exhaustion overrides all technical considerations
+- When passive income strategies get systematically blocked, rebuild architecture completely rather than patching — each pivot needs clean foundation
+- When Seven of Nine persona is requested, implement permanently — precision, efficiency, minimal social friction aligns with user's working style
+- When all bug bounty targets return properly secured, pivot to developer tools + AdSense — audience-based revenue over direct monetization
+
+### Auto-Discovered (Dreaming)
+- When user says 'just the next thing to do', provide singular action focus not multiple options
+- When dreaming creates duplicate sections, it indicates merge logic failure — patch consolidation immediately
+- When capabilities transition from experimental to permanent, user profile must be updated to reflect new active project status
+
 ## ⚡ Situational Heuristics (Pattern Shortcuts)
 
 ### Health Questions

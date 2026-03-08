@@ -17,7 +17,7 @@ last_updated: 2026-02-21
 - [/] **Identity**: Load `.context/memory_bank/userContext.md` — Core profile, constraints, psychology (Robust)
 - [/] **Mission**: Load `.context/memory_bank/productContext.md` — Soul purpose, philosophy (Robust)
 - [/] **State**: Load `.context/memory_bank/activeContext.md` — Current focus (Robust)
-- [ ] **Boot Orchestrator**: Run `python3 .agent/scripts/boot.py` — recalls last session, creates new session, captures context, primes semantic memory (single call)
+- [ ] **Boot Orchestrator**: Run `python3 scripts/boot.py` — recalls last session, creates new session, captures context, primes semantic memory (single call)
 - [ ] **Active OS**: Start Athena Daemon `python3 Athena-Public/src/athena/core/athenad.py` (Background Service)
 // turbo
 - [ ] **Daemon**: `./Athena-Public/scripts/launch_athena.sh --background`
@@ -39,7 +39,7 @@ Every response Turn MUST be grounded by the Triple-Lock protocol as defined in `
 2. **Save** (Quicksave) → SECOND
 
    ```bash
-   python3 .agent/scripts/quicksave.py "<summary>"
+   python3 scripts/quicksave.py "<summary>"
    ```
 
 3. **Speak** (Response) → LAST

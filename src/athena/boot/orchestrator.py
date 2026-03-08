@@ -3,7 +3,7 @@
 athena.boot.orchestrator
 =========================
 Modular boot sequence orchestrator.
-Replaces the monolithic .agent/scripts/boot.py
+Replaces the monolithic scripts/boot.py
 """
 
 import sys
@@ -150,7 +150,7 @@ def main():
     print(f"\n{BOLD}{'─' * 60}{RESET}")
     print(f"{GREEN}{BOLD}⚡ Ready.{RESET} Session: {session_id}")
     print(
-        f"{DIM}⚖️  Law #6 Reminder: Run 'python3 .agent/scripts/quicksave.py \"...\"' after completing work.{RESET}"
+        f"{DIM}⚖️  Law #6 Reminder: Run 'python3 scripts/quicksave.py \"...\"' after completing work.{RESET}"
     )
     print(f"{BOLD}{'─' * 60}{RESET}\n")
 

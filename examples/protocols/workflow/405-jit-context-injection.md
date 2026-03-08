@@ -40,7 +40,7 @@ Analyze these changes for issues.
 
 ### 2.1 Preprocessor Script
 
-Location: `.agent/scripts/jit_inject.py`
+Location: `scripts/jit_inject.py`
 
 ```python
 #!/usr/bin/env python3
@@ -144,7 +144,7 @@ The injection syntax can call internal scripts:
 
 ```markdown
 ## Relevant Sessions
-!`python3 .agent/scripts/smart_search.py "authentication" --limit 3 --format brief`
+!`python3 scripts/smart_search.py "authentication" --limit 3 --format brief`
 ```
 
 ---

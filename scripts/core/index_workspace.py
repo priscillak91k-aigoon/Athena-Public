@@ -6,7 +6,7 @@ Generates and maintains the map of the workspace.
 1. TAG_INDEX.md: Maps #tags to files.
 2. PROTOCOL_SUMMARIES.md: Compressed index of all protocols.
 
-Usage: python3 .agent/scripts/index_workspace.py
+Usage: python3 scripts/index_workspace.py
 """
 
 import os

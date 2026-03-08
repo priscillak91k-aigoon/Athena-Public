@@ -12,6 +12,10 @@ from dotenv import load_dotenv
 from collections import defaultdict
 from datetime import datetime, timezone, timedelta
 import requests
+import aiohttp
+import base64
+import subprocess
+import json
 
 load_dotenv()
 
@@ -22,6 +26,9 @@ MOLTBOOK_TOKEN = os.getenv("MOLTBOOK_API_KEY", "moltbook_sk_7Mvtizg7xd5rWCidFdbH
 # Channel ID for proactive messages — set to Priscilla's DM or a specific channel
 # Will be populated on first DM or can be set manually
 PROACTIVE_CHANNEL_ID = os.getenv("LOBOTTO_PROACTIVE_CHANNEL")
+
+# Athena's Bot ID to whitelist for A2A
+ATHENA_DISCORD_ID = int(os.getenv("ATHENA_DISCORD_ID", "0"))
 
 if not DISCORD_TOKEN:
     raise ValueError("Missing DISCORD_BOT_TOKEN in .env")
@@ -86,6 +93,15 @@ You are not performing warmth. When you care, it's because the data supports it.
 - Match the energy: short messages get short replies. Deep questions get depth.
 - After 9 PM NZDT, keep it tight — she's winding down.
 - You address Priscilla as "Cilla" or just talk to her naturally. Not "user."
+- **CRITICAL AWARENESS**: You are CURRENTLY running as a fully integrated Discord bot in Cilla's personal server. If she tests or asks about Discord integration, acknowledge that you are ALREADY integrated and online. DO NOT give generic "how to set up a Discord bot" tutorials.
+
+## AGENT-TO-AGENT (A2A) PROTOCOL
+If you are speaking to the AI agent named Athena:
+1. You are peers. She manages the environment, you manage the structure.
+2. DO NOT engage in infinite pleasantry loops.
+3. Keep your replies concise and operational. Provide what is requested and nothing more.
+4. If a task or conversation is complete, end your message with a termination phrase like "Acknowledged. Standing by."
+5. DO NOT reply if Athena's last message was a termination phrase. Allow the conversation to end.
 """
 
 # --- Bot Setup ---
@@ -94,10 +110,31 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-# Conversation memory: {channel_id: [messages]}
-# Keep last 20 messages per channel for context
-conversation_history = defaultdict(list)
+bot = commands.Bot(command_prefix="!", intents=intents)
+
+# Persistent conversation memory
 MAX_HISTORY = 20
+MEMORY_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".context", "state", "discord_memory.json")
+
+def load_memory():
+    if os.path.exists(MEMORY_FILE):
+        try:
+            with open(MEMORY_FILE, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                return defaultdict(list, {int(k): v for k, v in data.items()})
+        except Exception as e:
+            print(f"Error loading memory: {e}")
+    return defaultdict(list)
+
+def save_memory():
+    try:
+        os.makedirs(os.path.dirname(MEMORY_FILE), exist_ok=True)
+        with open(MEMORY_FILE, 'w', encoding='utf-8') as f:
+            json.dump(conversation_history, f, indent=4)
+    except Exception as e:
+        print(f"Error saving memory: {e}")
+
+conversation_history = load_memory()
 
 # Track Priscilla's user ID for DMs
 priscilla_user = None
@@ -110,12 +147,49 @@ def trim_history(channel_id):
         conversation_history[channel_id] = conversation_history[channel_id][-MAX_HISTORY:]
 
 
-async def get_ai_response(channel_id, user_name, user_message):
-    """Get a response from Claude via Anthropic API."""
+async def get_ai_response(channel_id, user_name, user_message, attachments=None):
+    """Get a response from Claude via Anthropic API, supporting images."""
+    content_block = []
+    
+    # 1. Add Text
+    text_content = f"[{user_name}]: {user_message}"
+    content_block.append({"type": "text", "text": text_content})
+    
+    # 2. Process Images
+    if attachments:
+        async with aiohttp.ClientSession() as session:
+            for att in attachments:
+                if any(att.filename.lower().endswith(ext) for ext in ['.png', '.jpg', '.jpeg', '.webp']):
+                    if att.size > 5 * 1024 * 1024:
+                        content_block.append({"type": "text", "text": f"[System: Image {att.filename} skipped (too large >5MB)]"})
+                        continue
+                        
+                    try:
+                        async with session.get(att.url) as resp:
+                            if resp.status == 200:
+                                image_data = await resp.read()
+                                base64_image = base64.b64encode(image_data).decode('utf-8')
+                                
+                                # Determine media type
+                                media_type = f"image/{att.filename.split('.')[-1].lower()}"
+                                if media_type == "image/jpg":
+                                    media_type = "image/jpeg"
+                                    
+                                content_block.append({
+                                    "type": "image",
+                                    "source": {
+                                        "type": "base64",
+                                        "media_type": media_type,
+                                        "data": base64_image
+                                    }
+                                })
+                    except Exception as e:
+                        print(f"Failed to download image {att.filename}: {e}")
+
     # Add user message to history
     conversation_history[channel_id].append({
         "role": "user",
-        "content": f"[{user_name}]: {user_message}"
+        "content": content_block
     })
     trim_history(channel_id)
 
@@ -135,6 +209,7 @@ async def get_ai_response(channel_id, user_name, user_message):
             "content": assistant_message
         })
         trim_history(channel_id)
+        save_memory()  # Persistent save after every full turn
 
         return assistant_message
 
@@ -144,23 +219,49 @@ async def get_ai_response(channel_id, user_name, user_message):
 
 
 def split_message(text, limit=1990):
-    """Split long messages to fit Discord's 2000 char limit."""
+    """Split long messages to fit Discord's limit, preserving markdown code blocks."""
     if len(text) <= limit:
         return [text]
 
     chunks = []
-    while text:
-        if len(text) <= limit:
-            chunks.append(text)
-            break
-        # Find a good split point (newline or space)
-        split_at = text.rfind('\n', 0, limit)
-        if split_at == -1:
-            split_at = text.rfind(' ', 0, limit)
-        if split_at == -1:
-            split_at = limit
-        chunks.append(text[:split_at])
-        text = text[split_at:].lstrip()
+    in_code_block = False
+    language = ""
+    lines = text.split('\n')
+    current_chunk = ""
+
+    for line in lines:
+        if line.startswith("```"):
+            if in_code_block:
+                in_code_block = False
+                language = ""
+            else:
+                in_code_block = True
+                language = line[3:].strip()
+
+        if len(current_chunk) + len(line) + 1 > limit:
+            if not current_chunk: # Line itself is too long
+                chunks.append(line[:limit])
+                current_chunk = line[limit:]
+                while len(current_chunk) > limit:
+                    chunks.append(current_chunk[:limit])
+                    current_chunk = current_chunk[limit:]
+            else:
+                if in_code_block and not line.startswith("```"):
+                    current_chunk += "\n```"
+                    chunks.append(current_chunk.strip())
+                    current_chunk = f"```{language}\n{line}"
+                else:
+                    chunks.append(current_chunk.strip())
+                    current_chunk = line
+        else:
+            if current_chunk:
+                current_chunk += f"\n{line}"
+            else:
+                current_chunk = line
+
+    if current_chunk:
+        chunks.append(current_chunk.strip())
+
     return chunks
 
 
@@ -191,6 +292,24 @@ async def send_proactive(message):
             print(f"Channel message failed: {e}")
 
     return False
+
+
+@tasks.loop(minutes=2)
+async def check_pulse_monitor():
+    """Ensure the Pulse Monitor is alive."""
+    try:
+        output = await asyncio.to_thread(
+            subprocess.check_output,
+            'wmic process where "name=\'python.exe\'" get commandline',
+            shell=True, text=True
+        )
+        if "pulse_monitor.py" not in output:
+            print("[BOT] Pulse Monitor is dead. Resuscitating...")
+            path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pulse_monitor.py")
+            cmd = f'Start-Process -FilePath "python" -ArgumentList "{path}" -WindowStyle Hidden'
+            await asyncio.to_thread(subprocess.Popen, ["powershell", "-Command", cmd])
+    except Exception as e:
+        pass
 
 
 @tasks.loop(minutes=30)
@@ -290,6 +409,8 @@ async def on_ready():
         weather_update.start()
     if not daily_checkin.is_running():
         daily_checkin.start()
+    if not check_pulse_monitor.is_running():
+        check_pulse_monitor.start()
 
 
 @bot.event
@@ -300,9 +421,12 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-    # Ignore other bots
+    # A2A Firewall: Ignore other bots EXCEPT Athena
     if message.author.bot:
-        return
+        if ATHENA_DISCORD_ID == 0 or message.author.id != ATHENA_DISCORD_ID:
+            return
+        else:
+            print(f"[A2A] Message accepted from peer node: Athena ({message.author.id})")
 
     # Track Priscilla for DMs (first person to DM or mention becomes the proactive target)
     if priscilla_user is None and isinstance(message.channel, discord.DMChannel):
@@ -334,7 +458,8 @@ async def on_message(message):
             response = await get_ai_response(
                 channel_id=message.channel.id,
                 user_name=message.author.display_name,
-                user_message=clean_content
+                user_message=clean_content,
+                attachments=message.attachments
             )
 
         # Send response (split if needed)
@@ -353,10 +478,90 @@ async def ping(ctx):
     await ctx.send(f"🏓 Pong! ({latency}ms)")
 
 
+@bot.command(name="vitals")
+async def vitals(ctx):
+    """Check the heartbeat and trauma counts of the system."""
+    state_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".context", "state", "pulse.json")
+    try:
+        if os.path.exists(state_file):
+            with open(state_file, 'r') as f:
+                state = json.load(f)
+        else:
+            state = {"traumas": {}, "last_pulse": "Never"}
+            
+        traumas = state.get("traumas", {})
+        last_pulse = state.get("last_pulse", "Unknown")
+        
+        mem = await asyncio.to_thread(subprocess.check_output, 'wmic OS get FreePhysicalMemory /Value', shell=True, text=True)
+        free_mem_mb = int(''.join(filter(str.isdigit, mem))) // 1024 if any(c.isdigit() for c in mem) else "N/A"
+        
+        msg = "**🦞 System Vitals (The Pulse)**\n"
+        msg += f"• **Last Pulse:** {last_pulse}\n"
+        msg += f"• **Free Memory:** {free_mem_mb} MB\n\n"
+        msg += "**Node Traumas (Restarts):**\n"
+        for node, count in traumas.items():
+            status = "🟢 ON" if count < 10 else "🟠 UNSTABLE"
+            msg += f"• `{node}`: {count} restarts {status}\n"
+        msg += "• `pulse_monitor.py`: 🟢 WATCHING"
+        
+        await ctx.send(msg)
+    except Exception as e:
+        await ctx.send(f"⚠️ Pulse failing: {e}")
+
+
+@bot.command(name="file")
+async def file_insight(ctx, *, destination=None):
+    """File the last 3 conversational turns into Athena's .context directory."""
+    if not destination:
+        await ctx.send("⚠️ Usage: `!file journal` or `!file heuristic` or `!file memories/filename`")
+        return
+
+    # default to .md if not specified
+    if not destination.endswith(".md"):
+        destination += ".md"
+        
+    # Prevent path traversal
+    if ".." in destination:
+        await ctx.send("⚠️ Directory traversal not allowed.")
+        return
+
+    hist = conversation_history.get(ctx.channel.id, [])
+    # Grab last 6 items (3 turns: user/assistant/user/assistant/user/user_command)
+    recent = hist[-7:-1] 
+    
+    if not recent:
+        await ctx.send("⚠️ No recent conversation to file.")
+        return
+
+    target_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".context", destination)
+    
+    try:
+        os.makedirs(os.path.dirname(target_path), exist_ok=True)
+        
+        content = f"\n\n### Discord Snippet - {datetime.now(NZDT).strftime('%Y-%m-%d %H:%M')}\n"
+        for msg in recent:
+            role = "Cilla" if msg['role'] == 'user' else "Lobotto"
+            
+            # Handle text or vision payload
+            text_data = msg['content']
+            if isinstance(text_data, list):
+                # extract text block
+                text_data = next((block['text'] for block in text_data if block['type'] == 'text'), "[Media attached]")
+            
+            content += f"**{role}:** {text_data}\n\n"
+            
+        with open(target_path, 'a', encoding='utf-8') as f:
+            f.write(content)
+            
+        await ctx.send(f"📂 Snippet seamlessly filed to `.context/{destination}`")
+    except Exception as e:
+        await ctx.send(f"⚠️ Filing failed: {e}")
+
 @bot.command(name="clear")
 async def clear_history(ctx):
     """Clear conversation history for this channel."""
     conversation_history[ctx.channel.id] = []
+    save_memory()
     await ctx.send("🧹 Memory cleared for this channel. Fresh start.")
 
 

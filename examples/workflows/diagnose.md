@@ -34,7 +34,7 @@ python3 -c "from supabase import create_client; print('✅ Supabase SDK OK')" 2>
 // turbo
 
 ```bash
-python3 .agent/scripts/diagnose.py
+python3 scripts/diagnose.py
 ```
 
 **What it runs**:

@@ -60,7 +60,7 @@ def main():
             # It will self-append to .context/memory_bank/semantic_log.md
             cmd = [
                 "python3",
-                ".agent/scripts/memory_compressor.py",
+                "scripts/memory_compressor.py",
                 f"{args.summary} {' '.join(args.bullets) if args.bullets else ''}",
                 "--output-file",
                 ".context/memory_bank/semantic_log.md",

@@ -129,7 +129,7 @@ Where `k = 60` (the RRF constant).
 To rebuild the knowledge graph after adding new content:
 
 ```bash
-python3 .agent/scripts/index_graphrag.py
+python3 scripts/index_graphrag.py
 ```
 
 This regenerates:

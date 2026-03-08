@@ -56,7 +56,7 @@ Each agent writes to `.athena/agent_status.json`:
 ### 2. Broadcast Script
 
 ```python
-# .agent/scripts/athena_status.py
+# scripts/athena_status.py
 import json
 from pathlib import Path
 from datetime import datetime

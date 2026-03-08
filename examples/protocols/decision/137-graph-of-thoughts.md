@@ -98,7 +98,7 @@ This protocol is the **Engine** for:
 
 > **Rule**: If GoT is invoked (Λ > 30), the topology MUST be visualized.
 
-**Tool**: `.agent/scripts/visualize_got.py`
+**Tool**: `scripts/visualize_got.py`
 **Output**: Mermaid.js block at the start or end of the response.
 
 **Format**:

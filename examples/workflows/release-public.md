@@ -21,7 +21,7 @@ description: Monthly Release Protocol for Athena-Public
 - [ ] **Feature Cherry-Pick**:
   - Do NOT just copy the entire directory.
   - Copy *stable* modules from `.framework/`
-  - Copy *proven* tools from `.agent/scripts/`
+  - Copy *proven* tools from `scripts/`
   - **Exclude**: `.context/memories/`, `.context/journal/`, `Winston/`
 - [ ] **Commit**: Use a "Squash" philosophy. One big commit: "feat: February 2026 Update (v8.X)"
 
@@ -35,5 +35,5 @@ description: Monthly Release Protocol for Athena-Public
 
 ```bash
 # Run the sanitizer script (if exists)
-python3 .agent/scripts/sanitize_public.py --dry-run
+python3 scripts/sanitize_public.py --dry-run
 ```

@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 # Add src to sys.path to allow importing athena package
-# .agent/scripts/smart_search.py -> .agent/scripts -> .agent -> root -> src
+# scripts/smart_search.py -> .agent/scripts -> .agent -> root -> src
 src_path = (Path(__file__).parent.parent.parent / "src").resolve()
 sys.path.insert(0, str(src_path))
 
