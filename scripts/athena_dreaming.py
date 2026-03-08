@@ -222,23 +222,49 @@ def extract_json_block(text):
 
 
 def apply_heuristic_additions(additions):
-    """Append new heuristics to heuristics.md."""
+    """Append new heuristics to heuristics.md, deduplicating against existing entries."""
     if not additions:
         return 0
 
     current = read_file(HEURISTICS_FILE)
-    # Find the situational heuristics section and append before it
-    new_entries = "\n".join(f"- {h}" for h in additions)
 
-    # Append to the end of the Priscilla Heuristics section
+    # Extract all existing bullet lines to avoid duplicates
+    existing_bullets = set(
+        line.strip().lstrip("- ").strip()
+        for line in current.splitlines()
+        if line.strip().startswith("- ")
+    )
+
+    # Filter to only truly new entries
+    new_additions = [h for h in additions if h.strip() not in existing_bullets]
+    if not new_additions:
+        print("  [SKIP] All heuristic additions are duplicates — nothing to add")
+        return 0
+
+    new_entries = "\n".join(f"- {h}" for h in new_additions)
+
+    # Consolidate: find the SINGLE existing Auto-Discovered section before the marker
+    # and append to it, rather than creating a new header each time
     marker = "## ⚡ Situational Heuristics"
-    if marker in current:
-        updated = current.replace(marker, f"### Auto-Discovered (Dreaming)\n{new_entries}\n\n{marker}")
+    auto_header = "### Auto-Discovered (Dreaming)"
+
+    if auto_header in current and marker in current:
+        # Find the last auto-discovered block before the marker and append there
+        marker_idx = current.find(marker)
+        auto_idx = current.rfind(auto_header, 0, marker_idx)
+        if auto_idx != -1:
+            # Insert after the existing auto-discovered block's last line before marker
+            insert_point = current.rfind("\n", auto_idx, marker_idx)
+            updated = current[:insert_point] + "\n" + new_entries + current[insert_point:]
+        else:
+            updated = current.replace(marker, f"{auto_header}\n{new_entries}\n\n{marker}")
+    elif marker in current:
+        updated = current.replace(marker, f"{auto_header}\n{new_entries}\n\n{marker}")
     else:
-        updated = current + f"\n\n### Auto-Discovered (Dreaming)\n{new_entries}\n"
+        updated = current + f"\n\n{auto_header}\n{new_entries}\n"
 
     write_file(HEURISTICS_FILE, updated)
-    return len(additions)
+    return len(new_additions)
 
 
 def apply_case_study_additions(additions):

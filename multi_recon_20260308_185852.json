@@ -1,0 +1,715 @@
+{
+  "Sentry": {
+    "target": "Sentry",
+    "domain": "sentry.io",
+    "max_bounty": 5000,
+    "subdomains": [
+      "ci.sentry.io",
+      "dev.sentry.io",
+      "portal.sentry.io",
+      "mail.sentry.io",
+      "beta.sentry.io",
+      "app.sentry.io",
+      "dashboard.sentry.io",
+      "test.sentry.io",
+      "tools.sentry.io",
+      "www.sentry.io",
+      "status.sentry.io",
+      "jenkins.sentry.io",
+      "auth.sentry.io",
+      "monitor.sentry.io",
+      "login.sentry.io",
+      "cdn.sentry.io",
+      "graphql.sentry.io",
+      "git.sentry.io",
+      "docs.sentry.io",
+      "wiki.sentry.io",
+      "stage.sentry.io",
+      "api.sentry.io",
+      "preview.sentry.io",
+      "ops.sentry.io",
+      "static.sentry.io",
+      "vpn.sentry.io",
+      "admin.sentry.io",
+      "sandbox.sentry.io",
+      "blog.sentry.io",
+      "vault.sentry.io",
+      "qa.sentry.io",
+      "staging.sentry.io",
+      "internal.sentry.io"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "tools.sentry.io",
+        "url": "https://tools.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22846
+      },
+      {
+        "subdomain": "app.sentry.io",
+        "url": "https://app.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22826
+      },
+      {
+        "subdomain": "mail.sentry.io",
+        "url": "https://mail.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22836
+      },
+      {
+        "subdomain": "jenkins.sentry.io",
+        "url": "https://jenkins.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22866
+      },
+      {
+        "subdomain": "login.sentry.io",
+        "url": "https://login.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 20470
+      },
+      {
+        "subdomain": "portal.sentry.io",
+        "url": "https://portal.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22856
+      },
+      {
+        "subdomain": "beta.sentry.io",
+        "url": "https://beta.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22836
+      },
+      {
+        "subdomain": "auth.sentry.io",
+        "url": "https://auth.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22836
+      },
+      {
+        "subdomain": "status.sentry.io",
+        "url": "https://status.sentry.io",
+        "status": 200,
+        "title": "Sentry Status",
+        "server": "AtlassianEdge",
+        "content_length": 1117168
+      },
+      {
+        "subdomain": "docs.sentry.io",
+        "url": "https://docs.sentry.io",
+        "status": 200,
+        "title": "",
+        "server": "Vercel",
+        "content_length": 252230
+      },
+      {
+        "subdomain": "www.sentry.io",
+        "url": "https://www.sentry.io",
+        "status": 200,
+        "title": "Application Performance Monitoring &amp; Error Tracking Software | Sentry",
+        "server": "nginx",
+        "content_length": 566248
+      },
+      {
+        "subdomain": "dev.sentry.io",
+        "url": "https://dev.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22826
+      },
+      {
+        "subdomain": "test.sentry.io",
+        "url": "https://test.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22836
+      },
+      {
+        "subdomain": "graphql.sentry.io",
+        "url": "https://graphql.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22866
+      },
+      {
+        "subdomain": "monitor.sentry.io",
+        "url": "https://monitor.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22866
+      },
+      {
+        "subdomain": "cdn.sentry.io",
+        "url": "https://cdn.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22826
+      },
+      {
+        "subdomain": "stage.sentry.io",
+        "url": "https://stage.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "ci.sentry.io",
+        "url": "https://ci.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22816
+      },
+      {
+        "subdomain": "wiki.sentry.io",
+        "url": "https://wiki.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "git.sentry.io",
+        "url": "https://git.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "api.sentry.io",
+        "url": "https://api.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "dashboard.sentry.io",
+        "url": "https://dashboard.sentry.io",
+        "status": 200,
+        "title": "Sign In | Sentry",
+        "server": "nginx",
+        "content_length": 22886
+      },
+      {
+        "subdomain": "preview.sentry.io",
+        "url": "https://preview.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "ops.sentry.io",
+        "url": "https://ops.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "static.sentry.io",
+        "url": "https://static.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "vpn.sentry.io",
+        "url": "https://vpn.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "blog.sentry.io",
+        "url": "https://blog.sentry.io",
+        "status": 200,
+        "title": "",
+        "server": "Vercel",
+        "content_length": 278375
+      },
+      {
+        "subdomain": "sandbox.sentry.io",
+        "url": "https://sandbox.sentry.io",
+        "status": 200,
+        "title": "Sentry Sandbox",
+        "server": "nginx",
+        "content_length": 118203
+      },
+      {
+        "subdomain": "staging.sentry.io",
+        "url": "https://staging.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "qa.sentry.io",
+        "url": "https://qa.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "admin.sentry.io",
+        "url": "https://admin.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "vault.sentry.io",
+        "url": "https://vault.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      },
+      {
+        "subdomain": "internal.sentry.io",
+        "url": "https://internal.sentry.io",
+        "status": 429,
+        "title": "429",
+        "server": "",
+        "content_length": 142
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "portal.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "login.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "app.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "tools.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "beta.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "jenkins.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.sentry.io",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 919,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.sentry.io",
+        "path": "/api",
+        "status": 200,
+        "content_length": 55661,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <!-- force IE browsers in compatibility mode to use their most aggressive rendering engine -->\n\n"
+      },
+      {
+        "subdomain": "docs.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 57,
+        "preview": ""
+      },
+      {
+        "subdomain": "docs.sentry.io",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 1007128,
+        "preview": ""
+      },
+      {
+        "subdomain": "test.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "graphql.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "dev.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "monitor.sentry.io",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": [
+      {
+        "bucket": "sentry-public",
+        "status": 200,
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ListBucketResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>sentry-public</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated"
+      }
+    ]
+  },
+  "Loom": {
+    "target": "Loom",
+    "domain": "loom.com",
+    "max_bounty": 5000,
+    "subdomains": [
+      "vpn.loom.com",
+      "status.loom.com",
+      "api.loom.com",
+      "cdn.loom.com",
+      "wiki.loom.com",
+      "mail.loom.com",
+      "dev.loom.com",
+      "git.loom.com",
+      "stage.loom.com",
+      "sandbox.loom.com",
+      "staging.loom.com",
+      "jenkins.loom.com",
+      "www.loom.com",
+      "blog.loom.com",
+      "vault.loom.com",
+      "beta.loom.com",
+      "auth.loom.com",
+      "static.loom.com",
+      "graphql.loom.com",
+      "monitor.loom.com",
+      "admin.loom.com",
+      "app.loom.com",
+      "login.loom.com",
+      "docs.loom.com",
+      "internal.loom.com",
+      "preview.loom.com",
+      "dashboard.loom.com",
+      "portal.loom.com",
+      "test.loom.com",
+      "ci.loom.com",
+      "ops.loom.com",
+      "qa.loom.com",
+      "tools.loom.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "dev.loom.com",
+        "url": "https://dev.loom.com",
+        "status": 200,
+        "title": "Developers | Loom",
+        "server": "Vercel",
+        "content_length": 7704
+      },
+      {
+        "subdomain": "www.loom.com",
+        "url": "https://www.loom.com",
+        "status": 200,
+        "title": "Free screen recorder for Mac and PC | Loom",
+        "server": "Vercel",
+        "content_length": 199730
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "url": "https://cdn.loom.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "status.loom.com",
+        "url": "https://status.loom.com",
+        "status": 200,
+        "title": "Loom Status",
+        "server": "AtlassianEdge",
+        "content_length": 72713
+      },
+      {
+        "subdomain": "stage.loom.com",
+        "url": "https://stage.loom.com",
+        "status": 200,
+        "title": "Atlassian - Sign In",
+        "server": "nginx",
+        "content_length": 32135
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "dev.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 31061,
+        "preview": ""
+      },
+      {
+        "subdomain": "dev.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 31070,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 173,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 208,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.loom.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 186,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  },
+  "Mattermost": {
+    "target": "Mattermost",
+    "domain": "mattermost.com",
+    "max_bounty": 5000,
+    "subdomains": [
+      "graphql.mattermost.com",
+      "git.mattermost.com",
+      "portal.mattermost.com",
+      "tools.mattermost.com",
+      "docs.mattermost.com",
+      "ops.mattermost.com",
+      "jenkins.mattermost.com",
+      "preview.mattermost.com",
+      "app.mattermost.com",
+      "dashboard.mattermost.com",
+      "admin.mattermost.com",
+      "cdn.mattermost.com",
+      "blog.mattermost.com",
+      "stage.mattermost.com",
+      "beta.mattermost.com",
+      "auth.mattermost.com",
+      "mail.mattermost.com",
+      "wiki.mattermost.com",
+      "login.mattermost.com",
+      "vault.mattermost.com",
+      "sandbox.mattermost.com",
+      "vpn.mattermost.com",
+      "status.mattermost.com",
+      "www.mattermost.com",
+      "static.mattermost.com",
+      "staging.mattermost.com",
+      "monitor.mattermost.com",
+      "dev.mattermost.com",
+      "test.mattermost.com",
+      "api.mattermost.com",
+      "qa.mattermost.com",
+      "internal.mattermost.com",
+      "ci.mattermost.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "docs.mattermost.com",
+        "url": "https://docs.mattermost.com",
+        "status": 200,
+        "title": "Mattermost documentation",
+        "server": "AmazonS3",
+        "content_length": 131421
+      },
+      {
+        "subdomain": "status.mattermost.com",
+        "url": "https://status.mattermost.com",
+        "status": 200,
+        "title": "Mattermost Status",
+        "server": "AtlassianEdge",
+        "content_length": 212928
+      },
+      {
+        "subdomain": "api.mattermost.com",
+        "url": "https://api.mattermost.com",
+        "status": 200,
+        "title": "API Documentation",
+        "server": "AmazonS3",
+        "content_length": 34127
+      },
+      {
+        "subdomain": "www.mattermost.com",
+        "url": "https://www.mattermost.com",
+        "status": 200,
+        "title": "Mattermost | Collaboration Platform for Mission Critical Work",
+        "server": "cloudflare",
+        "content_length": 178024
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "status.mattermost.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 919,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.mattermost.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 55430,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <!-- force IE browsers in compatibility mode to use their most aggressive rendering engine -->\n\n"
+      },
+      {
+        "subdomain": "www.mattermost.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 4513,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.mattermost.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 4513,
+        "preview": ""
+      },
+      {
+        "subdomain": "docs.mattermost.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 172,
+        "preview": ""
+      },
+      {
+        "subdomain": "docs.mattermost.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 41077,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": [
+      {
+        "bucket": "mattermost-uploads",
+        "status": 400,
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>IllegalLocationConstraintException</Code><Message>The ap-southeast-4 location constraint is incompatible for the region specific endpoint this reque"
+      },
+      {
+        "bucket": "mattermost-static",
+        "status": 200,
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ListBucketResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>mattermost-static</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTrunc"
+      },
+      {
+        "bucket": "mattermost-public",
+        "status": 200,
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ListBucketResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>mattermost-public</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTrunc"
+      }
+    ]
+  }
+}

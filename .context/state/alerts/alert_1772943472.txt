@@ -1,0 +1,70 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+name="viewport" con
+    [200] https://sandbox.sentry.io/.git/config
+         <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" con
+    [200] https://sandbox.sentry.io/.git/HEAD
+         <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" con
+    [200] https://sandbox.sentry.io/admin
+         <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" con
+    [200] https://sandbox.sentry.io/graphql
+         <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" con
+    [200] https://sandbox.sentry.io/graphiql
+         <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" con
+    [200] https://sandbox.sentry.io/swagger-ui.html
+         <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" con
+    [200] https://sandbox.sentry.io/swagger-ui/
+         <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" con
+    [200] https://sandbox.sentry.io/api-docs
+         <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" con
+    [200] https://sandbox.sentry.io/openapi.json
+         <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" con
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260308_170929.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mapbox          143      37       37         13       0          0    
+  Automattic      33       29       0          30       0          0    
+  Sentry          33       33       31         0        0          1    

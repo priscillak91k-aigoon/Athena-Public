@@ -1,0 +1,2879 @@
+{
+  "Mapbox": {
+    "target": "Mapbox",
+    "domain": "mapbox.com",
+    "max_bounty": 10000,
+    "subdomains": [
+      "api-skel-production-eu-west-1.mapbox.com",
+      "api-skel-production-ap-northeast-1.mapbox.com",
+      "jenkins.mapbox.com",
+      "c.tiles.mapbox.com",
+      "replane-staging.mapbox.com",
+      "api-identity-testing.mapbox.com",
+      "artifacts-vntest-dns.mapbox.com",
+      "api-rastertiles-production.mapbox.com",
+      "substandard-example.mapbox.com",
+      "bob-the-builder-testing-dns.mapbox.com",
+      "tools.mapbox.com",
+      "ecs-api-staging.mapbox.com",
+      "b.api.mapbox.com",
+      "blog.mapbox.com",
+      "feedback-explorer-production.mapbox.com",
+      "graphql.mapbox.com",
+      "dashboard.mapbox.com",
+      "api.tiles.mapbox.com",
+      "replane.mapbox.com",
+      "api-identity-staging.mapbox.com",
+      "bob-the-builder-production-dns.mapbox.com",
+      "config.mapbox.com",
+      "hey.mapbox.com",
+      "api-skel-stageyprod.mapbox.com",
+      "support.mapbox.com",
+      "events.mapbox.com",
+      "ecs-fargate-test.mapbox.com",
+      "jp.mapbox.com",
+      "platform.mapbox.com",
+      "hey-okta.mapbox.com",
+      "test-ma-network-pr.mapbox.com",
+      "artifacts-anderco-artifacts-test-dns.mapbox.com",
+      "staging.bob-the-builder.mapbox.com",
+      "artifacts-staging-dns.mapbox.com",
+      "spatial-data-api-production.mapbox.com",
+      "go.mapbox.com",
+      "feedback-explorer-prod.mapbox.com",
+      "test.mapbox.com",
+      "platform-docs-feedback-production.mapbox.com",
+      "sites.mapbox.com",
+      "config.stla.mapbox.com",
+      "vision.mapbox.com",
+      "api-skel-stageyprod-us-east-1.mapbox.com",
+      "artifacts-testing-dns.mapbox.com",
+      "replane-production.mapbox.com",
+      "locate.mapbox.com",
+      "testing.mapbox.com",
+      "ops.mapbox.com",
+      "www.mapbox.com",
+      "d.api.mapbox.com",
+      "bob-the-builder-staging-dns.mapbox.com",
+      "c.api.mapbox.com",
+      "hey-staging.mapbox.com",
+      "artifacts-production-dns.mapbox.com",
+      "artifacts-vntest-2-dns.mapbox.com",
+      "mail.mapbox.com",
+      "static.mapbox.com",
+      "api-skel-production-us-east-1.mapbox.com",
+      "artifacts-artifacts-testing-dns.mapbox.com",
+      "docs.mapbox.com",
+      "api-identity-production-new.mapbox.com",
+      "stripe-etl-recon-test-dns.mapbox.com",
+      "artifacts-danpat-buildcache-dns.mapbox.com",
+      "api.mapbox.com",
+      "api-skel-production-us-west-1.mapbox.com",
+      "admin.mapbox.com",
+      "api-identity-staging-fargate.mapbox.com",
+      "beta.mapbox.com",
+      "api-skel-production-us-east-2.mapbox.com",
+      "api-skel-production-ap-southeast-1.mapbox.com",
+      "sandbox.mapbox.com",
+      "status.mapbox.com",
+      "api-rasterarrays-stageyprod.mapbox.com",
+      "events.stla.mapbox.com",
+      "test-jlouk5.mapbox.com",
+      "api-identity-fargate-testing.mapbox.com",
+      "b.tiles.mapbox.com",
+      "dummy.mapbox.com",
+      "dev.mapbox.com",
+      "vault.mapbox.com",
+      "login.mapbox.com",
+      "portal.mapbox.com",
+      "www.snap.events.mapbox.com",
+      "trust.mapbox.com",
+      "api-identity-domains.mapbox.com",
+      "api-identity-rclark.mapbox.com",
+      "snap.api.mapbox.com",
+      "artifacts-johnk1-testing-dns.mapbox.com",
+      "vpn.mapbox.com",
+      "configurator-prod.mapbox.com",
+      "test-jlouk-4.mapbox.com",
+      "platform-staging.mapbox.com",
+      "ci.mapbox.com",
+      "internal.mapbox.com",
+      "test-jlouk-12.mapbox.com",
+      "staging.mapbox.com",
+      "qa.mapbox.com",
+      "preview.mapbox.com",
+      "api.stla.mapbox.com",
+      "tiles.mapbox.com",
+      "info.mapbox.com",
+      "artifacts-test-spark-china-dns.mapbox.com",
+      "api-skel-production-us-west-2.mapbox.com",
+      "auth.mapbox.com",
+      "test-jlouk7.mapbox.com",
+      "hello.mapbox.com",
+      "api-identity-production-v2.mapbox.com",
+      "artifacts-vntest-master-dns.mapbox.com",
+      "api-3dln-tiles-production.mapbox.com",
+      "www-showcase.mapbox.com",
+      "artifacts-basemap636-test-dns.mapbox.com",
+      "test-jlouk-2.mapbox.com",
+      "wiki.mapbox.com",
+      "test-jlouk-6.mapbox.com",
+      "a.tiles.mapbox.com",
+      "api-skel-production.mapbox.com",
+      "eu-west-1.sites.mapbox.com",
+      "artifacts-aptest-dns.mapbox.com",
+      "artifacts-testlc-dns.mapbox.com",
+      "api-skel-prod.mapbox.com",
+      "api-skel-stageyprod-us-east-2.mapbox.com",
+      "production.bob-the-builder.mapbox.com",
+      "api-identity-selfserve.mapbox.com",
+      "api-rasterarrays-production.mapbox.com",
+      "snap.events.mapbox.com",
+      "platform-okta.mapbox.com",
+      "platform-docs-feedback-staging.mapbox.com",
+      "test-jlouk2.mapbox.com",
+      "artifacts-jvd-test-dns.mapbox.com",
+      "stage.mapbox.com",
+      "api-identity-production.mapbox.com",
+      "api-skel-stgprod.mapbox.com",
+      "artifacts-childless-dns.mapbox.com",
+      "cdn.mapbox.com",
+      "test-jlouk-11.mapbox.com",
+      "app.mapbox.com",
+      "a.api.mapbox.com",
+      "d.tiles.mapbox.com",
+      "artifacts-testing-2-dns.mapbox.com",
+      "git.mapbox.com",
+      "test-jlouk-3.mapbox.com",
+      "monitor.mapbox.com",
+      "www.blog.mapbox.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "api.tiles.mapbox.com",
+        "url": "https://api.tiles.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "c.tiles.mapbox.com",
+        "url": "https://c.tiles.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "url": "https://api-rastertiles-production.mapbox.com",
+        "status": 401,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 75
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "url": "https://config.mapbox.com",
+        "status": 401,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 75
+      },
+      {
+        "subdomain": "b.api.mapbox.com",
+        "url": "https://b.api.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "url": "https://events.mapbox.com",
+        "status": 401,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 93
+      },
+      {
+        "subdomain": "support.mapbox.com",
+        "url": "https://support.mapbox.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 6979
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "url": "https://config.stla.mapbox.com",
+        "status": 401,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 75
+      },
+      {
+        "subdomain": "api-identity-staging.mapbox.com",
+        "url": "https://api-identity-staging.mapbox.com",
+        "status": 403,
+        "title": "",
+        "server": "",
+        "content_length": 42
+      },
+      {
+        "subdomain": "artifacts-testing-dns.mapbox.com",
+        "url": "https://artifacts-testing-dns.mapbox.com",
+        "status": 403,
+        "title": "",
+        "server": "",
+        "content_length": 42
+      },
+      {
+        "subdomain": "api.mapbox.com",
+        "url": "https://api.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "www.mapbox.com",
+        "url": "https://www.mapbox.com",
+        "status": 200,
+        "title": "Mapbox | Maps, Navigation, Search, and Data",
+        "server": "cloudflare",
+        "content_length": 501541
+      },
+      {
+        "subdomain": "b.tiles.mapbox.com",
+        "url": "https://b.tiles.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "status.mapbox.com",
+        "url": "https://status.mapbox.com",
+        "status": 200,
+        "title": "Mapbox Status",
+        "server": "AtlassianEdge",
+        "content_length": 709978
+      },
+      {
+        "subdomain": "artifacts-production-dns.mapbox.com",
+        "url": "https://artifacts-production-dns.mapbox.com",
+        "status": 403,
+        "title": "",
+        "server": "",
+        "content_length": 42
+      },
+      {
+        "subdomain": "docs.mapbox.com",
+        "url": "https://docs.mapbox.com",
+        "status": 200,
+        "title": "Mapbox Docs",
+        "server": "AmazonS3",
+        "content_length": 112749
+      },
+      {
+        "subdomain": "snap.api.mapbox.com",
+        "url": "https://snap.api.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "hey.mapbox.com",
+        "url": "https://hey.mapbox.com",
+        "status": 200,
+        "title": "mapbox - Sign In",
+        "server": "nginx",
+        "content_length": 34048
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "url": "https://events.stla.mapbox.com",
+        "status": 401,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 93
+      },
+      {
+        "subdomain": "api.stla.mapbox.com",
+        "url": "https://api.stla.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "go.mapbox.com",
+        "url": "https://go.mapbox.com",
+        "status": 200,
+        "title": "Mapbox | Maps, Navigation, Search, and Data",
+        "server": "cloudflare",
+        "content_length": 501541
+      },
+      {
+        "subdomain": "sites.mapbox.com",
+        "url": "https://sites.mapbox.com",
+        "status": 200,
+        "title": "mapbox - Sign In",
+        "server": "nginx",
+        "content_length": 33840
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "url": "https://trust.mapbox.com",
+        "status": 200,
+        "title": "Mapbox Trust Center | Powered by Conveyor",
+        "server": "nginx",
+        "content_length": 23899
+      },
+      {
+        "subdomain": "hey-staging.mapbox.com",
+        "url": "https://hey-staging.mapbox.com",
+        "status": 200,
+        "title": "mapbox - Sign In",
+        "server": "nginx",
+        "content_length": 34045
+      },
+      {
+        "subdomain": "blog.mapbox.com",
+        "url": "https://blog.mapbox.com",
+        "status": 200,
+        "title": "maps for developers",
+        "server": "openresty",
+        "content_length": 92641
+      },
+      {
+        "subdomain": "a.tiles.mapbox.com",
+        "url": "https://a.tiles.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "url": "https://info.mapbox.com",
+        "status": 200,
+        "title": "404 - Page not found",
+        "server": "cloudflare",
+        "content_length": 539
+      },
+      {
+        "subdomain": "hello.mapbox.com",
+        "url": "https://hello.mapbox.com",
+        "status": 204,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "replane-staging.mapbox.com",
+        "url": "https://replane-staging.mapbox.com",
+        "status": 200,
+        "title": "Replane",
+        "server": "",
+        "content_length": 22977
+      },
+      {
+        "subdomain": "d.tiles.mapbox.com",
+        "url": "https://d.tiles.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "api-identity-production.mapbox.com",
+        "url": "https://api-identity-production.mapbox.com",
+        "status": 403,
+        "title": "",
+        "server": "",
+        "content_length": 42
+      },
+      {
+        "subdomain": "api-3dln-tiles-production.mapbox.com",
+        "url": "https://api-3dln-tiles-production.mapbox.com",
+        "status": 401,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 75
+      },
+      {
+        "subdomain": "a.api.mapbox.com",
+        "url": "https://a.api.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "api-rasterarrays-production.mapbox.com",
+        "url": "https://api-rasterarrays-production.mapbox.com",
+        "status": 401,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 75
+      },
+      {
+        "subdomain": "replane.mapbox.com",
+        "url": "https://replane.mapbox.com",
+        "status": 200,
+        "title": "Replane",
+        "server": "",
+        "content_length": 22923
+      },
+      {
+        "subdomain": "tiles.mapbox.com",
+        "url": "https://tiles.mapbox.com",
+        "status": 200,
+        "title": "Mapbox | Maps, Navigation, Search, and Data",
+        "server": "cloudflare",
+        "content_length": 501541
+      },
+      {
+        "subdomain": "eu-west-1.sites.mapbox.com",
+        "url": "https://eu-west-1.sites.mapbox.com",
+        "status": 200,
+        "title": "mapbox - Sign In",
+        "server": "nginx",
+        "content_length": 34108
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "b.api.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 499,
+        "preview": ""
+      },
+      {
+        "subdomain": "b.api.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 251,
+        "preview": "<?xml version=\"1.0\"?>\n<!-- http://a.tiles.mapbox.com/crossdomain.xml -->\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n  <all"
+      },
+      {
+        "subdomain": "c.tiles.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 499,
+        "preview": ""
+      },
+      {
+        "subdomain": "c.tiles.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 251,
+        "preview": "<?xml version=\"1.0\"?>\n<!-- http://a.tiles.mapbox.com/crossdomain.xml -->\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n  <all"
+      },
+      {
+        "subdomain": "api.tiles.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 499,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.tiles.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 251,
+        "preview": "<?xml version=\"1.0\"?>\n<!-- http://a.tiles.mapbox.com/crossdomain.xml -->\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n  <all"
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/.env",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/.git/config",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/.git/HEAD",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/admin",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/api",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/api/v1",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/graphql",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/graphiql",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/swagger-ui.html",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/swagger-ui/",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/api-docs",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/openapi.json",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/actuator/env",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/actuator/health",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/actuator/info",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/debug",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/console",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/metrics",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/prometheus",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/health",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/status",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/info",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/config",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/_debug",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/__debug__",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/internal",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/test",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/robots.txt",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/sitemap.xml",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/server-status",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/server-info",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/.DS_Store",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/wp-admin",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/wp-login.php",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/phpinfo.php",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "path": "/.htaccess",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 499,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 251,
+        "preview": "<?xml version=\"1.0\"?>\n<!-- http://a.tiles.mapbox.com/crossdomain.xml -->\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n  <all"
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/.env",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/.git/config",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/.git/HEAD",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/admin",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/api",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/api/v1",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/graphql",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/graphiql",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/swagger-ui.html",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/swagger-ui/",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/api-docs",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/openapi.json",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/actuator/env",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/actuator/health",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/actuator/info",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/debug",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/console",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/metrics",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/prometheus",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/health",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/status",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/info",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/config",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/_debug",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/__debug__",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/internal",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/test",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/robots.txt",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/sitemap.xml",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/server-status",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/server-info",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/.DS_Store",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/wp-admin",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/wp-login.php",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/phpinfo.php",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/.htaccess",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/.env",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/.git/config",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/.git/HEAD",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/admin",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/api",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/api/v1",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/graphql",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/graphiql",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/swagger-ui.html",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/swagger-ui/",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/api-docs",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/openapi.json",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/actuator/env",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/actuator/health",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/actuator/info",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/debug",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/console",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/metrics",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/prometheus",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/health",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/status",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/info",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/config",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/_debug",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/__debug__",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/internal",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/test",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/robots.txt",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/sitemap.xml",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/server-status",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/server-info",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/.DS_Store",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/wp-admin",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/wp-login.php",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/phpinfo.php",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/.htaccess",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/.env",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/.git/config",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/.git/HEAD",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/admin",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/api",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/api/v1",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/graphql",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/graphiql",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/swagger-ui.html",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/swagger-ui/",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/api-docs",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/openapi.json",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/actuator/env",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/actuator/health",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/actuator/info",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/debug",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/console",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/metrics",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/prometheus",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/health",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/status",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/info",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/config",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/_debug",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/__debug__",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/internal",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/test",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/robots.txt",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/sitemap.xml",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/server-status",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/server-info",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/.DS_Store",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/wp-admin",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/wp-login.php",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/phpinfo.php",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "path": "/.htaccess",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "support.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 2218,
+        "preview": ""
+      },
+      {
+        "subdomain": "b.tiles.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 499,
+        "preview": ""
+      },
+      {
+        "subdomain": "b.tiles.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 251,
+        "preview": "<?xml version=\"1.0\"?>\n<!-- http://a.tiles.mapbox.com/crossdomain.xml -->\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n  <all"
+      },
+      {
+        "subdomain": "api-identity-staging.mapbox.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-identity-staging.mapbox.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-identity-staging.mapbox.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-identity-staging.mapbox.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-identity-staging.mapbox.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.mapbox.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 919,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.mapbox.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 100847,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <!-- force IE browsers in compatibility mode to use their most aggressive rendering engine -->\n\n"
+      },
+      {
+        "subdomain": "artifacts-testing-dns.mapbox.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "artifacts-testing-dns.mapbox.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "artifacts-testing-dns.mapbox.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "artifacts-testing-dns.mapbox.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "artifacts-testing-dns.mapbox.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.mapbox.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 4533,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.mapbox.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 4533,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 126,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.mapbox.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 96742,
+        "preview": ""
+      },
+      {
+        "subdomain": "artifacts-production-dns.mapbox.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "artifacts-production-dns.mapbox.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "artifacts-production-dns.mapbox.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "artifacts-production-dns.mapbox.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "artifacts-production-dns.mapbox.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  },
+  "Automattic": {
+    "target": "Automattic",
+    "domain": "automattic.com",
+    "max_bounty": 25000,
+    "subdomains": [
+      "jenkins.automattic.com",
+      "docs.automattic.com",
+      "auth.automattic.com",
+      "ops.automattic.com",
+      "qa.automattic.com",
+      "static.automattic.com",
+      "monitor.automattic.com",
+      "sandbox.automattic.com",
+      "ci.automattic.com",
+      "status.automattic.com",
+      "beta.automattic.com",
+      "login.automattic.com",
+      "blog.automattic.com",
+      "tools.automattic.com",
+      "app.automattic.com",
+      "admin.automattic.com",
+      "www.automattic.com",
+      "cdn.automattic.com",
+      "staging.automattic.com",
+      "api.automattic.com",
+      "graphql.automattic.com",
+      "dashboard.automattic.com",
+      "git.automattic.com",
+      "vpn.automattic.com",
+      "internal.automattic.com",
+      "test.automattic.com",
+      "vault.automattic.com",
+      "stage.automattic.com",
+      "mail.automattic.com",
+      "wiki.automattic.com",
+      "dev.automattic.com",
+      "preview.automattic.com",
+      "portal.automattic.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "tools.automattic.com",
+        "url": "https://tools.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "app.automattic.com",
+        "url": "https://app.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "sandbox.automattic.com",
+        "url": "https://sandbox.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "jenkins.automattic.com",
+        "url": "https://jenkins.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "qa.automattic.com",
+        "url": "https://qa.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "beta.automattic.com",
+        "url": "https://beta.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "monitor.automattic.com",
+        "url": "https://monitor.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "blog.automattic.com",
+        "url": "https://blog.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "docs.automattic.com",
+        "url": "https://docs.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "static.automattic.com",
+        "url": "https://static.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "ci.automattic.com",
+        "url": "https://ci.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "ops.automattic.com",
+        "url": "https://ops.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "login.automattic.com",
+        "url": "https://login.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "auth.automattic.com",
+        "url": "https://auth.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "status.automattic.com",
+        "url": "https://status.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "ZGS",
+        "content_length": 52805
+      },
+      {
+        "subdomain": "internal.automattic.com",
+        "url": "https://internal.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "cdn.automattic.com",
+        "url": "https://cdn.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "api.automattic.com",
+        "url": "https://api.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "www.automattic.com",
+        "url": "https://www.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "stage.automattic.com",
+        "url": "https://stage.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "graphql.automattic.com",
+        "url": "https://graphql.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "git.automattic.com",
+        "url": "https://git.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "staging.automattic.com",
+        "url": "https://staging.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "admin.automattic.com",
+        "url": "https://admin.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "test.automattic.com",
+        "url": "https://test.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "vault.automattic.com",
+        "url": "https://vault.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "dev.automattic.com",
+        "url": "https://dev.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "preview.automattic.com",
+        "url": "https://preview.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      },
+      {
+        "subdomain": "portal.automattic.com",
+        "url": "https://portal.automattic.com",
+        "status": 200,
+        "title": "",
+        "server": "nginx",
+        "content_length": 119580
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "app.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "app.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "blog.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "blog.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "qa.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "qa.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "tools.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "tools.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "beta.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "beta.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "sandbox.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "sandbox.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "jenkins.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "jenkins.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "monitor.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "monitor.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "docs.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "docs.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "ops.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "ops.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "ci.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "ci.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "login.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "login.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.automattic.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.automattic.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 146,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  },
+  "Loom": {
+    "target": "Loom",
+    "domain": "loom.com",
+    "max_bounty": 5000,
+    "subdomains": [
+      "production-green.loom.com",
+      "location.loom.com",
+      "community.loom.com",
+      "dashboard.loom.com",
+      "www.loom.com",
+      "trust.loom.com",
+      "evs.sgmt.loom.com",
+      "admin.loom.com",
+      "ops.loom.com",
+      "monitor.loom.com",
+      "static.loom.com",
+      "portal.loom.com",
+      "dev.loom.com",
+      "sandbox.loom.com",
+      "login-stage.loom.com",
+      "api.sgmt.loom.com",
+      "api.loom.com",
+      "shop.loom.com",
+      "new.loom.com",
+      "sales.loom.com",
+      "status.loom.com",
+      "developers.loom.com",
+      "docs.loom.com",
+      "vpn.loom.com",
+      "info.loom.com",
+      "feedback.loom.com",
+      "qa.loom.com",
+      "beta.loom.com",
+      "webflow-prod.loom.com",
+      "auth.loom.com",
+      "ci.loom.com",
+      "packages.loom.com",
+      "cdn.loom.com",
+      "webflow-stage.loom.com",
+      "graphql.loom.com",
+      "jenkins.loom.com",
+      "internal.loom.com",
+      "support.loom.com",
+      "preview.loom.com",
+      "infra-diamond.loom.com",
+      "tools.loom.com",
+      "vault.loom.com",
+      "git.loom.com",
+      "sdkchangelog.loom.com",
+      "app.loom.com",
+      "staging.loom.com",
+      "stage.loom.com",
+      "login.loom.com",
+      "production-cyan.loom.com",
+      "staging-green.loom.com",
+      "mail.loom.com",
+      "test.loom.com",
+      "blog.loom.com",
+      "wiki.loom.com",
+      "webflow.loom.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "dev.loom.com",
+        "url": "https://dev.loom.com",
+        "status": 200,
+        "title": "Developers | Loom",
+        "server": "Vercel",
+        "content_length": 7704
+      },
+      {
+        "subdomain": "location.loom.com",
+        "url": "https://location.loom.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 0
+      },
+      {
+        "subdomain": "sales.loom.com",
+        "url": "https://sales.loom.com",
+        "status": 204,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "developers.loom.com",
+        "url": "https://developers.loom.com",
+        "status": 200,
+        "title": "Developers | Loom",
+        "server": "Vercel",
+        "content_length": 7704
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "url": "https://packages.loom.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 0
+      },
+      {
+        "subdomain": "api.sgmt.loom.com",
+        "url": "https://api.sgmt.loom.com",
+        "status": 404,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 0
+      },
+      {
+        "subdomain": "www.loom.com",
+        "url": "https://www.loom.com",
+        "status": 200,
+        "title": "Free screen recorder for Mac and PC | Loom",
+        "server": "Vercel",
+        "content_length": 199730
+      },
+      {
+        "subdomain": "new.loom.com",
+        "url": "https://new.loom.com",
+        "status": 403,
+        "title": "",
+        "server": "",
+        "content_length": 10
+      },
+      {
+        "subdomain": "evs.sgmt.loom.com",
+        "url": "https://evs.sgmt.loom.com",
+        "status": 404,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 49
+      },
+      {
+        "subdomain": "status.loom.com",
+        "url": "https://status.loom.com",
+        "status": 200,
+        "title": "Loom Status",
+        "server": "AtlassianEdge",
+        "content_length": 72713
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "url": "https://cdn.loom.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "sdkchangelog.loom.com",
+        "url": "https://sdkchangelog.loom.com",
+        "status": 403,
+        "title": "",
+        "server": "",
+        "content_length": 10
+      },
+      {
+        "subdomain": "support.loom.com",
+        "url": "https://support.loom.com",
+        "status": 200,
+        "title": "Loom support | Loom | Atlassian Support",
+        "server": "AmazonS3",
+        "content_length": 80334
+      },
+      {
+        "subdomain": "stage.loom.com",
+        "url": "https://stage.loom.com",
+        "status": 200,
+        "title": "Atlassian - Sign In",
+        "server": "nginx",
+        "content_length": 32139
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/phpinfo.php",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "developers.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 31061,
+        "preview": ""
+      },
+      {
+        "subdomain": "developers.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 31067,
+        "preview": ""
+      },
+      {
+        "subdomain": "dev.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 31056,
+        "preview": ""
+      },
+      {
+        "subdomain": "dev.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 31065,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 173,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 208,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.loom.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 186,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "sales.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 317,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.sgmt.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "new.loom.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 10,
+        "preview": ""
+      },
+      {
+        "subdomain": "new.loom.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 10,
+        "preview": ""
+      },
+      {
+        "subdomain": "new.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 10,
+        "preview": ""
+      },
+      {
+        "subdomain": "new.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 10,
+        "preview": ""
+      },
+      {
+        "subdomain": "new.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 10,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "sdkchangelog.loom.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 10,
+        "preview": ""
+      },
+      {
+        "subdomain": "sdkchangelog.loom.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 10,
+        "preview": ""
+      },
+      {
+        "subdomain": "sdkchangelog.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 10,
+        "preview": ""
+      },
+      {
+        "subdomain": "sdkchangelog.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 10,
+        "preview": ""
+      },
+      {
+        "subdomain": "sdkchangelog.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 10,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  }
+}

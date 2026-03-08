@@ -1,0 +1,4218 @@
+{
+  "Shopify": {
+    "target": "Shopify",
+    "domain": "shopify.com",
+    "max_bounty": 50000,
+    "subdomains": [
+      "www.shopify.com",
+      "vpn.shopify.com",
+      "ci.shopify.com",
+      "api.shopify.com",
+      "jenkins.shopify.com",
+      "beta.shopify.com",
+      "app.shopify.com",
+      "mail.shopify.com",
+      "status.shopify.com",
+      "qa.shopify.com",
+      "staging.shopify.com",
+      "blog.shopify.com",
+      "wiki.shopify.com",
+      "preview.shopify.com",
+      "docs.shopify.com",
+      "ops.shopify.com",
+      "static.shopify.com",
+      "graphql.shopify.com",
+      "tools.shopify.com",
+      "auth.shopify.com",
+      "monitor.shopify.com",
+      "sandbox.shopify.com",
+      "portal.shopify.com",
+      "cdn.shopify.com",
+      "admin.shopify.com",
+      "dashboard.shopify.com",
+      "login.shopify.com",
+      "stage.shopify.com",
+      "test.shopify.com",
+      "internal.shopify.com",
+      "git.shopify.com",
+      "dev.shopify.com",
+      "vault.shopify.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "ci.shopify.com",
+        "url": "https://ci.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "api.shopify.com",
+        "url": "https://api.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 8619
+      },
+      {
+        "subdomain": "jenkins.shopify.com",
+        "url": "https://jenkins.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "qa.shopify.com",
+        "url": "https://qa.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "staging.shopify.com",
+        "url": "https://staging.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "status.shopify.com",
+        "url": "https://status.shopify.com",
+        "status": 200,
+        "title": "Shopify Status",
+        "server": "AtlassianEdge",
+        "content_length": 84750
+      },
+      {
+        "subdomain": "ops.shopify.com",
+        "url": "https://ops.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "beta.shopify.com",
+        "url": "https://beta.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "vpn.shopify.com",
+        "url": "https://vpn.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "docs.shopify.com",
+        "url": "https://docs.shopify.com",
+        "status": 403,
+        "title": "Verifying your connection...",
+        "server": "cloudflare",
+        "content_length": 10670
+      },
+      {
+        "subdomain": "wiki.shopify.com",
+        "url": "https://wiki.shopify.com",
+        "status": 403,
+        "title": "Verifying your connection...",
+        "server": "cloudflare",
+        "content_length": 10627
+      },
+      {
+        "subdomain": "preview.shopify.com",
+        "url": "https://preview.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "monitor.shopify.com",
+        "url": "https://monitor.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "sandbox.shopify.com",
+        "url": "https://sandbox.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "www.shopify.com",
+        "url": "https://www.shopify.com",
+        "status": 200,
+        "title": "Shopify: The All-in-One Commerce Platform for Businesses - Shopify",
+        "server": "cloudflare",
+        "content_length": 601807
+      },
+      {
+        "subdomain": "tools.shopify.com",
+        "url": "https://tools.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "graphql.shopify.com",
+        "url": "https://graphql.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "url": "https://admin.shopify.com",
+        "status": 403,
+        "title": "Verifying your connection...",
+        "server": "cloudflare",
+        "content_length": 10586
+      },
+      {
+        "subdomain": "dashboard.shopify.com",
+        "url": "https://dashboard.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "stage.shopify.com",
+        "url": "https://stage.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "auth.shopify.com",
+        "url": "https://auth.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "test.shopify.com",
+        "url": "https://test.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "static.shopify.com",
+        "url": "https://static.shopify.com",
+        "status": 200,
+        "title": "Shopify CDN",
+        "server": "cloudflare",
+        "content_length": 70443
+      },
+      {
+        "subdomain": "app.shopify.com",
+        "url": "https://app.shopify.com",
+        "status": 200,
+        "title": "Shopify App Store",
+        "server": "cloudflare",
+        "content_length": 249811
+      },
+      {
+        "subdomain": "cdn.shopify.com",
+        "url": "https://cdn.shopify.com",
+        "status": 200,
+        "title": "Shopify CDN",
+        "server": "cloudflare",
+        "content_length": 70443
+      },
+      {
+        "subdomain": "internal.shopify.com",
+        "url": "https://internal.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "mail.shopify.com",
+        "url": "http://mail.shopify.com",
+        "status": 200,
+        "title": "Shopify - Sign In",
+        "server": "nginx",
+        "content_length": 35948
+      },
+      {
+        "subdomain": "blog.shopify.com",
+        "url": "https://blog.shopify.com",
+        "status": 200,
+        "title": "Ecommerce Marketing Blog - Ecommerce News, Online Store Tips and More - Shopify",
+        "server": "cloudflare",
+        "content_length": 480614
+      },
+      {
+        "subdomain": "git.shopify.com",
+        "url": "https://git.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "portal.shopify.com",
+        "url": "https://portal.shopify.com",
+        "status": 200,
+        "title": "Careers, Internships, and Jobs at Shopify | Shopify Careers - Shopify",
+        "server": "cloudflare",
+        "content_length": 218289
+      },
+      {
+        "subdomain": "dev.shopify.com",
+        "url": "https://dev.shopify.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 237982
+      },
+      {
+        "subdomain": "vault.shopify.com",
+        "url": "https://vault.shopify.com",
+        "status": 200,
+        "title": "Shopify - Sign In",
+        "server": "nginx",
+        "content_length": 34057
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "www.shopify.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 6791,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.shopify.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 6815,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.shopify.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 3624,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.shopify.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 204312,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  },
+  "Grammarly": {
+    "target": "Grammarly",
+    "domain": "grammarly.com",
+    "max_bounty": 100000,
+    "subdomains": [
+      "events.grammarly.com",
+      "properties.grammarly.com",
+      "vox-static.grammarly.com",
+      "engage.grammarly.com",
+      "skills.grammarly.com",
+      "officeaddin.grammarly.com",
+      "treatment.grammarly.com",
+      "www.nspl.grammarly.com",
+      "lti-integration.grammarly.com",
+      "vdeuc-cs2.grammarly.com",
+      "speak-prod.grammarly.com",
+      "facade-private.grammarly.com",
+      "chargeback-prevention.grammarly.com",
+      "update-windows.grammarly.com",
+      "knots.grammarly.com",
+      "assets.grammarly.com",
+      "ci.grammarly.com",
+      "account.grammarly.com",
+      "geoproximity.bixby.grammarly.com",
+      "static.institution.grammarly.com",
+      "ed.grammarly.com",
+      "in.grammarly.com",
+      "ua-gec-dataset.grammarly.com",
+      "speak.grammarly.com",
+      "test.grammarly.com",
+      "auth.private.grammarly.com",
+      "ops.grammarly.com",
+      "dev.grammarly.com",
+      "datareport.grammarly.com",
+      "ui.proofit.grammarly.com",
+      "apps.grammarly.com",
+      "download-editor.grammarly.com",
+      "content.grammarly.com",
+      "partners.grammarly.com",
+      "dockerhub.grammarly.com",
+      "invite.grammarly.com",
+      "email.recruiting.grammarly.com",
+      "payments.grammarly.com",
+      "admin.grammarly.com",
+      "chipmunk.grammarly.com",
+      "mise-private.grammarly.com",
+      "denali-fb.grammarly.com",
+      "id.grammarly.com",
+      "stripe-integration.grammarly.com",
+      "click.notification.grammarly.com",
+      "rtmp.zoommarly.grammarly.com",
+      "business-tour.grammarly.com",
+      "gates.grammarly.com",
+      "monitor.grammarly.com",
+      "demo.grammarly.com",
+      "geoproximity.bixby-internal.grammarly.com",
+      "subscription.private.grammarly.com",
+      "apps-public.grammarly.com",
+      "devoxx.grammarly.com",
+      "login.grammarly.com",
+      "facade.private.grammarly.com",
+      "coda.grammarly.com",
+      "sentinel.private.grammarly.com",
+      "admin-panel.grammarly.com",
+      "internal.grammarly.com",
+      "tokenism-private.grammarly.com",
+      "auth-private.grammarly.com",
+      "apps.private.grammarly.com",
+      "extension-popup-editor.grammarly.com",
+      "static.sensei.grammarly.com",
+      "assets.extension.grammarly.com",
+      "jenkins.grammarly.com",
+      "static.grammarly.com",
+      "image.send.grammarly.com",
+      "click.grammarly.com",
+      "knowledge.grammarly.com",
+      "download-office.grammarly.com",
+      "api.payments.grammarly.com",
+      "goldengate.grammarly.com",
+      "preview.grammarly.com",
+      "private-k8s-capi.grammarly.com",
+      "discount.grammarly.com",
+      "apps-uploads.grammarly.com",
+      "g4d-meter.grammarly.com",
+      "tokenism-relay.grammarly.com",
+      "bixby.grammarly.com",
+      "institution.grammarly.com",
+      "qa.aicomposer.grammarly.com",
+      "update.grammarly.com",
+      "iosapp-beta.grammarly.com",
+      "capi.grammarly.com",
+      "redirect.internal.grammarly.com",
+      "brand.grammarly.com",
+      "dashboard.grammarly.com",
+      "private.login.grammarly.com",
+      "sombra.sombra-transcend.grammarly.com",
+      "answers.grammarly.com",
+      "adminka.grammarly.com",
+      "k8s-capi-green.grammarly.com",
+      "vdusw-cs2.grammarly.com",
+      "zoom-callbacks.grammarly.com",
+      "static-v2.institution.grammarly.com",
+      "nexus-ext.grammarly.com",
+      "update-officeaddin.grammarly.com",
+      "billing-nlb.grammarly.com",
+      "download-windows.grammarly.com",
+      "static-web.grammarly.com",
+      "data.grammarly.com",
+      "authorship.grammarly.com",
+      "click.send.grammarly.com",
+      "hello.grammarly.com",
+      "gate.grammarly.com",
+      "iosapp-alpha.grammarly.com",
+      "bixby-internal.grammarly.com",
+      "sentinel.grammarly.com",
+      "g-mail.grammarly.com",
+      "auth-secure.grammarly.com",
+      "docs.grammarly.com",
+      "static-id.grammarly.com",
+      "gitlab.grammarly.com",
+      "qa.vox-static.grammarly.com",
+      "wiki.grammarly.com",
+      "cdn.grammarly.com",
+      "login-static.grammarly.com",
+      "zoommarly.grammarly.com",
+      "research.grammarly.com",
+      "vdusw-cs1.grammarly.com",
+      "download-mac.grammarly.com",
+      "beta.grammarly.com",
+      "config.extension.grammarly.com",
+      "www.autoreport.grammarly.com",
+      "gnar.grammarly.com",
+      "capi.private.grammarly.com",
+      "tools.grammarly.com",
+      "app.grammarly.com",
+      "download-office-predeploy.grammarly.com",
+      "corgi.grammarly.com",
+      "sandbox.grammarly.com",
+      "experiences.grammarly.com",
+      "skills-proxy.grammarly.com",
+      "vpn1.grammarly.com",
+      "k8s-capi-1.grammarly.com",
+      "internal.subscription.private.grammarly.com",
+      "contenthub.grammarly.com",
+      "m.grammarly.com",
+      "download-editor-predeploy.grammarly.com",
+      "docs-uxr.grammarly.com",
+      "billing-ui.grammarly.com",
+      "wstest.grammarly.com",
+      "tokens.private.grammarly.com",
+      "git.grammarly.com",
+      "js.grammarly.com",
+      "dox-private.grammarly.com",
+      "capi-msdk.grammarly.com",
+      "billing.grammarly.com",
+      "sso-institutions.grammarly.com",
+      "g-mail.internal.grammarly.com",
+      "static.fridge.grammarly.com",
+      "dc-01.corp.grammarly.com",
+      "access-manager-private-torii.grammarly.com",
+      "api.billing.grammarly.com",
+      "download-bundle.grammarly.com",
+      "diagnostics.grammarly.com",
+      "stage.grammarly.com",
+      "in-product.report.grammarly.com",
+      "data-internal.grammarly.com",
+      "developer.grammarly.com",
+      "access-manager-torii-private.grammarly.com",
+      "msync.grammarly.com",
+      "access-manager.private.grammarly.com",
+      "snippets.grammarly.com",
+      "www.blog.grammarly.com",
+      "vdeuc-cs1.grammarly.com",
+      "sentinel-private.grammarly.com",
+      "status.grammarly.com",
+      "staging.grammarly.com",
+      "tokenism.grammarly.com",
+      "contenthub-private.grammarly.com",
+      "speak-dev.grammarly.com",
+      "redirect.grammarly.com",
+      "preprod.vox-static.grammarly.com",
+      "vault.grammarly.com",
+      "nexus.grammarly.com",
+      "fb-app.grammarly.com",
+      "portal.grammarly.com",
+      "applet-bundles-static.grammarly.com",
+      "msync-private.grammarly.com",
+      "sensei.grammarly.com",
+      "tokens.grammarly.com",
+      "tech.grammarly.com",
+      "developer-hub.grammarly.com",
+      "in-product-test.report.grammarly.com",
+      "api.mise-private.grammarly.com",
+      "gstatic.grammarly.com",
+      "gateway.grammarly.com",
+      "applet-bundles.grammarly.com",
+      "contenthub-static.grammarly.com",
+      "denali-blue.grammarly.com",
+      "go.grammarly.com",
+      "denali-static.grammarly.com",
+      "dc-02.corp.grammarly.com",
+      "subscription.grammarly.com",
+      "vpn.grammarly.com",
+      "iosapp.grammarly.com",
+      "private.api.payments.grammarly.com",
+      "sso.grammarly.com",
+      "fridge.grammarly.com",
+      "3p-access.grammarly.com",
+      "qa.grammarly.com",
+      "autoreport.grammarly.com",
+      "rwsgfy.grammarly.com",
+      "dox.grammarly.com",
+      "uifoundation.grammarly.com",
+      "mail.grammarly.com",
+      "developers.grammarly.com",
+      "graphql.grammarly.com",
+      "mercury.grammarly.com",
+      "auth.grammarly.com",
+      "private-api.payments.grammarly.com",
+      "api.grammarly.com",
+      "irbis.grammarly.com",
+      "support.grammarly.com",
+      "verifi-integration.grammarly.com",
+      "tokenism-relay-private.grammarly.com",
+      "js-static.grammarly.com",
+      "nspl.grammarly.com",
+      "pages.send.grammarly.com",
+      "handbook.grammarly.com",
+      "torii-private.grammarly.com",
+      "blog.grammarly.com",
+      "ai-editor.grammarly.com",
+      "public-internal.redirect.grammarly.com",
+      "chipmunk-private.grammarly.com",
+      "account-private.grammarly.com",
+      "config-qa.extension.grammarly.com",
+      "view.send.grammarly.com",
+      "sso.private.grammarly.com",
+      "www.grammarly.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "engage.grammarly.com",
+        "url": "https://engage.grammarly.com",
+        "status": 403,
+        "title": "Access Denied",
+        "server": "AkamaiGHost",
+        "content_length": 372
+      },
+      {
+        "subdomain": "skills.grammarly.com",
+        "url": "https://skills.grammarly.com",
+        "status": 503,
+        "title": "503 Service Temporarily Unavailable",
+        "server": "awselb/2.0",
+        "content_length": 162
+      },
+      {
+        "subdomain": "chargeback-prevention.grammarly.com",
+        "url": "https://chargeback-prevention.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "update-windows.grammarly.com",
+        "url": "https://update-windows.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 9
+      },
+      {
+        "subdomain": "static.institution.grammarly.com",
+        "url": "https://static.institution.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 263
+      },
+      {
+        "subdomain": "properties.grammarly.com",
+        "url": "https://properties.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "events.grammarly.com",
+        "url": "https://events.grammarly.com",
+        "status": 200,
+        "title": "Goldcast",
+        "server": "cloudflare",
+        "content_length": 7970
+      },
+      {
+        "subdomain": "treatment.grammarly.com",
+        "url": "https://treatment.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "url": "https://lti-integration.grammarly.com",
+        "status": 200,
+        "title": "LTI Integration",
+        "server": "AmazonS3",
+        "content_length": 547
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "url": "https://officeaddin.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 243
+      },
+      {
+        "subdomain": "assets.grammarly.com",
+        "url": "https://assets.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "in.grammarly.com",
+        "url": "https://in.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 31
+      },
+      {
+        "subdomain": "download-editor.grammarly.com",
+        "url": "https://download-editor.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 243
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "url": "https://apps.grammarly.com",
+        "status": 401,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "datareport.grammarly.com",
+        "url": "https://datareport.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "stripe-integration.grammarly.com",
+        "url": "https://stripe-integration.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "account.grammarly.com",
+        "url": "https://account.grammarly.com",
+        "status": 200,
+        "title": "Login | Grammarly",
+        "server": "",
+        "content_length": 311793
+      },
+      {
+        "subdomain": "email.recruiting.grammarly.com",
+        "url": "https://email.recruiting.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 19
+      },
+      {
+        "subdomain": "partners.grammarly.com",
+        "url": "https://partners.grammarly.com",
+        "status": 200,
+        "title": "Superhuman",
+        "server": "",
+        "content_length": 45346
+      },
+      {
+        "subdomain": "business-tour.grammarly.com",
+        "url": "https://business-tour.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Product Tour",
+        "server": "AmazonS3",
+        "content_length": 1446
+      },
+      {
+        "subdomain": "click.notification.grammarly.com",
+        "url": "https://click.notification.grammarly.com",
+        "status": 400,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "apps-public.grammarly.com",
+        "url": "https://apps-public.grammarly.com",
+        "status": 401,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "www.nspl.grammarly.com",
+        "url": "https://www.nspl.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483138
+      },
+      {
+        "subdomain": "id.grammarly.com",
+        "url": "https://id.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482622
+      },
+      {
+        "subdomain": "ed.grammarly.com",
+        "url": "https://ed.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483626
+      },
+      {
+        "subdomain": "login.grammarly.com",
+        "url": "https://login.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "gates.grammarly.com",
+        "url": "https://gates.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "demo.grammarly.com",
+        "url": "https://demo.grammarly.com",
+        "status": 200,
+        "title": "Grammarly",
+        "server": "nginx",
+        "content_length": 21941
+      },
+      {
+        "subdomain": "static.grammarly.com",
+        "url": "https://static.grammarly.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 3363
+      },
+      {
+        "subdomain": "assets.extension.grammarly.com",
+        "url": "https://assets.extension.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "invite.grammarly.com",
+        "url": "https://invite.grammarly.com",
+        "status": 200,
+        "title": "Grammarly for Business | AI Writing Assistance for Teams of all Sizes",
+        "server": "",
+        "content_length": 634452
+      },
+      {
+        "subdomain": "image.send.grammarly.com",
+        "url": "https://image.send.grammarly.com",
+        "status": 403,
+        "title": "Access Denied",
+        "server": "AkamaiGHost",
+        "content_length": 382
+      },
+      {
+        "subdomain": "coda.grammarly.com",
+        "url": "https://coda.grammarly.com",
+        "status": 200,
+        "title": "Grammarly",
+        "server": "",
+        "content_length": 311843
+      },
+      {
+        "subdomain": "content.grammarly.com",
+        "url": "https://content.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482636
+      },
+      {
+        "subdomain": "knowledge.grammarly.com",
+        "url": "https://knowledge.grammarly.com",
+        "status": 200,
+        "title": "Knowledgeshare",
+        "server": "AmazonS3",
+        "content_length": 484
+      },
+      {
+        "subdomain": "goldengate.grammarly.com",
+        "url": "https://goldengate.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "api.payments.grammarly.com",
+        "url": "https://api.payments.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "download-office.grammarly.com",
+        "url": "https://download-office.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 263
+      },
+      {
+        "subdomain": "click.grammarly.com",
+        "url": "https://click.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483128
+      },
+      {
+        "subdomain": "discount.grammarly.com",
+        "url": "https://discount.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "apps-uploads.grammarly.com",
+        "url": "https://apps-uploads.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 310
+      },
+      {
+        "subdomain": "iosapp-beta.grammarly.com",
+        "url": "https://iosapp-beta.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Editor requires an update",
+        "server": "awselb/2.0",
+        "content_length": 1181
+      },
+      {
+        "subdomain": "capi.grammarly.com",
+        "url": "https://capi.grammarly.com",
+        "status": 404,
+        "title": "Error 404 No endpoint GET /.",
+        "server": "",
+        "content_length": 373
+      },
+      {
+        "subdomain": "brand.grammarly.com",
+        "url": "https://brand.grammarly.com",
+        "status": 200,
+        "title": "Login - Grammarly",
+        "server": "frontify",
+        "content_length": 13031
+      },
+      {
+        "subdomain": "update-officeaddin.grammarly.com",
+        "url": "https://update-officeaddin.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 9
+      },
+      {
+        "subdomain": "static-web.grammarly.com",
+        "url": "https://static-web.grammarly.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 3363
+      },
+      {
+        "subdomain": "download-windows.grammarly.com",
+        "url": "https://download-windows.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 263
+      },
+      {
+        "subdomain": "answers.grammarly.com",
+        "url": "https://answers.grammarly.com",
+        "status": 200,
+        "title": "Your Go-To Guide for English Grammar | Grammarly",
+        "server": "",
+        "content_length": 282978
+      },
+      {
+        "subdomain": "data.grammarly.com",
+        "url": "https://data.grammarly.com",
+        "status": 404,
+        "title": "Error 404 Not Found",
+        "server": "",
+        "content_length": 423
+      },
+      {
+        "subdomain": "authorship.grammarly.com",
+        "url": "https://authorship.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Authorship",
+        "server": "AmazonS3",
+        "content_length": 1498
+      },
+      {
+        "subdomain": "hello.grammarly.com",
+        "url": "https://hello.grammarly.com",
+        "status": 204,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "click.send.grammarly.com",
+        "url": "https://click.send.grammarly.com",
+        "status": 403,
+        "title": "403 - Forbidden: Access is denied.",
+        "server": "",
+        "content_length": 1233
+      },
+      {
+        "subdomain": "gate.grammarly.com",
+        "url": "https://gate.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "iosapp-alpha.grammarly.com",
+        "url": "https://iosapp-alpha.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "g-mail.grammarly.com",
+        "url": "https://g-mail.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "login-static.grammarly.com",
+        "url": "https://login-static.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "research.grammarly.com",
+        "url": "https://research.grammarly.com",
+        "status": 404,
+        "title": "Great Question",
+        "server": "cloudflare",
+        "content_length": 24801
+      },
+      {
+        "subdomain": "download-mac.grammarly.com",
+        "url": "https://download-mac.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 275
+      },
+      {
+        "subdomain": "config.extension.grammarly.com",
+        "url": "https://config.extension.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "gnar.grammarly.com",
+        "url": "https://gnar.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 45
+      },
+      {
+        "subdomain": "www.autoreport.grammarly.com",
+        "url": "https://www.autoreport.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483148
+      },
+      {
+        "subdomain": "app.grammarly.com",
+        "url": "https://app.grammarly.com",
+        "status": 200,
+        "title": "Grammarly",
+        "server": "",
+        "content_length": 311202
+      },
+      {
+        "subdomain": "experiences.grammarly.com",
+        "url": "https://experiences.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 6823
+      },
+      {
+        "subdomain": "m.grammarly.com",
+        "url": "https://m.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482636
+      },
+      {
+        "subdomain": "wstest.grammarly.com",
+        "url": "https://wstest.grammarly.com",
+        "status": 426,
+        "title": "",
+        "server": "",
+        "content_length": 16
+      },
+      {
+        "subdomain": "js.grammarly.com",
+        "url": "https://js.grammarly.com",
+        "status": 404,
+        "title": "Not found",
+        "server": "AmazonS3",
+        "content_length": 123
+      },
+      {
+        "subdomain": "capi-msdk.grammarly.com",
+        "url": "https://capi-msdk.grammarly.com",
+        "status": 404,
+        "title": "Error 404 No endpoint GET /.",
+        "server": "",
+        "content_length": 378
+      },
+      {
+        "subdomain": "static.fridge.grammarly.com",
+        "url": "https://static.fridge.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 255
+      },
+      {
+        "subdomain": "download-bundle.grammarly.com",
+        "url": "https://download-bundle.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 255
+      },
+      {
+        "subdomain": "developer.grammarly.com",
+        "url": "https://developer.grammarly.com",
+        "status": 200,
+        "title": "Introduction | API Documentation",
+        "server": "AmazonS3",
+        "content_length": 22490
+      },
+      {
+        "subdomain": "msync.grammarly.com",
+        "url": "https://msync.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "www.blog.grammarly.com",
+        "url": "https://www.blog.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482630
+      },
+      {
+        "subdomain": "status.grammarly.com",
+        "url": "https://status.grammarly.com",
+        "status": 200,
+        "title": "Service Status | Grammarly Status",
+        "server": "AtlassianEdge",
+        "content_length": 66986
+      },
+      {
+        "subdomain": "redirect.grammarly.com",
+        "url": "https://redirect.grammarly.com",
+        "status": 200,
+        "title": "Grammarly",
+        "server": "",
+        "content_length": 311843
+      },
+      {
+        "subdomain": "applet-bundles-static.grammarly.com",
+        "url": "https://applet-bundles-static.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 71
+      },
+      {
+        "subdomain": "tokens.grammarly.com",
+        "url": "https://tokens.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "tech.grammarly.com",
+        "url": "https://tech.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Engineering Blog",
+        "server": "nginx/1.28.0",
+        "content_length": 91557
+      },
+      {
+        "subdomain": "gateway.grammarly.com",
+        "url": "https://gateway.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "applet-bundles.grammarly.com",
+        "url": "https://applet-bundles.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 0
+      },
+      {
+        "subdomain": "contenthub-static.grammarly.com",
+        "url": "https://contenthub-static.grammarly.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 3363
+      },
+      {
+        "subdomain": "denali-static.grammarly.com",
+        "url": "https://denali-static.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "go.grammarly.com",
+        "url": "https://go.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483132
+      },
+      {
+        "subdomain": "subscription.grammarly.com",
+        "url": "https://subscription.grammarly.com",
+        "status": 401,
+        "title": "",
+        "server": "",
+        "content_length": 34
+      },
+      {
+        "subdomain": "iosapp.grammarly.com",
+        "url": "https://iosapp.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Editor requires an update",
+        "server": "awselb/2.0",
+        "content_length": 1181
+      },
+      {
+        "subdomain": "sso.grammarly.com",
+        "url": "https://sso.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "fridge.grammarly.com",
+        "url": "https://fridge.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "3p-access.grammarly.com",
+        "url": "https://3p-access.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 9
+      },
+      {
+        "subdomain": "autoreport.grammarly.com",
+        "url": "https://autoreport.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483138
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "url": "https://rwsgfy.grammarly.com",
+        "status": 200,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "dox.grammarly.com",
+        "url": "https://dox.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "nginx-clojure",
+        "content_length": 52
+      },
+      {
+        "subdomain": "auth.grammarly.com",
+        "url": "https://auth.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "api.grammarly.com",
+        "url": "https://api.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "irbis.grammarly.com",
+        "url": "https://irbis.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "support.grammarly.com",
+        "url": "https://support.grammarly.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 7004
+      },
+      {
+        "subdomain": "verifi-integration.grammarly.com",
+        "url": "https://verifi-integration.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 89
+      },
+      {
+        "subdomain": "pages.send.grammarly.com",
+        "url": "https://pages.send.grammarly.com",
+        "status": 403,
+        "title": "403 - Forbidden: Access is denied.",
+        "server": "",
+        "content_length": 1233
+      },
+      {
+        "subdomain": "nspl.grammarly.com",
+        "url": "https://nspl.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483138
+      },
+      {
+        "subdomain": "blog.grammarly.com",
+        "url": "https://blog.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Blog",
+        "server": "nginx/1.28.0",
+        "content_length": 169308
+      },
+      {
+        "subdomain": "handbook.grammarly.com",
+        "url": "https://handbook.grammarly.com",
+        "status": 200,
+        "title": "Your Go-To Guide for English Grammar | Grammarly",
+        "server": "",
+        "content_length": 279408
+      },
+      {
+        "subdomain": "config-qa.extension.grammarly.com",
+        "url": "https://config-qa.extension.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "www.grammarly.com",
+        "url": "https://www.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483132
+      },
+      {
+        "subdomain": "view.send.grammarly.com",
+        "url": "https://view.send.grammarly.com",
+        "status": 200,
+        "title": "Error",
+        "server": "",
+        "content_length": 932
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "engage.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 380,
+        "preview": ""
+      },
+      {
+        "subdomain": "engage.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 391,
+        "preview": ""
+      },
+      {
+        "subdomain": "engage.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 377,
+        "preview": ""
+      },
+      {
+        "subdomain": "engage.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 379,
+        "preview": ""
+      },
+      {
+        "subdomain": "engage.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 388,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.grammarly.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 7970,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\" />\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n  <meta name=\"robots\" content=\"noindex\" />\n  <meta name=\"viewport\" content"
+      },
+      {
+        "subdomain": "events.grammarly.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 7970,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\" />\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n  <meta name=\"robots\" content=\"noindex\" />\n  <meta name=\"viewport\" content"
+      },
+      {
+        "subdomain": "events.grammarly.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 7970,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\" />\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n  <meta name=\"robots\" content=\"noindex\" />\n  <meta name=\"viewport\" content"
+      },
+      {
+        "subdomain": "events.grammarly.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 7970,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\" />\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n  <meta name=\"robots\" content=\"noindex\" />\n  <meta name=\"viewport\" content"
+      },
+      {
+        "subdomain": "events.grammarly.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 7970,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\" />\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n  <meta name=\"robots\" content=\"noindex\" />\n  <meta name=\"viewport\" content"
+      },
+      {
+        "subdomain": "events.grammarly.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 7970,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\" />\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n  <meta name=\"robots\" content=\"noindex\" />\n  <meta name=\"viewport\" content"
+      },
+      {
+        "subdomain": "events.grammarly.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 7970,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\" />\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n  <meta name=\"robots\" content=\"noindex\" />\n  <meta name=\"viewport\" content"
+      },
+      {
+        "subdomain": "events.grammarly.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 7970,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\" />\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n  <meta name=\"robots\" content=\"noindex\" />\n  <meta name=\"viewport\" content"
+      },
+      {
+        "subdomain": "events.grammarly.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 15,
+        "preview": ""
+      },
+      {
+        "subdomain": "treatment.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "treatment.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "treatment.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "treatment.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "treatment.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "treatment.grammarly.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 16,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.institution.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 275,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.institution.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.institution.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 263,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.institution.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.institution.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "properties.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "properties.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "properties.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "properties.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "properties.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "properties.grammarly.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 16,
+        "preview": ""
+      },
+      {
+        "subdomain": "chargeback-prevention.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "chargeback-prevention.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "chargeback-prevention.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "chargeback-prevention.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "chargeback-prevention.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "chargeback-prevention.grammarly.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 18,
+        "preview": ""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 547,
+        "preview": ""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 547,
+        "preview": ""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 547,
+        "preview": ""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 547,
+        "preview": ""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/phpinfo.php",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 275,
+        "preview": ""
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 263,
+        "preview": ""
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 275,
+        "preview": ""
+      },
+      {
+        "subdomain": "download-editor.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 275,
+        "preview": ""
+      },
+      {
+        "subdomain": "download-editor.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 275,
+        "preview": ""
+      },
+      {
+        "subdomain": "download-editor.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "download-editor.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 263,
+        "preview": ""
+      },
+      {
+        "subdomain": "download-editor.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "datareport.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "datareport.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "datareport.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "datareport.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "datareport.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/.env",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/.git/config",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/.git/HEAD",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/admin",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/api",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/api/v1",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/graphql",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/graphiql",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/swagger-ui.html",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/swagger-ui/",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/api-docs",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/openapi.json",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/actuator/env",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/actuator/health",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/actuator/info",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/debug",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/console",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/metrics",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/status",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/info",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/config",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/_debug",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/__debug__",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/internal",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/test",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/robots.txt",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/sitemap.xml",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/crossdomain.xml",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/server-status",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/server-info",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/.DS_Store",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/wp-admin",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/wp-login.php",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/phpinfo.php",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/.htaccess",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [
+      {
+        "subdomain": "static-id.grammarly.com",
+        "service": "cloudfront.net",
+        "detail": "Server:  UnKnown\nAddress:  fe80::42ed:ff:fe79:e4ba\n\nstatic-id.grammarly.com\tcanonical name = d1fziggc3ugjm3.cloudfront.net\n"
+      }
+    ],
+    "s3_findings": []
+  },
+  "Mapbox": {
+    "target": "Mapbox",
+    "domain": "mapbox.com",
+    "max_bounty": 10000,
+    "subdomains": [
+      "graphql.mapbox.com",
+      "portal.mapbox.com",
+      "artifacts-test-spark-china-dns.mapbox.com",
+      "artifacts-anderco-artifacts-test-dns.mapbox.com",
+      "api-identity-testing.mapbox.com",
+      "git.mapbox.com",
+      "www.snap.events.mapbox.com",
+      "api-skel-production-us-east-2.mapbox.com",
+      "replane-staging.mapbox.com",
+      "api-rastertiles-production.mapbox.com",
+      "test-jlouk-3.mapbox.com",
+      "testing.mapbox.com",
+      "tiles.mapbox.com",
+      "api-skel-production-ap-southeast-1.mapbox.com",
+      "hey-staging.mapbox.com",
+      "artifacts-danpat-buildcache-dns.mapbox.com",
+      "b.api.mapbox.com",
+      "cdn.mapbox.com",
+      "support.mapbox.com",
+      "api-identity-domains.mapbox.com",
+      "events.stla.mapbox.com",
+      "a.tiles.mapbox.com",
+      "production.bob-the-builder.mapbox.com",
+      "api.mapbox.com",
+      "test-jlouk-4.mapbox.com",
+      "artifacts-vntest-2-dns.mapbox.com",
+      "app.mapbox.com",
+      "dummy.mapbox.com",
+      "www.blog.mapbox.com",
+      "stage.mapbox.com",
+      "eu-west-1.sites.mapbox.com",
+      "trust.mapbox.com",
+      "ops.mapbox.com",
+      "stripe-etl-recon-test-dns.mapbox.com",
+      "auth.mapbox.com",
+      "static.mapbox.com",
+      "dashboard.mapbox.com",
+      "locate.mapbox.com",
+      "hello.mapbox.com",
+      "docs.mapbox.com",
+      "artifacts-artifacts-testing-dns.mapbox.com",
+      "platform-docs-feedback-staging.mapbox.com",
+      "qa.mapbox.com",
+      "artifacts-staging-dns.mapbox.com",
+      "vault.mapbox.com",
+      "api-identity-production-v2.mapbox.com",
+      "jp.mapbox.com",
+      "api.tiles.mapbox.com",
+      "api-skel-stgprod.mapbox.com",
+      "wiki.mapbox.com",
+      "api-identity-staging.mapbox.com",
+      "artifacts-production-dns.mapbox.com",
+      "tools.mapbox.com",
+      "c.api.mapbox.com",
+      "status.mapbox.com",
+      "info.mapbox.com",
+      "platform-staging.mapbox.com",
+      "config.mapbox.com",
+      "go.mapbox.com",
+      "feedback-explorer-production.mapbox.com",
+      "config.stla.mapbox.com",
+      "artifacts-aptest-dns.mapbox.com",
+      "bob-the-builder-staging-dns.mapbox.com",
+      "monitor.mapbox.com",
+      "test-jlouk-12.mapbox.com",
+      "jenkins.mapbox.com",
+      "bob-the-builder-testing-dns.mapbox.com",
+      "api.stla.mapbox.com",
+      "vpn.mapbox.com",
+      "admin.mapbox.com",
+      "test-jlouk5.mapbox.com",
+      "d.api.mapbox.com",
+      "b.tiles.mapbox.com",
+      "api-skel-production-eu-west-1.mapbox.com",
+      "artifacts-johnk1-testing-dns.mapbox.com",
+      "api-identity-fargate-testing.mapbox.com",
+      "test-jlouk2.mapbox.com",
+      "snap.events.mapbox.com",
+      "substandard-example.mapbox.com",
+      "blog.mapbox.com",
+      "internal.mapbox.com",
+      "artifacts-jvd-test-dns.mapbox.com",
+      "api-identity-production-new.mapbox.com",
+      "platform.mapbox.com",
+      "www-showcase.mapbox.com",
+      "staging.mapbox.com",
+      "bob-the-builder-production-dns.mapbox.com",
+      "api-rasterarrays-production.mapbox.com",
+      "test-jlouk-11.mapbox.com",
+      "artifacts-testing-2-dns.mapbox.com",
+      "api-skel-production-ap-northeast-1.mapbox.com",
+      "spatial-data-api-production.mapbox.com",
+      "platform-okta.mapbox.com",
+      "dev.mapbox.com",
+      "artifacts-vntest-master-dns.mapbox.com",
+      "api-identity-staging-fargate.mapbox.com",
+      "api-3dln-tiles-production.mapbox.com",
+      "configurator-prod.mapbox.com",
+      "hey.mapbox.com",
+      "api-identity-production.mapbox.com",
+      "artifacts-basemap636-test-dns.mapbox.com",
+      "test.mapbox.com",
+      "platform-docs-feedback-production.mapbox.com",
+      "feedback-explorer-prod.mapbox.com",
+      "sandbox.mapbox.com",
+      "api-skel-stageyprod.mapbox.com",
+      "test-jlouk7.mapbox.com",
+      "c.tiles.mapbox.com",
+      "www.mapbox.com",
+      "sites.mapbox.com",
+      "ecs-api-staging.mapbox.com",
+      "beta.mapbox.com",
+      "api-identity-rclark.mapbox.com",
+      "api-rasterarrays-stageyprod.mapbox.com",
+      "api-identity-selfserve.mapbox.com",
+      "api-skel-production-us-west-1.mapbox.com",
+      "artifacts-vntest-dns.mapbox.com",
+      "snap.api.mapbox.com",
+      "login.mapbox.com",
+      "artifacts-childless-dns.mapbox.com",
+      "artifacts-testlc-dns.mapbox.com",
+      "ci.mapbox.com",
+      "api-skel-stageyprod-us-east-2.mapbox.com",
+      "replane.mapbox.com",
+      "a.api.mapbox.com",
+      "staging.bob-the-builder.mapbox.com",
+      "api-skel-stageyprod-us-east-1.mapbox.com",
+      "ecs-fargate-test.mapbox.com",
+      "api-skel-production-us-east-1.mapbox.com",
+      "hey-okta.mapbox.com",
+      "test-jlouk-6.mapbox.com",
+      "vision.mapbox.com",
+      "artifacts-testing-dns.mapbox.com",
+      "api-skel-production.mapbox.com",
+      "events.mapbox.com",
+      "test-jlouk-2.mapbox.com",
+      "mail.mapbox.com",
+      "replane-production.mapbox.com",
+      "preview.mapbox.com",
+      "api-skel-prod.mapbox.com",
+      "d.tiles.mapbox.com",
+      "test-ma-network-pr.mapbox.com",
+      "api-skel-production-us-west-2.mapbox.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "a.tiles.mapbox.com",
+        "url": "https://a.tiles.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "api.mapbox.com",
+        "url": "https://api.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "b.api.mapbox.com",
+        "url": "https://b.api.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "url": "https://api-rastertiles-production.mapbox.com",
+        "status": 401,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 75
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "url": "https://events.stla.mapbox.com",
+        "status": 401,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 93
+      },
+      {
+        "subdomain": "hello.mapbox.com",
+        "url": "https://hello.mapbox.com",
+        "status": 204,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "api.tiles.mapbox.com",
+        "url": "https://api.tiles.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "api-identity-staging.mapbox.com",
+        "url": "https://api-identity-staging.mapbox.com",
+        "status": 403,
+        "title": "",
+        "server": "",
+        "content_length": 42
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "url": "https://trust.mapbox.com",
+        "status": 200,
+        "title": "Mapbox Trust Center | Powered by Conveyor",
+        "server": "nginx",
+        "content_length": 23899
+      },
+      {
+        "subdomain": "docs.mapbox.com",
+        "url": "https://docs.mapbox.com",
+        "status": 200,
+        "title": "Mapbox Docs",
+        "server": "AmazonS3",
+        "content_length": 112749
+      },
+      {
+        "subdomain": "artifacts-production-dns.mapbox.com",
+        "url": "https://artifacts-production-dns.mapbox.com",
+        "status": 403,
+        "title": "",
+        "server": "",
+        "content_length": 42
+      },
+      {
+        "subdomain": "support.mapbox.com",
+        "url": "https://support.mapbox.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 6979
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "url": "https://config.mapbox.com",
+        "status": 401,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 75
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "url": "https://info.mapbox.com",
+        "status": 200,
+        "title": "404 - Page not found",
+        "server": "cloudflare",
+        "content_length": 539
+      },
+      {
+        "subdomain": "b.tiles.mapbox.com",
+        "url": "https://b.tiles.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "status.mapbox.com",
+        "url": "https://status.mapbox.com",
+        "status": 200,
+        "title": "Mapbox Status",
+        "server": "AtlassianEdge",
+        "content_length": 709978
+      },
+      {
+        "subdomain": "api.stla.mapbox.com",
+        "url": "https://api.stla.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "config.stla.mapbox.com",
+        "url": "https://config.stla.mapbox.com",
+        "status": 401,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 75
+      },
+      {
+        "subdomain": "api-rasterarrays-production.mapbox.com",
+        "url": "https://api-rasterarrays-production.mapbox.com",
+        "status": 401,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 75
+      },
+      {
+        "subdomain": "api-identity-production.mapbox.com",
+        "url": "https://api-identity-production.mapbox.com",
+        "status": 403,
+        "title": "",
+        "server": "",
+        "content_length": 42
+      },
+      {
+        "subdomain": "c.tiles.mapbox.com",
+        "url": "https://c.tiles.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "api-3dln-tiles-production.mapbox.com",
+        "url": "https://api-3dln-tiles-production.mapbox.com",
+        "status": 401,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 75
+      },
+      {
+        "subdomain": "snap.api.mapbox.com",
+        "url": "https://snap.api.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "tiles.mapbox.com",
+        "url": "https://tiles.mapbox.com",
+        "status": 200,
+        "title": "Mapbox | Maps, Navigation, Search, and Data",
+        "server": "cloudflare",
+        "content_length": 501541
+      },
+      {
+        "subdomain": "a.api.mapbox.com",
+        "url": "https://a.api.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "eu-west-1.sites.mapbox.com",
+        "url": "https://eu-west-1.sites.mapbox.com",
+        "status": 200,
+        "title": "mapbox - Sign In",
+        "server": "nginx",
+        "content_length": 34048
+      },
+      {
+        "subdomain": "hey-staging.mapbox.com",
+        "url": "https://hey-staging.mapbox.com",
+        "status": 200,
+        "title": "mapbox - Sign In",
+        "server": "nginx",
+        "content_length": 33999
+      },
+      {
+        "subdomain": "replane-staging.mapbox.com",
+        "url": "https://replane-staging.mapbox.com",
+        "status": 200,
+        "title": "Replane",
+        "server": "",
+        "content_length": 22976
+      },
+      {
+        "subdomain": "www.mapbox.com",
+        "url": "https://www.mapbox.com",
+        "status": 200,
+        "title": "Mapbox | Maps, Navigation, Search, and Data",
+        "server": "cloudflare",
+        "content_length": 501541
+      },
+      {
+        "subdomain": "go.mapbox.com",
+        "url": "https://go.mapbox.com",
+        "status": 200,
+        "title": "Mapbox | Maps, Navigation, Search, and Data",
+        "server": "cloudflare",
+        "content_length": 501541
+      },
+      {
+        "subdomain": "d.tiles.mapbox.com",
+        "url": "https://d.tiles.mapbox.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 16
+      },
+      {
+        "subdomain": "events.mapbox.com",
+        "url": "https://events.mapbox.com",
+        "status": 401,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 93
+      },
+      {
+        "subdomain": "blog.mapbox.com",
+        "url": "https://blog.mapbox.com",
+        "status": 200,
+        "title": "maps for developers",
+        "server": "openresty",
+        "content_length": 92758
+      },
+      {
+        "subdomain": "hey.mapbox.com",
+        "url": "https://hey.mapbox.com",
+        "status": 200,
+        "title": "mapbox - Sign In",
+        "server": "nginx",
+        "content_length": 33964
+      },
+      {
+        "subdomain": "artifacts-testing-dns.mapbox.com",
+        "url": "https://artifacts-testing-dns.mapbox.com",
+        "status": 403,
+        "title": "",
+        "server": "",
+        "content_length": 42
+      },
+      {
+        "subdomain": "sites.mapbox.com",
+        "url": "https://sites.mapbox.com",
+        "status": 200,
+        "title": "mapbox - Sign In",
+        "server": "nginx",
+        "content_length": 34092
+      },
+      {
+        "subdomain": "replane.mapbox.com",
+        "url": "https://replane.mapbox.com",
+        "status": 200,
+        "title": "Replane",
+        "server": "",
+        "content_length": 22923
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "b.api.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 499,
+        "preview": ""
+      },
+      {
+        "subdomain": "b.api.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 251,
+        "preview": "<?xml version=\"1.0\"?>\n<!-- http://a.tiles.mapbox.com/crossdomain.xml -->\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n  <all"
+      },
+      {
+        "subdomain": "a.tiles.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 499,
+        "preview": ""
+      },
+      {
+        "subdomain": "a.tiles.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 251,
+        "preview": "<?xml version=\"1.0\"?>\n<!-- http://a.tiles.mapbox.com/crossdomain.xml -->\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n  <all"
+      },
+      {
+        "subdomain": "api.tiles.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 499,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.tiles.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 251,
+        "preview": "<?xml version=\"1.0\"?>\n<!-- http://a.tiles.mapbox.com/crossdomain.xml -->\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n  <all"
+      },
+      {
+        "subdomain": "api.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 499,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 251,
+        "preview": "<?xml version=\"1.0\"?>\n<!-- http://a.tiles.mapbox.com/crossdomain.xml -->\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n  <all"
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/.env",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/.git/config",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/.git/HEAD",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/admin",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/api",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/api/v1",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/graphql",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/graphiql",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/swagger-ui.html",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/swagger-ui/",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/api-docs",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/openapi.json",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/actuator/env",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/actuator/health",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/actuator/info",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/debug",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/console",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/metrics",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/prometheus",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/health",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/status",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/info",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/config",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/_debug",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/__debug__",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/internal",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/test",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/robots.txt",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/sitemap.xml",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/server-status",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/server-info",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/.DS_Store",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/wp-admin",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/wp-login.php",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/phpinfo.php",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "events.stla.mapbox.com",
+        "path": "/.htaccess",
+        "status": 401,
+        "content_length": 93,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-identity-staging.mapbox.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-identity-staging.mapbox.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-identity-staging.mapbox.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-identity-staging.mapbox.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-identity-staging.mapbox.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/.env",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/.git/config",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/.git/HEAD",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/admin",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/api",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/api/v1",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/graphql",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/graphiql",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/swagger-ui.html",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/swagger-ui/",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/api-docs",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/openapi.json",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/actuator/env",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/actuator/health",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/actuator/info",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/debug",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/console",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/metrics",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/prometheus",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/health",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/status",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/info",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/config",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/_debug",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/__debug__",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/internal",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/test",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/robots.txt",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/sitemap.xml",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/server-status",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/server-info",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/.DS_Store",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/wp-admin",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/wp-login.php",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/phpinfo.php",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "api-rastertiles-production.mapbox.com",
+        "path": "/.htaccess",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "hello.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 317,
+        "preview": ""
+      },
+      {
+        "subdomain": "b.tiles.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 499,
+        "preview": ""
+      },
+      {
+        "subdomain": "b.tiles.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 251,
+        "preview": "<?xml version=\"1.0\"?>\n<!-- http://a.tiles.mapbox.com/crossdomain.xml -->\n<!DOCTYPE cross-domain-policy SYSTEM \"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd\">\n<cross-domain-policy>\n  <all"
+      },
+      {
+        "subdomain": "docs.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 116,
+        "preview": ""
+      },
+      {
+        "subdomain": "docs.mapbox.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 2006,
+        "preview": ""
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 539,
+        "preview": ""
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 539,
+        "preview": ""
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 539,
+        "preview": ""
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 539,
+        "preview": ""
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/phpinfo.php",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "info.mapbox.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 539,
+        "preview": "<!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font-size:20px;}div.message{text-align: center; position: relative; top: 150px; margin: auto; width: 600"
+      },
+      {
+        "subdomain": "support.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 2218,
+        "preview": ""
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 23899,
+        "preview": ""
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 23899,
+        "preview": ""
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 24,
+        "preview": ""
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 23899,
+        "preview": ""
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/phpinfo.php",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "trust.mapbox.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 23899,
+        "preview": "<!doctype html><html lang=\"en\" class=\"font-sans text-gray-800 text-body leading-[1.15] min-h-screen\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrin"
+      },
+      {
+        "subdomain": "artifacts-production-dns.mapbox.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "artifacts-production-dns.mapbox.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "artifacts-production-dns.mapbox.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "artifacts-production-dns.mapbox.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "artifacts-production-dns.mapbox.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/.env",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/.git/config",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/.git/HEAD",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/admin",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/api",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/api/v1",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/graphql",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/graphiql",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/swagger-ui.html",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/swagger-ui/",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/api-docs",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/openapi.json",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/actuator/env",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/actuator/health",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/actuator/info",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/debug",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/console",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/metrics",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/prometheus",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/health",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/status",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/info",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/config",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/_debug",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/__debug__",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/internal",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/test",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/robots.txt",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/sitemap.xml",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/crossdomain.xml",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/server-status",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/server-info",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/.DS_Store",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/wp-admin",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/wp-login.php",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/phpinfo.php",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.mapbox.com",
+        "path": "/.htaccess",
+        "status": 401,
+        "content_length": 75,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  }
+}

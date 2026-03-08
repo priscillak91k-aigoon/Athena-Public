@@ -1,0 +1,1061 @@
+{
+  "Nextcloud": {
+    "target": "Nextcloud",
+    "domain": "nextcloud.com",
+    "max_bounty": 10000,
+    "subdomains": [
+      "dashboard.nextcloud.com",
+      "internal.nextcloud.com",
+      "staging.nextcloud.com",
+      "login.nextcloud.com",
+      "portal.nextcloud.com",
+      "vpn.nextcloud.com",
+      "admin.nextcloud.com",
+      "vault.nextcloud.com",
+      "app.nextcloud.com",
+      "graphql.nextcloud.com",
+      "cdn.nextcloud.com",
+      "tools.nextcloud.com",
+      "static.nextcloud.com",
+      "beta.nextcloud.com",
+      "test.nextcloud.com",
+      "preview.nextcloud.com",
+      "monitor.nextcloud.com",
+      "docs.nextcloud.com",
+      "auth.nextcloud.com",
+      "git.nextcloud.com",
+      "dev.nextcloud.com",
+      "qa.nextcloud.com",
+      "www.nextcloud.com",
+      "jenkins.nextcloud.com",
+      "sandbox.nextcloud.com",
+      "ops.nextcloud.com",
+      "api.nextcloud.com",
+      "status.nextcloud.com",
+      "wiki.nextcloud.com",
+      "mail.nextcloud.com",
+      "blog.nextcloud.com",
+      "ci.nextcloud.com",
+      "stage.nextcloud.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "status.nextcloud.com",
+        "url": "https://status.nextcloud.com",
+        "status": 200,
+        "title": "Nextcloud Services",
+        "server": "",
+        "content_length": 2549
+      },
+      {
+        "subdomain": "mail.nextcloud.com",
+        "url": "https://mail.nextcloud.com",
+        "status": 200,
+        "title": "Roundcube Webmail :: Welcome to Roundcube Webmail",
+        "server": "NCSA/1.42;",
+        "content_length": 5787
+      },
+      {
+        "subdomain": "portal.nextcloud.com",
+        "url": "https://portal.nextcloud.com",
+        "status": 200,
+        "title": "Nextcloud Portal",
+        "server": "NCSA/1.42;",
+        "content_length": 21580
+      },
+      {
+        "subdomain": "staging.nextcloud.com",
+        "url": "https://staging.nextcloud.com",
+        "status": 200,
+        "title": "",
+        "server": "Apache/2.4.52 (Ubuntu)",
+        "content_length": 134923
+      },
+      {
+        "subdomain": "auth.nextcloud.com",
+        "url": "https://auth.nextcloud.com",
+        "status": 200,
+        "title": "Keycloak Administration Console",
+        "server": "Apache/2.4.52 (Ubuntu)",
+        "content_length": 3764
+      },
+      {
+        "subdomain": "docs.nextcloud.com",
+        "url": "https://docs.nextcloud.com",
+        "status": 200,
+        "title": "Nextcloud Documentation",
+        "server": "Apache",
+        "content_length": 36248
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "portal.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 24,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/metrics",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 1200,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 2549,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 25,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 1200,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/phpinfo.php",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "status.nextcloud.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 1200,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />\n    <link rel=\"apple-touch-icon\" s"
+      },
+      {
+        "subdomain": "staging.nextcloud.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 179,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  },
+  "Grammarly": {
+    "target": "Grammarly",
+    "domain": "grammarly.com",
+    "max_bounty": 100000,
+    "subdomains": [
+      "status.grammarly.com",
+      "api.grammarly.com",
+      "dev.grammarly.com",
+      "cdn.grammarly.com",
+      "git.grammarly.com",
+      "dashboard.grammarly.com",
+      "sandbox.grammarly.com",
+      "stage.grammarly.com",
+      "staging.grammarly.com",
+      "docs.grammarly.com",
+      "static.grammarly.com",
+      "tools.grammarly.com",
+      "test.grammarly.com",
+      "jenkins.grammarly.com",
+      "wiki.grammarly.com",
+      "qa.grammarly.com",
+      "blog.grammarly.com",
+      "login.grammarly.com",
+      "mail.grammarly.com",
+      "portal.grammarly.com",
+      "preview.grammarly.com",
+      "beta.grammarly.com",
+      "vault.grammarly.com",
+      "ci.grammarly.com",
+      "admin.grammarly.com",
+      "auth.grammarly.com",
+      "internal.grammarly.com",
+      "monitor.grammarly.com",
+      "www.grammarly.com",
+      "vpn.grammarly.com",
+      "app.grammarly.com",
+      "ops.grammarly.com",
+      "graphql.grammarly.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "static.grammarly.com",
+        "url": "https://static.grammarly.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 3363
+      },
+      {
+        "subdomain": "status.grammarly.com",
+        "url": "https://status.grammarly.com",
+        "status": 200,
+        "title": "Service Status | Grammarly Status",
+        "server": "AtlassianEdge",
+        "content_length": 66986
+      },
+      {
+        "subdomain": "api.grammarly.com",
+        "url": "https://api.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "auth.grammarly.com",
+        "url": "https://auth.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "www.grammarly.com",
+        "url": "https://www.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483132
+      },
+      {
+        "subdomain": "login.grammarly.com",
+        "url": "https://login.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "app.grammarly.com",
+        "url": "https://app.grammarly.com",
+        "status": 200,
+        "title": "Grammarly",
+        "server": "",
+        "content_length": 312088
+      },
+      {
+        "subdomain": "blog.grammarly.com",
+        "url": "https://blog.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Blog",
+        "server": "nginx/1.28.0",
+        "content_length": 169308
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "status.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 919,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.grammarly.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 62592,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <!-- force IE browsers in compatibility mode to use their most aggressive rendering engine -->\n\n"
+      },
+      {
+        "subdomain": "www.grammarly.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 5065,
+        "preview": "<!DOCTYPE html><html><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width\"/><meta name=\"next-head-count\" content=\"2\"/><link rel=\"preload\" href=\"https://static-web.grammarly.c"
+      },
+      {
+        "subdomain": "www.grammarly.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 265,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.grammarly.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 367,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 263,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 263,
+        "preview": ""
+      },
+      {
+        "subdomain": "static.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 263,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.grammarly.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 16,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "auth.grammarly.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 16,
+        "preview": ""
+      },
+      {
+        "subdomain": "app.grammarly.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 21925,
+        "preview": "<!doctype html><html lang=\"en\" translate=\"no\" class=\"height100\"><style>.height100 { height: 100%; } :root { --100vh: 100vh; }</style><head><meta charset=\"utf-8\"/><meta http-equiv=\"X-UA-Compatible\" con"
+      },
+      {
+        "subdomain": "app.grammarly.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "blog.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "login.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "login.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "login.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "login.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "login.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  },
+  "Shopify": {
+    "target": "Shopify",
+    "domain": "shopify.com",
+    "max_bounty": 50000,
+    "subdomains": [
+      "login.shopify.com",
+      "status.shopify.com",
+      "docs.shopify.com",
+      "beta.shopify.com",
+      "jenkins.shopify.com",
+      "ci.shopify.com",
+      "admin.shopify.com",
+      "vault.shopify.com",
+      "ops.shopify.com",
+      "mail.shopify.com",
+      "dashboard.shopify.com",
+      "wiki.shopify.com",
+      "staging.shopify.com",
+      "tools.shopify.com",
+      "test.shopify.com",
+      "static.shopify.com",
+      "api.shopify.com",
+      "blog.shopify.com",
+      "cdn.shopify.com",
+      "app.shopify.com",
+      "graphql.shopify.com",
+      "auth.shopify.com",
+      "portal.shopify.com",
+      "qa.shopify.com",
+      "www.shopify.com",
+      "dev.shopify.com",
+      "preview.shopify.com",
+      "git.shopify.com",
+      "monitor.shopify.com",
+      "internal.shopify.com",
+      "sandbox.shopify.com",
+      "vpn.shopify.com",
+      "stage.shopify.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "admin.shopify.com",
+        "url": "https://admin.shopify.com",
+        "status": 403,
+        "title": "Verifying your connection...",
+        "server": "cloudflare",
+        "content_length": 10607
+      },
+      {
+        "subdomain": "dashboard.shopify.com",
+        "url": "https://dashboard.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "test.shopify.com",
+        "url": "https://test.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "beta.shopify.com",
+        "url": "https://beta.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "ops.shopify.com",
+        "url": "https://ops.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "jenkins.shopify.com",
+        "url": "https://jenkins.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "wiki.shopify.com",
+        "url": "https://wiki.shopify.com",
+        "status": 403,
+        "title": "Verifying your connection...",
+        "server": "cloudflare",
+        "content_length": 10670
+      },
+      {
+        "subdomain": "tools.shopify.com",
+        "url": "https://tools.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "ci.shopify.com",
+        "url": "https://ci.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "docs.shopify.com",
+        "url": "https://docs.shopify.com",
+        "status": 403,
+        "title": "Verifying your connection...",
+        "server": "cloudflare",
+        "content_length": 10670
+      },
+      {
+        "subdomain": "staging.shopify.com",
+        "url": "https://staging.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "api.shopify.com",
+        "url": "https://api.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 8619
+      },
+      {
+        "subdomain": "cdn.shopify.com",
+        "url": "https://cdn.shopify.com",
+        "status": 200,
+        "title": "Shopify CDN",
+        "server": "cloudflare",
+        "content_length": 70443
+      },
+      {
+        "subdomain": "graphql.shopify.com",
+        "url": "https://graphql.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "static.shopify.com",
+        "url": "https://static.shopify.com",
+        "status": 200,
+        "title": "Shopify CDN",
+        "server": "cloudflare",
+        "content_length": 70443
+      },
+      {
+        "subdomain": "auth.shopify.com",
+        "url": "https://auth.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "status.shopify.com",
+        "url": "https://status.shopify.com",
+        "status": 200,
+        "title": "Shopify Status",
+        "server": "AtlassianEdge",
+        "content_length": 84750
+      },
+      {
+        "subdomain": "qa.shopify.com",
+        "url": "https://qa.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "preview.shopify.com",
+        "url": "https://preview.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "git.shopify.com",
+        "url": "https://git.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "blog.shopify.com",
+        "url": "https://blog.shopify.com",
+        "status": 200,
+        "title": "Ecommerce Marketing Blog - Ecommerce News, Online Store Tips and More - Shopify",
+        "server": "cloudflare",
+        "content_length": 480539
+      },
+      {
+        "subdomain": "www.shopify.com",
+        "url": "https://www.shopify.com",
+        "status": 200,
+        "title": "Shopify: The All-in-One Commerce Platform for Businesses - Shopify",
+        "server": "cloudflare",
+        "content_length": 601726
+      },
+      {
+        "subdomain": "dev.shopify.com",
+        "url": "https://dev.shopify.com",
+        "status": 200,
+        "title": "",
+        "server": "cloudflare",
+        "content_length": 239272
+      },
+      {
+        "subdomain": "internal.shopify.com",
+        "url": "https://internal.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "monitor.shopify.com",
+        "url": "https://monitor.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "sandbox.shopify.com",
+        "url": "https://sandbox.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "vpn.shopify.com",
+        "url": "https://vpn.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "stage.shopify.com",
+        "url": "https://stage.shopify.com",
+        "status": 404,
+        "title": "Create an Ecommerce Website and Sell Online! Ecommerce Software by Shopify",
+        "server": "cloudflare",
+        "content_length": 20725
+      },
+      {
+        "subdomain": "portal.shopify.com",
+        "url": "https://portal.shopify.com",
+        "status": 200,
+        "title": "Careers, Internships, and Jobs at Shopify | Shopify Careers - Shopify",
+        "server": "cloudflare",
+        "content_length": 218389
+      },
+      {
+        "subdomain": "app.shopify.com",
+        "url": "https://app.shopify.com",
+        "status": 200,
+        "title": "Shopify App Store",
+        "server": "cloudflare",
+        "content_length": 249791
+      },
+      {
+        "subdomain": "vault.shopify.com",
+        "url": "https://vault.shopify.com",
+        "status": 200,
+        "title": "Shopify - Sign In",
+        "server": "nginx",
+        "content_length": 34039
+      },
+      {
+        "subdomain": "mail.shopify.com",
+        "url": "http://mail.shopify.com",
+        "status": 200,
+        "title": "Shopify - Sign In",
+        "server": "nginx",
+        "content_length": 36138
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 10640,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 10664,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 10643,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 295,
+        "preview": "\n    <Html>\n      <body>\n        <div id=\"redirect\" data-url=\"https://admin.shopify.com/login?errorHint=no_cookie_session\"></div>\n        <script nonce=\"UwLXuBBsIRSynx24XCOo4w==\">window.location = dec"
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 10628,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 295,
+        "preview": "\n    <Html>\n      <body>\n        <div id=\"redirect\" data-url=\"https://admin.shopify.com/login?errorHint=no_cookie_session\"></div>\n        <script nonce=\"deV5wyKxAW21y8b4osWpzw==\">window.location = dec"
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 10689,
+        "preview": ""
+      },
+      {
+        "subdomain": "admin.shopify.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 295,
+        "preview": "\n    <Html>\n      <body>\n        <div id=\"redirect\" data-url=\"https://admin.shopify.com/login?errorHint=no_cookie_session\"></div>\n        <script nonce=\"8YPSeYbh+unAihVOH8h32g==\">window.location = dec"
+      },
+      {
+        "subdomain": "cdn.shopify.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 80,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  }
+}

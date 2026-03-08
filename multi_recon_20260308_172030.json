@@ -1,0 +1,2611 @@
+{
+  "Loom": {
+    "target": "Loom",
+    "domain": "loom.com",
+    "max_bounty": 5000,
+    "subdomains": [
+      "dev.loom.com",
+      "api.loom.com",
+      "trust.loom.com",
+      "qa.loom.com",
+      "ops.loom.com",
+      "vpn.loom.com",
+      "jenkins.loom.com",
+      "webflow.loom.com",
+      "docs.loom.com",
+      "preview.loom.com",
+      "git.loom.com",
+      "beta.loom.com",
+      "static.loom.com",
+      "www.loom.com",
+      "vault.loom.com",
+      "login.loom.com",
+      "graphql.loom.com",
+      "support.loom.com",
+      "production-green.loom.com",
+      "stage.loom.com",
+      "infra-diamond.loom.com",
+      "sdkchangelog.loom.com",
+      "wiki.loom.com",
+      "test.loom.com",
+      "location.loom.com",
+      "developers.loom.com",
+      "ci.loom.com",
+      "info.loom.com",
+      "production-cyan.loom.com",
+      "dashboard.loom.com",
+      "api.sgmt.loom.com",
+      "staging-green.loom.com",
+      "staging.loom.com",
+      "app.loom.com",
+      "internal.loom.com",
+      "login-stage.loom.com",
+      "webflow-stage.loom.com",
+      "evs.sgmt.loom.com",
+      "portal.loom.com",
+      "admin.loom.com",
+      "status.loom.com",
+      "mail.loom.com",
+      "shop.loom.com",
+      "tools.loom.com",
+      "new.loom.com",
+      "community.loom.com",
+      "webflow-prod.loom.com",
+      "auth.loom.com",
+      "monitor.loom.com",
+      "blog.loom.com",
+      "sandbox.loom.com",
+      "packages.loom.com",
+      "sales.loom.com",
+      "cdn.loom.com",
+      "feedback.loom.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "dev.loom.com",
+        "url": "https://dev.loom.com",
+        "status": 200,
+        "title": "Developers | Loom",
+        "server": "Vercel",
+        "content_length": 7704
+      },
+      {
+        "subdomain": "location.loom.com",
+        "url": "https://location.loom.com",
+        "status": 200,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 0
+      },
+      {
+        "subdomain": "api.sgmt.loom.com",
+        "url": "https://api.sgmt.loom.com",
+        "status": 404,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 0
+      },
+      {
+        "subdomain": "www.loom.com",
+        "url": "https://www.loom.com",
+        "status": 200,
+        "title": "Free screen recorder for Mac and PC | Loom",
+        "server": "Vercel",
+        "content_length": 199730
+      },
+      {
+        "subdomain": "developers.loom.com",
+        "url": "https://developers.loom.com",
+        "status": 200,
+        "title": "Developers | Loom",
+        "server": "Vercel",
+        "content_length": 7704
+      },
+      {
+        "subdomain": "status.loom.com",
+        "url": "https://status.loom.com",
+        "status": 200,
+        "title": "Loom Status",
+        "server": "AtlassianEdge",
+        "content_length": 72713
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "url": "https://cdn.loom.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "url": "https://packages.loom.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 0
+      },
+      {
+        "subdomain": "sales.loom.com",
+        "url": "https://sales.loom.com",
+        "status": 204,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "evs.sgmt.loom.com",
+        "url": "https://evs.sgmt.loom.com",
+        "status": 404,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 49
+      },
+      {
+        "subdomain": "sdkchangelog.loom.com",
+        "url": "https://sdkchangelog.loom.com",
+        "status": 200,
+        "title": "",
+        "server": "",
+        "content_length": 124023
+      },
+      {
+        "subdomain": "new.loom.com",
+        "url": "https://new.loom.com",
+        "status": 200,
+        "title": "",
+        "server": "",
+        "content_length": 145579
+      },
+      {
+        "subdomain": "stage.loom.com",
+        "url": "https://stage.loom.com",
+        "status": 200,
+        "title": "Atlassian - Sign In",
+        "server": "nginx",
+        "content_length": 32060
+      },
+      {
+        "subdomain": "support.loom.com",
+        "url": "https://support.loom.com",
+        "status": 200,
+        "title": "Loom support | Loom | Atlassian Support",
+        "server": "AmazonS3",
+        "content_length": 80334
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/phpinfo.php",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "location.loom.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "developers.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 31061,
+        "preview": ""
+      },
+      {
+        "subdomain": "developers.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 31060,
+        "preview": ""
+      },
+      {
+        "subdomain": "dev.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 31060,
+        "preview": ""
+      },
+      {
+        "subdomain": "dev.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 31066,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 173,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 208,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.loom.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 186,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "packages.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "cdn.loom.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "api.sgmt.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 26,
+        "preview": ""
+      },
+      {
+        "subdomain": "sales.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 317,
+        "preview": ""
+      },
+      {
+        "subdomain": "sdkchangelog.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 23,
+        "preview": ""
+      },
+      {
+        "subdomain": "sdkchangelog.loom.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 2586,
+        "preview": ""
+      },
+      {
+        "subdomain": "new.loom.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 23,
+        "preview": ""
+      },
+      {
+        "subdomain": "new.loom.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 15165,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": []
+  },
+  "Mattermost": {
+    "target": "Mattermost",
+    "domain": "mattermost.com",
+    "max_bounty": 5000,
+    "subdomains": [
+      "qa.mattermost.com",
+      "portal.mattermost.com",
+      "sandbox.mattermost.com",
+      "test.mattermost.com",
+      "dev.mattermost.com",
+      "cdn.mattermost.com",
+      "www.mattermost.com",
+      "mail.mattermost.com",
+      "graphql.mattermost.com",
+      "app.mattermost.com",
+      "tools.mattermost.com",
+      "stage.mattermost.com",
+      "blog.mattermost.com",
+      "staging.mattermost.com",
+      "api.mattermost.com",
+      "docs.mattermost.com",
+      "login.mattermost.com",
+      "wiki.mattermost.com",
+      "monitor.mattermost.com",
+      "beta.mattermost.com",
+      "auth.mattermost.com",
+      "vpn.mattermost.com",
+      "preview.mattermost.com",
+      "ops.mattermost.com",
+      "admin.mattermost.com",
+      "ci.mattermost.com",
+      "jenkins.mattermost.com",
+      "static.mattermost.com",
+      "vault.mattermost.com",
+      "status.mattermost.com",
+      "dashboard.mattermost.com",
+      "git.mattermost.com",
+      "internal.mattermost.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "status.mattermost.com",
+        "url": "https://status.mattermost.com",
+        "status": 200,
+        "title": "Mattermost Status",
+        "server": "AtlassianEdge",
+        "content_length": 212928
+      },
+      {
+        "subdomain": "www.mattermost.com",
+        "url": "https://www.mattermost.com",
+        "status": 200,
+        "title": "Mattermost | Collaboration Platform for Mission Critical Work",
+        "server": "cloudflare",
+        "content_length": 178024
+      },
+      {
+        "subdomain": "docs.mattermost.com",
+        "url": "https://docs.mattermost.com",
+        "status": 200,
+        "title": "Mattermost documentation",
+        "server": "AmazonS3",
+        "content_length": 131421
+      },
+      {
+        "subdomain": "api.mattermost.com",
+        "url": "https://api.mattermost.com",
+        "status": 200,
+        "title": "API Documentation",
+        "server": "AmazonS3",
+        "content_length": 34127
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "www.mattermost.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 4513,
+        "preview": ""
+      },
+      {
+        "subdomain": "www.mattermost.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 4513,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.mattermost.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 919,
+        "preview": ""
+      },
+      {
+        "subdomain": "status.mattermost.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 55430,
+        "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <!-- force IE browsers in compatibility mode to use their most aggressive rendering engine -->\n\n"
+      },
+      {
+        "subdomain": "docs.mattermost.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 172,
+        "preview": ""
+      },
+      {
+        "subdomain": "docs.mattermost.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 41077,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [],
+    "s3_findings": [
+      {
+        "bucket": "mattermost-uploads",
+        "status": 400,
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>IllegalLocationConstraintException</Code><Message>The ap-southeast-4 location constraint is incompatible for the region specific endpoint this reque"
+      },
+      {
+        "bucket": "mattermost-static",
+        "status": 200,
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ListBucketResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>mattermost-static</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTrunc"
+      },
+      {
+        "bucket": "mattermost-public",
+        "status": 200,
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ListBucketResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>mattermost-public</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTrunc"
+      }
+    ]
+  },
+  "Grammarly": {
+    "target": "Grammarly",
+    "domain": "grammarly.com",
+    "max_bounty": 100000,
+    "subdomains": [
+      "g-mail.grammarly.com",
+      "m.grammarly.com",
+      "lti-integration.grammarly.com",
+      "gnar.grammarly.com",
+      "coda.grammarly.com",
+      "fridge.grammarly.com",
+      "apps.grammarly.com",
+      "admin.grammarly.com",
+      "app.grammarly.com",
+      "ui.proofit.grammarly.com",
+      "vpn.grammarly.com",
+      "access-manager-torii-private.grammarly.com",
+      "static-v2.institution.grammarly.com",
+      "assets.extension.grammarly.com",
+      "geoproximity.bixby.grammarly.com",
+      "static-web.grammarly.com",
+      "speak-dev.grammarly.com",
+      "discount.grammarly.com",
+      "dc-01.corp.grammarly.com",
+      "config.extension.grammarly.com",
+      "officeaddin.grammarly.com",
+      "invite.grammarly.com",
+      "download-mac.grammarly.com",
+      "js-static.grammarly.com",
+      "gate.grammarly.com",
+      "download-office.grammarly.com",
+      "dev.grammarly.com",
+      "verifi-integration.grammarly.com",
+      "subscription.private.grammarly.com",
+      "payments.grammarly.com",
+      "gitlab.grammarly.com",
+      "applet-bundles-static.grammarly.com",
+      "apps-public.grammarly.com",
+      "update.grammarly.com",
+      "datareport.grammarly.com",
+      "private-k8s-capi.grammarly.com",
+      "denali-blue.grammarly.com",
+      "uifoundation.grammarly.com",
+      "tools.grammarly.com",
+      "irbis.grammarly.com",
+      "g-mail.internal.grammarly.com",
+      "adminka.grammarly.com",
+      "www.blog.grammarly.com",
+      "mise-private.grammarly.com",
+      "sentinel-private.grammarly.com",
+      "js.grammarly.com",
+      "wiki.grammarly.com",
+      "update-officeaddin.grammarly.com",
+      "nexus.grammarly.com",
+      "skills.grammarly.com",
+      "account-private.grammarly.com",
+      "authorship.grammarly.com",
+      "gates.grammarly.com",
+      "redirect.internal.grammarly.com",
+      "events.grammarly.com",
+      "login.grammarly.com",
+      "treatment.grammarly.com",
+      "vdusw-cs1.grammarly.com",
+      "git.grammarly.com",
+      "developer.grammarly.com",
+      "knots.grammarly.com",
+      "capi-msdk.grammarly.com",
+      "tokenism-relay-private.grammarly.com",
+      "subscription.grammarly.com",
+      "stripe-integration.grammarly.com",
+      "tokens.grammarly.com",
+      "data.grammarly.com",
+      "bixby-internal.grammarly.com",
+      "test.grammarly.com",
+      "qa.aicomposer.grammarly.com",
+      "k8s-capi-1.grammarly.com",
+      "preprod.vox-static.grammarly.com",
+      "zoom-callbacks.grammarly.com",
+      "nexus-ext.grammarly.com",
+      "update-windows.grammarly.com",
+      "ops.grammarly.com",
+      "denali-fb.grammarly.com",
+      "partners.grammarly.com",
+      "vdusw-cs2.grammarly.com",
+      "apps.private.grammarly.com",
+      "dockerhub.grammarly.com",
+      "static.grammarly.com",
+      "autoreport.grammarly.com",
+      "click.notification.grammarly.com",
+      "vault.grammarly.com",
+      "research.grammarly.com",
+      "docs.grammarly.com",
+      "portal.grammarly.com",
+      "sombra.sombra-transcend.grammarly.com",
+      "api.billing.grammarly.com",
+      "assets.grammarly.com",
+      "hello.grammarly.com",
+      "demo.grammarly.com",
+      "handbook.grammarly.com",
+      "extension-popup-editor.grammarly.com",
+      "preview.grammarly.com",
+      "click.send.grammarly.com",
+      "fb-app.grammarly.com",
+      "auth-private.grammarly.com",
+      "download-windows.grammarly.com",
+      "chipmunk-private.grammarly.com",
+      "developer-hub.grammarly.com",
+      "status.grammarly.com",
+      "auth.grammarly.com",
+      "jenkins.grammarly.com",
+      "blog.grammarly.com",
+      "speak-prod.grammarly.com",
+      "private.api.payments.grammarly.com",
+      "view.send.grammarly.com",
+      "admin-panel.grammarly.com",
+      "download-bundle.grammarly.com",
+      "image.send.grammarly.com",
+      "ai-editor.grammarly.com",
+      "monitor.grammarly.com",
+      "www.grammarly.com",
+      "static.fridge.grammarly.com",
+      "g4d-meter.grammarly.com",
+      "iosapp-beta.grammarly.com",
+      "msync.grammarly.com",
+      "knowledge.grammarly.com",
+      "facade.private.grammarly.com",
+      "click.grammarly.com",
+      "apps-uploads.grammarly.com",
+      "graphql.grammarly.com",
+      "sso.private.grammarly.com",
+      "auth-secure.grammarly.com",
+      "diagnostics.grammarly.com",
+      "dox.grammarly.com",
+      "vpn1.grammarly.com",
+      "applet-bundles.grammarly.com",
+      "tokens.private.grammarly.com",
+      "sensei.grammarly.com",
+      "snippets.grammarly.com",
+      "answers.grammarly.com",
+      "stage.grammarly.com",
+      "vdeuc-cs2.grammarly.com",
+      "iosapp.grammarly.com",
+      "id.grammarly.com",
+      "chargeback-prevention.grammarly.com",
+      "static.institution.grammarly.com",
+      "contenthub-private.grammarly.com",
+      "institution.grammarly.com",
+      "www.nspl.grammarly.com",
+      "billing-nlb.grammarly.com",
+      "config-qa.extension.grammarly.com",
+      "torii-private.grammarly.com",
+      "api.payments.grammarly.com",
+      "properties.grammarly.com",
+      "in-product-test.report.grammarly.com",
+      "api.grammarly.com",
+      "sandbox.grammarly.com",
+      "gateway.grammarly.com",
+      "www.autoreport.grammarly.com",
+      "in.grammarly.com",
+      "data-internal.grammarly.com",
+      "capi.grammarly.com",
+      "static-id.grammarly.com",
+      "tokenism-private.grammarly.com",
+      "cdn.grammarly.com",
+      "sentinel.grammarly.com",
+      "zoommarly.grammarly.com",
+      "engage.grammarly.com",
+      "denali-static.grammarly.com",
+      "tokenism-relay.grammarly.com",
+      "speak.grammarly.com",
+      "facade-private.grammarly.com",
+      "contenthub-static.grammarly.com",
+      "dashboard.grammarly.com",
+      "sso.grammarly.com",
+      "internal.subscription.private.grammarly.com",
+      "download-editor-predeploy.grammarly.com",
+      "access-manager-private-torii.grammarly.com",
+      "public-internal.redirect.grammarly.com",
+      "account.grammarly.com",
+      "ed.grammarly.com",
+      "redirect.grammarly.com",
+      "geoproximity.bixby-internal.grammarly.com",
+      "login-static.grammarly.com",
+      "billing-ui.grammarly.com",
+      "pages.send.grammarly.com",
+      "brand.grammarly.com",
+      "ua-gec-dataset.grammarly.com",
+      "qa.vox-static.grammarly.com",
+      "access-manager.private.grammarly.com",
+      "capi.private.grammarly.com",
+      "rtmp.zoommarly.grammarly.com",
+      "private-api.payments.grammarly.com",
+      "developers.grammarly.com",
+      "support.grammarly.com",
+      "iosapp-alpha.grammarly.com",
+      "msync-private.grammarly.com",
+      "dc-02.corp.grammarly.com",
+      "vox-static.grammarly.com",
+      "skills-proxy.grammarly.com",
+      "download-editor.grammarly.com",
+      "experiences.grammarly.com",
+      "sentinel.private.grammarly.com",
+      "docs-uxr.grammarly.com",
+      "in-product.report.grammarly.com",
+      "sso-institutions.grammarly.com",
+      "business-tour.grammarly.com",
+      "email.recruiting.grammarly.com",
+      "nspl.grammarly.com",
+      "internal.grammarly.com",
+      "wstest.grammarly.com",
+      "qa.grammarly.com",
+      "billing.grammarly.com",
+      "vdeuc-cs1.grammarly.com",
+      "chipmunk.grammarly.com",
+      "auth.private.grammarly.com",
+      "dox-private.grammarly.com",
+      "mercury.grammarly.com",
+      "static.sensei.grammarly.com",
+      "goldengate.grammarly.com",
+      "contenthub.grammarly.com",
+      "private.login.grammarly.com",
+      "content.grammarly.com",
+      "k8s-capi-green.grammarly.com",
+      "beta.grammarly.com",
+      "tokenism.grammarly.com",
+      "rwsgfy.grammarly.com",
+      "corgi.grammarly.com",
+      "bixby.grammarly.com",
+      "ci.grammarly.com",
+      "3p-access.grammarly.com",
+      "go.grammarly.com",
+      "download-office-predeploy.grammarly.com",
+      "devoxx.grammarly.com",
+      "tech.grammarly.com",
+      "mail.grammarly.com",
+      "staging.grammarly.com",
+      "gstatic.grammarly.com",
+      "api.mise-private.grammarly.com"
+    ],
+    "live_hosts": [
+      {
+        "subdomain": "static-web.grammarly.com",
+        "url": "https://static-web.grammarly.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 3363
+      },
+      {
+        "subdomain": "discount.grammarly.com",
+        "url": "https://discount.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "g-mail.grammarly.com",
+        "url": "https://g-mail.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "fridge.grammarly.com",
+        "url": "https://fridge.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "assets.extension.grammarly.com",
+        "url": "https://assets.extension.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "config.extension.grammarly.com",
+        "url": "https://config.extension.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "url": "https://officeaddin.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 263
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "url": "https://lti-integration.grammarly.com",
+        "status": 200,
+        "title": "LTI Integration",
+        "server": "AmazonS3",
+        "content_length": 547
+      },
+      {
+        "subdomain": "gnar.grammarly.com",
+        "url": "https://gnar.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 45
+      },
+      {
+        "subdomain": "download-mac.grammarly.com",
+        "url": "https://download-mac.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 275
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "url": "https://apps.grammarly.com",
+        "status": 401,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "gate.grammarly.com",
+        "url": "https://gate.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "app.grammarly.com",
+        "url": "https://app.grammarly.com",
+        "status": 200,
+        "title": "Grammarly",
+        "server": "",
+        "content_length": 311537
+      },
+      {
+        "subdomain": "m.grammarly.com",
+        "url": "https://m.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482630
+      },
+      {
+        "subdomain": "invite.grammarly.com",
+        "url": "https://invite.grammarly.com",
+        "status": 200,
+        "title": "Grammarly for Business | AI Writing Assistance for Teams of all Sizes",
+        "server": "",
+        "content_length": 634446
+      },
+      {
+        "subdomain": "download-office.grammarly.com",
+        "url": "https://download-office.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 263
+      },
+      {
+        "subdomain": "verifi-integration.grammarly.com",
+        "url": "https://verifi-integration.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 89
+      },
+      {
+        "subdomain": "datareport.grammarly.com",
+        "url": "https://datareport.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "coda.grammarly.com",
+        "url": "https://coda.grammarly.com",
+        "status": 200,
+        "title": "Grammarly",
+        "server": "",
+        "content_length": 311202
+      },
+      {
+        "subdomain": "applet-bundles-static.grammarly.com",
+        "url": "https://applet-bundles-static.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 71
+      },
+      {
+        "subdomain": "irbis.grammarly.com",
+        "url": "https://irbis.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "update-officeaddin.grammarly.com",
+        "url": "https://update-officeaddin.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 9
+      },
+      {
+        "subdomain": "apps-public.grammarly.com",
+        "url": "https://apps-public.grammarly.com",
+        "status": 401,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "js.grammarly.com",
+        "url": "https://js.grammarly.com",
+        "status": 404,
+        "title": "Not found",
+        "server": "AmazonS3",
+        "content_length": 123
+      },
+      {
+        "subdomain": "authorship.grammarly.com",
+        "url": "https://authorship.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Authorship",
+        "server": "AmazonS3",
+        "content_length": 1498
+      },
+      {
+        "subdomain": "www.blog.grammarly.com",
+        "url": "https://www.blog.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482636
+      },
+      {
+        "subdomain": "gates.grammarly.com",
+        "url": "https://gates.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "skills.grammarly.com",
+        "url": "https://skills.grammarly.com",
+        "status": 503,
+        "title": "503 Service Temporarily Unavailable",
+        "server": "awselb/2.0",
+        "content_length": 162
+      },
+      {
+        "subdomain": "events.grammarly.com",
+        "url": "https://events.grammarly.com",
+        "status": 200,
+        "title": "Goldcast",
+        "server": "cloudflare",
+        "content_length": 7970
+      },
+      {
+        "subdomain": "treatment.grammarly.com",
+        "url": "https://treatment.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "login.grammarly.com",
+        "url": "https://login.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "developer.grammarly.com",
+        "url": "https://developer.grammarly.com",
+        "status": 200,
+        "title": "Introduction | API Documentation",
+        "server": "AmazonS3",
+        "content_length": 22490
+      },
+      {
+        "subdomain": "capi-msdk.grammarly.com",
+        "url": "https://capi-msdk.grammarly.com",
+        "status": 404,
+        "title": "Error 404 No endpoint GET /.",
+        "server": "",
+        "content_length": 378
+      },
+      {
+        "subdomain": "subscription.grammarly.com",
+        "url": "https://subscription.grammarly.com",
+        "status": 401,
+        "title": "",
+        "server": "",
+        "content_length": 34
+      },
+      {
+        "subdomain": "stripe-integration.grammarly.com",
+        "url": "https://stripe-integration.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "tokens.grammarly.com",
+        "url": "https://tokens.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "data.grammarly.com",
+        "url": "https://data.grammarly.com",
+        "status": 404,
+        "title": "Error 404 Not Found",
+        "server": "",
+        "content_length": 423
+      },
+      {
+        "subdomain": "static.grammarly.com",
+        "url": "https://static.grammarly.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 3363
+      },
+      {
+        "subdomain": "update-windows.grammarly.com",
+        "url": "https://update-windows.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 9
+      },
+      {
+        "subdomain": "click.notification.grammarly.com",
+        "url": "https://click.notification.grammarly.com",
+        "status": 400,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "research.grammarly.com",
+        "url": "https://research.grammarly.com",
+        "status": 404,
+        "title": "Great Question",
+        "server": "cloudflare",
+        "content_length": 24801
+      },
+      {
+        "subdomain": "autoreport.grammarly.com",
+        "url": "https://autoreport.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482636
+      },
+      {
+        "subdomain": "partners.grammarly.com",
+        "url": "https://partners.grammarly.com",
+        "status": 200,
+        "title": "Superhuman",
+        "server": "",
+        "content_length": 45346
+      },
+      {
+        "subdomain": "assets.grammarly.com",
+        "url": "https://assets.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "hello.grammarly.com",
+        "url": "https://hello.grammarly.com",
+        "status": 204,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "click.send.grammarly.com",
+        "url": "https://click.send.grammarly.com",
+        "status": 403,
+        "title": "403 - Forbidden: Access is denied.",
+        "server": "",
+        "content_length": 1233
+      },
+      {
+        "subdomain": "demo.grammarly.com",
+        "url": "https://demo.grammarly.com",
+        "status": 200,
+        "title": "Grammarly",
+        "server": "nginx",
+        "content_length": 21941
+      },
+      {
+        "subdomain": "handbook.grammarly.com",
+        "url": "https://handbook.grammarly.com",
+        "status": 200,
+        "title": "Your Go-To Guide for English Grammar | Grammarly",
+        "server": "",
+        "content_length": 278900
+      },
+      {
+        "subdomain": "status.grammarly.com",
+        "url": "https://status.grammarly.com",
+        "status": 200,
+        "title": "Service Status | Grammarly Status",
+        "server": "AtlassianEdge",
+        "content_length": 66986
+      },
+      {
+        "subdomain": "auth.grammarly.com",
+        "url": "https://auth.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "download-windows.grammarly.com",
+        "url": "https://download-windows.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 263
+      },
+      {
+        "subdomain": "blog.grammarly.com",
+        "url": "https://blog.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Blog",
+        "server": "nginx/1.28.0",
+        "content_length": 169308
+      },
+      {
+        "subdomain": "download-bundle.grammarly.com",
+        "url": "https://download-bundle.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 275
+      },
+      {
+        "subdomain": "view.send.grammarly.com",
+        "url": "https://view.send.grammarly.com",
+        "status": 200,
+        "title": "Error",
+        "server": "",
+        "content_length": 932
+      },
+      {
+        "subdomain": "www.grammarly.com",
+        "url": "https://www.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483132
+      },
+      {
+        "subdomain": "image.send.grammarly.com",
+        "url": "https://image.send.grammarly.com",
+        "status": 403,
+        "title": "Access Denied",
+        "server": "AkamaiGHost",
+        "content_length": 380
+      },
+      {
+        "subdomain": "iosapp-beta.grammarly.com",
+        "url": "https://iosapp-beta.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Editor requires an update",
+        "server": "awselb/2.0",
+        "content_length": 1181
+      },
+      {
+        "subdomain": "static.fridge.grammarly.com",
+        "url": "https://static.fridge.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 263
+      },
+      {
+        "subdomain": "msync.grammarly.com",
+        "url": "https://msync.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "knowledge.grammarly.com",
+        "url": "https://knowledge.grammarly.com",
+        "status": 200,
+        "title": "Knowledgeshare",
+        "server": "AmazonS3",
+        "content_length": 484
+      },
+      {
+        "subdomain": "click.grammarly.com",
+        "url": "https://click.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483634
+      },
+      {
+        "subdomain": "apps-uploads.grammarly.com",
+        "url": "https://apps-uploads.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 298
+      },
+      {
+        "subdomain": "dox.grammarly.com",
+        "url": "https://dox.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "nginx-clojure",
+        "content_length": 52
+      },
+      {
+        "subdomain": "applet-bundles.grammarly.com",
+        "url": "https://applet-bundles.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "CloudFront",
+        "content_length": 0
+      },
+      {
+        "subdomain": "answers.grammarly.com",
+        "url": "https://answers.grammarly.com",
+        "status": 200,
+        "title": "Your Go-To Guide for English Grammar | Grammarly",
+        "server": "",
+        "content_length": 283496
+      },
+      {
+        "subdomain": "iosapp.grammarly.com",
+        "url": "https://iosapp.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Editor requires an update",
+        "server": "awselb/2.0",
+        "content_length": 1181
+      },
+      {
+        "subdomain": "chargeback-prevention.grammarly.com",
+        "url": "https://chargeback-prevention.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "id.grammarly.com",
+        "url": "https://id.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483132
+      },
+      {
+        "subdomain": "static.institution.grammarly.com",
+        "url": "https://static.institution.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 243
+      },
+      {
+        "subdomain": "config-qa.extension.grammarly.com",
+        "url": "https://config-qa.extension.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "www.nspl.grammarly.com",
+        "url": "https://www.nspl.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482628
+      },
+      {
+        "subdomain": "api.payments.grammarly.com",
+        "url": "https://api.payments.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "properties.grammarly.com",
+        "url": "https://properties.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "api.grammarly.com",
+        "url": "https://api.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "gateway.grammarly.com",
+        "url": "https://gateway.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "in.grammarly.com",
+        "url": "https://in.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 31
+      },
+      {
+        "subdomain": "www.autoreport.grammarly.com",
+        "url": "https://www.autoreport.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483154
+      },
+      {
+        "subdomain": "capi.grammarly.com",
+        "url": "https://capi.grammarly.com",
+        "status": 404,
+        "title": "Error 404 No endpoint GET /.",
+        "server": "",
+        "content_length": 373
+      },
+      {
+        "subdomain": "engage.grammarly.com",
+        "url": "https://engage.grammarly.com",
+        "status": 403,
+        "title": "Access Denied",
+        "server": "AkamaiGHost",
+        "content_length": 372
+      },
+      {
+        "subdomain": "contenthub-static.grammarly.com",
+        "url": "https://contenthub-static.grammarly.com",
+        "status": 200,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 3363
+      },
+      {
+        "subdomain": "denali-static.grammarly.com",
+        "url": "https://denali-static.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "sso.grammarly.com",
+        "url": "https://sso.grammarly.com",
+        "status": 403,
+        "title": "403 Forbidden",
+        "server": "awselb/2.0",
+        "content_length": 118
+      },
+      {
+        "subdomain": "ed.grammarly.com",
+        "url": "https://ed.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482636
+      },
+      {
+        "subdomain": "redirect.grammarly.com",
+        "url": "https://redirect.grammarly.com",
+        "status": 200,
+        "title": "Grammarly",
+        "server": "",
+        "content_length": 311521
+      },
+      {
+        "subdomain": "account.grammarly.com",
+        "url": "https://account.grammarly.com",
+        "status": 200,
+        "title": "Login | Grammarly",
+        "server": "",
+        "content_length": 311461
+      },
+      {
+        "subdomain": "login-static.grammarly.com",
+        "url": "https://login-static.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "pages.send.grammarly.com",
+        "url": "https://pages.send.grammarly.com",
+        "status": 403,
+        "title": "403 - Forbidden: Access is denied.",
+        "server": "",
+        "content_length": 1233
+      },
+      {
+        "subdomain": "brand.grammarly.com",
+        "url": "https://brand.grammarly.com",
+        "status": 200,
+        "title": "Login - Grammarly",
+        "server": "frontify",
+        "content_length": 13031
+      },
+      {
+        "subdomain": "support.grammarly.com",
+        "url": "https://support.grammarly.com",
+        "status": 403,
+        "title": "Just a moment...",
+        "server": "cloudflare",
+        "content_length": 6982
+      },
+      {
+        "subdomain": "iosapp-alpha.grammarly.com",
+        "url": "https://iosapp-alpha.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 111
+      },
+      {
+        "subdomain": "experiences.grammarly.com",
+        "url": "https://experiences.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 6823
+      },
+      {
+        "subdomain": "download-editor.grammarly.com",
+        "url": "https://download-editor.grammarly.com",
+        "status": 403,
+        "title": "",
+        "server": "AmazonS3",
+        "content_length": 275
+      },
+      {
+        "subdomain": "business-tour.grammarly.com",
+        "url": "https://business-tour.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Product Tour",
+        "server": "AmazonS3",
+        "content_length": 1446
+      },
+      {
+        "subdomain": "email.recruiting.grammarly.com",
+        "url": "https://email.recruiting.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 19
+      },
+      {
+        "subdomain": "wstest.grammarly.com",
+        "url": "https://wstest.grammarly.com",
+        "status": 426,
+        "title": "",
+        "server": "",
+        "content_length": 16
+      },
+      {
+        "subdomain": "nspl.grammarly.com",
+        "url": "https://nspl.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 482636
+      },
+      {
+        "subdomain": "goldengate.grammarly.com",
+        "url": "https://goldengate.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "",
+        "content_length": 36
+      },
+      {
+        "subdomain": "rwsgfy.grammarly.com",
+        "url": "https://rwsgfy.grammarly.com",
+        "status": 200,
+        "title": "",
+        "server": "",
+        "content_length": 0
+      },
+      {
+        "subdomain": "content.grammarly.com",
+        "url": "https://content.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483138
+      },
+      {
+        "subdomain": "3p-access.grammarly.com",
+        "url": "https://3p-access.grammarly.com",
+        "status": 404,
+        "title": "",
+        "server": "awselb/2.0",
+        "content_length": 9
+      },
+      {
+        "subdomain": "go.grammarly.com",
+        "url": "https://go.grammarly.com",
+        "status": 200,
+        "title": "Grammarly: Free AI Writing Assistance",
+        "server": "",
+        "content_length": 483138
+      },
+      {
+        "subdomain": "tech.grammarly.com",
+        "url": "https://tech.grammarly.com",
+        "status": 200,
+        "title": "Grammarly Engineering Blog",
+        "server": "nginx/1.28.0",
+        "content_length": 85409
+      }
+    ],
+    "content_findings": [
+      {
+        "subdomain": "config.extension.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.extension.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.extension.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.extension.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "config.extension.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "discount.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "discount.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "discount.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "discount.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "discount.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "discount.grammarly.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 16,
+        "preview": ""
+      },
+      {
+        "subdomain": "discount.grammarly.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "g-mail.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "g-mail.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "assets.extension.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "assets.extension.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "assets.extension.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "assets.extension.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "assets.extension.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 111,
+        "preview": ""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.env",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.git/config",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.git/HEAD",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/admin",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/api",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/api/v1",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/graphql",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/graphiql",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/swagger-ui.html",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/swagger-ui/",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/api-docs",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/actuator/env",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/actuator/health",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/actuator/info",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/debug",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/console",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/metrics",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/prometheus",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 547,
+        "preview": ""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/status",
+        "status": 200,
+        "content_length": 547,
+        "preview": ""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/info",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/config",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/_debug",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/__debug__",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/internal",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/test",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 547,
+        "preview": ""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/sitemap.xml",
+        "status": 200,
+        "content_length": 547,
+        "preview": ""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/crossdomain.xml",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/server-status",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/server-info",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.DS_Store",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/wp-admin",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/wp-login.php",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/phpinfo.php",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "lti-integration.grammarly.com",
+        "path": "/.htaccess",
+        "status": 200,
+        "content_length": 547,
+        "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>LTI Integration</title>\n    <base href=\"/\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\""
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 263,
+        "preview": ""
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "officeaddin.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 243,
+        "preview": ""
+      },
+      {
+        "subdomain": "fridge.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "fridge.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "fridge.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "fridge.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "fridge.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "app.grammarly.com",
+        "path": "/openapi.json",
+        "status": 200,
+        "content_length": 21925,
+        "preview": "<!doctype html><html lang=\"en\" translate=\"no\" class=\"height100\"><style>.height100 { height: 100%; } :root { --100vh: 100vh; }</style><head><meta charset=\"utf-8\"/><meta http-equiv=\"X-UA-Compatible\" con"
+      },
+      {
+        "subdomain": "app.grammarly.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 42,
+        "preview": ""
+      },
+      {
+        "subdomain": "gate.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "gate.grammarly.com",
+        "path": "/.git/config",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "gate.grammarly.com",
+        "path": "/admin",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "gate.grammarly.com",
+        "path": "/graphql",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "gate.grammarly.com",
+        "path": "/actuator/env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "gate.grammarly.com",
+        "path": "/health",
+        "status": 200,
+        "content_length": 16,
+        "preview": ""
+      },
+      {
+        "subdomain": "m.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "invite.grammarly.com",
+        "path": "/.env",
+        "status": 403,
+        "content_length": 118,
+        "preview": ""
+      },
+      {
+        "subdomain": "gnar.grammarly.com",
+        "path": "/robots.txt",
+        "status": 200,
+        "content_length": 25,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/.env",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/.git/config",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/.git/HEAD",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/admin",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/api",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/api/v1",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/graphql",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/graphiql",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/swagger-ui.html",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/swagger-ui/",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/api-docs",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/openapi.json",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/.well-known/openid-configuration",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/actuator/env",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/actuator/health",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/actuator/info",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/debug",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/console",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/metrics",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/status",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/info",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/config",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/_debug",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/__debug__",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/internal",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/test",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/robots.txt",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/sitemap.xml",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/crossdomain.xml",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/server-status",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/server-info",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/.DS_Store",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/wp-admin",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/wp-login.php",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/phpinfo.php",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      },
+      {
+        "subdomain": "apps.grammarly.com",
+        "path": "/.htaccess",
+        "status": 401,
+        "content_length": 0,
+        "preview": ""
+      }
+    ],
+    "takeover_candidates": [
+      {
+        "subdomain": "static-id.grammarly.com",
+        "service": "cloudfront.net",
+        "detail": "Server:  UnKnown\nAddress:  fe80::42ed:ff:fe79:e4ba\n\nstatic-id.grammarly.com\tcanonical name = d1fziggc3ugjm3.cloudfront.net\n"
+      }
+    ],
+    "s3_findings": []
+  }
+}

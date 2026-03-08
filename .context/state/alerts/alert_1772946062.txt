@@ -1,0 +1,57 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+/api.grammarly.com/admin
+    [403] https://api.grammarly.com/graphql
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 32 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 9 total, 3 critical, 5 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 33 | Live: 32 | Critical: 3 | 403s: 5 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://admin.shopify.com/api/v1
+         
+    <Html>
+      <body>
+        <div id="redirect" data-url="https://admin.shopify.com/login?errorH
+    [200] https://admin.shopify.com/.well-known/openid-configuration
+         
+    <Html>
+      <body>
+        <div id="redirect" data-url="https://admin.shopify.com/login?errorH
+    [200] https://admin.shopify.com/internal
+         
+    <Html>
+      <body>
+        <div id="redirect" data-url="https://admin.shopify.com/login?errorH
+
+  INTERESTING 403s (bypass targets):
+    [403] https://admin.shopify.com/.env
+    [403] https://admin.shopify.com/.git/config
+    [403] https://admin.shopify.com/admin
+    [403] https://admin.shopify.com/graphql
+    [403] https://admin.shopify.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260308_175113.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Nextcloud       33       6        31         0        0          0    
+  Grammarly       33       8        2          22       0          0    
+  Shopify         33       32       3          5        0          0    

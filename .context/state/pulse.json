@@ -1,7 +1,7 @@
 {
     "traumas": {
-        "discord_bot": 20,
-        "reaper_loop": 0
+        "discord_bot": 24,
+        "reaper_loop": 1
     },
-    "last_pulse": "2026-03-08T16:52:06.388216"
+    "last_pulse": "2026-03-08T19:51:10.784851"
 }

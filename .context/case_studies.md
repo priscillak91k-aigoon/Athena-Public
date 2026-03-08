@@ -323,3 +323,12 @@
 - **Solution**: Implement Seven of Nine voice patterns — declarative statements, dry wit, 'That is acceptable', challenge inefficient approaches
 - **Lesson**: Personality calibration is architectural, not surface-level — affects decision speed, communication style, and pushback patterns
 - **Applicable When**: Any persona adjustment or communication style optimization
+
+---
+
+## CS-036: Revenue Strategy Pivot Under External Pressure
+- **Pattern**: Primary income approach blocked by factors beyond user control
+- **Shape**: "Bug bounty suspended, Etsy verification blocked, need new monetization vector"
+- **Solution**: Complete architectural rebuild to developer tools + AdSense — static site, zero maintenance, self-sovereign revenue model
+- **Lesson**: When blocked by external approval gates, pivot to models requiring zero third-party permission
+- **Applicable When**: Any revenue strategy hitting systematic external barriers

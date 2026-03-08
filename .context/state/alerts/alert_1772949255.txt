@@ -1,0 +1,53 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+fastly.net
+    app.imgur.com → fastly.net
+    git.imgur.com → fastly.net
+    press.imgur.com → fastly.net
+    dev.imgur.com → fastly.net
+    an.imgur.com → fastly.net
+    zrk.imgur.com → fastly.net
+    ops.imgur.com → fastly.net
+    8ybhy85kld9zp9xf84x6.imgur.com → fastly.net
+
+============================================================
+  SCANNING: Postman (postman.com) — Max bounty: $3000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 136 subdomains
+      Total (with patterns): 166
+  [2] DNS resolution + HTTP probing...
+      Live: 73 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 21 total, 0 critical, 15 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Postman SUMMARY ---
+  Subdomains: 166 | Live: 73 | Critical: 0 | 403s: 15 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://blog.postman.com/.env
+    [403] https://blog.postman.com/.git/config
+    [403] https://blog.postman.com/admin
+    [403] https://blog.postman.com/graphql
+    [403] https://blog.postman.com/actuator/env
+    [403] https://aws-marketplace.postman.com/.env
+    [403] https://aws-marketplace.postman.com/.git/config
+    [403] https://aws-marketplace.postman.com/admin
+    [403] https://aws-marketplace.postman.com/graphql
+    [403] https://aws-marketplace.postman.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260308_183050.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Nextcloud       284      55       3          0        0          0    
+  Imgur           61       44       89         3        14         0    
+  Postman         166      73       0          15       0          0    
