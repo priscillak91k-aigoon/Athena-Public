@@ -283,14 +283,20 @@
             <!-- Today's View (Readonly Week Schedule) -->
             <section id="today" class="tab-content glass-panel">
                 <div class="section-header">
-                    <h2><span class="icon">ðŸ“…</span> Weekly Schedule</h2>
+                    <h2><span class="icon">&#128197;</span> Weekly Schedule</h2>
                     <p class="sub-text">Read-only view of your planned week. Edit in Planner.</p>
                 </div>
                 <!-- Colour Legend -->
                 <div style="display:flex; gap:1rem; margin-bottom:1rem; font-size:0.82rem; flex-wrap:wrap;">
-                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ef4444;margin-right:4px;"></span><strong>Red</strong> Routine</span>
-                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#f97316;margin-right:4px;"></span><strong>Orange</strong> Recurring</span>
-                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#a855f7;margin-right:4px;"></span><strong>Purple</strong> One-off</span>
+                    <span><span
+                            style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ef4444;margin-right:4px;"></span><strong>Red</strong>
+                        Routine</span>
+                    <span><span
+                            style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#f97316;margin-right:4px;"></span><strong>Orange</strong>
+                        Recurring</span>
+                    <span><span
+                            style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#a855f7;margin-right:4px;"></span><strong>Purple</strong>
+                        One-off</span>
                 </div>
                 <div id="schedule-week-grid" style="overflow-x:auto;"></div>
             </section>
@@ -498,7 +504,8 @@
                         <!-- Max Savings Potential -->
                         <div
                             style="margin-top: 1rem; padding: 1rem; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); text-align: center;">
-                            <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">ðŸ¦
+                            <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">
+                                ðŸ¦
                                 Max Savings Potential / Year</div>
                             <div style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 0.15rem;">(if you
                                 only paid essentials)</div>
@@ -521,20 +528,29 @@
             <!-- Planner (Editable 7-day grid) -->
             <section id="planner" class="tab-content glass-panel">
                 <div class="section-header">
-                    <h2><span class="icon">ðŸ—“ï¸</span> Planner</h2>
-                    <p class="sub-text">Plan your week. Drag tasks onto day + time slots. Changes appear instantly on Schedule.</p>
+                    <h2><span class="icon">&#128197;</span> Planner</h2>
+                    <p class="sub-text">Plan your week. Drag tasks onto day + time slots. Changes appear instantly on
+                        Schedule.</p>
                 </div>
 
                 <!-- Colour Legend -->
                 <div style="display:flex; gap:1rem; margin-bottom:1rem; font-size:0.82rem; flex-wrap:wrap;">
-                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ef4444;margin-right:4px;"></span><strong>Red</strong> Routine (always shows)</span>
-                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#f97316;margin-right:4px;"></span><strong>Orange</strong> Recurring task</span>
-                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#a855f7;margin-right:4px;"></span><strong>Purple</strong> One-off event</span>
+                    <span><span
+                            style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ef4444;margin-right:4px;"></span><strong>Red</strong>
+                        Routine (always shows)</span>
+                    <span><span
+                            style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#f97316;margin-right:4px;"></span><strong>Orange</strong>
+                        Recurring task</span>
+                    <span><span
+                            style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#a855f7;margin-right:4px;"></span><strong>Purple</strong>
+                        One-off event</span>
                 </div>
 
                 <!-- Add Task Panel -->
-                <div style="background: rgba(0,0,0,0.25); border:1px solid var(--glass-border); border-radius:6px; padding:1rem; margin-bottom:1.25rem;">
-                    <h3 style="margin:0 0 0.75rem 0; font-size:0.95rem; color:var(--accent-yellow);">âž• Add Task to Pool</h3>
+                <div
+                    style="background: rgba(0,0,0,0.25); border:1px solid var(--glass-border); border-radius:6px; padding:1rem; margin-bottom:1.25rem;">
+                    <h3 style="margin:0 0 0.75rem 0; font-size:0.95rem; color:var(--accent-yellow);">+ Add Task to Pool
+                    </h3>
                     <div style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:flex-end;">
                         <input type="text" id="planner-task-title" placeholder="Task name..."
                             style="flex:2 1 180px; padding:0.4rem 0.6rem; background:rgba(0,0,0,0.3); border:2px inset var(--win-shadow); color:#fff; font-family:'VT323',monospace; font-size:1rem;">
@@ -553,10 +569,12 @@
 
                 <!-- Task Pool -->
                 <div style="margin-bottom:1.25rem;">
-                    <h3 style="margin:0 0 0.5rem 0; font-size:0.9rem; color:var(--text-secondary);">ðŸ“¥ Task Pool â€” drag onto grid</h3>
+                    <h3 style="margin:0 0 0.5rem 0; font-size:0.9rem; color:var(--text-secondary);">[ Task Pool ] drag
+                        onto grid</h3>
                     <div id="planner-task-pool"
                         style="display:flex; flex-wrap:wrap; gap:0.5rem; min-height:48px; padding:0.5rem; background:rgba(0,0,0,0.2); border:1px dashed var(--glass-border); border-radius:4px;">
-                        <div style="color:var(--text-secondary); font-style:italic; font-size:0.9rem;">Loading tasks...</div>
+                        <div style="color:var(--text-secondary); font-style:italic; font-size:0.9rem;">Loading tasks...
+                        </div>
                     </div>
                 </div>
 
@@ -1033,7 +1051,8 @@
                                 <div style="margin-top: 1rem;">
                                     <div class="pool-accordion-header" data-pool="my-foods"
                                         style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                                        <span style="font-weight: 700; color: var(--text-primary); font-size: 0.9rem;">â­
+                                        <span
+                                            style="font-weight: 700; color: var(--text-primary); font-size: 0.9rem;">â­
                                             My Foods</span>
                                         <span style="font-size: 0.8rem;">â–¶</span>
                                     </div>
