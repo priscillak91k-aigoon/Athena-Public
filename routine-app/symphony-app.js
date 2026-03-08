@@ -569,16 +569,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Call fetchReadonlyToday when "today" tab is active.
+    // Call fetchReadonlyToday when "today" tab is active (legacy support - guarded).
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const targetId = btn.getAttribute('data-tab');
-            if (targetId === 'today') fetchReadonlyToday();
+            if (targetId === 'today' && document.getElementById('readonly-timeline')) fetchReadonlyToday();
         });
     });
 
-    // Also call on boot if today tab is selected
-    if (localStorage.getItem('symphony_active_tab') === 'today' || !localStorage.getItem('symphony_active_tab')) {
+    // Also call on boot if today tab is selected (legacy - guarded)
+    if ((localStorage.getItem('symphony_active_tab') === 'today' || !localStorage.getItem('symphony_active_tab')) && document.getElementById('readonly-timeline')) {
         fetchReadonlyToday();
     }
 
@@ -2681,7 +2681,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize View
     // initChart();
     // fetchTasksAndRenderTimeline(); (Now called differently or moved)
-    fetchTasksAndRenderTimeline();
+    // Only run legacy timeline fetch if the old DOM elements exist
+    if (document.getElementById('today-timeline') || document.getElementById('pool-today')) {
+        fetchTasksAndRenderTimeline();
+    }
     // createListItems(dailyCandidates, 'daily-list');
     // createListItems(weeklyMonthly.weekly, 'weekly-list');
     // createListItems(weeklyMonthly.monthly, 'monthly-list');
@@ -4840,7 +4843,7 @@ document.addEventListener('DOMContentLoaded', () => {
             weekDates.forEach((date, i) => {
                 const dateStr = date.toISOString().slice(0, 10);
                 const isToday = dateStr === todayStr;
-                const dayLabel = `${DAYS[i]}<br><small style="font-size:0.7rem; opacity:0.7;">${date.getDate()}/${date.getMonth()+1}</small>`;
+                const dayLabel = `${DAYS[i]}<br><small style="font-size:0.7rem; opacity:0.7;">${date.getDate()}/${date.getMonth() + 1}</small>`;
                 html += `<th style="padding:4px 8px; background:${isToday ? 'rgba(52,211,153,0.15)' : 'rgba(0,0,0,0.3)'}; border:1px solid ${isToday ? 'var(--accent-green)' : 'var(--glass-border)'}; color:${isToday ? 'var(--accent-green)' : 'var(--text-primary)'}; text-align:center; min-width:100px;">${dayLabel}${isToday ? ' <span style="font-size:0.65rem;">TODAY</span>' : ''}</th>`;
             });
             html += `</tr></thead><tbody>`;
@@ -4965,7 +4968,7 @@ document.addEventListener('DOMContentLoaded', () => {
             weekDates.forEach((date, i) => {
                 const dateStr = date.toISOString().slice(0, 10);
                 const isToday = dateStr === todayStr;
-                const label = `${DAYS[i]}<br><small style="font-size:0.7rem; opacity:0.7;">${date.getDate()}/${date.getMonth()+1}</small>`;
+                const label = `${DAYS[i]}<br><small style="font-size:0.7rem; opacity:0.7;">${date.getDate()}/${date.getMonth() + 1}</small>`;
                 html += `<th style="padding:4px 8px; background:${isToday ? 'rgba(52,211,153,0.15)' : 'rgba(0,0,0,0.3)'}; border:1px solid ${isToday ? 'var(--accent-green)' : 'var(--glass-border)'}; color:${isToday ? 'var(--accent-green)' : 'var(--text-primary)'}; text-align:center; min-width:100px;">${label}${isToday ? ' <span style="font-size:0.65rem;">TODAY</span>' : ''}</th>`;
             });
             html += `</tr></thead><tbody>`;
