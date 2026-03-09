@@ -288,9 +288,15 @@
                 </div>
                 <!-- Colour Legend -->
                 <div style="display:flex; gap:1rem; margin-bottom:1rem; font-size:0.82rem; flex-wrap:wrap;">
-                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ef4444;margin-right:4px;"></span><strong>Red</strong> Routine</span>
-                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#f97316;margin-right:4px;"></span><strong>Orange</strong> Recurring</span>
-                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#a855f7;margin-right:4px;"></span><strong>Purple</strong> One-off</span>
+                    <span><span
+                            style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ef4444;margin-right:4px;"></span><strong>Red</strong>
+                        Routine</span>
+                    <span><span
+                            style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#f97316;margin-right:4px;"></span><strong>Orange</strong>
+                        Recurring</span>
+                    <span><span
+                            style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#a855f7;margin-right:4px;"></span><strong>Purple</strong>
+                        One-off</span>
                 </div>
                 <div id="schedule-week-grid" style="overflow-x:auto;"></div>
             </section>
@@ -518,54 +524,157 @@
                 </div>
             </section>
 
-            <!-- Planner (Editable 7-day grid) -->
+            <!-- Planner — Template Editor + Yearly Wall -->
             <section id="planner" class="tab-content glass-panel">
                 <div class="section-header">
                     <h2><span class="icon">🗓️</span> Planner</h2>
-                    <p class="sub-text">Plan your week. Drag tasks onto day + time slots. Changes appear instantly on Schedule.</p>
+                    <p class="sub-text">Set up your weekly template, manage recurring tasks, and plot yearly events.</p>
                 </div>
 
-                <!-- Colour Legend -->
-                <div style="display:flex; gap:1rem; margin-bottom:1rem; font-size:0.82rem; flex-wrap:wrap;">
-                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ef4444;margin-right:4px;"></span><strong>Red</strong> Routine (always shows)</span>
-                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#f97316;margin-right:4px;"></span><strong>Orange</strong> Recurring task</span>
-                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#a855f7;margin-right:4px;"></span><strong>Purple</strong> One-off event</span>
+                <!-- View Toggle -->
+                <div id="planner-view-toggle"
+                    style="display:flex; gap:0.5rem; margin-bottom:1.25rem; font-family:'VT323',monospace;">
+                    <button id="planner-view-template"
+                        style="padding:0.3rem 1.1rem; background:rgba(0,200,160,0.18); border:1px solid var(--accent-green); color:var(--accent-green); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px; font-weight:bold;">📋
+                        Template</button>
+                    <button id="planner-view-yearly"
+                        style="padding:0.3rem 1.1rem; background:transparent; border:1px solid var(--glass-border); color:var(--text-secondary); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px;">📌
+                        Yearly</button>
                 </div>
 
-                <!-- Add Task Panel -->
-                <div style="background: rgba(0,0,0,0.25); border:1px solid var(--glass-border); border-radius:6px; padding:1rem; margin-bottom:1.25rem;">
-                    <h3 style="margin:0 0 0.75rem 0; font-size:0.95rem; color:var(--accent-yellow);">➕ Add Task to Pool</h3>
-                    <div style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:flex-end;">
-                        <input type="text" id="planner-task-title" placeholder="Task name..."
-                            style="flex:2 1 180px; padding:0.4rem 0.6rem; background:rgba(0,0,0,0.3); border:2px inset var(--win-shadow); color:#fff; font-family:'VT323',monospace; font-size:1rem;">
-                        <select id="planner-task-type"
-                            style="padding:0.4rem; background:rgba(0,0,0,0.3); border:2px inset var(--win-shadow); color:#fff; font-family:'VT323',monospace; font-size:1rem;">
-                            <option value="RED">🔴 Routine (Red)</option>
-                            <option value="ORANGE" selected>🟠 Recurring (Orange)</option>
-                            <option value="PURPLE">🟣 One-off (Purple)</option>
-                        </select>
-                        <button id="planner-add-task-btn"
-                            style="padding:0.4rem 1rem; background:rgba(52,211,153,0.2); border:1px solid var(--accent-green); color:var(--accent-green); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; font-weight:bold;">
-                            + Add
-                        </button>
+                <!-- Two-column layout: sidebar + main -->
+                <div class="planner-layout">
+
+                    <!-- Sidebar -->
+                    <aside class="planner-sidebar">
+                        <!-- Mini Month Calendar -->
+                        <div class="planner-sidebar-card">
+                            <h4>📅 Calendar</h4>
+                            <div id="planner-mini-cal"></div>
+                        </div>
+
+                        <!-- Tasks -->
+                        <div class="planner-sidebar-card">
+                            <h4>✅ Tasks</h4>
+                            <input id="planner-task-input" class="sidebar-task-input"
+                                placeholder="Add task, press Enter…" type="text">
+                            <ul id="planner-task-list" class="sidebar-task-list"></ul>
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="planner-sidebar-card">
+                            <h4>📝 Notes</h4>
+                            <textarea id="planner-notes-area" class="sidebar-notes-area"
+                                placeholder="Quick notes…"></textarea>
+                        </div>
+                    </aside>
+
+                    <!-- Main content -->
+                    <div class="planner-main">
+                        <!-- Section: Weekly Template + Recurring Tasks -->
+                        <div id="planner-template-section">
+                            <div id="planner-template-grid"></div>
+                            <div id="planner-recurring-manager" style="margin-top:2rem;"></div>
+                        </div>
+
+                        <!-- Section: Yearly Wall -->
+                        <div id="planner-yearly-section" style="display:none;">
+                            <div id="planner-yearly-grid"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Block Edit Modal -->
+            <div id="block-modal"
+                style="display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
+                <div
+                    style="background:#1a1a2e; border:2px solid var(--accent-green); border-radius:8px; padding:1.5rem; min-width:320px; max-width:420px; font-family:'VT323',monospace;">
+                    <h3 id="block-modal-title" style="margin:0 0 1rem 0; color:var(--accent-yellow); font-size:1.3rem;">
+                        Add Block</h3>
+                    <div style="display:flex; flex-direction:column; gap:0.75rem;">
+                        <input id="block-label" type="text" placeholder="Block name (e.g. Morning Routine)"
+                            style="padding:0.4rem 0.6rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family:'VT323',monospace; font-size:1rem; border-radius:3px;">
+                        <div style="display:flex; gap:0.5rem;">
+                            <div style="flex:1;">
+                                <label style="font-size:0.8rem; color:var(--text-secondary);">Start</label>
+                                <input id="block-start" type="time"
+                                    style="width:100%; padding:0.4rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family:'VT323',monospace; font-size:1rem; border-radius:3px;">
+                            </div>
+                            <div style="flex:1;">
+                                <label style="font-size:0.8rem; color:var(--text-secondary);">End</label>
+                                <input id="block-end" type="time"
+                                    style="width:100%; padding:0.4rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family:'VT323',monospace; font-size:1rem; border-radius:3px;">
+                            </div>
+                        </div>
+                        <div>
+                            <label style="font-size:0.8rem; color:var(--text-secondary);">Colour</label>
+                            <div id="block-colour-picker"
+                                style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:4px;"></div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:0.5rem; margin-top:1.25rem; justify-content:flex-end;">
+                        <button id="block-modal-delete"
+                            style="display:none; padding:0.3rem 0.9rem; background:rgba(239,68,68,0.2); border:1px solid #ef4444; color:#ef4444; font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Delete</button>
+                        <button id="block-modal-cancel"
+                            style="padding:0.3rem 0.9rem; background:rgba(0,0,0,0.3); border:1px solid var(--glass-border); color:var(--text-secondary); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Cancel</button>
+                        <button id="block-modal-save"
+                            style="padding:0.3rem 0.9rem; background:rgba(52,211,153,0.2); border:1px solid var(--accent-green); color:var(--accent-green); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px; font-weight:bold;">Save</button>
                     </div>
                 </div>
+            </div>
 
-                <!-- Task Pool -->
-                <div style="margin-bottom:1.25rem;">
-                    <h3 style="margin:0 0 0.5rem 0; font-size:0.9rem; color:var(--text-secondary);">📥 Task Pool — drag onto grid</h3>
-                    <div id="planner-task-pool"
-                        style="display:flex; flex-wrap:wrap; gap:0.5rem; min-height:48px; padding:0.5rem; background:rgba(0,0,0,0.2); border:1px dashed var(--glass-border); border-radius:4px;">
-                        <div style="color:var(--text-secondary); font-style:italic; font-size:0.9rem;">Loading tasks...</div>
+            <!-- Yearly Event Modal -->
+            <div id="event-modal"
+                style="display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
+                <div
+                    style="background:#1a1a2e; border:2px solid var(--accent-yellow); border-radius:8px; padding:1.5rem; min-width:320px; max-width:420px; font-family:'VT323',monospace;">
+                    <h3 id="event-modal-title" style="margin:0 0 1rem 0; color:var(--accent-yellow); font-size:1.3rem;">
+                        Add Event</h3>
+                    <div style="display:flex; flex-direction:column; gap:0.75rem;">
+                        <div style="display:flex; gap:0.5rem; align-items:center;">
+                            <select id="event-emoji"
+                                style="padding:0.4rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family:'VT323',monospace; font-size:1.1rem; border-radius:3px; width:70px;">
+                                <option>🎂</option>
+                                <option>✈️</option>
+                                <option>❤️</option>
+                                <option>⭐</option>
+                                <option>🎉</option>
+                                <option>💼</option>
+                                <option>🏥</option>
+                                <option>🎓</option>
+                                <option>🏖️</option>
+                                <option>📅</option>
+                            </select>
+                            <input id="event-label" type="text" placeholder="Event name"
+                                style="flex:1; padding:0.4rem 0.6rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family:'VT323',monospace; font-size:1rem; border-radius:3px;">
+                        </div>
+                        <div>
+                            <label style="font-size:0.8rem; color:var(--text-secondary);">Colour</label>
+                            <div id="event-colour-picker"
+                                style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:4px;"></div>
+                        </div>
+                        <div style="display:flex; gap:1rem; align-items:center;">
+                            <label style="font-size:0.9rem; color:var(--text-secondary);">Repeat annually?</label>
+                            <input id="event-annual" type="checkbox" style="width:16px; height:16px; cursor:pointer;">
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:0.5rem; margin-top:1.25rem; justify-content:flex-end;">
+                        <button id="event-modal-delete"
+                            style="display:none; padding:0.3rem 0.9rem; background:rgba(239,68,68,0.2); border:1px solid #ef4444; color:#ef4444; font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Delete</button>
+                        <button id="event-modal-cancel"
+                            style="padding:0.3rem 0.9rem; background:rgba(0,0,0,0.3); border:1px solid var(--glass-border); color:var(--text-secondary); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Cancel</button>
+                        <button id="event-modal-save"
+                            style="padding:0.3rem 0.9rem; background:rgba(249,115,22,0.2); border:1px solid #f97316; color:#f97316; font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px; font-weight:bold;">Save</button>
                     </div>
                 </div>
-
-                <!-- 7-Day Planning Grid -->
-                <div id="planner-week-grid" style="overflow-x:auto;"></div>
+            </div>
 
             </section>
 
-            <!-- Dog Protocol View -->
+
+
             <section id="dog" class="tab-content glass-panel">
                 <div class="section-header">
                     <h2><span class="icon">🐶</span> Quinny's Page</h2>
@@ -1521,6 +1630,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="retro-audio.js"></script>
     <script src="symphony-app.js?v=5"></script>
+    <script src="_planner_v2.js?v=1"></script>
+    <script src="_planner_sidebar.js?v=1"></script>
 
     <!-- Standalone Quinny handlers (runs independently of main script) -->
     <script>

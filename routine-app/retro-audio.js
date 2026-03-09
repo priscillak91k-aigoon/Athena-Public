@@ -1,6 +1,6 @@
 // ============================
-// 🎮 RETRO AUDIO ENGINE v2
-// Multi-Track Chiptune Playlist + 90s SFX
+// 🌿 AMBIENT AUDIO ENGINE v3
+// Calming ambient BGM + soft UI sounds
 // ============================
 
 let retroAudioCtx = null;
@@ -10,215 +10,160 @@ let masterGain = null;
 let currentTrackIdx = 0;
 let loopTimer = null;
 
-// --- Track Definitions (all lower octave, warm tones) ---
-const TRACKS = [
+// ── Ambient Pad Engine ────────────────────────────────────────
+// Uses:  sine-wave sustained chord layers, slow movement,
+//        a feedback delay for warmth, and low-pass filter for haze.
 
-    // Track 1: "Chill Explorer" — Relaxed adventure vibe (Grounded-style)
+const AMBIENT_TRACKS = [
     {
-        name: 'Chill Explorer',
-        bpm: 95,
-        melodyWave: 'square',
-        bassWave: 'triangle',
-        melody: [
-            196.00, 0, 220.00, 0, 261.63, 0, 220.00, 0,
-            196.00, 0, 174.61, 0, 196.00, 0, 0, 0,
-            220.00, 0, 261.63, 0, 293.66, 0, 261.63, 0,
-            220.00, 0, 196.00, 0, 174.61, 0, 0, 0,
-            261.63, 0, 293.66, 0, 329.63, 0, 293.66, 0,
-            261.63, 0, 220.00, 0, 196.00, 0, 0, 0,
-            174.61, 0, 196.00, 0, 220.00, 0, 261.63, 0,
-            293.66, 0, 261.63, 0, 0, 0, 0, 0,
+        name: 'Northern Light',
+        // D minor pentatonic — slow, airy, wide
+        chords: [
+            [146.83, 220.00, 293.66],   // Dm
+            [164.81, 220.00, 329.63],   // F
+            [174.61, 261.63, 349.23],   // G
+            [146.83, 220.00, 293.66],   // Dm
         ],
-        bass: [
-            98.00, 0, 0, 0, 110.00, 0, 0, 0,
-            130.81, 0, 0, 0, 98.00, 0, 0, 0,
-            110.00, 0, 0, 0, 130.81, 0, 0, 0,
-            146.83, 0, 0, 0, 110.00, 0, 0, 0,
-            130.81, 0, 0, 0, 146.83, 0, 0, 0,
-            164.81, 0, 0, 0, 130.81, 0, 0, 0,
-            98.00, 0, 0, 0, 110.00, 0, 0, 0,
-            130.81, 0, 0, 0, 0, 0, 0, 0,
-        ]
+        melody: [587.33, 659.25, 698.46, 587.33, 523.25, 493.88, 523.25, 587.33],
+        barLen: 6.0,           // seconds per chord
+        melStepLen: 3.0
     },
-
-    // Track 2: "90s Desktop" — Windows 95 / SimCity vibe
     {
-        name: '90s Desktop',
-        bpm: 105,
-        melodyWave: 'triangle',
-        bassWave: 'square',
-        melody: [
-            174.61, 0, 196.00, 196.00, 220.00, 0, 174.61, 0,
-            146.83, 0, 164.81, 164.81, 196.00, 0, 0, 0,
-            220.00, 0, 246.94, 246.94, 261.63, 0, 220.00, 0,
-            196.00, 0, 174.61, 0, 164.81, 0, 0, 0,
-            146.83, 0, 174.61, 174.61, 196.00, 0, 220.00, 0,
-            246.94, 0, 261.63, 0, 220.00, 0, 0, 0,
-            196.00, 0, 174.61, 0, 164.81, 0, 196.00, 0,
-            220.00, 0, 0, 0, 0, 0, 0, 0,
+        name: 'Deep Water',
+        // C pentatonic — very low, deep
+        chords: [
+            [130.81, 196.00, 261.63],
+            [146.83, 220.00, 293.66],
+            [123.47, 185.00, 246.94],
+            [130.81, 196.00, 261.63],
         ],
-        bass: [
-            87.31, 0, 0, 0, 0, 0, 87.31, 0,
-            98.00, 0, 0, 0, 0, 0, 98.00, 0,
-            110.00, 0, 0, 0, 0, 0, 110.00, 0,
-            130.81, 0, 0, 0, 0, 0, 130.81, 0,
-            87.31, 0, 0, 0, 0, 0, 87.31, 0,
-            98.00, 0, 0, 0, 0, 0, 98.00, 0,
-            110.00, 0, 0, 0, 0, 0, 110.00, 0,
-            130.81, 0, 0, 0, 0, 0, 0, 0,
-        ]
+        melody: [523.25, 587.33, 523.25, 493.88, 440.00, 493.88, 523.25, 587.33],
+        barLen: 7.0,
+        melStepLen: 3.5
     },
-
-    // Track 3: "Sunset Groove" — Warm, mellow (harvest moon feel)
     {
-        name: 'Sunset Groove',
-        bpm: 88,
-        melodyWave: 'triangle',
-        bassWave: 'sine',
-        melody: [
-            164.81, 164.81, 0, 196.00, 220.00, 0, 0, 0,
-            246.94, 0, 220.00, 0, 196.00, 0, 0, 0,
-            174.61, 174.61, 0, 196.00, 220.00, 0, 261.63, 0,
-            220.00, 0, 196.00, 0, 0, 0, 0, 0,
-            164.81, 0, 0, 196.00, 220.00, 220.00, 0, 0,
-            246.94, 0, 261.63, 0, 220.00, 0, 0, 0,
-            196.00, 0, 174.61, 0, 164.81, 0, 196.00, 0,
-            220.00, 0, 0, 0, 0, 0, 0, 0,
+        name: 'Stillness',
+        // G major pentatonic — open, airy
+        chords: [
+            [196.00, 293.66, 392.00],
+            [220.00, 329.63, 440.00],
+            [246.94, 329.63, 392.00],
+            [196.00, 293.66, 392.00],
         ],
-        bass: [
-            82.41, 0, 0, 0, 0, 0, 82.41, 0,
-            0, 0, 0, 0, 98.00, 0, 0, 0,
-            87.31, 0, 0, 0, 0, 0, 87.31, 0,
-            0, 0, 0, 0, 110.00, 0, 0, 0,
-            82.41, 0, 0, 0, 0, 0, 82.41, 0,
-            0, 0, 0, 0, 98.00, 0, 0, 0,
-            110.00, 0, 0, 0, 0, 0, 110.00, 0,
-            0, 0, 0, 0, 0, 0, 0, 0,
-        ]
-    },
-
-    // Track 4: "Pixel Quest" — Upbeat but warm (Zelda/RPG town)
-    {
-        name: 'Pixel Quest',
-        bpm: 112,
-        melodyWave: 'square',
-        bassWave: 'triangle',
-        melody: [
-            196.00, 0, 220.00, 0, 246.94, 0, 293.66, 0,
-            261.63, 0, 0, 0, 220.00, 0, 0, 0,
-            196.00, 0, 174.61, 0, 196.00, 0, 220.00, 0,
-            261.63, 0, 0, 0, 0, 0, 0, 0,
-            293.66, 0, 261.63, 0, 220.00, 0, 196.00, 0,
-            220.00, 0, 261.63, 0, 293.66, 0, 0, 0,
-            246.94, 0, 220.00, 0, 196.00, 0, 174.61, 0,
-            196.00, 0, 0, 0, 0, 0, 0, 0,
-        ],
-        bass: [
-            98.00, 0, 0, 0, 110.00, 0, 0, 0,
-            130.81, 0, 0, 0, 110.00, 0, 0, 0,
-            98.00, 0, 0, 0, 87.31, 0, 0, 0,
-            110.00, 0, 0, 0, 0, 0, 0, 0,
-            130.81, 0, 0, 0, 146.83, 0, 0, 0,
-            110.00, 0, 0, 0, 130.81, 0, 0, 0,
-            98.00, 0, 0, 0, 87.31, 0, 0, 0,
-            98.00, 0, 0, 0, 0, 0, 0, 0,
-        ]
-    },
-
-    // Track 5: "Cozy Basement" — Lo-fi retro (Earthbound vibes)
-    {
-        name: 'Cozy Basement',
-        bpm: 80,
-        melodyWave: 'triangle',
-        bassWave: 'triangle',
-        melody: [
-            146.83, 0, 0, 164.81, 0, 0, 196.00, 0,
-            0, 0, 220.00, 0, 0, 0, 0, 0,
-            196.00, 0, 0, 174.61, 0, 0, 164.81, 0,
-            0, 0, 146.83, 0, 0, 0, 0, 0,
-            174.61, 0, 0, 196.00, 0, 0, 220.00, 0,
-            0, 0, 246.94, 0, 0, 0, 0, 0,
-            220.00, 0, 0, 196.00, 0, 0, 174.61, 0,
-            0, 0, 146.83, 0, 0, 0, 0, 0,
-        ],
-        bass: [
-            73.42, 0, 0, 0, 0, 0, 0, 0,
-            82.41, 0, 0, 0, 0, 0, 0, 0,
-            87.31, 0, 0, 0, 0, 0, 0, 0,
-            98.00, 0, 0, 0, 0, 0, 0, 0,
-            73.42, 0, 0, 0, 0, 0, 0, 0,
-            82.41, 0, 0, 0, 0, 0, 0, 0,
-            87.31, 0, 0, 0, 0, 0, 0, 0,
-            98.00, 0, 0, 0, 0, 0, 0, 0,
-        ]
+        melody: [784.00, 880.00, 784.00, 698.46, 659.25, 698.46, 784.00, 880.00],
+        barLen: 8.0,
+        melStepLen: 4.0
     }
 ];
 
-// --- Chiptune Playlist Player ---
-function playTrack(trackIdx) {
+// Build a reverb-like convolver from a noise impulse
+function createReverb(ctx, duration = 2.5, decay = 2.0) {
+    const sr = ctx.sampleRate;
+    const length = sr * duration;
+    const impulse = ctx.createBuffer(2, length, sr);
+    for (let c = 0; c < 2; c++) {
+        const data = impulse.getChannelData(c);
+        for (let i = 0; i < length; i++) {
+            data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, decay);
+        }
+    }
+    const conv = ctx.createConvolver();
+    conv.buffer = impulse;
+    return conv;
+}
+
+function playAmbientTrack(trackIdx) {
     if (!retroAudioCtx) retroAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const ctx = retroAudioCtx;
-    const track = TRACKS[trackIdx % TRACKS.length];
+    const track = AMBIENT_TRACKS[trackIdx % AMBIENT_TRACKS.length];
 
-    // Clear previous nodes
     stopAllNodes();
 
-    // Master volume
+    // Signal chain: oscBus → filter → reverb(wet) + dry → master
     masterGain = ctx.createGain();
-    masterGain.gain.value = 0.12;
+    masterGain.gain.value = 0.09;
     masterGain.connect(ctx.destination);
 
-    const noteLength = 60 / track.bpm / 2;
-    const totalDuration = track.melody.length * noteLength;
-    let internalLoop = 0;
-    const loopsPerTrack = 3; // Play each track 3x before moving on
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 1800;
+    filter.Q.value = 0.6;
+    filter.connect(masterGain);
+
+    const reverb = createReverb(ctx, 3.0, 2.5);
+    const reverbGain = ctx.createGain();
+    reverbGain.gain.value = 0.55;
+    reverb.connect(reverbGain);
+    reverbGain.connect(masterGain);
+
+    // Bus for wet path
+    const wetBus = ctx.createGain();
+    wetBus.gain.value = 1;
+    wetBus.connect(filter);
+    wetBus.connect(reverb);
+
+    let playCount = 0;
+    const loopsPerTrack = 2;
 
     function scheduleLoop() {
         if (!bgmPlaying) return;
-        if (internalLoop >= loopsPerTrack) {
-            // Advance to next track
-            currentTrackIdx = (currentTrackIdx + 1) % TRACKS.length;
+        if (playCount >= loopsPerTrack) {
+            currentTrackIdx = (currentTrackIdx + 1) % AMBIENT_TRACKS.length;
             updateTrackDisplay();
-            playTrack(currentTrackIdx);
+            playAmbientTrack(currentTrackIdx);
             return;
         }
 
-        const startTime = ctx.currentTime + 0.05;
+        const now = ctx.currentTime + 0.1;
+        const { chords, melody, barLen, melStepLen } = track;
+        const totalLen = chords.length * barLen;
 
-        // Melody
-        track.melody.forEach((freq, i) => {
-            if (freq === 0) return;
+        // Pad chords — slow sustained sine tones with long crossfade
+        chords.forEach((chord, ci) => {
+            const barStart = now + ci * barLen;
+            const barEnd = barStart + barLen + 0.6; // slight overlap for crossfade
+            chord.forEach(freq => {
+                const osc = ctx.createOscillator();
+                const env = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.value = freq;
+                // add a tiny detuned twin for warmth
+                const osc2 = ctx.createOscillator();
+                osc2.type = 'sine';
+                osc2.frequency.value = freq * 1.003;
+                const attack = Math.min(1.2, barLen * 0.18);
+                const release = Math.min(1.5, barLen * 0.25);
+                env.gain.setValueAtTime(0, barStart);
+                env.gain.linearRampToValueAtTime(0.28, barStart + attack);
+                env.gain.setValueAtTime(0.28, barEnd - release);
+                env.gain.linearRampToValueAtTime(0, barEnd);
+                [osc, osc2].forEach(o => { o.connect(env); o.start(barStart); o.stop(barEnd + 0.1); bgmNodes.push(o); });
+                env.connect(wetBus);
+            });
+        });
+
+        // Slow melody layer (very soft, high octave, every melStepLen seconds)
+        melody.forEach((freq, mi) => {
+            const noteStart = now + mi * melStepLen;
+            if (noteStart >= now + totalLen) return;
             const osc = ctx.createOscillator();
             const env = ctx.createGain();
-            osc.type = track.melodyWave;
+            osc.type = 'sine';
             osc.frequency.value = freq;
-            env.gain.setValueAtTime(0.25, startTime + i * noteLength);
-            env.gain.exponentialRampToValueAtTime(0.01, startTime + (i + 0.8) * noteLength);
+            const noteDur = melStepLen * 0.85;
+            env.gain.setValueAtTime(0, noteStart);
+            env.gain.linearRampToValueAtTime(0.10, noteStart + 0.3);
+            env.gain.setValueAtTime(0.10, noteStart + noteDur - 0.5);
+            env.gain.linearRampToValueAtTime(0, noteStart + noteDur);
             osc.connect(env);
-            env.connect(masterGain);
-            osc.start(startTime + i * noteLength);
-            osc.stop(startTime + (i + 0.9) * noteLength);
+            env.connect(wetBus);
+            osc.start(noteStart);
+            osc.stop(noteStart + noteDur + 0.1);
             bgmNodes.push(osc);
         });
 
-        // Bass
-        track.bass.forEach((freq, i) => {
-            if (freq === 0) return;
-            const osc = ctx.createOscillator();
-            const env = ctx.createGain();
-            osc.type = track.bassWave;
-            osc.frequency.value = freq;
-            env.gain.setValueAtTime(0.35, startTime + i * noteLength);
-            env.gain.exponentialRampToValueAtTime(0.01, startTime + (i + 0.7) * noteLength);
-            osc.connect(env);
-            env.connect(masterGain);
-            osc.start(startTime + i * noteLength);
-            osc.stop(startTime + (i + 0.8) * noteLength);
-            bgmNodes.push(osc);
-        });
-
-        internalLoop++;
-        loopTimer = setTimeout(scheduleLoop, totalDuration * 1000);
+        playCount++;
+        loopTimer = setTimeout(scheduleLoop, totalLen * 1000);
     }
 
     bgmPlaying = true;
@@ -227,82 +172,82 @@ function playTrack(trackIdx) {
 
 function stopAllNodes() {
     if (loopTimer) { clearTimeout(loopTimer); loopTimer = null; }
-    bgmNodes.forEach(node => { try { node.stop(); } catch (e) { } });
+    bgmNodes.forEach(n => { try { n.stop(); } catch (e) { } });
     bgmNodes = [];
 }
 
 function updateTrackDisplay() {
     const btn = document.getElementById('audio-toggle');
     if (btn && bgmPlaying) {
-        const track = TRACKS[currentTrackIdx % TRACKS.length];
-        btn.textContent = '\uD83D\uDD0A ' + track.name;
-        btn.style.color = '#0f0';
+        const track = AMBIENT_TRACKS[currentTrackIdx % AMBIENT_TRACKS.length];
+        btn.textContent = '🔊 ' + track.name;
+        btn.style.color = 'var(--accent-green, #00c9a0)';
     }
 }
 
-// --- Toggle ---
 function toggleRetroAudio() {
     const btn = document.getElementById('audio-toggle');
     if (bgmPlaying) {
         bgmPlaying = false;
         stopAllNodes();
-        btn.textContent = '\uD83D\uDD07 Music Off';
-        btn.style.color = '#888';
+        if (btn) { btn.textContent = '🔇 Music Off'; btn.style.color = '#555'; }
         localStorage.setItem('symphony_music', 'off');
     } else {
-        playTrack(currentTrackIdx);
+        playAmbientTrack(currentTrackIdx);
         updateTrackDisplay();
         localStorage.setItem('symphony_music', 'on');
     }
 }
 
-// --- 90s Button Sound Effects ---
+// ── Soft UI Click Sound ───────────────────────────────────────
 function playRetroClick() {
     if (!retroAudioCtx) retroAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const ctx = retroAudioCtx;
+    // A soft, rounded "plink" — sine wave with fast decay
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
-    osc.type = 'square';
-    osc.frequency.setValueAtTime(440, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(220, ctx.currentTime + 0.05);
-    gain.gain.setValueAtTime(0.1, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.07);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(1050, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(820, ctx.currentTime + 0.06);
+    gain.gain.setValueAtTime(0.06, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.12);
     osc.connect(gain);
     gain.connect(ctx.destination);
     osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.08);
+    osc.stop(ctx.currentTime + 0.14);
 }
 
 function playRetroSuccess() {
     if (!retroAudioCtx) retroAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const ctx = retroAudioCtx;
-    [196.00, 261.63, 329.63].forEach((freq, i) => {
+    // Three soft rising sine tones — gentle success chime
+    [523.25, 659.25, 783.99].forEach((freq, i) => {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
-        osc.type = 'triangle';
+        osc.type = 'sine';
         osc.frequency.value = freq;
-        gain.gain.setValueAtTime(0.1, ctx.currentTime + i * 0.12);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.12 + 0.15);
+        const t = ctx.currentTime + i * 0.1;
+        gain.gain.setValueAtTime(0.06, t);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.25);
         osc.connect(gain);
         gain.connect(ctx.destination);
-        osc.start(ctx.currentTime + i * 0.12);
-        osc.stop(ctx.currentTime + i * 0.12 + 0.2);
+        osc.start(t);
+        osc.stop(t + 0.3);
     });
 }
 
-// --- Attach SFX to All Buttons ---
+// ── Wire SFX + Auto-resume ────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
-        const btn = e.target.closest('button, .tab-btn, .checkbox, .pool-accordion-header');
+        const btn = e.target.closest('button, .tab-btn, .checkbox');
         if (btn && btn.id !== 'audio-toggle') {
             playRetroClick();
         }
     });
 
-    // Auto-resume music from last session (requires user click due to browser policy)
     if (localStorage.getItem('symphony_music') === 'on') {
         const autoStart = () => {
-            playTrack(currentTrackIdx);
+            playAmbientTrack(currentTrackIdx);
             updateTrackDisplay();
             document.removeEventListener('click', autoStart);
         };
