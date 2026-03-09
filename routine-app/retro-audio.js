@@ -199,22 +199,49 @@ function toggleRetroAudio() {
     }
 }
 
-// ── Soft UI Click Sound ───────────────────────────────────────
+// ── Soft Mechanical Keyboard Thock ───────────────────────────
 function playRetroClick() {
     if (!retroAudioCtx) retroAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const ctx = retroAudioCtx;
-    // A soft, rounded "plink" — sine wave with fast decay
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(1050, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(820, ctx.currentTime + 0.06);
-    gain.gain.setValueAtTime(0.06, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.12);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.14);
+    const now = ctx.currentTime;
+
+    // 1. Noise burst — the "click" transient
+    const bufLen = ctx.sampleRate * 0.04; // 40ms of noise
+    const noiseBuf = ctx.createBuffer(1, bufLen, ctx.sampleRate);
+    const data = noiseBuf.getChannelData(0);
+    for (let i = 0; i < bufLen; i++) data[i] = Math.random() * 2 - 1;
+
+    const noise = ctx.createBufferSource();
+    noise.buffer = noiseBuf;
+
+    // Bandpass filter shapes it into a "mid click"
+    const bp = ctx.createBiquadFilter();
+    bp.type = 'bandpass';
+    bp.frequency.value = 1400;
+    bp.Q.value = 1.8;
+
+    const noiseGain = ctx.createGain();
+    noiseGain.gain.setValueAtTime(0.18, now);
+    noiseGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.035);
+
+    noise.connect(bp);
+    bp.connect(noiseGain);
+    noiseGain.connect(ctx.destination);
+    noise.start(now);
+    noise.stop(now + 0.04);
+
+    // 2. Body thud — the low "thock" resonance
+    const body = ctx.createOscillator();
+    const bodyGain = ctx.createGain();
+    body.type = 'sine';
+    body.frequency.setValueAtTime(145, now);
+    body.frequency.exponentialRampToValueAtTime(60, now + 0.03);
+    bodyGain.gain.setValueAtTime(0.12, now);
+    bodyGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.05);
+    body.connect(bodyGain);
+    bodyGain.connect(ctx.destination);
+    body.start(now);
+    body.stop(now + 0.06);
 }
 
 function playRetroSuccess() {
