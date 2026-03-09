@@ -172,6 +172,8 @@
                 style="color: var(--accent-magenta); text-shadow: 0 0 5px var(--accent-magenta);">User Manual</button>
             <button class="tab-btn" data-tab="supps"
                 style="color: var(--accent-green); text-shadow: 0 0 5px var(--accent-green);">Supps Vault</button>
+            <button class="tab-btn" data-tab="misc"
+                style="color: var(--accent-purple); text-shadow: 0 0 5px var(--accent-purple);">✦ Misc</button>
         </div>
 
         <main class="content-area">
@@ -1621,7 +1623,54 @@
                     style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
                     <!-- Tracked supplements populated by JS -->
                 </div>
-            </section>
+                <!-- Misc — Life Design Canvas -->
+                <section id="misc" class="tab-content glass-panel">
+                    <div class="section-header">
+                        <h2><span class="icon">✦</span> Misc</h2>
+                        <p class="sub-text">Life design experiments, challenges, and reference documents.</p>
+                    </div>
+
+                    <!-- Ideal Week Challenge -->
+                    <div style="margin-bottom: 2rem;">
+                        <div style="display:flex; align-items:baseline; gap:0.75rem; margin-bottom:1rem;">
+                            <h3
+                                style="font-family:'VT323',monospace; font-size:1.4rem; color:var(--accent-green); letter-spacing:1px; margin:0;">
+                                🗓️ THE IDEAL WEEK</h3>
+                            <span style="font-size:0.85rem; color:var(--text-secondary);">Target · Asleep by 12:00 AM
+                                every night</span>
+                        </div>
+                        <p
+                            style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1.5rem; line-height:1.6;">
+                            Built around your actual roster (Mon 12–6 PM · Fri–Sat 2:45–11 PM · Sun 11 AM–5 PM) and your
+                            DNA blueprint: deep work in the morning cortisol peak, exercise post-work or mid-afternoon,
+                            caffeine cut at 10 AM, wind-down at 9 PM.</p>
+
+                        <!-- Legend -->
+                        <div style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:1.5rem;">
+                            <span
+                                style="font-size:0.8rem; padding:2px 10px; border-left:3px solid #00c9a0; background:rgba(0,200,160,0.08); border-radius:2px; color:var(--text-secondary);">Deep
+                                Work</span>
+                            <span
+                                style="font-size:0.8rem; padding:2px 10px; border-left:3px solid #fbbf24; background:rgba(251,191,36,0.08); border-radius:2px; color:var(--text-secondary);">Work
+                                Shift</span>
+                            <span
+                                style="font-size:0.8rem; padding:2px 10px; border-left:3px solid #fb923c; background:rgba(251,146,60,0.08); border-radius:2px; color:var(--text-secondary);">Exercise</span>
+                            <span
+                                style="font-size:0.8rem; padding:2px 10px; border-left:3px solid #f472b6; background:rgba(244,114,182,0.08); border-radius:2px; color:var(--text-secondary);">Personal
+                                / Quinn</span>
+                            <span
+                                style="font-size:0.8rem; padding:2px 10px; border-left:3px solid #a78bfa; background:rgba(167,139,250,0.08); border-radius:2px; color:var(--text-secondary);">Wind
+                                Down / Sleep</span>
+                            <span
+                                style="font-size:0.8rem; padding:2px 10px; border-left:3px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.03); border-radius:2px; color:var(--text-secondary);">Routine</span>
+                        </div>
+
+                        <!-- Day Grid -->
+                        <div id="ideal-week-grid"
+                            style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:1rem;">
+                        </div>
+                    </div>
+                </section>
 
         </main>
     </div>
@@ -1632,6 +1681,7 @@
     <script src="symphony-app.js?v=5"></script>
     <script src="_planner_v2.js?v=1"></script>
     <script src="_planner_sidebar.js?v=1"></script>
+    <script src="_misc.js?v=1"></script>
 
     <!-- Standalone Quinny handlers (runs independently of main script) -->
     <script>
