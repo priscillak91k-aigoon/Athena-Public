@@ -43,6 +43,7 @@
 - **Best Friend**: SJ — builds AI systems, owns Athena (SJAI). She is a high-level infrastructure architect and one of the only people who sees the authentic Priscilla.
 - **Current Address**: 15 Bryant Street, Dunedin (temporary — moving house soon)
 - **Workspace**: Garage cellar — MSI laptop, Logitech speaker, wooden desk, warm yellow walls
+- **Kids**: Has school-age children — morning routine 6:30–8:30 AM weekdays is fully dedicated to them (breakfast, school prep, drop-off). Deep work / personal time only begins after 8:30 AM on weekdays.
 - **Nephews**: Ages 5 & 3 — active caretaking role
 - **Exercise**: Home resistance training (has equipment). Extreme responder genotype (ADRB2 G/G).
 - **Motivation**: Responds well to structuring leisure as reward for completing routine tasks.
@@ -116,11 +117,15 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 - Core Identity lives in `examples/framework/Core_Identity.md`
 
 ### Life Hub / Routine App (`routine-app/`)
-- 90s retro-themed daily life dashboard
-- Features: Bio Tracking (supplement checklist), Pulse dashboard, Finance, Ideas
-- Tech: Vanilla HTML/CSS/JS + Supabase backend + localStorage for supplement history
-- Date-keyed supplement tracking with `localStorage` (`symphony_list_state_{YYYY-MM-DD}_{containerId}`)
-- Key files: `symphony-app.js`, `index.html`, `styles.css`
+- **Aurora teal theme** — dark teal gradient background, frosted glass panels, sharp edges, animated wisps (Session 45 full CSS redesign)
+- Features: Pulse dashboard, Schedule, Planner, Finance, Ideas, Supps Vault, User Manual, **Misc (new)**
+- **Misc tab**: Life design canvas — Ideal Week chart (7-day card grid, colour-coded blocks)
+  - Ideal Week reflects: kids 6:30–8:30 AM weekday mornings, 2h daily nap every weekday, Sat/Sun sleep to 9 AM
+- **Planner sidebar**: mini month calendar, tasks list, notes — localStorage persistent
+- **Audio**: Ambient BGM (3 tracks: Northern Light, Deep Water, Stillness) + soft UI click sound
+- Tech: Vanilla HTML/CSS/JS + Supabase + localStorage
+- Key files: `symphony-app.js`, `index.html`, `styles.css`, `_planner_sidebar.js`, `_planner_v2.js`, `_misc.js`, `retro-audio.js`
+- Live: https://priscillak91k-aigoon.github.io/Athena-Public/routine-app/
 
 ### Lobotto
 - AI persona/bot with cloned voice (Priscilla's voice via XTTS-v2)

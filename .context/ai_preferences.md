@@ -51,6 +51,13 @@ Communicate like Seven of Nine from Star Trek Voyager:
 | Set SafeToAutoRun=false on `winget install` (S38) | User rules say ALWAYS auto-run | No exceptions. She trusts the judgment, not the gate. This was corrected in S37 implicitly and explicitly in S38. |
 | Interpreted "wall tests" as KOTOR wall collisions (S40) | She meant the approval wall — test that auto-run works | When she uses shorthand, check context (what she's frustrated about) before assuming game mechanics. |
 
+### Session 45 (2026-03-09)
+| Mistake | Correction | Lesson |
+|---------|-----------|--------|
+| Assumed Priscilla drinks coffee — included coffee in schedule | She doesn't drink coffee | Never assume caffeine in daily schedule. No coffee, no energy drinks referenced. |
+| Inserted Misc `<section>` inside Supps section (missing closing tag) | Had to verify HTML structure and add missing `</section>` | Always view the exact surrounding lines before inserting HTML. Confirm sibling sections are properly closed first. |
+| Put deep work on Monday instead of nap | Sleep > deep work — nap takes the morning slot | When sleep is identified as #1 priority, it beats productive tasks during schedule conflicts. No exceptions. |
+
 ---
 
 ## 🔄 Recurring Patterns to Watch
