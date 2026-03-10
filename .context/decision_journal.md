@@ -211,4 +211,18 @@
 - **Reasoning**: She thinks in systems. A capability that persists and carries state is worth more than any single finding.
 - **Outcome**: Architecture: `.context/BOUNTY_PLAYBOOK.md` (knowledge) + `bounty_ops/` (operations) + 3 workflows. ✅ Correct call.
 
+---
 
+## 2026-03-10 — Session 46
+
+### Decision: Tilda basmati over Uncle Ben's white rice
+- **Situation**: User eating Uncle Ben's tomato/basil rice daily with TCF7L2 (Type 2 Diabetes risk) genetic variant.
+- **Choice**: Recommend switching to Tilda basmati as a drop-in replacement.
+- **Reasoning**: Basmati GI ~50-58 vs white rice GI ~65-72. Same microwave convenience. Meaningful blood sugar impact over time for a TCF7L2 T/G + T/C carrier.
+- **Outcome**: Recommendation made. ✅
+
+### Decision: Kill junk background processes + add Defender exclusions for Antigravity
+- **Situation**: Antigravity IDE stuttering. MSI_TraceFPS, QNAPRaidMgr, logi_lamparray_service, Discord all consuming CPU. Defender scanning Antigravity files in real-time.
+- **Choice**: Kill processes, add path exclusions for Antigravity app and data dirs.
+- **Reasoning**: Real-time Defender scan of a code editor's working directory is the most common cause of IDE jank on Windows. Secondary: useless background processes stealing CPU slices.
+- **Outcome**: Processes killed, exclusions added. User confirmed improvement. ✅

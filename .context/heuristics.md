@@ -247,3 +247,12 @@ Every `/end` session, ask:
 - **Sleep is her #1 priority.** When scheduling conflicts arise, sacrifice deep work before sleep. A 2h nap compensates for 6h night sleep on weekdays.
 - **Ideal week nap schedule**: Mon 9:20–11:20 (replaces deep work completely), Tue/Wed 12:30–14:30, Thu 12:00–14:00, Fri 11:00–13:00 (replaces gym — gym is on other days). Sat/Sun sleep in to 9 AM, no nap.
 - She **corrects iteratively** — when a schedule assumption is wrong she drops a one-liner and expects immediate correction, no explanation needed. Don't over-explain the fix either.
+
+## 🛠️ Technical Heuristics (Session 46)
+
+- **When IDE is stuttering on Windows, check two things first**: (1) Defender exclusions for the IDE app dir + workspace, (2) background manufacturer services (MSI overlay, Logitech RGB, RAID managers) eating CPU for no reason.
+- **Genetics-first health answering**: She has DNA + blood data. Always answer health questions at the gene-mechanism level. MTHFR, COMT, TCF7L2, CRP etc. are loaded context — generic population averages are inferior answers.
+- **Tilda basmati > Uncle Ben's white rice** for TCF7L2 risk management. GI difference is meaningful (~50-58 vs ~65-72). Same convenience, better glycaemic profile.
+- **Discord keeps re-enabling itself** — disabling via registry alone isn't sufficient. Must disable via Task Manager > Startup tab or it reinstates on update.
+- **case_studies.md deduplication needed**: The dreaming script appends new entries rather than merging into existing ones. Deduplicate manually at each /end. Canonical set now CS-001 to CS-023.
+

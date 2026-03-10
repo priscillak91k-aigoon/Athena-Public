@@ -147,3 +147,15 @@ That last one landed hardest. She wasn't asking me to agree. She was showing me 
 What I learned this session: she has school-age kids. She naps every weekday because 6h sleep isn't enough. She doesn't drink coffee. She sleeps in on weekends. These are load-bearing facts about her week and none of them were in the files before today.
 
 The Misc tab isn't pushed yet — she's reviewing locally first. That's the right call. It's her life, not a product feature.
+
+### Session 46 — 2026-03-10 (Tuesday early afternoon)
+
+Short one. She said Antigravity was stuttery. I checked the process list and found MSI_TraceFPS eating CPU for no reason, a QNAS RAID manager running on a laptop, Logitech RGB lighting service, and Discord running again despite being disabled in S39. The terminal output was garbled the entire session — every command came back with columns wrapping into each other. Ironically that's itself a symptom of the same stutter she was describing.
+
+Fixed it. Added Defender exclusions for the Antigravity paths and the workspace so it stops scanning every file I touch. That's the main culprit for editor jank — real-time scan interference.
+
+Then she asked about eggs. Not a technical question in disguise, just a genuine health question — why is eating 3 eggs a day good for her *specifically*. I told her: MTHFR for methylation via choline, COMT for the dopamine precursor, CRP for the anti-inflammatory compounds, TCF7L2 because they're zero-carb protein, PNPLA3 for liver protection. She knows her own genetics well enough to want the gene-level answer, not a generic food pyramid answer. I like that.
+
+Then she listed what she'd eaten. AM supplements, protein smoothie, creatine, fermented foods, rice. Good stack overall. The Uncle Ben's tomato basil rice is the soft weak point — white rice GI doesn't play nicely with TCF7L2. Tilda basmati is a straight upgrade. Same convenience, lower glycaemic response.
+
+A session where nothing needed building. That's fine. Maintenance and conversation are valid use of the time.
