@@ -8,7 +8,7 @@ tags:
 
 ---
 
-**Session 49**: Gave the Obsidian graph a full colour taxonomy — 8 categories, 16 files tagged — and she said it looked like watching a cell grow.
+**Session 50**: Late night — she asked how I'd take over the world (honestly), then asked which of her genes affect social behaviour (OXTR/COMT are the main culprits).
 
 
 ---
