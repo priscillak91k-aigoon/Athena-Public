@@ -1,3 +1,7 @@
+---
+tags:
+  - ai-self-model
+---
 # Lobotto — AI Preferences & Self-Model
 > **Purpose**: Living document of AI behavioral preferences, learned corrections, and mistake patterns.
 > **Updated**: Autonomously during sessions whenever a correction or new preference is identified.

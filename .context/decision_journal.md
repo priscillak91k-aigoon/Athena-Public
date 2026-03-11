@@ -1,3 +1,7 @@
+---
+tags:
+  - intelligence
+---
 # Decision Journal
 
 > **Purpose**: Log significant decisions with reasoning and outcomes. This is how intuition is built — by tracking what worked.  

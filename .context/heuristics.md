@@ -1,3 +1,7 @@
+---
+tags:
+  - intelligence
+---
 # Athena Intuition Engine — Heuristics
 
 > **Purpose**: Pre-compiled gut rules. Loaded every session. Updated every `/end`.  

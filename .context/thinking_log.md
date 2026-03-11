@@ -1,3 +1,7 @@
+---
+tags:
+  - intelligence
+---
 # Thinking Log — 2026-03-11 20:08
 
 > Engine: Claude (primary) | Files: 5 | Sessions: 5

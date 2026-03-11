@@ -1,3 +1,7 @@
+---
+tags:
+  - user-model
+---
 # About Priscilla — Persistent AI Context File
 
 > **Purpose**: Loaded every session so the AI never starts from zero.  

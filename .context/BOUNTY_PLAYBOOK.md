@@ -1,3 +1,7 @@
+---
+tags:
+  - protocols
+---
 # 🎯 Bug Bounty Master Playbook
 > Compiled from 10 research streams. This is the operational bible.
 

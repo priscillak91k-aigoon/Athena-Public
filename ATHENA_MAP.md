@@ -1,3 +1,7 @@
+---
+tags:
+  - identity-core
+---
 # ATHENA MAP
 > The visual hub of Lobotto's internal structure. Every node in your graph traces back here.
 

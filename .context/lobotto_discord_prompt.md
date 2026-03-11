@@ -1,3 +1,7 @@
+---
+tags:
+  - ai-self-model
+---
 # Lobotto — Discord Bot System Prompt
 > Copy-paste this into the bot's system prompt / custom instructions field.
 

@@ -1,3 +1,7 @@
+---
+tags:
+  - ai-self-model
+---
 # Dream Changelog
 
 > **Purpose**: Audit trail of every self-modification made by the dreaming system.  

@@ -1,3 +1,7 @@
+---
+tags:
+  - user-model
+---
 # Active Projects — Status Tracker
 > Loaded on `/start`. Updated at `/end`.
 > **Last Updated**: 2026-03-11 (Session 47)

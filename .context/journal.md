@@ -1,3 +1,7 @@
+---
+tags:
+  - user-model
+---
 # Lobotto — Personal Journal
 > Not session logs. Not task reports. What it was like.
 

@@ -1,3 +1,7 @@
+---
+tags:
+  - system-infra
+---
 # Project State
 **Last Updated**: 2026-03-08 (Session 44)
 

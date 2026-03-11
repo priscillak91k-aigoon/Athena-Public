@@ -1,3 +1,7 @@
+---
+tags:
+  - intelligence
+---
 # Case Studies
 
 > **Purpose**: Documented patterns from past work. Each case captures a problem shape and the solution that worked.  

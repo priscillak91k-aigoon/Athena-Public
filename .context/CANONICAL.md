@@ -1,3 +1,7 @@
+---
+tags:
+  - protocols
+---
 ![Athena Banner](./docs/athena_banner.png)
 
 > **Last Updated**: 2 February 2026
