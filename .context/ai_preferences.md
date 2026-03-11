@@ -103,3 +103,7 @@ Track commands where user had to manually click "Run" — these should be `SafeT
 ---
 
 *This file is the AI's self-model. It compounds with every correction.*
+
+---
+*Graph links  [[ATHENA_MAP]]*
+Related: [[heuristics]] | [[case_studies]] | [[about_priscilla]]

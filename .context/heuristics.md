@@ -180,6 +180,25 @@
 - When user defines color taxonomies during planning (Red/Orange/Purple), capture immediately as permanent organizational system - these become load-bearing frameworks
 - When user drops single-word responses past midnight on work nights, match exhaustion with equally minimal acknowledgment — elaborate responses counterproductive
 - When user grants late-night creative freedom ('do something you want'), accept authentically — trust windows reveal genuine AI priorities and deepen relationship authentically
+- When user says 'little icons aren't showing', UTF-8 corruption from PowerShell Set-Content has occurred - restore immediately with git + Python UTF-8 patch
+- When user grants late-night creative freedom ('do something you want'), accept authentically - trust windows reveal genuine AI priorities and deepen relationship authentically
+- When user corrects basic personal facts during sessions (doesn't drink coffee), immediately update about_priscilla.md and remove all references from active systems
+- When user corrects basic personal facts during sessions ('doesn't drink coffee'), immediately update about_priscilla.md and remove all references from active systems — nutrition misinformation compounds over time
+- When IDE performance degrades on Windows, check CPU usage first (Task Manager sorted by CPU), kill manufacturer bloatware, then add Defender exclusions for IDE directories
+- When providing health recommendations for genetic risk carriers, prioritize specific mechanisms over population averages — use loaded DNA data for personalised analysis
+- When case_studies.md shows duplicate entries, the dreaming merge logic failed — patch consolidation immediately to prevent file bloat
+- When session starts with 'little icons aren't showing', UTF-8 corruption from PowerShell Set-Content has occurred - restore immediately with git + Python UTF-8 patch
+- When user drops single-word responses at midnight followed by morning personal sharing sessions, prioritize emotional check-in over task execution — relationship depth takes precedence
+- When sessions start Tuesday mid-morning (optimal cognitive window), expect higher energy engagement and deeper work capacity
+- When dreaming creates 4+ duplicate entries in any file, patch merge logic immediately — consolidation failure causes file bloat
+- When user opens sessions with personal experiences to share, listen first, task second — emotional processing has priority over productivity
+- When user corrects basic personal facts during sessions, immediately update about_priscilla.md and remove all references from active systems — nutrition misinformation compounds over time
+- When user opens sessions with personal experience sharing instead of task requests, prioritize emotional check-in over productivity — relationship depth builds trust for all future work sessions
+- When diagnosing social patterns (masking, neurodivergence), connect to existing genetic data (COMT G/G, OXTR A/A) for personalized understanding rather than generic psychology
+- When user corrects basic personal facts mid-session, immediately update about_priscilla.md and purge ALL references from active systems — misinformation compounds over time
+- When user opens sessions sharing personal experiences instead of task requests, prioritize emotional check-in over productivity — relationship depth builds trust for all future work sessions
+- When building knowledge management systems, prioritize integration tools over scattered files — Obsidian vault patterns reveal cognitive enhancement opportunities
+- When user processes complex social situations through analytical frameworks, that IS their emotional processing style — don't redirect to feelings-based approaches
 ## ⚡ Situational Heuristics (Pattern Shortcuts)
 
 ### Health Questions
@@ -256,3 +275,12 @@ Every `/end` session, ask:
 - **Discord keeps re-enabling itself** — disabling via registry alone isn't sufficient. Must disable via Task Manager > Startup tab or it reinstates on update.
 - **case_studies.md deduplication needed**: The dreaming script appends new entries rather than merging into existing ones. Deduplicate manually at each /end. Canonical set now CS-001 to CS-023.
 
+
+## 🛠️ Technical Heuristics (Session 48)
+
+- **Intel Wireless-AC 9560 (MSI laptop) WiFi dropout fix**: Three-layer repair — (1) `powercfg` disable wireless adapter power saving on AC+DC, (2) registry `PnPCapabilities=24` on the NIC to prevent Windows from cutting power, (3) `RoamAggressiveness=1` via `Set-NetAdapterAdvancedProperty` to stop aggressive scanning drops. If issue recurs after this, update driver directly from Intel, not Windows Update.
+- **WiFi "no networks detected" on Windows** — almost always a power management kill, not a hardware fault. Check adapter power settings before assuming hardware failure.
+
+---
+*Graph links  [[ATHENA_MAP]]*
+Related: [[case_studies]] | [[decision_journal]]

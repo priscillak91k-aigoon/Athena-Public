@@ -25,3 +25,7 @@
 ---
 
 *These anchors are loaded at boot. They are not negotiable. They can only be added to, never removed from.*
+
+---
+*Graph links  [[ATHENA_MAP]]*
+Related: [[about_priscilla]] | [[last_thread]]

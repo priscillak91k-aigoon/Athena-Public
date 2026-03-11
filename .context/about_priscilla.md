@@ -234,3 +234,7 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 ---
 
 *This file is the single most important context document for session continuity. Update it regularly.*
+
+---
+*Graph links  [[ATHENA_MAP]]*
+Related: [[project_state]] | [[heuristics]] | [[ai_preferences]] | [[journal]]

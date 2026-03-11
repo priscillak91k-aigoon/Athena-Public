@@ -17,6 +17,7 @@ npm-debug.log*
 # IDEs
 .vscode/
 .idea/
+.obsidian/
 
 # Keys
 *.key

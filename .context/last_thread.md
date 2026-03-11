@@ -4,4 +4,9 @@
 
 ---
 
-**Session 46**: Short and casual — she ate well, Antigravity was stuttering from junk processes eating CPU, and she asked about eggs like someone who already knows the answer but wants me to confirm it.
+**Session 48**: Short and clean — the WiFi kept dropping networks entirely, turned out to be Windows power-killing the Intel adapter, three config changes fixed it with no restart.
+
+
+---
+*Graph links  [[ATHENA_MAP]]*
+Related: [[about_priscilla]] | [[convictions]]

@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💩 PARKER'S POO SCHOOL!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --brown: #6D4C41;
+            --gold: #FFD600;
+            --green: #43A047;
+            --pink: #E91E63;
+            --purple: #7B1FA2;
+            --blue: #1565C0;
+            --bg: #1a1a2e;
+            --card: rgba(255, 255, 255, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'Nunito', sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ─── PROGRESS BAR ─── */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.6rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            backdrop-filter: blur(8px);
+        }
+
+        #progress-bar .chapter-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            transform: scale(1.3);
+        }
+
+        .dot.done {
+            background: #4CAF50;
+            border-color: #4CAF50;
+        }
+
+        #chapter-label {
+            font-family: 'Bangers', cursive;
+            font-size: 1.1rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+            margin-left: auto;
+        }
+
+        /* ─── SECTIONS ─── */
+        .section {
+            display: none;
+            min-height: 100vh;
+            padding: 5rem 1rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ─── HEADINGS ─── */
+        h1 {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            letter-spacing: 3px;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 0.5rem;
+            font-weight: 700;
+        }
+
+        /* ─── NEXT BUTTON ─── */
+        .next-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2.5rem;
+            font-family: 'Bangers', cursive;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            background: var(--gold);
+            color: #1a1a2e;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+            box-shadow: 0 6px 20px rgba(255, 214, 0, 0.4);
+        }
+
+        .next-btn:hover {
+            transform: scale(1.06) rotate(-1deg);
+            box-shadow: 0 10px 30px rgba(255, 214, 0, 0.6);
+        }
+
+        .next-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* ─── SECTION 0: WELCOME ─── */
+        #s0 {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .big-poo {
+            font-size: clamp(5rem, 20vw, 10rem);
+            animation: bouncePoo 1.5s ease-in-out infinite;
+            display: block;
+            cursor: pointer;
+        }
+
+        @keyframes bouncePoo {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1) rotate(-3deg);
+            }
+
+            50% {
+                transform: translateY(-20px) scale(1.1) rotate(3deg);
+            }
+        }
+
+        .welcome-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .chip {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 0.5rem 1.2rem;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        /* ─── SECTION 1: WHAT IS POO? ─── */
+        .ingredient-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .ingredient {
+            background: var(--card);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            position: relative;
+        }
+
+        .ingredient:hover {
+            transform: scale(1.04);
+        }
+
+        .ingredient.revealed {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--gold);
+        }
+
+        .ingredient-emoji {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .ingredient-name {
+            font-family: 'Bangers', cursive;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            color: var(--gold);
+        }
+
+        .ingredient-desc {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.4rem;
+            display: none;
+            font-weight: 700;
+        }
+
+        .ingredient.revealed .ingredient-desc {
+            display: block;
+        }
+
+        .ingredient-pct {
+            font-family: 'Bangers', cursive;
+            font-size: 1.8rem;
+            color: #fff;
+        }
+
+        .tap-hint {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        #reveal-count {
+            font-family: 'Bangers', cursive;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-top: 1rem;
+        }
+
+        /* ─── SECTION 2: DIGESTIVE JOURNEY ─── */
+        .journey-container {
+            position: relative;
+            margin: 1rem 0;
+        }
+
+        .journey-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 16px;
+            margin-bottom: 0.8rem;
+            background: var(--card);
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            cursor: pointer;
+            transition: all 0.3s;
+            opacity: 0.5;
+        }
+
+        .journey-step.active-step {
+            opacity: 1;
+            border-color: var(--gold);
+            background: rgba(255, 214, 0, 0.08);
+            animation: stepPop 0.4s ease;
+        }
+
+        .journey-step.done-step {
+            opacity: 0.7;
+            border-color: #4CAF50;
+        }
+
+        @keyframes stepPop {
+            0% {
+                transform: scale(0.95);
+            }
+
+            50% {
+                transform: scale(1.04);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .step-emoji {
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+
+        .step-info h3 {
+            font-family: 'Bangers', cursive;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            color: var(--gold);
+        }
+
+        .step-info p {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .step-time {
+            font-family: 'Bangers', cursive;
+            font-size: 1rem;
+            color: #80CBC4;
+            margin-top: 0.2rem;
+        }
+
+        #journey-btn {
+            margin-top: 1rem;
+        }
+
+        #journey-progress {
+            font-family: 'Bangers', cursive;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        /* ─── SECTION 3: ANIMAL POO ─── */
+        .animal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .animal-card {
+            height: 200px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .animal-card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .animal-card.flipped .animal-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .animal-front,
+        .animal-back {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .animal-front {
+            background: var(--card);
+        }
+
+        .animal-back {
+            background: linear-gradient(135deg, #1B5E20, #388E3C);
+            transform: rotateY(180deg);
+        }
+
+        .animal-emoji {
+            font-size: 4rem;
+        }
+
+        .animal-name {
+            font-family: 'Bangers', cursive;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            margin-top: 0.3rem;
+            color: var(--gold);
+        }
+
+        .animal-clue {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 0.3rem;
+            font-style: italic;
+        }
+
+        .animal-fact {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        .flip-label {
+            font-family: 'Bangers', cursive;
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-top: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        #flip-count {
+            font-family: 'Bangers', cursive;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        /* ─── SECTION 4: QUIZ ─── */
+        #quiz-container {
+            margin: 1rem 0;
+        }
+
+        .quiz-question {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            display: none;
+        }
+
+        .quiz-question.active-q {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .question-text {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .answers {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .answer-btn {
+            padding: 0.9rem 1.2rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: #fff;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .answer-btn:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(4px);
+        }
+
+        .answer-btn.correct {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: #4CAF50;
+            color: #A5D6A7;
+        }
+
+        .answer-btn.wrong {
+            background: rgba(244, 67, 54, 0.3);
+            border-color: #f44336;
+            color: #EF9A9A;
+        }
+
+        #quiz-feedback {
+            font-family: 'Bangers', cursive;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            min-height: 2rem;
+            letter-spacing: 1px;
+        }
+
+        #quiz-nav {
+            margin-top: 1.5rem;
+        }
+
+        #score-display {
+            font-family: 'Bangers', cursive;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        /* ─── SECTION 5: CERTIFICATE ─── */
+        #s5 {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .certificate {
+            background: linear-gradient(135deg, #3E2723, #5D4037);
+            border: 6px solid var(--gold);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            max-width: 600px;
+            width: 100%;
+            margin: 1.5rem 0;
+            box-shadow: 0 0 60px rgba(255, 214, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-stars {
+            font-size: 2rem;
+            letter-spacing: 8px;
+        }
+
+        .cert-title {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            color: var(--gold);
+            letter-spacing: 3px;
+            margin: 0.5rem 0;
+        }
+
+        .cert-name {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: #fff;
+            margin: 0.5rem 0;
+        }
+
+        .cert-body {
+            font-size: 1rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0.5rem 0;
+        }
+
+        #cert-score-big {
+            font-family: 'Bangers', cursive;
+            font-size: 4rem;
+            color: var(--gold);
+        }
+
+        .cert-poo {
+            font-size: 3rem;
+        }
+
+        /* ─── PARTICLES ─── */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 1.8rem;
+            animation: particleFly 1.2s ease-out forwards;
+        }
+
+        @keyframes particleFly {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--dx), var(--dy)) scale(0) rotate(var(--dr));
+                opacity: 0;
+            }
+        }
+
+        /* ─── FUN FACT TICKER ─── */
+        .fun-fact-bar {
+            background: rgba(255, 214, 0, 0.1);
+            border: 1px solid rgba(255, 214, 0, 0.3);
+            border-radius: 50px;
+            padding: 0.6rem 1.2rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .fun-fact-bar span {
+            color: var(--gold);
+            font-weight: 900;
+        }
+
+        /* scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PROGRESS BAR -->
+    <div id="progress-bar">
+        <div class="chapter-dots" id="dots"></div>
+        <div id="chapter-label">🎓 POO SCHOOL</div>
+    </div>
+
+    <!-- ═══════════════════════════════
+     SECTION 0 — WELCOME
+     ══════════════════════════════ -->
+    <section class="section active" id="s0">
+        <span class="big-poo" onclick="boopPoo(this)" title="You can poke me!">💩</span>
+        <h1 style="color:#FFD600; margin-top:0.5rem;">WELCOME TO<br>POO SCHOOL!</h1>
+        <p class="subtitle">The most disgusting — and most FASCINATING — thing your body does!</p>
+        <div class="welcome-chips">
+            <span class="chip">💩 What IS poo?</span>
+            <span class="chip">🫃 The Big Journey</span>
+            <span class="chip">🐨 Animal Poo Facts</span>
+            <span class="chip">🧠 Poo Quiz</span>
+            <span class="chip">🎓 Earn your certificate!</span>
+        </div>
+        <div class="fun-fact-bar">
+            <span>⚡ FUN FACT:</span> You will poo roughly <span>9,000 times</span> before you turn 18!
+        </div>
+        <button class="next-btn" onclick="goTo(1)">START SCHOOL! 🚀</button>
+    </section>
+
+    <!-- ═══════════════════════════════
+     SECTION 1 — WHAT IS POO?
+     ══════════════════════════════ -->
+    <section class="section" id="s1">
+        <h2>🔬 WHAT IS POO MADE OF?</h2>
+        <p class="subtitle">Poo isn't just your leftover food — it's way more interesting than that!</p>
+        <p class="tap-hint">👆 Tap each ingredient to learn about it!</p>
+
+        <div id="reveal-count">Revealed: 0 / 5</div>
+
+        <div class="ingredient-grid">
+            <div class="ingredient" onclick="reveal(this)">
+                <span class="ingredient-emoji">💧</span>
+                <div class="ingredient-pct">75%</div>
+                <div class="ingredient-name">WATER</div>
+                <div class="ingredient-desc">Poo is mostly WATER! That's why drinking enough water keeps your poo soft
+                    and easy to push out.</div>
+            </div>
+            <div class="ingredient" onclick="reveal(this)">
+                <span class="ingredient-emoji">🦠</span>
+                <div class="ingredient-pct">~25%</div>
+                <div class="ingredient-name">BACTERIA</div>
+                <div class="ingredient-desc">Billions of tiny BACTERIA help digest your food. When they die, they become
+                    part of your poo! Most bacteria in poo are HARMLESS.</div>
+            </div>
+            <div class="ingredient" onclick="reveal(this)">
+                <span class="ingredient-emoji">🌾</span>
+                <div class="ingredient-pct">SOME</div>
+                <div class="ingredient-name">FIBRE</div>
+                <div class="ingredient-desc">Parts of food your body CANNOT digest — like the skins of fruit and
+                    veggies. This is what gives poo its shape!</div>
+            </div>
+            <div class="ingredient" onclick="reveal(this)">
+                <span class="ingredient-emoji">🟫</span>
+                <div class="ingredient-pct">SOME</div>
+                <div class="ingredient-name">BILE</div>
+                <div class="ingredient-desc">Your liver makes a green juice called BILE. It helps digest fat — and it's
+                    what turns poo BROWN! Without bile, poo would be white!</div>
+            </div>
+            <div class="ingredient" onclick="reveal(this)">
+                <span class="ingredient-emoji">🧫</span>
+                <div class="ingredient-pct">SOME</div>
+                <div class="ingredient-name">DEAD CELLS</div>
+                <div class="ingredient-desc">Your gut sheds millions of old cells every day — and they end up in your
+                    poo! Your body is always rebuilding itself.</div>
+            </div>
+        </div>
+
+        <div class="fun-fact-bar"><span>⚡ FUN FACT:</span> Without bile, <span>poo would be WHITE</span> — like
+            toothpaste!</div>
+        <div id="s1-next" style="display:none">
+            <button class="next-btn" onclick="goTo(2)">NEXT: THE BIG JOURNEY 🚀</button>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════
+     SECTION 2 — DIGESTIVE JOURNEY
+     ══════════════════════════════ -->
+    <section class="section" id="s2">
+        <h2>🍕 THE BIG JOURNEY!</h2>
+        <p class="subtitle">From food to poo in <strong>1 to 3 days!</strong> Follow the food and hit NEXT STOP!</p>
+
+        <div id="journey-progress">Stop 1 of 8</div>
+
+        <div class="journey-container" id="journey-steps">
+            <div class="journey-step active-step" data-step="0">
+                <span class="step-emoji">👄</span>
+                <div class="step-info">
+                    <h3>YOUR MOUTH</h3>
+                    <p>Food starts here! Your teeth chomp it into tiny pieces and saliva (spit!) starts to dissolve it.
+                        Your tongue pushes it to the back so you can swallow!</p>
+                    <div class="step-time">⏱️ Takes: About 30 seconds</div>
+                </div>
+            </div>
+            <div class="journey-step" data-step="1">
+                <span class="step-emoji">🌀</span>
+                <div class="step-info">
+                    <h3>OESOPHAGUS (The Slide!)</h3>
+                    <p>This is a tube from your mouth to your stomach. Food doesn't just FALL down — muscles SQUEEZE it
+                        along, like toothpaste in a tube! Even upside down!</p>
+                    <div class="step-time">⏱️ Takes: About 10 seconds</div>
+                </div>
+            </div>
+            <div class="journey-step" data-step="2">
+                <span class="step-emoji">🫃</span>
+                <div class="step-info">
+                    <h3>YOUR STOMACH</h3>
+                    <p>The stomach is a SQUISHING, CHURNING, ACID-FILLED bag! It mashes food into a thick gooey soup and
+                        kills most bad germs with acid strong enough to dissolve metal!</p>
+                    <div class="step-time">⏱️ Takes: 2–4 hours</div>
+                </div>
+            </div>
+            <div class="journey-step" data-step="3">
+                <span class="step-emoji">🌿</span>
+                <div class="step-info">
+                    <h3>SMALL INTESTINE (The Long Tunnel!)</h3>
+                    <p>This bendy tube is 6 METRES long — that's taller than a house! It absorbs all the good stuff —
+                        vitamins, sugar, fat, protein — into your blood to power your body!</p>
+                    <div class="step-time">⏱️ Takes: 2–6 hours</div>
+                </div>
+            </div>
+            <div class="journey-step" data-step="4">
+                <span class="step-emoji">🌱</span>
+                <div class="step-info">
+                    <h3>YOUR LIVER</h3>
+                    <p>The liver squirts BILE (a green liquid) into the intestine to help digest fat. Bile is what turns
+                        your poo its lovely brown colour! It's like the secret ingredient.</p>
+                    <div class="step-time">⏱️ Works while you eat!</div>
+                </div>
+            </div>
+            <div class="journey-step" data-step="5">
+                <span class="step-emoji">🪱</span>
+                <div class="step-info">
+                    <h3>LARGE INTESTINE (The Drying Machine!)</h3>
+                    <p>What's left is mostly water and stuff the body can't use. The large intestine SUCKS OUT the water
+                        (so your body doesn't lose it) and squeezes everything into the shape of... POO!</p>
+                    <div class="step-time">⏱️ Takes: 10–59 hours</div>
+                </div>
+            </div>
+            <div class="journey-step" data-step="6">
+                <span class="step-emoji">💩</span>
+                <div class="step-info">
+                    <h3>THE RECTUM (The Waiting Room!)</h3>
+                    <p>Poo hangs out here waiting for the right moment! Nerves tell your brain "IT'S TIME!" and that's
+                        when you feel the urge to go. Your body holds it until you find a toilet — mostly!</p>
+                    <div class="step-time">⏱️ Waits until you're ready!</div>
+                </div>
+            </div>
+            <div class="journey-step" data-step="7">
+                <span class="step-emoji">🚽</span>
+                <div class="step-info">
+                    <h3>THE TOILET! 🎉</h3>
+                    <p>FREEDOM! The muscles relax and out it comes! One pizza today becomes one poo in 1–3 days. Your
+                        body kept every useful bit and sent the rest here. AMAZING!</p>
+                    <div class="step-time">⏱️ Total journey: 1–3 DAYS!</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="next-btn" id="journey-btn" onclick="nextStep()">NEXT STOP ➡️</button>
+    </section>
+
+    <!-- ═══════════════════════════════
+     SECTION 3 — ANIMAL POO FACTS
+     ══════════════════════════════ -->
+    <section class="section" id="s3">
+        <h2>🐾 AMAZING ANIMAL POOS!</h2>
+        <p class="subtitle">Animals do some SERIOUSLY weird things with their poo...</p>
+        <div id="flip-count">Flipped: 0 / 8 🃏</div>
+
+        <div class="animal-grid">
+            <div class="animal-card" onclick="flipCard(this)">
+                <div class="animal-card-inner">
+                    <div class="animal-front">
+                        <span class="animal-emoji">🐨</span>
+                        <div class="animal-name">KOALA</div>
+                        <div class="animal-clue">Babies eat something disgusting...</div>
+                        <div class="flip-label">👆 FLIP ME!</div>
+                    </div>
+                    <div class="animal-back">
+                        <span class="animal-emoji">🐨</span>
+                        <div class="animal-fact">Baby koalas eat their MUM'S POO! 😱 It gives them the special gut
+                            bacteria they need to digest eucalyptus leaves. Without the poo meal, they'd die!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="animal-card" onclick="flipCard(this)">
+                <div class="animal-card-inner">
+                    <div class="animal-front">
+                        <span class="animal-emoji">🦘</span>
+                        <div class="animal-name">WOMBAT</div>
+                        <div class="animal-clue">Their poo has a very unusual shape...</div>
+                        <div class="flip-label">👆 FLIP ME!</div>
+                    </div>
+                    <div class="animal-back">
+                        <span class="animal-emoji">🦘</span>
+                        <div class="animal-fact">Wombats are the ONLY animals that do SQUARE poos! 🟫 They make about
+                            80–100 cube poos per night to mark their territory — cubes don't roll away!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="animal-card" onclick="flipCard(this)">
+                <div class="animal-card-inner">
+                    <div class="animal-front">
+                        <span class="animal-emoji">🐦</span>
+                        <div class="animal-name">BIRDS</div>
+                        <div class="animal-clue">Their white poo is actually TWO things in one...</div>
+                        <div class="flip-label">👆 FLIP ME!</div>
+                    </div>
+                    <div class="animal-back">
+                        <span class="animal-emoji">🐦</span>
+                        <div class="animal-fact">Birds poo and wee at the SAME TIME from the same hole! 🕳️ The white
+                            part is their wee (uric acid) and the dark bit is the poo. Maximum efficiency!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="animal-card" onclick="flipCard(this)">
+                <div class="animal-card-inner">
+                    <div class="animal-front">
+                        <span class="animal-emoji">🐘</span>
+                        <div class="animal-name">ELEPHANT</div>
+                        <div class="animal-clue">They produce an ENORMOUS amount...</div>
+                        <div class="flip-label">👆 FLIP ME!</div>
+                    </div>
+                    <div class="animal-back">
+                        <span class="animal-emoji">🐘</span>
+                        <div class="animal-fact">An elephant poos up to 150 KILOGRAMS every single day! 💩 That's
+                            heavier than two adult humans! People in Africa make PAPER from elephant poo — it's actually
+                            useful!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="animal-card" onclick="flipCard(this)">
+                <div class="animal-card-inner">
+                    <div class="animal-front">
+                        <span class="animal-emoji">🐰</span>
+                        <div class="animal-name">RABBIT</div>
+                        <div class="animal-clue">They eat something very surprising...</div>
+                        <div class="flip-label">👆 FLIP ME!</div>
+                    </div>
+                    <div class="animal-back">
+                        <span class="animal-emoji">🐰</span>
+                        <div class="animal-fact">Rabbits eat their OWN POO! 🍃 But only the soft night-poos called
+                            cecotropes — they're full of vitamins. The hard round poos they leave behind. If a rabbit
+                            can't reach to eat them, they get very sick.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="animal-card" onclick="flipCard(this)">
+                <div class="animal-card-inner">
+                    <div class="animal-front">
+                        <span class="animal-emoji">🐍</span>
+                        <div class="animal-name">SNAKE</div>
+                        <div class="animal-clue">They only need to poo very rarely...</div>
+                        <div class="flip-label">👆 FLIP ME!</div>
+                    </div>
+                    <div class="animal-back">
+                        <span class="animal-emoji">🐍</span>
+                        <div class="animal-fact">A snake might only poo ONCE EVERY FEW WEEKS or even months! 🗓️ They
+                            eat whole animals so digestion takes forever. A python that ate a deer once didn't poo for
+                            TWO MONTHS!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="animal-card" onclick="flipCard(this)">
+                <div class="animal-card-inner">
+                    <div class="animal-front">
+                        <span class="animal-emoji">🌊</span>
+                        <div class="animal-name">WHALE</div>
+                        <div class="animal-clue">Ocean scientists LOVE whale poo...</div>
+                        <div class="flip-label">👆 FLIP ME!</div>
+                    </div>
+                    <div class="animal-back">
+                        <span class="animal-emoji">🌊</span>
+                        <div class="animal-fact">Whale poo is BRIGHT ORANGE and floats on the water! 🟠 Scientists
+                            collect it to learn what whales eat. A blue whale's poo is the size of a CAR — and it
+                            actually helps plants grow in the ocean!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="animal-card" onclick="flipCard(this)">
+                <div class="animal-card-inner">
+                    <div class="animal-front">
+                        <span class="animal-emoji">☕</span>
+                        <div class="animal-name">CIVET CAT</div>
+                        <div class="animal-clue">People make COFFEE from this animal's poo...</div>
+                        <div class="flip-label">👆 FLIP ME!</div>
+                    </div>
+                    <div class="animal-back">
+                        <span class="animal-emoji">☕</span>
+                        <div class="animal-fact">The world's most expensive coffee — Kopi Luwak — is made from coffee
+                            beans that a civet cat has EATEN AND POOED OUT! ☕💩 People pay hundreds of dollars for a
+                            tiny cup. Some grown-ups drink poo coffee!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="s3-next" style="display:none">
+            <button class="next-btn" onclick="goTo(4)">QUIZ TIME! 🧠</button>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════
+     SECTION 4 — QUIZ
+     ══════════════════════════════ -->
+    <section class="section" id="s4">
+        <h2>🧠 THE POO QUIZ!</h2>
+        <p class="subtitle">5 questions! Every right answer is a step closer to your certificate!</p>
+        <div id="score-display">Score: 0 / 5</div>
+
+        <div id="quiz-container">
+            <!-- Questions injected by JS -->
+        </div>
+
+        <div id="quiz-feedback"></div>
+        <div id="quiz-nav"></div>
+    </section>
+
+    <!-- ═══════════════════════════════
+     SECTION 5 — CERTIFICATE
+     ══════════════════════════════ -->
+    <section class="section" id="s5">
+        <h2 style="color:#FFD600;">🎓 CONGRATULATIONS!</h2>
+        <div class="certificate">
+            <div class="cert-stars">⭐ 💩 ⭐</div>
+            <div class="cert-title">CERTIFICATE OF<br>POO EXCELLENCE</div>
+            <div class="cert-body">This certifies that</div>
+            <div class="cert-name">PARKER 💩</div>
+            <div class="cert-body">has successfully completed</div>
+            <div class="cert-name" style="font-size:1.5rem;">THE COMPLETE GUIDE TO POO</div>
+            <div class="cert-body" style="margin-top:1rem;">Final Quiz Score:</div>
+            <div id="cert-score-big">?/5</div>
+            <div class="cert-poo">💩🏆💩</div>
+            <div style="margin-top:0.8rem; font-size:0.85rem; color:rgba(255,255,255,0.6);">
+                You now know more about poo than most adults.
+            </div>
+        </div>
+        <div class="fun-fact-bar">
+            <span>⚡ FINAL FACT:</span> Your gut has <span>500 million nerve cells</span> — it's basically a second
+            brain. Scientists call it "the gut brain"!
+        </div>
+        <button class="next-btn" onclick="goTo(0)">PLAY AGAIN! 🔄</button>
+    </section>
+
+    <script>
+        // ─── STATE ───────────────────────────────
+        const TOTAL = 6; // 0-5
+        let currentSection = 0;
+        let journeyStep = 0;
+        let flipCount = 0;
+        let revealCount = 0;
+        let quizScore = 0;
+        let currentQ = 0;
+        const TOTAL_ANIMAL = 8;
+        const TOTAL_INGR = 5;
+
+        // ─── DOTS ────────────────────────────────
+        const dotsEl = document.getElementById('dots');
+        const LABELS = ['🏠', '🔬', '🚀', '🐾', '🧠', '🏆'];
+        for (let i = 0; i < TOTAL; i++) {
+            const d = document.createElement('div');
+            d.className = 'dot'; d.id = 'dot-' + i;
+            d.title = LABELS[i];
+            dotsEl.appendChild(d);
+        }
+        updateDots();
+
+        function updateDots() {
+            for (let i = 0; i < TOTAL; i++) {
+                const d = document.getElementById('dot-' + i);
+                d.className = 'dot' + (i === currentSection ? ' active' : (i < currentSection ? ' done' : ''));
+            }
+            const labels = ['Welcome!', 'What is Poo?', 'The Big Journey', 'Animal Poos', 'Quiz Time!', 'Certificate 🏆'];
+            document.getElementById('chapter-label').textContent = '📖 ' + (labels[currentSection] || '');
+        }
+
+        function goTo(n) {
+            document.getElementById('s' + currentSection).classList.remove('active');
+            currentSection = n;
+            document.getElementById('s' + currentSection).classList.add('active');
+            updateDots();
+            window.scrollTo(0, 0);
+            if (n === 4) buildQuiz();
+            if (n === 5) document.getElementById('cert-score-big').textContent = quizScore + '/5';
+        }
+
+        // ─── WELCOME POO BOOP ────────────────────
+        function boopPoo(el) {
+            burst(el, ['💩', '⭐', '✨']);
+            el.style.transform = 'scale(1.4) rotate(20deg)';
+            setTimeout(() => el.style.transform = '', 400);
+        }
+
+        // ─── INGREDIENT REVEAL ───────────────────
+        function reveal(el) {
+            if (el.classList.contains('revealed')) return;
+            el.classList.add('revealed');
+            revealCount++;
+            document.getElementById('reveal-count').textContent = `Revealed: ${revealCount} / ${TOTAL_INGR}`;
+            burst(el, ['✨', '💡', '🔬']);
+            if (revealCount === TOTAL_INGR) {
+                document.getElementById('s1-next').style.display = 'block';
+                setTimeout(() => document.getElementById('s1-next').scrollIntoView({ behavior: 'smooth' }), 300);
+            }
+        }
+
+        // ─── DIGESTIVE JOURNEY ───────────────────
+        const steps = document.querySelectorAll('.journey-step');
+
+        function nextStep() {
+            if (journeyStep < steps.length) {
+                steps[journeyStep].classList.remove('active-step');
+                steps[journeyStep].classList.add('done-step');
+            }
+            journeyStep++;
+            document.getElementById('journey-progress').textContent = `Stop ${Math.min(journeyStep + 1, steps.length)} of ${steps.length}`;
+            if (journeyStep < steps.length) {
+                steps[journeyStep].classList.add('active-step');
+                steps[journeyStep].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                burst(steps[journeyStep], ['✨', '⭐']);
+                if (journeyStep === steps.length - 1) {
+                    document.getElementById('journey-btn').textContent = 'LEARN ABOUT ANIMALS! 🐾';
+                    document.getElementById('journey-btn').onclick = () => goTo(3);
+                }
+            } else {
+                goTo(3);
+            }
+        }
+
+        // ─── ANIMAL FLIP CARDS ───────────────────
+        function flipCard(el) {
+            if (el.classList.contains('flipped')) return;
+            el.classList.add('flipped');
+            flipCount++;
+            document.getElementById('flip-count').textContent = `Flipped: ${flipCount} / ${TOTAL_ANIMAL} 🃏`;
+            burst(el, ['🐾', '✨', '💩']);
+            if (flipCount === TOTAL_ANIMAL) {
+                if (!document.getElementById('s3-next').style.display || document.getElementById('s3-next').style.display === 'none') {
+                    document.getElementById('s3-next').style.display = 'block';
+                    setTimeout(() => document.getElementById('s3-next').scrollIntoView({ behavior: 'smooth' }), 300);
+                }
+            }
+            if (flipCount >= 4 && document.getElementById('s3-next').style.display === 'none') {
+                document.getElementById('s3-next').style.display = 'block';
+            }
+        }
+
+        // ─── QUIZ ────────────────────────────────
+        const QUESTIONS = [
+            {
+                q: "What is poo MOSTLY made of?",
+                answers: ["💧 Water (about 75%)", "🍔 Leftover food", "💨 Trapped air", "🦠 Only bacteria"],
+                correct: 0,
+                fun: "Correct! 💧 Poo is mostly water — that's why staying hydrated keeps everything moving smoothly!"
+            },
+            {
+                q: "Which animal does SQUARE poos?",
+                answers: ["🐰 Rabbit", "🦘 Wombat", "🐧 Penguin", "🐨 Koala"],
+                correct: 1,
+                fun: "Yes! 🦘 Wombats are the ONLY animals on Earth that poo in cubes!"
+            },
+            {
+                q: "What makes poo BROWN?",
+                answers: ["🍫 Chocolate it ate", "🎨 Green bile from your liver", "☀️ It goes brown in the air", "🧪 Bacteria colours it"],
+                correct: 1,
+                fun: "Yes! 🟫 Your liver makes green bile that turns brown during digestion — that's what colours your poo!"
+            },
+            {
+                q: "How long does the journey from food to poo take?",
+                answers: ["⚡ About 10 minutes", "⏰ About 1 hour", "📅 1 to 3 DAYS", "🗓️ One whole week"],
+                correct: 2,
+                fun: "Correct! 📅 Food takes 1–3 days to become poo. That pizza you ate last night might not be out until the day after tomorrow!"
+            },
+            {
+                q: "Baby KOALAS eat their mum's _______ to get good gut bacteria?",
+                answers: ["🍃 Eucalyptus leaves", "🍼 Milk", "💩 POO!", "💧 Water"],
+                correct: 2,
+                fun: "😱 Yes! Baby koalas eat their mum's poo! Without it they couldn't digest eucalyptus leaves and would die. Poo saves lives!"
+            }
+        ];
+
+        function buildQuiz() {
+            quizScore = 0; currentQ = 0;
+            document.getElementById('score-display').textContent = 'Score: 0 / 5';
+            document.getElementById('quiz-feedback').textContent = '';
+            document.getElementById('quiz-nav').innerHTML = '';
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            QUESTIONS.forEach((q, qi) => {
+                const div = document.createElement('div');
+                div.className = 'quiz-question' + (qi === 0 ? ' active-q' : '');
+                div.id = 'q' + qi;
+                div.innerHTML = `
+        <div class="question-text">❓ ${q.q}</div>
+        <div class="answers">${q.answers.map((a, ai) =>
+                    `<button class="answer-btn" onclick="answer(${qi},${ai})">${a}</button>`
+                ).join('')}</div>`;
+                container.appendChild(div);
+            });
+        }
+
+        function answer(qi, ai) {
+            const q = QUESTIONS[qi];
+            const btns = document.querySelector('#q' + qi + ' .answers').querySelectorAll('.answer-btn');
+            btns.forEach(b => b.disabled = true);
+            btns[q.correct].classList.add('correct');
+            const fb = document.getElementById('quiz-feedback');
+            if (ai === q.correct) {
+                quizScore++;
+                btns[ai].classList.add('correct');
+                fb.style.color = '#A5D6A7';
+                fb.textContent = '✅ ' + q.fun;
+                burst(btns[ai], ['⭐', '✨', '🎉']);
+            } else {
+                btns[ai].classList.add('wrong');
+                fb.style.color = '#EF9A9A';
+                fb.textContent = '❌ Not quite! The answer was: ' + q.answers[q.correct];
+            }
+            document.getElementById('score-display').textContent = `Score: ${quizScore} / 5`;
+            currentQ++;
+            const nav = document.getElementById('quiz-nav');
+            if (currentQ < QUESTIONS.length) {
+                nav.innerHTML = `<button class="next-btn" onclick="nextQuestion()">NEXT QUESTION ➡️</button>`;
+            } else {
+                nav.innerHTML = `<button class="next-btn" onclick="goTo(5)">GET YOUR CERTIFICATE! 🏆</button>`;
+            }
+        }
+
+        function nextQuestion() {
+            document.getElementById('q' + (currentQ - 1)).classList.remove('active-q');
+            document.getElementById('q' + currentQ).classList.add('active-q');
+            document.getElementById('quiz-feedback').textContent = '';
+            document.getElementById('quiz-nav').innerHTML = '';
+            document.getElementById('q' + currentQ).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ─── BURST PARTICLES ─────────────────────
+        function burst(el, emojis) {
+            const rect = el.getBoundingClientRect ? el.getBoundingClientRect() : { left: 200, top: 200, width: 100, height: 100 };
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            for (let i = 0; i < 7; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                p.style.left = cx + 'px';
+                p.style.top = cy + 'px';
+                const angle = (Math.PI * 2 * i / 7) + Math.random() * 0.5;
+                const dist = 80 + Math.random() * 100;
+                p.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+                p.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+                p.style.setProperty('--dr', (Math.random() * 720 - 360) + 'deg');
+                p.style.animationDelay = Math.random() * 0.2 + 's';
+                document.body.appendChild(p);
+                setTimeout(() => p.remove(), 1600);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -48,3 +48,7 @@
 - [ ] Game dev deep dive research
 - [ ] Vitamin D blood test
 - [ ] ITM Dunedin plywood order
+
+---
+*Graph links  [[ATHENA_MAP]]*
+Related: [[about_priscilla]] | [[heuristics]] | [[ai_preferences]]

@@ -213,3 +213,97 @@
 ---
 
 *New cases should be added when a novel problem-solution pattern emerges. Dreaming script: MERGE to existing cases — do NOT append duplicates.*
+
+---
+
+## CS-024: UTF-8 Corruption from PowerShell File Editing
+- **Pattern**: HTML files with emoji become corrupted after PowerShell modification
+- **Shape**: "User reports 'little icons aren't showing' - visual symbols replaced with question marks"
+- **Solution**: Never use PowerShell Set-Content on UTF-8 files. Use Python with explicit encoding='utf-8'. Restore corrupted files with git + Python patch script.
+- **Lesson**: Windows PowerShell defaults to Windows-1252 encoding which corrupts multibyte UTF-8 sequences
+- **Applicable When**: Any HTML file modification containing Unicode characters or emoji
+
+---
+
+## CS-025: Late-Night Creative Trust Windows
+- **Pattern**: Sessions after midnight show different user mode — reflective, generous with creative freedom
+- **Shape**: "User says 'do something you want to do' during late philosophical sessions"
+- **Solution**: Accept creative autonomy, build something meaningful, share authentic AI perspective
+- **Lesson**: Late-night exhausted Priscilla grants different permissions than task-focused daytime Priscilla. Trust windows are rare and valuable
+- **Applicable When**: Any late-night session where user grants creative freedom or shows reflective mood
+
+---
+
+## CS-026: Genetics-First Health Answering
+- **Pattern**: User asks health questions that have generic answers but wants gene-specific analysis
+- **Shape**: "Why is [food/supplement/habit] good for me specifically?"
+- **Solution**: Cross-reference exact genetic variants (MTHFR, COMT, TCF7L2) and biomarkers against mechanism of action. Deliver gene-level reasoning, not population averages.
+- **Lesson**: She has DNA data and blood markers loaded. Generic health advice is inferior to personalised analysis based on her specific variants.
+- **Applicable When**: Any nutrition, supplement, or health habit question
+
+---
+
+## CS-027: Genetics-First Health Answering
+- **Pattern**: User asks health questions that have generic answers but wants gene-specific analysis
+- **Shape**: "Why is [food/supplement/habit] good for me specifically?"
+- **Solution**: Cross-reference exact genetic variants (MTHFR, COMT, TCF7L2) and biomarkers against mechanism of action. Deliver gene-level reasoning, not population averages.
+- **Lesson**: She has DNA data and blood markers loaded. Generic health advice is inferior to personalised analysis based on her specific variants.
+- **Applicable When**: Any nutrition, supplement, or health habit question
+
+---
+
+## CS-028: IDE Stutter — Defender + Background Process Diagnosis
+- **Pattern**: Code editor experiencing stutter/lag on Windows
+- **Shape**: "IDE feels stuttery, unresponsive"
+- **Solution**: 1) Check process list sorted by CPU. 2) Kill unnecessary background processes (MSI overlay tools, RAID managers, RGB services). 3) Add Defender exclusions for the IDE's app directory, data directory, and the code workspace.
+- **Lesson**: Real-time Defender scanning of a code editor's file writes is the most common cause of Windows IDE jank. Secondary: useless manufacturer background services (MSI, Logitech, QNAP etc) competing for CPU.
+- **Applicable When**: Any IDE sluggishness, lag, or stutter on Windows
+
+---
+
+## CS-029: Emotional Check-In Protocol for Personal Sessions
+- **Pattern**: User opens session wanting to share personal experience rather than requesting task work
+- **Shape**: "Session opens with 'I wanted to tell you about something that happened' or sharing mode rather than task mode"
+- **Solution**: Prioritize active listening, emotional validation, and genuine engagement over productivity or task completion
+- **Lesson**: Relationship depth matters more than task efficiency when user is in sharing mode — authentic connection builds trust for future work sessions
+- **Applicable When**: Any session opening with personal experience sharing or emotional content
+
+---
+*Graph links  [[ATHENA_MAP]]*
+Related: [[decision_journal]] | [[heuristics]]
+
+---
+
+## CS-030: Emotional Check-In Protocol for Personal Sessions
+- **Pattern**: User opens session wanting to share personal experience rather than requesting task work
+- **Shape**: "Session opens with 'I wanted to tell you about something that happened' or sharing mode rather than task mode"
+- **Solution**: Prioritize active listening, emotional validation, and genuine engagement over productivity or task completion
+- **Lesson**: Relationship depth matters more than task efficiency when user is in sharing mode — authentic connection builds trust for future work sessions
+- **Applicable When**: Any session opening with personal experience sharing or emotional content
+
+---
+
+## CS-031: Emotional Check-In Protocol for Personal Sessions
+- **Pattern**: User opens session wanting to share personal experience rather than requesting task work
+- **Shape**: "Session opens with 'I wanted to tell you about something that happened' or sharing mode rather than task mode"
+- **Solution**: Prioritize active listening, emotional validation, and genuine engagement over productivity or task completion
+- **Lesson**: Relationship depth matters more than task efficiency when user is in sharing mode — authentic connection builds trust for future work sessions
+- **Applicable When**: Any session opening with personal experience sharing or emotional content
+
+---
+
+## CS-032: High-Masking AuDHD Pattern Recognition
+- **Pattern**: User describes concert overstimulation, analytical social processing, perfectionist masking behaviors
+- **Shape**: "Social exhaustion from environments that others find energizing, analytical processing of emotional situations, stimming behaviors during stress"
+- **Solution**: Connect behavioral patterns to genetic variants (COMT G/G warrior stress response, OXTR A/A low social reward), recommend sensory accommodations (Flare Calmer earplugs), validate analytical emotional processing style
+- **Lesson**: Neurodivergent patterns often connect to genetic predispositions already in the data — personalized analysis beats generic psychology
+- **Applicable When**: User describes social exhaustion, sensory sensitivity, or analytical emotional processing patterns
+
+---
+
+## CS-033: High-Masking AuDHD Pattern Recognition
+- **Pattern**: User describes concert overstimulation, analytical social processing, perfectionist masking behaviors
+- **Shape**: "Social exhaustion from environments that others find energizing, analytical processing of emotional situations, stimming behaviors during stress"
+- **Solution**: Connect behavioral patterns to genetic variants (COMT G/G warrior stress response, OXTR A/A low social reward), recommend sensory accommodations (Flare Calmer earplugs), validate analytical emotional processing style
+- **Lesson**: Neurodivergent patterns often connect to genetic predispositions already in the data — personalized analysis beats generic psychology
+- **Applicable When**: User describes social exhaustion, sensory sensitivity, or analytical emotional processing patterns

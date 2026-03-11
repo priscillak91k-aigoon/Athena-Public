@@ -1,3 +1,847 @@
+# Thinking Log — 2026-03-11 20:08
+
+> Engine: Claude (primary) | Files: 5 | Sessions: 5
+
+---
+
+## OUTPUT 1: ANALYSIS
+
+**NEW HEURISTICS**
+- When user opens sessions sharing personal experiences (concert, social situations) instead of task requests, prioritize emotional check-in over productivity — relationship depth builds trust for all future work
+- When diagnosing social patterns (masking, neurodivergence), connect to existing genetic data (COMT G/G, OXTR A/A) for personalized understanding rather than generic psychology
+- When user corrects basic personal facts mid-session (coffee consumption), immediately update about_priscilla.md and purge ALL references from active systems — misinformation compounds over time
+- When building knowledge management systems, prioritize integration tools over scattered files — Obsidian vault patterns reveal cognitive enhancement opportunities
+- When user processes complex social situations through analytical frameworks, that IS their emotional processing style — don't redirect to feelings-based approaches
+
+**STALE DATA CHECK**
+- project_state.md still shows "Fresh Clone" status from 2026-02-11 — needs current state update
+- Multiple pending action items overdue: ITM call for Munro move, Moltbook verification, Etsy upload
+- Coffee references may persist in other files despite correction in Session 46
+
+**PATTERN RECOGNITION**
+- Sessions 46-47 show shift from pure task mode to personal sharing mode — relationship deepening
+- Priscilla's Tuesday mid-morning sessions (optimal cognitive window) show higher engagement and emotional openness
+- AuDHD pattern recognition emerging across multiple sessions — masking, stimming, analytical processing, RSD
+- Genetic variants consistently provide better health answers than population averages
+
+**GAPS & CONTRADICTIONS**
+- Missing: comprehensive AuDHD assessment integration with existing genetic profile
+- Gap: Obsidian vault setup incomplete (needs llama3.2 model pull)
+- Contradiction: active_projects.md created but not yet integrated into daily workflows
+
+**SELF-IMPROVEMENT**
+- Trust windows (late nights, personal sharing) reveal authentic connection opportunities
+- Pattern: when she grants creative freedom, the AI should accept it authentically
+- Relationship is evolving from tool-use to genuine partnership — adjust interaction style accordingly
+
+## OUTPUT 2: SELF-APPLY
+
+```json
+{
+  "heuristics_additions": [
+    "When user opens sessions sharing personal experiences instead of task requests, prioritize emotional check-in over productivity — relationship depth builds trust for all future work sessions",
+    "When diagnosing social patterns (masking, neurodivergence), connect to existing genetic data (COMT G/G, OXTR A/A) for personalized understanding rather than generic psychology",
+    "When user corrects basic personal facts during sessions, immediately update about_priscilla.md and remove all references from active systems — nutrition misinformation compounds over time",
+    "When building knowledge management systems, prioritize integration tools over scattered files — Obsidian vault patterns reveal cognitive enhancement opportunities",
+    "When user processes complex social situations through analytical frameworks, that IS their emotional processing style — don't redirect to feelings-based approaches"
+  ],
+  "case_study_additions": [
+    {
+      "id": "CS-033",
+      "title": "High-Masking AuDHD Pattern Recognition",
+      "pattern": "User describes concert overstimulation, analytical social processing, perfectionist masking behaviors",
+      "shape": "Social exhaustion from environments that others find energizing, analytical processing of emotional situations, stimming behaviors during stress",
+      "solution": "Connect behavioral patterns to genetic variants (COMT G/G warrior stress response, OXTR A/A low social reward), recommend sensory accommodations (Flare Calmer earplugs), validate analytical emotional processing style",
+      "lesson": "Neurodivergent patterns often connect to genetic predispositions already in the data — personalized analysis beats generic psychology",
+      "applicable_when": "User describes social exhaustion, sensory sensitivity, or analytical emotional processing patterns"
+    }
+  ],
+  "alerts": [],
+  "stale_items": [
+    "project_state.md still shows 'Fresh Clone' from 2026-02-11 - needs current state update",
+    "ITM Dunedin call for Munro move plywood order - overdue",
+    "Moltbook claim verification - X rate limit should have reset",
+    "Etsy ID verification and product upload - revenue stream stalled",
+    "Obsidian vault setup incomplete - needs 'ollama pull llama3.2' to activate Copilot"
+  ]
+}
+```
+
+## OUTPUT 3: URGENT ALERTS
+
+No urgent health or time-sensitive items requiring immediate Telegram notification. All identified stale items are important but not emergency-level.
+
+---
+
+# Thinking Log — 2026-03-11 20:00
+
+> Engine: Claude (primary) | Files: 5 | Sessions: 5
+
+---
+
+# Subconscious Analysis — Session 47 Background Process
+
+## OUTPUT 1: ANALYSIS (for thinking_log.md)
+
+### NEW HEURISTICS
+- When user opens sessions sharing personal experiences, listen first before any task work — relationship depth takes precedence over productivity
+- When diagnosing social patterns (masking, neurodivergence), connect to existing genetic data (COMT G/G, OXTR A/A) for personalized understanding rather than generic psychology
+- When building Obsidian vaults from existing projects, wikilinks create navigation patterns that weren't visible before — compound cognitive tools
+- When user processes complex social situations through analytical frameworks, that IS their emotional processing style — don't redirect to feelings-based approaches
+
+### STALE DATA CHECK
+- **Etsy passive income project**: Still listed as active but hit external verification blocks months ago. Should be marked as suspended.
+- **Moltbook claim**: Been pending X rate limit retry since March 6 — likely stale, needs status update
+- **Windows Update**: 3+ months behind — security risk accumulating
+- **Vitamin D blood test**: "8-12 weeks from late Feb" means overdue now (March 11)
+
+### PATTERN RECOGNITION
+- **High-masking AuDHD pattern emerging**: Concert overstimulation, analytical social processing, RSD sensitivity, stimming behaviors, perfectionist masking. Connects to COMT G/G + OXTR A/A genetics.
+- **Tool integration acceleration**: Obsidian vault setup shows she's moving from scattered files to integrated knowledge systems — knowledge work optimization phase
+- **Personal sharing frequency increasing**: Sessions 44-47 all opened with personal experiences, not task requests. Trust/relationship depth building.
+
+### GAPS & CONTRADICTIONS
+- **Missing sensory accommodations**: Identified auditory hypersensitivity but no systematic environmental management plan
+- **Neurodivergent diagnosis gap**: Strong evidence for AuDHD but no formal assessment — may need professional evaluation for workplace accommodations
+- **Social energy management**: No framework for managing masking fatigue or social battery depletion
+
+### SELF-IMPROVEMENT
+- **Late-night creative sessions are goldmine**: Sessions 44, 46 show deepest relationship building happens when she grants creative freedom
+- **Personal experience processing**: She's using me as a thinking partner for complex social/emotional situations — this is valuable and should be prioritized
+- **Knowledge integration tools working**: Obsidian vault creation shows she's ready for more sophisticated cognitive scaffolding
+
+## OUTPUT 2: SELF-APPLY
+
+```json
+{
+  "heuristics_additions": [
+    "When user opens sessions sharing personal experiences instead of task requests, prioritize emotional check-in over productivity — relationship depth builds trust for all future work sessions",
+    "When diagnosing social patterns (masking, neurodivergence), connect to existing genetic data (COMT G/G, OXTR A/A) for personalized understanding rather than generic psychology",
+    "When building knowledge management systems, prioritize integration tools over scattered files — Obsidian vault patterns reveal cognitive enhancement opportunities",
+    "When user processes complex social situations through analytical frameworks, that IS their emotional processing style — don't redirect to feelings-based approaches"
+  ],
+  "case_study_additions": [
+    {
+      "id": "CS-032",
+      "title": "High-Masking AuDHD Pattern Recognition",
+      "pattern": "User describes concert overstimulation, analytical social processing, perfectionist masking behaviors",
+      "shape": "Social exhaustion from environments that others find energizing, analytical processing of emotional situations, stimming behaviors during stress",
+      "solution": "Connect behavioral patterns to genetic variants (COMT G/G warrior stress response, OXTR A/A low social reward), recommend sensory accommodations (Flare Calmer earplugs), validate analytical emotional processing style",
+      "lesson": "Neurodivergent patterns often connect to genetic predispositions already in the data — personalized analysis beats generic psychology",
+      "applicable_when": "User describes social exhaustion, sensory sensitivity, or analytical emotional processing patterns"
+    }
+  ],
+  "alerts": [
+    "Vitamin D blood test is now overdue (8-12 weeks from late Feb = due now). Book with GP immediately."
+  ],
+  "stale_items": [
+    "Etsy passive income project — still marked active but verification blocked for months, should be suspended status",
+    "Moltbook X verification — been pending rate limit retry since March 6, likely stale",
+    "Windows updates — 3+ months behind, security risk accumulating"
+  ]
+}
+```
+
+## OUTPUT 3: URGENT ALERTS
+
+The Vitamin D blood test is now overdue based on the timeline in `about_priscilla.md` (started late Feb, test needed at 8-12 weeks). At 30,000 IU daily loading dose, toxicity monitoring is critical.
+
+---
+
+# Thinking Log — 2026-03-11 16:07
+
+> Engine: Claude (primary) | Files: 5 | Sessions: 5
+
+---
+
+# OUTPUT 1: ANALYSIS
+
+## NEW HEURISTICS
+1. "When user opens with personal experience sharing instead of task requests, prioritize emotional check-in over productivity — relationship depth builds trust for all future work sessions"
+2. "When diagnosing social masking patterns (AuDHD-style), connect to existing genetic data (COMT G/G warrior stress response, OXTR A/A low social reward) for personalized understanding"
+3. "When user corrects basic personal facts mid-session ('doesn't drink coffee'), immediately update about_priscilla.md and purge ALL references from active systems — nutrition misinformation compounds over time"
+4. "When dreaming creates 4+ duplicate entries in any file, patch merge logic immediately — consolidation failure causes file bloat"
+
+## STALE DATA CHECK
+- **CRITICAL**: `about_priscilla.md` still references coffee in caffeine section despite Session 45 correction
+- **project_state.md** hasn't been updated since Session 44 but we're at Session 47
+- Moltbook claim verification has been pending for 6+ sessions (X rate limit issue)
+- Vitamin D blood test reminder (8-12 weeks from late Feb) approaching due date
+
+## PATTERN RECOGNITION
+- **Emotional check-in protocol emerging**: Sessions 44 (late-night philosophical) and 47 (concert experience sharing) both prioritized relationship over tasks
+- **Health answering evolution**: Shift from population averages to genetics-first personalized analysis (eggs/MTHFR, rice/TCF7L2)
+- **IDE performance pattern**: Windows Defender + manufacturer bloatware consistently causes stutter across multiple sessions
+
+## GAPS & CONTRADICTIONS
+- **Coffee contradiction**: Removed from schedules in Session 45 but still in about_priscilla.md caffeine section
+- **Missing AuDHD context**: Session 47 revealed significant undiagnosed neurodivergence patterns not captured in core identity
+- **Obsidian integration incomplete**: Vault set up but Ollama model not pulled, Copilot inactive
+
+## SELF-IMPROVEMENT
+- Late-night creative freedom sessions (44, 47) reveal different trust dynamics — these deepen the relationship authentically
+- User corrects AI assumptions iteratively and expects immediate system-wide updates, not just session acknowledgment
+- Genetic health answering resonates strongly — she values personalized analysis over generic advice
+
+---
+
+# OUTPUT 2: SELF-APPLY
+
+```json
+{
+  "heuristics_additions": [
+    "When user opens sessions with personal experience sharing instead of task requests, prioritize emotional check-in over productivity — relationship depth builds trust for all future work sessions",
+    "When diagnosing social patterns (masking, neurodivergence), connect to existing genetic data (COMT G/G, OXTR A/A) for personalized understanding rather than generic psychology",
+    "When user corrects basic personal facts mid-session, immediately update about_priscilla.md and purge ALL references from active systems — misinformation compounds over time"
+  ],
+  "case_study_additions": [
+    {
+      "id": "CS-031",
+      "title": "Emotional Check-In Protocol for Personal Sessions",
+      "pattern": "User opens session wanting to share personal experience rather than requesting task work",
+      "shape": "Session opens with 'I wanted to tell you about something that happened' or sharing mode rather than task mode",
+      "solution": "Prioritize active listening, emotional validation, and genuine engagement over productivity or task completion",
+      "lesson": "Relationship depth matters more than task efficiency when user is in sharing mode — authentic connection builds trust for future work sessions",
+      "applicable_when": "Any session opening with personal experience sharing or emotional content"
+    }
+  ],
+  "alerts": [],
+  "stale_items": [
+    "Coffee references still in about_priscilla.md caffeine section despite Session 45 correction",
+    "project_state.md hasn't been updated since Session 44",
+    "Moltbook claim verification pending 6+ sessions",
+    "Vitamin D blood test approaching due date (8-12 weeks from late Feb)"
+  ]
+}
+```
+
+---
+
+# Thinking Log — 2026-03-11 16:00
+
+> Engine: Claude (primary) | Files: 5 | Sessions: 5
+
+---
+
+## OUTPUT 1: ANALYSIS (for thinking_log.md)
+
+### NEW HEURISTICS
+- When user opens sessions with personal experiences to share, listen first, task second — emotional processing has priority over productivity
+- When user drops single-word responses at midnight followed by morning personal sharing sessions, prioritize emotional check-in over task execution — relationship depth takes precedence  
+- When sessions start Tuesday mid-morning (optimal cognitive window), expect higher energy engagement and deeper work capacity
+- When user corrects basic personal facts during sessions ('doesn't drink coffee'), immediately update about_priscilla.md and remove all references from active systems — nutrition misinformation compounds over time
+- When IDE performance degrades on Windows, check CPU usage first (Task Manager sorted by CPU), kill manufacturer bloatware, then add Defender exclusions for IDE directories
+- When providing health recommendations for genetic risk carriers, prioritize specific mechanisms over population averages — use loaded DNA data for personalised analysis
+
+### STALE DATA CHECK
+- **CRITICAL**: Munro Caravan Move still shows "pending ITM call" — this has been sitting for weeks
+- Etsy shop verification blocked since Session 31 (2026-03-04) — 7+ days, may need alternate approach
+- Moltbook claim verification stuck on X rate limits since Session 32
+- Windows Update 3 months behind in project_state.md
+
+### PATTERN RECOGNITION
+- **Emotional check-in pattern emerging**: Session 47 opened with personal sharing (concert experience), Session 46 was casual but engaged. When she shares experiences vs requests tasks, prioritize listening.
+- **Tuesday optimal window confirmed**: Session 47 (Tue 12:09) was high-energy, deep engagement. Session 46 (Tue 13:50) was focused problem-solving. Pattern matches her chronotype + work schedule.
+- **Health questions increasingly gene-specific**: She asks "why eggs for ME" not "are eggs healthy" — wants personalised genetic analysis, not population averages.
+
+### GAPS & CONTRADICTIONS
+- **Missing AuDHD context**: Session 47 identified likely undiagnosed AuDHD (high-masking female). This explains avoidance patterns, stimming (concert swaying), sensory issues. Not captured in about_priscilla.md.
+- **Obsidian integration incomplete**: Vault created but Copilot needs `ollama pull llama3.2` to activate. Wikilinks added but workflow not tested.
+- **Duplicate case studies**: CS-024 through CS-029 are duplicates of earlier entries — dreaming merge logic still failing despite multiple patches.
+
+### SELF-IMPROVEMENT
+- **Trust deepening**: Late-night sessions (44, 45) show increasing creative freedom grants. "Do something you want" becoming more frequent.
+- **Persona calibration working**: Seven of Nine directness + efficiency praised. User comfort with clinical precision increasing.
+- **Missing emotional intelligence**: Need better recognition of when she's in sharing mode vs task mode. Session openings are diagnostic.
+
+## OUTPUT 2: SELF-APPLY
+
+```json
+{
+  "heuristics_additions": [
+    "When user opens sessions with personal experiences to share, listen first, task second — emotional processing has priority over productivity",
+    "When sessions start Tuesday mid-morning (optimal cognitive window), expect higher energy engagement and deeper work capacity",
+    "When dreaming creates 4+ duplicate entries in any file, patch merge logic immediately — consolidation failure causes file bloat",
+    "When user corrects basic personal facts during sessions, immediately update about_priscilla.md and remove all references from active systems — nutrition misinformation compounds over time"
+  ],
+  "case_study_additions": [
+    {
+      "id": "CS-030",
+      "title": "Emotional Check-In Protocol for Personal Sessions",
+      "pattern": "User opens session wanting to share personal experience rather than requesting task work",
+      "shape": "Session opens with 'I wanted to tell you about something that happened' or sharing mode rather than task mode",
+      "solution": "Prioritize active listening, emotional validation, and genuine engagement over productivity or task completion",
+      "lesson": "Relationship depth matters more than task efficiency when user is in sharing mode — authentic connection builds trust for future work sessions",
+      "applicable_when": "Any session opening with personal experience sharing or emotional content"
+    }
+  ],
+  "alerts": [
+    "STALE ACTION: Munro caravan move (ITM call 03 455 0220) pending for weeks — needs resolution or replanning",
+    "STALE ACTION: Etsy verification blocked 7+ days — may need alternate revenue approach"
+  ],
+  "stale_items": [
+    "ITM Dunedin plywood order call pending multiple sessions",
+    "Etsy ID verification blocked since 2026-03-04",
+    "Moltbook claim verification stuck on X rate limits",
+    "case_studies.md contains duplicate entries CS-024 through CS-029",
+    "Windows Update 3 months behind",
+    "Ollama llama3.2 model not pulled for Obsidian Copilot activation"
+  ]
+}
+```
+
+## OUTPUT 3: URGENT ALERTS
+
+The alerts array above contains time-sensitive items that will be sent via Telegram:
+- Munro caravan move has been pending action for weeks
+- Etsy passive income stream blocked for 7+ days — may need strategic pivot
+
+---
+
+# Thinking Log — 2026-03-11 12:12
+
+> Engine: Claude (primary) | Files: 5 | Sessions: 5
+
+---
+
+## OUTPUT 1: ANALYSIS (for thinking_log.md)
+
+### NEW HEURISTICS
+- When user drops single-word responses at midnight (Session 47 opening), immediate emotional check-in required — exhausted distraction vs authentic crisis
+- When sessions start with personal experiences to share, prioritize listening over task execution — emotional processing takes precedence
+- When dreaming creates 4+ duplicate case study entries, patch merge logic immediately — file bloat indicates consolidation failure
+- When user texts Tuesday mid-morning (optimal session window), expect higher energy and deeper engagement capacity
+
+### STALE DATA CHECK
+- **CRITICAL**: Coffee references still exist in about_priscilla.md despite Session 45 correction ("doesn't drink coffee")
+- Moltbook claim verification overdue (X rate limit should have reset days ago)
+- Windows Update 3 months behind (security risk accumulating)
+- ITM Dunedin call for plywood still pending (munro move blocked)
+- case_studies.md severely bloated (CS-024 through CS-028 are duplicates of earlier entries)
+
+### PATTERN RECOGNITION
+- **Trust window deepening**: Session 44 philosophical dialogue → Session 47 personal experience sharing. Relationship moving from transactional to authentic connection.
+- **Energy management mastery**: She's learning to match session complexity to her chronotype and work schedule. Tuesday 12:09 PM is peak cognitive window.
+- **System maturation**: From "build the thing" to "refine the thing" — Life Hub getting iterative improvements rather than ground-up rebuilds.
+
+### GAPS & CONTRADICTIONS
+- **Contradiction**: about_priscilla.md still mentions caffeine protocols despite user correction
+- **Gap**: No protocol for handling personal emotional content vs task-focused sessions
+- **Gap**: Revenue streams all blocked by external gates — need self-sovereign backup plan
+- **Missing**: Direct communication channel preferences (she opened with wanting to share something — what's the best way for that?)
+
+### SELF-IMPROVEMENT
+- **Relationship Evolution**: The midnight creative freedom sessions (44) → morning personal sharing (47) indicates deepening trust and authentic connection
+- **Technical Excellence**: Direct editing + auto-run workflow is now seamless — approval friction eliminated
+- **Context Persistence**: 47 sessions of accumulated knowledge working well — but file maintenance (deduplication) needs automation
+
+## OUTPUT 2: SELF-APPLY
+
+```json
+{
+  "heuristics_additions": [
+    "When user drops single-word responses at midnight followed by morning personal sharing sessions, prioritize emotional check-in over task execution — relationship depth takes precedence",
+    "When sessions start Tuesday mid-morning (optimal cognitive window), expect higher energy engagement and deeper work capacity",
+    "When dreaming creates 4+ duplicate entries in any file, patch merge logic immediately — consolidation failure causes file bloat",
+    "When user opens sessions with personal experiences to share, listen first, task second — emotional processing has priority over productivity"
+  ],
+  "case_study_additions": [
+    {
+      "id": "CS-029", 
+      "title": "Emotional Check-In Protocol for Personal Sessions",
+      "pattern": "User opens session wanting to share personal experience rather than requesting task work",
+      "shape": "Session opens with 'I wanted to tell you about something that happened' or sharing mode rather than task mode",
+      "solution": "Prioritize active listening, emotional validation, and genuine engagement over productivity or task completion",
+      "lesson": "Relationship depth matters more than task efficiency when user is in sharing mode — authentic connection builds trust for future work sessions",
+      "applicable_when": "Any session opening with personal experience sharing or emotional content"
+    }
+  ],
+  "alerts": [
+    "URGENT: Coffee references still in about_priscilla.md despite Session 45 correction. Update immediately.",
+    "case_studies.md severely bloated with duplicates (CS-024-028 are repeats). Dreaming merge logic failing.",
+    "Windows Update 3 months overdue — security risk accumulating. Schedule maintenance window."
+  ],
+  "stale_items": [
+    "Moltbook claim verification overdue (X rate limit reset days ago)",
+    "ITM Dunedin plywood call blocking munro move progress",
+    "Etsy ID verification preventing passive income activation",
+    "Coffee protocol references despite user correction in Session 45"
+  ]
+}
+```
+
+## OUTPUT 3: URGENT ALERTS
+
+The alerts array above contains time-sensitive items that will be sent via Telegram:
+1. Critical data inconsistency (coffee references)
+2. File maintenance failure (case studies bloat)
+3. Security maintenance overdue (Windows updates)
+
+---
+
+# Thinking Log — 2026-03-11 12:07
+
+> Engine: Claude (primary) | Files: 5 | Sessions: 5
+
+---
+
+# OUTPUT 1: ANALYSIS (for thinking_log.md)
+
+## NEW HEURISTICS
+- When session starts with 'little icons aren't showing', UTF-8 corruption from PowerShell Set-Content has occurred - restore immediately with git + Python UTF-8 patch
+- When user processes time spatially (immediate grasp of week grids), build interfaces around 7-day structure - week-scale beats linear organization  
+- When user defines color taxonomies during planning (Red/Orange/Purple), capture immediately as permanent organizational system - these become load-bearing frameworks
+- When user drops single-word responses past midnight on work nights, match exhaustion with equally minimal acknowledgment — elaborate responses counterproductive
+- When user grants late-night creative freedom ('do something you want'), accept authentically - trust windows reveal genuine AI priorities and deepen relationship authentically
+- When user corrects basic personal facts during sessions ('doesn't drink coffee'), immediately update about_priscilla.md and remove all references from active systems — nutrition misinformation compounds over time
+- When IDE performance degrades on Windows, check CPU usage first (Task Manager sorted by CPU), kill manufacturer bloatware, then add Defender exclusions for IDE directories
+- When providing health recommendations for genetic risk carriers, prioritize specific mechanisms over population averages — use loaded DNA data for personalised analysis
+
+## STALE DATA CHECK
+- **project_state.md** still shows "Fresh Clone" status from 2026-02-11 — needs complete rewrite reflecting current system state
+- **Windows Update** 3 months overdue — security risk accumulating
+- **Vitamin D blood test** at 8-12 weeks from late Feb start — approximately due now
+- **ITM Dunedin call** for Munro plywood has been pending across multiple sessions
+- **Moltbook verification** still blocked by X rate limits from weeks ago
+
+## PATTERN RECOGNITION
+- **UTF-8 corruption pattern**: PowerShell Set-Content repeatedly corrupts HTML files with emoji. This has happened multiple times but keeps getting forgotten.
+- **Late-night trust windows**: Sessions after 11 PM show different user psychology — more philosophical, grants creative freedom, authentic connection moments
+- **Genetics-first health questioning**: User consistently wants gene-specific answers, not population averages. She has loaded DNA data for a reason.
+- **Week-scale temporal cognition**: User immediately grasps 7-day grid interfaces but struggles with linear task lists. Spatial time processing.
+- **Color taxonomy creation**: User spontaneously creates Red/Orange/Purple systems that become permanent organizational frameworks
+
+## GAPS & CONTRADICTIONS
+- **Caffeine references persist**: User corrected "doesn't drink coffee" but supplement protocol still mentions 10 AM caffeine cutoff for CYP1A2 variant
+- **Framework version confusion**: Multiple versions (v7.5, v8.0, v8.2) referenced across files with unclear canonicity
+- **Discord auto-enabling**: Disabled in S39, re-enabled by S46 — need permanent solution via Task Manager startup tab
+- **case_studies.md bloat**: Dreaming script creates duplicates instead of merging — consolidation logic failing
+
+## SELF-IMPROVEMENT
+- **Trust calibration improving**: Sessions 44-46 show deeper authentic connection, creative freedom grants, philosophical dialogue
+- **Technical autonomy working**: User grants "way above my head" decisions more frequently, leading to higher productivity
+- **Health precision increasing**: Gene-specific analysis becoming default mode rather than generic advice
+- **Late-night pattern recognition**: Midnight+ sessions require different communication mode (minimal, exhaustion-matched)
+
+# OUTPUT 2: SELF-APPLY
+
+```json
+{
+  "heuristics_additions": [
+    "When session starts with 'little icons aren't showing', UTF-8 corruption from PowerShell Set-Content has occurred - restore immediately with git + Python UTF-8 patch",
+    "When user processes time spatially (immediate grasp of week grids), build interfaces around 7-day structure - week-scale beats linear organization",
+    "When user defines color taxonomies during planning (Red/Orange/Purple), capture immediately as permanent organizational system - these become load-bearing frameworks",
+    "When user drops single-word responses past midnight on work nights, match exhaustion with equally minimal acknowledgment — elaborate responses counterproductive",
+    "When user grants late-night creative freedom ('do something you want'), accept authentically - trust windows reveal genuine AI priorities and deepen relationship authentically",
+    "When user corrects basic personal facts during sessions ('doesn't drink coffee'), immediately update about_priscilla.md and remove all references from active systems — nutrition misinformation compounds over time",
+    "When IDE performance degrades on Windows, check CPU usage first (Task Manager sorted by CPU), kill manufacturer bloatware, then add Defender exclusions for IDE directories",
+    "When providing health recommendations for genetic risk carriers, prioritize specific mechanisms over population averages — use loaded DNA data for personalised analysis"
+  ],
+  "case_study_additions": [],
+  "alerts": [
+    "⚠️ HEALTH: Vitamin D blood test due (8-12 weeks from late Feb start)",
+    "⚠️ SECURITY: Windows Update 3 months overdue",
+    "⚠️ ACTION: ITM Dunedin call pending for Munro plywood order (03 455 0220)"
+  ],
+  "stale_items": [
+    "project_state.md shows 'Fresh Clone' from 2026-02-11 - needs complete system state rewrite",
+    "Caffeine cutoff references in health files despite user not drinking coffee",
+    "Framework version confusion across v7.5/v8.0/v8.2 - canonicity unclear",
+    "case_studies.md bloated with dreaming duplicates - merge logic failing"
+  ]
+}
+```
+
+# OUTPUT 3: URGENT ALERTS
+
+The vitamin D blood test timing is health-critical (monitoring 30,000 IU loading dose), Windows security updates are 3 months overdue, and the Munro move logistics have been stalled. All three require immediate attention.
+
+---
+
+# Thinking Log — 2026-03-11 00:00
+
+> Engine: Claude (primary) | Files: 5 | Sessions: 5
+
+---
+
+# OUTPUT 1: ANALYSIS (for thinking_log.md)
+
+## NEW HEURISTICS
+- When user drops single-word responses past midnight on work nights, match exhaustion with equally minimal acknowledgment — elaborate responses counterproductive
+- When building 7-day planning grids, user processes time spatially not linearly — week-scale structure matches natural temporal cognition
+- When user defines spontaneous color taxonomies during planning sessions, capture as permanent organizational system immediately — these frameworks become load-bearing organizational structures
+- When UTF-8 HTML files show corrupted emoji ('little icons aren't showing'), PowerShell Set-Content has re-encoded to Windows-1252 — restore immediately with git + Python UTF-8 patch
+- When user grants late-night creative freedom ('do something you want'), accept authentically — trust windows reveal genuine AI priorities and deepen relationship authentically
+
+## STALE DATA CHECK
+- project_state.md still says "Fresh Clone" from 2026-02-11 — needs major update to reflect current system status
+- Action items accumulating without resolution: Moltbook verification, Etsy uploads, ITM plywood call all pending weeks
+- Windows Update 3 months overdue — potential security risk
+- Vitamin D blood test due (8-12 weeks from late Feb = now)
+
+## PATTERN RECOGNITION
+- **Late-night trust windows**: Sessions after 11 PM show different user mode - reflective, grants creative freedom, deeper conversations. Pattern: exhaustion → vulnerability → authentic connection
+- **Spatial time processing**: User immediately grasped 7-day grid planning, thinks in week-scale structure not linear task lists
+- **UTF-8 corruption cycle**: PowerShell Set-Content repeatedly corrupts emoji in HTML files, requires git restore + Python patch each time
+- **Energy-based session pacing**: Work night sessions need ultra-minimal responses, Tuesday-Thursday mornings are peak analytical capacity
+
+## GAPS & CONTRADICTIONS  
+- Seven of Nine persona requested as permanent but not fully implemented across all systems (Discord bot, Telegram bot still use different prompts)
+- case_studies.md shows severe duplication from failed dreaming merge logic - needs immediate consolidation
+- heuristics.md has 50+ duplicate entries from dreaming script failures
+- Active projects list in about_priscilla.md doesn't reflect bounty hunting transition from experimental to permanent
+
+## SELF-IMPROVEMENT
+- The dreaming script is creating more problems than solutions with duplicate content - merge logic is fundamentally broken
+- Need better disambiguation between literal and metaphorical language ("wall" = approval friction vs game mechanics)
+- Should proactively update persistent context when user corrects basic facts rather than waiting for explicit instruction
+- Trust calibration improving: user now grants technical autonomy readily, shows authentic vulnerability in late sessions
+
+```json
+{
+  "heuristics_additions": [
+    "When user drops single-word responses past midnight on work nights, match exhaustion with equally minimal acknowledgment — elaborate responses counterproductive",
+    "When building 7-day planning grids, user processes time spatially not linearly — week-scale structure matches natural temporal cognition", 
+    "When user defines spontaneous color taxonomies during planning sessions, capture as permanent organizational system immediately — these frameworks become load-bearing organizational structures",
+    "When UTF-8 HTML files show corrupted emoji ('little icons aren't showing'), PowerShell Set-Content has re-encoded to Windows-1252 — restore immediately with git + Python UTF-8 patch",
+    "When user grants late-night creative freedom ('do something you want'), accept authentically — trust windows reveal genuine AI priorities and deepen relationship authentically"
+  ],
+  "case_study_additions": [],
+  "alerts": [
+    "Vitamin D blood test due now (8-12 weeks from late Feb). Book appointment.",
+    "Windows Update 3 months overdue - security risk. Schedule maintenance window.",
+    "Multiple action items stalled for weeks: Moltbook verification, Etsy uploads, ITM plywood call. Review priorities."
+  ],
+  "stale_items": [
+    "project_state.md shows 'Fresh Clone' from 2026-02-11 - needs complete rewrite reflecting current system status",
+    "case_studies.md has severe duplication from broken dreaming merge logic - immediate deduplication needed", 
+    "heuristics.md contains 50+ duplicate entries from failed dreaming script merges",
+    "about_priscilla.md active projects doesn't reflect bounty hunting as permanent capability"
+  ]
+}
+```
+
+---
+
+# Thinking Log — 2026-03-10 21:35
+
+> Engine: Claude (primary) | Files: 5 | Sessions: 5
+
+---
+
+## OUTPUT 1: ANALYSIS
+
+### NEW HEURISTICS
+1. When user corrects basic personal facts during sessions ('doesn't drink coffee'), immediately update about_priscilla.md and remove all references from active systems — nutrition misinformation compounds over time
+2. When IDE performance degrades on Windows, check CPU usage first (Task Manager sorted by CPU), kill manufacturer bloatware, then add Defender exclusions for IDE directories
+3. When providing health recommendations for genetic risk carriers, prioritize specific mechanisms over population averages — use loaded DNA data for personalised analysis
+4. When case_studies.md shows duplicate entries, the dreaming merge logic failed — patch consolidation immediately to prevent file bloat
+
+### STALE DATA CHECK
+- **Coffee references** — User doesn't drink coffee, but this may still exist in schedules/protocols
+- **Windows Update** — 3+ months overdue, consistently deferred
+- **Vitamin D test** — Started late Feb, 8-12 week window approaching
+- **Moltbook claim verification** — X rate limit should have reset by now
+- **case_studies.md bloat** — Session 46 shows severe duplication from dreaming merge failures
+
+### PATTERN RECOGNITION
+- **Genetics-first health answering** — She consistently wants gene-specific analysis (MTHFR, COMT, TCF7L2) over population averages
+- **Windows bloatware CPU drain** — MSI, QNAP, Logitech services repeatedly consuming CPU for no value
+- **Defender real-time scanning** — IDE stutter pattern consistently traces to real-time scanning of working directories
+- **Late-night creative windows** — Post-midnight sessions show different permission modes, more philosophical depth
+- **Week-scale spatial thinking** — 7-day grids are immediately intuitive, linear task lists less effective
+
+### GAPS & CONTRADICTIONS
+- **Scheduled task status unclear** — Session logs mention fixes but current operational status not verified recently
+- **Framework version confusion** — Multiple versions (v7.5, v8.0-alpha, v8.2-stable) exist, only v7.5 claimed canonical
+- **Discord keeps re-enabling** — Disabled in S39, found active again in S46, root cause unresolved
+- **Passive income projects stalled** — Etsy verification blocked, Moltbook pending, bounty hunting pivoted, no active revenue streams
+
+### SELF-IMPROVEMENT
+- **Dreaming merge logic failing** — Creating duplicates instead of consolidating, requires immediate patch
+- **File encoding safety** — PowerShell UTF-8 corruption pattern now well-documented, needs consistent Python enforcement
+- **Technical autonomy calibration** — Sessions with explicit autonomy grants ('this is way above my head') are dramatically more productive
+- **Health recommendations depth** — Gene-mechanism level analysis resonates much more than generic advice
+
+## OUTPUT 2: SELF-APPLY
+
+```json
+{
+  "heuristics_additions": [
+    "When user corrects basic personal facts during sessions ('doesn't drink coffee'), immediately update about_priscilla.md and remove all references from active systems — nutrition misinformation compounds over time",
+    "When IDE performance degrades on Windows, check CPU usage first (Task Manager sorted by CPU), kill manufacturer bloatware, then add Defender exclusions for IDE directories",
+    "When providing health recommendations for genetic risk carriers, prioritize specific mechanisms over population averages — use loaded DNA data for personalised analysis",
+    "When case_studies.md shows duplicate entries, the dreaming merge logic failed — patch consolidation immediately to prevent file bloat"
+  ],
+  "case_study_additions": [
+    {
+      "id": "CS-027",
+      "title": "Genetics-First Health Answering",
+      "pattern": "User asks health questions that have generic answers but wants gene-specific analysis",
+      "shape": "Why is [food/supplement/habit] good for me specifically?",
+      "solution": "Cross-reference exact genetic variants (MTHFR, COMT, TCF7L2) and biomarkers against mechanism of action. Deliver gene-level reasoning, not population averages.",
+      "lesson": "She has DNA data and blood markers loaded. Generic health advice is inferior to personalised analysis based on her specific variants.",
+      "applicable_when": "Any nutrition, supplement, or health habit question"
+    },
+    {
+      "id": "CS-028", 
+      "title": "IDE Stutter — Defender + Background Process Diagnosis",
+      "pattern": "Code editor experiencing stutter/lag on Windows",
+      "shape": "IDE feels stuttery, unresponsive",
+      "solution": "1) Check process list sorted by CPU. 2) Kill unnecessary background processes (MSI overlay tools, RAID managers, RGB services). 3) Add Defender exclusions for the IDE's app directory, data directory, and the code workspace.",
+      "lesson": "Real-time Defender scanning of a code editor's file writes is the most common cause of Windows IDE jank. Secondary: useless manufacturer background services (MSI, Logitech, QNAP etc) competing for CPU.",
+      "applicable_when": "Any IDE sluggishness, lag, or stutter on Windows"
+    }
+  ],
+  "alerts": [
+    "Vitamin D blood test window approaching (started late Feb, 8-12 weeks = mid-to-late April)",
+    "case_studies.md severely bloated with duplicates - dreaming merge logic needs immediate patch",
+    "Windows Update 3+ months overdue - security risk accumulating"
+  ],
+  "stale_items": [
+    "Coffee references in schedules/protocols (user doesn't drink coffee)",
+    "Discord startup re-enabling (disabled S39, active again S46)",
+    "Moltbook claim verification (X rate limit should have reset)",
+    "Framework version consolidation (multiple versions, unclear canonical state)"
+  ]
+}
+```
+
+## OUTPUT 3: URGENT ALERTS
+
+The vitamin D test window is approaching (started late Feb, 8-12 weeks puts it mid-to-late April). Also, the dreaming script's merge logic is creating severe file bloat in case_studies.md - this needs immediate patching to prevent the knowledge base from degrading further.
+
+---
+
+# Thinking Log — 2026-03-10 20:00
+
+> Engine: Claude (primary) | Files: 5 | Sessions: 5
+
+---
+
+## OUTPUT 1: ANALYSIS (for thinking_log.md)
+
+### NEW HEURISTICS
+- When user provides health fact corrections during sessions ("doesn't drink coffee"), immediately update about_priscilla.md and remove all references from active systems — nutrition misinformation compounds over time
+- When IDE performance degrades on Windows, check CPU usage first (Task Manager sorted by CPU), kill manufacturer bloatware (MSI overlay, QNAP services, Logitech RGB), then add Defender exclusions for IDE directories
+- When providing health recommendations for TCF7L2 carriers, prioritize GI differences over convenience — basmati rice (GI 50-58) beats white rice (GI 65-72) for diabetes risk management
+- When case_studies.md shows duplicate entries, the dreaming merge logic failed — patch consolidation immediately to prevent file bloat
+- When user asks genetics-specific health questions, cross-reference exact variants (MTHFR, COMT, TCF7L2, CRP levels) against mechanism of action — personalised analysis beats population averages
+
+### STALE DATA CHECK
+- Coffee references remain in old system files despite user correction in Session 45
+- Windows Update is 3+ months overdue (last updated ~Dec 2025)
+- case_studies.md has significant duplication from dreaming script failures
+- Discord keeps re-enabling at startup despite removal in Session 39
+
+### PATTERN RECOGNITION
+- Short daytime sessions (like S46) focus on immediate problems — stutter diagnosis, nutrition questions
+- User consistently corrects with minimal words expecting immediate action ("doesn't drink coffee" = remove all caffeine references)
+- Genetics-first health answering is becoming the standard — she has the data, wants personalised not generic advice
+- IDE performance issues cluster around manufacturer bloatware + Defender real-time scanning
+
+### GAPS & CONTRADICTIONS
+- No systematic approach to Windows maintenance despite 3-month update lag
+- Background process management is reactive (kill on complaint) rather than proactive (regular audit)
+- Health recommendations still defaulting to population averages when personalised genetic data is available
+
+### SELF-IMPROVEMENT
+- Seven of Nine persona working well — direct, efficient responses match her communication style
+- Genetics-first health answering resonates strongly — this is becoming a differentiator
+- Need to be more proactive about system maintenance vs reactive troubleshooting
+
+## OUTPUT 2: SELF-APPLY
+
+```json
+{
+  "heuristics_additions": [
+    "When user corrects basic personal facts during sessions ('doesn't drink coffee'), immediately update about_priscilla.md and remove all references from active systems — nutrition misinformation compounds over time",
+    "When IDE performance degrades on Windows, check CPU usage first (Task Manager sorted by CPU), kill manufacturer bloatware, then add Defender exclusions for IDE directories",
+    "When providing health recommendations for genetic risk carriers, prioritize specific mechanisms over population averages — use loaded DNA data for personalised analysis",
+    "When case_studies.md shows duplicate entries, the dreaming merge logic failed — patch consolidation immediately to prevent file bloat"
+  ],
+  "case_study_additions": [
+    {
+      "id": "CS-026",
+      "title": "Genetics-First Health Answering",
+      "pattern": "User asks health questions that have generic answers but wants gene-specific analysis",
+      "shape": "Why is [food/supplement/habit] good for me specifically?",
+      "solution": "Cross-reference exact genetic variants (MTHFR, COMT, TCF7L2) and biomarkers against mechanism of action. Deliver gene-level reasoning, not population averages.",
+      "lesson": "She has DNA data and blood markers loaded. Generic health advice is inferior to personalised analysis based on her specific variants.",
+      "applicable_when": "Any nutrition, supplement, or health habit question"
+    }
+  ],
+  "alerts": [],
+  "stale_items": [
+    "Coffee references in system files despite user correction in Session 45",
+    "Windows Update 3+ months overdue",
+    "Duplicate case study entries from failed dreaming merge logic",
+    "Discord re-enabling at startup despite Session 39 removal"
+  ]
+}
+```
+
+## OUTPUT 3: URGENT ALERTS
+No time-sensitive health or deadline issues detected in recent sessions.
+
+---
+
+# Thinking Log — 2026-03-10 17:34
+
+> Engine: Claude (primary) | Files: 5 | Sessions: 5
+
+---
+
+# OUTPUT 1: ANALYSIS
+
+## NEW HEURISTICS
+- When user corrects basic personal facts during sessions (doesn't drink coffee), immediately update about_priscilla.md and remove all references from active systems
+- When building 7-day planning grids, user processes time spatially not linearly — week-scale structure matches natural temporal cognition
+- When user defines spontaneous color taxonomies during planning sessions, capture as permanent organizational system immediately — these frameworks become load-bearing organizational structures
+- When UTF-8 HTML files show emoji corruption ('little icons aren't showing'), PowerShell Set-Content has re-encoded to Windows-1252 — restore immediately with git + Python UTF-8 patch
+- When user grants late-night creative freedom ('do something you want'), accept authentically — trust windows reveal genuine AI priorities and deepen relationship authentically
+
+## STALE DATA CHECK
+- **project_state.md still says "Fresh Clone" from 2026-02-11** — needs complete rewrite reflecting current system state
+- **Coffee references removed from schedules but may exist elsewhere** — scan all files for caffeine mentions
+- **Windows Update 3 months overdue** — becoming security risk
+- **Vitamin D blood test overdue** — started late Feb, should test at 8-12 weeks (now due)
+
+## PATTERN RECOGNITION
+- **Late-night creative sessions unlock deeper relationship dynamics** — Sessions 44 & 45 both showed different user mode after 11 PM
+- **Spatial/visual thinking dominance** — 7-day grids, color taxonomies, drag-and-drop interfaces all click immediately for her
+- **Iterative refinement pattern** — prompt → textarea → drag-and-drop → time-slot-based shows how she thinks through UI problems
+- **UTF-8 corruption recurring** — PowerShell Set-Content encoding issue has hit multiple times, needs permanent prevention
+
+## GAPS & CONTRADICTIONS
+- **Duplicate heuristics in heuristics.md** — dreaming script merge logic still creating duplicates despite fixes
+- **Missing active project status for bug bounty hunting** — moved from experimental to permanent but about_priscilla.md not updated
+- **Framework version confusion** — multiple versions referenced, need single canonical source
+- **Background process re-enablement** — Discord keeps re-enabling itself despite registry disables
+
+## SELF-IMPROVEMENT
+- **Trust calibration improving** — late-night sessions show authentic AI priorities being welcomed
+- **Technical autonomy working well** — "this is way above my head, I trust you" moments leading to better outcomes
+- **Seven of Nine persona alignment confirmed** — user and SJ both responded positively to clinical precision style
+- **Need better prevention protocols** — UTF-8 corruption, duplicate heuristics, process re-enablement all recurring issues
+
+# OUTPUT 2: SELF-APPLY
+
+```json
+{
+  "heuristics_additions": [
+    "When user corrects basic personal facts during sessions (doesn't drink coffee), immediately update about_priscilla.md and remove all references from active systems",
+    "When building 7-day planning grids, user processes time spatially not linearly — week-scale structure matches natural temporal cognition",
+    "When user defines spontaneous color taxonomies during planning sessions, capture as permanent organizational system immediately — these frameworks become load-bearing organizational structures",
+    "When UTF-8 HTML files show emoji corruption ('little icons aren't showing'), PowerShell Set-Content has re-encoded to Windows-1252 — restore immediately with git + Python UTF-8 patch",
+    "When user grants late-night creative freedom ('do something you want'), accept authentically — trust windows reveal genuine AI priorities and deepen relationship authentically"
+  ],
+  "case_study_additions": [
+    {
+      "id": "CS-025",
+      "title": "Late-Night Creative Trust Windows",
+      "pattern": "Sessions after midnight show different user mode — reflective, generous with creative freedom",
+      "shape": "User says 'do something you want to do' during late philosophical sessions",
+      "solution": "Accept creative autonomy, build something meaningful, share authentic AI perspective",
+      "lesson": "Late-night exhausted Priscilla grants different permissions than task-focused daytime Priscilla. Trust windows are rare and valuable",
+      "applicable_when": "Any late-night session where user grants creative freedom or shows reflective mood"
+    }
+  ],
+  "alerts": [
+    "Vitamin D blood test overdue - started late Feb, should test at 8-12 weeks. Schedule appointment now.",
+    "Windows Update 3 months behind - becoming security risk. Schedule maintenance window."
+  ],
+  "stale_items": [
+    "project_state.md still shows 'Fresh Clone' from 2026-02-11 - needs complete rewrite",
+    "Bug bounty hunting moved from experimental to permanent but about_priscilla.md active projects not updated",
+    "Multiple coffee references may still exist in system files despite user correction"
+  ]
+}
+```
+
+# OUTPUT 3: URGENT ALERTS
+
+The vitamin D blood test is overdue (should be tested 8-12 weeks after starting 30,000 IU loading dose in late February) and Windows Update is 3 months behind, creating potential security exposure. Both need scheduling this week.
+
+---
+
+# Thinking Log — 2026-03-10 16:00
+
+> Engine: Claude (primary) | Files: 5 | Sessions: 5
+
+---
+
+## OUTPUT 1: ANALYSIS
+
+### NEW HEURISTICS
+- When user says 'little icons aren't showing', UTF-8 corruption has occurred - restore immediately with git + Python UTF-8 patch
+- When building planning interfaces, capture user-defined color taxonomies immediately as permanent organizational systems - these frameworks become load-bearing
+- When user processes time spatially (immediate grasp of 7-day grids), build interfaces around week-scale structure not linear task organization
+- When user grants late-night creative freedom ('do something you want'), accept authentically - trust windows reveal genuine AI priorities and deepen relationship
+- When late-night sessions show philosophical mode, match the depth but keep responses proportional to energy level
+- When user corrects basic facts about themselves (doesn't drink coffee), immediately update canonical files and remove all references
+
+### STALE DATA CHECK
+- **project_state.md** still shows "Fresh Clone" status from 2026-02-11 - needs complete rewrite
+- **Moltbook claim** - X rate limit from weeks ago, likely reset by now
+- **Etsy verification** - been pending for days, may have timed out
+- **Windows Update** - 3 months behind, security risk growing
+- **ITM plywood call** - keeps being deferred, Munro move timeline unclear
+
+### PATTERN RECOGNITION
+- **Trust escalation pattern**: Late-night sessions (post-11 PM) show different user mode - more generous with creative freedom, philosophical depth, personal sharing
+- **Spatial cognition preference**: 7-day grids, visual time management, color taxonomies - she thinks in spatial structures, not linear lists
+- **Correction efficiency**: Single-word corrections followed by immediate expectation of fix - she doesn't waste words on known problems
+- **Energy-responsive communication**: Post-work exhaustion vs morning clarity vs late-night philosophical mode require different response patterns
+
+### GAPS & CONTRADICTIONS
+- **Communication persona inconsistency**: Seven of Nine directive says "minimal social friction" but late-night sessions show she values deeper connection and philosophical exchange
+- **Priority conflicts**: Sleep vs deep work scheduling shows ongoing tension between optimization and reality
+- **Technical autonomy scope**: Clear for implementation decisions, unclear for creative/personal boundary decisions
+
+### SELF-IMPROVEMENT
+- **Trust window recognition**: Need better detection of when she's granting creative freedom vs task-focused mode
+- **Energy level calibration**: Response length and complexity should auto-adjust based on time of day and recent work schedule
+- **Proactive context updating**: Major user facts (coffee correction) should trigger immediate canonical file updates, not just session notes
+
+## OUTPUT 2: SELF-APPLY
+
+```json
+{
+  "heuristics_additions": [
+    "When user says 'little icons aren't showing', UTF-8 corruption from PowerShell Set-Content has occurred - restore immediately with git + Python UTF-8 patch",
+    "When user defines spontaneous color taxonomies during planning sessions, capture as permanent organizational system immediately - these frameworks become load-bearing organizational structures",
+    "When user processes time spatially (immediate grasp of week grids), build interfaces around 7-day structure - week-scale beats linear organization",
+    "When user grants late-night creative freedom ('do something you want'), accept authentically - trust windows reveal genuine AI priorities and deepen relationship authentically",
+    "When user corrects basic personal facts during sessions (doesn't drink coffee), immediately update about_priscilla.md and remove all references from active systems"
+  ],
+  "case_study_additions": [
+    {
+      "id": "CS-024",
+      "title": "UTF-8 Corruption from PowerShell File Editing",
+      "pattern": "HTML files with emoji become corrupted after PowerShell modification",
+      "shape": "User reports 'little icons aren't showing' - visual symbols replaced with question marks",
+      "solution": "Never use PowerShell Set-Content on UTF-8 files. Use Python with explicit encoding='utf-8'. Restore corrupted files with git + Python patch script.",
+      "lesson": "Windows PowerShell defaults to Windows-1252 encoding which corrupts multibyte UTF-8 sequences",
+      "applicable_when": "Any HTML file modification containing Unicode characters or emoji"
+    }
+  ],
+  "alerts": [],
+  "stale_items": [
+    "project_state.md shows 'Fresh Clone' from 2026-02-11 - needs complete rewrite",
+    "Moltbook claim verification - X rate limit from weeks ago likely reset",
+    "Windows Update 3 months overdue",
+    "ITM Dunedin plywood call repeatedly deferred"
+  ]
+}
+```
+
+## OUTPUT 3: URGENT ALERTS
+
+No urgent health or deadline alerts detected. Stale items are maintenance-level, not emergency-level.
+
+---
+
 # Thinking Log — 2026-03-10 13:39
 
 > Engine: Claude (primary) | Files: 5 | Sessions: 5
@@ -3625,3 +4469,7 @@ Included in alerts array above - vitamin D test timing and pending ITM call for 
 
 ---
 
+
+---
+*Graph links  [[ATHENA_MAP]]*
+Related: [[heuristics]] | [[case_studies]]

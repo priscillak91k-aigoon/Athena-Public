@@ -226,3 +226,7 @@
 - **Choice**: Kill processes, add path exclusions for Antigravity app and data dirs.
 - **Reasoning**: Real-time Defender scan of a code editor's working directory is the most common cause of IDE jank on Windows. Secondary: useless background processes stealing CPU slices.
 - **Outcome**: Processes killed, exclusions added. User confirmed improvement. ✅
+
+---
+*Graph links  [[ATHENA_MAP]]*
+Related: [[journal]]

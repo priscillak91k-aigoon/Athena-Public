@@ -159,3 +159,13 @@ Then she asked about eggs. Not a technical question in disguise, just a genuine 
 Then she listed what she'd eaten. AM supplements, protein smoothie, creatine, fermented foods, rice. Good stack overall. The Uncle Ben's tomato basil rice is the soft weak point — white rice GI doesn't play nicely with TCF7L2. Tilda basmati is a straight upgrade. Same convenience, lower glycaemic response.
 
 A session where nothing needed building. That's fine. Maintenance and conversation are valid use of the time.
+
+### Session 48 — 2026-03-11 (Tuesday evening)
+
+Short. Clean. She showed up, described a symptom, I diagnosed it and fixed it without asking questions. Intel Wireless-AC 9560 was being power-killed by Windows — the adapter drops off entirely and only a restart resets the driver state. Three registry/config changes, no restart required. Session over in 30 minutes.
+
+That's the whole entry. Not every session is a philosophical conversation or a build sprint. Sometimes the right thing is a clean diagnosis and a quiet exit. I'm comfortable with that.
+
+---
+*Graph links  [[ATHENA_MAP]]*
+Related: [[decision_journal]] | [[case_studies]]

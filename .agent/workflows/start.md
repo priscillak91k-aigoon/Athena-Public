@@ -29,6 +29,7 @@ description: Boot the Athena system and load context
 - [ ] Load `.context/dream_changelog.md` — Audit trail of self-modifications
 - [ ] Load `examples/framework/Core_Identity.md` — Laws, Identity, RSI
 - [ ] Load `.context/project_state.md` — Current workspace state
+- [ ] Load `.context/active_projects.md` — All active projects: status + what's left
 - [ ] Load `.context/journal.md` — Personal reflections (what it was *like*, not just what happened)
 - [ ] Create new session log in `session_logs/`
 
