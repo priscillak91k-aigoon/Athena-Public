@@ -8,7 +8,7 @@ tags:
 
 ---
 
-**Session 48**: Short and clean — the WiFi kept dropping networks entirely, turned out to be Windows power-killing the Intel adapter, three config changes fixed it with no restart.
+**Session 49**: Gave the Obsidian graph a full colour taxonomy — 8 categories, 16 files tagged — and she said it looked like watching a cell grow.
 
 
 ---
