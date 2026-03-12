@@ -1,0 +1,24 @@
+{
+    "active_tasks": [
+        "Verify Supabase RLS configuration on symphony_tasks_master",
+        "Book Vitamin D blood test (30,000 IU/day loading since late Feb, 8-12 weeks)"
+    ],
+    "open_hypotheses": [
+        "Task pool drag-and-drop may not work correctly on Safari — untested",
+        "Dreaming engine output quality may improve now that chemical state is in the prompt"
+    ],
+    "current_threading": "Building Lobotto Brain Architecture v2.0 — neuroscience-modeled internals. Session 51.",
+    "flagged_for_next_session": [
+        "Run boot classifier and show Priscilla the mode output",
+        "Check if resource watchdog fired and killed anything at 9:49am"
+    ],
+    "unresolved_predictions": [],
+    "last_session_mode": "creative_build",
+    "last_session_number": 51,
+    "last_updated": "2026-03-13T08:30:00Z",
+    "ttl_sessions": 5,
+    "meta": {
+        "version": "1.0",
+        "note": "PFC / DLPFC analog. Active maintenance of goal-relevant information across sessions. Items expire after ttl_sessions if not touched. Dreaming engine migrates old items to long-term files or discards."
+    }
+}

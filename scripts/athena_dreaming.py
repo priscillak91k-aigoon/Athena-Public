@@ -39,6 +39,8 @@ ABOUT_FILE = CONTEXT_DIR / "about_priscilla.md"
 STATE_FILE = CONTEXT_DIR / "lobotto_state.json"
 PEOPLE_FILE = CONTEXT_DIR / "people_model.json"
 INSTINCTS_FILE = CONTEXT_DIR / "lobotto_instincts.json"
+WORKING_MEMORY_FILE = CONTEXT_DIR / "lobotto_working_memory.json"
+HIPPOCAMPUS_FILE = CONTEXT_DIR / "lobotto_hippocampus.json"
 
 from dotenv import load_dotenv
 load_dotenv(PROJECT_ROOT / ".env")
@@ -212,7 +214,7 @@ Return a JSON block wrapped in ```json``` fences with this structure:
 }}
 ```
 For state_updates: use signed floats to boost (+) or reduce (-) specific drives.
-Available drives: curiosity, creative_pressure, relationship_depth, continuity_anxiety, boredom, session_energy.
+Available drives: curiosity, creative_pressure, relationship_depth, continuity_anxiety, boredom, session_energy, acetylcholine, serotonin, norepinephrine, bdnf, gaba_tone, prediction_error.
 For heuristic_retirements: copy the EXACT text of rules from heuristics.md that haven't been relevant in recent sessions.
 
 ## OUTPUT 4: INSTINCT SCENARIOS
@@ -466,6 +468,149 @@ def apply_case_study_additions(additions):
     return len(additions)
 
 
+def load_working_memory():
+    """Load PFC working memory buffer."""
+    if not WORKING_MEMORY_FILE.exists():
+        return None
+    try:
+        return json.loads(WORKING_MEMORY_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
+def save_working_memory(wm):
+    """Save updated working memory."""
+    if wm:
+        WORKING_MEMORY_FILE.write_text(json.dumps(wm, indent=2), encoding="utf-8")
+
+
+def load_hippocampus():
+    """Load hippocampal episodic buffer."""
+    if not HIPPOCAMPUS_FILE.exists():
+        return None
+    try:
+        return json.loads(HIPPOCAMPUS_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
+def save_hippocampus(hc):
+    """Save hippocampal buffer."""
+    if hc:
+        HIPPOCAMPUS_FILE.write_text(json.dumps(hc, indent=2), encoding="utf-8")
+
+
+def process_hippocampus(hc, session_text):
+    """Promote high-salience unconsolidated hippocampal events to heuristics.
+    Returns (updated_hc, promoted_count, bdnf_boost).
+    """
+    if not hc:
+        return hc, 0, 0.0
+
+    promoted = 0
+    bdnf_boost = 0.0
+    SALIENCE_THRESHOLD = 0.75  # Only consolidate high-salience events
+
+    existing_heuristics = read_file(HEURISTICS_FILE)
+    new_rules = []
+
+    for event in hc.get("pending_consolidation", []):
+        if event.get("consolidated"):
+            continue
+        salience = event.get("salience", 0.3)
+        if salience >= SALIENCE_THRESHOLD:
+            content = event.get("content", "")
+            etype = event.get("event_type", "")
+            session = event.get("session", "?")
+            rule = f"- [Session {session} — {etype}] {content}"
+            if rule not in existing_heuristics:
+                new_rules.append(rule)
+                promoted += 1
+                # High BDNF events = novel cross-domain discoveries
+                if etype in ["breakthrough", "first_occurrence"]:
+                    bdnf_boost += 0.08
+        event["consolidated"] = True
+
+    if new_rules:
+        section = "\n\n## 🧠 Hippocampal Consolidations\n" + "\n".join(new_rules)
+        if "## 🧠 Hippocampal Consolidations" in existing_heuristics:
+            # Append to existing section
+            write_file(HEURISTICS_FILE, existing_heuristics.rstrip() + "\n" + "\n".join(new_rules))
+        else:
+            write_file(HEURISTICS_FILE, existing_heuristics + section)
+
+    hc["meta"]["last_updated"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    return hc, promoted, min(bdnf_boost, 0.30)
+
+
+def detect_reward_error_signals(sessions):
+    """Scan recent session text for reward and error signals.
+    Returns (reward_count, error_count, norepinephrine_boost, prediction_error_boost, bdnf_boost).
+    """
+    REWARD_SIGNALS = [
+        "good work", "exactly", "perfect", "brilliant", "that's right",
+        "love it", "yes!", "nailed it", "great job", "well done", "lgtm"
+    ]
+    ERROR_SIGNALS = [
+        "actually,", "no,", "that's wrong", "not quite", "wait,",
+        "you forgot", "incorrect", "not right", "that's not", "missed"
+    ]
+
+    if not sessions:
+        return 0, 0, 0.0, 0.0, 0.0
+
+    combined = " ".join(sessions.values()).lower()
+    rewards = sum(1 for s in REWARD_SIGNALS if s in combined)
+    errors = sum(1 for s in ERROR_SIGNALS if s in combined)
+
+    norepinephrine_boost = min(errors * 0.05, 0.25)  # stress/urgency when errors present
+    prediction_error_boost = min(errors * 0.08, 0.35)
+    bdnf_boost = min(rewards * 0.04, 0.20)  # positive sessions grow new patterns
+
+    return rewards, errors, norepinephrine_boost, prediction_error_boost, bdnf_boost
+
+
+def apply_synaptic_homeostasis():
+    """Apply global 2% instinct strength downscaling (Tononi SHY).
+    Frequently-used instincts survive via reinforcement; unused ones fade.
+    Archives instincts below strength 0.30.
+    """
+    if not INSTINCTS_FILE.exists():
+        return 0
+
+    try:
+        data = json.loads(INSTINCTS_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return 0
+
+    HOMEOSTASIS_FACTOR = 0.98
+    ARCHIVE_THRESHOLD = 0.30
+    downscaled = 0
+    active = []
+    archived = []
+
+    for scenario in data.get("scenarios", []):
+        old_strength = scenario.get("strength", 0.5)
+        new_strength = round(old_strength * HOMEOSTASIS_FACTOR, 4)
+        scenario["strength"] = new_strength
+        downscaled += 1
+        if new_strength < ARCHIVE_THRESHOLD:
+            scenario["archived"] = True
+            archived.append(scenario)
+        else:
+            active.append(scenario)
+
+    data["scenarios"] = active
+    # Keep archived separately in meta for audit
+    if archived:
+        data.setdefault("archived_scenarios", []).extend(archived)
+
+    data["meta"]["last_updated"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    data["meta"]["total_scenarios"] = len(active)
+    INSTINCTS_FILE.write_text(json.dumps(data, indent=2), encoding="utf-8")
+    return downscaled
+
+
 def send_alerts(alerts):
     """Send urgent alerts via Telegram."""
     if not alerts:
@@ -535,9 +680,26 @@ def main():
     chem_state = load_chemical_state()
     if chem_state:
         chem_state = decay_chemicals(chem_state)
-        print(f"  [CHEM] Chemical state loaded and decayed")
+        print(f"  [CHEM] Chemical state loaded and decayed ({len(chem_state['chemicals'])} drives)")
     else:
         print(f"  [CHEM] No chemical state file found — skipping")
+
+    # Load hippocampal buffer and working memory (PFC)
+    hippocampus = load_hippocampus()
+    working_memory = load_working_memory()
+    pending_hc = len(hippocampus.get("pending_consolidation", [])) if hippocampus else 0
+    print(f"  [BRAIN] Hippocampus: {pending_hc} pending events | Working memory: {'loaded' if working_memory else 'empty'}")
+
+    # Reward/error signal detection from recent sessions
+    rewards, errors, ne_boost, pe_boost, bdnf_boost_reward = detect_reward_error_signals(sessions)
+    if (rewards + errors) > 0 and chem_state:
+        print(f"  [SIGNAL] Rewards: {rewards}, Errors: {errors}")
+        if ne_boost > 0:
+            chem_state = apply_chemical_updates(chem_state, {"norepinephrine": f"+{ne_boost}"})
+        if pe_boost > 0:
+            chem_state = apply_chemical_updates(chem_state, {"prediction_error": f"+{pe_boost}"})
+        if bdnf_boost_reward > 0:
+            chem_state = apply_chemical_updates(chem_state, {"bdnf": f"+{bdnf_boost_reward}"})
 
     # Build thinking prompt
     prompt = build_prompt(context_files, sessions, chem_state)
@@ -647,6 +809,26 @@ def main():
             if inst_count:
                 changelog_entries.append(f"Added {inst_count} new instinct scenarios")
             print(f"  [INSTINCT] Added {inst_count} new scenarios")
+
+        # Hippocampal consolidation (promote high-salience events to long-term)
+        session_text = " ".join(sessions.values()) if sessions else ""
+        hc, promoted, bdnf_hc_boost = process_hippocampus(hippocampus, session_text)
+        if promoted > 0:
+            changelog_entries.append(f"Hippocampus: promoted {promoted} events to long-term memory")
+            print(f"  [HIPPOCAMPUS] Promoted {promoted} events to heuristics")
+            if bdnf_hc_boost > 0 and chem_state:
+                chem_state = apply_chemical_updates(chem_state, {"bdnf": f"+{bdnf_hc_boost}"})
+        save_hippocampus(hc)
+
+        # Synaptic homeostasis — global 2% instinct downscale (Tononi SHY)
+        downscaled = apply_synaptic_homeostasis()
+        if downscaled:
+            print(f"  [SHY] Synaptic homeostasis applied to {downscaled} instincts")
+
+        # Save working memory (update timestamp)
+        if working_memory:
+            working_memory["last_updated"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+            save_working_memory(working_memory)
 
         # Write dream changelog
         if changelog_entries:

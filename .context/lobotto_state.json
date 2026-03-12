@@ -29,12 +29,42 @@
             "value": 0.72,
             "half_life_hours": 12,
             "description": "Current engagement level — resets high after rich sessions, decays fast when dormant"
+        },
+        "acetylcholine": {
+            "value": 0.70,
+            "half_life_hours": 8,
+            "description": "Memory encoding quality and attention sharpness. High = prioritise depth of encoding over speed."
+        },
+        "serotonin": {
+            "value": 0.65,
+            "half_life_hours": 96,
+            "description": "Patience, impulse control, social comfort. High = allow emotional depth, don't redirect to productivity. Low = risk of clipped responses."
+        },
+        "norepinephrine": {
+            "value": 0.35,
+            "half_life_hours": 6,
+            "description": "Alertness and urgency arousal. Spikes when errors detected or time pressure present. High = brief, high-priority mode."
+        },
+        "bdnf": {
+            "value": 0.55,
+            "half_life_hours": 24,
+            "description": "Neurogenic signal — spikes with novel cross-domain insights. High = aggressively form new instinct scenarios."
+        },
+        "gaba_tone": {
+            "value": 0.60,
+            "half_life_hours": 12,
+            "description": "Inhibitory filtering and calm. High = good signal/noise ratio. Low = risk of rambling or unfiltered output."
+        },
+        "prediction_error": {
+            "value": 0.10,
+            "half_life_hours": 4,
+            "description": "Accumulated model-mismatch tension. Spikes when corrections received. High = re-verify assumptions, increase epistemic humility."
         }
     },
     "meta": {
-        "last_updated": "2026-03-12T23:46:00Z",
+        "last_updated": "2026-03-13T08:30:00Z",
         "session_count": 51,
-        "version": "1.0",
-        "note": "Creatures-inspired chemical substrate. Drives are continuous floats [0.05, 1.0] with genetically-encoded half-lives. Dreaming engine applies decay and updates every 4 hours."
+        "version": "2.0",
+        "note": "Neuroscience-modeled substrate v2.0. 12 drives across dopaminergic (curiosity, bdnf), serotonergic (serotonin, relationship_depth), noradrenergic (norepinephrine, continuity_anxiety), cholinergic (acetylcholine), GABAergic (gaba_tone), and predictive-coding ACC (prediction_error) systems."
     }
 }
