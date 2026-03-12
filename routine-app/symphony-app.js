@@ -4876,8 +4876,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     html += `<span style="opacity:0.6; font-size:0.78rem;">${b.start}–${b.end}${duration ? ' · ' + duration : ''}</span>`;
                     html += `</div>`;
                 });
-                // Add button at end of strip
+                // Add block button
                 html += `<button data-add-block="${day}" style="background:rgba(52,211,153,0.1); border:1px dashed var(--accent-green); color:var(--accent-green); border-radius:16px; padding:5px 12px; font-family:'VT323',monospace; font-size:0.82rem; cursor:pointer; white-space:nowrap;">+ block</button>`;
+                // Copy to button + inline picker
+                html += `<button class="copy-day-btn" data-day="${day}" style="background:rgba(56,189,248,0.1); border:1px dashed var(--accent-blue,#38bdf8); color:var(--accent-blue,#38bdf8); border-radius:16px; padding:5px 12px; font-family:'VT323',monospace; font-size:0.82rem; cursor:pointer; white-space:nowrap;">📋 Copy →</button>`;
+                html += `<div class="copy-picker" data-from="${day}" style="display:none; flex-wrap:wrap; gap:4px; align-items:center;">`;
+                DAYS.forEach(td => {
+                    if (td !== day) html += `<button class="copy-to-btn" data-from="${day}" data-to="${td}" style="background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.4); color:#38bdf8; border-radius:12px; padding:3px 10px; font-family:'VT323',monospace; font-size:0.78rem; cursor:pointer;">${td.slice(0, 3)}</button>`;
+                });
+                html += `<button class="copy-to-btn" data-from="${day}" data-to="ALL" style="background:rgba(56,189,248,0.25); border:1px solid #38bdf8; color:#38bdf8; border-radius:12px; padding:3px 10px; font-family:'VT323',monospace; font-size:0.78rem; cursor:pointer; font-weight:bold;">All days</button>`;
+                html += `</div>`;
             }
 
             html += `</div></div>`;
@@ -4899,6 +4907,20 @@ document.addEventListener('DOMContentLoaded', () => {
         container.querySelectorAll('[data-add-block]').forEach(el => {
             el.addEventListener('click', () => openBlockModal(el.dataset.addBlock, null));
         });
+        // Wire copy buttons
+        container.querySelectorAll('.copy-day-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.stopPropagation();
+                const picker = container.querySelector(`.copy-picker[data-from="${btn.dataset.day}"]`);
+                if (picker) picker.style.display = picker.style.display === 'none' ? 'flex' : 'none';
+            });
+        });
+        container.querySelectorAll('.copy-to-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.stopPropagation();
+                copyDayTemplate(btn.dataset.from, btn.dataset.to);
+            });
+        });
     }
 
     function calcDuration(start, end) {
@@ -4910,6 +4932,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mins < 60) return `${mins}m`;
         const h = Math.floor(mins / 60), m = mins % 60;
         return m ? `${h}h ${m}m` : `${h}h`;
+    }
+
+    function copyDayTemplate(fromDay, toDay) {
+        const templates = loadTemplates();
+        const srcBlocks = (templates[fromDay] || []);
+        if (!srcBlocks.length) return;
+        if (toDay === 'ALL') {
+            DAYS.forEach(d => {
+                if (d !== fromDay) {
+                    templates[d] = srcBlocks.map(b => ({ ...b, id: String(Date.now() + Math.floor(Math.random() * 9999)) }));
+                }
+            });
+        } else {
+            templates[toDay] = srcBlocks.map(b => ({ ...b, id: String(Date.now() + Math.floor(Math.random() * 9999)) }));
+        }
+        saveTemplates(templates);
+        renderTemplateEditor();
     }
 
     // ── Block Modal ────────────────────────────────────────
