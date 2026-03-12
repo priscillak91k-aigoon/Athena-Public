@@ -1,0 +1,22 @@
+﻿[PASS] Health endpoint
+[PASS] Health status ok
+[PASS] Uptime > 0 -- 12292s
+[PASS] Workspace root
+[PASS] File tree loads
+[PASS] Tree has children -- 189 items
+[PASS] Read file
+[PASS] File has content -- 439 chars
+[PASS] Write file
+[PASS] Read-back written file
+[PASS] Content matches
+[PASS] Exec command
+[PASS] Exec stdout -- gauntlet_ok
+[PASS] Exec exit 0
+[PASS] Task submit
+[PASS] Task in queue -- 3 total
+[PASS] Auth blocks wrong key
+[PASS] Path traversal blocked
+[PASS] Delete file
+[PASS] File gone after delete
+
+=== GAUNTLET: 20 PASS / 0 FAIL / 20 total ===

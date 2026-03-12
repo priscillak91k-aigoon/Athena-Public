@@ -524,7 +524,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div style="display: flex; gap: 0.5rem; align-items: flex-start;">
                                 <div class="checkbox completion-toggle readonly-tick" data-id="${task.id}" style="${isCompletedToday ? 'background:var(--accent-green);' : ''}"></div>
                                 <div>
-                                    <div style="font-weight: bold; text-decoration: ${decoration}; color: var(--text-primary); margin-bottom: 0.25rem;">${task.title} <span style="font-size: 0.8rem; color: var(--accent-blue); font-weight: normal;">[+${task.points} pts]</span></div>
+                                    <div style="font-weight: bold; text-decoration: ${decoration}; color: var(--text-primary); margin-bottom: 0.25rem;">${task.title}</div>
                                     ${task.description ? `<div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem; text-decoration: ${decoration};">${task.description}</div>` : ''}
                                     <div style="display: flex; gap: 4px;">
                                         ${(task.tags || []).map(t => `<span class="tag" style="font-size: 0.75rem;">${t}</span>`).join('')}
@@ -750,8 +750,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                     <div style="display: flex; align-items: flex-start; gap: 8px;">
                         ${isOnTimeline ? `<div class="checkbox completion-toggle" style="margin-top: 2px;" title="Mark Complete"></div>` : ''}
-                        <div class="task-title" style="font-size: 0.95rem; font-weight: bold; transition: all 0.2s;">
-                            ${task.title} <span style="font-size:0.8rem; color:var(--accent-blue); font-weight: normal;">[+${task.points} pts]</span>
+                         <div class="task-title" style="font-size: 0.95rem; font-weight: bold; transition: all 0.2s;">
+                            ${task.title}
                         </div>
                     </div>
                     <button class="task-delete-btn" data-task-id="${task.id}" style="background: #c0c0c0; border: 2px outset var(--win-highlight); color: red; font-weight: bold; font-size: 0.9rem; cursor: pointer; padding: 0 5px; line-height: 1.2;" title="Delete task">×</button>
@@ -1186,7 +1186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         items.forEach((itemObj, index) => {
             // Handle both simple strings and objects with points/sync data
             const text = typeof itemObj === 'string' ? itemObj : itemObj.text;
-            const pointsLabel = (typeof itemObj === 'object' && itemObj.points) ? ` <span style="font-size:0.8rem; color:var(--accent-blue);">[+${itemObj.points} pts]</span>` : '';
+
 
             const suppSyncAttr = (typeof itemObj === 'object' && itemObj.suppSync) ? `data-supp-sync="${itemObj.suppSync}" data-supp-dose="${itemObj.suppDose || 1}"` : '';
 
@@ -1199,7 +1199,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             li.innerHTML = `
                 <div class="checkbox ${isCompleted ? 'checked' : ''}" ${suppSyncAttr}></div>
-                <div class="task-content">${text}${pointsLabel}</div>
+                <div class="task-content">${text}</div>
             `;
 
             li.querySelector('.checkbox').addEventListener('click', function () {
@@ -1214,7 +1214,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 savedListState[index] = isNowChecked;
                 localStorage.setItem(storageKey, JSON.stringify(savedListState));
 
-                if (containerId === 'daily-list') updatePoints();
 
                 // Trigger Supplement Sync if newly checked
                 // History note: This deliberately triggers even for past days, enabling retro-logging
