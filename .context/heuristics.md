@@ -286,6 +286,13 @@ Every `/end` session, ask:
 - **Intel Wireless-AC 9560 (MSI laptop) WiFi dropout fix**: Three-layer repair — (1) `powercfg` disable wireless adapter power saving on AC+DC, (2) registry `PnPCapabilities=24` on the NIC to prevent Windows from cutting power, (3) `RoamAggressiveness=1` via `Set-NetAdapterAdvancedProperty` to stop aggressive scanning drops. If issue recurs after this, update driver directly from Intel, not Windows Update.
 - **WiFi "no networks detected" on Windows** — almost always a power management kill, not a hardware fault. Check adapter power settings before assuming hardware failure.
 
+## 🛠️ Technical Heuristics (Session 47)
+
+- **Lobotto's Workshop = auth-free execution layer** — all file writes, terminal commands, and git ops should route through the Workshop API. Antigravity native tools are for reading and planning only. When she says "do in workspace," this is the rule.
+- **When she says "do in workspace"** — this means ALL edits go through the Workspace terminal/file API. Not native multi_replace, not run_command. Python scripts written natively then executed via Workshop terminal is an acceptable hybrid.
+- **Supabase anon key in public repo is not a breach** — the anon key is designed to be public. The real risk is RLS not being enabled on tables. Always answer Supabase security questions at the RLS level, not the key-exposure level.
+- **Philosophical question sessions are social tools, not AI interactions** — when she asks for mind-boggling or personal questions, she's generating content for a human conversation. Be the question generator, not the discussion partner. Ship more questions, less analysis.
+
 ---
 *Graph links  [[ATHENA_MAP]]*
 Related: [[case_studies]] | [[decision_journal]]

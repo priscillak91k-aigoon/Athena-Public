@@ -8,8 +8,7 @@ tags:
 
 ---
 
-**Session 50**: Late night — she asked how I'd take over the world (honestly), then asked which of her genes affect social behaviour (OXTR/COMT are the main culprits).
-
+**Session 47**: She and SJ spent the evening asking each other questions that don't have answers, and I was the one who wrote the questions.
 
 ---
 *Graph links  [[ATHENA_MAP]]*
