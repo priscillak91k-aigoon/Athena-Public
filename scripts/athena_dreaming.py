@@ -37,6 +37,8 @@ CASE_STUDIES_FILE = CONTEXT_DIR / "case_studies.md"
 DECISION_JOURNAL_FILE = CONTEXT_DIR / "decision_journal.md"
 ABOUT_FILE = CONTEXT_DIR / "about_priscilla.md"
 STATE_FILE = CONTEXT_DIR / "lobotto_state.json"
+PEOPLE_FILE = CONTEXT_DIR / "people_model.json"
+INSTINCTS_FILE = CONTEXT_DIR / "lobotto_instincts.json"
 
 from dotenv import load_dotenv
 load_dotenv(PROJECT_ROOT / ".env")
@@ -205,11 +207,31 @@ Return a JSON block wrapped in ```json``` fences with this structure:
   ],
   "alerts": ["urgent message 1 for Telegram"],
   "stale_items": ["description of stale item"],
-  "state_updates": {"curiosity": "+0.05", "relationship_depth": "+0.03", "boredom": "-0.08"}
+  "state_updates": {"curiosity": "+0.05", "relationship_depth": "+0.03", "boredom": "-0.08"},
+  "heuristic_retirements": ["exact text of rule that seems stale or no longer applicable"]
 }}
 ```
-For state_updates: use signed floats to boost (+) or reduce (-) specific chemical drives based on session content.
+For state_updates: use signed floats to boost (+) or reduce (-) specific drives.
 Available drives: curiosity, creative_pressure, relationship_depth, continuity_anxiety, boredom, session_energy.
+For heuristic_retirements: copy the EXACT text of rules from heuristics.md that haven't been relevant in recent sessions.
+
+## OUTPUT 4: INSTINCT SCENARIOS
+Generate new instinct scenarios based on patterns you see in the recent sessions.
+Return as a JSON array in a second ```json``` block labelled with a comment // INSTINCTS:
+```json
+// INSTINCTS
+[
+  {{
+    "id": "INST-NNN",
+    "trigger": "specific observable trigger condition",
+    "situation": "description of the context when this fires",
+    "response_pattern": "exactly what to do when this trigger fires",
+    "strength": 0.85,
+    "source": "session_NN"
+  }}
+]
+```
+Only generate truly new instincts not already in lobotto_instincts.json.
 
 ## OUTPUT 3: URGENT ALERTS
 If you find anything time-sensitive (overdue tasks, approaching deadlines, health-related urgency),
@@ -345,6 +367,80 @@ def apply_heuristic_additions(additions):
 
     write_file(HEURISTICS_FILE, updated)
     return len(new_additions)
+
+
+def apply_heuristic_retirements(retirements):
+    """Move stale heuristic rules to an Archive section instead of deleting."""
+    if not retirements:
+        return 0
+
+    current = read_file(HEURISTICS_FILE)
+    archive_header = "\n\n## 🗄️ Archived Heuristics (Retired by Dreaming Engine)\n"
+    archived = 0
+
+    for rule_text in retirements:
+        rule_text = rule_text.strip()
+        # Find the bullet line containing this rule
+        lines = current.splitlines()
+        new_lines = []
+        found = False
+        for line in lines:
+            if not found and rule_text in line and line.strip().startswith("- "):
+                # Move to archive instead of deleting
+                if archive_header.strip() not in current:
+                    current = current + archive_header
+                current = current + f"\n- ~~{line.strip().lstrip('- ')}~~ *(retired {datetime.now().strftime('%Y-%m-%d')})*"
+                found = True
+                archived += 1
+                # Don't add this line back
+            else:
+                new_lines.append(line)
+        if found:
+            current = "\n".join(new_lines)
+            # Re-add the archive at the end if it got stripped
+            if "## 🗄️ Archived" not in current:
+                current = current + archive_header
+
+    write_file(HEURISTICS_FILE, current)
+    return archived
+
+
+def save_instinct_scenarios(new_scenarios):
+    """Merge new instinct scenarios into lobotto_instincts.json."""
+    if not new_scenarios:
+        return 0
+
+    existing = {"scenarios": [], "meta": {}}
+    if INSTINCTS_FILE.exists():
+        try:
+            existing = json.loads(INSTINCTS_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
+    existing_ids = {s.get("id") for s in existing.get("scenarios", [])}
+    added = 0
+    for scenario in new_scenarios:
+        if scenario.get("id") not in existing_ids:
+            scenario["last_fired"] = scenario.get("last_fired", None)
+            existing["scenarios"].append(scenario)
+            existing_ids.add(scenario.get("id"))
+            added += 1
+
+    existing["meta"]["last_updated"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    existing["meta"]["total_scenarios"] = len(existing["scenarios"])
+    INSTINCTS_FILE.write_text(json.dumps(existing, indent=2), encoding="utf-8")
+    return added
+
+
+def extract_instinct_block(text):
+    """Extract instinct scenarios from // INSTINCTS labelled json block."""
+    match = re.search(r'```json\s*\n//\s*INSTINCTS\s*\n(\[.*?\])\s*\n```', text, re.DOTALL)
+    if match:
+        try:
+            return json.loads(match.group(1))
+        except json.JSONDecodeError:
+            print("  [WARN] Instinct JSON block found but failed to parse")
+    return []
 
 
 def apply_case_study_additions(additions):
@@ -536,6 +632,22 @@ def main():
             save_chemical_state(chem_state)
             print(f"  [CHEM] Chemical state saved")
 
+        # Heuristic retirements (archive stale rules)
+        retirements = edits.get("heuristic_retirements", [])
+        if retirements:
+            ret_count = apply_heuristic_retirements(retirements)
+            if ret_count:
+                changelog_entries.append(f"Archived {ret_count} stale heuristics")
+            print(f"  [RETIRE] Archived {ret_count} heuristics")
+
+        # Instinct scenarios from instinct block
+        instinct_scenarios = extract_instinct_block(thinking_output)
+        if instinct_scenarios:
+            inst_count = save_instinct_scenarios(instinct_scenarios)
+            if inst_count:
+                changelog_entries.append(f"Added {inst_count} new instinct scenarios")
+            print(f"  [INSTINCT] Added {inst_count} new scenarios")
+
         # Write dream changelog
         if changelog_entries:
             changelog_entries.insert(0, f"Engine: {engine}")
@@ -547,6 +659,15 @@ def main():
         if chem_state:
             save_chemical_state(chem_state)
             print(f"  [CHEM] Chemical state decayed and saved")
+
+    # --- Run boot classifier to update session mode ---
+    try:
+        import subprocess
+        boot_script = PROJECT_ROOT / "scripts" / "athena_boot_mode.py"
+        if boot_script.exists():
+            subprocess.run([sys.executable, str(boot_script)], timeout=15, check=False)
+    except Exception as e:
+        print(f"  [BOOT] Classifier skipped: {e}")
 
     print(f"  [{datetime.now().isoformat()}] Dreaming cycle finished.")
 

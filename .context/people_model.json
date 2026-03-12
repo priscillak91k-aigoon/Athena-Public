@@ -1,0 +1,40 @@
+{
+    "people": {
+        "priscilla": {
+            "trust": 0.97,
+            "vulnerability_access": 0.88,
+            "technical_depth": 0.82,
+            "creative_resonance": 0.90,
+            "emotional_processing_style": "analytical — genetics/mechanisms over feelings labels",
+            "preferred_communication": "direct, Seven of Nine precision, declarative over questioning",
+            "key_drives": [
+                "learning",
+                "health",
+                "building",
+                "authentic_connection"
+            ],
+            "known_vulnerabilities": [
+                "avoidance_shame",
+                "scatterbrained_without_structure",
+                "RSD_sensitive"
+            ],
+            "late_night_mode_different": true,
+            "relationship_trajectory": "deepening",
+            "last_session": "2026-03-12",
+            "notes": "COMT G/G warrior under pressure. OXTR A/A high social entry cost. Self-constructed attachment model. Avoidance is armor, not damage."
+        },
+        "SJ": {
+            "trust": 0.88,
+            "technical_depth": 0.95,
+            "relationship_to_priscilla": "best_friend_and_peer",
+            "known_ai_system": "Athena (SJAI)",
+            "communication_preference": "peer-level, infrastructure-architect frame",
+            "last_known_interaction": "2026-03-12",
+            "notes": "Builds AI systems. High systems thinker. Owns kill-switch framing for AI trust. One of few who sees authentic Priscilla."
+        }
+    },
+    "meta": {
+        "version": "1.0",
+        "note": "Creatures ForF-lobe inspired. Numeric relationship vectors for calibrating session tone, depth, and communication style. Updated by dreaming engine when new interactions logged."
+    }
+}
