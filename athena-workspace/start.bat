@@ -1,8 +1,8 @@
 @echo off
-title Lobotto Workspace
+title Lobotto's Workshop
 echo.
 echo  ==========================================
-echo   Lobotto Workspace ^| http://localhost:7337
+echo   Lobotto's Workshop ^| http://localhost:7337
 echo  ==========================================
 echo.
 echo  Starting server...

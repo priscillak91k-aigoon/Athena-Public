@@ -1,7 +1,7 @@
 """
-Lobotto Workspace Server
+Lobotto's Workshop Server
 ========================
-Local execution backend for the Lobotto Workspace IDE.
+Local execution backend for the Lobotto's Workshop IDE.
 Provides file CRUD, command execution, and WebSocket terminal streaming.
 
 Start: python athena-workspace/server.py
@@ -55,7 +55,7 @@ START_TIME = datetime.now()
 HIDDEN_DIRS = {".git", ".aider.tags.cache.v4", "__pycache__", "node_modules",
                ".nosey_nutter", "multi_recon*"}
 
-app = FastAPI(title="Lobotto Workspace", version="1.0.0")
+app = FastAPI(title="Lobotto's Workshop", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -73,14 +73,14 @@ async def on_startup():
         raise RuntimeError(f"Workspace root not found: {WORKSPACE_ROOT}")
     # Load persisted tasks
     _load_tasks()
-    log.info(f"Lobotto Workspace started. Root: {WORKSPACE_ROOT} Port: {PORT}")
+    log.info(f"Lobotto's Workshop started. Root: {WORKSPACE_ROOT} Port: {PORT}")
     log.info(f"Tasks loaded from disk: {len(TASK_LOG)}")
 
 
 @app.on_event("shutdown")
 async def on_shutdown():
     _save_tasks()
-    log.info("Lobotto Workspace shut down cleanly.")
+    log.info("Lobotto's Workshop shut down cleanly.")
 
 
 @app.get("/health")
@@ -390,7 +390,7 @@ if __name__ == "__main__":
             print(f"⚠️  Port {PORT} already in use. Is Athena Workspace already running?")
             print(f"   Open http://localhost:{PORT} if so.")
             sys.exit(0)
-    print(f"🚀 Lobotto Workspace | http://localhost:{PORT}")
+    print(f"🚀 Lobotto's Workshop | http://localhost:{PORT}")
     print(f"📁 Root: {WORKSPACE_ROOT}")
     print(f"📋 Log:  {LOG_FILE}")
     print(f"   Ctrl+C to stop\n")
