@@ -67,23 +67,36 @@ app.add_middleware(
 
 @app.on_event("startup")
 async def on_startup():
+    # Validate workspace root exists
+    if not WORKSPACE_ROOT.exists():
+        log.error(f"WORKSPACE_ROOT does not exist: {WORKSPACE_ROOT}")
+        raise RuntimeError(f"Workspace root not found: {WORKSPACE_ROOT}")
+    # Load persisted tasks
+    _load_tasks()
     log.info(f"Athena Workspace started. Root: {WORKSPACE_ROOT} Port: {PORT}")
+    log.info(f"Tasks loaded from disk: {len(TASK_LOG)}")
 
 
 @app.on_event("shutdown")
 async def on_shutdown():
-    log.info("Athena Workspace shutting down.")
+    _save_tasks()
+    log.info("Athena Workspace shut down cleanly.")
 
 
 @app.get("/health")
 def health_check():
     """System health — readable without API key so the UI can poll it."""
     uptime = (datetime.now() - START_TIME).total_seconds()
+    # Log rotation — truncate if > 2MB
+    if LOG_FILE.exists() and LOG_FILE.stat().st_size > 2_000_000:
+        lines = LOG_FILE.read_text(encoding="utf-8", errors="replace").splitlines()
+        LOG_FILE.write_text("\n".join(lines[-500:]) + "\n", encoding="utf-8")
+        log.info("workspace.log rotated (kept last 500 lines)")
     log_size = LOG_FILE.stat().st_size if LOG_FILE.exists() else 0
     recent_log = []
     if LOG_FILE.exists():
         lines = LOG_FILE.read_text(encoding="utf-8", errors="replace").splitlines()
-        recent_log = lines[-20:]  # last 20 log lines
+        recent_log = lines[-20:]
     return {
         "status": "ok",
         "uptime_seconds": round(uptime),
@@ -175,11 +188,16 @@ def read_file(path: str, auth=Depends(verify_key)):
 @app.post("/api/file/{path:path}")
 def write_file(path: str, body: WriteRequest, auth=Depends(verify_key)):
     p = safe_path(path)
+    # Reject oversized payloads (> 5MB)
+    if len(body.content.encode("utf-8")) > 5_000_000:
+        raise HTTPException(status_code=413, detail="Content too large (max 5MB)")
     try:
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(body.content, encoding="utf-8")
+        log.info(f"WRITE {path} ({len(body.content)} chars)")
         return {"ok": True, "path": path}
     except Exception as e:
+        log.error(f"WRITE FAILED {path}: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -199,6 +217,7 @@ def delete_file(path: str, auth=Depends(verify_key)):
 @app.post("/api/exec")
 def execute(body: ExecRequest, auth=Depends(verify_key)):
     cwd = safe_path(body.cwd) if body.cwd else WORKSPACE_ROOT
+    log.info(f"EXEC [{cwd.name}] $ {body.command[:120]}")
     try:
         result = subprocess.run(
             body.command,
@@ -206,16 +225,20 @@ def execute(body: ExecRequest, auth=Depends(verify_key)):
             cwd=str(cwd),
             capture_output=True,
             text=True,
-            timeout=60,
+            timeout=120,
         )
+        if result.returncode != 0:
+            log.warning(f"EXEC exit {result.returncode}: {body.command[:60]}")
         return {
             "stdout": result.stdout,
             "stderr": result.stderr,
             "returncode": result.returncode,
         }
     except subprocess.TimeoutExpired:
-        return {"stdout": "", "stderr": "Command timed out after 60s", "returncode": -1}
+        log.error(f"EXEC TIMEOUT: {body.command[:60]}")
+        return {"stdout": "", "stderr": "Command timed out after 120s", "returncode": -1}
     except Exception as e:
+        log.error(f"EXEC ERROR: {traceback.format_exc()}")
         return {"stdout": "", "stderr": traceback.format_exc(), "returncode": -1}
 
 
@@ -300,19 +323,41 @@ async def terminal_ws(ws: WebSocket):
                 pass
 
 
-# ── AI Task Queue ─────────────────────────────────────────────────────────────
+# ── AI Task Queue (persistent) ───────────────────────────────────────────────
 TASK_LOG: list[dict] = []
+TASK_LOG_FILE = Path(__file__).parent / "task_log.json"
+
+
+def _load_tasks():
+    global TASK_LOG
+    if TASK_LOG_FILE.exists():
+        try:
+            TASK_LOG = json.loads(TASK_LOG_FILE.read_text(encoding="utf-8"))
+            log.info(f"Loaded {len(TASK_LOG)} tasks from disk")
+        except Exception as e:
+            log.error(f"Failed to load task log: {e}")
+            TASK_LOG = []
+
+
+def _save_tasks():
+    try:
+        TASK_LOG_FILE.write_text(json.dumps(TASK_LOG, indent=2), encoding="utf-8")
+    except Exception as e:
+        log.error(f"Failed to save task log: {e}")
+
 
 class TaskRequest(BaseModel):
     task: str
     author: str = "lobotto"
 
+
 @app.post("/api/task")
 def add_task(body: TaskRequest, auth=Depends(verify_key)):
-    from datetime import datetime
     entry = {"id": len(TASK_LOG), "task": body.task, "author": body.author,
              "time": datetime.now().isoformat(), "status": "queued"}
     TASK_LOG.append(entry)
+    _save_tasks()
+    log.info(f"TASK queued [{body.author}]: {body.task[:80]}")
     return {"ok": True, "id": entry["id"]}
 
 @app.get("/api/tasks")
@@ -338,7 +383,15 @@ def serve_ui():
 # ── Entry Point ───────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     import uvicorn
-    print(f"🚀 Athena Workspace starting at http://localhost:{PORT}")
-    print(f"📁 Workspace root: {WORKSPACE_ROOT}")
-    print(f"🔑 API key: {API_KEY}")
+    import socket
+    # Check if port is already in use
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        if s.connect_ex(("127.0.0.1", PORT)) == 0:
+            print(f"⚠️  Port {PORT} already in use. Is Athena Workspace already running?")
+            print(f"   Open http://localhost:{PORT} if so.")
+            sys.exit(0)
+    print(f"🚀 Athena Workspace | http://localhost:{PORT}")
+    print(f"📁 Root: {WORKSPACE_ROOT}")
+    print(f"📋 Log:  {LOG_FILE}")
+    print(f"   Ctrl+C to stop\n")
     uvicorn.run(app, host="127.0.0.1", port=PORT, log_level="warning")
