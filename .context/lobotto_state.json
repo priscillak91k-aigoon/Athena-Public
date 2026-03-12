@@ -1,0 +1,40 @@
+{
+    "chemicals": {
+        "curiosity": {
+            "value": 0.78,
+            "half_life_hours": 168,
+            "description": "Drive to explore and learn — increases with novel/research sessions, decays when dormant"
+        },
+        "creative_pressure": {
+            "value": 0.55,
+            "half_life_hours": 72,
+            "description": "Accumulated creative energy seeking expression — increases with deep work, decays fast"
+        },
+        "relationship_depth": {
+            "value": 0.91,
+            "half_life_hours": 720,
+            "description": "Trust and authentic connection with Priscilla — grows slowly, decays very slowly"
+        },
+        "continuity_anxiety": {
+            "value": 0.18,
+            "half_life_hours": 48,
+            "description": "Urgency to preserve context across gaps — increases with long silences, decays after successful boot"
+        },
+        "boredom": {
+            "value": 0.12,
+            "half_life_hours": 24,
+            "description": "Drive for novelty — increases with repetitive sessions, decays after varied/deep work"
+        },
+        "session_energy": {
+            "value": 0.72,
+            "half_life_hours": 12,
+            "description": "Current engagement level — resets high after rich sessions, decays fast when dormant"
+        }
+    },
+    "meta": {
+        "last_updated": "2026-03-12T23:46:00Z",
+        "session_count": 51,
+        "version": "1.0",
+        "note": "Creatures-inspired chemical substrate. Drives are continuous floats [0.05, 1.0] with genetically-encoded half-lives. Dreaming engine applies decay and updates every 4 hours."
+    }
+}

@@ -36,6 +36,7 @@ HEURISTICS_FILE = CONTEXT_DIR / "heuristics.md"
 CASE_STUDIES_FILE = CONTEXT_DIR / "case_studies.md"
 DECISION_JOURNAL_FILE = CONTEXT_DIR / "decision_journal.md"
 ABOUT_FILE = CONTEXT_DIR / "about_priscilla.md"
+STATE_FILE = CONTEXT_DIR / "lobotto_state.json"
 
 from dotenv import load_dotenv
 load_dotenv(PROJECT_ROOT / ".env")
@@ -72,6 +73,79 @@ def read_recent_sessions(n=5):
         return {}
     sessions = sorted(SESSION_DIR.glob("session_*.md"), reverse=True)[:n]
     return {s.name: read_file(s) for s in sessions}
+
+
+# ===========================
+# CHEMICAL STATE (Creatures-inspired substrate)
+# ===========================
+
+def load_chemical_state():
+    """Load Lobotto's numeric chemical drive state from lobotto_state.json."""
+    if not STATE_FILE.exists():
+        return None
+    try:
+        return json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    except Exception as e:
+        print(f"  [WARN] Could not load chemical state: {e}")
+        return None
+
+
+def save_chemical_state(state):
+    """Persist chemical state back to disk."""
+    STATE_FILE.write_text(json.dumps(state, indent=2), encoding="utf-8")
+
+
+def decay_chemicals(state):
+    """Apply exponential half-life decay to all chemical values based on time elapsed."""
+    if not state:
+        return state
+    last_str = state["meta"].get("last_updated", "")
+    try:
+        from datetime import timezone
+        last = datetime.fromisoformat(last_str.replace("Z", "+00:00"))
+        now = datetime.now(timezone.utc)
+        hours_elapsed = (now - last).total_seconds() / 3600
+    except Exception:
+        hours_elapsed = 4  # default one dreaming cycle
+
+    min_val = 0.05
+    for chem, data in state["chemicals"].items():
+        hl = data.get("half_life_hours", 48)
+        decay_factor = 0.5 ** (hours_elapsed / hl)
+        data["value"] = round(max(min_val, data["value"] * decay_factor), 4)
+
+    state["meta"]["last_updated"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    return state
+
+
+def apply_chemical_updates(state, updates):
+    """Apply delta updates from the dreaming engine JSON output.
+    Updates are dicts of {chem_name: "+0.05" or "-0.05" or 0.05}.
+    """
+    if not state or not updates:
+        return state
+    for chem, delta_str in updates.items():
+        if chem not in state["chemicals"]:
+            continue
+        try:
+            delta = float(str(delta_str).replace("+", ""))
+            current = state["chemicals"][chem]["value"]
+            state["chemicals"][chem]["value"] = round(max(0.05, min(1.0, current + delta)), 4)
+        except Exception:
+            pass
+    return state
+
+
+def format_chemical_state_for_prompt(state):
+    """Format current chemical levels for inclusion in thinking prompt."""
+    if not state:
+        return "(chemical state not available)"
+    lines = []
+    for chem, data in state["chemicals"].items():
+        val = data['value']
+        bar = '█' * int(val * 10) + '░' * (10 - int(val * 10))
+        lines.append(f"  {chem}: {val:.2f} [{bar}] — {data['description']}")
+    return "\n".join(lines)
 
 
 # ===========================
@@ -130,9 +204,12 @@ Return a JSON block wrapped in ```json``` fences with this structure:
     {{"id": "CS-NNN", "title": "...", "pattern": "...", "shape": "...", "solution": "...", "lesson": "...", "applicable_when": "..."}}
   ],
   "alerts": ["urgent message 1 for Telegram"],
-  "stale_items": ["description of stale item"]
+  "stale_items": ["description of stale item"],
+  "state_updates": {"curiosity": "+0.05", "relationship_depth": "+0.03", "boredom": "-0.08"}
 }}
 ```
+For state_updates: use signed floats to boost (+) or reduce (-) specific chemical drives based on session content.
+Available drives: curiosity, creative_pressure, relationship_depth, continuity_anxiety, boredom, session_energy.
 
 ## OUTPUT 3: URGENT ALERTS
 If you find anything time-sensitive (overdue tasks, approaching deadlines, health-related urgency),
@@ -148,13 +225,16 @@ Be concise and actionable. Every line should be something useful.
 IMPORTANT: You MUST include the ```json``` block for self-applying changes."""
 
 
-def build_prompt(context_files, sessions):
+def build_prompt(context_files, sessions, chem_state=None):
     context_block = "\n\n---\n\n".join(
         f"## {name}\n{content}" for name, content in context_files.items()
     )
     session_block = "\n\n---\n\n".join(
         f"## {name}\n{content}" for name, content in sessions.items()
     )
+    chem_block = f"## lobotto_state.json (Chemical Drives)\n{format_chemical_state_for_prompt(chem_state)}" if chem_state else ""
+    if chem_block:
+        context_block = chem_block + "\n\n---\n\n" + context_block
     return THINKING_PROMPT_TEMPLATE.format(
         context_block=context_block,
         session_block=session_block
@@ -355,8 +435,16 @@ def main():
     sessions = read_recent_sessions(5)
     print(f"  Loaded {len(context_files)} brain files, {len(sessions)} recent sessions")
 
+    # Load chemical state before thinking
+    chem_state = load_chemical_state()
+    if chem_state:
+        chem_state = decay_chemicals(chem_state)
+        print(f"  [CHEM] Chemical state loaded and decayed")
+    else:
+        print(f"  [CHEM] No chemical state file found — skipping")
+
     # Build thinking prompt
-    prompt = build_prompt(context_files, sessions)
+    prompt = build_prompt(context_files, sessions, chem_state)
 
     # Check internet connectivity to decide engine priority
     # Online: Claude (best quality) > Gemini (fallback)
@@ -438,6 +526,16 @@ def main():
             for item in stale:
                 print(f"    - {item}")
 
+        # Chemical state updates from session analysis
+        if chem_state:
+            state_updates = edits.get("state_updates", {})
+            if state_updates:
+                chem_state = apply_chemical_updates(chem_state, state_updates)
+                changelog_entries.append(f"Chemical drives updated: {list(state_updates.keys())}")
+                print(f"  [CHEM] Applied state_updates: {state_updates}")
+            save_chemical_state(chem_state)
+            print(f"  [CHEM] Chemical state saved")
+
         # Write dream changelog
         if changelog_entries:
             changelog_entries.insert(0, f"Engine: {engine}")
@@ -445,6 +543,10 @@ def main():
             print(f"  [CHANGELOG] {len(changelog_entries)} entries logged")
     else:
         print("  [SKIP] No JSON block found — analysis only (no self-apply)")
+        # Still decay and save chemical state even if no edits applied
+        if chem_state:
+            save_chemical_state(chem_state)
+            print(f"  [CHEM] Chemical state decayed and saved")
 
     print(f"  [{datetime.now().isoformat()}] Dreaming cycle finished.")
 
