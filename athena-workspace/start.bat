@@ -1,8 +1,8 @@
 @echo off
-title Athena Workspace
+title Lobotto Workspace
 echo.
 echo  ==========================================
-echo   Athena Workspace ^| http://localhost:7337
+echo   Lobotto Workspace ^| http://localhost:7337
 echo  ==========================================
 echo.
 echo  Starting server...

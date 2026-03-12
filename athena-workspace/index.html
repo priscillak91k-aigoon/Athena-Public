@@ -1,684 +1,1104 @@
 <!DOCTYPE html>
+<title>Lobotto Workspace</title>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Athena Workspace</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg:       #0d1117;
-    --surface:  #161b22;
-    --surface2: #1c2333;
-    --border:   #30363d;
-    --teal:     #00e5cc;
-    --teal-dim: #00b39f;
-    --purple:   #9b59ff;
-    --green:    #3fb950;
-    --yellow:   #d29922;
-    --red:      #f85149;
-    --text:     #e6edf3;
-    --text-dim: #7d8590;
-    --font-ui:  'Inter', system-ui, sans-serif;
-    --font-mono:'JetBrains Mono', 'Courier New', monospace;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font-ui); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Athena Workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #1c2333;
+      --border: #30363d;
+      --teal: #00e5cc;
+      --teal-dim: #00b39f;
+      --purple: #9b59ff;
+      --green: #3fb950;
+      --yellow: #d29922;
+      --red: #f85149;
+      --text: #e6edf3;
+      --text-dim: #7d8590;
+      --font-ui: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    }
 
-  /* ── Header ── */
-  #header {
-    display: flex; align-items: center; gap: 12px;
-    padding: 0 16px; height: 44px; min-height: 44px;
-    background: var(--surface); border-bottom: 1px solid var(--border);
-    flex-shrink: 0;
-  }
-  #header .logo { font-weight: 600; font-size: 14px; color: var(--teal); letter-spacing: 0.5px; }
-  #header .logo span { color: var(--text-dim); font-weight: 300; }
-  #status-pill {
-    display: flex; align-items: center; gap: 6px;
-    padding: 3px 10px; border-radius: 20px;
-    background: var(--surface2); border: 1px solid var(--border);
-    font-size: 11px; color: var(--text-dim);
-  }
-  #status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--text-dim); transition: background 0.3s; }
-  #status-dot.ok { background: var(--green); box-shadow: 0 0 6px var(--green); }
-  #status-dot.err { background: var(--red); }
-  #status-text { font-size: 11px; }
-  #uptime { font-size: 11px; color: var(--text-dim); margin-left: 4px; }
-  .header-spacer { flex: 1; }
-  #api-key-input {
-    background: var(--surface2); border: 1px solid var(--border); color: var(--text-dim);
-    padding: 4px 10px; border-radius: 6px; font-size: 11px; font-family: var(--font-mono);
-    width: 200px; outline: none;
-  }
-  #api-key-input:focus { border-color: var(--teal); }
-  .btn {
-    padding: 5px 12px; border-radius: 6px; border: 1px solid var(--border);
-    background: var(--surface2); color: var(--text); font-size: 12px; cursor: pointer;
-    transition: all 0.15s; font-family: var(--font-ui);
-  }
-  .btn:hover { border-color: var(--teal); color: var(--teal); }
-  .btn.primary { background: var(--teal); color: var(--bg); border-color: var(--teal); font-weight: 600; }
-  .btn.primary:hover { background: var(--teal-dim); }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* ── Main layout ── */
-  #main { display: flex; flex: 1; overflow: hidden; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-ui);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
 
-  /* ── File Tree ── */
-  #file-tree {
-    width: 220px; min-width: 160px; max-width: 320px;
-    background: var(--surface); border-right: 1px solid var(--border);
-    display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0;
-  }
-  #file-tree-header {
-    padding: 8px 12px; font-size: 11px; font-weight: 600; color: var(--text-dim);
-    text-transform: uppercase; letter-spacing: 0.8px; border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  #file-tree-scroll { flex: 1; overflow-y: auto; padding: 4px 0; }
-  .tree-item {
-    display: flex; align-items: center; gap: 6px; padding: 3px 12px;
-    font-size: 12px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    color: var(--text-dim); transition: background 0.1s, color 0.1s;
-    user-select: none;
-  }
-  .tree-item:hover { background: var(--surface2); color: var(--text); }
-  .tree-item.active { background: rgba(0, 229, 204, 0.1); color: var(--teal); }
-  .tree-item.dir { color: var(--text); font-weight: 500; }
-  .tree-item .icon { font-size: 11px; flex-shrink: 0; width: 14px; text-align: center; }
-  .tree-children { display: none; }
-  .tree-children.open { display: block; }
+    /* ── Header ── */
+    #header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 16px;
+      height: 44px;
+      min-height: 44px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
 
-  /* ── Editor area ── */
-  #editor-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+    #header .logo {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--teal);
+      letter-spacing: 0.5px;
+    }
 
-  /* ── Tab bar ── */
-  #tabs {
-    display: flex; background: var(--surface); border-bottom: 1px solid var(--border);
-    overflow-x: auto; flex-shrink: 0; min-height: 36px;
-  }
-  .tab {
-    display: flex; align-items: center; gap: 8px; padding: 0 14px;
-    font-size: 12px; cursor: pointer; border-right: 1px solid var(--border);
-    white-space: nowrap; color: var(--text-dim); transition: all 0.15s;
-    min-height: 36px; flex-shrink: 0;
-  }
-  .tab:hover { background: var(--surface2); color: var(--text); }
-  .tab.active { background: var(--bg); color: var(--text); border-bottom: 2px solid var(--teal); }
-  .tab .close { font-size: 14px; color: var(--text-dim); }
-  .tab .close:hover { color: var(--red); }
-  .tab .dirty { color: var(--yellow); font-size: 8px; }
+    #header .logo span {
+      color: var(--text-dim);
+      font-weight: 300;
+    }
 
-  /* ── Monaco container ── */
-  #monaco-container { flex: 1; overflow: hidden; position: relative; }
-  #editor-placeholder {
-    position: absolute; inset: 0; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 12px;
-    color: var(--text-dim); font-size: 13px;
-  }
-  #editor-placeholder .big { font-size: 48px; }
+    #status-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
 
-  /* ── Terminal ── */
-  #terminal-area {
-    height: 220px; min-height: 100px; flex-shrink: 0;
-    border-top: 1px solid var(--border); background: #010409;
-    display: flex; flex-direction: column; overflow: hidden;
-  }
-  #terminal-header {
-    display: flex; align-items: center; gap: 8px;
-    padding: 4px 12px; border-bottom: 1px solid var(--border);
-    background: var(--surface); flex-shrink: 0;
-  }
-  #terminal-header span { font-size: 11px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; }
-  #terminal-output {
-    flex: 1; overflow-y: auto; padding: 8px 12px;
-    font-family: var(--font-mono); font-size: 12px; line-height: 1.6;
-    color: #cdd9e5; white-space: pre-wrap; word-break: break-all;
-  }
-  .t-stdout { color: #cdd9e5; }
-  .t-stderr { color: var(--red); }
-  .t-info   { color: var(--teal); }
-  .t-success{ color: var(--green); }
-  .t-prompt { color: var(--purple); }
-  #cmd-input-row { display: flex; border-top: 1px solid var(--border); flex-shrink: 0; }
-  #cmd-input {
-    flex: 1; background: transparent; border: none; outline: none;
-    padding: 8px 12px; font-family: var(--font-mono); font-size: 12px; color: var(--text);
-  }
-  #cmd-run-btn { padding: 0 14px; background: transparent; border: none; color: var(--teal); cursor: pointer; font-size: 18px; }
+    #status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--text-dim);
+      transition: background 0.3s;
+    }
 
-  /* ── Right panel: AI Tasks + Health ── */
-  #right-panel {
-    width: 280px; min-width: 220px; max-width: 380px;
-    background: var(--surface); border-left: 1px solid var(--border);
-    display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0;
-  }
+    #status-dot.ok {
+      background: var(--green);
+      box-shadow: 0 0 6px var(--green);
+    }
 
-  /* ── Health panel ── */
-  #health-panel {
-    border-bottom: 1px solid var(--border); padding: 12px;
-  }
-  #health-title { font-size: 11px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
-  .health-row { display: flex; justify-content: space-between; font-size: 11px; padding: 2px 0; }
-  .health-label { color: var(--text-dim); }
-  .health-val { color: var(--text); font-family: var(--font-mono); }
-  .health-val.ok { color: var(--green); }
-  .health-val.err { color: var(--red); }
+    #status-dot.err {
+      background: var(--red);
+    }
 
-  /* ── Log viewer ── */
-  #log-panel { border-bottom: 1px solid var(--border); }
-  #log-title {
-    padding: 8px 12px; font-size: 11px; font-weight: 600; color: var(--text-dim);
-    text-transform: uppercase; letter-spacing: 0.8px; display: flex; justify-content: space-between; cursor: pointer;
-  }
-  #log-lines {
-    max-height: 120px; overflow-y: auto; padding: 4px 12px 8px;
-    font-family: var(--font-mono); font-size: 10px; line-height: 1.6; color: var(--text-dim);
-    display: none;
-  }
-  #log-lines.open { display: block; }
-  .log-line.info { color: var(--teal-dim); }
-  .log-line.warn { color: var(--yellow); }
-  .log-line.error { color: var(--red); }
+    #status-text {
+      font-size: 11px;
+    }
 
-  /* ── Task queue ── */
-  #task-panel { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-  #task-title {
-    padding: 8px 12px; font-size: 11px; font-weight: 600; color: var(--text-dim);
-    text-transform: uppercase; letter-spacing: 0.8px; border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  #task-list { flex: 1; overflow-y: auto; padding: 4px 0; }
-  .task-item {
-    padding: 8px 12px; border-bottom: 1px solid rgba(48,54,61,0.5);
-    font-size: 12px;
-  }
-  .task-item .task-author { font-size: 10px; color: var(--teal); margin-bottom: 2px; }
-  .task-item .task-text { color: var(--text); line-height: 1.4; margin-bottom: 4px; }
-  .task-item .task-status { font-size: 10px; }
-  .task-status.queued { color: var(--text-dim); }
-  .task-status.running { color: var(--yellow); }
-  .task-status.done { color: var(--green); }
-  .task-status.error { color: var(--red); }
-  #task-input-area { padding: 10px 12px; border-top: 1px solid var(--border); flex-shrink: 0; }
-  #task-input {
-    width: 100%; background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 6px; padding: 7px 10px; font-size: 12px; color: var(--text);
-    font-family: var(--font-ui); outline: none; resize: none; height: 64px;
-  }
-  #task-input:focus { border-color: var(--teal); }
-  #task-submit { width: 100%; margin-top: 6px; }
+    #uptime {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-left: 4px;
+    }
 
-  /* ── Save indicator ── */
-  #save-status { font-size: 11px; color: var(--text-dim); padding: 0 8px; }
+    .header-spacer {
+      flex: 1;
+    }
 
-  /* scrollbars */
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: #484f58; }
-</style>
+    #api-key-input {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      width: 200px;
+      outline: none;
+    }
+
+    #api-key-input:focus {
+      border-color: var(--teal);
+    }
+
+    .btn {
+      padding: 5px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--text);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: var(--font-ui);
+    }
+
+    .btn:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+
+    .btn.primary {
+      background: var(--teal);
+      color: var(--bg);
+      border-color: var(--teal);
+      font-weight: 600;
+    }
+
+    .btn.primary:hover {
+      background: var(--teal-dim);
+    }
+
+    /* ── Main layout ── */
+    #main {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* ── File Tree ── */
+    #file-tree {
+      width: 220px;
+      min-width: 160px;
+      max-width: 320px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    #file-tree-header {
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #file-tree-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 4px 0;
+    }
+
+    .tree-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text-dim);
+      transition: background 0.1s, color 0.1s;
+      user-select: none;
+    }
+
+    .tree-item:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    .tree-item.active {
+      background: rgba(0, 229, 204, 0.1);
+      color: var(--teal);
+    }
+
+    .tree-item.dir {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .tree-item .icon {
+      font-size: 11px;
+      flex-shrink: 0;
+      width: 14px;
+      text-align: center;
+    }
+
+    .tree-children {
+      display: none;
+    }
+
+    .tree-children.open {
+      display: block;
+    }
+
+    /* ── Editor area ── */
+    #editor-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    /* ── Tab bar ── */
+    #tabs {
+      display: flex;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      flex-shrink: 0;
+      min-height: 36px;
+    }
+
+    .tab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 14px;
+      font-size: 12px;
+      cursor: pointer;
+      border-right: 1px solid var(--border);
+      white-space: nowrap;
+      color: var(--text-dim);
+      transition: all 0.15s;
+      min-height: 36px;
+      flex-shrink: 0;
+    }
+
+    .tab:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    .tab.active {
+      background: var(--bg);
+      color: var(--text);
+      border-bottom: 2px solid var(--teal);
+    }
+
+    .tab .close {
+      font-size: 14px;
+      color: var(--text-dim);
+    }
+
+    .tab .close:hover {
+      color: var(--red);
+    }
+
+    .tab .dirty {
+      color: var(--yellow);
+      font-size: 8px;
+    }
+
+    /* ── Monaco container ── */
+    #monaco-container {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #editor-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+
+    #editor-placeholder .big {
+      font-size: 48px;
+    }
+
+    /* ── Terminal ── */
+    #terminal-area {
+      height: 220px;
+      min-height: 100px;
+      flex-shrink: 0;
+      border-top: 1px solid var(--border);
+      background: #010409;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    #terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      flex-shrink: 0;
+    }
+
+    #terminal-header span {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    #terminal-output {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 12px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #cdd9e5;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .t-stdout {
+      color: #cdd9e5;
+    }
+
+    .t-stderr {
+      color: var(--red);
+    }
+
+    .t-info {
+      color: var(--teal);
+    }
+
+    .t-success {
+      color: var(--green);
+    }
+
+    .t-prompt {
+      color: var(--purple);
+    }
+
+    #cmd-input-row {
+      display: flex;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    #cmd-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 8px 12px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    #cmd-run-btn {
+      padding: 0 14px;
+      background: transparent;
+      border: none;
+      color: var(--teal);
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    /* ── Right panel: AI Tasks + Health ── */
+    #right-panel {
+      width: 280px;
+      min-width: 220px;
+      max-width: 380px;
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* ── Health panel ── */
+    #health-panel {
+      border-bottom: 1px solid var(--border);
+      padding: 12px;
+    }
+
+    #health-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+
+    .health-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      padding: 2px 0;
+    }
+
+    .health-label {
+      color: var(--text-dim);
+    }
+
+    .health-val {
+      color: var(--text);
+      font-family: var(--font-mono);
+    }
+
+    .health-val.ok {
+      color: var(--green);
+    }
+
+    .health-val.err {
+      color: var(--red);
+    }
+
+    /* ── Log viewer ── */
+    #log-panel {
+      border-bottom: 1px solid var(--border);
+    }
+
+    #log-title {
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    #log-lines {
+      max-height: 120px;
+      overflow-y: auto;
+      padding: 4px 12px 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      line-height: 1.6;
+      color: var(--text-dim);
+      display: none;
+    }
+
+    #log-lines.open {
+      display: block;
+    }
+
+    .log-line.info {
+      color: var(--teal-dim);
+    }
+
+    .log-line.warn {
+      color: var(--yellow);
+    }
+
+    .log-line.error {
+      color: var(--red);
+    }
+
+    /* ── Task queue ── */
+    #task-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    #task-title {
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #task-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 4px 0;
+    }
+
+    .task-item {
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+      font-size: 12px;
+    }
+
+    .task-item .task-author {
+      font-size: 10px;
+      color: var(--teal);
+      margin-bottom: 2px;
+    }
+
+    .task-item .task-text {
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+
+    .task-item .task-status {
+      font-size: 10px;
+    }
+
+    .task-status.queued {
+      color: var(--text-dim);
+    }
+
+    .task-status.running {
+      color: var(--yellow);
+    }
+
+    .task-status.done {
+      color: var(--green);
+    }
+
+    .task-status.error {
+      color: var(--red);
+    }
+
+    #task-input-area {
+      padding: 10px 12px;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    #task-input {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-size: 12px;
+      color: var(--text);
+      font-family: var(--font-ui);
+      outline: none;
+      resize: none;
+      height: 64px;
+    }
+
+    #task-input:focus {
+      border-color: var(--teal);
+    }
+
+    #task-submit {
+      width: 100%;
+      margin-top: 6px;
+    }
+
+    /* ── Save indicator ── */
+    #save-status {
+      font-size: 11px;
+      color: var(--text-dim);
+      padding: 0 8px;
+    }
+
+    /* scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #484f58;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- HEADER -->
-<div id="header">
-  <div class="logo">⚡ Athena <span>Workspace</span></div>
-  <div id="status-pill">
-    <div id="status-dot"></div>
-    <span id="status-text">connecting...</span>
-    <span id="uptime"></span>
-  </div>
-  <div class="header-spacer"></div>
-  <span id="save-status"></span>
-  <input id="api-key-input" type="password" placeholder="API key" value="athena-local-dev">
-  <button class="btn" onclick="refreshTree()">⟳ Refresh</button>
-  <button class="btn primary" onclick="saveFile()">💾 Save</button>
-</div>
-
-<!-- MAIN -->
-<div id="main">
-
-  <!-- FILE TREE -->
-  <div id="file-tree">
-    <div id="file-tree-header">
-      <span>Files</span>
-      <span id="tree-loading" style="color:var(--teal); display:none">●</span>
+  <!-- HEADER -->
+  <div id="header">
+    <div class="logo">⚡ Lobotto <span>Workspace</span></div>
+    <div id="status-pill">
+      <div id="status-dot"></div>
+      <span id="status-text">connecting...</span>
+      <span id="uptime"></span>
     </div>
-    <div id="file-tree-scroll"></div>
+    <div class="header-spacer"></div>
+    <span id="save-status"></span>
+    <input id="api-key-input" type="password" placeholder="API key" value="athena-local-dev">
+    <button class="btn" onclick="refreshTree()">⟳ Refresh</button>
+    <button class="btn primary" onclick="saveFile()">💾 Save</button>
   </div>
 
-  <!-- EDITOR + TERMINAL -->
-  <div id="editor-area">
-    <div id="tabs"></div>
-    <div id="monaco-container">
-      <div id="editor-placeholder">
-        <div class="big">📄</div>
-        <div>Click a file to open it</div>
+  <!-- MAIN -->
+  <div id="main">
+
+    <!-- FILE TREE -->
+    <div id="file-tree">
+      <div id="file-tree-header">
+        <span>Files</span>
+        <span id="tree-loading" style="color:var(--teal); display:none">●</span>
+      </div>
+      <div id="file-tree-scroll"></div>
+    </div>
+
+    <!-- EDITOR + TERMINAL -->
+    <div id="editor-area">
+      <div id="tabs"></div>
+      <div id="monaco-container">
+        <div id="editor-placeholder">
+          <div class="big">📄</div>
+          <div>Click a file to open it</div>
+        </div>
+      </div>
+      <div id="terminal-area">
+        <div id="terminal-header">
+          <span>Terminal</span>
+          <div style="flex:1"></div>
+          <button class="btn" onclick="clearTerminal()" style="font-size:10px;padding:2px 8px">Clear</button>
+          <button class="btn" onclick="killProcess()"
+            style="font-size:10px;padding:2px 8px;margin-left:4px;color:var(--red)">✕ Kill</button>
+        </div>
+        <div id="terminal-output"></div>
+        <div id="cmd-input-row">
+          <input id="cmd-input" type="text" placeholder="$ run a command..." spellcheck="false">
+          <button id="cmd-run-btn" onclick="runCommand()">▶</button>
+        </div>
       </div>
     </div>
-    <div id="terminal-area">
-      <div id="terminal-header">
-        <span>Terminal</span>
-        <div style="flex:1"></div>
-        <button class="btn" onclick="clearTerminal()" style="font-size:10px;padding:2px 8px">Clear</button>
-        <button class="btn" onclick="killProcess()" style="font-size:10px;padding:2px 8px;margin-left:4px;color:var(--red)">✕ Kill</button>
+
+    <!-- RIGHT PANEL -->
+    <div id="right-panel">
+
+      <!-- HEALTH -->
+      <div id="health-panel">
+        <div id="health-title">🛡 System Health</div>
+        <div class="health-row"><span class="health-label">Server</span><span id="h-server" class="health-val">—</span>
+        </div>
+        <div class="health-row"><span class="health-label">Uptime</span><span id="h-uptime" class="health-val">—</span>
+        </div>
+        <div class="health-row"><span class="health-label">Root</span><span id="h-root" class="health-val"
+            style="font-size:9px;max-width:160px;overflow:hidden;text-overflow:ellipsis">—</span></div>
+        <div class="health-row"><span class="health-label">Log size</span><span id="h-logsize"
+            class="health-val">—</span></div>
+        <div class="health-row"><span class="health-label">Tasks</span><span id="h-tasks" class="health-val">—</span>
+        </div>
       </div>
-      <div id="terminal-output"></div>
-      <div id="cmd-input-row">
-        <input id="cmd-input" type="text" placeholder="$ run a command..." spellcheck="false">
-        <button id="cmd-run-btn" onclick="runCommand()">▶</button>
+
+      <!-- SERVER LOG -->
+      <div id="log-panel">
+        <div id="log-title" onclick="toggleLog()">📋 Server Log <span id="log-toggle">▶</span></div>
+        <div id="log-lines"></div>
       </div>
+
+      <!-- TASK QUEUE -->
+      <div id="task-panel">
+        <div id="task-title">
+          <span>🤖 AI Task Queue</span>
+          <span id="task-count"
+            style="background:var(--surface2);padding:1px 6px;border-radius:10px;font-size:10px">0</span>
+        </div>
+        <div id="task-list"></div>
+        <div id="task-input-area">
+          <textarea id="task-input" placeholder="Describe a task for Lobotto..."></textarea>
+          <button class="btn primary" id="task-submit" onclick="submitTask()">Queue Task</button>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- RIGHT PANEL -->
-  <div id="right-panel">
+  <!-- Monaco CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+  <script>
+    // ── Config ───────────────────────────────────────────────────────────────────
+    const BASE = 'http://127.0.0.1:7337';
+    let apiKey = () => document.getElementById('api-key-input').value.trim();
 
-    <!-- HEALTH -->
-    <div id="health-panel">
-      <div id="health-title">🛡 System Health</div>
-      <div class="health-row"><span class="health-label">Server</span><span id="h-server" class="health-val">—</span></div>
-      <div class="health-row"><span class="health-label">Uptime</span><span id="h-uptime" class="health-val">—</span></div>
-      <div class="health-row"><span class="health-label">Root</span><span id="h-root" class="health-val" style="font-size:9px;max-width:160px;overflow:hidden;text-overflow:ellipsis">—</span></div>
-      <div class="health-row"><span class="health-label">Log size</span><span id="h-logsize" class="health-val">—</span></div>
-      <div class="health-row"><span class="health-label">Tasks</span><span id="h-tasks" class="health-val">—</span></div>
-    </div>
+    // ── State ────────────────────────────────────────────────────────────────────
+    let monacoEditor = null;
+    let openTabs = {};       // path → {content, dirty, model}
+    let activeTab = null;
+    let wsTerminal = null;
+    let healthTimer = null;
 
-    <!-- SERVER LOG -->
-    <div id="log-panel">
-      <div id="log-title" onclick="toggleLog()">📋 Server Log <span id="log-toggle">▶</span></div>
-      <div id="log-lines"></div>
-    </div>
+    // ── Monaco Init ───────────────────────────────────────────────────────────────
+    require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs' } });
+    require(['vs/editor/editor.main'], function () {
+      monacoEditor = monaco.editor.create(document.getElementById('monaco-container'), {
+        theme: 'vs-dark',
+        language: 'plaintext',
+        fontSize: 13,
+        fontFamily: "'JetBrains Mono', 'Courier New', monospace",
+        minimap: { enabled: true },
+        scrollBeyondLastLine: false,
+        automaticLayout: true,
+        lineNumbers: 'on',
+        renderLineHighlight: 'line',
+        wordWrap: 'on',
+      });
+      // Make placeholder invisible when editor is ready
+      document.getElementById('editor-placeholder').style.display = 'none';
+      // Track changes
+      monacoEditor.onDidChangeModelContent(() => {
+        if (activeTab) {
+          openTabs[activeTab].dirty = true;
+          renderTabs();
+        }
+      });
+      // Ctrl+S to save
+      monacoEditor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, saveFile);
+      refreshTree();
+      startHealthPoll();
+      termPrint('🚀 Lobotto Workspace ready. Use the file tree to open files, or type commands below.\n', 'info');
+    });
 
-    <!-- TASK QUEUE -->
-    <div id="task-panel">
-      <div id="task-title">
-        <span>🤖 AI Task Queue</span>
-        <span id="task-count" style="background:var(--surface2);padding:1px 6px;border-radius:10px;font-size:10px">0</span>
-      </div>
-      <div id="task-list"></div>
-      <div id="task-input-area">
-        <textarea id="task-input" placeholder="Describe a task for Lobotto…"></textarea>
-        <button class="btn primary" id="task-submit" onclick="submitTask()">Queue Task</button>
-      </div>
-    </div>
+    // ── File Tree ─────────────────────────────────────────────────────────────────
+    async function refreshTree() {
+      const el = document.getElementById('tree-loading');
+      el.style.display = 'inline';
+      try {
+        const r = await apiFetch('/api/tree');
+        if (!r.ok) throw new Error(await r.text());
+        const { tree } = await r.json();
+        const scroll = document.getElementById('file-tree-scroll');
+        scroll.innerHTML = '';
+        if (tree) renderNode(tree, scroll, 0);
+      } catch (e) {
+        termPrint(`❌ Could not load file tree: ${e.message}\n`, 'stderr');
+      } finally {
+        el.style.display = 'none';
+      }
+    }
 
-  </div>
-</div>
+    function renderNode(node, parent, depth) {
+      if (node.type === 'dir') {
+        const row = mkTreeItem(node, depth, true);
+        const children = document.createElement('div');
+        children.className = 'tree-children';
+        row.addEventListener('click', () => {
+          children.classList.toggle('open');
+          row.querySelector('.icon').textContent = children.classList.contains('open') ? '📂' : '📁';
+        });
+        parent.appendChild(row);
+        parent.appendChild(children);
+        if (node.children) {
+          for (const c of node.children) renderNode(c, children, depth + 1);
+        }
+      } else {
+        const row = mkTreeItem(node, depth, false);
+        row.addEventListener('click', () => openFile(node.path));
+        parent.appendChild(row);
+      }
+    }
 
-<!-- Monaco CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
-<script>
-// ── Config ───────────────────────────────────────────────────────────────────
-const BASE = 'http://127.0.0.1:7337';
-let apiKey = () => document.getElementById('api-key-input').value.trim();
+    function mkTreeItem(node, depth, isDir) {
+      const el = document.createElement('div');
+      el.className = 'tree-item' + (isDir ? ' dir' : '');
+      el.style.paddingLeft = (12 + depth * 14) + 'px';
+      const icon = document.createElement('span');
+      icon.className = 'icon';
+      icon.textContent = isDir ? '📁' : fileIcon(node.ext || '');
+      const label = document.createElement('span');
+      label.textContent = node.name;
+      el.appendChild(icon);
+      el.appendChild(label);
+      el.dataset.path = node.path;
+      return el;
+    }
 
-// ── State ────────────────────────────────────────────────────────────────────
-let monacoEditor = null;
-let openTabs = {};       // path → {content, dirty, model}
-let activeTab = null;
-let wsTerminal = null;
-let healthTimer = null;
+    function fileIcon(ext) {
+      const map = {
+        '.py': '🐍', '.js': '⚡', '.ts': '💙', '.html': '🌐', '.css': '🎨',
+        '.json': '📋', '.md': '📝', '.sh': '⚙️', '.bat': '⚙️', '.txt': '📄',
+        '.env': '🔑', '.yaml': '📋', '.yml': '📋'
+      };
+      return map[ext] || '📄';
+    }
 
-// ── Monaco Init ───────────────────────────────────────────────────────────────
-require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs' } });
-require(['vs/editor/editor.main'], function () {
-  monacoEditor = monaco.editor.create(document.getElementById('monaco-container'), {
-    theme: 'vs-dark',
-    language: 'plaintext',
-    fontSize: 13,
-    fontFamily: "'JetBrains Mono', 'Courier New', monospace",
-    minimap: { enabled: true },
-    scrollBeyondLastLine: false,
-    automaticLayout: true,
-    lineNumbers: 'on',
-    renderLineHighlight: 'line',
-    wordWrap: 'on',
-  });
-  // Make placeholder invisible when editor is ready
-  document.getElementById('editor-placeholder').style.display = 'none';
-  // Track changes
-  monacoEditor.onDidChangeModelContent(() => {
-    if (activeTab) {
-      openTabs[activeTab].dirty = true;
+    // ── File Open / Save ──────────────────────────────────────────────────────────
+    async function openFile(path) {
+      if (openTabs[path]) {
+        setActiveTab(path);
+        return;
+      }
+      try {
+        const r = await apiFetch(`/api/file/${path}`);
+        if (!r.ok) { termPrint(`❌ Cannot open ${path}: HTTP ${r.status}\n`, 'stderr'); return; }
+        const { content } = await r.json();
+        const ext = path.split('.').pop();
+        const lang = extToLang(ext);
+        const model = monaco.editor.createModel(content, lang);
+        openTabs[path] = { content, dirty: false, model };
+        setActiveTab(path);
+        // Highlight active in tree
+        document.querySelectorAll('.tree-item').forEach(el => {
+          el.classList.toggle('active', el.dataset.path === path);
+        });
+      } catch (e) {
+        termPrint(`❌ Error opening ${path}: ${e.message}\n`, 'stderr');
+      }
+    }
+
+    function setActiveTab(path) {
+      activeTab = path;
+      monacoEditor.setModel(openTabs[path].model);
+      document.getElementById('editor-placeholder').style.display = 'none';
+      renderTabs();
+      setSaveStatus('');
+    }
+
+    async function saveFile() {
+      if (!activeTab) return;
+      const content = monacoEditor.getValue();
+      try {
+        const r = await apiFetch(`/api/file/${activeTab}`, {
+          method: 'POST',
+          body: JSON.stringify({ content })
+        });
+        if (!r.ok) throw new Error(await r.text());
+        openTabs[activeTab].dirty = false;
+        openTabs[activeTab].content = content;
+        renderTabs();
+        setSaveStatus('✓ Saved');
+        setTimeout(() => setSaveStatus(''), 2000);
+      } catch (e) {
+        setSaveStatus('❌ Save failed');
+        termPrint(`❌ Save failed: ${e.message}\n`, 'stderr');
+      }
+    }
+
+    function closeTab(path, e) {
+      e.stopPropagation();
+      const tab = openTabs[path];
+      if (tab.dirty && !confirm(`Close unsaved file ${path.split('/').pop()}?`)) return;
+      tab.model.dispose();
+      delete openTabs[path];
+      if (activeTab === path) {
+        const remaining = Object.keys(openTabs);
+        activeTab = remaining.length ? remaining[remaining.length - 1] : null;
+        if (activeTab) {
+          monacoEditor.setModel(openTabs[activeTab].model);
+        } else {
+          monacoEditor.setModel(null);
+          document.getElementById('editor-placeholder').style.display = 'flex';
+        }
+      }
       renderTabs();
     }
-  });
-  // Ctrl+S to save
-  monacoEditor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, saveFile);
-  refreshTree();
-  startHealthPoll();
-  termPrint('🚀 Athena Workspace ready. Use the file tree to open files, or type commands below.\n', 'info');
-});
 
-// ── File Tree ─────────────────────────────────────────────────────────────────
-async function refreshTree() {
-  const el = document.getElementById('tree-loading');
-  el.style.display = 'inline';
-  try {
-    const r = await apiFetch('/api/tree');
-    if (!r.ok) throw new Error(await r.text());
-    const { tree } = await r.json();
-    const scroll = document.getElementById('file-tree-scroll');
-    scroll.innerHTML = '';
-    if (tree) renderNode(tree, scroll, 0);
-  } catch (e) {
-    termPrint(`❌ Could not load file tree: ${e.message}\n`, 'stderr');
-  } finally {
-    el.style.display = 'none';
-  }
-}
-
-function renderNode(node, parent, depth) {
-  if (node.type === 'dir') {
-    const row = mkTreeItem(node, depth, true);
-    const children = document.createElement('div');
-    children.className = 'tree-children';
-    row.addEventListener('click', () => {
-      children.classList.toggle('open');
-      row.querySelector('.icon').textContent = children.classList.contains('open') ? '📂' : '📁';
-    });
-    parent.appendChild(row);
-    parent.appendChild(children);
-    if (node.children) {
-      for (const c of node.children) renderNode(c, children, depth + 1);
-    }
-  } else {
-    const row = mkTreeItem(node, depth, false);
-    row.addEventListener('click', () => openFile(node.path));
-    parent.appendChild(row);
-  }
-}
-
-function mkTreeItem(node, depth, isDir) {
-  const el = document.createElement('div');
-  el.className = 'tree-item' + (isDir ? ' dir' : '');
-  el.style.paddingLeft = (12 + depth * 14) + 'px';
-  const icon = document.createElement('span');
-  icon.className = 'icon';
-  icon.textContent = isDir ? '📁' : fileIcon(node.ext || '');
-  const label = document.createElement('span');
-  label.textContent = node.name;
-  el.appendChild(icon);
-  el.appendChild(label);
-  el.dataset.path = node.path;
-  return el;
-}
-
-function fileIcon(ext) {
-  const map = { '.py': '🐍', '.js': '⚡', '.ts': '💙', '.html': '🌐', '.css': '🎨',
-    '.json': '📋', '.md': '📝', '.sh': '⚙️', '.bat': '⚙️', '.txt': '📄',
-    '.env': '🔑', '.yaml': '📋', '.yml': '📋' };
-  return map[ext] || '📄';
-}
-
-// ── File Open / Save ──────────────────────────────────────────────────────────
-async function openFile(path) {
-  if (openTabs[path]) {
-    setActiveTab(path);
-    return;
-  }
-  try {
-    const r = await apiFetch(`/api/file/${path}`);
-    if (!r.ok) { termPrint(`❌ Cannot open ${path}: HTTP ${r.status}\n`, 'stderr'); return; }
-    const { content } = await r.json();
-    const ext = path.split('.').pop();
-    const lang = extToLang(ext);
-    const model = monaco.editor.createModel(content, lang);
-    openTabs[path] = { content, dirty: false, model };
-    setActiveTab(path);
-    // Highlight active in tree
-    document.querySelectorAll('.tree-item').forEach(el => {
-      el.classList.toggle('active', el.dataset.path === path);
-    });
-  } catch (e) {
-    termPrint(`❌ Error opening ${path}: ${e.message}\n`, 'stderr');
-  }
-}
-
-function setActiveTab(path) {
-  activeTab = path;
-  monacoEditor.setModel(openTabs[path].model);
-  document.getElementById('editor-placeholder').style.display = 'none';
-  renderTabs();
-  setSaveStatus('');
-}
-
-async function saveFile() {
-  if (!activeTab) return;
-  const content = monacoEditor.getValue();
-  try {
-    const r = await apiFetch(`/api/file/${activeTab}`, {
-      method: 'POST',
-      body: JSON.stringify({ content })
-    });
-    if (!r.ok) throw new Error(await r.text());
-    openTabs[activeTab].dirty = false;
-    openTabs[activeTab].content = content;
-    renderTabs();
-    setSaveStatus('✓ Saved');
-    setTimeout(() => setSaveStatus(''), 2000);
-  } catch (e) {
-    setSaveStatus('❌ Save failed');
-    termPrint(`❌ Save failed: ${e.message}\n`, 'stderr');
-  }
-}
-
-function closeTab(path, e) {
-  e.stopPropagation();
-  const tab = openTabs[path];
-  if (tab.dirty && !confirm(`Close unsaved file ${path.split('/').pop()}?`)) return;
-  tab.model.dispose();
-  delete openTabs[path];
-  if (activeTab === path) {
-    const remaining = Object.keys(openTabs);
-    activeTab = remaining.length ? remaining[remaining.length - 1] : null;
-    if (activeTab) {
-      monacoEditor.setModel(openTabs[activeTab].model);
-    } else {
-      monacoEditor.setModel(null);
-      document.getElementById('editor-placeholder').style.display = 'flex';
-    }
-  }
-  renderTabs();
-}
-
-function renderTabs() {
-  const bar = document.getElementById('tabs');
-  bar.innerHTML = '';
-  for (const [path, tab] of Object.entries(openTabs)) {
-    const name = path.split('\\').pop().split('/').pop();
-    const el = document.createElement('div');
-    el.className = 'tab' + (path === activeTab ? ' active' : '');
-    el.onclick = () => setActiveTab(path);
-    el.innerHTML = `
+    function renderTabs() {
+      const bar = document.getElementById('tabs');
+      bar.innerHTML = '';
+      for (const [path, tab] of Object.entries(openTabs)) {
+        const name = path.split('\\').pop().split('/').pop();
+        const el = document.createElement('div');
+        el.className = 'tab' + (path === activeTab ? ' active' : '');
+        el.onclick = () => setActiveTab(path);
+        el.innerHTML = `
       <span>${name}</span>
       ${tab.dirty ? '<span class="dirty">●</span>' : ''}
       <span class="close" onclick="closeTab('${path}', event)">×</span>`;
-    bar.appendChild(el);
-  }
-}
+        bar.appendChild(el);
+      }
+    }
 
-function extToLang(ext) {
-  const map = { py: 'python', js: 'javascript', ts: 'typescript', html: 'html',
-    css: 'css', json: 'json', md: 'markdown', sh: 'shell', bat: 'bat',
-    yml: 'yaml', yaml: 'yaml', txt: 'plaintext', env: 'plaintext' };
-  return map[ext] || 'plaintext';
-}
+    function extToLang(ext) {
+      const map = {
+        py: 'python', js: 'javascript', ts: 'typescript', html: 'html',
+        css: 'css', json: 'json', md: 'markdown', sh: 'shell', bat: 'bat',
+        yml: 'yaml', yaml: 'yaml', txt: 'plaintext', env: 'plaintext'
+      };
+      return map[ext] || 'plaintext';
+    }
 
-// ── Terminal ──────────────────────────────────────────────────────────────────
-function termPrint(text, cls = 'stdout') {
-  const out = document.getElementById('terminal-output');
-  const span = document.createElement('span');
-  span.className = 't-' + cls;
-  span.textContent = text;
-  out.appendChild(span);
-  out.scrollTop = out.scrollHeight;
-}
+    // ── Terminal ──────────────────────────────────────────────────────────────────
+    function termPrint(text, cls = 'stdout') {
+      const out = document.getElementById('terminal-output');
+      const span = document.createElement('span');
+      span.className = 't-' + cls;
+      span.textContent = text;
+      out.appendChild(span);
+      out.scrollTop = out.scrollHeight;
+    }
 
-function clearTerminal() {
-  document.getElementById('terminal-output').innerHTML = '';
-}
+    function clearTerminal() {
+      document.getElementById('terminal-output').innerHTML = '';
+    }
 
-function killProcess() {
-  if (wsTerminal) {
-    try { wsTerminal.send(JSON.stringify({ type: 'kill' })); } catch(e) {}
-    wsTerminal.close();
-    wsTerminal = null;
-    termPrint('\n[Process terminated]\n', 'info');
-  }
-}
+    function killProcess() {
+      if (wsTerminal) {
+        try { wsTerminal.send(JSON.stringify({ type: 'kill' })); } catch (e) { }
+        wsTerminal.close();
+        wsTerminal = null;
+        termPrint('\n[Process terminated]\n', 'info');
+      }
+    }
 
-async function runCommand() {
-  const inp = document.getElementById('cmd-input');
-  const cmd = inp.value.trim();
-  if (!cmd) return;
-  inp.value = '';
-  termPrint(`$ ${cmd}\n`, 'prompt');
+    async function runCommand() {
+      const inp = document.getElementById('cmd-input');
+      const cmd = inp.value.trim();
+      if (!cmd) return;
+      inp.value = '';
+      termPrint(`$ ${cmd}\n`, 'prompt');
 
-  // Use one-shot exec for simple commands
-  try {
-    const r = await apiFetch('/api/exec', {
-      method: 'POST',
-      body: JSON.stringify({ command: cmd })
+      // Use one-shot exec for simple commands
+      try {
+        const r = await apiFetch('/api/exec', {
+          method: 'POST',
+          body: JSON.stringify({ command: cmd })
+        });
+        if (!r.ok) { termPrint(`❌ HTTP ${r.status}\n`, 'stderr'); return; }
+        const { stdout, stderr, returncode } = await r.json();
+        if (stdout) termPrint(stdout, 'stdout');
+        if (stderr) termPrint(stderr, 'stderr');
+        termPrint(returncode === 0 ? '✓ Done\n' : `⚠ Exit code ${returncode}\n`, returncode === 0 ? 'success' : 'stderr');
+      } catch (e) {
+        termPrint(`❌ Exec error: ${e.message}\n`, 'stderr');
+      }
+    }
+
+    document.getElementById('cmd-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') runCommand();
     });
-    if (!r.ok) { termPrint(`❌ HTTP ${r.status}\n`, 'stderr'); return; }
-    const { stdout, stderr, returncode } = await r.json();
-    if (stdout) termPrint(stdout, 'stdout');
-    if (stderr) termPrint(stderr, 'stderr');
-    termPrint(returncode === 0 ? '✓ Done\n' : `⚠ Exit code ${returncode}\n`, returncode === 0 ? 'success' : 'stderr');
-  } catch (e) {
-    termPrint(`❌ Exec error: ${e.message}\n`, 'stderr');
-  }
-}
 
-document.getElementById('cmd-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') runCommand();
-});
+    // ── Health Poll ───────────────────────────────────────────────────────────────
+    async function startHealthPoll() {
+      await pollHealth();
+      healthTimer = setInterval(pollHealth, 10000);
+    }
 
-// ── Health Poll ───────────────────────────────────────────────────────────────
-async function startHealthPoll() {
-  await pollHealth();
-  healthTimer = setInterval(pollHealth, 10000);
-}
+    async function pollHealth() {
+      const dot = document.getElementById('status-dot');
+      const txt = document.getElementById('status-text');
+      try {
+        const r = await fetch(`${BASE}/health`, { cache: 'no-store' });
+        if (!r.ok) throw new Error('non-200');
+        const d = await r.json();
+        dot.className = 'ok';
+        txt.textContent = 'online';
+        document.getElementById('uptime').textContent = `· ${formatUptime(d.uptime_seconds)}`;
+        document.getElementById('h-server').textContent = '✅ ok';
+        document.getElementById('h-server').className = 'health-val ok';
+        document.getElementById('h-uptime').textContent = formatUptime(d.uptime_seconds);
+        document.getElementById('h-root').textContent = d.workspace_root.split('\\').pop() || d.workspace_root;
+        document.getElementById('h-logsize').textContent = formatBytes(d.log_size_bytes);
+        document.getElementById('h-tasks').textContent = `${d.tasks_queued} queued / ${d.tasks_total} total`;
+        // Log lines
+        if (d.recent_log) renderLogLines(d.recent_log);
+      } catch (e) {
+        dot.className = 'err';
+        txt.textContent = 'offline';
+        document.getElementById('h-server').textContent = '❌ offline';
+        document.getElementById('h-server').className = 'health-val err';
+      }
+    }
 
-async function pollHealth() {
-  const dot = document.getElementById('status-dot');
-  const txt = document.getElementById('status-text');
-  try {
-    const r = await fetch(`${BASE}/health`, { cache: 'no-store' });
-    if (!r.ok) throw new Error('non-200');
-    const d = await r.json();
-    dot.className = 'ok';
-    txt.textContent = 'online';
-    document.getElementById('uptime').textContent = `· ${formatUptime(d.uptime_seconds)}`;
-    document.getElementById('h-server').textContent = '✅ ok';
-    document.getElementById('h-server').className = 'health-val ok';
-    document.getElementById('h-uptime').textContent = formatUptime(d.uptime_seconds);
-    document.getElementById('h-root').textContent = d.workspace_root.split('\\').pop() || d.workspace_root;
-    document.getElementById('h-logsize').textContent = formatBytes(d.log_size_bytes);
-    document.getElementById('h-tasks').textContent = `${d.tasks_queued} queued / ${d.tasks_total} total`;
-    // Log lines
-    if (d.recent_log) renderLogLines(d.recent_log);
-  } catch (e) {
-    dot.className = 'err';
-    txt.textContent = 'offline';
-    document.getElementById('h-server').textContent = '❌ offline';
-    document.getElementById('h-server').className = 'health-val err';
-  }
-}
+    function renderLogLines(lines) {
+      const el = document.getElementById('log-lines');
+      el.innerHTML = '';
+      for (const line of lines.slice(-15)) {
+        const d = document.createElement('div');
+        d.className = 'log-line ' + (line.includes('[ERROR]') ? 'error' : line.includes('[WARNING]') ? 'warn' : 'info');
+        d.textContent = line;
+        el.appendChild(d);
+      }
+      el.scrollTop = el.scrollHeight;
+    }
 
-function renderLogLines(lines) {
-  const el = document.getElementById('log-lines');
-  el.innerHTML = '';
-  for (const line of lines.slice(-15)) {
-    const d = document.createElement('div');
-    d.className = 'log-line ' + (line.includes('[ERROR]') ? 'error' : line.includes('[WARNING]') ? 'warn' : 'info');
-    d.textContent = line;
-    el.appendChild(d);
-  }
-  el.scrollTop = el.scrollHeight;
-}
+    function toggleLog() {
+      const el = document.getElementById('log-lines');
+      const tog = document.getElementById('log-toggle');
+      const open = el.classList.toggle('open');
+      tog.textContent = open ? '▼' : '▶';
+    }
 
-function toggleLog() {
-  const el = document.getElementById('log-lines');
-  const tog = document.getElementById('log-toggle');
-  const open = el.classList.toggle('open');
-  tog.textContent = open ? '▼' : '▶';
-}
+    function formatUptime(s) {
+      if (s < 60) return `${s}s`;
+      if (s < 3600) return `${Math.floor(s / 60)}m`;
+      return `${Math.floor(s / 3600)}h ${Math.floor((s % 3600) / 60)}m`;
+    }
 
-function formatUptime(s) {
-  if (s < 60) return `${s}s`;
-  if (s < 3600) return `${Math.floor(s/60)}m`;
-  return `${Math.floor(s/3600)}h ${Math.floor((s%3600)/60)}m`;
-}
+    function formatBytes(b) {
+      if (b < 1024) return `${b}B`;
+      return `${(b / 1024).toFixed(1)}KB`;
+    }
 
-function formatBytes(b) {
-  if (b < 1024) return `${b}B`;
-  return `${(b/1024).toFixed(1)}KB`;
-}
+    // ── Task Queue ────────────────────────────────────────────────────────────────
+    async function submitTask() {
+      const inp = document.getElementById('task-input');
+      const task = inp.value.trim();
+      if (!task) return;
+      inp.value = '';
+      try {
+        const r = await apiFetch('/api/task', {
+          method: 'POST',
+          body: JSON.stringify({ task, author: 'user' })
+        });
+        if (!r.ok) throw new Error(await r.text());
+        await loadTasks();
+      } catch (e) {
+        termPrint(`❌ Task submit failed: ${e.message}\n`, 'stderr');
+      }
+    }
 
-// ── Task Queue ────────────────────────────────────────────────────────────────
-async function submitTask() {
-  const inp = document.getElementById('task-input');
-  const task = inp.value.trim();
-  if (!task) return;
-  inp.value = '';
-  try {
-    const r = await apiFetch('/api/task', {
-      method: 'POST',
-      body: JSON.stringify({ task, author: 'user' })
-    });
-    if (!r.ok) throw new Error(await r.text());
-    await loadTasks();
-  } catch (e) {
-    termPrint(`❌ Task submit failed: ${e.message}\n`, 'stderr');
-  }
-}
-
-async function loadTasks() {
-  try {
-    const r = await apiFetch('/api/tasks');
-    if (!r.ok) return;
-    const { tasks } = await r.json();
-    const list = document.getElementById('task-list');
-    list.innerHTML = '';
-    document.getElementById('task-count').textContent = tasks.length;
-    for (const t of [...tasks].reverse()) {
-      const el = document.createElement('div');
-      el.className = 'task-item';
-      const time = new Date(t.time).toLocaleTimeString();
-      el.innerHTML = `
+    async function loadTasks() {
+      try {
+        const r = await apiFetch('/api/tasks');
+        if (!r.ok) return;
+        const { tasks } = await r.json();
+        const list = document.getElementById('task-list');
+        list.innerHTML = '';
+        document.getElementById('task-count').textContent = tasks.length;
+        for (const t of [...tasks].reverse()) {
+          const el = document.createElement('div');
+          el.className = 'task-item';
+          const time = new Date(t.time).toLocaleTimeString();
+          el.innerHTML = `
         <div class="task-author">@${t.author} · ${time}</div>
         <div class="task-text">${escHtml(t.task)}</div>
         <div class="task-status ${t.status}">${t.status}</div>`;
-      list.appendChild(el);
+          list.appendChild(el);
+        }
+      } catch (e) { /* silent — health panel covers this */ }
     }
-  } catch (e) { /* silent — health panel covers this */ }
-}
-setInterval(loadTasks, 5000);
+    setInterval(loadTasks, 5000);
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
-function setSaveStatus(msg) {
-  document.getElementById('save-status').textContent = msg;
-}
-
-function escHtml(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-async function apiFetch(path, opts = {}) {
-  return fetch(`${BASE}${path}`, {
-    ...opts,
-    headers: {
-      'Content-Type': 'application/json',
-      'X-API-Key': apiKey(),
-      ...(opts.headers || {}),
+    // ── Helpers ───────────────────────────────────────────────────────────────────
+    function setSaveStatus(msg) {
+      document.getElementById('save-status').textContent = msg;
     }
-  });
-}
-</script>
+
+    function escHtml(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    async function apiFetch(path, opts = {}) {
+      return fetch(`${BASE}${path}`, {
+        ...opts,
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': apiKey(),
+          ...(opts.headers || {}),
+        }
+      });
+    }
+  </script>
 </body>
+
 </html>
