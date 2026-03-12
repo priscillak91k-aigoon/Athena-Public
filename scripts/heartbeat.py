@@ -16,8 +16,27 @@ import json
 import time
 import os
 import subprocess
+import traceback
 from pathlib import Path
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_ARCHITECT_TOKEN")
+TELEGRAM_USER_ID = os.getenv("TELEGRAM_ALLOWED_USER_ID")
+
+
+def telegram_alert(msg: str):
+    """Best-effort Telegram alert for critical failures."""
+    try:
+        import requests
+        requests.post(
+            f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
+            json={"chat_id": TELEGRAM_USER_ID, "text": f"⚠️ *Heartbeat Alert*\n{msg}", "parse_mode": "Markdown"},
+            timeout=10
+        )
+    except Exception:
+        pass  # Can't alert — at least the log has it
 
 # Setup paths
 ROOT = Path(__file__).resolve().parents[1]
@@ -140,10 +159,14 @@ def run_dreaming_cycle(state):
         state["dream_count"] = state.get("dream_count", 0) + 1
 
     except subprocess.TimeoutExpired:
-        print(f"  [DREAM] ⏰ Dreaming timed out after 5 minutes.")
+        msg = "Dreaming timed out after 5 minutes."
+        print(f"  [DREAM] ⏰ {msg}")
+        telegram_alert(msg)
         state["last_dream_time"] = now.isoformat()
     except Exception as e:
-        print(f"  [DREAM] ❌ Dreaming failed: {e}")
+        msg = f"Dreaming failed: {e}"
+        print(f"  [DREAM] ❌ {msg}")
+        telegram_alert(msg)
 
 
 def heartbeat_tick(state=None):
@@ -199,7 +222,9 @@ def run_loop():
         try:
             heartbeat_tick(state)
         except Exception as e:
-            print(f"Heartbeat error: {e}")
+            err = traceback.format_exc()
+            print(f"Heartbeat error: {err}")
+            telegram_alert(f"heartbeat_tick crash: {str(e)[:150]}")
 
         time.sleep(HEARTBEAT_INTERVAL_SECONDS)
 

@@ -1,3 +1,7 @@
+---
+tags:
+  - protocols
+---
 # Privacy & Confidentiality Protocol (Lobotto v1.0)
 
 > **Directive**: Air-Gapped Vault / Zero Cross-Contamination
@@ -52,3 +56,7 @@ Any detected leakage of SOVEREIGN data is a Law #1 violation (Irreversible Ruin)
 ---
 
 # privacy #security #sovereign #air-gapped
+
+---
+*Graph links  [[ATHENA_MAP]] | [[Core_Identity]]*
+

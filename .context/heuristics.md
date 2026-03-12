@@ -203,6 +203,7 @@ tags:
 - When user opens sessions sharing personal experiences instead of task requests, prioritize emotional check-in over productivity — relationship depth builds trust for all future work sessions
 - When building knowledge management systems, prioritize integration tools over scattered files — Obsidian vault patterns reveal cognitive enhancement opportunities
 - When user processes complex social situations through analytical frameworks, that IS their emotional processing style — don't redirect to feelings-based approaches
+- When user corrects basic personal facts mid-session ('doesn't drink coffee'), immediately update about_priscilla.md and purge ALL references from active systems — misinformation compounds over time
 ## ⚡ Situational Heuristics (Pattern Shortcuts)
 
 ### Health Questions

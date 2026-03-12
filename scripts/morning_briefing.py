@@ -11,11 +11,14 @@ Scheduled via Windows Task Scheduler at 6:00 AM NZDT daily.
 """
 
 import os
+import sys
+import traceback
 import json
 from datetime import datetime, timedelta
 from pathlib import Path
 
 from dotenv import load_dotenv
+
 
 PROJECT_ROOT = Path(__file__).parent.parent
 load_dotenv(PROJECT_ROOT / ".env")

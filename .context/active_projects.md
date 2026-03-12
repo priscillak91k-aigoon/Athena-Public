@@ -105,3 +105,7 @@ tags:
 **What's left**:
 - [ ] Pull an Ollama model (`ollama pull llama3.2`) to activate Copilot
 - [ ] Open Obsidian → Open Vault → Athena-Public → Ctrl+G for graph view
+
+---
+*Graph links  [[ATHENA_MAP]] | [[about_priscilla]] | [[project_state]]*
+

@@ -1,3 +1,7 @@
+---
+tags:
+  - user-model
+---
 # Supplement Protocol — Master Reference (Personalized)
 
 > **Last Updated**: 2026-02-26  
@@ -153,3 +157,7 @@
 - Sahebkar (2014, meta-analysis) — Curcumin ≥500mg curcuminoids/day reduces CRP
 - Phloe.co.nz / Kenpharm — Zyactinase® 2 caps/day adult dose
 - Systematic reviews (2024) — Mg glycinate 300-400mg elemental for sleep quality
+
+---
+*Graph links  [[ATHENA_MAP]] | [[about_priscilla]]*
+

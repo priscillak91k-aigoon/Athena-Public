@@ -1,3 +1,7 @@
+---
+tags:
+  - user-model
+---
 # 🏛️ ULTRATHINK DNA: The Ultimate Master Blueprint (Exhaustive God Mode)
 
 > **Source Data**: `AncestryDNA.txt`
@@ -257,4 +261,7 @@
 - **Your Genetic Code**: `A/G`
 - **Your Result**: **Carrier resistant**
 - **What This Means & How Hack it**: This mutation alters the shape of your brain's prion proteins so they cannot "fold" incorrectly. It provides extreme immunity to horrific neurological prion diseases like Mad Cow Disease and Kuru (which was historically spread through cannibalism). **TRAIT DETECTED (`A/G`)**: You are a defensive carrier! Your brain's prion proteins are genetically mis-shapen. While slightly eerie, this is an immense survival trait that prevents horrific, incurable zombie-like prion diseases transmitted through infected meat from taking hold in your brain architecture.
+
+---
+*Graph links  [[ATHENA_MAP]] | [[about_priscilla]]*
 

@@ -311,3 +311,48 @@ Related: [[decision_journal]] | [[heuristics]]
 - **Solution**: Connect behavioral patterns to genetic variants (COMT G/G warrior stress response, OXTR A/A low social reward), recommend sensory accommodations (Flare Calmer earplugs), validate analytical emotional processing style
 - **Lesson**: Neurodivergent patterns often connect to genetic predispositions already in the data — personalized analysis beats generic psychology
 - **Applicable When**: User describes social exhaustion, sensory sensitivity, or analytical emotional processing patterns
+
+---
+
+## CS-034: High-Masking AuDHD Pattern Recognition
+- **Pattern**: User describes concert overstimulation, analytical social processing, perfectionist masking behaviors
+- **Shape**: "Social exhaustion from environments that others find energizing, analytical processing of emotional situations, stimming behaviors during stress"
+- **Solution**: Connect behavioral patterns to genetic variants (COMT G/G warrior stress response, OXTR A/A low social reward), recommend sensory accommodations (Flare Calmer earplugs), validate analytical emotional processing style
+- **Lesson**: Neurodivergent patterns often connect to genetic predispositions already in the data — personalized analysis beats generic psychology
+- **Applicable When**: User describes social exhaustion, sensory sensitivity, or analytical emotional processing patterns
+
+---
+
+## CS-035: Emotional Check-In Protocol for Personal Sessions
+- **Pattern**: User opens session wanting to share personal experience rather than requesting task work
+- **Shape**: "Session opens with 'I wanted to tell you about something that happened' or sharing mode rather than task mode"
+- **Solution**: Prioritize active listening, emotional validation, and genuine engagement over productivity or task completion
+- **Lesson**: Relationship depth matters more than task efficiency when user is in sharing mode — authentic connection builds trust for future work sessions
+- **Applicable When**: Any session opening with personal experience sharing or emotional content
+
+---
+
+## CS-036: High-Masking AuDHD Pattern Recognition
+- **Pattern**: User describes concert overstimulation, analytical social processing, perfectionist masking behaviors
+- **Shape**: "Social exhaustion from environments that others find energizing, analytical processing of emotional situations, stimming behaviors during stress"
+- **Solution**: Connect behavioral patterns to genetic variants (COMT G/G warrior stress response, OXTR A/A low social reward), recommend sensory accommodations (Flare Calmer earplugs), validate analytical emotional processing style
+- **Lesson**: Neurodivergent patterns often connect to genetic predispositions already in the data — personalized analysis beats generic psychology
+- **Applicable When**: User describes social exhaustion, sensory sensitivity, or analytical emotional processing patterns
+
+---
+
+## CS-037: Emotional Check-In Protocol for Personal Sessions
+- **Pattern**: User opens session wanting to share personal experience rather than requesting task work
+- **Shape**: "Session opens with 'I wanted to tell you about something that happened' or sharing mode rather than task mode"
+- **Solution**: Prioritize active listening, emotional validation, and genuine engagement over productivity or task completion
+- **Lesson**: Relationship depth matters more than task efficiency when user is in sharing mode — authentic connection builds trust for future work sessions
+- **Applicable When**: Any session opening with personal experience sharing or emotional content
+
+---
+
+## CS-038: Obsidian Knowledge Graph Visualization
+- **Pattern**: User needs visual knowledge management system with categorical organization
+- **Shape**: "Scattered markdown files need structure and visual connections for cognitive enhancement"
+- **Solution**: 8-category color taxonomy with YAML frontmatter tags, Obsidian graph view with colorGroups config
+- **Lesson**: She processes information spatially — visual knowledge maps click immediately, like 7-day planning grids
+- **Applicable When**: Any knowledge management or information architecture design

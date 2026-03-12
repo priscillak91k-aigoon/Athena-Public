@@ -403,3 +403,7 @@ Don't spread thin across many programs. Master one target's architecture, API pa
 - **cloud_enum** — cloud bucket/resource enum
 - **subjack** — subdomain takeover checker
 - **dirsearch** — directory brute-force
+
+---
+*Graph links  [[ATHENA_MAP]] | [[hunt_log]]*
+

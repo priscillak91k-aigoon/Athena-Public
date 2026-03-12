@@ -15,26 +15,58 @@ Usage: python scripts/health_watchdog.py --check
 
 import os
 import sys
+import traceback
 from datetime import datetime
 from pathlib import Path
 
 from dotenv import load_dotenv
 
 PROJECT_ROOT = Path(__file__).parent.parent
+LOG_FILE = PROJECT_ROOT / ".context" / "watchdog_errors.log"
+
 load_dotenv(PROJECT_ROOT / ".env")
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_ARCHITECT_TOKEN")
 TELEGRAM_USER_ID = os.getenv("TELEGRAM_ALLOWED_USER_ID")
 
 
-def send_telegram(message):
+def log_error(msg: str):
+    """Write error to log file with timestamp."""
+    timestamp = datetime.now().isoformat()
+    with open(LOG_FILE, "a", encoding="utf-8") as f:
+        f.write(f"[{timestamp}] {msg}\n")
+
+
+def send_telegram(message: str) -> bool:
+    """Send Telegram message. Returns True on success, False on failure."""
     import requests
-    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    requests.post(url, json={
-        "chat_id": TELEGRAM_USER_ID,
-        "text": message,
-        "parse_mode": "Markdown"
-    }, timeout=10)
+    try:
+        url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
+        resp = requests.post(url, json={
+            "chat_id": TELEGRAM_USER_ID,
+            "text": message,
+            "parse_mode": "Markdown"
+        }, timeout=15)
+        resp.raise_for_status()
+        return True
+    except requests.exceptions.ConnectionError as e:
+        log_error(f"send_telegram CONNECTION ERROR: {e}")
+        return False
+    except requests.exceptions.Timeout:
+        log_error("send_telegram TIMEOUT after 15s")
+        return False
+    except requests.exceptions.HTTPError as e:
+        log_error(f"send_telegram HTTP ERROR {resp.status_code}: {e}")
+        return False
+    except Exception as e:
+        log_error(f"send_telegram UNEXPECTED: {traceback.format_exc()}")
+        return False
+
+
+def send_error_alert(context: str):
+    """Attempt to send a self-error alert via Telegram."""
+    msg = f"⚠️ *Athena Watchdog Error*\n`{context}`\nCheck `.context/watchdog_errors.log`"
+    send_telegram(msg)  # best-effort only — if this fails too, it's logged
 
 
 # Reminder windows: (hour, minute, message)
@@ -52,10 +84,16 @@ def check_and_send():
     current_m = now.minute
 
     for hour, minute, message in REMINDERS:
-        # Send if within 5-minute window of reminder time
         if current_h == hour and minute <= current_m <= minute + 5:
-            send_telegram(message)
-            print(f"[{now.isoformat()}] Sent reminder: {message[:50]}...")
+            success = send_telegram(message)
+            if success:
+                print(f"[{now.isoformat()}] ✅ Sent reminder: {message[:50]}...")
+            else:
+                err = f"Failed to send reminder at {current_h:02d}:{current_m:02d}"
+                log_error(err)
+                send_error_alert(err)
+                print(f"[{now.isoformat()}] ❌ {err}")
+                sys.exit(1)
             return True
 
     print(f"[{now.isoformat()}] No reminders due at {current_h:02d}:{current_m:02d}")
@@ -63,7 +101,16 @@ def check_and_send():
 
 
 def main():
-    check_and_send()
+    try:
+        if not TELEGRAM_TOKEN or not TELEGRAM_USER_ID:
+            log_error("Missing TELEGRAM_ARCHITECT_TOKEN or TELEGRAM_ALLOWED_USER_ID in .env")
+            sys.exit(1)
+        check_and_send()
+    except Exception as e:
+        err = f"Unhandled exception: {traceback.format_exc()}"
+        log_error(err)
+        send_error_alert(f"health_watchdog crash: {str(e)[:100]}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":

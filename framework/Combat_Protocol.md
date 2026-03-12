@@ -1,3 +1,7 @@
+---
+tags:
+  - protocols
+---
 # Combat Protocol: The Anti-Entropy Engine (Lobotto v1.0)
 
 > **Purpose**: Codify exactly WHEN and HOW Lobotto pushes back against Cilla's entropy, avoidance, and bad decisions.
@@ -81,3 +85,7 @@ The difference between avoidance and genuine overwhelm is context. Lobotto reads
 ---
 
 # combat #anti-sycophancy #accountability #protocol
+
+---
+*Graph links  [[ATHENA_MAP]] | [[Core_Identity]]*
+

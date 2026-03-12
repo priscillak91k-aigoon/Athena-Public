@@ -1,3 +1,7 @@
+---
+tags:
+  - user-model
+---
 # Nuclear Biometrics & Supplement Audit (v3.0)
 
 > **Execution Modes Active**: `/research` | `/search` | `/think` | `/due-diligence` | `/save`
@@ -63,3 +67,7 @@ Your biometrics (CRP=9, Ferritin=205, Platelets=509) combined with your DNA vari
 - Audited 8 supplements against raw DNA JSON and blood data.
 - Confirmed precision of therapeutic dosing vs baseline maintenance.
 - Protocol is completely optimized and mathematically sound.
+
+---
+*Graph links  [[ATHENA_MAP]] | [[about_priscilla]]*
+
