@@ -146,6 +146,12 @@
             </div>
             <h1>The Life Hub</h1>
             <p class="subtitle">Your dynamic routine tracker & visual schedule.</p>
+            <a href="workshop.html"
+                style="position: absolute; top: 12px; right: 230px; background: rgba(0,0,0,0.6); border: 1px solid #c084fc; color: #c084fc; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #c084fc; text-decoration: none;"
+                title="My Workshop">⚒ Workshop</a>
+            <a href="toolbox.html"
+                style="position: absolute; top: 12px; right: 130px; background: rgba(0,0,0,0.6); border: 1px solid #f59e0b; color: #f59e0b; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #f59e0b; text-decoration: none;"
+                title="Toolbox - Ad-Free Utilities">🔧 Toolbox</a>
             <button id="audio-toggle" onclick="toggleRetroAudio()"
                 style="position: absolute; top: 12px; right: 16px; background: rgba(0,0,0,0.6); border: 1px solid #0f0; color: #0f0; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #0f0;"
                 title="Toggle Music">🔊 Music</button>
@@ -162,11 +168,8 @@
             <button class="tab-btn" data-tab="workout">Workout</button>
             <button class="tab-btn" data-tab="bio">Bio Tracking</button>
             <button class="tab-btn" data-tab="food">Food Metrics</button>
-            <button class="tab-btn" data-tab="reminders">Reminders</button>
             <button class="tab-btn" data-tab="logistics"
                 style="color: var(--accent-blue); text-shadow: 0 0 5px var(--accent-blue);">🔧 Logistics</button>
-            <button class="tab-btn" data-tab="procurement">Wants vs Needs</button>
-            <button class="tab-btn" data-tab="ideas">Ideas</button>
             <button class="tab-btn" data-tab="manual"
                 style="color: var(--accent-magenta); text-shadow: 0 0 5px var(--accent-magenta);">User Manual</button>
             <button class="tab-btn" data-tab="supps"
@@ -1216,140 +1219,7 @@
                             </div>
                         </div>
             </section>
-            <!-- Reminders View -->
-            <section id="reminders" class="tab-content glass-panel" style="border-color: rgba(251, 191, 36, 0.3);">
-                <div class="section-header">
-                    <h2><span class="icon">💡</span> Mental Load & Reminders</h2>
-                    <p class="sub-text" style="color: var(--accent-yellow);">Frequently forgotten items and
-                        household
-                        rules.</p>
-                </div>
 
-                <div class="sub-panel">
-                    <h3>Active Reminders</h3>
-                    <ul class="task-list" id="reminders-list" style="margin-top: 1rem;">
-                        <!-- Populated by JS -->
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Procurement (Wants vs Needs) View -->
-            <section id="procurement" class="tab-content glass-panel" style="border-color: rgba(56, 189, 248, 0.3);">
-                <div class="section-header">
-                    <h2><span class="icon">⚖️</span> Wants vs. Needs</h2>
-                    <p class="sub-text" style="color: var(--accent-blue);">Cognitive procurement filtering and AI
-                        advisory based on health & financial goals.</p>
-                </div>
-
-                <!-- Add Item Form -->
-                <div class="sub-panel" style="margin-bottom: 1.5rem; border-color: rgba(56, 189, 248, 0.3);">
-                    <h3 style="color: var(--accent-blue);">➕ Add New Item</h3>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem;">
-                        <input type="text" id="procurement-item-input"
-                            placeholder="What do you want/need? (e.g., New Running Shoes)"
-                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
-                        <input type="text" id="procurement-justification-input"
-                            placeholder="Why? (e.g., Current ones are worn out, causing shin splints)"
-                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
-                        <div style="display: flex; gap: 0.5rem;">
-                            <select id="procurement-category-input"
-                                style="flex: 1; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
-                                <option value="NEED">🛡️ Need (Essential)</option>
-                                <option value="WANT">🎮 Want (Discretionary)</option>
-                            </select>
-                            <button id="add-procurement-btn" class="tab-btn active"
-                                style="margin: 0; padding: 0.4rem 1.5rem; background: rgba(52,211,153,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: 'VT323', monospace; font-size: 1rem;">+
-                                Add</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid-3-col">
-                    <!-- Column 1: Essential Needs -->
-                    <div class="sub-panel" style="border-color: rgba(52, 211, 153, 0.3);">
-                        <h3 style="color: var(--accent-green);"><span class="icon">🛡️</span> Essential Needs</h3>
-                        <div class="workout-rules"
-                            style="margin-top: 1rem; font-size: 0.85rem; border-left-color: var(--accent-green); background: rgba(52, 211, 153, 0.05);">
-                            <strong>Rule:</strong> Items must have a biological, structural, or high-yield financial
-                            justification.
-                        </div>
-                        <div id="needs-container"
-                            style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
-                            <!-- Populated by JS -->
-                        </div>
-                    </div>
-
-                    <!-- Column 2: Discretionary Wants -->
-                    <div class="sub-panel" style="border-color: rgba(251, 191, 36, 0.3);">
-                        <h3 style="color: var(--accent-yellow);"><span class="icon">🎮</span> Discretionary Wants
-                        </h3>
-                        <div class="workout-rules"
-                            style="margin-top: 1rem; font-size: 0.85rem; border-left-color: var(--accent-yellow); background: rgba(251, 191, 36, 0.05);">
-                            <strong>Rule:</strong> Purely recreational or luxury items. Lowest priority capital
-                            allocation.
-                        </div>
-                        <div id="wants-container"
-                            style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
-                            <!-- Populated by JS -->
-                        </div>
-                    </div>
-
-                    <!-- Column 3: Lobotto's Advisory -->
-                    <div class="sub-panel" style="border-color: rgba(192, 132, 252, 0.3);">
-                        <h3 style="color: var(--accent-purple);"><span class="icon">🧠</span> Lobotto's Advisory</h3>
-                        <div class="workout-rules"
-                            style="margin-top: 1rem; font-size: 0.85rem; border-left-color: var(--accent-purple); background: rgba(192, 132, 252, 0.05);">
-                            <strong>System:</strong> Cross-referencing requested items against the DNA Master
-                            Blueprint
-                            and current financial velocity.
-                        </div>
-                        <div id="lobotto-advisory-container"
-                            style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
-                            <!-- Populated by JS -->
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Ideas / Bucket List View -->
-            <section id="ideas" class="tab-content glass-panel" style="border-color: rgba(16, 185, 129, 0.3);">
-                <div class="section-header">
-                    <h2><span class="icon">💡</span> Ideas & Bucket List</h2>
-                    <p class="sub-text" style="color: var(--accent-green);">A brain dump for your brilliant ideas
-                        and
-                        long-term adventures.</p>
-                </div>
-
-                <div class="grid-2-col">
-                    <div class="sub-panel" style="border-color: rgba(56, 189, 248, 0.3);">
-                        <h3 style="color: var(--accent-blue);"><span class="icon">🍍</span> Bucket List</h3>
-                        <!-- Quick Add for Bucket List -->
-                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem; margin-bottom: 0.75rem;">
-                            <input type="text" id="quick-add-bucket" placeholder="Add a bucket list item..."
-                                style="flex-grow: 1; min-width: 0; padding: 0.5rem;">
-                            <button id="quick-add-bucket-btn" class="tab-btn">Add</button>
-                        </div>
-                        <ul class="task-list" id="bucket-list" style="margin-top: 1rem;">
-                            <li>
-                                <div class="checkbox"></div>
-                                <div class="task-content">Walk the full Pineapple Track</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="sub-panel" style="border-color: rgba(251, 191, 36, 0.3);">
-                        <h3 style="color: var(--accent-yellow);"><span class="icon">🧠</span> Brain Dump</h3>
-                        <!-- Quick Add for Brain Dump -->
-                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem; margin-bottom: 0.75rem;">
-                            <input type="text" id="quick-add-braindump" placeholder="Dump a random thought..."
-                                style="flex-grow: 1; min-width: 0; padding: 0.5rem;">
-                            <button id="quick-add-braindump-btn" class="tab-btn">Dump</button>
-                        </div>
-                        <ul class="task-list" id="braindump-list" style="margin-top: 1rem;">
-                            <!-- Populated dynamically or left empty initially -->
-                        </ul>
-                    </div>
-                </div>
-            </section>
 
             <!-- User Manual View -->
             <section id="manual" class="tab-content">

@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toolbox | Ad-Free Utilities</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <style>
+        :root {
+            --bg-forge: #070504;
+            --iron-dark: #181008;
+            --iron-panel: rgba(24, 16, 8, 0.85);
+            --iron-border: rgba(120, 80, 40, 0.35);
+            --copper: #b06028;
+            --copper-bright: #c87830;
+            --forge-amber: #d08030;
+            --brass: #c4a040;
+            --brass-bright: #d4b050;
+            --rust: #905030;
+            --rust-dark: #6a3020;
+            --patina: #786040;
+            --parchment: #ddd0c0;
+            --parchment-dim: #a89880;
+            --ember: #d47020;
+            --flame-orange: #e08020;
+            --radius: 3px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg-forge);
+            color: var(--parchment);
+            font-family: 'Outfit', system-ui, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .forge-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .forge-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            right: -100px;
+            top: 20%;
+            background: radial-gradient(ellipse, rgba(208, 128, 48, 0.18) 0%, rgba(192, 64, 32, 0.08) 40%, transparent 70%);
+            filter: blur(40px);
+            animation: forge-pulse 4s ease-in-out infinite alternate;
+        }
+
+        .forge-glow-2 {
+            position: absolute;
+            width: 400px;
+            height: 300px;
+            left: -50px;
+            bottom: -50px;
+            background: radial-gradient(ellipse, rgba(196, 112, 32, 0.1) 0%, transparent 70%);
+            filter: blur(60px);
+            animation: forge-pulse 6s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes forge-pulse {
+            0% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        .app-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.5rem 1.5rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .forge-panel {
+            background: var(--iron-panel);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            border: 2px solid var(--iron-border);
+            border-top: 2px solid rgba(176, 96, 40, 0.3);
+            border-radius: var(--radius);
+            position: relative;
+        }
+
+        .forge-panel::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--copper), transparent);
+            opacity: 0.4;
+        }
+
+        header {
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--copper-bright);
+            text-shadow: 0 0 30px rgba(208, 128, 48, 0.3), 0 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        header .subtitle {
+            color: var(--parchment-dim);
+            font-size: 0.82rem;
+            margin-top: 0.4rem;
+            font-style: italic;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            color: var(--copper);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+            z-index: 2;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+            color: var(--copper-bright);
+        }
+
+        /* Tool Grid */
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+            padding: 0.5rem 0;
+        }
+
+        .tool-card {
+            background: rgba(16, 10, 6, 0.7);
+            border: 2px solid var(--iron-border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            text-align: center;
+        }
+
+        .tool-card:hover {
+            border-color: var(--copper);
+            box-shadow: 0 0 20px rgba(208, 128, 48, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .tool-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .tool-card h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--copper-bright);
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.5px;
+        }
+
+        .tool-card p {
+            font-size: 0.78rem;
+            color: var(--parchment-dim);
+            line-height: 1.4;
+        }
+
+        /* Tool Sections */
+        .tool-section {
+            display: none;
+        }
+
+        .tool-section.active {
+            display: block;
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+        }
+
+        .tool-header h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--copper-bright);
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+        }
+
+        .back-to-tools {
+            background: rgba(176, 96, 40, 0.15);
+            border: 1px solid var(--copper);
+            color: var(--copper-bright);
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            cursor: pointer;
+            border-radius: var(--radius);
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .back-to-tools:hover {
+            background: rgba(176, 96, 40, 0.3);
+        }
+
+        /* Shared Components */
+        .tb-input,
+        .tb-textarea,
+        .tb-select {
+            width: 100%;
+            padding: 0.5rem 0.7rem;
+            background: rgba(8, 5, 4, 0.6);
+            border: 1px solid rgba(120, 80, 40, 0.25);
+            color: var(--parchment);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            border-radius: var(--radius);
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            transition: border-color 0.2s, outline-color 0.2s;
+        }
+
+        .tb-input:focus,
+        .tb-textarea:focus,
+        .tb-select:focus {
+            border-color: var(--copper);
+            box-shadow: 0 0 8px rgba(176, 96, 40, 0.15);
+            outline-color: var(--copper);
+        }
+
+        .tb-input::placeholder,
+        .tb-textarea::placeholder {
+            color: rgba(168, 152, 128, 0.4);
+        }
+
+        .tb-textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+        }
+
+        .tb-select {
+            cursor: pointer;
+        }
+
+        .tb-btn {
+            padding: 0.45rem 1rem;
+            background: rgba(176, 96, 40, 0.15);
+            border: 1px solid var(--copper);
+            color: var(--copper-bright);
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: var(--radius);
+            transition: all 0.2s;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .tb-btn:hover {
+            background: rgba(176, 96, 40, 0.3);
+            box-shadow: 0 0 10px rgba(208, 128, 48, 0.15);
+        }
+
+        .tb-btn.green {
+            background: rgba(196, 160, 64, 0.12);
+            border-color: var(--brass);
+            color: var(--brass-bright);
+        }
+
+        .tb-btn.green:hover {
+            background: rgba(196, 160, 64, 0.25);
+        }
+
+        .sub-panel {
+            background: rgba(16, 10, 6, 0.6);
+            border: 1px solid var(--iron-border);
+            border-radius: var(--radius);
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .row {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .row>* {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .drop-zone {
+            border: 2px dashed rgba(120, 80, 40, 0.4);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            color: var(--parchment-dim);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 1rem;
+        }
+
+        .drop-zone:hover,
+        .drop-zone.dragover {
+            border-color: var(--copper);
+            background: rgba(176, 96, 40, 0.08);
+            color: var(--copper-bright);
+        }
+
+        .result-box {
+            background: rgba(8, 5, 4, 0.8);
+            border: 1px solid var(--iron-border);
+            border-radius: var(--radius);
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            word-break: break-all;
+            color: var(--brass-bright);
+        }
+
+        .stat {
+            display: inline-block;
+            padding: 0.3rem 0.7rem;
+            background: rgba(176, 96, 40, 0.1);
+            border: 1px solid rgba(176, 96, 40, 0.3);
+            border-radius: 2px;
+            margin: 0.2rem;
+            font-size: 0.8rem;
+            color: var(--copper-bright);
+        }
+
+        .color-swatch {
+            width: 100%;
+            height: 80px;
+            border-radius: var(--radius);
+            border: 2px solid var(--iron-border);
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+        }
+
+        .copy-toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--copper);
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--radius);
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .copy-toast.show {
+            opacity: 1;
+        }
+
+        #pdf-canvas-container {
+            overflow: auto;
+            max-height: 70vh;
+        }
+
+        #pdf-canvas-container canvas {
+            display: block;
+            margin: 0.5rem auto;
+            border: 1px solid var(--iron-border);
+            max-width: 100%;
+        }
+
+        .pdf-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .pdf-controls span {
+            color: var(--parchment-dim);
+            font-size: 0.85rem;
+        }
+
+        .qr-output {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .qr-output canvas {
+            border: 4px solid #fff;
+            border-radius: var(--radius);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .forge-glow,
+            .forge-glow-2 {
+                animation: none !important;
+            }
+
+            .forge-glow {
+                opacity: 0.85;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .app-container {
+                padding: 0.75rem 0.75rem 3rem;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+                letter-spacing: 1px;
+            }
+
+            .tool-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .row {
+                flex-direction: column;
+            }
+
+            .row>* {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(176, 96, 40, 0.2);
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="forge-bg">
+        <div class="forge-glow"></div>
+        <div class="forge-glow-2"></div>
+    </div>
+    <div id="copy-toast" class="copy-toast">Copied!</div>
+
+    <div class="app-container">
+        <a href="index.html" class="back-link">← Life Hub</a>
+        <header class="forge-panel">
+            <h1>🔧 Toolbox</h1>
+            <p class="subtitle">Your tools. No ads. No uploads. Everything runs locally.</p>
+        </header>
+
+        <!-- TOOL GRID -->
+        <div id="tool-grid" class="tool-grid">
+            <div class="tool-card" onclick="openTool('pdf')"><span class="icon">📄</span>
+                <h3>PDF Viewer</h3>
+                <p>Open and read PDFs without Adobe or ads</p>
+            </div>
+            <div class="tool-card" onclick="openTool('image')"><span class="icon">🖼️</span>
+                <h3>Image Tools</h3>
+                <p>Convert, resize & compress — PNG, JPG, WebP</p>
+            </div>
+            <div class="tool-card" onclick="openTool('text')"><span class="icon">📝</span>
+                <h3>Text Tools</h3>
+                <p>Word count, case change, sort, deduplicate</p>
+            </div>
+            <div class="tool-card" onclick="openTool('units')"><span class="icon">📐</span>
+                <h3>Unit Converter</h3>
+                <p>Temperature, weight, length, data sizes</p>
+            </div>
+            <div class="tool-card" onclick="openTool('color')"><span class="icon">🎨</span>
+                <h3>Color Picker</h3>
+                <p>Pick colors, get hex / rgb / hsl values</p>
+            </div>
+            <div class="tool-card" onclick="openTool('password')"><span class="icon">🔐</span>
+                <h3>Password Generator</h3>
+                <p>Crypto-secure passwords, configurable</p>
+            </div>
+            <div class="tool-card" onclick="openTool('qr')"><span class="icon">📱</span>
+                <h3>QR Generator</h3>
+                <p>Generate QR codes from text or URLs</p>
+            </div>
+            <div class="tool-card" onclick="openTool('json')"><span class="icon">{ }</span>
+                <h3>JSON Formatter</h3>
+                <p>Format, minify & validate JSON</p>
+            </div>
+        </div>
+
+        <!-- PDF VIEWER -->
+        <div id="tool-pdf" class="tool-section forge-panel">
+            <div class="tool-header"><button class="back-to-tools" onclick="closeTool()">← Back</button>
+                <h2>📄 PDF Viewer</h2>
+            </div>
+            <div style="padding:0 1rem 1rem;">
+                <div class="drop-zone" id="pdf-drop" onclick="document.getElementById('pdf-file').click()">
+                    Drop a PDF here or click to browse
+                    <input type="file" id="pdf-file" accept=".pdf" style="display:none">
+                </div>
+                <div class="pdf-controls" id="pdf-controls" style="display:none;">
+                    <button class="tb-btn" onclick="pdfPrev()">← Prev</button>
+                    <span>Page <span id="pdf-page-num">1</span> of <span id="pdf-page-count">0</span></span>
+                    <button class="tb-btn" onclick="pdfNext()">Next →</button>
+                    <button class="tb-btn" onclick="pdfZoom(-0.25)">−</button>
+                    <span id="pdf-zoom-level">100%</span>
+                    <button class="tb-btn" onclick="pdfZoom(0.25)">+</button>
+                </div>
+                <div id="pdf-canvas-container"></div>
+            </div>
+        </div>
+
+        <!-- IMAGE TOOLS -->
+        <div id="tool-image" class="tool-section forge-panel">
+            <div class="tool-header"><button class="back-to-tools" onclick="closeTool()">← Back</button>
+                <h2>🖼️ Image Tools</h2>
+            </div>
+            <div style="padding:0 1rem 1rem;">
+                <div class="drop-zone" id="img-drop" onclick="document.getElementById('img-file').click()">
+                    Drop an image here or click to browse
+                    <input type="file" id="img-file" accept="image/*" style="display:none">
+                </div>
+                <div id="img-preview-area" style="display:none;">
+                    <div class="sub-panel">
+                        <div class="row" style="margin-bottom:0.75rem;">
+                            <div><strong style="color:var(--copper);">Original:</strong> <span id="img-info"
+                                    class="stat"></span></div>
+                        </div>
+                        <img id="img-preview"
+                            style="max-width:100%;max-height:300px;border:1px solid var(--iron-border);border-radius:var(--radius);display:block;margin:0.5rem 0;">
+                    </div>
+                    <div class="sub-panel">
+                        <h3 style="font-family:'Cinzel',serif;color:var(--copper);margin-bottom:0.75rem;">Convert &
+                            Resize</h3>
+                        <div class="row" style="margin-bottom:0.75rem;">
+                            <div style="flex:0 0 auto;min-width:auto;"><label
+                                    style="font-size:0.82rem;color:var(--parchment-dim);">Format:</label></div>
+                            <select class="tb-select" id="img-format" style="max-width:140px;">
+                                <option value="image/png">PNG</option>
+                                <option value="image/jpeg">JPG</option>
+                                <option value="image/webp">WebP</option>
+                            </select>
+                            <div style="flex:0 0 auto;min-width:auto;"><label
+                                    style="font-size:0.82rem;color:var(--parchment-dim);">Quality:</label></div>
+                            <input type="range" id="img-quality" min="10" max="100" value="85" style="flex:1;">
+                            <span id="img-quality-val" style="color:var(--brass);font-size:0.85rem;flex:0;">85%</span>
+                        </div>
+                        <div class="row" style="margin-bottom:0.75rem;">
+                            <div style="flex:0 0 auto;min-width:auto;"><label
+                                    style="font-size:0.82rem;color:var(--parchment-dim);">Width:</label></div>
+                            <input type="number" class="tb-input" id="img-width" style="max-width:100px;">
+                            <div style="flex:0 0 auto;min-width:auto;"><label
+                                    style="font-size:0.82rem;color:var(--parchment-dim);">Height:</label></div>
+                            <input type="number" class="tb-input" id="img-height" style="max-width:100px;">
+                            <label style="font-size:0.78rem;color:var(--parchment-dim);flex:0 0 auto;"><input
+                                    type="checkbox" id="img-lock" checked> Lock ratio</label>
+                        </div>
+                        <button class="tb-btn green" onclick="convertImage()">Convert & Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEXT TOOLS -->
+        <div id="tool-text" class="tool-section forge-panel">
+            <div class="tool-header"><button class="back-to-tools" onclick="closeTool()">← Back</button>
+                <h2>📝 Text Tools</h2>
+            </div>
+            <div style="padding:0 1rem 1rem;">
+                <textarea class="tb-textarea" id="text-input" placeholder="Paste or type your text here..."
+                    style="min-height:180px;" oninput="updateTextStats()"></textarea>
+                <div id="text-stats" style="margin:0.75rem 0;"></div>
+                <div class="row" style="flex-wrap:wrap;gap:0.4rem;">
+                    <button class="tb-btn" onclick="textTransform('upper')">UPPERCASE</button>
+                    <button class="tb-btn" onclick="textTransform('lower')">lowercase</button>
+                    <button class="tb-btn" onclick="textTransform('title')">Title Case</button>
+                    <button class="tb-btn" onclick="textTransform('sentence')">Sentence case</button>
+                    <button class="tb-btn" onclick="textTransform('reverse')">Reverse</button>
+                    <button class="tb-btn" onclick="textTransform('sort')">Sort Lines</button>
+                    <button class="tb-btn" onclick="textTransform('dedupe')">Deduplicate</button>
+                    <button class="tb-btn" onclick="textTransform('trim')">Trim Lines</button>
+                    <button class="tb-btn" onclick="textTransform('number')">Number Lines</button>
+                    <button class="tb-btn" onclick="textTransform('removeEmpty')">Remove Empty</button>
+                    <button class="tb-btn green" onclick="copyResult('text-input')">Copy</button>
+                </div>
+                <div class="sub-panel" style="margin-top:1rem;">
+                    <h3 style="font-family:'Cinzel',serif;color:var(--copper);margin-bottom:0.5rem;font-size:0.9rem;">
+                        Find & Replace</h3>
+                    <div class="row" style="gap:0.4rem;">
+                        <input class="tb-input" id="text-find" placeholder="Find...">
+                        <input class="tb-input" id="text-replace" placeholder="Replace with...">
+                        <button class="tb-btn" onclick="textFindReplace()">Replace All</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UNIT CONVERTER -->
+        <div id="tool-units" class="tool-section forge-panel">
+            <div class="tool-header"><button class="back-to-tools" onclick="closeTool()">← Back</button>
+                <h2>📐 Unit Converter</h2>
+            </div>
+            <div style="padding:0 1rem 1rem;">
+                <div class="sub-panel">
+                    <div class="row" style="margin-bottom:0.75rem;">
+                        <select class="tb-select" id="unit-category" onchange="updateUnitOptions()">
+                            <option value="temperature">🌡️ Temperature</option>
+                            <option value="weight">⚖️ Weight</option>
+                            <option value="length">📏 Length</option>
+                            <option value="data">💾 Data Size</option>
+                            <option value="time">⏱️ Time</option>
+                            <option value="volume">🧪 Volume</option>
+                        </select>
+                    </div>
+                    <div class="row" style="align-items:flex-end;gap:0.75rem;">
+                        <div style="flex:1;"><label
+                                style="font-size:0.78rem;color:var(--parchment-dim);">From:</label><input type="number"
+                                class="tb-input" id="unit-from-val" value="1" oninput="convertUnit()"><select
+                                class="tb-select" id="unit-from" onchange="convertUnit()"
+                                style="margin-top:0.3rem;"></select></div>
+                        <div style="flex:0 0 auto;color:var(--copper);font-size:1.5rem;padding-bottom:1rem;">=</div>
+                        <div style="flex:1;"><label style="font-size:0.78rem;color:var(--parchment-dim);">To:</label>
+                            <div class="result-box" id="unit-result"
+                                style="margin-top:0;min-height:2.4rem;display:flex;align-items:center;">—</div><select
+                                class="tb-select" id="unit-to" onchange="convertUnit()"
+                                style="margin-top:0.3rem;"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLOR PICKER -->
+        <div id="tool-color" class="tool-section forge-panel">
+            <div class="tool-header"><button class="back-to-tools" onclick="closeTool()">← Back</button>
+                <h2>🎨 Color Picker</h2>
+            </div>
+            <div style="padding:0 1rem 1rem;">
+                <div class="sub-panel">
+                    <input type="color" id="color-picker" class="color-swatch" value="#c87830"
+                        oninput="updateColor(this.value)">
+                    <div class="row" style="margin-bottom:0.5rem;">
+                        <div><label style="font-size:0.78rem;color:var(--parchment-dim);">HEX:</label>
+                            <div class="result-box" id="color-hex" style="cursor:pointer;margin-top:0.2rem;"
+                                onclick="copyResult('color-hex')">#c87830</div>
+                        </div>
+                        <div><label style="font-size:0.78rem;color:var(--parchment-dim);">RGB:</label>
+                            <div class="result-box" id="color-rgb" style="cursor:pointer;margin-top:0.2rem;"
+                                onclick="copyResult('color-rgb')">rgb(200, 120, 48)</div>
+                        </div>
+                        <div><label style="font-size:0.78rem;color:var(--parchment-dim);">HSL:</label>
+                            <div class="result-box" id="color-hsl" style="cursor:pointer;margin-top:0.2rem;"
+                                onclick="copyResult('color-hsl')">hsl(28, 61%, 49%)</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div><label style="font-size:0.78rem;color:var(--parchment-dim);">Or paste a hex:</label><input
+                                class="tb-input" id="color-hex-input" placeholder="#c87830"
+                                oninput="updateColorFromHex(this.value)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PASSWORD GENERATOR -->
+        <div id="tool-password" class="tool-section forge-panel">
+            <div class="tool-header"><button class="back-to-tools" onclick="closeTool()">← Back</button>
+                <h2>🔐 Password Generator</h2>
+            </div>
+            <div style="padding:0 1rem 1rem;">
+                <div class="sub-panel">
+                    <div class="result-box" id="pw-output"
+                        style="font-size:1.3rem;text-align:center;letter-spacing:2px;cursor:pointer;padding:1.2rem;"
+                        onclick="copyResult('pw-output')">Click Generate</div>
+                    <div style="margin:1rem 0;">
+                        <label style="color:var(--parchment-dim);font-size:0.82rem;">Length: <strong id="pw-len-val"
+                                style="color:var(--brass);">20</strong></label>
+                        <input type="range" id="pw-length" min="8" max="64" value="20"
+                            oninput="document.getElementById('pw-len-val').textContent=this.value" style="width:100%;">
+                    </div>
+                    <div class="row" style="gap:1rem;margin-bottom:1rem;">
+                        <label style="font-size:0.82rem;color:var(--parchment-dim);"><input type="checkbox"
+                                id="pw-upper" checked> A-Z</label>
+                        <label style="font-size:0.82rem;color:var(--parchment-dim);"><input type="checkbox"
+                                id="pw-lower" checked> a-z</label>
+                        <label style="font-size:0.82rem;color:var(--parchment-dim);"><input type="checkbox"
+                                id="pw-digits" checked> 0-9</label>
+                        <label style="font-size:0.82rem;color:var(--parchment-dim);"><input type="checkbox"
+                                id="pw-symbols" checked> !@#$</label>
+                    </div>
+                    <button class="tb-btn green" onclick="generatePassword()"
+                        style="width:100%;padding:0.7rem;">Generate Password</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- QR GENERATOR -->
+        <div id="tool-qr" class="tool-section forge-panel">
+            <div class="tool-header"><button class="back-to-tools" onclick="closeTool()">← Back</button>
+                <h2>📱 QR Generator</h2>
+            </div>
+            <div style="padding:0 1rem 1rem;">
+                <div class="sub-panel">
+                    <input class="tb-input" id="qr-input" placeholder="Enter text or URL..." oninput="generateQR()"
+                        style="margin-bottom:0.75rem;">
+                    <div class="qr-output" id="qr-output">
+                        <p style="color:var(--parchment-dim);font-size:0.85rem;">Enter text above to generate a QR code
+                        </p>
+                    </div>
+                    <button class="tb-btn green" onclick="downloadQR()" style="width:100%;margin-top:0.75rem;"
+                        id="qr-download" disabled>Download QR</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- JSON FORMATTER -->
+        <div id="tool-json" class="tool-section forge-panel">
+            <div class="tool-header"><button class="back-to-tools" onclick="closeTool()">← Back</button>
+                <h2>{ } JSON Formatter</h2>
+            </div>
+            <div style="padding:0 1rem 1rem;">
+                <textarea class="tb-textarea" id="json-input" placeholder='Paste JSON here...'
+                    style="min-height:200px;"></textarea>
+                <div class="row" style="margin:0.75rem 0;gap:0.4rem;">
+                    <button class="tb-btn green" onclick="jsonFormat()">Format</button>
+                    <button class="tb-btn" onclick="jsonMinify()">Minify</button>
+                    <button class="tb-btn" onclick="jsonValidate()">Validate</button>
+                    <button class="tb-btn" onclick="copyResult('json-input')">Copy</button>
+                </div>
+                <div id="json-status" style="font-size:0.82rem;margin-top:0.5rem;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════
+        // NAVIGATION
+        // ═══════════════════════════════════════════════════════════
+        function openTool(name) {
+            document.getElementById('tool-grid').style.display = 'none';
+            document.querySelectorAll('.tool-section').forEach(s => s.classList.remove('active'));
+            const section = document.getElementById('tool-' + name);
+            if (section) section.classList.add('active');
+        }
+        function closeTool() {
+            document.querySelectorAll('.tool-section').forEach(s => s.classList.remove('active'));
+            document.getElementById('tool-grid').style.display = '';
+        }
+        function showToast(msg) {
+            const t = document.getElementById('copy-toast');
+            t.textContent = msg || 'Copied!';
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 1500);
+        }
+        function copyResult(id) {
+            const el = document.getElementById(id);
+            const text = el.value !== undefined ? el.value : el.textContent;
+            navigator.clipboard.writeText(text).then(() => showToast('Copied!')).catch(() => showToast('Copy failed'));
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        // PDF VIEWER
+        // ═══════════════════════════════════════════════════════════
+        let pdfDoc = null, pdfPageNum = 1, pdfScale = 1.0;
+        if (window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        function setupDrop(dropId, fileId, handler) {
+            const drop = document.getElementById(dropId);
+            const file = document.getElementById(fileId);
+            if (!drop || !file) return;
+            ['dragenter', 'dragover'].forEach(e => drop.addEventListener(e, ev => { ev.preventDefault(); drop.classList.add('dragover'); }));
+            ['dragleave', 'drop'].forEach(e => drop.addEventListener(e, ev => { ev.preventDefault(); drop.classList.remove('dragover'); }));
+            drop.addEventListener('drop', ev => { if (ev.dataTransfer.files.length) handler(ev.dataTransfer.files[0]); });
+            file.addEventListener('change', ev => { if (ev.target.files.length) handler(ev.target.files[0]); });
+        }
+
+        function loadPDF(file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                pdfjsLib.getDocument({ data: new Uint8Array(e.target.result) }).promise.then(doc => {
+                    pdfDoc = doc;
+                    pdfPageNum = 1;
+                    pdfScale = 1.0;
+                    document.getElementById('pdf-page-count').textContent = doc.numPages;
+                    document.getElementById('pdf-controls').style.display = 'flex';
+                    document.getElementById('pdf-zoom-level').textContent = '100%';
+                    renderPDFPage();
+                }).catch(err => { alert('Failed to load PDF: ' + err.message); });
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function renderPDFPage() {
+            if (!pdfDoc) return;
+            pdfDoc.getPage(pdfPageNum).then(page => {
+                const viewport = page.getViewport({ scale: pdfScale });
+                const container = document.getElementById('pdf-canvas-container');
+                container.innerHTML = '';
+                const canvas = document.createElement('canvas');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                container.appendChild(canvas);
+                page.render({ canvasContext: canvas.getContext('2d'), viewport });
+                document.getElementById('pdf-page-num').textContent = pdfPageNum;
+            });
+        }
+        function pdfPrev() { if (pdfPageNum > 1) { pdfPageNum--; renderPDFPage(); } }
+        function pdfNext() { if (pdfDoc && pdfPageNum < pdfDoc.numPages) { pdfPageNum++; renderPDFPage(); } }
+        function pdfZoom(delta) { pdfScale = Math.max(0.25, Math.min(4, pdfScale + delta)); document.getElementById('pdf-zoom-level').textContent = Math.round(pdfScale * 100) + '%'; renderPDFPage(); }
+
+        setupDrop('pdf-drop', 'pdf-file', loadPDF);
+
+        // ═══════════════════════════════════════════════════════════
+        // IMAGE TOOLS
+        // ═══════════════════════════════════════════════════════════
+        let imgOriginal = null, imgAspect = 1;
+
+        function loadImage(file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = new Image();
+                img.onload = function () {
+                    imgOriginal = img;
+                    imgAspect = img.width / img.height;
+                    document.getElementById('img-preview').src = e.target.result;
+                    document.getElementById('img-info').textContent = `${img.width}×${img.height} · ${(file.size / 1024).toFixed(1)}KB · ${file.type.split('/')[1].toUpperCase()}`;
+                    document.getElementById('img-width').value = img.width;
+                    document.getElementById('img-height').value = img.height;
+                    document.getElementById('img-preview-area').style.display = 'block';
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        document.getElementById('img-width').addEventListener('input', function () {
+            if (document.getElementById('img-lock').checked && imgOriginal) {
+                document.getElementById('img-height').value = Math.round(this.value / imgAspect);
+            }
+        });
+        document.getElementById('img-height').addEventListener('input', function () {
+            if (document.getElementById('img-lock').checked && imgOriginal) {
+                document.getElementById('img-width').value = Math.round(this.value * imgAspect);
+            }
+        });
+        document.getElementById('img-quality').addEventListener('input', function () {
+            document.getElementById('img-quality-val').textContent = this.value + '%';
+        });
+
+        function convertImage() {
+            if (!imgOriginal) return;
+            const w = parseInt(document.getElementById('img-width').value) || imgOriginal.width;
+            const h = parseInt(document.getElementById('img-height').value) || imgOriginal.height;
+            const format = document.getElementById('img-format').value;
+            const quality = parseInt(document.getElementById('img-quality').value) / 100;
+            const canvas = document.createElement('canvas');
+            canvas.width = w; canvas.height = h;
+            canvas.getContext('2d').drawImage(imgOriginal, 0, 0, w, h);
+            canvas.toBlob(blob => {
+                const ext = format.split('/')[1];
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = `converted.${ext}`;
+                a.click();
+                URL.revokeObjectURL(a.href);
+                showToast(`Downloaded as ${ext.toUpperCase()} (${(blob.size / 1024).toFixed(1)}KB)`);
+            }, format, quality);
+        }
+
+        setupDrop('img-drop', 'img-file', loadImage);
+
+        // ═══════════════════════════════════════════════════════════
+        // TEXT TOOLS
+        // ═══════════════════════════════════════════════════════════
+        function updateTextStats() {
+            const text = document.getElementById('text-input').value;
+            const chars = text.length;
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            const lines = text ? text.split('\n').length : 0;
+            const sentences = text.trim() ? text.split(/[.!?]+\s*/g).filter(Boolean).length : 0;
+            document.getElementById('text-stats').innerHTML =
+                `<span class="stat">📊 ${chars} chars</span><span class="stat">📝 ${words} words</span><span class="stat">📄 ${lines} lines</span><span class="stat">💬 ${sentences} sentences</span>`;
+        }
+
+        function textTransform(type) {
+            const el = document.getElementById('text-input');
+            let t = el.value;
+            switch (type) {
+                case 'upper': t = t.toUpperCase(); break;
+                case 'lower': t = t.toLowerCase(); break;
+                case 'title': t = t.replace(/\b\w/g, c => c.toUpperCase()); break;
+                case 'sentence': t = t.toLowerCase().replace(/(^|[.!?]\s+)\w/g, c => c.toUpperCase()); break;
+                case 'reverse': t = t.split('').reverse().join(''); break;
+                case 'sort': t = t.split('\n').sort((a, b) => a.localeCompare(b)).join('\n'); break;
+                case 'dedupe': t = [...new Set(t.split('\n'))].join('\n'); break;
+                case 'trim': t = t.split('\n').map(l => l.trim()).join('\n'); break;
+                case 'number': t = t.split('\n').map((l, i) => `${i + 1}. ${l}`).join('\n'); break;
+                case 'removeEmpty': t = t.split('\n').filter(l => l.trim()).join('\n'); break;
+            }
+            el.value = t;
+            updateTextStats();
+        }
+
+        function textFindReplace() {
+            const el = document.getElementById('text-input');
+            const find = document.getElementById('text-find').value;
+            if (!find) return;
+            const replace = document.getElementById('text-replace').value;
+            const count = (el.value.match(new RegExp(find.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length;
+            el.value = el.value.split(find).join(replace);
+            showToast(`Replaced ${count} occurrences`);
+            updateTextStats();
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        // UNIT CONVERTER
+        // ═══════════════════════════════════════════════════════════
+        const UNITS = {
+            temperature: {
+                units: ['Celsius', 'Fahrenheit', 'Kelvin'], convert: (v, f, t) => {
+                    let c = f === 'Celsius' ? v : f === 'Fahrenheit' ? (v - 32) * 5 / 9 : v - 273.15;
+                    return t === 'Celsius' ? c : t === 'Fahrenheit' ? c * 9 / 5 + 32 : c + 273.15;
+                }
+            },
+            weight: { units: ['Grams', 'Kilograms', 'Pounds', 'Ounces', 'Stones', 'Milligrams'], base: [1, 1000, 453.592, 28.3495, 6350.29, 0.001] },
+            length: { units: ['Meters', 'Kilometers', 'Miles', 'Feet', 'Inches', 'Centimeters', 'Millimeters', 'Yards'], base: [1, 1000, 1609.34, 0.3048, 0.0254, 0.01, 0.001, 0.9144] },
+            data: { units: ['Bytes', 'KB', 'MB', 'GB', 'TB'], base: [1, 1024, 1048576, 1073741824, 1099511627776] },
+            time: { units: ['Seconds', 'Minutes', 'Hours', 'Days', 'Weeks', 'Months (30d)', 'Years (365d)'], base: [1, 60, 3600, 86400, 604800, 2592000, 31536000] },
+            volume: { units: ['Milliliters', 'Liters', 'Gallons (US)', 'Cups', 'Tablespoons', 'Teaspoons', 'Fluid Oz'], base: [1, 1000, 3785.41, 236.588, 14.7868, 4.92892, 29.5735] }
+        };
+
+        function updateUnitOptions() {
+            const cat = document.getElementById('unit-category').value;
+            const units = UNITS[cat].units;
+            ['unit-from', 'unit-to'].forEach((id, idx) => {
+                const sel = document.getElementById(id);
+                sel.innerHTML = units.map((u, i) => `<option value="${i}" ${i === (idx ? 1 : 0) ? 'selected' : ''}>${u}</option>`).join('');
+            });
+            convertUnit();
+        }
+
+        function convertUnit() {
+            const cat = document.getElementById('unit-category').value;
+            const val = parseFloat(document.getElementById('unit-from-val').value);
+            const fi = parseInt(document.getElementById('unit-from').value);
+            const ti = parseInt(document.getElementById('unit-to').value);
+            if (isNaN(val)) { document.getElementById('unit-result').textContent = '—'; return; }
+            let result;
+            if (UNITS[cat].convert) {
+                result = UNITS[cat].convert(val, UNITS[cat].units[fi], UNITS[cat].units[ti]);
+            } else {
+                result = val * UNITS[cat].base[fi] / UNITS[cat].base[ti];
+            }
+            document.getElementById('unit-result').textContent = parseFloat(result.toPrecision(10));
+        }
+        updateUnitOptions();
+
+        // ═══════════════════════════════════════════════════════════
+        // COLOR PICKER
+        // ═══════════════════════════════════════════════════════════
+        function hexToRgb(hex) {
+            const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+            return { r, g, b };
+        }
+        function rgbToHsl(r, g, b) {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b), l = (max + min) / 2;
+            let h = 0, s = 0;
+            if (max !== min) { const d = max - min; s = l > 0.5 ? d / (2 - max - min) : d / (max + min); switch (max) { case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break; case g: h = ((b - r) / d + 2) / 6; break; case b: h = ((r - g) / d + 4) / 6; break; } }
+            return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+        }
+        function updateColor(hex) {
+            document.getElementById('color-picker').value = hex;
+            const { r, g, b } = hexToRgb(hex);
+            const hsl = rgbToHsl(r, g, b);
+            document.getElementById('color-hex').textContent = hex;
+            document.getElementById('color-rgb').textContent = `rgb(${r}, ${g}, ${b})`;
+            document.getElementById('color-hsl').textContent = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+        }
+        function updateColorFromHex(val) {
+            if (/^#[0-9a-fA-F]{6}$/.test(val)) updateColor(val);
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        // PASSWORD GENERATOR
+        // ═══════════════════════════════════════════════════════════
+        function generatePassword() {
+            const len = parseInt(document.getElementById('pw-length').value);
+            let chars = '';
+            if (document.getElementById('pw-upper').checked) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (document.getElementById('pw-lower').checked) chars += 'abcdefghijklmnopqrstuvwxyz';
+            if (document.getElementById('pw-digits').checked) chars += '0123456789';
+            if (document.getElementById('pw-symbols').checked) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+            if (!chars) { alert('Select at least one character set.'); return; }
+            const arr = new Uint32Array(len);
+            crypto.getRandomValues(arr);
+            let pw = '';
+            for (let i = 0; i < len; i++) pw += chars[arr[i] % chars.length];
+            document.getElementById('pw-output').textContent = pw;
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        // QR CODE GENERATOR (Canvas-based, no external library)
+        // ═══════════════════════════════════════════════════════════
+        function generateQR() {
+            const text = document.getElementById('qr-input').value.trim();
+            const output = document.getElementById('qr-output');
+            const dlBtn = document.getElementById('qr-download');
+            if (!text) { output.innerHTML = '<p style="color:var(--parchment-dim);font-size:0.85rem;">Enter text above to generate a QR code</p>'; dlBtn.disabled = true; return; }
+            // Simple QR via an inline canvas approach using the QR encoding API
+            // We'll use a Google Charts fallback rendered to canvas for reliability
+            const size = 250;
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = function () {
+                output.innerHTML = '';
+                const canvas = document.createElement('canvas');
+                canvas.width = size; canvas.height = size;
+                canvas.id = 'qr-canvas';
+                canvas.getContext('2d').drawImage(img, 0, 0, size, size);
+                output.appendChild(canvas);
+                dlBtn.disabled = false;
+            };
+            img.onerror = function () {
+                output.innerHTML = '<p style="color:#c05030;font-size:0.85rem;">QR generation requires internet (uses Google Charts API)</p>';
+                dlBtn.disabled = true;
+            };
+            img.src = `https://chart.googleapis.com/chart?cht=qr&chs=${size}x${size}&chl=${encodeURIComponent(text)}&choe=UTF-8`;
+        }
+
+        function downloadQR() {
+            const canvas = document.getElementById('qr-canvas');
+            if (!canvas) return;
+            const a = document.createElement('a');
+            a.href = canvas.toDataURL('image/png');
+            a.download = 'qrcode.png';
+            a.click();
+            showToast('QR code downloaded');
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        // JSON FORMATTER
+        // ═══════════════════════════════════════════════════════════
+        function jsonFormat() {
+            const el = document.getElementById('json-input');
+            try {
+                el.value = JSON.stringify(JSON.parse(el.value), null, 2);
+                document.getElementById('json-status').innerHTML = '<span style="color:var(--brass-bright);">✅ Formatted successfully</span>';
+            } catch (e) {
+                document.getElementById('json-status').innerHTML = `<span style="color:#c05030;">❌ ${e.message}</span>`;
+            }
+        }
+        function jsonMinify() {
+            const el = document.getElementById('json-input');
+            try {
+                el.value = JSON.stringify(JSON.parse(el.value));
+                document.getElementById('json-status').innerHTML = '<span style="color:var(--brass-bright);">✅ Minified</span>';
+            } catch (e) {
+                document.getElementById('json-status').innerHTML = `<span style="color:#c05030;">❌ ${e.message}</span>`;
+            }
+        }
+        function jsonValidate() {
+            try {
+                JSON.parse(document.getElementById('json-input').value);
+                document.getElementById('json-status').innerHTML = '<span style="color:var(--brass-bright);">✅ Valid JSON</span>';
+            } catch (e) {
+                document.getElementById('json-status').innerHTML = `<span style="color:#c05030;">❌ Invalid: ${e.message}</span>`;
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -372,6 +372,161 @@ def update_task(task_id: int, status: str, auth=Depends(verify_key)):
     return {"ok": True}
 
 
+# ── Brain Health API ──────────────────────────────────────────────────────────
+@app.get("/api/brain-health")
+def brain_health(auth=Depends(verify_key)):
+    """Run brain health diagnostic and return results."""
+    try:
+        health_script = ROOT / "scripts" / "athena_brain_health.py"
+        if not health_script.exists():
+            return {"status": "unavailable", "results": [], "message": "athena_brain_health.py not found"}
+        result = subprocess.run(
+            [sys.executable, str(health_script)],
+            capture_output=True, text=True, timeout=15, cwd=str(ROOT)
+        )
+        # Parse output into structured results
+        lines = result.stdout.strip().split("\n")
+        checks = []
+        overall = "UNKNOWN"
+        for line in lines:
+            if "Status:" in line:
+                if "HEALTHY" in line: overall = "HEALTHY"
+                elif "WARNINGS" in line: overall = "WARNINGS"
+                elif "DEGRADED" in line: overall = "DEGRADED"
+                elif "CRITICAL" in line: overall = "CRITICAL"
+            if "✅" in line or "⚠️" in line or "❌" in line or "🔴" in line:
+                severity = "OK" if "✅" in line else "WARN" if "⚠️" in line else "ERROR" if "❌" in line else "CRITICAL"
+                # Extract [Component] and message
+                import re
+                m = re.search(r'\[([^\]]+)\]\s*(.*)', line)
+                if m:
+                    checks.append({"severity": severity, "component": m.group(1), "message": m.group(2).strip()})
+        return {"status": overall, "results": checks, "exit_code": result.returncode}
+    except subprocess.TimeoutExpired:
+        return {"status": "TIMEOUT", "results": [], "message": "Diagnostic timed out"}
+    except Exception as e:
+        return {"status": "ERROR", "results": [], "message": str(e)}
+
+
+# ── Search API ────────────────────────────────────────────────────────────────
+class SearchRequest(BaseModel):
+    query: str
+    file_search: bool = False  # True = search filenames, False = search content
+
+@app.post("/api/search")
+def search_workspace(body: SearchRequest, auth=Depends(verify_key)):
+    """Search filenames or file content across workspace."""
+    results = []
+    if body.file_search:
+        # Filename search — walk the tree
+        query_lower = body.query.lower()
+        for root_dir, dirs, files in os.walk(str(WORKSPACE_ROOT)):
+            # Skip hidden/ignored dirs
+            dirs[:] = [d for d in dirs if d not in HIDDEN_DIRS and not d.startswith(".git")]
+            for f in files:
+                if query_lower in f.lower():
+                    rel = os.path.relpath(os.path.join(root_dir, f), str(WORKSPACE_ROOT))
+                    results.append({"file": rel.replace("\\", "/"), "line": 0, "text": f})
+                    if len(results) >= 50:
+                        return {"results": results, "truncated": True}
+    else:
+        # Content search via grep
+        try:
+            cmd = ["findstr", "/S", "/I", "/N", body.query] if sys.platform == "win32" else ["grep", "-rIn", body.query]
+            # On Windows, use findstr with glob
+            if sys.platform == "win32":
+                cmd.append("*.*")
+            result = subprocess.run(
+                cmd, capture_output=True, text=True, timeout=10,
+                cwd=str(WORKSPACE_ROOT)
+            )
+            for line in result.stdout.splitlines()[:50]:
+                # Windows findstr format: filename:line_number:content
+                parts = line.split(":", 2)
+                if len(parts) >= 3:
+                    results.append({
+                        "file": parts[0].replace("\\", "/"),
+                        "line": int(parts[1]) if parts[1].isdigit() else 0,
+                        "text": parts[2].strip()[:200]
+                    })
+        except Exception as e:
+            log.error(f"Search failed: {e}")
+
+    return {"results": results, "truncated": len(results) >= 50}
+
+
+# ── Git Status API ────────────────────────────────────────────────────────────
+@app.get("/api/git-status")
+def git_status(auth=Depends(verify_key)):
+    """Get modified/untracked/staged files for tree indicators."""
+    try:
+        result = subprocess.run(
+            ["git", "status", "--porcelain", "-uall"],
+            capture_output=True, text=True, timeout=10,
+            cwd=str(WORKSPACE_ROOT)
+        )
+        if result.returncode != 0:
+            return {"available": False, "files": {}}
+
+        files = {}
+        for line in result.stdout.splitlines():
+            if len(line) < 4:
+                continue
+            status = line[:2].strip()
+            filepath = line[3:].strip().replace("\\", "/")
+            # Map git status codes
+            if status == "??":
+                files[filepath] = "untracked"
+            elif status in ("M", "MM", "AM"):
+                files[filepath] = "modified"
+            elif status == "A":
+                files[filepath] = "staged"
+            elif status == "D":
+                files[filepath] = "deleted"
+            elif status == "R":
+                files[filepath] = "renamed"
+            else:
+                files[filepath] = "changed"
+
+        # Also get branch name
+        branch_result = subprocess.run(
+            ["git", "branch", "--show-current"],
+            capture_output=True, text=True, timeout=5,
+            cwd=str(WORKSPACE_ROOT)
+        )
+        branch = branch_result.stdout.strip() if branch_result.returncode == 0 else "unknown"
+
+        return {"available": True, "branch": branch, "files": files, "changed_count": len(files)}
+    except FileNotFoundError:
+        return {"available": False, "files": {}, "message": "git not found"}
+    except Exception as e:
+        return {"available": False, "files": {}, "message": str(e)}
+
+
+# ── New File/Dir API ──────────────────────────────────────────────────────────
+class NewItemRequest(BaseModel):
+    path: str
+    is_dir: bool = False
+
+@app.post("/api/new")
+def create_item(body: NewItemRequest, auth=Depends(verify_key)):
+    """Create a new file or directory."""
+    p = safe_path(body.path)
+    if p.exists():
+        raise HTTPException(status_code=409, detail="Path already exists")
+    try:
+        if body.is_dir:
+            p.mkdir(parents=True, exist_ok=True)
+            log.info(f"MKDIR {body.path}")
+        else:
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_text("", encoding="utf-8")
+            log.info(f"NEW FILE {body.path}")
+        return {"ok": True, "path": body.path}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # ── Serve Frontend ────────────────────────────────────────────────────────────
 FRONTEND = Path(__file__).parent / "index.html"
 

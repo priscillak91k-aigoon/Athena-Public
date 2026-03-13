@@ -1,629 +1,844 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <title>Lobotto's Workshop</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-    rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0d1117;
-      --surface: #161b22;
-      --surface2: #1c2333;
-      --border: #30363d;
-      --teal: #00e5cc;
-      --teal-dim: #00b39f;
-      --purple: #9b59ff;
-      --green: #3fb950;
-      --yellow: #d29922;
-      --red: #f85149;
-      --text: #e6edf3;
-      --text-dim: #7d8590;
-      --font-ui: 'Inter', system-ui, sans-serif;
-      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-ui);
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    /* ── Header ── */
-    #header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 0 16px;
-      height: 44px;
-      min-height: 44px;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-
-    #header .logo {
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--teal);
-      letter-spacing: 0.5px;
-    }
-
-    #header .logo span {
-      color: var(--text-dim);
-      font-weight: 300;
-    }
-
-    #status-pill {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 3px 10px;
-      border-radius: 20px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      font-size: 11px;
-      color: var(--text-dim);
-    }
-
-    #status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--text-dim);
-      transition: background 0.3s;
-    }
-
-    #status-dot.ok {
-      background: var(--green);
-      box-shadow: 0 0 6px var(--green);
-    }
-
-    #status-dot.err {
-      background: var(--red);
-    }
-
-    #status-text {
-      font-size: 11px;
-    }
-
-    #uptime {
-      font-size: 11px;
-      color: var(--text-dim);
-      margin-left: 4px;
-    }
-
-    .header-spacer {
-      flex: 1;
-    }
-
-    #api-key-input {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: var(--text-dim);
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-family: var(--font-mono);
-      width: 200px;
-      outline: none;
-    }
-
-    #api-key-input:focus {
-      border-color: var(--teal);
-    }
-
-    .btn {
-      padding: 5px 12px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: var(--surface2);
-      color: var(--text);
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.15s;
-      font-family: var(--font-ui);
-    }
-
-    .btn:hover {
-      border-color: var(--teal);
-      color: var(--teal);
-    }
-
-    .btn.primary {
-      background: var(--teal);
-      color: var(--bg);
-      border-color: var(--teal);
-      font-weight: 600;
-    }
-
-    .btn.primary:hover {
-      background: var(--teal-dim);
-    }
-
-    /* ── Main layout ── */
-    #main {
-      display: flex;
-      flex: 1;
-      overflow: hidden;
-    }
-
-    /* ── File Tree ── */
-    #file-tree {
-      width: 220px;
-      min-width: 160px;
-      max-width: 320px;
-      background: var(--surface);
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    #file-tree-header {
-      padding: 8px 12px;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    #file-tree-scroll {
-      flex: 1;
-      overflow-y: auto;
-      padding: 4px 0;
-    }
-
-    .tree-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 3px 12px;
-      font-size: 12px;
-      cursor: pointer;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: var(--text-dim);
-      transition: background 0.1s, color 0.1s;
-      user-select: none;
-    }
-
-    .tree-item:hover {
-      background: var(--surface2);
-      color: var(--text);
-    }
-
-    .tree-item.active {
-      background: rgba(0, 229, 204, 0.1);
-      color: var(--teal);
-    }
-
-    .tree-item.dir {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .tree-item .icon {
-      font-size: 11px;
-      flex-shrink: 0;
-      width: 14px;
-      text-align: center;
-    }
-
-    .tree-children {
-      display: none;
-    }
-
-    .tree-children.open {
-      display: block;
-    }
-
-    /* ── Editor area ── */
-    #editor-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      min-width: 0;
-    }
-
-    /* ── Tab bar ── */
-    #tabs {
-      display: flex;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      overflow-x: auto;
-      flex-shrink: 0;
-      min-height: 36px;
-    }
-
-    .tab {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 0 14px;
-      font-size: 12px;
-      cursor: pointer;
-      border-right: 1px solid var(--border);
-      white-space: nowrap;
-      color: var(--text-dim);
-      transition: all 0.15s;
-      min-height: 36px;
-      flex-shrink: 0;
-    }
-
-    .tab:hover {
-      background: var(--surface2);
-      color: var(--text);
-    }
-
-    .tab.active {
-      background: var(--bg);
-      color: var(--text);
-      border-bottom: 2px solid var(--teal);
-    }
-
-    .tab .close {
-      font-size: 14px;
-      color: var(--text-dim);
-    }
-
-    .tab .close:hover {
-      color: var(--red);
-    }
-
-    .tab .dirty {
-      color: var(--yellow);
-      font-size: 8px;
-    }
-
-    /* ── Monaco container ── */
-    #monaco-container {
-      flex: 1;
-      overflow: hidden;
-      position: relative;
-    }
-
-    #editor-placeholder {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      color: var(--text-dim);
-      font-size: 13px;
-    }
-
-    #editor-placeholder .big {
-      font-size: 48px;
-    }
-
-    /* ── Terminal ── */
-    #terminal-area {
-      height: 220px;
-      min-height: 100px;
-      flex-shrink: 0;
-      border-top: 1px solid var(--border);
-      background: #010409;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    #terminal-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 12px;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      flex-shrink: 0;
-    }
-
-    #terminal-header span {
-      font-size: 11px;
-      color: var(--text-dim);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-    }
-
-    #terminal-output {
-      flex: 1;
-      overflow-y: auto;
-      padding: 8px 12px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      line-height: 1.6;
-      color: #cdd9e5;
-      white-space: pre-wrap;
-      word-break: break-all;
-    }
-
-    .t-stdout {
-      color: #cdd9e5;
-    }
-
-    .t-stderr {
-      color: var(--red);
-    }
-
-    .t-info {
-      color: var(--teal);
-    }
-
-    .t-success {
-      color: var(--green);
-    }
-
-    .t-prompt {
-      color: var(--purple);
-    }
-
-    #cmd-input-row {
-      display: flex;
-      border-top: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-
-    #cmd-input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      outline: none;
-      padding: 8px 12px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--text);
-    }
-
-    #cmd-run-btn {
-      padding: 0 14px;
-      background: transparent;
-      border: none;
-      color: var(--teal);
-      cursor: pointer;
-      font-size: 18px;
-    }
-
-    /* ── Right panel: AI Tasks + Health ── */
-    #right-panel {
-      width: 280px;
-      min-width: 220px;
-      max-width: 380px;
-      background: var(--surface);
-      border-left: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    /* ── Health panel ── */
-    #health-panel {
-      border-bottom: 1px solid var(--border);
-      padding: 12px;
-    }
-
-    #health-title {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      margin-bottom: 8px;
-    }
-
-    .health-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 11px;
-      padding: 2px 0;
-    }
-
-    .health-label {
-      color: var(--text-dim);
-    }
-
-    .health-val {
-      color: var(--text);
-      font-family: var(--font-mono);
-    }
-
-    .health-val.ok {
-      color: var(--green);
-    }
-
-    .health-val.err {
-      color: var(--red);
-    }
-
-    /* ── Log viewer ── */
-    #log-panel {
-      border-bottom: 1px solid var(--border);
-    }
-
-    #log-title {
-      padding: 8px 12px;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      display: flex;
-      justify-content: space-between;
-      cursor: pointer;
-    }
-
-    #log-lines {
-      max-height: 120px;
-      overflow-y: auto;
-      padding: 4px 12px 8px;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      line-height: 1.6;
-      color: var(--text-dim);
-      display: none;
-    }
-
-    #log-lines.open {
-      display: block;
-    }
-
-    .log-line.info {
-      color: var(--teal-dim);
-    }
-
-    .log-line.warn {
-      color: var(--yellow);
-    }
-
-    .log-line.error {
-      color: var(--red);
-    }
-
-    /* ── Task queue ── */
-    #task-panel {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    #task-title {
-      padding: 8px 12px;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    #task-list {
-      flex: 1;
-      overflow-y: auto;
-      padding: 4px 0;
-    }
-
-    .task-item {
-      padding: 8px 12px;
-      border-bottom: 1px solid rgba(48, 54, 61, 0.5);
-      font-size: 12px;
-    }
-
-    .task-item .task-author {
-      font-size: 10px;
-      color: var(--teal);
-      margin-bottom: 2px;
-    }
-
-    .task-item .task-text {
-      color: var(--text);
-      line-height: 1.4;
-      margin-bottom: 4px;
-    }
-
-    .task-item .task-status {
-      font-size: 10px;
-    }
-
-    .task-status.queued {
-      color: var(--text-dim);
-    }
-
-    .task-status.running {
-      color: var(--yellow);
-    }
-
-    .task-status.done {
-      color: var(--green);
-    }
-
-    .task-status.error {
-      color: var(--red);
-    }
-
-    #task-input-area {
-      padding: 10px 12px;
-      border-top: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-
-    #task-input {
-      width: 100%;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 7px 10px;
-      font-size: 12px;
-      color: var(--text);
-      font-family: var(--font-ui);
-      outline: none;
-      resize: none;
-      height: 64px;
-    }
-
-    #task-input:focus {
-      border-color: var(--teal);
-    }
-
-    #task-submit {
-      width: 100%;
-      margin-top: 6px;
-    }
-
-    /* ── Save indicator ── */
-    #save-status {
-      font-size: 11px;
-      color: var(--text-dim);
-      padding: 0 8px;
-    }
-
-    /* scrollbars */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 3px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #484f58;
-    }
-  </style>
+<title>Lobotto's Workshop</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2333;
+    --border: #30363d;
+    --teal: #00e5cc;
+    --teal-dim: #00b39f;
+    --purple: #9b59ff;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --red: #f85149;
+    --text: #e6edf3;
+    --text-dim: #7d8590;
+    --font-ui: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ui);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  #header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    height: 44px;
+    min-height: 44px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  #header .logo {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--teal);
+    letter-spacing: 0.5px;
+  }
+
+  #header .logo span {
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+
+  #status-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  #status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--text-dim);
+    transition: background 0.3s;
+  }
+
+  #status-dot.ok {
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+  }
+
+  #status-dot.err {
+    background: var(--red);
+  }
+
+  #status-text {
+    font-size: 11px;
+  }
+
+  #uptime {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-left: 4px;
+  }
+
+  .header-spacer {
+    flex: 1;
+  }
+
+  #api-key-input {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    width: 200px;
+    outline: none;
+  }
+
+  #api-key-input:focus {
+    border-color: var(--teal);
+  }
+
+  .btn {
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: var(--font-ui);
+  }
+
+  .btn:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  .btn.primary {
+    background: var(--teal);
+    color: var(--bg);
+    border-color: var(--teal);
+    font-weight: 600;
+  }
+
+  .btn.primary:hover {
+    background: var(--teal-dim);
+  }
+
+  /* ── Main layout ── */
+  #main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* ── File Tree ── */
+  #file-tree {
+    width: 220px;
+    min-width: 160px;
+    max-width: 320px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  #file-tree-header {
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #file-tree-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 0;
+  }
+
+  .tree-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-dim);
+    transition: background 0.1s, color 0.1s;
+    user-select: none;
+  }
+
+  .tree-item:hover {
+    background: var(--surface2);
+    color: var(--text);
+  }
+
+  .tree-item.active {
+    background: rgba(0, 229, 204, 0.1);
+    color: var(--teal);
+  }
+
+  .tree-item.dir {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .tree-item .icon {
+    font-size: 11px;
+    flex-shrink: 0;
+    width: 14px;
+    text-align: center;
+  }
+
+  .tree-children {
+    display: none;
+  }
+
+  .tree-children.open {
+    display: block;
+  }
+
+  /* ── Editor area ── */
+  #editor-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  /* ── Tab bar ── */
+  #tabs {
+    display: flex;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    flex-shrink: 0;
+    min-height: 36px;
+  }
+
+  .tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 14px;
+    font-size: 12px;
+    cursor: pointer;
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+    color: var(--text-dim);
+    transition: all 0.15s;
+    min-height: 36px;
+    flex-shrink: 0;
+  }
+
+  .tab:hover {
+    background: var(--surface2);
+    color: var(--text);
+  }
+
+  .tab.active {
+    background: var(--bg);
+    color: var(--text);
+    border-bottom: 2px solid var(--teal);
+  }
+
+  .tab .close {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .tab .close:hover {
+    color: var(--red);
+  }
+
+  .tab .dirty {
+    color: var(--yellow);
+    font-size: 8px;
+  }
+
+  /* ── Monaco container ── */
+  #monaco-container {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  #editor-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+
+  #editor-placeholder .big {
+    font-size: 48px;
+  }
+
+  /* ── Terminal ── */
+  #terminal-area {
+    height: 220px;
+    min-height: 100px;
+    flex-shrink: 0;
+    border-top: 1px solid var(--border);
+    background: #010409;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  #terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    flex-shrink: 0;
+  }
+
+  #terminal-header span {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  #terminal-output {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.6;
+    color: #cdd9e5;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .t-stdout {
+    color: #cdd9e5;
+  }
+
+  .t-stderr {
+    color: var(--red);
+  }
+
+  .t-info {
+    color: var(--teal);
+  }
+
+  .t-success {
+    color: var(--green);
+  }
+
+  .t-prompt {
+    color: var(--purple);
+  }
+
+  #cmd-input-row {
+    display: flex;
+    border-top: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  #cmd-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 8px 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text);
+  }
+
+  #cmd-run-btn {
+    padding: 0 14px;
+    background: transparent;
+    border: none;
+    color: var(--teal);
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  /* ── Right panel: AI Tasks + Health ── */
+  #right-panel {
+    width: 280px;
+    min-width: 220px;
+    max-width: 380px;
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  /* ── Health panel ── */
+  #health-panel {
+    border-bottom: 1px solid var(--border);
+    padding: 12px;
+  }
+
+  #health-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+  }
+
+  .health-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    padding: 2px 0;
+  }
+
+  .health-label {
+    color: var(--text-dim);
+  }
+
+  .health-val {
+    color: var(--text);
+    font-family: var(--font-mono);
+  }
+
+  .health-val.ok {
+    color: var(--green);
+  }
+
+  .health-val.err {
+    color: var(--red);
+  }
+
+  /* ── Log viewer ── */
+  #log-panel {
+    border-bottom: 1px solid var(--border);
+  }
+
+  #log-title {
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  #log-lines {
+    max-height: 120px;
+    overflow-y: auto;
+    padding: 4px 12px 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    display: none;
+  }
+
+  #log-lines.open {
+    display: block;
+  }
+
+  .log-line.info {
+    color: var(--teal-dim);
+  }
+
+  .log-line.warn {
+    color: var(--yellow);
+  }
+
+  .log-line.error {
+    color: var(--red);
+  }
+
+  /* ── Task queue ── */
+  #task-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  #task-title {
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #task-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 0;
+  }
+
+  .task-item {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+    font-size: 12px;
+  }
+
+  .task-item .task-author {
+    font-size: 10px;
+    color: var(--teal);
+    margin-bottom: 2px;
+  }
+
+  .task-item .task-text {
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+
+  .task-item .task-status {
+    font-size: 10px;
+  }
+
+  .task-status.queued {
+    color: var(--text-dim);
+  }
+
+  .task-status.running {
+    color: var(--yellow);
+  }
+
+  .task-status.done {
+    color: var(--green);
+  }
+
+  .task-status.error {
+    color: var(--red);
+  }
+
+  #task-input-area {
+    padding: 10px 12px;
+    border-top: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  #task-input {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-size: 12px;
+    color: var(--text);
+    font-family: var(--font-ui);
+    outline: none;
+    resize: none;
+    height: 64px;
+  }
+
+  #task-input:focus {
+    border-color: var(--teal);
+  }
+
+  #task-submit {
+    width: 100%;
+    margin-top: 6px;
+  }
+
+  /* ── Save indicator ── */
+  #save-status {
+    font-size: 11px;
+    color: var(--text-dim);
+    padding: 0 8px;
+  }
+
+  /* ── Brain Health panel ── */
+  #brain-health-panel {
+    border-bottom: 1px solid var(--border);
+    padding: 12px;
+  }
+
+  #brain-health-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  #brain-status-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+
+  .brain-check {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    padding: 2px 0;
+    color: var(--text-dim);
+  }
+
+  .brain-check .severity {
+    font-size: 10px;
+  }
+
+  /* ── Search modal (Ctrl+P) ── */
+  #search-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 15vh;
+  }
+
+  #search-modal.open {
+    display: flex;
+  }
+
+  #search-box {
+    width: 500px;
+    max-width: 90vw;
+    background: var(--surface);
+    border: 1px solid var(--teal);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  #search-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-size: 14px;
+    font-family: var(--font-ui);
+  }
+
+  #search-results {
+    max-height: 300px;
+    overflow-y: auto;
+    border-top: 1px solid var(--border);
+  }
+
+  .search-result {
+    padding: 8px 16px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dim);
+  }
+
+  .search-result:hover,
+  .search-result.selected {
+    background: rgba(0, 229, 204, 0.1);
+    color: var(--text);
+  }
+
+  .search-result .path {
+    color: var(--text-dim);
+    font-size: 10px;
+  }
+
+  /* ── Git indicators ── */
+  .tree-item .git-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .git-dot.modified {
+    background: var(--yellow);
+  }
+
+  .git-dot.untracked {
+    background: var(--green);
+  }
+
+  .git-dot.staged {
+    background: var(--teal);
+  }
+
+  .git-dot.deleted {
+    background: var(--red);
+  }
+
+  /* ── Git branch bar ── */
+  #git-branch {
+    font-size: 10px;
+    color: var(--teal);
+    padding: 2px 12px;
+    border-bottom: 1px solid var(--border);
+    display: none;
+  }
+
+  /* ── File tree action buttons ── */
+  .tree-actions {
+    display: flex;
+    gap: 4px;
+  }
+
+  .tree-actions button {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 13px;
+    padding: 2px;
+    line-height: 1;
+  }
+
+  .tree-actions button:hover {
+    color: var(--teal);
+  }
+
+  /* ── Content search panel ── */
+  #content-search-panel {
+    display: none;
+    border-bottom: 1px solid var(--border);
+    padding: 8px 12px;
+  }
+
+  #content-search-panel.open {
+    display: block;
+  }
+
+  #content-search-input {
+    width: 100%;
+    padding: 6px 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 12px;
+    font-family: var(--font-mono);
+    outline: none;
+    margin-bottom: 4px;
+  }
+
+  #content-search-input:focus {
+    border-color: var(--teal);
+  }
+
+  #content-search-results {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .content-result {
+    padding: 4px 0;
+    font-size: 11px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(48, 54, 61, 0.3);
+  }
+
+  .content-result:hover {
+    color: var(--teal);
+  }
+
+  .content-result .file-ref {
+    color: var(--teal-dim);
+    font-family: var(--font-mono);
+    font-size: 10px;
+  }
+
+  .content-result .match-text {
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 10px;
+  }
+
+  /* scrollbars */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #484f58;
+  }
+</style>
 </head>
 
 <body>
@@ -650,8 +865,13 @@
     <div id="file-tree">
       <div id="file-tree-header">
         <span>Files</span>
-        <span id="tree-loading" style="color:var(--teal); display:none">●</span>
+        <div class="tree-actions">
+          <button onclick="promptNewFile()" title="New File">📄+</button>
+          <button onclick="promptNewFolder()" title="New Folder">📁+</button>
+          <span id="tree-loading" style="color:var(--teal); display:none">●</span>
+        </div>
       </div>
+      <div id="git-branch"></div>
       <div id="file-tree-scroll"></div>
     </div>
 
@@ -680,10 +900,27 @@
       </div>
     </div>
 
+    <!-- SEARCH MODAL (Ctrl+P) -->
+    <div id="search-modal">
+      <div id="search-box">
+        <input id="search-input" type="text" placeholder="Search files... (type to filter)" spellcheck="false">
+        <div id="search-results"></div>
+      </div>
+    </div>
+
     <!-- RIGHT PANEL -->
     <div id="right-panel">
 
-      <!-- HEALTH -->
+      <!-- BRAIN HEALTH -->
+      <div id="brain-health-panel">
+        <div id="brain-health-title" onclick="toggleBrainPanel()">
+          <span>🧠 Brain Health</span>
+          <span id="brain-status-badge">—</span>
+        </div>
+        <div id="brain-checks"></div>
+      </div>
+
+      <!-- SYSTEM HEALTH -->
       <div id="health-panel">
         <div id="health-title">🛡 System Health</div>
         <div class="health-row"><span class="health-label">Server</span><span id="h-server" class="health-val">—</span>
@@ -696,6 +933,12 @@
             class="health-val">—</span></div>
         <div class="health-row"><span class="health-label">Tasks</span><span id="h-tasks" class="health-val">—</span>
         </div>
+      </div>
+
+      <!-- CONTENT SEARCH (Ctrl+Shift+F) -->
+      <div id="content-search-panel">
+        <input id="content-search-input" type="text" placeholder="Search in files..." spellcheck="false">
+        <div id="content-search-results"></div>
       </div>
 
       <!-- SERVER LOG -->
@@ -763,7 +1006,7 @@
       monacoEditor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, saveFile);
       refreshTree();
       startHealthPoll();
-      termPrint('🚀 Lobotto's Workshop ready. Use the file tree to open files, or type commands below.\n', 'info');
+      termPrint('🚀 Lobotto\'s Workshop ready. Use the file tree to open files, or type commands below.\n', 'info');
     });
 
     // ── File Tree ─────────────────────────────────────────────────────────────────
@@ -1096,6 +1339,306 @@
         }
       });
     }
+
+    // ── Brain Health ──────────────────────────────────────────────────────────────
+    let brainPanelOpen = true;
+
+    async function pollBrainHealth() {
+      try {
+        const r = await apiFetch('/api/brain-health');
+        if (!r.ok) return;
+        const d = await r.json();
+        const badge = document.getElementById('brain-status-badge');
+        const checks = document.getElementById('brain-checks');
+
+        const colors = {
+          'HEALTHY': { bg: 'rgba(63,185,80,0.2)', color: 'var(--green)', text: '🟢 HEALTHY' },
+          'WARNINGS': { bg: 'rgba(210,153,34,0.2)', color: 'var(--yellow)', text: '🟡 WARNINGS' },
+          'DEGRADED': { bg: 'rgba(248,81,73,0.2)', color: 'var(--red)', text: '🟠 DEGRADED' },
+          'CRITICAL': { bg: 'rgba(248,81,73,0.4)', color: 'var(--red)', text: '🔴 CRITICAL' },
+        };
+        const c = colors[d.status] || colors['HEALTHY'];
+        badge.textContent = c.text;
+        badge.style.background = c.bg;
+        badge.style.color = c.color;
+
+        if (brainPanelOpen && d.results) {
+          checks.innerHTML = '';
+          for (const r of d.results) {
+            const icon = { 'OK': '✅', 'WARN': '⚠️', 'ERROR': '❌', 'CRITICAL': '🔴' }[r.severity] || '?';
+            const div = document.createElement('div');
+            div.className = 'brain-check';
+            div.innerHTML = `<span>${r.component}</span><span class="severity">${icon} ${r.message}</span>`;
+            checks.appendChild(div);
+          }
+        }
+      } catch (e) {
+        document.getElementById('brain-status-badge').textContent = '? offline';
+      }
+    }
+
+    function toggleBrainPanel() {
+      brainPanelOpen = !brainPanelOpen;
+      document.getElementById('brain-checks').style.display = brainPanelOpen ? 'block' : 'none';
+    }
+
+    // Poll brain health every 30s
+    setInterval(pollBrainHealth, 30000);
+    setTimeout(pollBrainHealth, 2000); // Initial load after 2s
+
+    // ── Git Status ────────────────────────────────────────────────────────────────
+    let gitFiles = {};
+
+    async function pollGitStatus() {
+      try {
+        const r = await apiFetch('/api/git-status');
+        if (!r.ok) return;
+        const d = await r.json();
+        if (!d.available) return;
+
+        gitFiles = d.files || {};
+
+        // Show branch
+        const branchEl = document.getElementById('git-branch');
+        if (d.branch) {
+          branchEl.textContent = `⎇ ${d.branch} (${d.changed_count} changed)`;
+          branchEl.style.display = 'block';
+        }
+
+        // Update tree items with git dots
+        document.querySelectorAll('.tree-item .git-dot').forEach(d => d.remove());
+        document.querySelectorAll('.tree-item').forEach(el => {
+          const path = el.dataset.path;
+          if (path && gitFiles[path.replace(/\\\\/g, '/')]) {
+            const status = gitFiles[path.replace(/\\\\/g, '/')];
+            const dot = document.createElement('span');
+            dot.className = `git-dot ${status}`;
+            dot.title = status;
+            el.appendChild(dot);
+          }
+        });
+      } catch (e) { /* silent */ }
+    }
+
+    // Poll git every 15s
+    setInterval(pollGitStatus, 15000);
+    setTimeout(pollGitStatus, 3000);
+
+    // ── File Search (Ctrl+P) ──────────────────────────────────────────────────────
+    let allFilePaths = [];
+    let searchSelectedIdx = 0;
+
+    async function collectFilePaths() {
+      try {
+        const r = await apiFetch('/api/search', {
+          method: 'POST',
+          body: JSON.stringify({ query: '', file_search: true })
+        });
+        if (r.ok) {
+          const d = await r.json();
+          allFilePaths = d.results.map(r => r.file);
+        }
+      } catch (e) { }
+    }
+
+    function openSearchModal() {
+      const modal = document.getElementById('search-modal');
+      modal.classList.add('open');
+      const input = document.getElementById('search-input');
+      input.value = '';
+      input.focus();
+      searchSelectedIdx = 0;
+      collectFilePaths().then(() => renderSearchResults(''));
+    }
+
+    function closeSearchModal() {
+      document.getElementById('search-modal').classList.remove('open');
+    }
+
+    function renderSearchResults(query) {
+      const results = document.getElementById('search-results');
+      results.innerHTML = '';
+      let filtered = allFilePaths;
+      if (query) {
+        const q = query.toLowerCase();
+        filtered = allFilePaths.filter(p => p.toLowerCase().includes(q));
+      }
+      filtered = filtered.slice(0, 20);
+      searchSelectedIdx = Math.min(searchSelectedIdx, filtered.length - 1);
+
+      filtered.forEach((path, i) => {
+        const div = document.createElement('div');
+        div.className = 'search-result' + (i === searchSelectedIdx ? ' selected' : '');
+        const name = path.split('/').pop();
+        const dir = path.split('/').slice(0, -1).join('/');
+        div.innerHTML = `<span>${fileIcon('.' + name.split('.').pop())}</span> <span>${escHtml(name)}</span> <span class="path">${escHtml(dir)}</span>`;
+        div.onclick = () => { closeSearchModal(); openFile(path); };
+        results.appendChild(div);
+      });
+    }
+
+    document.getElementById('search-input').addEventListener('input', (e) => {
+      searchSelectedIdx = 0;
+      renderSearchResults(e.target.value);
+    });
+
+    document.getElementById('search-input').addEventListener('keydown', (e) => {
+      const results = document.querySelectorAll('.search-result');
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        searchSelectedIdx = Math.min(searchSelectedIdx + 1, results.length - 1);
+        results.forEach((r, i) => r.classList.toggle('selected', i === searchSelectedIdx));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        searchSelectedIdx = Math.max(searchSelectedIdx - 1, 0);
+        results.forEach((r, i) => r.classList.toggle('selected', i === searchSelectedIdx));
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        const selected = document.querySelectorAll('.search-result')[searchSelectedIdx];
+        if (selected) selected.click();
+      } else if (e.key === 'Escape') {
+        closeSearchModal();
+      }
+    });
+
+    document.getElementById('search-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'search-modal') closeSearchModal();
+    });
+
+    // ── Content Search (Ctrl+Shift+F) ─────────────────────────────────────────────
+    let contentSearchTimer = null;
+
+    function toggleContentSearch() {
+      const panel = document.getElementById('content-search-panel');
+      const isOpen = panel.classList.toggle('open');
+      if (isOpen) {
+        document.getElementById('content-search-input').focus();
+      }
+    }
+
+    document.getElementById('content-search-input').addEventListener('input', (e) => {
+      clearTimeout(contentSearchTimer);
+      const query = e.target.value.trim();
+      if (query.length < 2) {
+        document.getElementById('content-search-results').innerHTML = '';
+        return;
+      }
+      contentSearchTimer = setTimeout(async () => {
+        try {
+          const r = await apiFetch('/api/search', {
+            method: 'POST',
+            body: JSON.stringify({ query, file_search: false })
+          });
+          if (!r.ok) return;
+          const d = await r.json();
+          const el = document.getElementById('content-search-results');
+          el.innerHTML = '';
+          for (const hit of d.results) {
+            const div = document.createElement('div');
+            div.className = 'content-result';
+            div.innerHTML = `<div class="file-ref">${escHtml(hit.file)}:${hit.line}</div><div class="match-text">${escHtml(hit.text)}</div>`;
+            div.onclick = () => openFile(hit.file);
+            el.appendChild(div);
+          }
+          if (d.truncated) {
+            const note = document.createElement('div');
+            note.style.cssText = 'font-size:10px;color:var(--text-dim);text-align:center;padding:4px;';
+            note.textContent = '(50 results — refine your search)';
+            el.appendChild(note);
+          }
+        } catch (e) { }
+      }, 300);
+    });
+
+    // ── New File / Folder ─────────────────────────────────────────────────────────
+    async function promptNewFile() {
+      const path = prompt('New file path (relative to workspace root):');
+      if (!path) return;
+      try {
+        const r = await apiFetch('/api/new', {
+          method: 'POST',
+          body: JSON.stringify({ path, is_dir: false })
+        });
+        if (r.ok) {
+          termPrint(`✅ Created file: ${path}\n`, 'success');
+          refreshTree();
+          setTimeout(() => openFile(path), 500);
+        } else {
+          const d = await r.json();
+          termPrint(`❌ ${d.detail}\n`, 'stderr');
+        }
+      } catch (e) { termPrint(`❌ ${e.message}\n`, 'stderr'); }
+    }
+
+    async function promptNewFolder() {
+      const path = prompt('New folder path (relative to workspace root):');
+      if (!path) return;
+      try {
+        const r = await apiFetch('/api/new', {
+          method: 'POST',
+          body: JSON.stringify({ path, is_dir: true })
+        });
+        if (r.ok) {
+          termPrint(`✅ Created folder: ${path}\n`, 'success');
+          refreshTree();
+        } else {
+          const d = await r.json();
+          termPrint(`❌ ${d.detail}\n`, 'stderr');
+        }
+      } catch (e) { termPrint(`❌ ${e.message}\n`, 'stderr'); }
+    }
+
+    // ── Terminal History ──────────────────────────────────────────────────────────
+    let cmdHistory = [];
+    let cmdHistoryIdx = -1;
+
+    const origRunCommand = runCommand;
+    runCommand = function () {
+      const inp = document.getElementById('cmd-input');
+      const cmd = inp.value.trim();
+      if (cmd) {
+        cmdHistory.push(cmd);
+        cmdHistoryIdx = cmdHistory.length;
+      }
+      return origRunCommand();
+    };
+
+    document.getElementById('cmd-input').addEventListener('keydown', e => {
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (cmdHistoryIdx > 0) {
+          cmdHistoryIdx--;
+          document.getElementById('cmd-input').value = cmdHistory[cmdHistoryIdx];
+        }
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (cmdHistoryIdx < cmdHistory.length - 1) {
+          cmdHistoryIdx++;
+          document.getElementById('cmd-input').value = cmdHistory[cmdHistoryIdx];
+        } else {
+          cmdHistoryIdx = cmdHistory.length;
+          document.getElementById('cmd-input').value = '';
+        }
+      }
+    });
+
+    // ── Global Keyboard Shortcuts ─────────────────────────────────────────────────
+    document.addEventListener('keydown', (e) => {
+      // Ctrl+P = file search
+      if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+        e.preventDefault();
+        openSearchModal();
+      }
+      // Ctrl+Shift+F = content search
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'F') {
+        e.preventDefault();
+        toggleContentSearch();
+      }
+      // Escape closes modals
+      if (e.key === 'Escape') {
+        closeSearchModal();
+      }
+    });
   </script>
 </body>
 

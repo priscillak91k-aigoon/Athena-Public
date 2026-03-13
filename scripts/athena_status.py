@@ -22,7 +22,7 @@ BOLD = "\033[1m"
 DIM = "\033[2m"
 RESET = "\033[0m"
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 def count_files(directory, pattern="*"):
@@ -33,7 +33,7 @@ def count_files(directory, pattern="*"):
 
 
 def get_recent_sessions(limit=5):
-    path = PROJECT_ROOT / ".context/memories/session_logs/"
+    path = PROJECT_ROOT / "session_logs"
     if not path.exists():
         return []
     sessions = sorted(path.glob("*.md"), key=os.path.getmtime, reverse=True)
@@ -62,12 +62,14 @@ def get_system_health():
     if not state_file.exists():
         return "Unknown"
 
-    with open(state_file, "r") as f:
-        content = f.read()
+    try:
+        content = state_file.read_text(encoding="utf-8")
         for line in content.split("\n"):
             if "Health**" in line or "Health:" in line:
                 val = line.split(":")[-1].strip()
                 return val.replace("**", "").strip()
+    except Exception:
+        pass
     return "Unknown"
 
 
@@ -95,16 +97,16 @@ def main():
     print(f"{CYAN}{'━' * 60}{RESET}")
 
     # Section: Core Metrics
-    protocols = count_files(".agent/skills/protocols", "**/*.md")
-    sessions = count_files(".context/memories/session_logs", "*.md")
-    scripts = count_files(".agent/scripts", "*.py")
+    context_files = count_files(".context", "*.md") + count_files(".context", "*.json")
+    sessions = count_files("session_logs", "*.md")
+    scripts = count_files("scripts", "*.py")
     health = get_system_health()
     last_boot = get_last_boot_time()
     graph_status = get_graphrag_status()
     gov_score = get_governance_score()
 
     col1 = f"{BOLD}Metrics:{RESET}\n"
-    col1 += f"  📂 Protocols:  {BLUE}{protocols}{RESET}\n"
+    col1 += f"  📂 Context:    {BLUE}{context_files}{RESET}\n"
     col1 += f"  📝 Sessions:   {GREEN}{sessions}{RESET}\n"
     col2 = f"{BOLD}Status:{RESET}\n"
     col2 += f"  🕒 Last Boot:  {DIM}{last_boot}{RESET}\n"

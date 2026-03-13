@@ -2743,7 +2743,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // PM — With Dinner
         const supplementsPM_Dinner = [
-            { text: "🐟 Go Healthy Fish Oil + D3 × 2 caps — With dinner (Attia split protocol)", points: 2, suppSync: "Fish Oil", suppDose: 2 }
+            { text: "🐟 Go Healthy Fish Oil + D3 × 1 cap — With dinner (maintenance dose)", points: 1, suppSync: "Fish Oil", suppDose: 1 }
         ];
         createListItems(supplementsPM_Dinner, 'supp-pm-dinner-body');
 
@@ -5396,7 +5396,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
             });
             if (resp.ok) tasks = await resp.json();
-        } catch(e) { console.warn('Task pool fetch failed', e); return; }
+        } catch (e) { console.warn('Task pool fetch failed', e); return; }
 
         const lastDone = JSON.parse(localStorage.getItem('symphony_last_done') || '{}');
 

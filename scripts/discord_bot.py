@@ -110,8 +110,6 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-bot = commands.Bot(command_prefix="!", intents=intents)
-
 # Persistent conversation memory
 MAX_HISTORY = 20
 MEMORY_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".context", "state", "discord_memory.json")

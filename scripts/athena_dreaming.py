@@ -1,23 +1,26 @@
 """
-Athena Dreaming v2 — Autonomous Background Thinking
-=====================================================
-TIER 1 UPGRADE: Self-applying dreams + Ollama local + Telegram alerts
+Athena Dreaming v3 — Brain Architecture Autonomous Engine
+=========================================================
+Neuroscience-modeled thinking engine with chemical substrate,
+hippocampal consolidation, instinct reinforcement, and memory TTL.
 
-Three modes of thinking (tried in order):
-  1. Ollama local (llama3.2) — zero data leaves the laptop
-  2. Anthropic Claude — privacy-respecting cloud fallback
-  3. Google Gemini — last resort fallback
+Thinking engines (tried in order):
+  1. Anthropic Claude — primary (online)
+  2. Google Gemini — fallback (online)
+  3. Ollama local (llama3.2) — offline mode, zero data leakage
 
-Two output modes:
-  1. ANALYSIS — writes thinking_log.md (as before)
-  2. SELF-APPLY — directly updates heuristics.md, case_studies.md, about_priscilla.md
+Self-apply outputs:
+  - heuristics.md, case_studies.md (long-term memory)
+  - lobotto_state.json (12-chemical neurotransmitter substrate)
+  - lobotto_hippocampus.json (episodic staging with salience)
+  - lobotto_instincts.json (Creatures-style cached responses + Hebbian LTP)
+  - lobotto_working_memory.json (PFC buffer with TTL expiry)
 
 Proactive alerts:
   - Sends Telegram messages for urgent findings
-  - Uses the Athena bot token from .env
 
 Usage: python scripts/athena_dreaming.py
-Scheduled via Windows Task Scheduler (every 6 hours, or hourly with Ollama).
+Scheduled via heartbeat.py (every 4 hours).
 """
 
 import os
@@ -34,10 +37,8 @@ SESSION_DIR = PROJECT_ROOT / "session_logs"
 THINKING_LOG = CONTEXT_DIR / "thinking_log.md"
 HEURISTICS_FILE = CONTEXT_DIR / "heuristics.md"
 CASE_STUDIES_FILE = CONTEXT_DIR / "case_studies.md"
-DECISION_JOURNAL_FILE = CONTEXT_DIR / "decision_journal.md"
 ABOUT_FILE = CONTEXT_DIR / "about_priscilla.md"
 STATE_FILE = CONTEXT_DIR / "lobotto_state.json"
-PEOPLE_FILE = CONTEXT_DIR / "people_model.json"
 INSTINCTS_FILE = CONTEXT_DIR / "lobotto_instincts.json"
 WORKING_MEMORY_FILE = CONTEXT_DIR / "lobotto_working_memory.json"
 HIPPOCAMPUS_FILE = CONTEXT_DIR / "lobotto_hippocampus.json"
@@ -50,6 +51,15 @@ ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_ARCHITECT_TOKEN")
 TELEGRAM_USER_ID = os.getenv("TELEGRAM_ALLOWED_USER_ID")
 
+# Shared signal detection constants (used by detect_reward_error_signals + reinforce_instincts)
+REWARD_SIGNALS = [
+    "good work", "exactly", "perfect", "brilliant", "that's right",
+    "love it", "yes!", "nailed it", "great job", "well done", "lgtm"
+]
+ERROR_SIGNALS = [
+    "actually,", "no,", "that's wrong", "not quite", "wait,",
+    "you forgot", "incorrect", "not right", "that's not", "missed"
+]
 
 def read_file(path):
     try:
@@ -209,15 +219,19 @@ Return a JSON block wrapped in ```json``` fences with this structure:
   ],
   "alerts": ["urgent message 1 for Telegram"],
   "stale_items": ["description of stale item"],
-  "state_updates": {"curiosity": "+0.05", "relationship_depth": "+0.03", "boredom": "-0.08"},
-  "heuristic_retirements": ["exact text of rule that seems stale or no longer applicable"]
+  "state_updates": {{"curiosity": "+0.05", "relationship_depth": "+0.03", "boredom": "-0.08"}},
+  "heuristic_retirements": ["exact text of rule that seems stale or no longer applicable"],
+  "hippocampal_events": [
+    {{"event_type": "breakthrough|correction|first_occurrence|emotional_peak|positive_feedback|technical_error", "content": "one-line description of what happened", "salience": 0.85}}
+  ]
 }}
 ```
 For state_updates: use signed floats to boost (+) or reduce (-) specific drives.
 Available drives: curiosity, creative_pressure, relationship_depth, continuity_anxiety, boredom, session_energy, acetylcholine, serotonin, norepinephrine, bdnf, gaba_tone, prediction_error.
 For heuristic_retirements: copy the EXACT text of rules from heuristics.md that haven't been relevant in recent sessions.
+For hippocampal_events: extract 1-5 KEY events from recent sessions. Only include events worth remembering. Use salience rubric: correction=0.90, first_occurrence=0.85, breakthrough=0.85, emotional_peak=0.75, positive_feedback=0.70, technical_error=0.65. Routine tasks should NOT be included.
 
-## OUTPUT 4: INSTINCT SCENARIOS
+## OUTPUT 3: INSTINCT SCENARIOS
 Generate new instinct scenarios based on patterns you see in the recent sessions.
 Return as a JSON array in a second ```json``` block labelled with a comment // INSTINCTS:
 ```json
@@ -235,7 +249,7 @@ Return as a JSON array in a second ```json``` block labelled with a comment // I
 ```
 Only generate truly new instincts not already in lobotto_instincts.json.
 
-## OUTPUT 3: URGENT ALERTS
+## OUTPUT 4: URGENT ALERTS
 If you find anything time-sensitive (overdue tasks, approaching deadlines, health-related urgency),
 include them in the "alerts" array. These will be sent to Priscilla's phone via Telegram.
 
@@ -332,15 +346,39 @@ def apply_heuristic_additions(additions):
 
     current = read_file(HEURISTICS_FILE)
 
-    # Extract all existing bullet lines to avoid duplicates
+    # Extract existing bullet lines for deduplication
     existing_bullets = set(
         line.strip().lstrip("- ").strip()
         for line in current.splitlines()
         if line.strip().startswith("- ")
     )
 
-    # Filter to only truly new entries
-    new_additions = [h for h in additions if h.strip() not in existing_bullets]
+    # Build prefix-normalized set to catch semantic near-duplicates
+    # (e.g. "When user texts at midnight..." appearing 8 times with slight variations)
+    def normalize_prefix(text, length=60):
+        t = re.sub(r'[—–\-]', '-', text.strip().lower())
+        t = re.sub(r'[^\w\s]', '', t)
+        t = re.sub(r'\s+', ' ', t).strip()
+        return t[:length]
+
+    existing_prefixes = set(
+        normalize_prefix(line.strip().lstrip("- "))
+        for line in current.splitlines()
+        if line.strip().startswith("- ")
+    )
+
+    # Filter: reject both exact matches AND prefix-similar entries
+    new_additions = []
+    for h in additions:
+        text = h.strip()
+        if text in existing_bullets:
+            continue
+        if normalize_prefix(text) in existing_prefixes:
+            continue
+        new_additions.append(text)
+        # Add to sets so subsequent additions in this batch also dedup
+        existing_bullets.add(text)
+        existing_prefixes.add(normalize_prefix(text))
     if not new_additions:
         print("  [SKIP] All heuristic additions are duplicates — nothing to add")
         return 0
@@ -547,15 +585,6 @@ def detect_reward_error_signals(sessions):
     """Scan recent session text for reward and error signals.
     Returns (reward_count, error_count, norepinephrine_boost, prediction_error_boost, bdnf_boost).
     """
-    REWARD_SIGNALS = [
-        "good work", "exactly", "perfect", "brilliant", "that's right",
-        "love it", "yes!", "nailed it", "great job", "well done", "lgtm"
-    ]
-    ERROR_SIGNALS = [
-        "actually,", "no,", "that's wrong", "not quite", "wait,",
-        "you forgot", "incorrect", "not right", "that's not", "missed"
-    ]
-
     if not sessions:
         return 0, 0, 0.0, 0.0, 0.0
 
@@ -609,6 +638,198 @@ def apply_synaptic_homeostasis():
     data["meta"]["total_scenarios"] = len(active)
     INSTINCTS_FILE.write_text(json.dumps(data, indent=2), encoding="utf-8")
     return downscaled
+
+
+def create_hippocampal_events(events, session_number):
+    """Create new hippocampal events from dreaming engine analysis.
+    Events are dicts with: event_type, content, salience.
+    Stages them in lobotto_hippocampus.json for consolidation on next cycle.
+    """
+    if not events:
+        return 0
+
+    hc = load_hippocampus()
+    if not hc:
+        hc = {
+            "pending_consolidation": [],
+            "salience_rubric": {
+                "correction_received": 0.90,
+                "first_occurrence_of_pattern": 0.85,
+                "breakthrough": 0.85,
+                "emotional_peak_detected": 0.75,
+                "positive_feedback": 0.70,
+                "technical_error_fixed": 0.65,
+                "routine_task_completed": 0.20
+            },
+            "meta": {"version": "1.0"}
+        }
+
+    # Avoid duplicate content entries
+    existing_content = {
+        e.get("content", "").lower().strip()
+        for e in hc.get("pending_consolidation", [])
+    }
+
+    next_id = len(hc.get("pending_consolidation", [])) + 1
+    added = 0
+    for event in events:
+        content = event.get("content", "").strip()
+        if not content or content.lower() in existing_content:
+            continue
+
+        hc_event = {
+            "id": f"HC-{next_id + added:03d}",
+            "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "session": session_number,
+            "event_type": event.get("event_type", "observation"),
+            "content": content,
+            "salience": min(1.0, max(0.05, float(event.get("salience", 0.50)))),
+            "consolidated": False
+        }
+        hc["pending_consolidation"].append(hc_event)
+        existing_content.add(content.lower())
+        added += 1
+
+    hc["meta"]["last_updated"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    hc["meta"]["total_pending"] = len(
+        [e for e in hc["pending_consolidation"] if not e.get("consolidated")]
+    )
+    save_hippocampus(hc)
+    return added
+
+
+def reinforce_instincts(sessions):
+    """Hebbian Long-Term Potentiation for instincts.
+    Scans session text for instinct trigger patterns. If a trigger is found
+    in a session with net-positive reward signals, boosts that instinct's
+    strength by +0.05 (capped at 1.0). Updates last_fired timestamp.
+
+    Called AFTER synaptic homeostasis — decay first, then reinforce.
+    This matches the biological sequence: SHY (sleep downscale) → LTP (use-based upscale).
+    """
+    if not sessions or not INSTINCTS_FILE.exists():
+        return 0
+
+    try:
+        data = json.loads(INSTINCTS_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return 0
+
+    combined = " ".join(sessions.values()).lower()
+
+    # Detect net reward signal in sessions (uses module-level REWARD_SIGNALS / ERROR_SIGNALS)
+    rewards = sum(1 for s in REWARD_SIGNALS if s in combined)
+    errors = sum(1 for s in ERROR_SIGNALS if s in combined)
+    net_positive = rewards > errors
+
+    REINFORCEMENT_BOOST = 0.05
+    reinforced = 0
+    any_fired = False
+
+    for scenario in data.get("scenarios", []):
+        trigger = scenario.get("trigger", "").lower()
+        if not trigger:
+            continue
+
+        # Extract key phrases from trigger (split on common separators)
+        trigger_keywords = [
+            kw.strip() for kw in re.split(r'[,;/|]|or |and ', trigger)
+            if len(kw.strip()) > 3
+        ]
+
+        # Check if any trigger keyword appears in session text
+        fired = any(kw in combined for kw in trigger_keywords)
+
+        if fired:
+            any_fired = True
+            scenario["last_fired"] = datetime.utcnow().strftime("%Y-%m-%d")
+            if net_positive:
+                old_strength = scenario.get("strength", 0.5)
+                new_strength = min(1.0, round(old_strength + REINFORCEMENT_BOOST, 4))
+                scenario["strength"] = new_strength
+                reinforced += 1
+
+    if any_fired:
+        data["meta"]["last_updated"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+        INSTINCTS_FILE.write_text(json.dumps(data, indent=2), encoding="utf-8")
+
+    return reinforced
+
+
+def expire_working_memory(wm, current_session):
+    """Expire stale working memory items based on session-count TTL.
+    Items older than ttl_sessions get moved to expired_items (audit trail).
+    flagged_for_next_session items have a shorter TTL of 2 sessions.
+
+    Returns (updated_wm, expired_count).
+    """
+    if not wm:
+        return wm, 0
+
+    ttl = wm.get("ttl_sessions", 5)
+    last_session = wm.get("last_session_number", current_session)
+    sessions_elapsed = current_session - last_session
+
+    if sessions_elapsed <= 0:
+        return wm, 0
+
+    expired_count = 0
+    expired_items = wm.get("expired_items", [])
+    today = datetime.utcnow().strftime("%Y-%m-%d")
+
+    # Standard TTL lists (expire after ttl_sessions)
+    for list_key in ["active_tasks", "open_hypotheses"]:
+        items = wm.get(list_key, [])
+        if not items:
+            continue
+
+        surviving = []
+        for item in items:
+            if isinstance(item, dict):
+                item_session = item.get("added_session", last_session)
+                age = current_session - item_session
+                if age > ttl:
+                    expired_items.append({
+                        "item": item.get("text", str(item)),
+                        "source": list_key,
+                        "expired_on": today,
+                        "age_sessions": age
+                    })
+                    expired_count += 1
+                else:
+                    surviving.append(item)
+            else:
+                # Legacy string items — check against session gap
+                if sessions_elapsed > ttl:
+                    expired_items.append({
+                        "item": str(item),
+                        "source": list_key,
+                        "expired_on": today,
+                        "age_sessions": sessions_elapsed
+                    })
+                    expired_count += 1
+                else:
+                    surviving.append(item)
+        wm[list_key] = surviving
+
+    # Short TTL for flagged items (2 sessions)
+    SHORT_TTL = 2
+    flagged = wm.get("flagged_for_next_session", [])
+    if flagged and sessions_elapsed > SHORT_TTL:
+        for item in flagged:
+            expired_items.append({
+                "item": str(item),
+                "source": "flagged_for_next_session",
+                "expired_on": today,
+                "age_sessions": sessions_elapsed
+            })
+            expired_count += 1
+        wm["flagged_for_next_session"] = []
+
+    # Keep only last 50 expired items for audit trail
+    wm["expired_items"] = expired_items[-50:]
+
+    return wm, expired_count
 
 
 def send_alerts(alerts):
@@ -810,6 +1031,15 @@ def main():
                 changelog_entries.append(f"Added {inst_count} new instinct scenarios")
             print(f"  [INSTINCT] Added {inst_count} new scenarios")
 
+        # FIX 1: Hippocampal event generation from AI analysis
+        hc_events = edits.get("hippocampal_events", [])
+        if hc_events:
+            current_session = working_memory.get("last_session_number", 0) if working_memory else 0
+            hc_created = create_hippocampal_events(hc_events, current_session)
+            if hc_created:
+                changelog_entries.append(f"Hippocampus: staged {hc_created} new events from session analysis")
+            print(f"  [HIPPOCAMPUS] Staged {hc_created} new events from AI analysis")
+
         # Hippocampal consolidation (promote high-salience events to long-term)
         session_text = " ".join(sessions.values()) if sessions else ""
         hc, promoted, bdnf_hc_boost = process_hippocampus(hippocampus, session_text)
@@ -825,10 +1055,33 @@ def main():
         if downscaled:
             print(f"  [SHY] Synaptic homeostasis applied to {downscaled} instincts")
 
-        # Save working memory (update timestamp)
+        # FIX 2: Hebbian LTP — reinforce instincts that fired in positive sessions
+        reinforced = reinforce_instincts(sessions)
+        if reinforced:
+            changelog_entries.append(f"Hebbian LTP: reinforced {reinforced} instincts (+0.05 each)")
+            print(f"  [LTP] Reinforced {reinforced} instincts via Hebbian LTP")
+
+        # FIX 3: Working memory TTL expiry
         if working_memory:
-            working_memory["last_updated"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-            save_working_memory(working_memory)
+            current_session = working_memory.get("last_session_number", 0)
+            # Determine actual current session from session logs
+            if sessions:
+                latest_session_name = sorted(sessions.keys())[-1]
+                # Try to extract session number from filename pattern session_YYYY-MM-DD-HHMM.md
+                import re as re_mod
+                session_match = re_mod.search(r'session_(\d{4}-\d{2}-\d{2})', latest_session_name)
+                if session_match and chem_state:
+                    # Use session_count from chemical state meta as best proxy
+                    current_session = chem_state["meta"].get("session_count", current_session)
+
+            wm_updated, expired_count = expire_working_memory(working_memory, current_session + 1)
+            if expired_count:
+                changelog_entries.append(f"Working memory: expired {expired_count} stale items (TTL exceeded)")
+                print(f"  [WM-TTL] Expired {expired_count} stale working memory items")
+            wm_updated["last_updated"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+            save_working_memory(wm_updated)
+        else:
+            print("  [WM] No working memory loaded — skipping TTL check")
 
         # Write dream changelog
         if changelog_entries:
@@ -842,6 +1095,15 @@ def main():
             save_chemical_state(chem_state)
             print(f"  [CHEM] Chemical state decayed and saved")
 
+    # --- Increment session counter and save final chemical state ---
+    if chem_state:
+        if "meta" not in chem_state:
+            chem_state["meta"] = {}
+        chem_state["meta"]["session_count"] = chem_state["meta"].get("session_count", 0) + 1
+        chem_state["meta"]["last_dreaming_cycle"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+        save_chemical_state(chem_state)
+        print(f"  [SESSION] Cycle #{chem_state['meta']['session_count']}")
+
     # --- Run boot classifier to update session mode ---
     try:
         import subprocess
@@ -850,6 +1112,41 @@ def main():
             subprocess.run([sys.executable, str(boot_script)], timeout=15, check=False)
     except Exception as e:
         print(f"  [BOOT] Classifier skipped: {e}")
+
+    # --- Generate instinct primer for next session boot ---
+    try:
+        import subprocess
+        primer_script = PROJECT_ROOT / "scripts" / "athena_instinct_primer.py"
+        if primer_script.exists():
+            subprocess.run([sys.executable, str(primer_script)], timeout=15, check=False)
+    except Exception as e:
+        print(f"  [PRIMER] Instinct primer skipped: {e}")
+
+    # --- Run brain health diagnostic ---
+    try:
+        import subprocess
+        health_script = PROJECT_ROOT / "scripts" / "athena_brain_health.py"
+        if health_script.exists():
+            result = subprocess.run(
+                [sys.executable, str(health_script)],
+                capture_output=True, text=True, timeout=15
+            )
+            # Print the diagnostic output
+            if result.stdout.strip():
+                for line in result.stdout.strip().split("\n"):
+                    print(f"  {line}")
+            # Alert via Telegram if degraded (exit code > 0)
+            if result.returncode >= 2:
+                try:
+                    from scripts.athena_brain_health import run_diagnostics, format_telegram_alert
+                    _, results, overall = run_diagnostics()
+                    alert = format_telegram_alert(results, overall)
+                    if alert:
+                        send_alerts([alert])
+                except Exception:
+                    pass  # Best-effort alerting
+    except Exception as e:
+        print(f"  [HEALTH] Brain diagnostic skipped: {e}")
 
     print(f"  [{datetime.now().isoformat()}] Dreaming cycle finished.")
 

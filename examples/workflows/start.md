@@ -21,6 +21,7 @@ last_updated: 2026-02-21
 - [ ] **Active OS**: Start Athena Daemon `python3 Athena-Public/src/athena/core/athenad.py` (Background Service)
 // turbo
 - [ ] **Daemon**: `./Athena-Public/scripts/launch_athena.sh --background`
+- [ ] **Workshop**: Start Lobotto's Workshop IDE `cd athena-workspace && python server.py` (Background — serves on port 7337)
 - [ ] **UI Sync**: `open -a "Antigravity" --args --disable-gpu-driver-bug-workarounds --ignore-gpu-blacklist --enable-gpu-rasterization` (Hardware acceleration enabled)
 
 **Confirm**: "⚡ Ready. (Core Identity loaded. Session XX started. Semantic primed.)"

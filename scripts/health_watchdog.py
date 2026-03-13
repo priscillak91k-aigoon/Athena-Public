@@ -73,7 +73,7 @@ def send_error_alert(context: str):
 REMINDERS = [
     (6, 25, "💊 *NAC time* — 1200mg (2 caps), empty stomach. Take before breakfast."),
     (6, 55, "🍳 *Breakfast supps:*\n• K2 MK-7 (2 caps)\n• Fish Oil + D3 (1 cap)\n• B-Complex + L-Theanine (1 cap)\n• Turmeric (2 caps)\n• Even Blood Sugar Babe (4g)\n• Phloe (2 caps)"),
-    (18, 25, "🌙 *Evening Fish Oil + D3* — 10,000IU (2 caps) with dinner."),
+    (18, 25, "🌙 *Evening Fish Oil + D3* — 10,000IU (1 cap) with dinner."),
     (20, 55, "😴 *Magnesium time* — Mag Glycinate 400mg elemental before bed."),
 ]
 

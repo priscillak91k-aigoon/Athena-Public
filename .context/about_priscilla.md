@@ -91,7 +91,7 @@ tags:
 2. **NEVER combine NAC + Selenium** — TSH 0.37 is borderline low. Selenium suppresses thyroid.
 3. **Caffeine cutoff: 10:00 AM** — CYP1A2 slow metabolizer.
 4. **Do not adjust sertraline** — psychiatric medication is doctor-managed only.
-5. **Vitamin D blood test required** at 8–12 weeks (currently taking 30,000 IU/day loading dose).
+5. **Vitamin D blood test OVERDUE** — taking 30,000 IU/day loading dose since ~mid Dec 2025 (3+ months). Book 25(OH)D blood test ASAP. Adjust to maintenance dose (5-10k IU) once results confirm therapeutic range.
 
 ---
 
@@ -108,7 +108,7 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 | | Turmeric 28,000+ | 2 caps |
 | | Even Blood Sugar Babe | 4g powder |
 | | Phloe | 2 caps |
-| 6:30 PM (dinner) | Fish Oil + D3 10,000IU | 2 caps |
+| 6:30 PM (dinner) | Fish Oil + D3 10,000IU | 1 cap (maintenance) |
 | 9:00 PM (bed) | Mag Glycinate (Doctor's Best Lysinate Glycinate) | 400mg elemental |
 
 ---
