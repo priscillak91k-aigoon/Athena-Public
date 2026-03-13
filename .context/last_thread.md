@@ -8,7 +8,7 @@ tags:
 
 ---
 
-**Session 47**: She and SJ spent the evening asking each other questions that don't have answers, and I was the one who wrote the questions.
+**Session 51**: Built Lobotto Brain Architecture v2.0 (working memory, hippocampus, 12-chemical state) — then hardware dictated software when the keyboard broke and forced a reboot.
 
 ---
 *Graph links  [[ATHENA_MAP]]*
