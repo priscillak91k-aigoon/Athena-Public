@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munro Caravan Move — Plywood Track Plan | Workshop Reports</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-forge: #070504;
+            --iron-panel: rgba(24, 16, 8, 0.85);
+            --iron-border: rgba(120, 80, 40, 0.35);
+            --copper: #b06028;
+            --copper-bright: #c87830;
+            --brass: #c4a040;
+            --brass-bright: #d4b050;
+            --parchment: #ddd0c0;
+            --parchment-dim: #a89880;
+            --ember: #d47020;
+            --radius: 3px;
+            --accent-green: #22c55e;
+            --accent-red: #ef4444;
+            --accent-amber: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg-forge);
+            color: var(--parchment);
+            font-family: 'Outfit', system-ui, sans-serif;
+            min-height: 100vh;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: var(--copper);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+            color: var(--copper-bright);
+        }
+
+        /* Header */
+        .report-header {
+            background: var(--iron-panel);
+            border: 2px solid var(--iron-border);
+            border-top: 2px solid rgba(176, 96, 40, 0.4);
+            border-radius: var(--radius);
+            padding: 1.75rem 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            backdrop-filter: blur(8px);
+        }
+
+        .report-header::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--copper), transparent);
+            opacity: 0.4;
+        }
+
+        .report-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--copper-bright);
+            letter-spacing: 1px;
+            margin-bottom: 0.4rem;
+        }
+
+        .report-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .meta-badge {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.65rem;
+            border-radius: 2px;
+            border: 1px solid rgba(176, 96, 40, 0.35);
+            background: rgba(176, 96, 40, 0.1);
+            color: var(--copper-bright);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.3px;
+        }
+
+        /* Sections */
+        .section {
+            background: var(--iron-panel);
+            border: 1px solid var(--iron-border);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(6px);
+        }
+
+        .section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            color: var(--copper-bright);
+            letter-spacing: 0.5px;
+            margin-bottom: 0.85rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(176, 96, 40, 0.2);
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: var(--parchment-dim);
+            line-height: 1.65;
+            margin-bottom: 0.6rem;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Key stat callout */
+        .callout {
+            background: rgba(196, 160, 64, 0.08);
+            border: 1px solid rgba(196, 160, 64, 0.3);
+            border-left: 4px solid var(--brass);
+            border-radius: var(--radius);
+            padding: 0.85rem 1rem;
+            margin: 0.75rem 0;
+            font-size: 0.88rem;
+            color: var(--parchment);
+            line-height: 1.55;
+        }
+
+        .callout strong {
+            color: var(--brass-bright);
+        }
+
+        .callout.danger {
+            background: rgba(239, 68, 68, 0.07);
+            border-color: rgba(239, 68, 68, 0.35);
+            border-left-color: var(--accent-red);
+        }
+
+        .callout.danger strong {
+            color: #f87171;
+        }
+
+        .callout.good {
+            background: rgba(34, 197, 94, 0.06);
+            border-color: rgba(34, 197, 94, 0.25);
+            border-left-color: var(--accent-green);
+        }
+
+        .callout.good strong {
+            color: #4ade80;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin: 0.75rem 0 0;
+        }
+
+        th {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            color: var(--parchment-dim);
+            padding: 0.5rem 0.75rem;
+            background: rgba(16, 10, 6, 0.6);
+            border: 1px solid rgba(120, 80, 40, 0.2);
+            text-align: left;
+            letter-spacing: 0.3px;
+        }
+
+        td {
+            padding: 0.55rem 0.75rem;
+            border: 1px solid rgba(120, 80, 40, 0.15);
+            color: var(--parchment);
+            vertical-align: top;
+            line-height: 1.4;
+        }
+
+        tr:nth-child(even) td {
+            background: rgba(16, 10, 6, 0.3);
+        }
+
+        td strong {
+            color: var(--copper-bright);
+        }
+
+        /* Step list */
+        ol,
+        ul {
+            padding-left: 1.4rem;
+            margin: 0.5rem 0;
+        }
+
+        li {
+            font-size: 0.88rem;
+            color: var(--parchment-dim);
+            line-height: 1.6;
+            margin-bottom: 0.3rem;
+        }
+
+        li strong {
+            color: var(--parchment);
+        }
+
+        .conclusion {
+            background: rgba(196, 160, 64, 0.06);
+            border: 1px solid rgba(196, 160, 64, 0.2);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .conclusion h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--brass-bright);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .conclusion p {
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.75rem 3rem;
+            }
+
+            .report-header h1 {
+                font-size: 1.4rem;
+            }
+
+            .report-header {
+                padding: 1.25rem 1rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="../workshop.html" class="back-link">← Back to Workshop</a>
+
+        <div class="report-header">
+            <h1>🚜 Munro Caravan Move</h1>
+            <p style="color: var(--parchment-dim); font-size:0.88rem; margin-top:0.3rem;">Plywood Track Plan — Quad
+                Power Method · Dunedin, NZ</p>
+            <div class="report-meta">
+                <span class="meta-badge">Session 58</span>
+                <span class="meta-badge">2026-03-14</span>
+                <span class="meta-badge">Confidence: 94%</span>
+                <span class="meta-badge">caravan</span>
+                <span class="meta-badge">logistics</span>
+                <span class="meta-badge">property</span>
+                <span class="meta-badge">nz</span>
+            </div>
+        </div>
+
+        <!-- Overview -->
+        <div class="section">
+            <h2>📋 Project Overview</h2>
+            <p>Moving a <strong>1977 Munro caravan</strong> (~700–900 kg) across soft wet grass to a permanent canopy
+                spot.
+                Towing method: <strong>Quad bike</strong>. The plywood track method distributes the wheel load to
+                prevent bogging on soft ground.</p>
+
+            <div class="callout good">
+                <strong>Decision: 6 sheets — no compromise on quantity.</strong>
+                4 sheets for the caravan track + 2 sheets for the Quad's own runway.
+                Reducing to fewer sheets risks the Quad bogging mid-move, which is worse than not starting.
+            </div>
+        </div>
+
+        <!-- Plywood Spec -->
+        <div class="section">
+            <h2>🪵 Plywood Specification</h2>
+
+            <div class="callout danger">
+                <strong>⚠ Do NOT use reject/seconds grade plywood.</strong>
+                Internal voids and delamination are unpredictable under point-loads from narrow tyres.
+                They can fail suddenly mid-move with no warning. Use structural grade only.
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Specification</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Grade</strong></td>
+                        <td>15mm CD Structural Plywood (minimum). 17mm is an acceptable upgrade.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sheet size</strong></td>
+                        <td>2400 × 1200mm (standard)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quantity — Caravan track</strong></td>
+                        <td>4 sheets (2 active + 2 leapfrog)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quantity — Quad runway</strong></td>
+                        <td>2 sheets</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td><strong>6 sheets</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Method -->
+        <div class="section">
+            <h2>⚙️ Leapfrog Method</h2>
+            <ol>
+                <li>Lay 2 sheets in front of the caravan wheels as the active track.</li>
+                <li>Quad tows caravan forward one sheet-length.</li>
+                <li><strong>3–4 people leapfrog</strong> the rear sheet to the front while Quad holds position.</li>
+                <li>Repeat. With a full crew, moves are nearly continuous.</li>
+                <li>The 2 Quad sheets leapfrog independently alongside the caravan track.</li>
+            </ol>
+            <div class="callout">
+                <strong>Crew requirement:</strong> Minimum 3 people total — 1 on Quad, 2 leapfrogging.
+                4 people makes it smooth and fast.
+            </div>
+        </div>
+
+        <!-- Suppliers -->
+        <div class="section">
+            <h2>🏪 Dunedin Supplier Pricing (2026)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Supplier</th>
+                        <th>Phone</th>
+                        <th>15mm CD Ply (per sheet)</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ITM Dunedin</strong> ⭐ Best</td>
+                        <td>03 455 0220</td>
+                        <td>~$96</td>
+                        <td>Cheapest structural ply. Flexible delivery.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PlaceMakers Dunedin</strong></td>
+                        <td>03 466 4409</td>
+                        <td>~$100–105</td>
+                        <td>Backup. Fixed ~$96 delivery fee — worth it for large orders.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bunnings South Dunedin</strong></td>
+                        <td>03 466 3220</td>
+                        <td>~$124</td>
+                        <td>Most expensive for ply. Best for concrete pavers ($5 each) and 4×2 offcuts.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table style="margin-top:1rem;">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Est. Unit Cost</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>15mm CD Structural Ply (ITM)</td>
+                        <td>6 sheets</td>
+                        <td>~$96</td>
+                        <td>~$576</td>
+                    </tr>
+                    <tr>
+                        <td>Delivery (ITM)</td>
+                        <td>1</td>
+                        <td>~$60–80</td>
+                        <td>~$70</td>
+                    </tr>
+                    <tr>
+                        <td>400×400mm Concrete Pavers (Bunnings)</td>
+                        <td>8–12</td>
+                        <td>$5</td>
+                        <td>~$50</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total (Quad method)</strong></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong>~$696</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Safety -->
+        <div class="section">
+            <h2>🔐 Safety Protocols</h2>
+            <ul>
+                <li><strong>Tyre pressure:</strong> Drop caravan tyres to 20–25 psi before the move. Increases
+                    footprint, reduces ground pressure.</li>
+                <li><strong>No snatch-pulling:</strong> 1970s steel drawbars bend under sudden shock loads. Slow, steady
+                    tension only.</li>
+                <li><strong>Jockey wheel:</strong> Must be UP and locked during the main move. Use only for
+                    micro-adjustments at the destination.</li>
+                <li><strong>Quad speed:</strong> Walking pace only. No acceleration bursts.</li>
+                <li><strong>Sheet overlap:</strong> Maintain at least 200mm overlap between sheets at all times — no
+                    gaps under tyres.</li>
+            </ul>
+
+            <div class="callout danger">
+                <strong>⚠ Horses on plywood:</strong> If you ever switch to horse power — horses must NEVER walk on bare
+                plywood.
+                It is dangerously slippery for hooves. Horse method requires a separate grass path alongside the caravan
+                track.
+            </div>
+        </div>
+
+        <!-- Permanent Storage -->
+        <div class="section">
+            <h2>🏠 Permanent Storage — Sinking Prevention</h2>
+            <p>Once moved, the caravan must sit on permanent pads to prevent sinking over winter.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Solution</th>
+                        <th>Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Wheel pads</td>
+                        <td>2× 400×400mm concrete pavers per wheel (4 wheels = 8 pavers)</td>
+                        <td>~$40</td>
+                    </tr>
+                    <tr>
+                        <td>Corner steady pads</td>
+                        <td>1× concrete paver per corner steady (4 needed)</td>
+                        <td>~$20</td>
+                    </tr>
+                    <tr>
+                        <td>4×2 timber shims</td>
+                        <td>Offcuts for levelling under pavers if needed</td>
+                        <td>~$5–10</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="callout good">
+                <strong>Total permanent storage setup: ~$60–70.</strong> Once placed, pavers do not need replacing.
+                Concrete pavers at Bunnings South Dunedin are $5 each — cheapest option.
+            </div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="conclusion">
+            <h3>✅ Recommended Plan</h3>
+            <p>
+                <strong>6 sheets of 15mm CD Structural Plywood from ITM Dunedin.</strong><br>
+                4 for the caravan track, 2 for the Quad runway. No reduction — 6 is the minimum safe count.<br>
+                Crew of 3–4, walking pace, slow tension only. Pavers on arrival.
+            </p>
+        </div>
+
+    </div>
+</body>
+
+</html>
