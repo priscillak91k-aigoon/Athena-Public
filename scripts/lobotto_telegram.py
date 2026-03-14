@@ -8,6 +8,7 @@ import asyncio
 import pytz
 from datetime import time as dtime
 import anthropic
+from supabase import create_client
 from telegram import Update
 from telegram.ext import (
     Application, MessageHandler, CommandHandler,
@@ -21,6 +22,11 @@ load_dotenv()
 TOKEN = os.getenv("TELEGRAM_ARCHITECT_TOKEN")
 USER_ID = int(os.getenv("TELEGRAM_ALLOWED_USER_ID", 0))
 NZ_TZ = pytz.timezone("Pacific/Auckland")
+
+# Supabase (service role for bot writes — bypasses RLS)
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY", os.getenv("SUPABASE_ANON_KEY"))
+db = create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY) if SUPABASE_URL and SUPABASE_SERVICE_KEY else None
 
 # ═══════════════════════════════════════════════════════════
 # CONVERSATION MEMORY (in-memory, per session)
@@ -205,11 +211,116 @@ async def cmd_links(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id != USER_ID:
         return
     await update.message.reply_text(
-        "🔗 Your Local Apps (same WiFi):\n\n"
-        "🏠 Life Hub: http://192.168.1.81:7337/\n"
-        "🔧 Toolbox: http://192.168.1.81:7337/toolbox.html\n"
-        "⚒ Workshop: http://192.168.1.81:7337/workshop.html"
+        "🔗 Your Apps:\n\n"
+        "🌐 Life Hub (live): https://priscillak91k-aigoon.github.io/Athena-Public/\n"
+        "⚒ Workshop (live): https://priscillak91k-aigoon.github.io/Athena-Public/routine-app/workshop.html\n"
+        "🔧 Toolbox (live): https://priscillak91k-aigoon.github.io/Athena-Public/routine-app/toolbox.html"
     )
+
+
+# ═══════════════════════════════════════════════════════════
+# DATA COMMANDS — write to Supabase
+# ═══════════════════════════════════════════════════════════
+async def cmd_wish(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Add item to Workshop Wishlist. Usage: /wish electric toothbrush"""
+    if update.effective_user.id != USER_ID:
+        return
+    text = ' '.join(context.args).strip() if context.args else ''
+    if not text:
+        await update.message.reply_text("Usage: /wish <item name>\nExample: /wish electric toothbrush")
+        return
+    if not db:
+        await update.message.reply_text("⚠️ Supabase not configured.")
+        return
+    try:
+        result = db.table('workshop_wishlists').insert({'name': text}).execute()
+        await update.message.reply_text(f"✅ Added to wishlist: *{text}*", parse_mode='Markdown')
+        print(f"[Wish] Added: {text}")
+    except Exception as e:
+        await update.message.reply_text(f"⚠️ Failed: {str(e)[:200]}")
+        print(f"[Wish] Error: {e}")
+
+
+async def cmd_idea(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Add item to Workshop Ideas. Usage: /idea build a kombucha kit"""
+    if update.effective_user.id != USER_ID:
+        return
+    text = ' '.join(context.args).strip() if context.args else ''
+    if not text:
+        await update.message.reply_text("Usage: /idea <your idea>\nExample: /idea build a vertical garden")
+        return
+    if not db:
+        await update.message.reply_text("⚠️ Supabase not configured.")
+        return
+    try:
+        db.table('workshop_ideas').insert({'text': text, 'category': 'general'}).execute()
+        await update.message.reply_text(f"✅ Idea captured: *{text}*", parse_mode='Markdown')
+        print(f"[Idea] Added: {text}")
+    except Exception as e:
+        await update.message.reply_text(f"⚠️ Failed: {str(e)[:200]}")
+
+
+async def cmd_list_add(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Add item to a named Workshop list. Usage: /list Movies | The Lighthouse"""
+    if update.effective_user.id != USER_ID:
+        return
+    raw = ' '.join(context.args).strip() if context.args else ''
+    if '|' not in raw:
+        await update.message.reply_text(
+            "Usage: /list <list name> | <item>\n"
+            "Example: /list Movies | The Lighthouse\n"
+            "If the list doesn't exist yet, it will be created."
+        )
+        return
+    if not db:
+        await update.message.reply_text("⚠️ Supabase not configured.")
+        return
+    list_name, item_text = [p.strip() for p in raw.split('|', 1)]
+    try:
+        import json, uuid
+        # Find existing list
+        res = db.table('workshop_lists').select('*').ilike('list_name', list_name).execute()
+        if res.data:
+            lst = res.data[0]
+            items = lst.get('items', []) or []
+            items.append({'id': str(uuid.uuid4())[:8], 'text': item_text, 'checked': False})
+            db.table('workshop_lists').update({'items': items}).eq('id', lst['id']).execute()
+            await update.message.reply_text(f"✅ Added *{item_text}* to *{lst['list_name']}* list", parse_mode='Markdown')
+        else:
+            # Create new list
+            items = [{'id': str(uuid.uuid4())[:8], 'text': item_text, 'checked': False}]
+            db.table('workshop_lists').insert({'list_name': list_name, 'icon': '📝', 'items': items}).execute()
+            await update.message.reply_text(f"✅ Created list *{list_name}* with first item: *{item_text}*", parse_mode='Markdown')
+        print(f"[List] {list_name} ← {item_text}")
+    except Exception as e:
+        await update.message.reply_text(f"⚠️ Failed: {str(e)[:200]}")
+
+
+async def cmd_sync(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Trigger git push to sync local changes to live GitHub Pages."""
+    if update.effective_user.id != USER_ID:
+        return
+    await update.message.reply_text("⏳ Syncing to live...")
+    try:
+        import subprocess
+        from datetime import datetime
+        project_root = r"C:\Users\prisc\Documents\Athena-Public"
+        now = datetime.now(NZ_TZ).strftime("%Y-%m-%d %H:%M NZDT")
+        subprocess.run(["git", "add", "-A"], cwd=project_root, capture_output=True, timeout=30)
+        result = subprocess.run(
+            ["git", "commit", "-m", f"deploy: auto-push via Telegram {now}"],
+            cwd=project_root, capture_output=True, text=True, timeout=30
+        )
+        if "nothing to commit" in result.stdout + result.stderr:
+            await update.message.reply_text("✅ Already up to date — nothing to push.")
+            return
+        push = subprocess.run(["git", "push"], cwd=project_root, capture_output=True, text=True, timeout=60)
+        if push.returncode == 0:
+            await update.message.reply_text("✅ Synced to GitHub Pages. Live in ~60s.")
+        else:
+            await update.message.reply_text(f"⚠️ Push failed:\n{push.stderr[:300]}")
+    except Exception as e:
+        await update.message.reply_text(f"⚠️ Sync error: {str(e)[:200]}")
 
 
 # ═══════════════════════════════════════════════════════════
@@ -233,6 +344,10 @@ def main():
     app.add_handler(CommandHandler("clear", cmd_clear))
     app.add_handler(CommandHandler("status", cmd_status))
     app.add_handler(CommandHandler("links", cmd_links))
+    app.add_handler(CommandHandler("wish", cmd_wish))
+    app.add_handler(CommandHandler("idea", cmd_idea))
+    app.add_handler(CommandHandler("list", cmd_list_add))
+    app.add_handler(CommandHandler("sync", cmd_sync))
 
     # Messages
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
@@ -260,6 +375,7 @@ def main():
     print(f"  User ID: {USER_ID}")
     print("  AI: Claude Sonnet")
     print("  Reminders: 7:00 AM | 9:00 PM | 11:30 PM (NZDT)")
+    print("  Data cmds: /wish /idea /list /sync")
     print("=" * 50)
 
     app.run_polling(

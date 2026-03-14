@@ -10,6 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Outfit:wght@300;400;500;600&family=VT323&display=swap"
         rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         :root {
             /* ── Forge Palette ── */
@@ -824,13 +825,16 @@
         <header class="forge-panel" style="position: relative;">
             <h1>⚒ My Workshop</h1>
             <p class="subtitle">No pressure. No scores. Just organized drawers for your brain's overflow.</p>
-            <div style="position:absolute;top:0.75rem;right:1rem;display:flex;gap:0.4rem;">
+            <div style="position:absolute;top:0.75rem;right:1rem;display:flex;gap:0.5rem;align-items:center;">
                 <button class="ws-btn" onclick="exportAllData()"
-                    style="font-size:0.7rem;padding:0.25rem 0.6rem;opacity:0.6;"
+                    style="font-size:0.7rem;padding:0.25rem 0.6rem;opacity:0.5;"
                     title="Export all data as JSON backup">Export</button>
                 <button class="ws-btn" onclick="importData()"
-                    style="font-size:0.7rem;padding:0.25rem 0.6rem;opacity:0.6;"
+                    style="font-size:0.7rem;padding:0.25rem 0.6rem;opacity:0.5;"
                     title="Import data from backup file">Import</button>
+                <button id="sync-btn" class="ws-btn green" onclick="syncToLive()"
+                    style="font-size:0.78rem;padding:0.3rem 0.8rem;display:none;"
+                    title="Sync local changes to live GitHub Pages site">⟳ Sync</button>
             </div>
         </header>
 
@@ -1014,13 +1018,49 @@
 
     <script>
         // ═══════════════════════════════════════════════════════════════════════════
-        // DATA STORE (localStorage) — with error handling
+        // SUPABASE CLIENT
+        // ═══════════════════════════════════════════════════════════════════════════
+        const SUPABASE_URL = 'https://ezvptctdfcddoybownml.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6dnB0Y3RkZmNkZG95Ym93bm1sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3NDgzNzAsImV4cCI6MjA4NzMyNDM3MH0.u_t44hY_YCwwtbWCIrQKf7EnUZDrja1q4zUFT0MXNOs';
+        const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // ═══════════════════════════════════════════════════════════════════════════
+        // SYNC BUTTON (localhost-only)
+        // ═══════════════════════════════════════════════════════════════════════════
+        const IS_LOCAL = !['priscillak91k-aigoon.github.io'].includes(window.location.hostname);
+        if (IS_LOCAL) {
+            const syncBtn = document.getElementById('sync-btn');
+            if (syncBtn) syncBtn.style.display = 'inline-block';
+        }
+
+        async function syncToLive() {
+            const btn = document.getElementById('sync-btn');
+            btn.textContent = '⟳ Syncing...';
+            btn.disabled = true;
+            try {
+                const res = await fetch('http://localhost:7338/deploy', { signal: AbortSignal.timeout(70000) });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    btn.textContent = '✅ Synced';
+                    btn.style.borderColor = 'var(--brass)';
+                    setTimeout(() => { btn.textContent = '⟳ Sync'; btn.style.borderColor = ''; btn.disabled = false; }, 4000);
+                } else {
+                    btn.textContent = '❌ Failed';
+                    btn.disabled = false;
+                    console.error('[Sync]', json);
+                }
+            } catch (e) {
+                btn.textContent = '❌ Server offline';
+                btn.disabled = false;
+                console.error('[Sync] Deploy server not running:', e.message);
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════════════════
+        // LOCAL DATA STORE (localStorage) — Gifts, Projects, Reports only
         // ═══════════════════════════════════════════════════════════════════════════
         const KEYS = {
             people: 'workshop_gift_people',
-            ideas: 'workshop_ideas',
-            wishes: 'workshop_wishes',
-            lists: 'workshop_lists',
             projects: 'workshop_projects',
             activeTab: 'workshop_active_tab'
         };
@@ -1301,27 +1341,28 @@
         }
 
         // ═══════════════════════════════════════════════════════════════════════════
-        // IDEAS
+        // IDEAS — Supabase
         // ═══════════════════════════════════════════════════════════════════════════
         let currentIdeaFilter = 'all';
+        let _ideasCache = [];
 
-        function addIdea() {
+        async function addIdea() {
             const textEl = document.getElementById('idea-text');
             const text = textEl.value.trim();
             if (!text) return;
             const category = document.getElementById('idea-category').value;
-            const ideas = load(KEYS.ideas);
-            ideas.unshift({ id: genId(), text, category, createdAt: new Date().toISOString() });
-            save(KEYS.ideas, ideas);
+            const { data, error } = await db.from('workshop_ideas').insert({ text, category }).select().single();
+            if (error) { console.error('[Ideas] Insert failed:', error); return; }
+            _ideasCache.unshift(data);
             textEl.value = '';
             renderIdeas();
             textEl.focus();
         }
 
-        function deleteIdea(id) {
+        async function deleteIdea(id) {
             if (!confirm('Delete this idea?')) return;
-            const ideas = load(KEYS.ideas).filter(i => i.id !== id);
-            save(KEYS.ideas, ideas);
+            await db.from('workshop_ideas').delete().eq('id', id);
+            _ideasCache = _ideasCache.filter(i => i.id !== id);
             renderIdeas();
         }
 
@@ -1332,18 +1373,24 @@
             renderIdeas();
         }
 
+        async function loadIdeas() {
+            const { data } = await db.from('workshop_ideas').select('*').order('added_at', { ascending: false });
+            _ideasCache = data || [];
+            renderIdeas();
+        }
+
         const IDEA_ICONS = { general: '💭', project: '🔨', business: '💼', make: '🎨', try: '🧪' };
 
         function renderIdeas() {
             const container = document.getElementById('ideas-grid');
-            let ideas = load(KEYS.ideas);
+            let ideas = _ideasCache;
             if (currentIdeaFilter !== 'all') ideas = ideas.filter(i => i.category === currentIdeaFilter);
             if (ideas.length === 0) {
                 container.innerHTML = '<div class="empty-state">No ideas yet. Start dumping them above — no pressure to organize.</div>';
                 return;
             }
-            container.innerHTML = ideas.filter(i => i && i.id).map(i => {
-                const date = safeDate(i.createdAt);
+            container.innerHTML = ideas.map(i => {
+                const date = safeDate(i.added_at);
                 const iid = esc(i.id);
                 return `
                     <div class="card">
@@ -1356,37 +1403,37 @@
         }
 
         // ═══════════════════════════════════════════════════════════════════════════
-        // WISHLISTS
+        // WISHLISTS — Supabase
         // ═══════════════════════════════════════════════════════════════════════════
-        function addWish() {
+        let _wishesCache = [];
+
+        async function addWish() {
             const nameEl = document.getElementById('wish-name');
             const name = nameEl.value.trim();
             if (!name) return;
             const price = document.getElementById('wish-price').value.trim();
             const link = document.getElementById('wish-link').value.trim();
             const why = document.getElementById('wish-why').value.trim();
-            const wishes = load(KEYS.wishes);
-            wishes.unshift({ id: genId(), name, price, link, why, addedAt: new Date().toISOString(), purchased: false });
-            save(KEYS.wishes, wishes);
+            const { data, error } = await db.from('workshop_wishlists').insert({ name, price: price || null, link: link || null, why: why || null }).select().single();
+            if (error) { console.error('[Wishes] Insert failed:', error); return; }
+            _wishesCache.unshift(data);
             ['wish-name', 'wish-price', 'wish-link', 'wish-why'].forEach(id => document.getElementById(id).value = '');
             renderWishes();
             nameEl.focus();
         }
 
-        function deleteWish(id) {
-            const wishes = load(KEYS.wishes);
-            const wish = wishes.find(w => w.id === id);
+        async function deleteWish(id) {
+            const wish = _wishesCache.find(w => w.id === id);
             const name = wish ? wish.name : 'this item';
             if (!confirm(`Remove "${name}" from your wishlist?`)) return;
-            save(KEYS.wishes, wishes.filter(w => w.id !== id));
+            await db.from('workshop_wishlists').delete().eq('id', id);
+            _wishesCache = _wishesCache.filter(w => w.id !== id);
             renderWishes();
         }
 
-        function togglePurchased(id) {
-            const wishes = load(KEYS.wishes);
-            const wish = wishes.find(w => w.id === id);
-            if (wish) wish.purchased = !wish.purchased;
-            save(KEYS.wishes, wishes);
+        async function loadWishes() {
+            const { data } = await db.from('workshop_wishlists').select('*').order('added_at', { ascending: false });
+            _wishesCache = data || [];
             renderWishes();
         }
 
@@ -1400,21 +1447,20 @@
 
         function renderWishes() {
             const container = document.getElementById('wishlists-grid');
-            const wishes = load(KEYS.wishes);
-            if (wishes.length === 0) {
+            if (_wishesCache.length === 0) {
                 container.innerHTML = '<div class="empty-state">No wishes yet. Spot something you want? Save it here.</div>';
                 return;
             }
-            container.innerHTML = wishes.map(w => {
+            container.innerHTML = _wishesCache.map(w => {
                 const wid = esc(w.id);
                 const href = safeHref(w.link);
                 return `
-                <div class="card" style="${w.purchased ? 'opacity:0.4;' : ''}">
+                <div class="card">
                     <div class="card-actions"><button class="ws-btn red" onclick="deleteWish('${wid}')">×</button></div>
-                    <div class="card-title" style="cursor:pointer;" onclick="togglePurchased('${wid}')">${w.purchased ? '✅' : '🛒'} ${esc(w.name)}</div>
+                    <div class="card-title">🛒 ${esc(w.name)}</div>
                     <div class="card-meta">
                         ${w.price ? `<strong style="color:var(--brass);">$${esc(w.price)}</strong> · ` : ''}
-                        ${getCoolBadge(w.addedAt)}
+                        ${getCoolBadge(w.added_at)}
                     </div>
                     ${w.why ? `<div class="card-body"><strong>Why:</strong> ${esc(w.why)}</div>` : ''}
                     ${href ? `<div style="margin-top:0.4rem;"><a href="${esc(href)}" target="_blank" rel="noopener noreferrer" style="color:var(--forge-amber);font-size:0.8rem;text-decoration:none;">🔗 Link</a></div>` : ''}
@@ -1423,72 +1469,76 @@
         }
 
         // ═══════════════════════════════════════════════════════════════════════════
-        // LISTS
+        // LISTS — Supabase
         // ═══════════════════════════════════════════════════════════════════════════
-        function addList() {
+        let _listsCache = [];
+
+        async function addList() {
             const nameEl = document.getElementById('list-name');
             const name = nameEl.value.trim();
             if (!name) return;
             const icon = document.getElementById('list-icon').value;
-            const lists = load(KEYS.lists);
-            lists.push({ id: genId(), name, icon, items: [] });
-            save(KEYS.lists, lists);
+            const { data, error } = await db.from('workshop_lists').insert({ list_name: name, icon, items: [] }).select().single();
+            if (error) { console.error('[Lists] Insert failed:', error); return; }
+            _listsCache.push(data);
             nameEl.value = '';
             renderLists();
         }
 
-        function addItemToList(listId) {
+        async function addItemToList(listId) {
             const input = document.getElementById(`list-item-${listId}`);
             if (!input) return;
             const text = input.value.trim();
             if (!text) return;
-            const lists = load(KEYS.lists);
-            const list = lists.find(l => l.id === listId);
+            const list = _listsCache.find(l => l.id === listId);
             if (!list) return;
-            list.items.push({ id: genId(), text, checked: false });
-            save(KEYS.lists, lists);
+            const newItems = [...(list.items || []), { id: genId(), text, checked: false }];
+            const { data, error } = await db.from('workshop_lists').update({ items: newItems, updated_at: new Date().toISOString() }).eq('id', listId).select().single();
+            if (error) { console.error('[Lists] Update failed:', error); return; }
+            list.items = data.items;
             renderLists();
-            // Re-focus after render
             const newInput = document.getElementById(`list-item-${listId}`);
             if (newInput) newInput.focus();
         }
 
-        function toggleListItem(listId, itemId) {
-            const lists = load(KEYS.lists);
-            const list = lists.find(l => l.id === listId);
+        async function toggleListItem(listId, itemId) {
+            const list = _listsCache.find(l => l.id === listId);
             if (!list) return;
-            const item = list.items.find(i => i.id === itemId);
+            const item = (list.items || []).find(i => i.id === itemId);
             if (item) item.checked = !item.checked;
-            save(KEYS.lists, lists);
+            await db.from('workshop_lists').update({ items: list.items, updated_at: new Date().toISOString() }).eq('id', listId);
             renderLists();
         }
 
-        function deleteListItem(listId, itemId) {
-            const lists = load(KEYS.lists);
-            const list = lists.find(l => l.id === listId);
+        async function deleteListItem(listId, itemId) {
+            const list = _listsCache.find(l => l.id === listId);
             if (!list) return;
-            list.items = list.items.filter(i => i.id !== itemId);
-            save(KEYS.lists, lists);
+            list.items = (list.items || []).filter(i => i.id !== itemId);
+            await db.from('workshop_lists').update({ items: list.items, updated_at: new Date().toISOString() }).eq('id', listId);
             renderLists();
         }
 
-        function deleteList(listId) {
+        async function deleteList(listId) {
             if (!confirm('Delete this entire list?')) return;
-            const lists = load(KEYS.lists).filter(l => l.id !== listId);
-            save(KEYS.lists, lists);
+            await db.from('workshop_lists').delete().eq('id', listId);
+            _listsCache = _listsCache.filter(l => l.id !== listId);
+            renderLists();
+        }
+
+        async function loadLists() {
+            const { data } = await db.from('workshop_lists').select('*').order('updated_at', { ascending: false });
+            _listsCache = data || [];
             renderLists();
         }
 
         function renderLists() {
             const container = document.getElementById('lists-container');
-            const lists = load(KEYS.lists);
-            if (lists.length === 0) {
+            if (_listsCache.length === 0) {
                 container.innerHTML = '<div class="empty-state">No lists yet. Create one above — recipes, movies, places, anything.</div>';
                 return;
             }
-            container.innerHTML = lists.map(l => {
+            container.innerHTML = _listsCache.map(l => {
                 const lid = esc(l.id);
-                // Sort: unchecked items first, checked items sink to bottom
                 const sortedItems = [...(l.items || [])].sort((a, b) => (a.checked === b.checked) ? 0 : a.checked ? 1 : -1);
                 const itemsHtml = sortedItems.map(i => {
                     const iid = esc(i.id);
@@ -1502,7 +1552,7 @@
                 return `
                     <div class="sub-panel" style="margin-bottom: 1rem;">
                         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
-                            <h3>${esc(l.icon)} ${esc(l.name)} <span style="font-size:0.75rem;color:var(--parchment-dim);font-weight:normal;">(${(l.items || []).length})</span></h3>
+                            <h3>${esc(l.icon)} ${esc(l.list_name)} <span style="font-size:0.75rem;color:var(--parchment-dim);font-weight:normal;">(${(l.items || []).length})</span></h3>
                             <button class="ws-btn red" onclick="deleteList('${lid}')">Delete</button>
                         </div>
                         ${itemsHtml || '<div style="color:var(--parchment-dim);font-size:0.82rem;font-style:italic;">Empty list</div>'}
@@ -1696,33 +1746,18 @@
         // ═══════════════════════════════════════════════════════════════════════════
         // INIT
         // ═══════════════════════════════════════════════════════════════════════════
-        function renderAll() {
+        async function initAll() {
+            // Supabase tabs (async)
+            loadWishes();
+            loadIdeas();
+            loadLists();
+            // localStorage tabs (sync)
             renderGifts();
-            renderIdeas();
-            renderWishes();
-            renderLists();
             renderProjects();
             renderReports();
         }
 
-        // ── Storage health check ──────────────────────────────────────────────────
-        (function checkStorageHealth() {
-            const TEST_KEY = '__ws_storage_test__';
-            try {
-                localStorage.setItem(TEST_KEY, '1');
-                const ok = localStorage.getItem(TEST_KEY) === '1';
-                localStorage.removeItem(TEST_KEY);
-                if (!ok) throw new Error('read-back failed');
-            } catch (e) {
-                const banner = document.createElement('div');
-                banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#7f1d1d;color:#fca5a5;font-family:Outfit,sans-serif;font-size:0.88rem;padding:0.75rem 1.25rem;text-align:center;line-height:1.4;';
-                banner.innerHTML = `⚠ <strong>localStorage is blocked</strong> — data cannot be saved in this session. This happens in private/incognito mode or when the browser blocks file:// storage. Open Workshop from Brave in a normal window, or use the Export/Import buttons for backup.`;
-                document.body.prepend(banner);
-                console.error('[Workshop] localStorage unavailable:', e.message);
-            }
-        })();
-
-        renderAll();
+        initAll();
 
         document.getElementById('gift-person-name').addEventListener('keydown', e => { if (e.key === 'Enter') addPerson(); });
         document.getElementById('idea-text').addEventListener('keydown', e => { if (e.key === 'Enter') addIdea(); });
