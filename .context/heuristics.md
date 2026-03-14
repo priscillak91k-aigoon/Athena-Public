@@ -6,7 +6,7 @@ tags:
 
 > **Purpose**: Pre-compiled gut rules. Loaded every session. Updated every `/end`.  
 > **Philosophy**: Make pattern recognition explicit so it survives across sessions.  
-> **Last Updated**: 2026-03-08 (Session 43)
+> **Last Updated**: 2026-03-15 (Session 55)
 
 ---
 

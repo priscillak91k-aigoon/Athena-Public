@@ -218,10 +218,28 @@ tags:
 
 *New cases should be added when a novel problem-solution pattern emerges. Dreaming script: MERGE to existing cases — do NOT append duplicates.*
 
+## CS-024: Multi-Platform Game License vs Save Data Separation
+- **Pattern**: User had game on PS5, then played same title on Xbox via Game Pass. Assumed license transferred but save data synced.
+- **Shape**: "I bought it on PS5, played it on Xbox via Game Pass, now can't figure out how to play on PC."
+- **Solution**: Clarify the difference — save data syncs via the game's own account (Battle.net, Activision etc), but the license is platform-specific. PS5 purchase = PS only. Game Pass = Xbox/PC only. Need a PC Game Pass or native PC purchase for Battle.net/GFN.
+- **Lesson**: Cross-progression ≠ cross-license. Saves travel with accounts; licenses stay on platform. Always separate the two concepts when helping with cross-platform gaming questions.
+- **Applicable When**: Any gaming question involving "I bought it on X, why can't I play it on Y?"
+
 ---
 
-## CS-024: UTF-8 Corruption from PowerShell File Editing
-- **Pattern**: HTML files with emoji become corrupted after PowerShell modification
+## CS-025: Supabase + localStorage Hybrid — When to Split
+- **Pattern**: Apps with mixed persistence needs — some data must be cross-device, some is fine local.
+- **Shape**: "I want wishlist and ideas to sync across devices but gifts is complex nested structure."
+- **Solution**: Migrate high-value simple tables (flat records) to Supabase first. Leave complex nested structures in localStorage for a future session. Hybrid approach ships value fast without a big-bang migration.
+- **Lesson**: Don't wait for a perfect full migration. Ship the tabs that matter most (Wishlist, Ideas, Lists) and defer complex ones (Gifts with nested person→gift structure). Incremental beats paralyzed.
+- **Applicable When**: Any localStorage → cloud migration where not all data is equal complexity.
+
+---
+
+*Graph links  [[ATHENA_MAP]]*
+Related: [[decision_journal]] | [[heuristics]]
+
+
 - **Shape**: "User reports 'little icons aren't showing' - visual symbols replaced with question marks"
 - **Solution**: Never use PowerShell Set-Content on UTF-8 files. Use Python with explicit encoding='utf-8'. Restore corrupted files with git + Python patch script.
 - **Lesson**: Windows PowerShell defaults to Windows-1252 encoding which corrupts multibyte UTF-8 sequences
