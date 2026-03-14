@@ -49,7 +49,7 @@ tags:
 - **Workspace**: Garage cellar — MSI laptop, Logitech speaker, wooden desk, warm yellow walls
 - **Kids**: Has school-age children — morning routine 6:30–8:30 AM weekdays is fully dedicated to them (breakfast, school prep, drop-off). Deep work / personal time only begins after 8:30 AM on weekdays.
 - **Nephews**: Ages 5 & 3 — active caretaking role
-- **Exercise**: Home resistance training (has equipment). Extreme responder genotype (ADRB2 G/G).
+- **Exercise**: Home resistance training. Equipment: 10kg DB, 8kg KB, 2×3kg DBs, 2×5kg disks, bands, bench, staircase, exercise bike. Active workout routine built Session 54 (3 days/week, Tue/Thu/Sat post-nap). Extreme responder genotype (ADRB2 G/G).
 - **Motivation**: Responds well to structuring leisure as reward for completing routine tasks.
 
 ### AI Persona Directive — Seven of Nine
@@ -122,14 +122,16 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 
 ### Life Hub / Routine App (`routine-app/`)
 - **Aurora teal theme** — dark teal gradient background, frosted glass panels, sharp edges, animated wisps (Session 45 full CSS redesign)
-- Features: Pulse dashboard, Schedule, Planner, Finance, Ideas, Supps Vault, User Manual, **Misc (new)**
+- Features: Pulse dashboard, Schedule, Planner, Finance, Ideas, Supps Vault, User Manual, **Misc**, **Workout** (new Session 54)
 - **Misc tab**: Life design canvas — Ideal Week chart (7-day card grid, colour-coded blocks)
   - Ideal Week reflects: kids 6:30–8:30 AM weekday mornings, 2h daily nap every weekday, Sat/Sun sleep to 9 AM
+- **Workout page** (`workout.html`): 6-tab personalised home workout routine — Sessions A/B/C, mobility, schedule, SVG exercise figures
 - **Planner sidebar**: mini month calendar, tasks list, notes — localStorage persistent
 - **Audio**: Ambient BGM (3 tracks: Northern Light, Deep Water, Stillness) + soft UI click sound
 - Tech: Vanilla HTML/CSS/JS + Supabase + localStorage
-- Key files: `symphony-app.js`, `index.html`, `styles.css`, `_planner_sidebar.js`, `_planner_v2.js`, `_misc.js`, `retro-audio.js`
-- Live: https://priscillak91k-aigoon.github.io/Athena-Public/routine-app/
+- Key files: `symphony-app.js`, `index.html`, `styles.css`, `_planner_sidebar.js`, `_planner_v2.js`, `_misc.js`, `retro-audio.js`, `workout.html`
+- **Live (GitHub Pages)**: https://priscillak91k-aigoon.github.io/Athena-Public/ (root redirect → Life Hub)
+- **Tabled**: Supabase kvstore cross-device sync for localStorage features (Workshop, Planner, Today extras, Ideal Week)
 
 ### Lobotto
 - AI persona/bot with cloned voice (Priscilla's voice via XTTS-v2)
@@ -139,10 +141,9 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 
 ### Munro Caravan Move
 - 1977 Munro caravan (~700-900kg), needs moving across wet grass to canopy spot
-- Decision: Horse-power preferred (cheaper, $491 vs $685 for quad)
-- 15mm CD Structural Plywood confirmed (4 sheets for caravan track)
-- Plans: `munro-move-plan.html`, `munro-move-horse-plan.html`
-- **Pending**: Call ITM Dunedin (03 455 0220) to order materials
+- Decision: **Quad method** confirmed (Session 54 report) — 6 sheets 15mm CD Structural Plywood, leapfrog technique
+- Workshop Report live: `reports/munro-caravan-move-report.html`
+- **Pending**: Call ITM Dunedin (03 455 0220) to order 6 sheets 15mm CD Structural (~$576–600 est.)
 
 ### Lobotto Prints (Etsy Shop)
 - Digital art Etsy shop — passive income stream
@@ -200,27 +201,26 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 
 | Session | Date | Key Work |
 |---------|------|----------|
+| 54 | 2026-03-14 (Night) | Data persistence audit + 3 fixes, Munro caravan report, home workout routine page, GitHub Pages live |
+| 53 | 2026-03-14 (PM) | WiFi fix, WE75 upgrade report, Workshop Reports tab, GPU driver swap |
 | 40 | 2026-03-06 (Night) | KOTOR audio system (15+ SFX), Starboard Section, Carth Onasi, escape pod ending, CDP fix |
 | 39 | 2026-03-06 (PM) | System cleanup, scheduled task fixes, dreaming heuristics dedup |
-| 37 | 2026-03-06 (PM) | ← Previous — Heartbeat v2.0 dreaming, Aider+Cursor install, KOTOR game (paused) |
+| 37 | 2026-03-06 (PM) | Heartbeat v2.0 dreaming, Aider+Cursor install, KOTAR game (paused) |
 | 36 | 2026-03-05 (Night) | Athena bridge, Discord bot arch, UAP deep dive, roasts |
 | 35 | 2026-03-05 (PM) | Template editor redesign, Discord bot soul transplant |
-| 33 | 2026-03-04 (Night) | System audit, SJAI exchange, philosophical dialogue |
-| 32 | 2026-03-04 (Late PM) | Moltbook registration, SJ visit, ADHD discussion |
-| 31 | 2026-03-04 (PM2) | Etsy passive income, 15 products generated |
-| 29 | 2026-03-04 | Security hardening, intuition engine, dreaming system |
 
 ---
 
 ## 🔮 Open Action Items
 
+- [ ] **Supabase kvstore sync** — migrate Workshop/Planner/Today extras/Ideal Week to cross-device (one session, ~90 min)
+- [ ] **Workshop gifts check** — open in same Brave profile; if red banner appears, it's profile isolation
+- [ ] **Book Vitamin D blood test** — 3+ months on 30,000 IU/day loading dose, overdue
+- [ ] **Call ITM Dunedin** (03 455 0220) — order 6 sheets 15mm CD Structural plywood for Munro move
+- [ ] Confirm Munro move date
+- [ ] Schedule annual blood donation (ferritin management)
 - [ ] **Complete Moltbook claim verification** (retry when X rate limit resets)
 - [ ] **Complete Etsy ID verification** and upload 15 products to Lobotto Prints
-- [ ] Explore Discord AI-to-AI channel with SJ's Athena
-- [ ] Call ITM Dunedin to order plywood + delivery for Munro move
-- [ ] Confirm Munro move date
-- [ ] Get 25(OH)D blood test at 8-12 weeks (started ~late Feb 2026)
-- [ ] Schedule annual blood donation (ferritin management)
 - [ ] Set up persistent Telegram bot process (background service or cloud)
 - [ ] Consolidate Athena framework to single canonical version
 

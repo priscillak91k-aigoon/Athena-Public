@@ -5,9 +5,12 @@
     "Loom",
     "Imgur",
     "Automattic",
-    "Mapbox"
+    "Mapbox",
+    "Nextcloud",
+    "Sentry",
+    "Shopify"
   ],
-  "last_run": "2026-03-14T22:40:28.311752",
-  "total_runs": 143,
+  "last_run": "2026-03-14T22:53:13.958256",
+  "total_runs": 144,
   "findings_count": 0
 }
