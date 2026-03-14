@@ -1705,6 +1705,23 @@
             renderReports();
         }
 
+        // ── Storage health check ──────────────────────────────────────────────────
+        (function checkStorageHealth() {
+            const TEST_KEY = '__ws_storage_test__';
+            try {
+                localStorage.setItem(TEST_KEY, '1');
+                const ok = localStorage.getItem(TEST_KEY) === '1';
+                localStorage.removeItem(TEST_KEY);
+                if (!ok) throw new Error('read-back failed');
+            } catch (e) {
+                const banner = document.createElement('div');
+                banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#7f1d1d;color:#fca5a5;font-family:Outfit,sans-serif;font-size:0.88rem;padding:0.75rem 1.25rem;text-align:center;line-height:1.4;';
+                banner.innerHTML = `⚠ <strong>localStorage is blocked</strong> — data cannot be saved in this session. This happens in private/incognito mode or when the browser blocks file:// storage. Open Workshop from Brave in a normal window, or use the Export/Import buttons for backup.`;
+                document.body.prepend(banner);
+                console.error('[Workshop] localStorage unavailable:', e.message);
+            }
+        })();
+
         renderAll();
 
         document.getElementById('gift-person-name').addEventListener('keydown', e => { if (e.key === 'Enter') addPerson(); });
