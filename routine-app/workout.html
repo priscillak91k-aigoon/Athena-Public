@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Routine | Life Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=VT323&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050d12;
+            --panel: rgba(8, 22, 30, 0.85);
+            --border: rgba(0, 200, 160, 0.15);
+            --border-hot: rgba(0, 200, 160, 0.4);
+            --green: #00c9a0;
+            --yellow: #fbbf24;
+            --purple: #a78bfa;
+            --red: #f87171;
+            --blue: #38bdf8;
+            --text: #e8f0f2;
+            --dim: rgba(232, 240, 242, 0.5);
+            --dim2: rgba(232, 240, 242, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            padding-bottom: 4rem;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at 20% 30%, rgba(0, 200, 160, 0.06) 0%, transparent 60%), radial-gradient(ellipse at 80% 70%, rgba(167, 139, 250, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .app {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            color: var(--green);
+            text-decoration: none;
+            font-size: .85rem;
+            margin-bottom: 1.25rem;
+            opacity: .7;
+            transition: opacity .2s;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+
+        header {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .header-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            object-position: center 30%;
+            display: block;
+            opacity: .8;
+        }
+
+        .header-body {
+            padding: 1.25rem 1.5rem 1.5rem;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            color: var(--green);
+            letter-spacing: 1px;
+            margin-bottom: .3rem;
+        }
+
+        header p {
+            color: var(--dim);
+            font-size: .9rem;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            margin-top: .75rem;
+        }
+
+        .chip {
+            font-size: .72rem;
+            padding: .2rem .65rem;
+            border-radius: 20px;
+            border: 1px solid;
+            background: rgba(0, 0, 0, .3);
+        }
+
+        .chip.g {
+            border-color: rgba(0, 201, 160, .3);
+            color: var(--green);
+        }
+
+        .chip.y {
+            border-color: rgba(251, 191, 36, .3);
+            color: var(--yellow);
+        }
+
+        .chip.p {
+            border-color: rgba(167, 139, 250, .3);
+            color: var(--purple);
+        }
+
+        /* tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .tab {
+            background: rgba(0, 0, 0, .3);
+            border: 1px solid var(--border);
+            color: var(--dim);
+            padding: .45rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: .85rem;
+            transition: all .2s;
+        }
+
+        .tab.active,
+        .tab:hover {
+            border-color: var(--green);
+            color: var(--green);
+            background: rgba(0, 201, 160, .08);
+        }
+
+        .pane {
+            display: none;
+        }
+
+        .pane.active {
+            display: block;
+        }
+
+        /* section */
+        .section {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section h2 {
+            font-size: 1rem;
+            color: var(--yellow);
+            font-family: 'VT323', monospace;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .section-note {
+            font-size: .82rem;
+            color: var(--dim);
+            margin-bottom: 1rem;
+            padding: .6rem .9rem;
+            border-left: 3px solid var(--border);
+            background: rgba(0, 0, 0, .2);
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* exercise cards */
+        .ex-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: .9rem;
+        }
+
+        .ex-card {
+            background: rgba(0, 0, 0, .3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: border-color .2s;
+        }
+
+        .ex-card:hover {
+            border-color: var(--border-hot);
+        }
+
+        .ex-fig {
+            background: rgba(0, 0, 0, .5);
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .ex-fig svg {
+            width: 80px;
+            height: 110px;
+        }
+
+        .ex-body {
+            padding: .85rem;
+        }
+
+        .ex-name {
+            font-weight: 600;
+            font-size: .95rem;
+            color: var(--text);
+            margin-bottom: .25rem;
+        }
+
+        .ex-sets {
+            font-size: .78rem;
+            color: var(--yellow);
+            font-family: 'VT323', monospace;
+            letter-spacing: .5px;
+            margin-bottom: .5rem;
+        }
+
+        .ex-equip {
+            font-size: .72rem;
+            color: var(--purple);
+            margin-bottom: .5rem;
+        }
+
+        .ex-cues {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ex-cues li {
+            font-size: .78rem;
+            color: var(--dim);
+            padding: .2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .04);
+            padding-left: .9rem;
+            position: relative;
+        }
+
+        .ex-cues li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+        }
+
+        .ex-cues li:last-child {
+            border-bottom: none;
+        }
+
+        .injury-flag {
+            font-size: .7rem;
+            color: #f87171;
+            margin-top: .4rem;
+            padding: .25rem .5rem;
+            background: rgba(248, 113, 113, .08);
+            border-radius: 3px;
+            border: 1px solid rgba(248, 113, 113, .2);
+        }
+
+        /* mob steps */
+        .mob-list {
+            list-style: none;
+        }
+
+        .mob-list li {
+            display: flex;
+            gap: .75rem;
+            align-items: flex-start;
+            padding: .65rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .mob-list li:last-child {
+            border-bottom: none;
+        }
+
+        .mob-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            margin-top: -.1rem;
+        }
+
+        .mob-text strong {
+            display: block;
+            font-size: .9rem;
+            color: var(--text);
+        }
+
+        .mob-text span {
+            font-size: .78rem;
+            color: var(--dim);
+        }
+
+        /* table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .83rem;
+        }
+
+        th {
+            padding: .5rem .75rem;
+            background: rgba(0, 0, 0, .4);
+            color: var(--dim2);
+            text-align: left;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: .55rem .75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .04);
+            color: var(--text);
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: .68rem;
+            padding: .15rem .45rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .tag.rest {
+            background: rgba(248, 113, 113, .12);
+            color: var(--red);
+            border: 1px solid rgba(248, 113, 113, .2);
+        }
+
+        .tag.train {
+            background: rgba(0, 201, 160, .1);
+            color: var(--green);
+            border: 1px solid rgba(0, 201, 160, .2);
+        }
+
+        .tag.light {
+            background: rgba(167, 139, 250, .1);
+            color: var(--purple);
+            border: 1px solid rgba(167, 139, 250, .2);
+        }
+
+        /* phase bars */
+        .phase {
+            display: flex;
+            gap: .75rem;
+            align-items: flex-start;
+            padding: .8rem;
+            background: rgba(0, 0, 0, .3);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            margin-bottom: .6rem;
+        }
+
+        .phase-num {
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            color: var(--green);
+            min-width: 2rem;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .phase-num.p2 {
+            color: var(--yellow);
+        }
+
+        .phase-num.p3 {
+            color: var(--purple);
+        }
+
+        .phase-body strong {
+            display: block;
+            font-size: .9rem;
+            color: var(--text);
+        }
+
+        .phase-body span {
+            font-size: .78rem;
+            color: var(--dim);
+        }
+
+        @media(max-width:600px) {
+            .ex-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-img {
+                height: 130px;
+            }
+
+            .header-body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <a href="index.html" class="back-link">← Life Hub</a>
+
+        <header>
+            <img src="reports/workout-header.png" alt="Workout" class="header-img">
+            <div class="header-body">
+                <h1>💪 Home Workout Routine</h1>
+                <p>Personalised for your equipment, schedule, shift-work recovery, and injury prevention.</p>
+                <div class="chips">
+                    <span class="chip g">3–4 days/week</span>
+                    <span class="chip g">45 min/session</span>
+                    <span class="chip y">Post-nap timing</span>
+                    <span class="chip y">No gym needed</span>
+                    <span class="chip p">Injury prevention</span>
+                    <span class="chip p">Starts Monday 17 Mar</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" onclick="show('overview',this)">📋 Overview</button>
+            <button class="tab" onclick="show('sessionA',this)">🦵 Session A</button>
+            <button class="tab" onclick="show('sessionB',this)">💪 Session B</button>
+            <button class="tab" onclick="show('sessionC',this)">⚡ Session C</button>
+            <button class="tab" onclick="show('mobility',this)">🧘 Mobility</button>
+            <button class="tab" onclick="show('schedule',this)">📅 Schedule</button>
+        </div>
+
+        <!-- OVERVIEW -->
+        <div class="pane active" id="overview">
+            <div class="section">
+                <h2>🗂 YOUR EQUIPMENT</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Equipment</th>
+                            <th>Primary Use</th>
+                        </tr>
+                    </thead>
+                    <tbody id="equip-table"></tbody>
+                </table>
+            </div>
+            <div class="section" style="margin-top:1rem;">
+                <h2>⚠ INJURY PREVENTION TARGETS</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Zone</th>
+                            <th>Risk</th>
+                            <th>Fix</th>
+                        </tr>
+                    </thead>
+                    <tbody id="injury-table"></tbody>
+                </table>
+            </div>
+            <div class="section" style="margin-top:1rem;">
+                <h2>📈 PHASES</h2>
+                <div id="phases"></div>
+            </div>
+        </div>
+
+        <!-- SESSION A -->
+        <div class="pane" id="sessionA">
+            <div class="section">
+                <h2>🦵 SESSION A — LOWER BODY</h2>
+                <div class="section-note">Best on <strong>Tuesday</strong> post-nap (~3pm). ~45 min. Glute &amp;
+                    hamstring focus. Protects your lower back and knees.</div>
+                <div class="ex-grid" id="ex-a"></div>
+            </div>
+        </div>
+
+        <!-- SESSION B -->
+        <div class="pane" id="sessionB">
+            <div class="section">
+                <h2>💪 SESSION B — UPPER BODY</h2>
+                <div class="section-note">Best on <strong>Wednesday</strong> post-nap or <strong>Saturday</strong>
+                    morning. ~45 min. Counters shoulder rounding from shifts.</div>
+                <div class="ex-grid" id="ex-b"></div>
+            </div>
+        </div>
+
+        <!-- SESSION C -->
+        <div class="pane" id="sessionC">
+            <div class="section">
+                <h2>⚡ SESSION C — FULL BODY POWER</h2>
+                <div class="section-note">Best on <strong>Thursday</strong> post-nap (~2:30pm). ~45 min. KB swing is the
+                    centrepiece — builds everything.</div>
+                <div class="ex-grid" id="ex-c"></div>
+            </div>
+        </div>
+
+        <!-- MOBILITY -->
+        <div class="pane" id="mobility">
+            <div class="section">
+                <h2>🔥 5-MIN OPENER — EVERY SESSION</h2>
+                <div class="section-note">Do this before every strength session, after 5 min on the bike.
+                    Non-negotiable.</div>
+                <ul class="mob-list" id="mob-opener"></ul>
+            </div>
+            <div class="section" style="margin-top:1rem;">
+                <h2>🌅 DAILY PRE-SHIFT HABIT — 5 MIN</h2>
+                <div class="section-note">Before any BP shift. Undoes shift-work damage before it compounds.</div>
+                <ul class="mob-list" id="mob-daily"></ul>
+            </div>
+        </div>
+
+        <!-- SCHEDULE -->
+        <div class="pane" id="schedule">
+            <div class="section">
+                <h2>📅 WEEK 1 SCHEDULE — 17 MARCH</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Date</th>
+                            <th>Plan</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="schedule-table"></tbody>
+                </table>
+            </div>
+            <div class="section" style="margin-top:1rem;">
+                <h2>⏱ SESSION STRUCTURE</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Block</th>
+                            <th>Duration</th>
+                            <th>What</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Warm-up</td>
+                            <td>5 min</td>
+                            <td>Bike — low resistance, get blood moving</td>
+                        </tr>
+                        <tr>
+                            <td>Mobility opener</td>
+                            <td>5 min</td>
+                            <td>5 movements (see Mobility tab)</td>
+                        </tr>
+                        <tr>
+                            <td>Strength work</td>
+                            <td>30–35 min</td>
+                            <td>Main exercises from the session</td>
+                        </tr>
+                        <tr>
+                            <td>Cool-down</td>
+                            <td>5 min</td>
+                            <td>Session-specific stretches</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ── SVG exercise figure helpers ──────────────────────────────────────
+        const svgs = {
+            squat: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="12" r="8" fill="#00c9a0"/>
+    <line x1="40" y1="20" x2="40" y2="52" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="30" x2="18" y2="42" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="30" x2="62" y2="42" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="52" x2="22" y2="72" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="52" x2="58" y2="72" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="22" y1="72" x2="18" y2="95" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="58" y1="72" x2="62" y2="95" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <rect x="14" y="38" width="8" height="14" rx="3" fill="#fbbf24" opacity=".8"/>
+    <rect x="58" y="38" width="8" height="14" rx="3" fill="#fbbf24" opacity=".8"/>
+  </svg>`,
+            rdl: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="58" cy="14" r="8" fill="#00c9a0"/>
+    <line x1="58" y1="22" x2="40" y2="52" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="49" y1="37" x2="28" y2="28" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="49" y1="37" x2="38" y2="15" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="52" x2="45" y2="85" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="52" x2="28" y2="55" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="28" y1="55" x2="28" y2="75" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="45" y1="85" x2="50" y2="100" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="20" cy="23" r="5" fill="#fbbf24" opacity=".7"/>
+  </svg>`,
+            hipthrust: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="70" width="64" height="12" rx="4" fill="#1e3a3a"/>
+    <circle cx="40" cy="52" r="8" fill="#00c9a0"/>
+    <line x1="40" y1="60" x2="40" y2="72" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="40" y1="65" x2="18" y2="72" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="18" y1="72" x2="14" y2="95" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="65" x2="62" y2="72" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="62" y1="72" x2="66" y2="95" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="33" y1="60" x2="12" y2="65" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="47" y1="60" x2="68" y2="65" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+  </svg>`,
+            swing: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="48" cy="12" r="8" fill="#00c9a0"/>
+    <line x1="48" y1="20" x2="40" y2="50" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="44" y1="35" x2="22" y2="28" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="44" y1="35" x2="60" y2="22" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="50" x2="26" y2="72" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="50" x2="54" y2="72" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="26" y1="72" x2="20" y2="98" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="54" y1="72" x2="60" y2="98" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <rect x="13" y="22" width="12" height="14" rx="3" fill="#fbbf24" opacity=".8"/>
+  </svg>`,
+            row: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="55" cy="18" r="8" fill="#00c9a0"/>
+    <line x1="55" y1="26" x2="42" y2="52" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="48" y1="39" x2="62" y2="48" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="62" y1="48" x2="20" y2="42" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="48" y1="39" x2="30" y2="34" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="30" y1="34" x2="18" y2="62" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="42" y1="52" x2="44" y2="80" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="42" y1="52" x2="30" y2="55" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="30" y1="55" x2="28" y2="80" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="18" cy="40" r="5" fill="#fbbf24" opacity=".7"/>
+  </svg>`,
+            press: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="20" r="8" fill="#00c9a0"/>
+    <line x1="40" y1="28" x2="40" y2="62" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="38" x2="16" y2="28" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="16" y1="28" x2="14" y2="12" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="38" x2="64" y2="48" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="62" x2="25" y2="85" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="62" x2="55" y2="85" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="25" y1="85" x2="22" y2="102" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="55" y1="85" x2="58" y2="102" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="12" cy="10" r="5" fill="#fbbf24" opacity=".7"/>
+  </svg>`,
+            splitSq: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="38" cy="12" r="8" fill="#00c9a0"/>
+    <line x1="38" y1="20" x2="38" y2="52" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="38" y1="32" x2="16" y2="38" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="38" y1="32" x2="58" y2="36" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="38" y1="52" x2="22" y2="78" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="22" y1="78" x2="20" y2="100" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="38" y1="52" x2="56" y2="58" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="56" y1="58" x2="62" y2="80" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <rect x="58" y="78" width="14" height="8" rx="3" fill="#1e3a3a"/>
+    <rect x="62" y="80" width="10" height="4" rx="2" fill="#334"/>
+  </svg>`,
+            pullApart: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="20" r="8" fill="#00c9a0"/>
+    <line x1="40" y1="28" x2="40" y2="62" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="38" x2="12" y2="48" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="38" x2="68" y2="48" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="12" y1="48" x2="68" y2="48" stroke="#a78bfa" stroke-width="2.5" stroke-dasharray="4 2" stroke-linecap="round"/>
+    <line x1="40" y1="62" x2="28" y2="85" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="62" x2="52" y2="85" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="28" y1="85" x2="26" y2="100" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="52" y1="85" x2="54" y2="100" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+  </svg>`,
+            stepup: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="30" y="75" width="42" height="14" rx="3" fill="#1e3a3a"/>
+    <circle cx="38" cy="18" r="8" fill="#00c9a0"/>
+    <line x1="38" y1="26" x2="38" y2="58" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="38" y1="36" x2="16" y2="44" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="38" y1="36" x2="60" y2="44" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="38" y1="58" x2="44" y2="78" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="38" y1="58" x2="24" y2="70" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="44" y1="78" x2="46" y2="90" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="16" y1="44" x2="14" y2="60" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+  </svg>`,
+            calf: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="28" y="88" width="8" height="16" rx="2" fill="#1e3a3a"/>
+    <rect x="44" y="88" width="8" height="16" rx="2" fill="#1e3a3a"/>
+    <circle cx="40" cy="18" r="8" fill="#00c9a0"/>
+    <line x1="40" y1="26" x2="40" y2="58" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="40" y1="36" x2="18" y2="44" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="36" x2="62" y2="44" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="58" x2="30" y2="78" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="58" x2="50" y2="78" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="30" y1="78" x2="30" y2="90" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="50" y1="78" x2="50" y2="90" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="28" y1="90" x2="36" y2="80" stroke="#fbbf24" stroke-width="2" stroke-dasharray="3 2"/>
+  </svg>`,
+            lateral: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="20" r="8" fill="#00c9a0"/>
+    <line x1="40" y1="28" x2="40" y2="62" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="40" y1="40" x2="10" y2="30" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="40" x2="70" y2="30" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="8" cy="29" r="4" fill="#fbbf24" opacity=".8"/>
+    <circle cx="72" cy="29" r="4" fill="#fbbf24" opacity=".8"/>
+    <line x1="40" y1="62" x2="28" y2="88" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="62" x2="52" y2="88" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="28" y1="88" x2="26" y2="102" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="52" y1="88" x2="54" y2="102" stroke="#00c9a0" stroke-width="3"/>
+  </svg>`,
+            pushup: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="18" cy="42" r="8" fill="#00c9a0"/>
+    <line x1="24" y1="46" x2="50" y2="52" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="22" y1="40" x2="34" y2="28" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="34" y1="28" x2="38" y2="40" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="50" y1="52" x2="60" y2="44" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="50" y1="52" x2="64" y2="70" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="60" y1="44" x2="64" y2="70" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+  </svg>`,
+            deadlift: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="16" r="8" fill="#00c9a0"/>
+    <line x1="40" y1="24" x2="40" y2="55" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="40" y1="36" x2="14" y2="48" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="36" x2="66" y2="48" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="14" y1="48" x2="16" y2="68" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="66" y1="48" x2="64" y2="68" stroke="#00c9a0" stroke-width="3"/>
+    <circle cx="16" cy="70" r="6" fill="#fbbf24" opacity=".8" stroke="#fbbf24"/>
+    <circle cx="64" cy="70" r="6" fill="#fbbf24" opacity=".8" stroke="#fbbf24"/>
+    <line x1="40" y1="55" x2="26" y2="80" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="55" x2="54" y2="80" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="26" y1="80" x2="24" y2="98" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="54" y1="80" x2="56" y2="98" stroke="#00c9a0" stroke-width="3"/>
+  </svg>`,
+            abduct: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="38" cy="18" r="8" fill="#00c9a0"/>
+    <line x1="38" y1="26" x2="38" y2="60" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="38" y1="36" x2="16" y2="44" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="38" y1="36" x2="60" y2="42" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="38" y1="60" x2="30" y2="82" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="38" y1="60" x2="55" y2="72" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="30" y1="82" x2="28" y2="100" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="55" y1="72" x2="62" y2="90" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="28" y1="70" x2="50" y2="78" stroke="#a78bfa" stroke-width="2" stroke-dasharray="3 2"/>
+  </svg>`,
+            facepull: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="20" r="8" fill="#00c9a0"/>
+    <line x1="40" y1="28" x2="40" y2="62" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="40" y1="38" x2="14" y2="28" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="38" x2="66" y2="28" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="70" y1="26" x2="78" y2="28" stroke="#a78bfa" stroke-width="2.5" stroke-dasharray="4 2"/>
+    <line x1="40" y1="62" x2="28" y2="85" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="62" x2="52" y2="85" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="28" y1="85" x2="26" y2="100" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="52" y1="85" x2="54" y2="100" stroke="#00c9a0" stroke-width="3"/>
+  </svg>`,
+            curl: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="20" r="8" fill="#00c9a0"/>
+    <line x1="40" y1="28" x2="40" y2="62" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="40" y1="38" x2="18" y2="44" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="18" y1="44" x2="16" y2="28" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="14" cy="25" r="4" fill="#fbbf24" opacity=".9"/>
+    <line x1="40" y1="38" x2="62" y2="44" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="62" y1="44" x2="64" y2="62" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="62" x2="28" y2="85" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="40" y1="62" x2="52" y2="85" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="28" y1="85" x2="26" y2="100" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="52" y1="85" x2="54" y2="100" stroke="#00c9a0" stroke-width="3"/>
+  </svg>`,
+            dips: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="60" width="64" height="8" rx="3" fill="#1e3a3a"/>
+    <circle cx="40" cy="20" r="8" fill="#00c9a0"/>
+    <line x1="40" y1="28" x2="40" y2="52" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="40" y1="36" x2="14" y2="58" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="36" x2="66" y2="58" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="52" x2="28" y2="75" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="40" y1="52" x2="52" y2="75" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="28" y1="75" x2="26" y2="95" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="52" y1="75" x2="54" y2="95" stroke="#00c9a0" stroke-width="3"/>
+  </svg>`,
+            generic: `<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="16" r="8" fill="#00c9a0"/>
+    <line x1="40" y1="24" x2="40" y2="58" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="40" y1="34" x2="16" y2="44" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="34" x2="64" y2="44" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="58" x2="26" y2="82" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="58" x2="54" y2="82" stroke="#00c9a0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="26" y1="82" x2="24" y2="100" stroke="#00c9a0" stroke-width="3"/>
+    <line x1="54" y1="82" x2="56" y2="100" stroke="#00c9a0" stroke-width="3"/>
+  </svg>`
+        };
+
+        // ── Data ──────────────────────────────────────────────────────────────
+        const EQUIP = [
+            ['10kg Dumbbell', 'Main load — squats, rows, shoulder press, RDL'],
+            ['8kg Kettlebell', 'Swings, goblet squats, halos, deadlift'],
+            ['2× 3kg Dumbbells', 'Shoulder health — lateral raises, rear delt flies'],
+            ['2× 5kg Disks', 'Step-up load, hip extension holds'],
+            ['Resistance Bands', 'Face pulls, hip abduction, banded squats, rows'],
+            ['Workout Bench', 'Hip thrusts, Bulgarian split squats, pressing, dips'],
+            ['Staircase', 'Calf raises, step-ups, sprint finishers'],
+            ['Exercise Bike', 'Warm-up every session, cardio, active recovery'],
+        ];
+
+        const INJURY = [
+            ['Lower back', 'Standing shifts + weak posterior chain', 'Hip thrusts + RDL every session. No loaded spinal flexion until Week 8.'],
+            ['Knees', 'Glute weakness from prolonged standing', 'Hip abduction + split squats + VMO squats. Knees track over pinky toe.'],
+            ['Hip flexors', 'Constant standing/slight forward lean', 'World\'s Greatest Stretch daily + KB swings counteract it.'],
+            ['Shoulders', 'Forward rounding from work posture', 'Face pulls + pull-aparts every session. Never skip.'],
+            ['Calves/Ankles', '8-hour standing shifts', 'Stair calf raises + band ankle work built into every session.'],
+        ];
+
+        const PHASES = [
+            { n: '01', cls: '', w: 'Weeks 1–4', focus: 'Foundation', detail: 'Learn the movements. 2–3 reps in reserve every set. 3 sessions/week. Form first, weight second.' },
+            { n: '02', cls: 'p2', w: 'Weeks 5–8', focus: 'Build', detail: 'Add Wednesday (4th session). Increase tempo (3-sec lowering). Push to 1–2 RIR. Shorten rest by 10s.' },
+            { n: '03', cls: 'p3', w: 'Weeks 9–12', focus: 'Intensity', detail: 'Add 4th set to main lifts. Timed rests: 90s compound, 60s isolation. Heavier band variants.' },
+        ];
+
+        const EX_A = [
+            { name: 'Goblet Squat', sets: '3 × 12', equip: '8kg Kettlebell', svg: 'squat', cues: ['Hold KB at chest, heels shoulder-width', '3-sec descent — slow is strong', 'Drive through heels, squeeze glutes at top', 'Keep chest up, don\'t round forward'], injury: 'Heels rising? Widen stance or add small heel elevation.' },
+            { name: 'Single-Leg Romanian Deadlift', sets: '3 × 8 each', equip: '10kg Dumbbell', svg: 'rdl', cues: ['Hinge at hips — NOT a squat', 'Feel the hamstring stretch behind standing knee', 'Bench nearby for balance in Week 1–2', 'Slow and controlled beats heavy and sloppy'], injury: 'Lower back rounding = hips too high. Think proud chest.' },
+            { name: 'Hip Thrust', sets: '3 × 15', equip: 'Bench + Band', svg: 'hipthrust', cues: ['Band across hips (doubles the resistance)', 'Upper back on bench edge, feet flat', 'Drive through heels — hips slam up high', '2-second squeeze at the top. Every rep.'], injury: 'THE most important exercise for protecting your lower back.' },
+            { name: 'Step-Ups', sets: '3 × 10 each', equip: 'Bench + 5kg disks', svg: 'stepup', cues: ['Full foot on bench — no heel hanging', 'Drive through front heel, don\'t push off back foot', 'Full lockout at top before stepping down', 'Slow descent = stronger glutes'], injury: 'Feel knee pain? Lower the step height first.' },
+            { name: 'Banded Hip Abduction', sets: '3 × 20 each', equip: 'Resistance Band', svg: 'abduct', cues: ['Band just above knees, standing', 'Slow controlled lift — no swinging', 'Feel gluteus medius (outer hip) burning', 'Don\'t let your pelvis tilt side to side'], injury: 'Weak abductors = knee caves on squats. Fix this first.' },
+            { name: 'Stair Calf Raises', sets: '3 × 20', equip: 'Staircase', svg: 'calf', cues: ['Toes on step edge, heels hanging off', 'Full range: deep stretch at bottom, high at top', '3-second hold at the top', 'Uni or bilateral — single leg is harder'], injury: 'Essential for shift workers. Standing 8h destroys calves.' },
+        ];
+
+        const EX_B = [
+            { name: 'Single-Arm DB Row', sets: '3 × 10 each', equip: '10kg Dumbbell + Bench', svg: 'row', cues: ['Knee and hand on bench for support', 'Elbow drives straight back — not up or out', 'Full stretch at bottom, full squeeze at top', 'Keep spine neutral — don\'t rotate to get more range'], injury: 'Most people use too much weight here. Feel it in the back, not the bicep.' },
+            { name: 'Single-Arm DB Press', sets: '3 × 10 each', equip: '10kg Dumbbell + Bench', svg: 'press', cues: ['Seated on bench = safer for lower back', 'Control the descent — 3 seconds down', 'Don\'t let elbow flare past 45°', 'Brace core on every rep'], injury: 'Shoulder clicking? Start with neutral grip (thumb up).' },
+            { name: 'Band Pull-Aparts', sets: '3 × 20', equip: 'Resistance Band', svg: 'pullApart', cues: ['Band at shoulder height, arms straight', 'Pull band apart to chest level', 'Pinch shoulder blades together at end', 'Slow and controlled — never snap the band'], injury: 'Do this EVERY session. Fixes the forward-shoulder posture from shifts.' },
+            { name: 'Lateral Raise', sets: '3 × 15', equip: '2× 3kg Dumbbells', svg: 'lateral', cues: ['Slight forward torso lean (10°)', 'Pinky slightly higher than thumb at top', 'Stop at shoulder height — no higher', 'Pause 1 second at top, slow down'], injury: '3kg will feel light — but proper form means tempo matters more than weight.' },
+            { name: 'Rear Delt Fly', sets: '3 × 15', equip: '2× 3kg Dumbbells', svg: 'lateral', cues: ['Hinge forward 45°, chest toward bench', 'Lift arms out to sides like wings', 'Think: stretch across upper back', 'Avoid shrugging — traps should stay down'], injury: 'Counteracts the rounded-forward posture from standing at a counter.' },
+            { name: 'Tricep Dips', sets: '3 × 10', equip: 'Bench', svg: 'dips', cues: ['Hands on bench edge, fingers forward', 'Lower until elbows hit 90° — no further', 'Elbows track back, not out to the sides', 'Feet flat and closer = easier. Farther = harder'], injury: 'Sharp shoulder pain? Use a slightly wider hand position.' },
+            { name: 'Push-Up', sets: '3 × max (8–15)', equip: 'Bodyweight', svg: 'pushup', cues: ['Incline on bench edge in Week 1–2', 'Hollow body the whole time — no snaking hips', 'Elbows 45° from body — not straight out', 'Touch chest to surface every rep'], injury: 'Incline push-ups are not cheating — they\'re a training tool.' },
+        ];
+
+        const EX_C = [
+            { name: 'Kettlebell Swing', sets: '4 × 15', equip: '8kg Kettlebell', svg: 'swing', cues: ['Hip hinge — NOT a squat. Hinge back hard.', 'KB swings back between legs (high), then hips SNAP forward', 'Arms stay connected to hips through the backswing', 'Watch a 30-sec tutorial first. The hip snap is everything.'], injury: 'THE most important exercise here. Glutes, hamstrings, posture, calorie burn.' },
+            { name: 'Bulgarian Split Squat', sets: '3 × 8 each', equip: '8kg KB + Bench', svg: 'splitSq', cues: ['Back foot elevated on bench, front foot forward', 'Front knee stays over foot — never past toes', 'Slow descent 3 seconds down', 'Week 1: just bodyweight. Add KB Week 3.'], injury: 'Hardest leg exercise in the program. Unilateral = no hiding weak side.' },
+            { name: 'KB Deadlift', sets: '3 × 8', equip: 'KB + 10kg DB (one each hand)', svg: 'deadlift', cues: ['Both implements at sides, hinge back', 'Spine neutral, brace core before each rep', 'Drive floor away — don\'t yank it up', 'Feel the hamstrings, not the lower back'], injury: 'Back rounding = ego weight. Drop the load, not the tension.' },
+            { name: 'Banded Face Pull', sets: '3 × 20', equip: 'Resistance Band', svg: 'facepull', cues: ['Band at nose height, anchored to door/stairs', 'Pull to ears — elbows HIGH and wide', 'Rotate wrists out at end of pull', 'Every. Single. Session. Non-negotiable.'], injury: 'Protects rotator cuff. Critical for retail workers leaning over counters.' },
+            { name: 'Band Bicep Curl', sets: '2 × 15', equip: 'Resistance Band', svg: 'curl', cues: ['Stand on band, symmetrical tension', 'Elbows pinned to sides — don\'t swing', 'Full extension at bottom each rep', 'Squeeze hard at top for 1 second'], injury: 'Supinator motion: rotate wrist outward as you curl.' },
+        ];
+
+        const MOB_OPENER = [
+            { icon: '🌍', name: "World's Greatest Stretch", detail: '× 3 each side · Hip flexor + T-spine + hip rotation in one move. Lunge forward, elbow to ground, then rotate arm to sky.' },
+            { icon: '📖', name: 'Book Opener (Thoracic Rotation)', detail: '× 8 each side · Lie on side, both arms forward, knees on floor. Rotate top arm open toward ceiling. Follow with eyes.' },
+            { icon: '🦶', name: 'Banded Ankle Dorsiflexion', detail: '× 10 each foot · Band around ankle, step forward. Drive knee forward over toes, heel stays down. Protects knee mechanics.' },
+            { icon: '🌀', name: 'Hip Circles', detail: '× 10 each direction · Hands on hips, full hip circles. Loosens the chronic tightness from standing shifts.' },
+            { icon: '⚫', name: 'KB Halo', detail: '× 5 each way · 8kg KB, circle around head, slow and controlled. Shoulder warm-up, rotator cuff activation.' },
+        ];
+
+        const MOB_DAILY = [
+            { icon: '🧎', name: 'Kneeling Hip Flexor Stretch', detail: '30s each side · Knee on floor, lean forward, squeeze opposite glute. Priority #1 for retail workers.' },
+            { icon: '🪑', name: 'Seated Piriformis / Figure-4', detail: '45s each side · Ankle on knee, lean forward. SI joint, outer hip, glute. Reduces back pain from standing.' },
+            { icon: '🧱', name: 'Calf + Achilles Wall Stretch', detail: '20s each leg · Hands on wall, heel down. Prevents plantar fasciitis from long shifts.' },
+            { icon: '🪑', name: 'Thoracic Extension over Bench', detail: '30s · Upper back on bench edge, let chest drop open. Undoes the forward-rounding from leaning over all day.' },
+        ];
+
+        const SCHED = [
+            { day: 'Monday 17', status: 'rest', plan: '15-min mobility only (hip flexors, thoracic, calves)', time: 'Anytime' },
+            { day: 'Tuesday 18', status: 'train', plan: 'Session A — Lower Body', time: '~3pm post-nap' },
+            { day: 'Wednesday 19', status: 'rest', plan: 'Rest — or 20-min bike if feeling good', time: 'Optional' },
+            { day: 'Thursday 20', status: 'train', plan: 'Session C — Full Body Power', time: '~2:30pm post-nap' },
+            { day: 'Friday 21', status: 'light', plan: 'Pre-shift 5-min mobility habit only', time: 'Before shift' },
+            { day: 'Saturday 22', status: 'train', plan: 'Session B — Upper Body', time: '~11:45am (before shift)' },
+            { day: 'Sunday 23', status: 'rest', plan: 'Rest', time: '—' },
+        ];
+
+        // ── Render functions ───────────────────────────────────────────────────
+        function show(id, btn) {
+            document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        function exCard(ex) {
+            const svg = svgs[ex.svg] || svgs.generic;
+            const cuesHtml = ex.cues.map(c => `<li>${c}</li>`).join('');
+            const injHtml = ex.injury ? `<div class="injury-flag">⚠ ${ex.injury}</div>` : '';
+            return `<div class="ex-card">
+    <div class="ex-fig">${svg}</div>
+    <div class="ex-body">
+      <div class="ex-name">${ex.name}</div>
+      <div class="ex-sets">${ex.sets}</div>
+      <div class="ex-equip">🔧 ${ex.equip}</div>
+      <ul class="ex-cues">${cuesHtml}</ul>
+      ${injHtml}
+    </div>
+  </div>`;
+        }
+
+        function init() {
+            // equip table
+            document.getElementById('equip-table').innerHTML = EQUIP.map(([e, u]) => `<tr><td><strong>${e}</strong></td><td style="color:var(--dim)">${u}</td></tr>`).join('');
+            // injury table
+            document.getElementById('injury-table').innerHTML = INJURY.map(([z, r, f]) => `<tr><td><strong>${z}</strong></td><td style="color:var(--red);font-size:.8rem">${r}</td><td style="font-size:.8rem;color:var(--dim)">${f}</td></tr>`).join('');
+            // phases
+            document.getElementById('phases').innerHTML = PHASES.map(p => `<div class="phase"><div class="phase-num ${p.cls}">${p.n}</div><div class="phase-body"><strong>${p.w} — ${p.focus}</strong><span>${p.detail}</span></div></div>`).join('');
+            // exercises
+            document.getElementById('ex-a').innerHTML = EX_A.map(exCard).join('');
+            document.getElementById('ex-b').innerHTML = EX_B.map(exCard).join('');
+            document.getElementById('ex-c').innerHTML = EX_C.map(exCard).join('');
+            // mobility
+            const mobLi = m => `<li><span class="mob-icon">${m.icon}</span><div class="mob-text"><strong>${m.name}</strong><span>${m.detail}</span></div></li>`;
+            document.getElementById('mob-opener').innerHTML = MOB_OPENER.map(mobLi).join('');
+            document.getElementById('mob-daily').innerHTML = MOB_DAILY.map(mobLi).join('');
+            // schedule
+            const tagMap = { rest: '🔴 Rest', train: '✅ Train', light: '🔵 Active rest' };
+            document.getElementById('schedule-table').innerHTML = SCHED.map(s => `<tr><td><strong>${s.day}</strong></td><td><span class="tag ${s.status}">${tagMap[s.status]}</span></td><td>${s.plan}</td><td style="color:var(--dim2);font-size:.8rem">${s.time}</td></tr>`).join('');
+        }
+
+        init();
+    </script>
+</body>
+
+</html>
