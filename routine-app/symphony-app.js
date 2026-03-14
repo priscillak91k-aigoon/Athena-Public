@@ -4789,7 +4789,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const LS_EVENTS = 'symphony_yearly_events_v1';
     const LS_TODAY_EXTRAS = 'symphony_today_extras_v1';
     function loadTodayExtras() { try { return JSON.parse(localStorage.getItem(LS_TODAY_EXTRAS) || '{}'); } catch { return {}; } }
-    function saveTodayExtras(d) { localStorage.setItem(LS_TODAY_EXTRAS, JSON.stringify(d)); }
+    function saveTodayExtras(patch) { localStorage.setItem(LS_TODAY_EXTRAS, JSON.stringify({ ...loadTodayExtras(), ...patch })); }
 
     function loadTemplates() { try { return JSON.parse(localStorage.getItem(LS_TEMPLATES) || '{}'); } catch { return {}; } }
     function saveTemplates(d) { localStorage.setItem(LS_TEMPLATES, JSON.stringify(d)); }

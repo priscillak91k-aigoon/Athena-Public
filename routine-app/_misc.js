@@ -190,6 +190,13 @@
     let WEEK = loadWeek();
     let editingDay = -1; // index of day being edited, -1 = none
 
+    // ── Dirty-state guard ─────────────────────────────────────
+    function setDirtyGuard(isDirty) {
+        window.onbeforeunload = isDirty
+            ? () => 'You have unsaved changes to your Ideal Week. Leave anyway?'
+            : null;
+    }
+
     // ── Category dropdown HTML ────────────────────────────────
     function catOptions(selected) {
         return CAT_KEYS.map(k =>
@@ -313,6 +320,7 @@
         // Edit day
         if (target.classList.contains('iw-edit-day')) {
             editingDay = parseInt(target.dataset.day);
+            setDirtyGuard(true);
             renderIdealWeek();
             return;
         }
@@ -320,6 +328,7 @@
         // Cancel edit
         if (target.classList.contains('iw-cancel-day')) {
             editingDay = -1;
+            setDirtyGuard(false);
             WEEK = loadWeek(); // revert unsaved changes
             renderIdealWeek();
             return;
@@ -388,10 +397,16 @@
         });
 
         WEEK[dayIdx].type = typeInput?.value.trim() || WEEK[dayIdx].type;
-        WEEK[dayIdx].note = noteInput?.value.trim() || '';
+
+        const newNote = noteInput?.value.trim() || '';
+        if (!newNote && WEEK[dayIdx].note) {
+            if (!confirm('Clear the day note? This cannot be undone.')) return;
+        }
+        WEEK[dayIdx].note = newNote;
         WEEK[dayIdx].blocks = blocks;
 
         saveWeek(WEEK);
+        setDirtyGuard(false);
         editingDay = -1;
         renderIdealWeek();
     }
