@@ -139,22 +139,24 @@
 
     <!-- Main App Content (Hidden by default) -->
     <div class="app-container" id="app-content" style="display: none;">
-        <header class="glass-panel">
+        <header class="glass-panel" style="position: relative;">
             <div class="date-display">
                 <span id="current-date">Loading...</span>
                 <span class="badge">Day Off</span>
             </div>
             <h1>The Life Hub</h1>
             <p class="subtitle">Your dynamic routine tracker & visual schedule.</p>
-            <a href="workshop.html"
-                style="position: absolute; top: 12px; right: 230px; background: rgba(0,0,0,0.6); border: 1px solid #c084fc; color: #c084fc; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #c084fc; text-decoration: none;"
-                title="My Workshop">⚒ Workshop</a>
-            <a href="toolbox.html"
-                style="position: absolute; top: 12px; right: 130px; background: rgba(0,0,0,0.6); border: 1px solid #f59e0b; color: #f59e0b; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #f59e0b; text-decoration: none;"
-                title="Toolbox - Ad-Free Utilities">🔧 Toolbox</a>
-            <button id="audio-toggle" onclick="toggleRetroAudio()"
-                style="position: absolute; top: 12px; right: 16px; background: rgba(0,0,0,0.6); border: 1px solid #0f0; color: #0f0; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #0f0;"
-                title="Toggle Music">🔊 Music</button>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; margin-top: 10px;">
+                <a href="workshop.html"
+                    style="background: rgba(0,0,0,0.6); border: 1px solid #c084fc; color: #c084fc; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #c084fc; text-decoration: none;"
+                    title="My Workshop">⚒ Workshop</a>
+                <a href="toolbox.html"
+                    style="background: rgba(0,0,0,0.6); border: 1px solid #f59e0b; color: #f59e0b; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #f59e0b; text-decoration: none;"
+                    title="Toolbox - Ad-Free Utilities">🔧 Toolbox</a>
+                <button id="audio-toggle" onclick="toggleRetroAudio()"
+                    style="background: rgba(0,0,0,0.6); border: 1px solid #0f0; color: #0f0; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #0f0;"
+                    title="Toggle Music">🔊 Music</button>
+            </div>
         </header>
 
         <div class="tabs">
