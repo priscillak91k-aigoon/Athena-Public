@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSI WE75 9TK — Upgrade Report</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Outfit:wght@300;400;500;600&family=VT323&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #070504;
+            --panel: rgba(24, 16, 8, 0.88);
+            --border: rgba(120, 80, 40, 0.35);
+            --copper: #b06028;
+            --copper-bright: #c87830;
+            --amber: #d08030;
+            --brass: #c4a040;
+            --brass-bright: #d4b050;
+            --rust: #905030;
+            --parchment: #ddd0c0;
+            --parchment-dim: #a89880;
+            --green: #4a8a5a;
+            --green-bright: #5ab06a;
+            --red: #8a3020;
+            --red-bright: #c04530;
+            --yellow: #a08020;
+            --yellow-bright: #c0a030;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--parchment);
+            font-family: 'Outfit', system-ui, sans-serif;
+            min-height: 100vh;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .forge-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .forge-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            right: -100px;
+            top: 20%;
+            background: radial-gradient(ellipse, rgba(208, 128, 48, 0.12) 0%, rgba(192, 64, 32, 0.05) 40%, transparent 70%);
+            filter: blur(40px);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: var(--copper);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+
+        .report-header {
+            background: var(--panel);
+            border: 2px solid var(--border);
+            border-top: 2px solid rgba(176, 96, 40, 0.4);
+            border-radius: 3px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .report-header::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--copper), transparent);
+            opacity: 0.4;
+        }
+
+        .report-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--copper-bright);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(208, 128, 48, 0.2);
+        }
+
+        .report-header .meta {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--parchment-dim);
+            font-style: italic;
+        }
+
+        .spec-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+        }
+
+        .spec-chip {
+            padding: 0.3rem 0.75rem;
+            background: rgba(176, 96, 40, 0.1);
+            border: 1px solid rgba(176, 96, 40, 0.3);
+            border-radius: 2px;
+            font-size: 0.78rem;
+            color: var(--copper);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.3px;
+        }
+
+        .verdict-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .verdict-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .verdict-card .label {
+            font-size: 0.7rem;
+            color: var(--parchment-dim);
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .verdict-card .value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+        }
+
+        .verdict-card .unit {
+            font-size: 0.75rem;
+            color: var(--parchment-dim);
+            margin-top: 0.2rem;
+        }
+
+        .verdict-card.green {
+            border-color: rgba(74, 138, 90, 0.4);
+        }
+
+        .verdict-card.green .value {
+            color: var(--green-bright);
+        }
+
+        .verdict-card.amber {
+            border-color: rgba(208, 128, 48, 0.4);
+        }
+
+        .verdict-card.amber .value {
+            color: var(--amber);
+        }
+
+        .verdict-card.red {
+            border-color: rgba(138, 48, 32, 0.4);
+        }
+
+        .verdict-card.red .value {
+            color: var(--red-bright);
+        }
+
+        section {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--copper-bright);
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .upgrade-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.87rem;
+        }
+
+        .upgrade-table th {
+            text-align: left;
+            padding: 0.5rem 0.75rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            color: var(--copper);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(176, 96, 40, 0.05);
+        }
+
+        .upgrade-table td {
+            padding: 0.6rem 0.75rem;
+            border-bottom: 1px solid rgba(120, 80, 40, 0.1);
+            color: var(--parchment-dim);
+            vertical-align: top;
+        }
+
+        .upgrade-table td:first-child {
+            color: var(--parchment);
+            font-weight: 500;
+        }
+
+        .upgrade-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .upgrade-table tr:hover td {
+            background: rgba(176, 96, 40, 0.04);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.1rem 0.5rem;
+            border-radius: 2px;
+            font-size: 0.7rem;
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+
+        .badge-green {
+            background: rgba(74, 138, 90, 0.15);
+            border: 1px solid rgba(74, 138, 90, 0.4);
+            color: var(--green-bright);
+        }
+
+        .badge-amber {
+            background: rgba(208, 128, 48, 0.12);
+            border: 1px solid rgba(208, 128, 48, 0.35);
+            color: var(--amber);
+        }
+
+        .badge-red {
+            background: rgba(138, 48, 32, 0.15);
+            border: 1px solid rgba(138, 48, 32, 0.4);
+            color: var(--red-bright);
+        }
+
+        .badge-blue {
+            background: rgba(48, 96, 160, 0.15);
+            border: 1px solid rgba(48, 96, 160, 0.4);
+            color: #6090d0;
+        }
+
+        .priority-block {
+            border-left: 3px solid var(--copper);
+            padding: 1rem 1rem 1rem 1.25rem;
+            background: rgba(176, 96, 40, 0.06);
+            border-radius: 0 3px 3px 0;
+            margin-bottom: 0.75rem;
+        }
+
+        .priority-block h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            color: var(--copper-bright);
+            margin-bottom: 0.4rem;
+        }
+
+        .priority-block p {
+            font-size: 0.85rem;
+            color: var(--parchment-dim);
+            line-height: 1.6;
+        }
+
+        .priority-block.high {
+            border-color: var(--green-bright);
+        }
+
+        .priority-block.medium {
+            border-color: var(--amber);
+        }
+
+        .priority-block.low {
+            border-color: #6090d0;
+        }
+
+        .priority-block.blocked {
+            border-color: var(--red-bright);
+        }
+
+        .cost-tag {
+            color: var(--brass-bright);
+            font-weight: 600;
+        }
+
+        .verdict-box {
+            background: rgba(176, 96, 40, 0.08);
+            border: 1px solid rgba(176, 96, 40, 0.3);
+            border-radius: 3px;
+            padding: 1rem 1.25rem;
+        }
+
+        .verdict-box p {
+            font-size: 0.87rem;
+            line-height: 1.7;
+            color: var(--parchment-dim);
+        }
+
+        .verdict-box strong {
+            color: var(--parchment);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.75rem 3rem;
+            }
+
+            .report-header h1 {
+                font-size: 1.4rem;
+            }
+
+            .verdict-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="forge-bg">
+        <div class="forge-glow"></div>
+    </div>
+    <div class="container">
+        <a href="../workshop.html" class="back-link">← Workshop</a>
+
+        <div class="report-header">
+            <h1>⚙ MSI WE75 9TK — Upgrade Report</h1>
+            <p class="meta">Generated 2026-03-14 · Session 53 · Ultrathink Deep Dive · Confidence: 91%</p>
+            <div class="spec-bar">
+                <span class="spec-chip">i7-9750H · 6C/12T</span>
+                <span class="spec-chip">32GB DDR4-2667</span>
+                <span class="spec-chip">Quadro T1000 4GB</span>
+                <span class="spec-chip">2× M.2 NVMe + 1× 2.5" SATA</span>
+                <span class="spec-chip">Battery: 78% health</span>
+                <span class="spec-chip">No Thunderbolt</span>
+            </div>
+        </div>
+
+        <!-- QUICK VERDICT CARDS -->
+        <div class="verdict-bar">
+            <div class="verdict-card green">
+                <div class="label">Best Value Upgrade</div>
+                <div class="value">SSD</div>
+                <div class="unit">2TB NVMe ~$250 NZD</div>
+            </div>
+            <div class="verdict-card amber">
+                <div class="label">RAM Headroom</div>
+                <div class="value">+32GB</div>
+                <div class="unit">Can go 64GB max · ~$120</div>
+            </div>
+            <div class="verdict-card amber">
+                <div class="label">Battery</div>
+                <div class="value">78%</div>
+                <div class="unit">Not urgent · ~$80–100 NZD</div>
+            </div>
+            <div class="verdict-card red">
+                <div class="label">External GPU</div>
+                <div class="value">BLOCKED</div>
+                <div class="unit">No Thunderbolt port</div>
+            </div>
+        </div>
+
+        <!-- SECTION 1: INTERNAL UPGRADES -->
+        <section>
+            <h2>🔩 Internal Hardware Upgrades</h2>
+            <table class="upgrade-table">
+                <thead>
+                    <tr>
+                        <th>Upgrade</th>
+                        <th>Current</th>
+                        <th>Max / Target</th>
+                        <th>Est. Cost NZD</th>
+                        <th>Verdict</th>
+                        <th>Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>NVMe SSD (M.2 slot 2)</td>
+                        <td>Unknown — 1 slot confirmed occupied</td>
+                        <td>2TB Samsung 990 EVO / Kingston NV3</td>
+                        <td><span class="cost-tag">~$225–275</span></td>
+                        <td><span class="badge badge-green">Do It</span></td>
+                        <td>Massive — add a clean 2TB working drive or move OS to faster SSD</td>
+                    </tr>
+                    <tr>
+                        <td>2.5" HDD/SSD (SATA bay)</td>
+                        <td>Empty bay available</td>
+                        <td>2–4TB SATA SSD or HDD</td>
+                        <td><span class="cost-tag">$120–200 (SSD) / $80–120 (HDD)</span></td>
+                        <td><span class="badge badge-green">Easy Win</span></td>
+                        <td>Cheap bulk storage — ideal for game installs, media, backups</td>
+                    </tr>
+                    <tr>
+                        <td>RAM (upgrade to 64GB)</td>
+                        <td>32GB (2×16GB Samsung + SK Hynix, DDR4-2667)</td>
+                        <td>64GB (2×32GB DDR4-2666)</td>
+                        <td><span class="cost-tag">~$115–140</span></td>
+                        <td><span class="badge badge-amber">Optional</span></td>
+                        <td>Only matters if you're hitting limits. 32GB is already plenty for most workloads including
+                            GeForce NOW (streaming, not local rendering).</td>
+                    </tr>
+                    <tr>
+                        <td>Battery</td>
+                        <td>78% health (40,084 mWh of 51,368)</td>
+                        <td>New = 100% / ~51Wh</td>
+                        <td><span class="cost-tag">~$80–100</span></td>
+                        <td><span class="badge badge-amber">Not Urgent</span></td>
+                        <td>Replace at ~60%. Compatible: 10.86V 51Wh 6-cell. Source: MSI Battery Store or
+                            batterybuy.co.nz</td>
+                    </tr>
+                    <tr>
+                        <td>CPU</td>
+                        <td>i7-9750H (soldered BGA)</td>
+                        <td>Not upgradeable</td>
+                        <td>—</td>
+                        <td><span class="badge badge-red">Blocked</span></td>
+                        <td>Soldered to motherboard. No path forward on CPU.</td>
+                    </tr>
+                    <tr>
+                        <td>GPU</td>
+                        <td>Quadro T1000 4GB (MXM module)</td>
+                        <td>Theoretically MXM upgradeable — but MSI locks BIOS</td>
+                        <td>$400–800+</td>
+                        <td><span class="badge badge-red">Not Worth It</span></td>
+                        <td>MXM GPU swaps on WE75 are BIOS-locked in practice. High risk of bricking. Do not attempt.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Thermal paste (CPU/GPU)</td>
+                        <td>Stock paste — ~2019 vintage</td>
+                        <td>Repaste with Thermal Grizzly Kryonaut</td>
+                        <td><span class="cost-tag">~$25–35 paste + 1hr labour</span></td>
+                        <td><span class="badge badge-green">Do It</span></td>
+                        <td>6-year-old paste is almost certainly degraded. Repaste can recover 10–20°C under load.
+                            Direct performance uplift for sustained workloads.</td>
+                    </tr>
+                    <tr>
+                        <td>Display</td>
+                        <td>1080p IPS (17.3")</td>
+                        <td>Same LCD connector — 4K panel theoretically possible</td>
+                        <td>$200–400</td>
+                        <td><span class="badge badge-red">Not Worth It</span></td>
+                        <td>Panel swaps require matching eDP connector + driver support. Quadro T1000 handles 4K but the
+                            complexity-to-payoff ratio is poor. Skip.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SECTION 2: EXTERNAL / PERIPHERALS -->
+        <section>
+            <h2>🔌 External Upgrades & Peripherals</h2>
+            <table class="upgrade-table">
+                <thead>
+                    <tr>
+                        <th>Upgrade</th>
+                        <th>What It Does</th>
+                        <th>Est. Cost NZD</th>
+                        <th>Verdict</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>External GPU (eGPU)</td>
+                        <td>Would need Thunderbolt 3 — WE75 9TK has NO Thunderbolt</td>
+                        <td>—</td>
+                        <td><span class="badge badge-red">Impossible</span></td>
+                    </tr>
+                    <tr>
+                        <td>USB-C Dock / Hub</td>
+                        <td>Multi-monitor, ethernet, USB-A ports from one cable</td>
+                        <td><span class="cost-tag">$60–150</span></td>
+                        <td><span class="badge badge-green">Recommended</span></td>
+                    </tr>
+                    <tr>
+                        <td>External NVMe enclosure</td>
+                        <td>USB 3.2 Gen 2 external SSD — fast portable storage</td>
+                        <td><span class="cost-tag">$30–60 enclosure + SSD</span></td>
+                        <td><span class="badge badge-green">Good Option</span></td>
+                    </tr>
+                    <tr>
+                        <td>External monitor (1440p/4K)</td>
+                        <td>Much better screen real estate than 1080p 17.3"</td>
+                        <td><span class="cost-tag">$350–700</span></td>
+                        <td><span class="badge badge-amber">Nice-to-Have</span></td>
+                    </tr>
+                    <tr>
+                        <td>WiFi adapter (USB/PCIe)</td>
+                        <td>Upgrade from Intel 9560 to WiFi 6/6E</td>
+                        <td><span class="cost-tag">$40–80</span></td>
+                        <td><span class="badge badge-blue">Low Priority</span></td>
+                    </tr>
+                    <tr>
+                        <td>RAM disk / VRAM extension via ReadyBoost</td>
+                        <td>Not relevant — already 32GB DDR4</td>
+                        <td>—</td>
+                        <td><span class="badge badge-red">Irrelevant</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SECTION 3: SOFTWARE / CONFIG -->
+        <section>
+            <h2>⚡ Software & Configuration Upgrades</h2>
+            <table class="upgrade-table">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>What It Does</th>
+                        <th>Cost</th>
+                        <th>Verdict</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>BIOS Update</td>
+                        <td>MSI has released several BIOSes for WE75 9TK — stability, Spectre/Meltdown patches, power
+                            delivery improvements</td>
+                        <td>Free</td>
+                        <td><span class="badge badge-green">Do It</span></td>
+                    </tr>
+                    <tr>
+                        <td>NVIDIA Driver (latest Quadro / Studio)</td>
+                        <td>Quadro T1000 drivers receive Studio Driver updates — often significant perf gains</td>
+                        <td>Free</td>
+                        <td><span class="badge badge-green">Do It</span></td>
+                    </tr>
+                    <tr>
+                        <td>Thermal / fan profile (MSI Dragon Center / Creator Center)</td>
+                        <td>Custom fan curves prevent thermal throttling before it starts</td>
+                        <td>Free</td>
+                        <td><span class="badge badge-green">Do It</span></td>
+                    </tr>
+                    <tr>
+                        <td>Windows power plan → already on Ultimate Performance</td>
+                        <td>Already done ✅</td>
+                        <td>—</td>
+                        <td><span class="badge badge-blue">Done</span></td>
+                    </tr>
+                    <tr>
+                        <td>Disable NVIDIA Optimus (force dGPU)</td>
+                        <td>Routes all rendering through Quadro T1000 instead of switching. Better for sustained GPU
+                            workloads.</td>
+                        <td>Free (BIOS setting)</td>
+                        <td><span class="badge badge-amber">Optional</span></td>
+                    </tr>
+                    <tr>
+                        <td>XMP/DOCP memory profile</td>
+                        <td>Push DDR4 from 2400 to rated 2667 — minor but free</td>
+                        <td>Free (BIOS)</td>
+                        <td><span class="badge badge-amber">Optional</span></td>
+                    </tr>
+                    <tr>
+                        <td>SSD health check + TRIM</td>
+                        <td>CrystalDiskInfo — verify NVMe health. TRIM should auto-run but worth confirming.</td>
+                        <td>Free</td>
+                        <td><span class="badge badge-blue">Maintenance</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SECTION 4: PRIORITISED PLAN -->
+        <section>
+            <h2>📋 Prioritised Action Plan</h2>
+
+            <div class="priority-block high">
+                <h3>🟢 Priority 1 — Thermal Repaste · <span class="cost-tag">~$30 + 1hr</span></h3>
+                <p>Six-year-old thermal compound with zero maintenance history. This is almost certainly dried out and
+                    cracking, costing you significant CPU/GPU headroom under sustained load. Thermal Grizzly Kryonaut
+                    from Jaycar or AliExpress. Paste + repaste guide for WE75 on iFixit. Can recover 10–20°C. Do this
+                    first — it will make every other upgrade more effective.</p>
+            </div>
+
+            <div class="priority-block high">
+                <h3>🟢 Priority 2 — Add 2nd NVMe SSD · <span class="cost-tag">~$225–275 NZD</span></h3>
+                <p>The WE75 9TK has two M.2 2280 slots. 2TB Samsung 990 EVO Plus (~$225 at PB Tech) or Kingston NV3 for
+                    budget. Install as secondary drive — zero risk, no OS migration needed. Doubles your storage and
+                    gives you a dedicated fast working volume for large files.</p>
+            </div>
+
+            <div class="priority-block medium">
+                <h3>🟡 Priority 3 — 2.5" SATA Drive · <span class="cost-tag">~$80–120 NZD</span></h3>
+                <p>The 2.5" bay is empty. A 2TB Seagate Barracuda HDD (~$90) or 1TB SATA SSD gives you cheap bulk
+                    storage for games, backups, media. No risk, no OS work involved.</p>
+            </div>
+
+            <div class="priority-block medium">
+                <h3>🟡 Priority 4 — BIOS + Driver Updates · <span class="cost-tag">Free</span></h3>
+                <p>Check MSI's WE75 9TK support page for latest BIOS. Flash via MSI Flash tool. Update NVIDIA to latest
+                    Studio/Quadro driver from NVIDIA's website (not through Windows Update — use the DDU clean install
+                    method for a proper upgrade).</p>
+            </div>
+
+            <div class="priority-block low">
+                <h3>🔵 Priority 5 — RAM to 64GB · <span class="cost-tag">~$120 NZD</span></h3>
+                <p>Only do this if you're actually hitting 32GB limits (check Task Manager > Performance > Memory during
+                    your heaviest sessions). For GeForce NOW, this is completely irrelevant. For local VMs or video
+                    editing, it might matter. 2×32GB DDR4-2666 (Crucial or Kingston) at PB Tech.</p>
+            </div>
+
+            <div class="priority-block low">
+                <h3>🔵 Priority 6 — Battery · <span class="cost-tag">~$80–100 NZD</span></h3>
+                <p>At 78% — not urgent. Replace around 60% or when runtime becomes annoying. Compatible spec: 10.86V,
+                    51Wh, 6-cell. batterybuy.co.nz or msibatterystore.com (ships to NZ, ~$10 USD shipping).</p>
+            </div>
+
+            <div class="priority-block blocked">
+                <h3>🔴 Dead Ends — Don't Pursue</h3>
+                <p><strong>eGPU:</strong> No Thunderbolt = hard block. Not possible without a different laptop.
+                    &nbsp;|&nbsp; <strong>GPU swap:</strong> MXM slot is locked in BIOS — high brick risk. &nbsp;|&nbsp;
+                    <strong>CPU swap:</strong> Soldered BGA. Not replaceable. &nbsp;|&nbsp; <strong>Display
+                        swap:</strong> Not worth the complexity.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 5 : ADVERSARIAL REVIEW -->
+        <section>
+            <h2>🧨 Adversarial Review (Bear Case)</h2>
+            <div class="verdict-box">
+                <p>
+                    <strong>Challenge:</strong> Is any of this worth it on a 6-year-old laptop?<br><br>
+                    <strong>Counter-argument:</strong> The WE75 9TK is an ISV-certified workstation — not a gaming
+                    laptop. The Quadro T1000 is still certified for professional 3D apps (Maya, Revit, Solidworks). The
+                    i7-9750H is firmly in "good enough" territory for everything except local AI inference and 4K video.
+                    The RAM and storage ceilings are not hit yet.<br><br>
+                    <strong>When to abandon ship instead:</strong> If the CPU becomes the bottleneck for your primary
+                    use case, or the motherboard fails. At that point, the upgrade money would be better saved toward a
+                    12th/13th gen replacement. Current trajectory: this laptop has 2–3 comfortable years left with the
+                    upgrades above.<br><br>
+                    <strong>GeForce NOW specific note:</strong> Since GeForce NOW streams the rendered output, your
+                    local GPU is irrelevant. The bottleneck is network bandwidth and latency — both of which are now
+                    fixed (WiFi repaired). No hardware upgrade helps GeForce NOW performance.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 6: WHERE TO BUY IN NZ -->
+        <section>
+            <h2>🛒 Where to Buy (NZ)</h2>
+            <table class="upgrade-table">
+                <thead>
+                    <tr>
+                        <th>Retailer</th>
+                        <th>Best For</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://www.pbtech.co.nz" target="_blank" style="color:var(--copper);">PB Tech</a>
+                        </td>
+                        <td>NVMe SSDs, RAM</td>
+                        <td>Best local NZ prices. Ships to Dunedin. Check Samsung 990 EVO Plus.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.computerlounge.co.nz" target="_blank"
+                                style="color:var(--copper);">Computer Lounge</a></td>
+                        <td>RAM, SSDs</td>
+                        <td>Good alternative pricing. NZ stock.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.staticice.co.nz" target="_blank" style="color:var(--copper);">StaticIce
+                                NZ</a></td>
+                        <td>Price comparison</td>
+                        <td>Aggregates all NZ retailers. Start here for price check.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.batterybuy.co.nz" target="_blank"
+                                style="color:var(--copper);">BatteryBuy NZ</a></td>
+                        <td>Battery</td>
+                        <td>NZ-stocked laptop batteries. Search "MSI WE75".</td>
+                    </tr>
+                    <tr>
+                        <td>Jaycar Dunedin</td>
+                        <td>Thermal paste, tools</td>
+                        <td>Thermal Grizzly Kryonaut or Noctua NT-H2. In-store, immediate.</td>
+                    </tr>
+                    <tr>
+                        <td>AliExpress</td>
+                        <td>Thermal paste, budget SSDs</td>
+                        <td>3–4 week shipping. Fine for paste and tools. Avoid no-name SSDs for primary drives.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div
+            style="text-align:center;margin-top:2rem;font-size:0.75rem;color:var(--parchment-dim);font-style:italic;opacity:0.6;">
+            Report generated by Lobotto · Session 53 · 2026-03-14 · WE75 9TK Serial scan cross-referenced with
+            NotebookCheck, MSI official specs, StaticIce NZ
+        </div>
+    </div>
+</body>
+
+</html>

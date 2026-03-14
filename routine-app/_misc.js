@@ -1,34 +1,26 @@
 // ============================================================
-// MISC — Ideal Week Renderer
+// MISC — Ideal Week Renderer + Editor
 // ============================================================
 (function initMiscPage() {
     'use strict';
 
+    const STORAGE_KEY = 'idealWeek_v2';
+
     const C = {
-        deepWork: { dot: '#00c9a0' },
-        work: { dot: '#fbbf24' },
-        exercise: { dot: '#fb923c' },
-        personal: { dot: '#f472b6' },
-        windDown: { dot: '#a78bfa' },
-        routine: { dot: 'rgba(255,255,255,0.3)' },
-        kids: { dot: '#38bdf8' },
-        nap: { dot: '#c084fc' }, // soft purple — nap time
+        deepWork: { dot: '#00c9a0', label: 'Deep Work' },
+        work: { dot: '#fbbf24', label: 'Work' },
+        exercise: { dot: '#fb923c', label: 'Exercise' },
+        personal: { dot: '#f472b6', label: 'Personal' },
+        windDown: { dot: '#a78bfa', label: 'Wind Down' },
+        routine: { dot: 'rgba(255,255,255,0.3)', label: 'Routine' },
+        kids: { dot: '#38bdf8', label: 'Kids' },
+        nap: { dot: '#c084fc', label: 'Nap' },
     };
 
-    // ── Design Principles ─────────────────────────────────────
-    // • Night sleep = ~6h on weekdays (kids at 6:30, sleep at midnight)
-    // • Nap compensates: EVERY weekday needs a recovery nap
-    // • Sat/Sun: sleep in to 9 AM (~9h) = no nap needed
-    // • Weekday mornings 6:30–8:30 = kids (non-negotiable)
-    // • Deep work window: 9:00 AM onwards on weekdays
-    // • Exercise: off days after nap, or pre-shift on Fri/Sat
-    // • Quinn: morning walk (post-drop-off weekdays) + afternoon walk always
-    // • Mag Glycinate: 9 PM always · no screens 10 PM · sleep by midnight
+    const CAT_KEYS = Object.keys(C);
 
-    const WEEK = [
-
-        // ── MONDAY — Work 12:00–18:00 ────────────────────────
-        // Only window for nap is before noon shift — tight but doable
+    // ── Default data ──────────────────────────────────────────
+    const DEFAULT_WEEK = [
         {
             day: 'Monday', type: 'WORK 12–6 PM',
             note: 'Sleep first. Nap takes the prime morning slot — catch up on 6h night. Light admin after.',
@@ -50,8 +42,6 @@
                 { time: '22:30', label: '💤 SLEEP — early as possible', cat: 'windDown' },
             ]
         },
-
-        // ── TUESDAY — Off ─────────────────────────────────────
         {
             day: 'Tuesday', type: 'OFF DAY',
             note: 'Best day. Deep work → nap → gym. Full recovery stack.',
@@ -76,8 +66,6 @@
                 { time: '23:00', label: '💤 SLEEP TARGET', cat: 'windDown' },
             ]
         },
-
-        // ── WEDNESDAY — Off ───────────────────────────────────
         {
             day: 'Wednesday', type: 'OFF DAY',
             note: 'Same as Tuesday. Optional: swap gym for Rock Orchestra evening.',
@@ -102,8 +90,6 @@
                 { time: '23:00', label: '💤 SLEEP TARGET', cat: 'windDown' },
             ]
         },
-
-        // ── THURSDAY — Off ────────────────────────────────────
         {
             day: 'Thursday', type: 'OFF DAY',
             note: 'Prep day. Nap → gym → meal prep ready for weekend shifts.',
@@ -127,9 +113,6 @@
                 { time: '22:30', label: '💤 SLEEP — early for weekend', cat: 'windDown' },
             ]
         },
-
-        // ── FRIDAY — Work 14:45–23:00 ─────────────────────────
-        // Nap replaces gym (gym is on Tue/Wed/Thu/Sat)
         {
             day: 'Friday', type: 'WORK 2:45–11 PM',
             note: 'Nap replaces gym today — gym on off days covers it. Nap is the priority.',
@@ -150,9 +133,6 @@
                 { time: '23:45', label: '💤 SLEEP — midnight hard cap', cat: 'windDown' },
             ]
         },
-
-        // ── SATURDAY — Work 14:45–23:00 ──────────────────────
-        // Sleep in to 9 AM — no nap needed
         {
             day: 'Saturday', type: 'WORK 2:45–11 PM',
             note: 'Sleep in to 9 AM = full recovery. No nap needed. Morning is yours.',
@@ -172,9 +152,6 @@
                 { time: '23:45', label: '💤 SLEEP — midnight hard cap', cat: 'windDown' },
             ]
         },
-
-        // ── SUNDAY — Work 11:00–17:00 ─────────────────────────
-        // Sleep in to 9 AM — no nap needed
         {
             day: 'Sunday', type: 'WORK 11 AM–5 PM',
             note: 'Sleep in to 9 AM. Shortest shift. Earliest sleep target — reset for Monday.',
@@ -197,14 +174,81 @@
         }
     ];
 
+    // ── Data persistence ──────────────────────────────────────
+    function loadWeek() {
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) return JSON.parse(stored);
+        } catch (e) { /* fall through */ }
+        return JSON.parse(JSON.stringify(DEFAULT_WEEK));
+    }
+
+    function saveWeek(week) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(week));
+    }
+
+    let WEEK = loadWeek();
+    let editingDay = -1; // index of day being edited, -1 = none
+
+    // ── Category dropdown HTML ────────────────────────────────
+    function catOptions(selected) {
+        return CAT_KEYS.map(k =>
+            `<option value="${k}" ${k === selected ? 'selected' : ''}>${C[k].label}</option>`
+        ).join('');
+    }
+
     // ── Renderer ──────────────────────────────────────────────
     function renderIdealWeek() {
         const grid = document.getElementById('ideal-week-grid');
         if (!grid) return;
 
-        grid.innerHTML = WEEK.map(({ day, type, note, blocks }) => {
+        grid.innerHTML = WEEK.map((dayData, dayIdx) => {
+            const { day, type, note, blocks } = dayData;
             const isOff = type === 'OFF DAY';
+            const isEditing = editingDay === dayIdx;
 
+            // --- Edit mode ---
+            if (isEditing) {
+                const blockRows = blocks.map((b, bIdx) => {
+                    const dot = C[b.cat]?.dot || 'rgba(255,255,255,0.3)';
+                    return `
+                    <div class="iw-edit-row" data-bidx="${bIdx}" style="display:flex; gap:6px; align-items:center; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+                        <input type="text" value="${b.time}" class="iw-input iw-time" style="width:52px; font-size:0.75rem; font-family:'VT323',monospace;" placeholder="HH:MM">
+                        <select class="iw-input iw-cat" style="width:90px; font-size:0.72rem;">
+                            ${catOptions(b.cat)}
+                        </select>
+                        <input type="text" value="${b.label.replace(/"/g, '&quot;')}" class="iw-input iw-label" style="flex:1; font-size:0.78rem;" placeholder="Activity label">
+                        <button class="iw-btn-icon iw-del-block" title="Remove" data-bidx="${bIdx}" style="color:#f87171; background:rgba(248,113,113,0.08); border:1px solid rgba(248,113,113,0.15);">✕</button>
+                    </div>`;
+                }).join('');
+
+                const typeBg = isOff ? 'rgba(0,200,160,0.08)' : 'rgba(251,191,36,0.08)';
+                const typeBorder = isOff ? 'rgba(0,200,160,0.2)' : 'rgba(251,191,36,0.25)';
+                const typeColor = isOff ? 'var(--accent-green)' : '#fbbf24';
+
+                return `
+                <div class="iw-card-editing" data-day="${dayIdx}" style="background:rgba(4,18,18,0.75); border:1px solid var(--accent-green); border-radius:4px; padding:1rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                        <span style="font-family:'VT323',monospace; font-size:1.2rem; color:var(--text-primary); letter-spacing:1px;">${day}</span>
+                        <div style="display:flex; gap:6px; align-items:center;">
+                            <input type="text" value="${type}" class="iw-input iw-type-input" style="width:120px; font-size:0.7rem; text-align:center;">
+                        </div>
+                    </div>
+                    <div style="margin-bottom:8px;">
+                        <input type="text" value="${(note || '').replace(/"/g, '&quot;')}" class="iw-input iw-note-input" style="width:100%; font-size:0.75rem; font-style:italic;" placeholder="Day note (optional)">
+                    </div>
+                    <div class="iw-edit-blocks">${blockRows}</div>
+                    <div style="display:flex; gap:8px; margin-top:10px; justify-content:space-between; flex-wrap:wrap;">
+                        <button class="iw-btn iw-add-block" data-day="${dayIdx}" style="font-size:0.75rem;">+ Add Block</button>
+                        <div style="display:flex; gap:6px;">
+                            <button class="iw-btn iw-save-day" data-day="${dayIdx}" style="background:rgba(0,200,160,0.15); border-color:rgba(0,200,160,0.3); color:#00c9a0;">✓ Save</button>
+                            <button class="iw-btn iw-cancel-day" data-day="${dayIdx}" style="background:rgba(248,113,113,0.08); border-color:rgba(248,113,113,0.15); color:#f87171;">Cancel</button>
+                        </div>
+                    </div>
+                </div>`;
+            }
+
+            // --- View mode ---
             const rows = blocks.map(b => {
                 const dot = C[b.cat]?.dot || 'rgba(255,255,255,0.3)';
                 const isSleep = b.label.includes('💤');
@@ -234,20 +278,201 @@
             const typeColor = isOff ? 'var(--accent-green)' : '#fbbf24';
 
             return `
-            <div style="background:rgba(4,18,18,0.6); border:1px solid var(--glass-border); border-radius:4px; padding:1rem; transition:border-color 0.15s;"
+            <div style="background:rgba(4,18,18,0.6); border:1px solid var(--glass-border); border-radius:4px; padding:1rem; transition:border-color 0.15s; position:relative;"
                  onmouseover="this.style.borderColor='var(--glass-border-hot)'"
                  onmouseout="this.style.borderColor='var(--glass-border)'">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
                     <span style="font-family:'VT323',monospace; font-size:1.2rem; color:var(--text-primary); letter-spacing:1px;">${day}</span>
-                    <span style="font-size:0.7rem; padding:2px 8px; background:${typeBg}; border:1px solid ${typeBorder}; color:${typeColor}; border-radius:2px;">${type}</span>
+                    <div style="display:flex; gap:6px; align-items:center;">
+                        <span style="font-size:0.7rem; padding:2px 8px; background:${typeBg}; border:1px solid ${typeBorder}; color:${typeColor}; border-radius:2px;">${type}</span>
+                        <button class="iw-btn-icon iw-edit-day" data-day="${dayIdx}" title="Edit ${day}" style="color:var(--accent-green); background:rgba(0,200,160,0.08); border:1px solid rgba(0,200,160,0.15);">✎</button>
+                    </div>
                 </div>
                 ${noteHtml}
                 <div>${rows}</div>
             </div>`;
         }).join('');
+
+        // -- Attach event listeners --
+        attachListeners();
     }
 
-    function boot() { renderIdealWeek(); }
+    // ── Event delegation ──────────────────────────────────────
+    function attachListeners() {
+        const grid = document.getElementById('ideal-week-grid');
+        if (!grid) return;
+
+        // Remove old listener to avoid stacking
+        grid.removeEventListener('click', handleGridClick);
+        grid.addEventListener('click', handleGridClick);
+    }
+
+    function handleGridClick(e) {
+        const target = e.target;
+
+        // Edit day
+        if (target.classList.contains('iw-edit-day')) {
+            editingDay = parseInt(target.dataset.day);
+            renderIdealWeek();
+            return;
+        }
+
+        // Cancel edit
+        if (target.classList.contains('iw-cancel-day')) {
+            editingDay = -1;
+            WEEK = loadWeek(); // revert unsaved changes
+            renderIdealWeek();
+            return;
+        }
+
+        // Save day
+        if (target.classList.contains('iw-save-day')) {
+            saveDayFromDOM(parseInt(target.dataset.day));
+            return;
+        }
+
+        // Add block
+        if (target.classList.contains('iw-add-block')) {
+            const dayIdx = parseInt(target.dataset.day);
+            const card = target.closest('.iw-card-editing');
+            const blocksContainer = card.querySelector('.iw-edit-blocks');
+            const newIdx = blocksContainer.querySelectorAll('.iw-edit-row').length;
+            const newRow = document.createElement('div');
+            newRow.className = 'iw-edit-row';
+            newRow.dataset.bidx = newIdx;
+            newRow.style.cssText = 'display:flex; gap:6px; align-items:center; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.04);';
+            newRow.innerHTML = `
+                <input type="text" value="" class="iw-input iw-time" style="width:52px; font-size:0.75rem; font-family:'VT323',monospace;" placeholder="HH:MM">
+                <select class="iw-input iw-cat" style="width:90px; font-size:0.72rem;">
+                    ${catOptions('routine')}
+                </select>
+                <input type="text" value="" class="iw-input iw-label" style="flex:1; font-size:0.78rem;" placeholder="Activity label">
+                <button class="iw-btn-icon iw-del-block" title="Remove" style="color:#f87171; background:rgba(248,113,113,0.08); border:1px solid rgba(248,113,113,0.15);">✕</button>
+            `;
+            blocksContainer.appendChild(newRow);
+            newRow.querySelector('.iw-time').focus();
+            return;
+        }
+
+        // Delete block
+        if (target.classList.contains('iw-del-block')) {
+            target.closest('.iw-edit-row').remove();
+            return;
+        }
+    }
+
+    // ── Save from DOM ─────────────────────────────────────────
+    function saveDayFromDOM(dayIdx) {
+        const card = document.querySelector(`.iw-card-editing[data-day="${dayIdx}"]`);
+        if (!card) return;
+
+        const typeInput = card.querySelector('.iw-type-input');
+        const noteInput = card.querySelector('.iw-note-input');
+        const rows = card.querySelectorAll('.iw-edit-row');
+
+        const blocks = [];
+        rows.forEach(row => {
+            const time = row.querySelector('.iw-time')?.value.trim();
+            const cat = row.querySelector('.iw-cat')?.value;
+            const label = row.querySelector('.iw-label')?.value.trim();
+            if (time && label) {
+                blocks.push({ time, label, cat: cat || 'routine' });
+            }
+        });
+
+        // Sort by time
+        blocks.sort((a, b) => {
+            const ta = a.time.replace(':', '').padStart(4, '0');
+            const tb = b.time.replace(':', '').padStart(4, '0');
+            return ta.localeCompare(tb);
+        });
+
+        WEEK[dayIdx].type = typeInput?.value.trim() || WEEK[dayIdx].type;
+        WEEK[dayIdx].note = noteInput?.value.trim() || '';
+        WEEK[dayIdx].blocks = blocks;
+
+        saveWeek(WEEK);
+        editingDay = -1;
+        renderIdealWeek();
+    }
+
+    // ── Reset to defaults ─────────────────────────────────────
+    window._resetIdealWeek = function () {
+        if (confirm('Reset all days to the original Ideal Week? Your edits will be lost.')) {
+            localStorage.removeItem(STORAGE_KEY);
+            WEEK = JSON.parse(JSON.stringify(DEFAULT_WEEK));
+            editingDay = -1;
+            renderIdealWeek();
+        }
+    };
+
+    // ── Inject editor styles ──────────────────────────────────
+    function injectStyles() {
+        if (document.getElementById('iw-edit-styles')) return;
+        const style = document.createElement('style');
+        style.id = 'iw-edit-styles';
+        style.textContent = `
+            .iw-input {
+                background: rgba(255,255,255,0.04);
+                border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 3px;
+                color: var(--text-primary, #e8f0f2);
+                padding: 4px 6px;
+                font-family: 'Inter', sans-serif;
+                outline: none;
+                transition: border-color 0.15s;
+            }
+            .iw-input:focus {
+                border-color: rgba(0,200,160,0.4);
+            }
+            .iw-input::placeholder {
+                color: rgba(255,255,255,0.2);
+            }
+            select.iw-input {
+                cursor: pointer;
+            }
+            select.iw-input option {
+                background: #0d1520;
+                color: #e8f0f2;
+            }
+            .iw-btn {
+                background: rgba(64,224,208,0.08);
+                border: 1px solid rgba(64,224,208,0.15);
+                border-radius: 3px;
+                color: var(--text-secondary, rgba(232,240,242,0.55));
+                padding: 5px 12px;
+                font-size: 0.75rem;
+                font-family: 'Inter', sans-serif;
+                cursor: pointer;
+                transition: all 0.15s;
+            }
+            .iw-btn:hover {
+                border-color: rgba(64,224,208,0.35);
+                color: var(--text-primary, #e8f0f2);
+            }
+            .iw-btn-icon {
+                width: 24px; height: 24px;
+                display: flex; align-items: center; justify-content: center;
+                border-radius: 3px;
+                font-size: 0.8rem;
+                cursor: pointer;
+                transition: all 0.15s;
+                padding: 0;
+                line-height: 1;
+                flex-shrink: 0;
+            }
+            .iw-btn-icon:hover {
+                filter: brightness(1.3);
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // ── Boot ──────────────────────────────────────────────────
+    function boot() {
+        injectStyles();
+        renderIdealWeek();
+    }
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', boot);

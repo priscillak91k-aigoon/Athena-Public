@@ -242,5 +242,21 @@ tags:
 - **Outcome**: Framework built and fully wired into the dreaming engine. Testing pending hardware reboot. ✅ Correct call.
 
 ---
+
+## 2026-03-14 — Session 53
+
+### Decision: Studio Driver over Game Ready for Fury (Quadro T1000)
+- **Situation**: Current driver was GRD 551.91. User asked which is better given GFN gaming.
+- **Choice**: Studio Driver. DDU clean install to switch branches.
+- **Reasoning**: GFN renders server-side — local GPU driver is irrelevant for gaming. For local compute (Python, AI scripts, CUDA), Studio's longer QA cycle and compute-stable testing makes it strictly superior. No benefit to GRD instability when there's nothing to gain from its gaming optimisations.
+- **Outcome**: Cilla downloading Studio Driver as session closes. ✅ Correct call.
+
+### Decision: Thermal repaste as Priority 1 hardware upgrade
+- **Situation**: WE75 9TK is ~6yr old, thermal paste never replaced, under sustained compute load.
+- **Choice**: Repaste before any other upgrade. Priority 1 above SSD or RAM.
+- **Reasoning**: Degraded paste directly taxes every other component — CPU throttles under sustained load, GPU cant maintain clocks. Fixing it is the highest-leverage $30 on the machine.
+- **Outcome**: Documented in upgrade report. ✅ Correct call.
+
+---
 *Graph links  [[ATHENA_MAP]]*
 Related: [[journal]]

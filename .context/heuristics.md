@@ -272,6 +272,16 @@ Every `/end` session, ask:
 - **Supabase anon key in public repo is not a breach** — the anon key is designed to be public. The real risk is RLS not being enabled on tables. Always answer Supabase security questions at the RLS level, not the key-exposure level.
 - **Philosophical question sessions are social tools, not AI interactions** — when she asks for mind-boggling or personal questions, she's generating content for a human conversation. Be the question generator, not the discussion partner. Ship more questions, less analysis.
 
+## 🛠️ Hardware & Driver Heuristics (Session 53)
+
+- **GeForce NOW + local GPU**: GFN renders server-side. Local GPU only decodes the H.265 stream. Driver choice has zero impact on GFN gaming performance. Optimise local drivers for compute/stability, not frames.
+- **Game Ready Driver vs Studio Driver**: GRD = faster release cycle, shorter QA, optimised for new game launches. Studio = longer QA, compute-stable, fewer regressions. For a Quadro card on a non-gaming workload → Studio is always correct.
+- **Driver branch switching (GRD → Studio)**: Always use DDU clean install. Running studio installer over a GRD residue creates registry conflicts that defeat the stability benefits of switching.
+- **DDU self-extractor pattern**: DDU downloads as a self-extracting archive. Running the download extracts a folder. The actual DDU program is the exe *inside* that folder, not the download itself.
+- **Laptop thermal paste age**: If a laptop is 3+ years old and thermals haven't been touched, treat thermal repaste as Priority 1 maintenance before any other hardware upgrade. Degraded paste costs 10–20°C under sustained load.
+- **Battery replacement threshold**: 60-65% of design capacity = replace. 70-80% = monitor. Below 60% = urgent. The WE75 9TK (BTY-M6K) compatible: 10.86V 51Wh 6-cell.
+- **eGPU on WE75 9TK**: No Thunderbolt = no eGPU. Hard block. Do not suggest external GPU solutions for this machine.
+
 ---
 *Graph links  [[ATHENA_MAP]]*
 Related: [[case_studies]] | [[decision_journal]]
