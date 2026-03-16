@@ -15,6 +15,7 @@
         routine: { dot: 'rgba(255,255,255,0.3)', label: 'Routine' },
         kids: { dot: '#38bdf8', label: 'Kids' },
         nap: { dot: '#c084fc', label: 'Nap' },
+        cannabis: { dot: '#4ade80', label: 'Cannabis' },
     };
 
     const CAT_KEYS = Object.keys(C);
@@ -61,7 +62,7 @@
                 { time: '17:30', label: 'Light tasks · admin · messages', cat: 'routine' },
                 { time: '18:30', label: 'Dinner + kids evening', cat: 'routine' },
                 { time: '20:00', label: 'Kids bedtime', cat: 'kids' },
-                { time: '20:30', label: 'Free time — recharge, social, TV', cat: 'personal' },
+                { time: '20:30', label: '🌿 Cannabis — 2.5h before sleep', cat: 'cannabis' },
                 { time: '21:00', label: 'Mag Glycinate · dim lights', cat: 'windDown' },
                 { time: '23:00', label: '💤 SLEEP TARGET', cat: 'windDown' },
             ]
@@ -85,7 +86,7 @@
                 { time: '17:30', label: 'Admin / life tasks', cat: 'routine' },
                 { time: '18:30', label: 'Dinner + kids', cat: 'routine' },
                 { time: '20:00', label: 'Kids bedtime', cat: 'kids' },
-                { time: '20:30', label: 'Free time', cat: 'personal' },
+                { time: '20:30', label: '🌿 Cannabis — 2.5h before sleep', cat: 'cannabis' },
                 { time: '21:00', label: 'Mag Glycinate · dim lights', cat: 'windDown' },
                 { time: '23:00', label: '💤 SLEEP TARGET', cat: 'windDown' },
             ]
@@ -166,7 +167,7 @@
                 { time: '17:20', label: 'Quinn evening walk — decompress', cat: 'personal' },
                 { time: '18:00', label: 'Dinner + kids evening', cat: 'routine' },
                 { time: '20:00', label: 'Kids bedtime', cat: 'kids' },
-                { time: '20:30', label: '📋 Week review · set Monday intentions', cat: 'routine' },
+                { time: '20:30', label: '🌿 Cannabis + week review', cat: 'cannabis' },
                 { time: '21:00', label: 'Mag Glycinate · pure rest', cat: 'windDown' },
                 { time: '21:30', label: 'Reading — no screens', cat: 'windDown' },
                 { time: '22:30', label: '💤 SLEEP — early reset for Monday', cat: 'windDown' },

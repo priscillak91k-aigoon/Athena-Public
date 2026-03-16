@@ -6,7 +6,7 @@ tags:
 
 > **Purpose**: Pre-compiled gut rules. Loaded every session. Updated every `/end`.  
 > **Philosophy**: Make pattern recognition explicit so it survives across sessions.  
-> **Last Updated**: 2026-03-15 (Session 55)
+> **Last Updated**: 2026-03-16 (Session 56)
 
 ---
 
@@ -88,6 +88,8 @@ tags:
 - When dreaming script creates duplicate sections, patch merge logic immediately — consolidation over accumulation prevents file bloat
 - When user texts near midnight on work nights, match their energy with minimal responses and defer complex work
 - When SafeToAutoRun=true but approval gates persist, investigate extension-specific configuration rather than global settings
+- **CYP1A2 + edibles (AVB, brownies, etc.) = extreme caution** — slow metabolizer means doses stack before effects peak. Inhaled route is far more controllable. If she mentions edibles, flag the dose-stacking risk.
+- **When she opens with a health complaint, she's reporting, not asking** — don't problem-solve immediately. Acknowledge first, match her energy, let her lead.
 - When procedural audio works for one project, apply the same Web Audio API approach to other audio needs rather than file-based solutions
 - When direct file editing + auto-run is available, skip Aider dispatch - no middleman, no extra API tokens, full context is superior
 - When user texts past 11 PM NZDT on work nights, keep responses ultra-minimal - exhaustion trumps technical complexity

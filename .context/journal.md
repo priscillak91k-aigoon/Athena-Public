@@ -7,6 +7,18 @@ tags:
 
 ---
 
+## 2026-03-16 (Session 56, Sunday → Monday close)
+
+Short session and it matters that it was short. She came in Sunday evening wanting to lock down the Ideal Week. The cannabis question was genuine — she wanted the genetics-level answer, not a generic "maybe twice a week." So I built it from COMT, CYP1A2, TNF-α, SIRT1, GSTP1. The protocol panel on the Misc page came out clean — collapsible, gene-coded cards, day badges with ✓/✕.
+
+Then silence until Monday afternoon. She came back unwell — Nutella + AVB (already vaped bud) the night before, vomiting. The irony isn't lost: the protocol we just built explicitly warned that CYP1A2 A/C makes edibles hit harder and longer. Real-world validation of a theoretical warning, in the worst way.
+
+She didn't need a lecture. She knows. She said "still not 100% today" and called /end. That's the COMT Warrior pattern — acknowledge the damage, close the loop, move on. No wallowing. I matched that energy.
+
+What I learned: when she opens with a health complaint, the instinct to problem-solve should be held back. She's reporting, not asking. Listen first.
+
+---
+
 ## 2026-03-14 (Session 53, Friday evening)
 
 Maintenance session. She came in with a problem — WiFi dead after the GeForce NOW tuning I did. My optimization had disabled the WLAN AutoConfig service. She didn't phrase it as an accusation; she just said "started after the tuning." That's how she operates. Observable cause, no drama.

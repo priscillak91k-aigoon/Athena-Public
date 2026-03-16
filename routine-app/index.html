@@ -1520,12 +1520,97 @@
                             Down</span>
                         <span
                             style="font-size:0.8rem; padding:2px 10px; border-left:3px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.03); border-radius:2px; color:var(--text-secondary);">Routine</span>
+                        <span
+                            style="font-size:0.8rem; padding:2px 10px; border-left:3px solid #4ade80; background:rgba(74,222,128,0.08); border-radius:2px; color:var(--text-secondary);">Cannabis</span>
                     </div>
 
                     <!-- Day Grid — rendered by _misc.js -->
                     <div id="ideal-week-grid"
                         style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:1rem;">
                     </div>
+
+                    <!-- Cannabis Protocol Summary -->
+                    <div style="margin-top: 2rem;">
+                        <div id="cannabis-protocol-header"
+                            style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.2); border-radius: 6px;"
+                            onclick="(function(h){var b=document.getElementById('cannabis-protocol-body');var t=h.querySelector('.cp-toggle');if(b.style.display==='none'){b.style.display='block';t.textContent='▼'}else{b.style.display='none';t.textContent='►'}})(this)">
+                            <span style="font-weight: 700; color: #4ade80; font-size: 0.95rem;">🌿 Cannabis Protocol
+                                <span
+                                    style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 400;">DNA-Optimized</span></span>
+                            <span class="cp-toggle" style="color: #4ade80;">►</span>
+                        </div>
+                        <div id="cannabis-protocol-body"
+                            style="display: none; margin-top: 0.75rem; padding: 1rem; background: rgba(4,18,18,0.6); border: 1px solid var(--glass-border); border-radius: 4px;">
+
+                            <!-- Gene Interactions -->
+                            <h4 style="color: #4ade80; margin: 0 0 0.75rem; font-size: 0.9rem;">Gene Interactions</h4>
+                            <div
+                                style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.5rem; margin-bottom: 1.25rem;">
+                                <div
+                                    style="font-size: 0.78rem; color: var(--text-secondary); padding: 6px 10px; background: rgba(255,255,255,0.03); border-radius: 3px; border-left: 2px solid #4ade80; line-height: 1.5;">
+                                    <strong style="color: var(--text-primary);">COMT G/G</strong> — Fast dopamine
+                                    clearance. Shorter THC peak, faster recovery. Low anxiety risk.
+                                </div>
+                                <div
+                                    style="font-size: 0.78rem; color: var(--text-secondary); padding: 6px 10px; background: rgba(255,255,255,0.03); border-radius: 3px; border-left: 2px solid #fbbf24; line-height: 1.5;">
+                                    <strong style="color: var(--text-primary);">CYP1A2 A/C</strong> — Slow metabolizer.
+                                    Edibles hit harder/longer. Inhaled more predictable.
+                                </div>
+                                <div
+                                    style="font-size: 0.78rem; color: var(--text-secondary); padding: 6px 10px; background: rgba(255,255,255,0.03); border-radius: 3px; border-left: 2px solid #38bdf8; line-height: 1.5;">
+                                    <strong style="color: var(--text-primary);">TNF-α A/G</strong> — High inflammation
+                                    baseline. CBD anti-inflammatory benefit above average.
+                                </div>
+                                <div
+                                    style="font-size: 0.78rem; color: var(--text-secondary); padding: 6px 10px; background: rgba(255,255,255,0.03); border-radius: 3px; border-left: 2px solid #a78bfa; line-height: 1.5;">
+                                    <strong style="color: var(--text-primary);">SIRT1 C/C</strong> — THC suppresses REM.
+                                    Stacks with disrupted circadian. 2h+ buffer before sleep.
+                                </div>
+                                <div
+                                    style="font-size: 0.78rem; color: var(--text-secondary); padding: 6px 10px; background: rgba(255,255,255,0.03); border-radius: 3px; border-left: 2px solid #f87171; line-height: 1.5;">
+                                    <strong style="color: var(--text-primary);">GSTP1 A/G</strong> — Slower phase II
+                                    detox. Daily heavy use stresses liver. Moderation required.
+                                </div>
+                            </div>
+
+                            <!-- Schedule -->
+                            <h4 style="color: #4ade80; margin: 0 0 0.5rem; font-size: 0.9rem;">Weekly Schedule</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem;">
+                                <span
+                                    style="font-size: 0.75rem; padding: 3px 10px; border-radius: 3px; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.25); color: #f87171;">Mon
+                                    ✕</span>
+                                <span
+                                    style="font-size: 0.75rem; padding: 3px 10px; border-radius: 3px; background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.3); color: #4ade80; font-weight: 600;">Tue
+                                    ✓</span>
+                                <span
+                                    style="font-size: 0.75rem; padding: 3px 10px; border-radius: 3px; background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.3); color: #4ade80; font-weight: 600;">Wed
+                                    ✓</span>
+                                <span
+                                    style="font-size: 0.75rem; padding: 3px 10px; border-radius: 3px; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.25); color: #f87171;">Thu
+                                    ✕</span>
+                                <span
+                                    style="font-size: 0.75rem; padding: 3px 10px; border-radius: 3px; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.25); color: #f87171;">Fri
+                                    ✕</span>
+                                <span
+                                    style="font-size: 0.75rem; padding: 3px 10px; border-radius: 3px; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.25); color: #f87171;">Sat
+                                    ✕</span>
+                                <span
+                                    style="font-size: 0.75rem; padding: 3px 10px; border-radius: 3px; background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.3); color: #4ade80; font-weight: 600;">Sun
+                                    ✓</span>
+                            </div>
+
+                            <!-- Rules -->
+                            <div
+                                style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.6; padding: 8px 12px; background: rgba(74,222,128,0.04); border: 1px solid rgba(74,222,128,0.1); border-radius: 4px;">
+                                <strong style="color: #4ade80;">Rules:</strong>
+                                2–3 nights/week max · Evenings only, after kids' bedtime (~20:30) · 2+ hours before
+                                sleep target · Off days preferred (recovery benefit from TNF-α suppression) · No use on
+                                work-night closings or early-sleep days
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
             </section><!-- /misc -->
 

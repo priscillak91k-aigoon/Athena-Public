@@ -12,6 +12,8 @@ tags:
 
 **Session 55**: Workshop migrated to Supabase (Wishlists, Ideas, Lists live cross-device), Sync button added to Workshop header, Telegram bot extended with /wish /idea /list /sync; one manual step remains — run supabase_workshop_schema.sql in Supabase dashboard.
 
+**Session 56**: Cannabis protocol designed from DNA profile and added to Life Hub Misc page (collapsible panel with gene interactions, weekly schedule, rules). AVB + Nutella incident validated CYP1A2 slow metabolizer warning — edibles hit disproportionately hard. Short session; still recovering next day.
+
 ---
 *Graph links  [[ATHENA_MAP]]*
 Related: [[about_priscilla]] | [[convictions]]
