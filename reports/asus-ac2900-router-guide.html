@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASUS AC2900 — Optimised Router Guide</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --surface2: #21262d;
+            --border: #30363d;
+            --accent: #00e5c8;
+            --accent2: #7c3aed;
+            --accent3: #f59e0b;
+            --danger: #ef4444;
+            --success: #22c55e;
+            --text: #e6edf3;
+            --muted: #8b949e;
+            --font: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0d1f2d 0%, #1a0a2e 50%, #0d2416 100%);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(0, 229, 200, 0.07) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(124, 58, 237, 0.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 229, 200, 0.15);
+            border: 1px solid rgba(0, 229, 200, 0.3);
+            color: var(--accent);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--accent), #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .toc {
+            max-width: 960px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .toc-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .toc-box h3 {
+            color: var(--accent);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .toc-box ol {
+            columns: 2;
+            gap: 1rem;
+            list-style: none;
+            counter-reset: toc;
+        }
+
+        .toc-box li {
+            counter-increment: toc;
+            margin-bottom: 0.4rem;
+        }
+
+        .toc-box li::before {
+            content: counter(toc) ". ";
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .toc-box a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .toc-box a:hover {
+            color: var(--text);
+        }
+
+        main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        h2 .icon {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        p {
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .card.highlight {
+            border-left: 3px solid var(--accent);
+        }
+
+        .card.warning {
+            border-left: 3px solid var(--accent3);
+            background: rgba(245, 158, 11, 0.05);
+        }
+
+        .card.danger {
+            border-left: 3px solid var(--danger);
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .card.success {
+            border-left: 3px solid var(--success);
+            background: rgba(34, 197, 94, 0.05);
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .card.warning .dot {
+            background: var(--accent3);
+        }
+
+        .card.danger .dot {
+            background: var(--danger);
+        }
+
+        .card.success .dot {
+            background: var(--success);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 0.88rem;
+        }
+
+        th {
+            background: var(--surface2);
+            color: var(--accent);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.6rem 0.9rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+
+        td {
+            padding: 0.6rem 0.9rem;
+            border: 1px solid var(--border);
+            color: var(--text);
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tag-green {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+        }
+
+        .tag-red {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+        .tag-yellow {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+        }
+
+        .tag-blue {
+            background: rgba(96, 165, 250, 0.2);
+            color: #93c5fd;
+        }
+
+        .tag-purple {
+            background: rgba(167, 139, 250, 0.2);
+            color: #c4b5fd;
+        }
+
+        .step-list {
+            list-style: none;
+            counter-reset: steps;
+        }
+
+        .step-list li {
+            counter-increment: steps;
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .step-list li::before {
+            content: counter(steps);
+            position: absolute;
+            left: 0;
+            top: 0.1rem;
+            width: 1.6rem;
+            height: 1.6rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #000;
+            font-weight: 800;
+            font-size: 0.75rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .diagram {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: var(--muted);
+            overflow-x: auto;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .diagram .accent {
+            color: var(--accent);
+        }
+
+        .diagram .purple {
+            color: #a78bfa;
+        }
+
+        .diagram .yellow {
+            color: var(--accent3);
+        }
+
+        code {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 0.15rem 0.4rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+
+        .verdict {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .verdict-box {
+            flex: 1;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .verdict-box h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .verdict-box ul {
+            list-style: none;
+            font-size: 0.83rem;
+            color: var(--muted);
+        }
+
+        .verdict-box ul li::before {
+            content: '• ';
+            color: var(--accent);
+        }
+
+        .verdict-box.chosen {
+            border-color: var(--success);
+            background: rgba(34, 197, 94, 0.06);
+        }
+
+        .verdict-box.chosen h4 {
+            color: var(--success);
+        }
+
+        .verdict-box.rejected {
+            border-color: var(--danger);
+            background: rgba(239, 68, 68, 0.04);
+        }
+
+        .verdict-box.rejected h4 {
+            color: var(--danger);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .usb-feature {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.75rem;
+            align-items: start;
+        }
+
+        .usb-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            background: var(--surface2);
+            flex-shrink: 0;
+        }
+
+        .usb-feature h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .usb-feature p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 640px) {
+            .toc-box ol {
+                columns: 1;
+            }
+
+            .verdict {
+                flex-direction: column;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="badge">🔬 Nuclear Research Mode — DEFCON 1</div>
+        <h1>ASUS RT-AC86U (AC2900) — Complete Optimisation Guide</h1>
+        <p>Tailored for: SJ's Room · Ethernet Backhaul · SJAI Supercomputer Direct Connect · Contact NZ Fibre</p>
+    </header>
+
+    <div class="toc">
+        <div class="toc-box">
+            <h3>📋 Contents</h3>
+            <ol>
+                <li><a href="#topology">Network Topology Decision</a></li>
+                <li><a href="#mode">Router vs AP Mode</a></li>
+                <li><a href="#physical">Physical Setup</a></li>
+                <li><a href="#wireless-24">2.4GHz Settings</a></li>
+                <li><a href="#wireless-5">5GHz Settings</a></li>
+                <li><a href="#qos">QoS & Traffic</a></li>
+                <li><a href="#security">Security Hardening</a></li>
+                <li><a href="#vpn">VPN Configuration</a></li>
+                <li><a href="#usb">USB Port — All Features</a></li>
+                <li><a href="#dns">DNS Optimisation</a></li>
+                <li><a href="#firmware">Firmware & Merlin</a></li>
+                <li><a href="#checklist">Final Checklist</a></li>
+            </ol>
+        </div>
+    </div>
+
+    <main>
+
+        <!-- SECTION 1: TOPOLOGY -->
+        <section id="topology">
+            <h2><span class="icon">🗺️</span> Network Topology — How It All Fits</h2>
+            <div class="diagram">
+                <span class="yellow">CONTACT NZ FIBRE (ONT)</span>
+                │
+                ▼
+                <span class="accent">TP-LINK MESH ROUTER (Main)</span> ← Acts as primary router, DHCP master
+                192.168.1.1 │ Subnet: 192.168.1.0/24
+                │
+                [LAN Port]──────────[Ethernet Cable]
+                │
+                ▼
+                <span class="purple">ASUS RT-AC86U (SJ's Room)</span> ← Running in ROUTER mode
+                192.168.1.x WAN │ SJ Subnet: 192.168.2.0/24
+                │
+                ┌──────────┼──────────┐
+                ▼ ▼ ▼
+                <span class="accent">[SJAI LAN1]</span> [LAN2] [Wi-Fi 5GHz]
+                (Supercomputer) (Future) (SJ's devices)
+            </div>
+
+            <div class="card highlight">
+                <div class="card-title">
+                    <div class="dot"></div>Why this topology?
+                </div>
+                <p>SJ's ASUS is functioning as a <strong>dedicated router for the AI supercomputer lab</strong>. The
+                    ethernet cable from the TP-Link main router plugs into the <strong>WAN port</strong> of the ASUS.
+                    This gives SJ her own subnet (192.168.2.x), her own QoS controls, her own VPN, her own firewall —
+                    completely independent of the rest of the house network. The AI supercomputer gets sub-1ms intra-LAN
+                    latency. Zero wireless hops. Zero performance loss.</p>
+            </div>
+
+            <div class="card warning">
+                <div class="card-title">
+                    <div class="dot"></div>⚠️ Double NAT — Not a Problem Here
+                </div>
+                <p>Double NAT (two routers doing NAT) is normally bad for gaming consoles and peer-to-peer apps. For
+                    SJ's use case — AI compute workloads, SSH, API calls, remote access — it is
+                    <strong>irrelevant</strong>. The ASUS is the only device she'll be tunnelling through, and outbound
+                    connections (which is what AI workloads do) are never affected by double NAT. Only port-forwarding
+                    inbound connections are affected, and that's solved with a simple DMZ or port forward on the TP-Link
+                    pointing to the ASUS WAN IP.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 2: MODE DECISION -->
+        <section id="mode">
+            <h2><span class="icon">⚙️</span> Router Mode vs AP Mode — The Decision</h2>
+
+            <div class="verdict">
+                <div class="verdict-box chosen">
+                    <h4>✅ ROUTER MODE (Chosen)</h4>
+                    <ul>
+                        <li>Full QoS for the supercomputer</li>
+                        <li>VPN server — remote access to SJAI</li>
+                        <li>OpenVPN client — route all SJ traffic through VPN</li>
+                        <li>Independent DHCP — SJ controls 192.168.2.x</li>
+                        <li>AiProtection + full firewall active</li>
+                        <li>Download Master (USB NAS) works</li>
+                        <li>Traffic logging per device</li>
+                        <li>USB app features all available</li>
+                    </ul>
+                </div>
+                <div class="verdict-box rejected">
+                    <h4>❌ AP MODE (Not Chosen)</h4>
+                    <ul>
+                        <li>Loses QoS (TP-Link handles it, poorly)</li>
+                        <li>Loses VPN server capability</li>
+                        <li>Loses DHCP control</li>
+                        <li>Loses independent firewall</li>
+                        <li>Loses Download Master</li>
+                        <li>AiProtection disabled</li>
+                        <li>SJ is on same subnet as house</li>
+                        <li>Fine for extending Wi-Fi, not for lab work</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card success">
+                <div class="card-title">
+                    <div class="dot"></div>Setup instruction
+                </div>
+                <p>Plug the ethernet cable from the TP-Link into the <strong>WAN</strong> (blue/yellow) port of the
+                    ASUS. The ASUS will recognise the TP-Link as its upstream provider and request an IP via DHCP. It
+                    will then hand out 192.168.2.x addresses to everything plugged into its LAN ports. SJAI goes into
+                    LAN port 1.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 3: PHYSICAL SETUP -->
+        <section id="physical">
+            <h2><span class="icon">🔌</span> Physical Setup — Port Map</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Port</th>
+                        <th>Connect To</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>WAN</strong> (blue)</td>
+                        <td>TP-Link Mesh Router (LAN port)</td>
+                        <td>This is the backhaul. Uses a single ethernet cable. ASUS gets internet from here.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LAN 1</strong></td>
+                        <td>SJAI Supercomputer</td>
+                        <td>Gigabit. Sub-1ms. This is the money port — no Wi-Fi, no mesh, no loss.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LAN 2–4</strong></td>
+                        <td>Available for future wired devices</td>
+                        <td>SJ's monitors, smart devices, anything else needing wired.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>USB 3.0</strong> (rear, top)</td>
+                        <td>External hard drive / SSD</td>
+                        <td>NAS, AiCloud, Download Master. NTFS format recommended.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>USB 2.0</strong> (rear, bottom)</td>
+                        <td>USB printer / low-speed device</td>
+                        <td>Printer sharing server. USB 2.0 speed (480 Mbps) — fine for printing, not for storage.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="card">
+                <div class="card-title">
+                    <div class="dot"></div>Cable Quality Matters
+                </div>
+                <p>For the WAN backhaul cable, use <strong>Cat 6 minimum</strong>. The router supports gigabit speeds —
+                    a Cat 5 cable will cap you at 100 Mbps. Cat 6 = full gigabit. If it's a long run through walls, Cat
+                    6A is even better (less cross-talk).</p>
+            </div>
+        </section>
+
+        <!-- SECTION 4: 2.4GHz -->
+        <section id="wireless-24">
+            <h2><span class="icon">📶</span> 2.4GHz Wireless Settings</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Recommended Value</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>SSID</strong></td>
+                        <td><code>SJ-2G</code> (or custom)</td>
+                        <td>Separate SSID from TP-Link mesh. Disable Smart Connect — never let it choose for you.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Security</strong></td>
+                        <td>WPA2-Personal (AES)</td>
+                        <td>WPA3 only if all your devices support it. WPA2-AES is the safe universal choice.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Channel</strong></td>
+                        <td>1, 6, or 11 (manually set)</td>
+                        <td>Non-overlapping channels. Run a Wi-Fi scanner app to see what neighbours use. Pick the
+                            emptiest.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Channel Bandwidth</strong></td>
+                        <td>20 MHz</td>
+                        <td>2.4GHz is congested. 40 MHz grabs adjacent channels from neighbours and creates
+                            interference. 20 MHz is stable and reliable for IoT/light devices.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Extension Channel</strong></td>
+                        <td>N/A (set to 20 MHz)</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Preamble Type</strong></td>
+                        <td>Short</td>
+                        <td>Faster overhead for modern devices. Only use Long if you have very old equipment.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transmit Power</strong></td>
+                        <td>Performance (100%)</td>
+                        <td>SJ's room may be some distance from other devices. Max power = max coverage.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Airtime Fairness</strong></td>
+                        <td>OFF</td>
+                        <td>Airtime fairness is designed for mixed-speed networks. If all devices are modern, it adds
+                            unnecessary overhead.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>WMM APSD</strong></td>
+                        <td>OFF</td>
+                        <td>Can cause connection quality issues on some devices. Safe to disable.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Roaming Assistant</strong></td>
+                        <td>OFF</td>
+                        <td>Prevents the router from aggressively kicking devices — devices stay where they work.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Smart Connect</strong></td>
+                        <td>OFF</td>
+                        <td>Always. Control which device goes on which band manually.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Beamforming</strong></td>
+                        <td>ON (Universal)</td>
+                        <td>Directs signal toward devices rather than broadcasting omnidirectionally.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IGMP Snooping</strong></td>
+                        <td>ON</td>
+                        <td>Reduces unnecessary multicast traffic on the 2.4GHz band.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SECTION 5: 5GHz -->
+        <section id="wireless-5">
+            <h2><span class="icon">📡</span> 5GHz Wireless Settings</h2>
+            <p>This is the primary Wi-Fi band for everything SJ connects wirelessly. The ASUS AC2900 maxes at
+                <strong>2167 Mbps</strong> theoretical on 5GHz with NitroQAM. SJAI should be wired — this band is for
+                SJ's other devices.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Recommended Value</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>SSID</strong></td>
+                        <td><code>SJ-5G</code> (or custom)</td>
+                        <td>Keep separate from 2.4GHz SSID so you always know exactly what band a device is on.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Security</strong></td>
+                        <td>WPA2-Personal (AES)</td>
+                        <td>Same as 2.4GHz recommendation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Channel</strong></td>
+                        <td>36–48 (lower block) or Auto</td>
+                        <td>NZ: channels 36–64 and 100–140 are available. Lower channels (36–48) avoid DFS radar trigger
+                            zones, meaning no random 30-second blackouts when the router detects radar. Recommended:
+                            <strong>36</strong>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Channel Bandwidth</strong></td>
+                        <td>80 MHz</td>
+                        <td>Best balance. 160 MHz doubles the theoretical speed but doubles interference risk and has
+                            very few compatible devices in NZ. Stick with 80 MHz — it gives the AC2900 up to 1733 Mbps
+                            real-world usable.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MU-MIMO</strong></td>
+                        <td>ON</td>
+                        <td>Allows the router to serve multiple devices simultaneously. Critical for a busy lab
+                            environment.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Beamforming+</strong></td>
+                        <td>ON (Universal + Explicit)</td>
+                        <td>Actively steers signal toward SJAI and other devices. Genuine performance improvement in a
+                            room-scale environment.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transmit Power</strong></td>
+                        <td>Performance (100%)</td>
+                        <td>Max range within SJ's room and adjacent areas.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Smart Connect</strong></td>
+                        <td>OFF</td>
+                        <td>Always off. Manual band assignment.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Airtime Fairness</strong></td>
+                        <td>ON (5GHz)</td>
+                        <td>On 5GHz with fewer devices, airtime fairness actually helps prevent one slow device from
+                            degrading others. Opposite recommendation to 2.4GHz.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>WMM</strong></td>
+                        <td>ON</td>
+                        <td>Required for 802.11n/ac. Enables QoS at the wireless layer for real-time traffic
+                            prioritisation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AMPDU + AMSDU</strong></td>
+                        <td>ON</td>
+                        <td>Frame aggregation — batches packets for more efficient transmission. Good for the
+                            high-throughput AI workloads.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="card highlight">
+                <div class="card-title">
+                    <div class="dot"></div>Key point: SJAI should ALWAYS be wired
+                </div>
+                <p>Even at 80 MHz, 5GHz Wi-Fi will have variable latency of 2–10ms. A wired gigabit connection to SJAI
+                    gives <strong>sub-0.5ms latency</strong> and consistent 940+ Mbps throughput. For AI inference
+                    workloads, ML training coordination, and API serving — wired is not optional.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 6: QoS -->
+        <section id="qos">
+            <h2><span class="icon">⚡</span> QoS — Traffic Priority for the Supercomputer</h2>
+
+            <h3>Adaptive QoS Setup</h3>
+            <p>Navigate: <code>Advanced Settings → Adaptive QoS</code></p>
+
+            <ol class="step-list">
+                <li>Enable <strong>Adaptive QoS</strong>. Select type: <strong>Custom</strong> (not Gaming/Streaming
+                    presets).</li>
+                <li>Set priority order: <strong>Gaming → Streaming → Web Surfing → File Transfer → Others</strong>. The
+                    "Gaming" category catches low-latency UDP traffic — which is what AI model API calls often look
+                    like.</li>
+                <li>In <strong>Bandwidth Limiter</strong>, set no limits for SJAI's MAC address. This tells the router
+                    to always give the supercomputer whatever it needs, never throttle it.</li>
+                <li>Turn on <strong>Traffic Monitor</strong> — lets SJ see real-time bandwidth usage per device.
+                    Essential for monitoring AI workload network profiles.</li>
+            </ol>
+
+            <div class="card warning">
+                <div class="card-title">
+                    <div class="dot"></div>⚠️ WTFast is dead — skip it
+                </div>
+                <p>WTFast's Gamers Private Network integration reached end-of-service in 2024 and no longer works from
+                    the router interface. Don't spend time trying to configure it. If SJ wants game acceleration, the
+                    WTFast PC app still works at the client level, but it's irrelevant for AI compute workloads.</p>
+            </div>
+
+            <h3>IP Traffic Controller (Advanced)</h3>
+            <p>For fine-grained control: <code>Advanced Settings → Traffic Manager → IP Traffic Controller</code></p>
+            <p>You can set SJAI's static IP (192.168.2.10 recommended) as <strong>Highest</strong> priority with
+                uncapped bandwidth. All other devices fall below. This is the surgical option — SJAI always wins in a
+                bandwidth contest.</p>
+        </section>
+
+        <!-- SECTION 7: SECURITY -->
+        <section id="security">
+            <h2><span class="icon">🔒</span> Security Hardening</h2>
+
+            <div class="grid-2">
+                <div>
+                    <h3>Enable These</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AiProtection (all 4 features)</td>
+                                <td><span class="tag tag-green">ON</span></td>
+                            </tr>
+                            <tr>
+                                <td>Firewall (General)</td>
+                                <td><span class="tag tag-green">ON</span></td>
+                            </tr>
+                            <tr>
+                                <td>DoS Protection</td>
+                                <td><span class="tag tag-green">ON</span></td>
+                            </tr>
+                            <tr>
+                                <td>IPv6 Firewall</td>
+                                <td><span class="tag tag-green">ON</span></td>
+                            </tr>
+                            <tr>
+                                <td>DNS Rebind Protection</td>
+                                <td><span class="tag tag-green">ON</span></td>
+                            </tr>
+                            <tr>
+                                <td>HTTPS for Admin GUI</td>
+                                <td><span class="tag tag-green">ON</span></td>
+                            </tr>
+                            <tr>
+                                <td>WPA2-AES encryption</td>
+                                <td><span class="tag tag-green">ON</span></td>
+                            </tr>
+                            <tr>
+                                <td>Two-Way IPS</td>
+                                <td><span class="tag tag-green">ON</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3>Disable These</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>WPS (PIN vulnerability)</td>
+                                <td><span class="tag tag-red">OFF</span></td>
+                            </tr>
+                            <tr>
+                                <td>UPnP</td>
+                                <td><span class="tag tag-red">OFF</span></td>
+                            </tr>
+                            <tr>
+                                <td>Respond to ICMP (WAN ping)</td>
+                                <td><span class="tag tag-red">OFF</span></td>
+                            </tr>
+                            <tr>
+                                <td>Remote Access from WAN</td>
+                                <td><span class="tag tag-red">OFF</span></td>
+                            </tr>
+                            <tr>
+                                <td>Telnet</td>
+                                <td><span class="tag tag-red">OFF</span></td>
+                            </tr>
+                            <tr>
+                                <td>DMZ (unless specifically needed)</td>
+                                <td><span class="tag tag-red">OFF</span></td>
+                            </tr>
+                            <tr>
+                                <td>Anonymous login</td>
+                                <td><span class="tag tag-red">OFF</span></td>
+                            </tr>
+                            <tr>
+                                <td>ASUS Router default credentials</td>
+                                <td><span class="tag tag-red">CHANGE</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card danger">
+                <div class="card-title">
+                    <div class="dot"></div>🚨 First thing: change the admin password
+                </div>
+                <p>Default ASUS credentials are publicly known. Go to
+                    <code>Administration → System → Router Login Password</code> and set a strong unique password. Do
+                    this before anything else.
+                </p>
+            </div>
+
+            <h3>AiProtection — What the 4 features do</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>What It Does</th>
+                        <th>Enable?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Router Security Assessment</td>
+                        <td>Scans your own config for vulnerabilities. One-shot audit.</td>
+                        <td><span class="tag tag-green">YES</span></td>
+                    </tr>
+                    <tr>
+                        <td>Malicious Sites Blocking</td>
+                        <td>Blocks known phishing, malware, ransomware domains via Trend Micro DB.</td>
+                        <td><span class="tag tag-green">YES</span></td>
+                    </tr>
+                    <tr>
+                        <td>Two-Way IPS</td>
+                        <td>Inspects inbound AND outbound traffic. Catches compromised devices calling home.</td>
+                        <td><span class="tag tag-green">YES</span></td>
+                    </tr>
+                    <tr>
+                        <td>Infected Device Prevention</td>
+                        <td>Blocks devices from connecting to C2 servers (botnet protection).</td>
+                        <td><span class="tag tag-green">YES</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SECTION 8: VPN -->
+        <section id="vpn">
+            <h2><span class="icon">🌐</span> Remote Access — Tailscale (How SJ Connects)</h2>
+
+            <div class="card highlight">
+                <div class="card-title">
+                    <div class="dot"></div>SJ uses Tailscale — the ASUS VPN server is not needed for remote access
+                </div>
+                <p>SJ's remote access to SJAI runs via <strong>Tailscale</strong>, a zero-config mesh VPN built on
+                    WireGuard. It connects her phone, work laptop, and SJAI into one private network from anywhere. No
+                    DDNS, no port forwarding, no ASUS VPN config required. The double-NAT topology is completely
+                    irrelevant — Tailscale handles NAT traversal automatically.</p>
+            </div>
+
+            <h3>Setup on SJAI (the supercomputer)</h3>
+            <ol class="step-list">
+                <li>Install Tailscale on SJAI: <code>curl -fsSL https://tailscale.com/install.sh | sh</code></li>
+                <li>Authenticate: <code>tailscale up</code> — SJAI gets a stable <code>100.x.x.x</code> address that
+                    never changes</li>
+                <li>SJ's phone and other devices already on Tailscale connect directly to SJAI's Tailscale IP from
+                    anywhere</li>
+                <li>No changes needed on the ASUS router — default firewall allows all outbound traffic</li>
+            </ol>
+
+            <div class="card success">
+                <div class="card-title">
+                    <div class="dot"></div>Subnet Router — expose all 192.168.2.x devices via Tailscale
+                </div>
+                <p>To make every device on SJ's subnet accessible remotely (not just SJAI), run SJAI as a subnet router:
+                </p>
+                <p><code>tailscale up --advertise-routes=192.168.2.0/24</code></p>
+                <p>Approve the route in the Tailscale admin console. The NAS, any future lab machines, all devices on
+                    192.168.2.x become reachable from SJ's Tailscale network.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <div class="dot"></div>Why Tailscale is the right choice here
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>ASUS OpenVPN Server</th>
+                            <th>Tailscale</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Setup</td>
+                            <td>DDNS + port forward + .ovpn export</td>
+                            <td>Install + <code>tailscale up</code></td>
+                        </tr>
+                        <tr>
+                            <td>Works through double NAT</td>
+                            <td>Requires port forward on TP-Link</td>
+                            <td><span class="tag tag-green">Always — no config</span></td>
+                        </tr>
+                        <tr>
+                            <td>Works on restrictive firewalls</td>
+                            <td>Sometimes blocked</td>
+                            <td><span class="tag tag-green">Yes (DERP relay fallback)</span></td>
+                        </tr>
+                        <tr>
+                            <td>Speed</td>
+                            <td>50–150 Mbps</td>
+                            <td>200–400+ Mbps</td>
+                        </tr>
+                        <tr>
+                            <td>Reconnect time</td>
+                            <td>30+ seconds</td>
+                            <td>~2 seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Cost</td>
+                            <td>Free</td>
+                            <td>Free (up to 100 devices)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>ASUS router role for Tailscale</h3>
+            <p>Nothing to configure. The ASUS just passes Tailscale's outbound UDP traffic like any other internet
+                traffic. Default firewall rules already allow this. No port forwarding, no special settings.</p>
+
+            <h3>Optional: ASUS OpenVPN Server as backup</h3>
+            <p>If Tailscale has an outage (rare), the ASUS can serve as a fallback VPN:
+                <code>VPN → VPN Server → OpenVPN</code>, enable, export <code>.ovpn</code>, and port-forward UDP 1194 on
+                the TP-Link. This is backup infrastructure only, not the primary path.</p>
+        </section>
+
+        <!-- SECTION 9: USB -->
+        <section id="usb">
+            <h2><span class="icon">💾</span> USB Ports — Full Feature Breakdown</h2>
+
+            <p>The RT-AC86U has <strong>USB 3.0</strong> (rear top) and <strong>USB 2.0</strong> (rear bottom). These
+                unlock 5 distinct features. Here's every one of them:</p>
+
+            <div class="usb-feature">
+                <div class="usb-icon">🗄️</div>
+                <div>
+                    <h4>Network Attached Storage (NAS) — <span class="tag tag-green">Best Use</span></h4>
+                    <p>Plug a USB 3.0 SSD or HDD. Go to
+                        <code>USB Application → Servers Center → Network Place (Samba)</code>. Enable sharing. Creates a
+                        shared drive accessible by any device on SJ's subnet (192.168.2.x). Format the drive as
+                        <strong>NTFS</strong> for Windows compatibility or <strong>ext4</strong> for Linux performance.
+                        Gigabit LAN to the NAS means real-world 80–100 MB/s read speeds for a fast USB 3.0 SSD. This is
+                        a proper NAS for SJ's model files, datasets, and outputs — no extra hardware needed.
+                    </p>
+                </div>
+            </div>
+
+            <div class="usb-feature">
+                <div class="usb-icon">☁️</div>
+                <div>
+                    <h4>AiCloud 2.0 — Remote File Access</h4>
+                    <p>Go to <code>AiCloud 2.0 → Cloud Disk → Enable</code>. Once on, SJ can access the USB drive's
+                        files from ANY device globally using the ASUS AiCloud app or ASUS DDNS URL. Think of it as a
+                        private Dropbox running on the router. Useful for quickly pulling a model checkpoint from
+                        anywhere. Speed is limited by Contact upload speed (your WAN upload) — typically 50–100 Mbps on
+                        NZ fibre.</p>
+                </div>
+            </div>
+
+            <div class="usb-feature">
+                <div class="usb-icon">⬇️</div>
+                <div>
+                    <h4>Download Master — Background BitTorrent / Direct Downloads</h4>
+                    <p>Install via <code>USB Application → Download Master</code>. Runs on the router CPU — SJAI can be
+                        off and downloads still happen. Add magnet links or direct URLs. Files go straight to the USB
+                        drive. Useful for downloading large AI datasets (Hugging Face, Kaggle, Common Crawl) overnight
+                        without keeping SJAI powered. <strong>Note</strong>: Router CPU is not fast — expect 10–30 MB/s.
+                        Fine for overnight jobs.</p>
+                </div>
+            </div>
+
+            <div class="usb-feature">
+                <div class="usb-icon">🖨️</div>
+                <div>
+                    <h4>Network Printer Server</h4>
+                    <p>Plug any USB printer into USB 2.0 port. Go to
+                        <code>USB Application → Network Printer Server → Enable</code>. Install ASUS EZ Printer Sharing
+                        utility on Windows or use standard LPR/LPD protocol. All devices on SJ's subnet can print
+                        wirelessly. For setup: Add printer → TCP/IP port → enter ASUS IP → protocol LPR → queue name
+                        <code>LPRServer</code> → install printer driver.
+                    </p>
+                </div>
+            </div>
+
+            <div class="usb-feature">
+                <div class="usb-icon">📱</div>
+                <div>
+                    <h4>3G/4G USB Modem — Failover Internet (Dual WAN)</h4>
+                    <p>The RT-AC86U supports USB cellular modems as a secondary WAN source. Go to
+                        <code>WAN → Dual WAN</code>. If the TP-Link backhaul drops (ethernet cut, ISP outage), the
+                        router automatically switches to the cellular modem. Keeping SJAI always online during an
+                        outage. Requires a compatible USB 4G dongle (Huawei E8372 is widely supported). This is the
+                        "always-on AI" insurance policy.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card warning">
+                <div class="card-title">
+                    <div class="dot"></div>USB Performance Tips
+                </div>
+                <p>Always use USB 3.0 port for storage (not USB 2.0 — that caps at ~40 MB/s). Format drives as NTFS or
+                    ext4 (not FAT32 — 4GB file size limit will break large model files). Set the USB drive as a
+                    <strong>Static IP device</strong> in DHCP so its address never changes. This ensures Samba/AiCloud
+                    paths stay consistent.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 10: DNS -->
+        <section id="dns">
+            <h2><span class="icon">🔍</span> DNS Optimisation</h2>
+
+            <p>DNS is how your router translates <code>api.openai.com</code> into an IP address. Default ISP DNS
+                (Contact NZ) can be slow and unreliable. Change it.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>DNS Provider</th>
+                        <th>Primary</th>
+                        <th>Secondary</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cloudflare</td>
+                        <td><code>1.1.1.1</code></td>
+                        <td><code>1.0.0.1</code></td>
+                        <td><span class="tag tag-green">Recommended</span> — fastest in NZ, privacy-first, DoH support
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Google</td>
+                        <td><code>8.8.8.8</code></td>
+                        <td><code>8.8.4.4</code></td>
+                        <td>Highly reliable, slightly slower than Cloudflare in NZ</td>
+                    </tr>
+                    <tr>
+                        <td>Quad9</td>
+                        <td><code>9.9.9.9</code></td>
+                        <td><code>149.112.112.112</code></td>
+                        <td>Best malware blocking at DNS level — complements AiProtection</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Set in:
+                <code>WAN → Internet Connection → WAN DNS Setting → Connect to DNS Server Automatically → No</code>
+            </p>
+            <p>Enter Cloudflare: <code>1.1.1.1</code> / <code>1.0.0.1</code></p>
+
+            <div class="card highlight">
+                <div class="card-title">
+                    <div class="dot"></div>DNSFilter — Per-device DNS
+                </div>
+                <p>The RT-AC86U has a <strong>DNSFilter</strong> feature (under AiProtection or LAN settings) that lets
+                    you assign different DNS to different devices. SJAI could use Cloudflare while other devices use
+                    Quad9's malware blocking. Granular and useful.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 11: FIRMWARE -->
+        <section id="firmware">
+            <h2><span class="icon">🛠️</span> Firmware & Asuswrt-Merlin</h2>
+
+            <h3>Stock Firmware</h3>
+            <p>Keep it updated. Latest as of 2025: <strong>3.0.0.4.386_51967</strong>. Check
+                <code>Administration → Firmware Upgrade → Check</code>. Always update over a wired connection, not
+                Wi-Fi.
+            </p>
+
+            <h3>Asuswrt-Merlin — The Power Upgrade</h3>
+            <p>Merlin is a third-party firmware built on top of ASUS's official firmware. It adds features without
+                compromising stability. If SJ wants maximum control, this is the move.</p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">
+                        <div class="dot"></div>What Merlin Adds
+                    </div>
+                    <ul style="list-style:none; font-size:0.87rem;">
+                        <li>✦ <strong>WireGuard VPN</strong> — 3–5× faster than OpenVPN</li>
+                        <li>✦ <strong>FQ-CoDel / SQM</strong> — superior latency QoS</li>
+                        <li>✦ <strong>DNS-over-HTTPS</strong> natively</li>
+                        <li>✦ <strong>YazFi</strong> — proper VLAN guest isolation</li>
+                        <li>✦ <strong>Entware</strong> — Linux package manager on the router</li>
+                        <li>✦ Full SSH access, custom scripts</li>
+                        <li>✦ Per-client DNS override</li>
+                        <li>✦ Advanced traffic logging</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-title">
+                        <div class="dot"></div>Install Process
+                    </div>
+                    <ol class="step-list" style="font-size:0.87rem;">
+                        <li>Download from <code>asuswrt-merlin.net</code> — RT-AC86U is fully supported</li>
+                        <li>Back up current config (Admin → Restore/Save)</li>
+                        <li>Go to Firmware Upgrade → Manual Upload</li>
+                        <li>Upload the Merlin .w file</li>
+                        <li>Factory reset after flash (critical — clean state)</li>
+                        <li>Restore config</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="card success">
+                <div class="card-title">
+                    <div class="dot"></div>Recommendation
+                </div>
+                <p>Install Merlin. The RT-AC86U is one of the best-supported routers for it. WireGuard VPN alone makes
+                    it worth it — 400+ Mbps VPN throughput vs 100 Mbps on OpenVPN stock. If SJ is running an AI
+                    supercomputer, she's the kind of user who will use every one of these features.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 12: CHECKLIST -->
+        <section id="checklist">
+            <h2><span class="icon">✅</span> Master Setup Checklist</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Task</th>
+                        <th>Priority</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Plug ethernet from TP-Link LAN → ASUS WAN port</td>
+                        <td><span class="tag tag-red">FIRST</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Plug SJAI into ASUS LAN 1</td>
+                        <td><span class="tag tag-red">FIRST</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Change default admin username & password</td>
+                        <td><span class="tag tag-red">IMMEDIATE</span></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Confirm Operation Mode = Router (not AP)</td>
+                        <td><span class="tag tag-red">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Set 5GHz: separate SSID, ch 36, 80 MHz, WPA2-AES</td>
+                        <td><span class="tag tag-red">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Set 2.4GHz: separate SSID, ch 1/6/11, 20 MHz, WPA2-AES</td>
+                        <td><span class="tag tag-red">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Disable Smart Connect</td>
+                        <td><span class="tag tag-red">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Disable WPS, UPnP</td>
+                        <td><span class="tag tag-red">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Enable AiProtection (all 4 features)</td>
+                        <td><span class="tag tag-red">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Set DNS to 1.1.1.1 / 1.0.0.1</td>
+                        <td><span class="tag tag-yellow">MEDIUM</span></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Enable Adaptive QoS, set SJAI to highest priority</td>
+                        <td><span class="tag tag-yellow">MEDIUM</span></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Set SJAI to static DHCP lease (192.168.2.10)</td>
+                        <td><span class="tag tag-yellow">MEDIUM</span></td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Enable DoS Protection, disable ICMP respond</td>
+                        <td><span class="tag tag-yellow">MEDIUM</span></td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Enable HTTPS for admin GUI</td>
+                        <td><span class="tag tag-yellow">MEDIUM</span></td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>Plug USB 3.0 drive → configure NAS/Samba</td>
+                        <td><span class="tag tag-blue">OPTIONAL</span></td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>Set up OpenVPN server → export .ovpn config</td>
+                        <td><span class="tag tag-blue">OPTIONAL</span></td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>Port-forward UDP 1194 on TP-Link → ASUS WAN IP</td>
+                        <td><span class="tag tag-blue">IF VPN</span></td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>Flash Asuswrt-Merlin → enable WireGuard</td>
+                        <td><span class="tag tag-purple">POWER</span></td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>Configure Dual WAN → USB 4G modem failover</td>
+                        <td><span class="tag tag-purple">POWER</span></td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>Update firmware to latest</td>
+                        <td><span class="tag tag-yellow">ONGOING</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Generated by Lobotto — Session 57 · 2026-03-23 · DEFCON 1 Research Mode</p>
+        <p style="margin-top:0.25rem;">ASUS RT-AC86U (AC2900) · Contact NZ Fibre · SJ's Room Setup</p>
+    </footer>
+
+</body>
+
+</html>
