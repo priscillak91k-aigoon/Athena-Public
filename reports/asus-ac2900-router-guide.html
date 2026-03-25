@@ -504,6 +504,8 @@
                 <li><a href="#usb">USB Port — All Features</a></li>
                 <li><a href="#dns">DNS Optimisation</a></li>
                 <li><a href="#firmware">Firmware & Merlin</a></li>
+                <li><a href="#final-fixes" style="color:var(--danger); font-weight:700;">🚨 Final Connectivity Fixes</a>
+                </li>
                 <li><a href="#checklist">Final Checklist</a></li>
             </ol>
         </div>
@@ -1098,7 +1100,8 @@
             <h3>Optional: ASUS OpenVPN Server as backup</h3>
             <p>If Tailscale has an outage (rare), the ASUS can serve as a fallback VPN:
                 <code>VPN → VPN Server → OpenVPN</code>, enable, export <code>.ovpn</code>, and port-forward UDP 1194 on
-                the TP-Link. This is backup infrastructure only, not the primary path.</p>
+                the TP-Link. This is backup infrastructure only, not the primary path.
+            </p>
         </section>
 
         <!-- SECTION 9: USB -->
@@ -1290,6 +1293,70 @@
                 <p>Install Merlin. The RT-AC86U is one of the best-supported routers for it. WireGuard VPN alone makes
                     it worth it — 400+ Mbps VPN throughput vs 100 Mbps on OpenVPN stock. If SJ is running an AI
                     supercomputer, she's the kind of user who will use every one of these features.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 11: FINAL CONNECTIVITY FIXES -->
+        <section id="final-fixes">
+            <h2 style="color: var(--danger);"><span class="icon" style="background: var(--danger);">🚨</span> Critical:
+                Final Connectivity Fixes</h2>
+            <p>Based on the latest audit, these three manual overrides are required to restore internet to the lab and
+                secure the network.</p>
+
+            <div class="card danger">
+                <div class="card-title">
+                    <div class="dot"></div>1. The "Static Bridgehead" (Restore Internet)
+                </div>
+                <p>The TP-Link is currently failing to hand an IP to the ASUS via DHCP. We will force the connection
+                    manually.</p>
+                <ol class="step-list">
+                    <li>Go to <strong>Advanced Settings → WAN</strong> (bottom left menu).</li>
+                    <li>Set <strong>WAN Connection Type</strong> to <strong>Static IP</strong>.</li>
+                    <li>Enter these exact values in the fields that appear:
+                        <ul>
+                            <li><strong>IP Address</strong>: <code>192.168.1.50</code></li>
+                            <li><strong>Subnet Mask</strong>: <code>255.255.255.0</code></li>
+                            <li><strong>Default Gateway</strong>: <code>192.168.1.1</code></li>
+                        </ul>
+                    </li>
+                    <li>Under <strong>WAN DNS Setting</strong>, set <strong>Connect to DNS Server automatically</strong>
+                        to <strong>No</strong>.</li>
+                    <li>Enter <strong>DNS Server 1</strong>: <code>1.1.1.1</code> and <strong>DNS Server 2</strong>:
+                        <code>1.0.0.1</code>.</li>
+                    <li>Scroll to the very bottom and click <strong>Apply</strong>.</li>
+                    <li><em>Note: After clicking Apply, the "Internet Status" on the Network Map should change to
+                            "Connected" within 30 seconds.</em></li>
+                </ol>
+            </div>
+
+            <div class="card warning">
+                <div class="card-title">
+                    <div class="dot"></div>2. Firewall Activation (Security)
+                </div>
+                <p>The audit revealed your hardware firewall is currently <strong>DISABLED</strong>. We must fix this to
+                    protect SJAI.</p>
+                <ol class="step-list">
+                    <li>Go to <strong>Advanced Settings → Firewall</strong>.</li>
+                    <li>On the <strong>General</strong> tab, look for <strong>Enable Firewall</strong>.</li>
+                    <li>Click <strong>Yes</strong> (ensure the dot moves to Yes).</li>
+                    <li>Set <strong>Enable DoS protection</strong> to <strong>Yes</strong>.</li>
+                    <li>Click <strong>Apply</strong> at the bottom.</li>
+                </ol>
+            </div>
+
+            <div class="card highlight">
+                <div class="card-title">
+                    <div class="dot"></div>3. LAN DHCP Alignment (SJAI Local IP)
+                </div>
+                <p>Ensure the ASUS is "handing out" addresses to your connected devices correctly.</p>
+                <ol class="step-list">
+                    <li>Go to <strong>Advanced Settings → LAN</strong>.</li>
+                    <li>Select the <strong>DHCP Server</strong> tab at the top.</li>
+                    <li>Set <strong>Enable the DHCP Server</strong> to <strong>Yes</strong>.</li>
+                    <li>Check the <strong>IP Pool Starting Address</strong> — it should be <code>192.168.2.2</code>.
+                    </li>
+                    <li>Click <strong>Apply</strong>.</li>
+                </ol>
             </div>
         </section>
 
