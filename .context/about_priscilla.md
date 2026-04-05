@@ -133,6 +133,11 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 - **Live (GitHub Pages)**: https://priscillak91k-aigoon.github.io/Athena-Public/ (root redirect → Life Hub)
 - **Tabled**: Supabase kvstore cross-device sync for localStorage features (Workshop, Planner, Today extras, Ideal Week)
 
+### Gaming Setup
+- **GeForce Now**: Ultimate plan (RTX 4080 cloud GPU, 4K/120fps capable)
+- **Display**: Samsung TV used as monitor via HDMI from MSI laptop — 2560x1440@60Hz
+- **Active game**: ARK: Survival Ascended (confirmed settings: DLSS Quality, Lumen Medium, Shadows High, Textures Epic, Motion Blur OFF)
+
 ### Lobotto
 - AI persona/bot with cloned voice (Priscilla's voice via XTTS-v2)
 - Discord bot deployed on Lurkadurkas server (`scripts/discord_bot.py`)
@@ -242,3 +247,5 @@ Full protocol lives in `health/supplement_protocol.md`. Quick reference:
 ---
 *Graph links  [[ATHENA_MAP]]*
 Related: [[project_state]] | [[heuristics]] | [[ai_preferences]] | [[journal]]
+
+- SJAI constructed a monstrous NVIDIA AI TOP supercomputer running ARM64 and Ubuntu. This serves as the primary Plex engine capable of CPU-brute-forcing 4K streams. (2026-03-28)

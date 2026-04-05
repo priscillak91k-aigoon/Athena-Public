@@ -1,6 +1,6 @@
 {
-  "last_beat": "2026-03-15T09:38:52.185458",
-  "boot_count": 11,
+  "last_beat": "2026-04-06T08:25:59.994882",
+  "boot_count": 29,
   "sleep_events": [
     {
       "wake_time": "2026-03-06T17:08:46.893316",
@@ -45,9 +45,81 @@
     {
       "wake_time": "2026-03-15T07:16:34.642770",
       "sleep_duration_minutes": 494
+    },
+    {
+      "wake_time": "2026-03-17T20:07:37.029297",
+      "sleep_duration_minutes": 1211
+    },
+    {
+      "wake_time": "2026-03-19T18:32:57.484302",
+      "sleep_duration_minutes": 1114
+    },
+    {
+      "wake_time": "2026-03-20T13:19:13.245303",
+      "sleep_duration_minutes": 5
+    },
+    {
+      "wake_time": "2026-03-22T08:39:53.569431",
+      "sleep_duration_minutes": 1005
+    },
+    {
+      "wake_time": "2026-03-23T08:29:26.032082",
+      "sleep_duration_minutes": 451
+    },
+    {
+      "wake_time": "2026-03-27T09:33:00.625590",
+      "sleep_duration_minutes": 1262
+    },
+    {
+      "wake_time": "2026-03-28T08:58:13.265745",
+      "sleep_duration_minutes": 719
+    },
+    {
+      "wake_time": "2026-03-29T13:33:28.313711",
+      "sleep_duration_minutes": 909
+    },
+    {
+      "wake_time": "2026-03-30T10:42:44.076921",
+      "sleep_duration_minutes": 421
+    },
+    {
+      "wake_time": "2026-03-31T08:14:07.322740",
+      "sleep_duration_minutes": 496
+    },
+    {
+      "wake_time": "2026-04-01T09:02:21.027277",
+      "sleep_duration_minutes": 6
+    },
+    {
+      "wake_time": "2026-04-01T15:22:25.167702",
+      "sleep_duration_minutes": 83
+    },
+    {
+      "wake_time": "2026-04-01T20:54:30.544676",
+      "sleep_duration_minutes": 266
+    },
+    {
+      "wake_time": "2026-04-02T20:25:32.350957",
+      "sleep_duration_minutes": 303
+    },
+    {
+      "wake_time": "2026-04-03T07:58:58.399449",
+      "sleep_duration_minutes": 558
+    },
+    {
+      "wake_time": "2026-04-03T10:06:42.483646",
+      "sleep_duration_minutes": 100
+    },
+    {
+      "wake_time": "2026-04-05T18:16:46.138040",
+      "sleep_duration_minutes": 3036
+    },
+    {
+      "wake_time": "2026-04-06T08:17:25.400944",
+      "sleep_duration_minutes": 585
     }
   ],
   "total_uptime_seconds": 0,
-  "last_dream_time": "2026-03-15T07:16:34.642770",
-  "dream_count": 46
+  "last_dream_time": "2026-04-06T08:17:25.527657",
+  "dream_count": 135
 }

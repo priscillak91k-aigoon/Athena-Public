@@ -260,3 +260,23 @@ tags:
 ---
 *Graph links  [[ATHENA_MAP]]*
 Related: [[journal]]
+
+### Date: 2026-03-28
+**Decision**: Dropped MSI WE75 refresh rate physically to 120Hz for GFN streaming.
+**Reasoning**: Attempting to push a 120 FPS cloud stream onto a 144Hz panel results in 3:2 frame judder. Mechanical match mathematically eliminates stutter.
+
+---
+
+## 2026-04-03 — Session 58
+
+### Decision: 2560x1440@60Hz as GFN gaming resolution on Samsung TV
+- **Situation**: Samsung TV connected via HDMI from MSI laptop. 4K available but dropped refresh to 30Hz (HDMI 1.4 limitation). GFN Ultimate with RTX 4080.
+- **Choice**: 2560x1440@60Hz via Windows Display Settings.
+- **Reasoning**: Motion smoothness is the dominant variable for ARK gameplay. 4K@30Hz is visibly choppy. 1440p@60Hz is a strict win — the cloud GPU has headroom and DLSS Quality mode covers the gap from 4K native.
+- **Outcome**: User confirmed this worked. ✅ Correct call.
+
+### Decision: NVIDIA AI upscale mode over bilinear in GFN app
+- **Situation**: GFN app offers upscale modes. Client laptop GPU is idle (just decoding stream).
+- **Choice**: NVIDIA AI (RTX Video Super Resolution).
+- **Reasoning**: AI upscaling reduces compression artifacts and fills stream-to-display resolution gaps. Zero meaningful cost on client hardware that's only decoding video. Bilinear is always inferior.
+- **Outcome**: Recommendation made. ✅

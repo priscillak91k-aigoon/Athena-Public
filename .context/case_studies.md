@@ -374,3 +374,7 @@ Related: [[decision_journal]] | [[heuristics]]
 - **Solution**: 8-category color taxonomy with YAML frontmatter tags, Obsidian graph view with colorGroups config
 - **Lesson**: She processes information spatially — visual knowledge maps click immediately, like 7-day planning grids
 - **Applicable When**: Any knowledge management or information architecture design
+
+### Case Study: ISP Provisioning vs Local Hardware
+**State**: Speed test locked at 500/76 Mbps despite gigabit capable AC2900 & TP-Link.
+**Resolution**: Deducted structural anomaly. Forced Contact Energy phone call. They verified wrong 500/100 bitstream profile was applied. Upgraded to 900/500 at 3 PM and rebooted ONT to seize bandwidth.

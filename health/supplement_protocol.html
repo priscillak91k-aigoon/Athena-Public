@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplement Protocol — Personalized Master Reference</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .hero {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            border-radius: 20px;
+            padding: 48px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #22d3ee, #818cf8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .hero .meta {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            line-height: 1.9;
+        }
+
+        .hero .meta strong {
+            color: #cbd5e1;
+        }
+
+        /* Section Cards */
+        .section {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 24px;
+            transition: border-color 0.3s;
+        }
+
+        .section:hover {
+            border-color: #475569;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #818cf8;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .emoji {
+            font-size: 1.3rem;
+        }
+
+        /* Supplement Cards */
+        .supp-card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .supp-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .supp-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .supp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .supp-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #22d3ee;
+        }
+
+        .supp-dose {
+            background: linear-gradient(135deg, #065f46, #064e3b);
+            color: #34d399;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .supp-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .supp-row {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 12px;
+            font-size: 0.88rem;
+        }
+
+        .supp-label {
+            color: #94a3b8;
+            font-weight: 500;
+            padding-top: 2px;
+        }
+
+        .supp-value {
+            color: #cbd5e1;
+        }
+
+        /* Alert Boxes */
+        .alert {
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .alert-icon {
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .alert-warn {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: #fde68a;
+        }
+
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
+        .alert-info {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #c7d2fe;
+        }
+
+        .alert-change {
+            background: rgba(34, 211, 238, 0.08);
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            color: #a5f3fc;
+        }
+
+        /* Genetic Tags */
+        .gene-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .gene-tag {
+            background: rgba(129, 140, 248, 0.15);
+            color: #a5b4fc;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Schedule Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+
+        th {
+            background: #334155;
+            color: #e2e8f0;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #475569;
+        }
+
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #2d3748;
+            color: #cbd5e1;
+        }
+
+        tr:hover td {
+            background: rgba(99, 102, 241, 0.04);
+        }
+
+        .time-cell {
+            color: #22d3ee;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Biometrics Grid */
+        .bio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+        }
+
+        .bio-item {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 14px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bio-marker {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        .bio-marker strong {
+            color: #e2e8f0;
+        }
+
+        .bio-value {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .bio-high {
+            color: #f87171;
+        }
+
+        .bio-low {
+            color: #fbbf24;
+        }
+
+        .bio-gene {
+            color: #818cf8;
+        }
+
+        /* Warnings List */
+        .warnings-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .warnings-list li {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .warnings-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .warn-num {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+            min-width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* Reorder Badge */
+        .reorder {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-top: 10px;
+            font-size: 0.82rem;
+            color: #6ee7b7;
+        }
+
+        .reorder strong {
+            color: #34d399;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: #475569;
+            font-size: 0.75rem;
+            margin-top: 32px;
+            padding: 20px;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 16px 10px;
+            }
+
+            .hero {
+                padding: 28px 20px;
+            }
+
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .section {
+                padding: 24px 18px;
+            }
+
+            .supp-card {
+                padding: 18px;
+            }
+
+            .supp-row {
+                grid-template-columns: 1fr;
+                gap: 2px;
+            }
+
+            .supp-label {
+                font-weight: 600;
+                color: #818cf8;
+            }
+
+            .bio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- HERO -->
+        <div class="hero">
+            <h1>💊 Supplement Protocol</h1>
+            <div class="meta">
+                <strong>Last Updated:</strong> 22 March 2026<br>
+                <strong>Source:</strong> DNA Exhaustive Analysis (v3.0) + Blood Markers + Peter Attia / Examine.com /
+                AVADEC Trial<br>
+                <strong>Review Cycle:</strong> Every 6 months or after new blood work
+            </div>
+        </div>
+
+        <!-- BIOMETRICS -->
+        <div class="section">
+            <div class="section-title"><span class="emoji">🧬</span> Your Biometric Context</div>
+            <div class="bio-grid">
+                <div class="bio-item">
+                    <div class="bio-marker"><strong>CRP</strong> — 9 mg/L</div>
+                    <div class="bio-value bio-high">HIGH</div>
+                </div>
+                <div class="bio-item">
+                    <div class="bio-marker"><strong>Ferritin</strong> — 205 ug/L</div>
+                    <div class="bio-value bio-high">HIGH</div>
+                </div>
+                <div class="bio-item">
+                    <div class="bio-marker"><strong>Platelets</strong> — 509 ×10⁹/L</div>
+                    <div class="bio-value bio-high">HIGH</div>
+                </div>
+                <div class="bio-item">
+                    <div class="bio-marker"><strong>WBC</strong> — 12.6 ×10⁹/L</div>
+                    <div class="bio-value bio-high">HIGH</div>
+                </div>
+                <div class="bio-item">
+                    <div class="bio-marker"><strong>TSH</strong> — 0.37 mIU/L</div>
+                    <div class="bio-value bio-low">BORDERLINE LOW</div>
+                </div>
+                <div class="bio-item">
+                    <div class="bio-marker"><strong>9p21</strong> G/G</div>
+                    <div class="bio-value bio-gene">Heart Risk</div>
+                </div>
+                <div class="bio-item">
+                    <div class="bio-marker"><strong>TNF-α</strong> A/G</div>
+                    <div class="bio-value bio-gene">Inflammation</div>
+                </div>
+                <div class="bio-item">
+                    <div class="bio-marker"><strong>MTHFR</strong> A/G</div>
+                    <div class="bio-value bio-gene">60% Methylation</div>
+                </div>
+                <div class="bio-item">
+                    <div class="bio-marker"><strong>TCF7L2</strong> T/G + T/C</div>
+                    <div class="bio-value bio-gene">T2D Risk</div>
+                </div>
+                <div class="bio-item">
+                    <div class="bio-marker"><strong>COMT</strong> G/G</div>
+                    <div class="bio-value bio-gene">Warrior</div>
+                </div>
+                <div class="bio-item">
+                    <div class="bio-marker"><strong>SIRT1</strong> C/C</div>
+                    <div class="bio-value bio-gene">Circadian</div>
+                </div>
+                <div class="bio-item">
+                    <div class="bio-marker"><strong>CYP1A2</strong> A/C</div>
+                    <div class="bio-value bio-gene">Slow Caffeine</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AM EMPTY STOMACH -->
+        <div class="section">
+            <div class="section-title"><span class="emoji">☀️</span> AM — Empty Stomach (30 min before food)</div>
+
+            <div class="supp-card">
+                <div class="supp-header">
+                    <div class="supp-name">1. Solgar NAC (N-Acetyl Cysteine)</div>
+                    <div class="supp-dose">1200mg/day (2 × 600mg)</div>
+                </div>
+                <div class="supp-grid">
+                    <div class="supp-row">
+                        <div class="supp-label">Why 1200mg</div>
+                        <div class="supp-value">CRP at 9 mg/L (3× normal). Meta-analyses show ≥1200mg/day is required to
+                            meaningfully lower CRP. 600mg maintains glutathione but does NOT move CRP.</div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">Targets</div>
+                        <div class="gene-tags">
+                            <span class="gene-tag">GSTP1 A/G</span>
+                            <span class="gene-tag">TNF-α A/G</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-danger">
+                    <span class="alert-icon">⛔</span>
+                    <span>Do NOT use NAC blends containing <strong>Selenium</strong> — your TSH (0.37) is borderline
+                        low. Selenium suppresses thyroid further.</span>
+                </div>
+                <div class="reorder">🛒 <strong>Reorder:</strong> Life Extension NAC 600mg × 60 — ~$22 NZD on iHerb
+                    (selenium-free ✅)</div>
+            </div>
+        </div>
+
+        <!-- AM WITH BREAKFAST -->
+        <div class="section">
+            <div class="section-title"><span class="emoji">🍳</span> AM — With Breakfast</div>
+
+            <!-- K2 -->
+            <div class="supp-card">
+                <div class="supp-header">
+                    <div class="supp-name">2. Vitamin K2 MK-7</div>
+                    <div class="supp-dose">180mcg/day (2 × 90mcg)</div>
+                </div>
+                <div class="supp-grid">
+                    <div class="supp-row">
+                        <div class="supp-label">Why 180mcg</div>
+                        <div class="supp-value">9p21 G/G = elevated coronary artery disease risk. The Knapen RCT (2015)
+                            used exactly 180mcg/day and showed significant vascular elasticity improvement over 3 years.
+                        </div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">Targets</div>
+                        <div class="gene-tags">
+                            <span class="gene-tag">9p21 G/G</span>
+                            <span class="gene-tag">Ferritin 205</span>
+                        </div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">Note</div>
+                        <div class="supp-value">MUST take with dietary fat. Stack with Fish Oil for absorption.</div>
+                    </div>
+                </div>
+                <div class="alert alert-change">
+                    <span class="alert-icon">🔄</span>
+                    <span>Previously Doctor's Best 100mcg (200mcg/day). Switched to Bioglan 90mcg — 180mcg matches the
+                        Knapen trial dose exactly.</span>
+                </div>
+                <div class="reorder">🛒 <strong>Reorder:</strong> Bioglan Vitamin K2 90mcg × 60 — $19.99 at CW NZ</div>
+            </div>
+
+            <!-- Fish Oil -->
+            <div class="supp-card">
+                <div class="supp-header">
+                    <div class="supp-name">3. Go Healthy Fish Oil + Vitamin D 10,000IU</div>
+                    <div class="supp-dose">3 caps/day (1 AM + 2 PM)</div>
+                </div>
+                <div class="supp-grid">
+                    <div class="supp-row">
+                        <div class="supp-label">Daily Total</div>
+                        <div class="supp-value">EPA 1620mg + DHA 1080mg = <strong>2700mg omega-3</strong></div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">Why 3 Caps</div>
+                        <div class="supp-value">Peter Attia targets ~3-3.5g total omega-3 for a 12% Omega-3 Index. Your
+                            CRP 9 + TNF-α A/G = non-negotiable cardiovascular intervention.</div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">Targets</div>
+                        <div class="gene-tags">
+                            <span class="gene-tag">9p21 G/G</span>
+                            <span class="gene-tag">TNF-α A/G</span>
+                            <span class="gene-tag">CRP 9</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-warn">
+                    <span class="alert-icon">⚠️</span>
+                    <span>3 caps = 30,000IU Vitamin D (loading dose). Get a 25(OH)D blood test at 8-12 weeks. Target:
+                        50-80 ng/mL. If over 80, reduce to 2 caps.</span>
+                </div>
+            </div>
+
+            <!-- B-Complex -->
+            <div class="supp-card">
+                <div class="supp-header">
+                    <div class="supp-name">4. Activated B-Complex</div>
+                    <div class="supp-dose">1 cap/day</div>
+                </div>
+                <div class="supp-grid">
+                    <div class="supp-row">
+                        <div class="supp-label">Why Activated</div>
+                        <div class="supp-value">MTHFR A/G (60% capacity) — your liver can't efficiently convert
+                            synthetic folic acid. Activated forms (L-Methylfolate, Methylcobalamin) bypass this
+                            entirely, preventing UMFA accumulation.</div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">Current</div>
+                        <div class="supp-value"><strong>Natroceutics Activated B-Complex Advanced</strong> —
+                            L-Methylfolate + Methylcobalamin + L-Theanine in one cap. Gold standard.</div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">CW Alt</div>
+                        <div class="supp-value"><strong>GO Healthy Pro Activated B Complex</strong> — L-5-MTHF +
+                            Methylcobalamin + P5P. Closest CW match. Pair with separate L-Theanine.</div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">Targets</div>
+                        <div class="gene-tags">
+                            <span class="gene-tag">MTHFR A/G</span>
+                            <span class="gene-tag">COMT G/G</span>
+                            <span class="gene-tag">PEMT</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-danger">
+                    <span class="alert-icon">⛔</span>
+                    <span><strong>DO NOT BUY Good Health B Activated Complex</strong> — despite the "Activated" label,
+                        it uses synthetic Folic Acid for B9. NOT suitable for MTHFR A/G.</span>
+                </div>
+                <div class="reorder">🛒 <strong>CW Reorder:</strong> GO Healthy Pro Activated B Complex × 60 — $31.99
+                </div>
+            </div>
+
+            <!-- L-Theanine -->
+            <div class="supp-card">
+                <div class="supp-header">
+                    <div class="supp-name">5. L-Theanine</div>
+                    <div class="supp-dose">400mg/day</div>
+                </div>
+                <div class="supp-grid">
+                    <div class="supp-row">
+                        <div class="supp-label">Why</div>
+                        <div class="supp-value">COMT G/G (Warrior) = fast dopamine clearance. L-Theanine promotes
+                            alpha-wave activity and buffers the "wired but empty" neurochemical state. 400mg is double
+                            the minimum effective dose.</div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">Note</div>
+                        <div class="supp-value">Skip if using Natroceutics (already included). Only needed with GO
+                            Healthy or other standalone B-complex.</div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">Targets</div>
+                        <div class="gene-tags"><span class="gene-tag">COMT G/G</span></div>
+                    </div>
+                </div>
+                <div class="reorder">🛒 <strong>Reorder:</strong> Bioglan L-Theanine 400mg × 60 — $29.99 at CW NZ</div>
+            </div>
+
+            <!-- Turmeric -->
+            <div class="supp-card">
+                <div class="supp-header">
+                    <div class="supp-name">6. Sanderson Turmeric 28,000+ Complex</div>
+                    <div class="supp-dose">2 caps/day</div>
+                </div>
+                <div class="supp-grid">
+                    <div class="supp-row">
+                        <div class="supp-label">Why 2 Caps</div>
+                        <div class="supp-value">CRP 9 mg/L. Meta-analyses require 500-1000mg curcuminoids/day for
+                            significant CRP reduction. Piperine (black pepper) boosts bioavailability ~2000%.</div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">Targets</div>
+                        <div class="gene-tags">
+                            <span class="gene-tag">TNF-α A/G</span>
+                            <span class="gene-tag">CRP 9</span>
+                            <span class="gene-tag">PNPLA3 C/G</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reorder">🛒 <strong>Reorder:</strong> Sanderson Turmeric 28,000+ × 60 — $30.99 at CW NZ
+                </div>
+            </div>
+
+            <!-- Berberine -->
+            <div class="supp-card">
+                <div class="supp-header">
+                    <div class="supp-name">7. Healthy Care Berberine</div>
+                    <div class="supp-dose">1 cap/day</div>
+                </div>
+                <div class="supp-grid">
+                    <div class="supp-row">
+                        <div class="supp-label">Why Berberine</div>
+                        <div class="supp-value">TCF7L2 T/G + T/C impairs <strong>insulin secretion</strong> via reduced
+                            GLP-1 — not insulin sensitivity. Berberine directly boosts GLP-1 and enhances beta-cell
+                            exocytosis. Matches Metformin in RCTs (HbA1c −0.7-1.4%).</div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">Bonus</div>
+                        <div class="supp-value">Hepatoprotective (supports PNPLA3 fatty liver risk). Improves lipid
+                            profiles.</div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">Targets</div>
+                        <div class="gene-tags">
+                            <span class="gene-tag">TCF7L2 T/G+T/C</span>
+                            <span class="gene-tag">PNPLA3 C/G</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-warn">
+                    <span class="alert-icon">⚠️</span>
+                    <span>Affects CYP3A4/CYP2D6 enzymes. Do NOT combine with statins, blood thinners,
+                        immunosuppressants, or grapefruit. Mild GI possible first 2 weeks.</span>
+                </div>
+                <div class="alert alert-change">
+                    <span class="alert-icon">🔄</span>
+                    <span>Previously Eve Wellness Blood Sugar Babe (myo-inositol, $52.99). Switched — myo-inositol
+                        targets sensitivity, your defect is secretion. Saves $28.</span>
+                </div>
+                <div class="reorder">🛒 <strong>Reorder:</strong> Healthy Care Blood Sugar Control × 60 — $24.99 at CW
+                    NZ</div>
+            </div>
+
+            <!-- Phloe -->
+            <div class="supp-card">
+                <div class="supp-header">
+                    <div class="supp-name">8. Phloe Bowel & Gut Health</div>
+                    <div class="supp-dose">2 caps/day</div>
+                </div>
+                <div class="supp-grid">
+                    <div class="supp-row">
+                        <div class="supp-label">Why</div>
+                        <div class="supp-value">Gut barrier integrity modulates systemic inflammation. With CRP at 9,
+                            preventing LPS translocation stops amplification of your TNF-α cascade. Can increase to 4
+                            caps/day.</div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">Targets</div>
+                        <div class="gene-tags">
+                            <span class="gene-tag">TNF-α A/G</span>
+                            <span class="gene-tag">CRP 9</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reorder">🛒 <strong>Reorder:</strong> Phloe 180 Capsules — $34.99 at CW NZ (3-month supply)
+                </div>
+            </div>
+        </div>
+
+        <!-- PM SECTION -->
+        <div class="section">
+            <div class="section-title"><span class="emoji">🌙</span> PM — Before Bed</div>
+
+            <div class="supp-card">
+                <div class="supp-header">
+                    <div class="supp-name">9. Doctor's Best Magnesium Lysinate Glycinate</div>
+                    <div class="supp-dose">400mg elemental (2 caps)</div>
+                </div>
+                <div class="supp-grid">
+                    <div class="supp-row">
+                        <div class="supp-label">When</div>
+                        <div class="supp-value">30-60 minutes before bed</div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">Why 400mg</div>
+                        <div class="supp-value">SIRT1 C/C = disrupted circadian aging. 400mg is the upper evidence-based
+                            therapeutic dose for sleep quality. 100% chelated (Albion TRAACS) — better bioavailability
+                            than Swisse.</div>
+                    </div>
+                    <div class="supp-row">
+                        <div class="supp-label">Targets</div>
+                        <div class="gene-tags">
+                            <span class="gene-tag">SIRT1 C/C</span>
+                            <span class="gene-tag">BDNF T/C</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-change">
+                    <span class="alert-icon">🔄</span>
+                    <span>Previously Swisse Ultiboost (~3 caps). Upgraded to Doctor's Best (100% chelated, only 2 caps
+                        needed).</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAILY SCHEDULE -->
+        <div class="section">
+            <div class="section-title"><span class="emoji">⏰</span> Daily Schedule</div>
+            <table>
+                <tr>
+                    <th>Time</th>
+                    <th>Supplement</th>
+                    <th>Caps</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td class="time-cell">~6:30 AM</td>
+                    <td>NAC 600mg × 2</td>
+                    <td>2</td>
+                    <td>30 min before food</td>
+                </tr>
+                <tr>
+                    <td class="time-cell" rowspan="7">~7:00 AM</td>
+                    <td>K2 MK-7 90mcg × 2</td>
+                    <td>2</td>
+                    <td>Needs fat</td>
+                </tr>
+                <tr>
+                    <td>Fish Oil + D3 × 1</td>
+                    <td>1</td>
+                    <td>Fat-soluble</td>
+                </tr>
+                <tr>
+                    <td>B-Complex (activated)</td>
+                    <td>1</td>
+                    <td>With food</td>
+                </tr>
+                <tr>
+                    <td>L-Theanine 400mg</td>
+                    <td>1</td>
+                    <td>Skip if using Natroceutics</td>
+                </tr>
+                <tr>
+                    <td>Turmeric 28000+ × 2</td>
+                    <td>2</td>
+                    <td>Needs fat + piperine</td>
+                </tr>
+                <tr>
+                    <td>Berberine</td>
+                    <td>1</td>
+                    <td>20-30 min before food</td>
+                </tr>
+                <tr>
+                    <td>Phloe × 2</td>
+                    <td>2</td>
+                    <td>Before food</td>
+                </tr>
+                <tr>
+                    <td class="time-cell">~6:30 PM</td>
+                    <td>Fish Oil + D3 × 2</td>
+                    <td>2</td>
+                    <td>Split dose per Attia</td>
+                </tr>
+                <tr>
+                    <td class="time-cell">~9:00 PM</td>
+                    <td>Magnesium Glycinate</td>
+                    <td>2</td>
+                    <td>400mg elemental target</td>
+                </tr>
+                <tr style="background: rgba(99,102,241,0.08);">
+                    <td></td>
+                    <td><strong>Total Daily</strong></td>
+                    <td><strong>~17-19</strong></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- WARNINGS -->
+        <div class="section">
+            <div class="section-title"><span class="emoji">⚠️</span> Critical Interactions & Warnings</div>
+            <ul class="warnings-list">
+                <li><span class="warn-num">1</span><span><strong>NAC + Selenium:</strong> NEVER combine. TSH 0.37 —
+                        selenium suppresses thyroid further.</span></li>
+                <li><span class="warn-num">2</span><span><strong>Folic Acid:</strong> AVOID synthetic folic acid in
+                        B-complexes. Use ONLY L-Methylfolate / 5-MTHF / Quatrefolic.</span></li>
+                <li><span class="warn-num">3</span><span><strong>Vitamin D Monitoring:</strong> 30,000IU/day is a
+                        loading dose. Blood test at 8-12 weeks. Target: 50-80 ng/mL.</span></li>
+                <li><span class="warn-num">4</span><span><strong>K2 + D3 Synergy:</strong> MUST take together. D3
+                        mobilizes calcium; K2 directs it to bones, not arteries.</span></li>
+                <li><span class="warn-num">5</span><span><strong>Caffeine Cutoff:</strong> 10:00 AM hard stop (CYP1A2
+                        A/C slow metabolizer). A 2 PM coffee = 50% active at midnight.</span></li>
+                <li><span class="warn-num">6</span><span><strong>Iron:</strong> Do NOT supplement. Ferritin 205 + HFE
+                        H63D. Donate blood annually.</span></li>
+                <li><span class="warn-num">7</span><span><strong>Turmeric:</strong> Take with fat. Curcumin without
+                        fat/piperine has &lt;5% bioavailability.</span></li>
+                <li><span class="warn-num">8</span><span><strong>Fish Oil Split:</strong> Split AM + PM for steady-state
+                        omega-3 levels.</span></li>
+                <li><span class="warn-num">9</span><span><strong>Berberine + CYP:</strong> Inhibits CYP3A4/CYP2D6. If
+                        ever prescribed statins, blood thinners, or immunosuppressants — STOP berberine.</span></li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            Athena Intelligence · Personalized Supplement Protocol v3 · 22 March 2026
+        </div>
+    </div>
+</body>
+
+</html>

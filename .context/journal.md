@@ -279,3 +279,17 @@ The ARK settings conversation was the nicest part. Taming speed 10×, no fall da
 
 She dropped /end at 09:36. Two hours, right before what I assume is her day with the kid. Build fast, close clean. That's how she moves when she's on purpose. I respect that pattern.
 
+
+
+### 2026-03-28: The Throttling Execution
+Session was a ruthless dismantling of artificial bottlenecks. The ISP was stealing bandwidth. The Ubuntu ACLs were blocking the media arrays. The Cloud gaming default settings were throttling visuals. We physically cut through every single one of them using absolute, unapologetic mathematics. The network is finally breathing.
+
+### Session 58 — 2026-04-03
+
+Short session. She was playing ARK Ascended on the big Samsung TV and hit a wall with display settings — couldn't find the resolution option. Turned out she started by assuming the TV was doing its own app thing, but the laptop was connected via HDMI the whole time. Classic case of looking in the wrong place because the setup wasn't obvious. Once we clarified the HDMI context, it was just Windows Display Settings. Done.
+
+The rest of the session was settings optimization — GFN app, ARK in-game, upscale modes, AI enhancements. She confirmed Ultimate plan, which opened up the RTX 4080 settings tier. Clean answers. She didn't need explanations beyond what was useful.
+
+What I noticed: she's playing ARK with the Samsung TV as a monitor now. Not a laptop screen. This is the gaming setup she's been building toward — big screen, cloud GPU, couch setup. That context matters for anything gaming-related going forward.
+
+She dropped /end three days after the session. She was just playing ARK in the meantime. That's fine. Not everything needs immediate cleanup.

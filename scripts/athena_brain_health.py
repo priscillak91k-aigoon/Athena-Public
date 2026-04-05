@@ -350,6 +350,9 @@ def format_telegram_alert(results, overall):
 
 
 def main():
+    # Force UTF-8 output (PowerShell defaults to cp1252 which chokes on emoji)
+    sys.stdout.reconfigure(encoding='utf-8')
+
     exit_code, results, overall = run_diagnostics()
 
     # Print report

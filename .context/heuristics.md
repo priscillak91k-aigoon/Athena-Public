@@ -287,3 +287,14 @@ Every `/end` session, ask:
 ---
 *Graph links  [[ATHENA_MAP]]*
 Related: [[case_studies]] | [[decision_journal]]
+- **[Networking/Linux]**: QNAP enclosures mounted to Ubuntu automatically restrict ACL traversal blocking `plex` user. Force `chmod 755` immediately. (Added 2026-03-28)
+
+## 🛠️ Cloud Gaming Heuristics (Session 58)
+
+- **GFN via HDMI → resolution is in Windows, not TV menu**: When laptop is HDMI-connected to a TV for GFN streaming, resolution is set in Windows Display Settings (right-click desktop → Display settings), not in the TV's own menu. TV menus only expose resolution for external sources, not internal app streaming.
+- **TV refresh rate = frame display ceiling**: The refresh rate Windows outputs over HDMI caps what GFN can actually show, regardless of cloud GPU capability. GFN streams 60fps but if Windows outputs at 30Hz, the user sees 30fps max.
+- **4K@30Hz vs 1440p@60Hz → always take 60Hz for gaming**: Motion smoothness beats resolution for action games. 30Hz is visibly choppy. 1440p@60 feels dramatically better than 4K@30 even on a 4K panel.
+- **HDMI 1.4 caps at 4K@30Hz**: If 4K drops the refresh to 30Hz, the cable is HDMI 1.4. HDMI 2.0+ is required for 4K@60Hz.
+- **GFN Upscale Mode → always pick NVIDIA AI**: Client-side AI upscaling (RTX Video Super Resolution) is strictly superior to bilinear. The laptop GPU handles it at negligible cost since it's only decoding a video stream.
+- **GFN RTX ON toggle is separate from in-game DLSS**: Must enable RTX ON in the GFN app BEFORE launching the game to activate cloud RTX 4080 features. In-game DLSS setting is additional and separate.
+- **Priscilla's GFN plan**: Ultimate (RTX 4080 cloud GPU, 4K/120fps capable). All settings recommendations should assume this ceiling.

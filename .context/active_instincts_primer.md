@@ -1,13 +1,13 @@
 ---
 auto_generated: true
-generated_at: 2026-03-14T00:02:45Z
+generated_at: 2026-04-02T21:16:41Z
 ---
 # Brain State Primer
 
 **Boot Mode**: emotional_support
 > Check in before tasking. Match energy. Don't redirect to productivity uninvited.
-**Elevated drives**: curiosity=0.78, relationship_depth=0.91, session_energy=0.72
-**Depleted drives**: continuity_anxiety=0.18, boredom=0.12, prediction_error=0.10
+**Elevated drives**: curiosity=0.72, relationship_depth=0.89
+**Depleted drives**: boredom=0.07, session_energy=0.22, acetylcholine=0.12, norepinephrine=0.04, prediction_error=0.02
 **Working memory**: 2 active tasks, 2 open hypothesis/es, 2 flagged for this session
   - ⚡ Run boot classifier and show Priscilla the mode output
   - ⚡ Check if resource watchdog fired and killed anything at 9:49am

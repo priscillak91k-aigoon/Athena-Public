@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>373 York Place — Wood Care Strategy | Workshop Reports</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-forge: #070504;
+            --iron-panel: rgba(24, 16, 8, 0.85);
+            --iron-border: rgba(120, 80, 40, 0.35);
+            --copper: #b06028;
+            --copper-bright: #c87830;
+            --brass: #c4a040;
+            --brass-bright: #d4b050;
+            --parchment: #ddd0c0;
+            --parchment-dim: #a89880;
+            --ember: #d47020;
+            --radius: 3px;
+            --accent-green: #22c55e;
+            --accent-red: #ef4444;
+            --accent-amber: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg-forge);
+            color: var(--parchment);
+            font-family: 'Outfit', system-ui, sans-serif;
+            min-height: 100vh;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: var(--copper);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+            color: var(--copper-bright);
+        }
+
+        /* Header */
+        .report-header {
+            background: var(--iron-panel);
+            border: 2px solid var(--iron-border);
+            border-top: 2px solid rgba(176, 96, 40, 0.4);
+            border-radius: var(--radius);
+            padding: 1.75rem 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            backdrop-filter: blur(8px);
+        }
+
+        .report-header::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--copper), transparent);
+            opacity: 0.4;
+        }
+
+        .report-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--copper-bright);
+            letter-spacing: 1px;
+            margin-bottom: 0.4rem;
+        }
+
+        .report-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .meta-badge {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.65rem;
+            border-radius: 2px;
+            border: 1px solid rgba(176, 96, 40, 0.35);
+            background: rgba(176, 96, 40, 0.1);
+            color: var(--copper-bright);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.3px;
+        }
+
+        /* Sections */
+        .section {
+            background: var(--iron-panel);
+            border: 1px solid var(--iron-border);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(6px);
+        }
+
+        .section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            color: var(--copper-bright);
+            letter-spacing: 0.5px;
+            margin-bottom: 0.85rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(176, 96, 40, 0.2);
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: var(--parchment-dim);
+            line-height: 1.65;
+            margin-bottom: 0.6rem;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Key stat callout */
+        .callout {
+            background: rgba(196, 160, 64, 0.08);
+            border: 1px solid rgba(196, 160, 64, 0.3);
+            border-left: 4px solid var(--brass);
+            border-radius: var(--radius);
+            padding: 0.85rem 1rem;
+            margin: 0.75rem 0;
+            font-size: 0.88rem;
+            color: var(--parchment);
+            line-height: 1.55;
+        }
+
+        .callout strong {
+            color: var(--brass-bright);
+        }
+
+        .callout.danger {
+            background: rgba(239, 68, 68, 0.07);
+            border-color: rgba(239, 68, 68, 0.35);
+            border-left-color: var(--accent-red);
+        }
+
+        .callout.danger strong {
+            color: #f87171;
+        }
+
+        .callout.good {
+            background: rgba(34, 197, 94, 0.06);
+            border-color: rgba(34, 197, 94, 0.25);
+            border-left-color: var(--accent-green);
+        }
+
+        .callout.info {
+            background: rgba(56, 189, 248, 0.06);
+            border-color: rgba(56, 189, 248, 0.25);
+            border-left-color: #38bdf8;
+        }
+
+        .callout.good strong {
+            color: #4ade80;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin: 0.75rem 0 0;
+        }
+
+        th {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            color: var(--parchment-dim);
+            padding: 0.5rem 0.75rem;
+            background: rgba(16, 10, 6, 0.6);
+            border: 1px solid rgba(120, 80, 40, 0.2);
+            text-align: left;
+            letter-spacing: 0.3px;
+        }
+
+        td {
+            padding: 0.55rem 0.75rem;
+            border: 1px solid rgba(120, 80, 40, 0.15);
+            color: var(--parchment);
+            vertical-align: top;
+            line-height: 1.4;
+        }
+
+        tr:nth-child(even) td {
+            background: rgba(16, 10, 6, 0.3);
+        }
+
+        td strong {
+            color: var(--copper-bright);
+        }
+
+        /* Step list */
+        ol,
+        ul {
+            padding-left: 1.4rem;
+            margin: 0.5rem 0;
+        }
+
+        li {
+            font-size: 0.88rem;
+            color: var(--parchment-dim);
+            line-height: 1.6;
+            margin-bottom: 0.3rem;
+        }
+
+        li strong {
+            color: var(--parchment);
+        }
+
+        .conclusion {
+            background: rgba(196, 160, 64, 0.06);
+            border: 1px solid rgba(196, 160, 64, 0.2);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .conclusion h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--brass-bright);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .conclusion p {
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.75rem 3rem;
+            }
+
+            .report-header h1 {
+                font-size: 1.4rem;
+            }
+
+            .report-header {
+                padding: 1.25rem 1rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="../workshop.html" class="back-link">← Back to Workshop</a>
+
+        <div class="report-header">
+            <h1>🪵 373 York Place Wood Care</h1>
+            <p style="color: var(--parchment-dim); font-size:0.88rem; margin-top:0.3rem;">Initial Maintenance & Restoration Protocol — Old Timber Focus</p>
+            <div class="report-meta">
+                <span class="meta-badge">Lobotto Plan</span>
+                <span class="meta-badge">2026-03-27</span>
+                <span class="meta-badge">Confidence: 98%</span>
+                <span class="meta-badge">maintenance</span>
+                <span class="meta-badge">woodworking</span>
+                <span class="meta-badge">property</span>
+            </div>
+        </div>
+
+        <!-- System Triage -->
+        <div class="section">
+            <h2>🔍 Phase 1: Identifying Wood States</h2>
+            <p>Prior to applying any product, you must differentiate the chemical state of the wood surface. Do not use the same formula across everything.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Wood Condition</th>
+                        <th>Characteristics</th>
+                        <th>Treatment Path</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Dry / Unsealed</strong></td>
+                        <td>Looks thirsty, dull, porous. Pale lines in the grain. Window seats and worn rails.</td>
+                        <td>Deep hydration required. Penetrating oils.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Coated / Sheen</strong></td>
+                        <td>Glossy, smooth surface, water beads on top. Finished staircases and doors.</td>
+                        <td>Surface cleaning only. Oil will not penetrate.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout info">
+                <strong>The Water Drop Test (For Furniture/Cabinets):</strong> Not sure if a piece of furniture (like a dark TV cabinet) is sealed? Place a single drop of water on it. If it beads up instantly and stays a tight dome, it's sealed (varnished/lacquered). Do <strong>NOT</strong> use penetrating oil like Gilly's; it will just sit on top as a greasy smear, so just use Cabot's Floor Cleaner. If the water drop immediately flattens out or starts to soak into the wood, the piece is unsealed/waxed and begging for deep hydration with the Orange Oil.
+            </div>
+        </div>
+
+        <!-- Master Inventory -->
+        <div class="section">
+            <h2>🛒 Phase 2: Maintenance Master Inventory</h2>
+            <p>Ensure you have mapped your supplies to their specific use-case before starting any work. Do not cross-contaminate formulas.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Classification</th>
+                        <th>Target Use-Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Gilly's Orange Wood Oil</strong></td>
+                        <td>Raw Hydration</td>
+                        <td>Deep-soaking dry, unsealed, parched timber (e.g. window seats).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wood Beeswax</strong></td>
+                        <td>Surface Sealant</td>
+                        <td>Buffed over cured oil for a natural, traditional water-resistant sheen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cabot's Wood Floor Cleaner</strong></td>
+                        <td>pH-Neutral Wash</td>
+                        <td>Routine mopping of coated floors, staircases, and varnished doors.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cabot's Wood Cleaner</strong></td>
+                        <td>Stripper / Problem Solver</td>
+                        <td>Heavy grime removal on exteriors. Use extremely diluted or avoid altogether on delicate interiors.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Initial Cleaning -->
+        <div class="section">
+            <h2>🧼 Phase 3: The Initial Deep Clean</h2>
+            <p>Cleaning must match the wood's coating to avoid stripping the timber or creating a cloudy finish.</p>
+
+            <div class="callout">
+                <strong>For the Coated/Sheen Wood (Staircases/Doors):</strong> Use <strong>Cabot's Wood Floor Cleaner</strong>. It's a gentle, pH-neutral formula designed for sealed surfaces. Spray lightly and wipe with a microfiber cloth to remove dust and finger oils without damaging the varnish layer.
+            </div>
+
+            <div class="callout danger">
+                <strong>For the Dry/Unsealed Wood (Window Seats/Fretwork):</strong> Avoid heavy-duty cleaners unless the dirt is caked on. A damp microfiber cloth is usually sufficient for dust. If using <strong>Cabot's Wood Cleaner</strong>, heavily dilute it as it is a harsh 'problem solver' meant to strip exterior grime. Ensure the timber is 100% dry before applying oil afterwards.
+            </div>
+
+            <div class="callout info">
+                <strong>Pro-Tip: Removing Paint Splatters:</strong> If you find stray paint drops on the original woodwork, do not scrape them dry. Dab the spot with your <strong>Gilly's Orange Wood Oil</strong> (to act as a lubricant), then take a pad of <strong>0000 Super Fine Steel Wool</strong> and gently rub the paint specks with light pressure. The oil allows the steel wool to lift the paint off without ripping open the wood grain or leaving aggressive scratches. Wipe the dirty oil away immediately.
+            </div>
+        </div>
+
+        <!-- Hydration and Nourishment -->
+        <div class="section">
+            <h2>💧 Phase 4: Hydration & Restoration </h2>
+            <p>Applying the <strong>Gilly's Orange Wood Oil</strong> to the dry, parched woodwork. This will prevent splitting, restore color depth, and leave a nourished matte/low-sheen finish.</p>
+
+            <ol>
+                <li>Ensure the wood is completely dry and free from dust.</li>
+                <li>Apply Gilly's Orange Oil using a clean lint-free cloth or a soft brush.</li>
+                <li><strong>Work in thin layers.</strong> Do not drown the wood; pooling oil becomes sticky and attracts dust.</li>
+                <li>Allow the wood to absorb the oil for 30–60 minutes.</li>
+                <li>Vigorously buff off the excess oil with a clean cloth.</li>
+                <li><strong>For highly parched wood (like the sun-exposed window seat):</strong> Repeat this process 2–3 times over a few days until the wood stops instantly absorbing the oil.</li>
+                <li><strong>Final Seal (Beeswax):</strong> Once the final layer of Orange Oil is completely dry (24-48 hours), you can apply the Wood Beeswax. Rub it in sparingly and buff vigorously. This creates a soft, natural, water-resistant barrier that seals in the oil and adds a beautiful traditional luster without needing synthetic varnish.</li>
+            </ol>
+        </div>
+
+        <!-- Bunnings Add-On path -->
+        <div class="section">
+            <h2>✨ Optional Enhancements (Bunnings)</h2>
+
+            <p>The protocols above utilize your existing chemistry stock. If you desire specific surface finishes beyond a matte, nourished look, you will need to acquire the following from Bunnings:</p>
+            
+            <div class="callout info">
+                <strong>If you want to restore high-gloss Sheen to dry wood:</strong>
+                Gilly's Oil only provides a matte/satin finish. To rebuild a glossy barrier, you need a hard coating.
+                <br><em>Recommendation:</em> <strong>Feast Watson Clear Varnish</strong> or <strong>Cabot's Cabothane Clear (Oil or Water-based)</strong>. 
+                <br><em>Cost:</em> ~$35-$50.
+            </div>
+
+            <div class="callout">
+                <strong>If the window seat gets extreme direct sun:</strong>
+                Penetrating oils offer zero UV protection. The timber will dry and bleach again quickly.
+                <br><em>Recommendation:</em> <strong>A UV-resistant clear finish (e.g. Cabot's Exterior Clear or a Marine Varnish)</strong> applied over a deeply cleaned surface (do NOT use Gilly's underneath a new varnish layer).
+            </div>
+        </div>
+
+        <!-- Floorboards and Gaps -->
+        <div class="section">
+            <h2>🪵 Phase 5: Old Floorboards & Gaps</h2>
+            <p>If you've lifted old carpet to reveal floorboards that still carry a finish (not dry/parched), this changes the approach entirely.</p>
+            
+            <div class="callout danger">
+                <strong>Safety Warning:</strong> Do <strong>NOT</strong> apply Gilly's Orange Wood Oil to sealed floors. It will sit on the surface and create a lethal slip hazard.
+            </div>
+
+            <p><strong>Routine Cleaning:</strong> Stick exclusively to the <strong>Cabot's Wood Floor Cleaner</strong>. If there are stubborn remnants of old carpet glue, you may need a mechanical scraper or a dedicated spot-solvent, but not the Cabot's Wood Cleaner.</p>
+
+            <p><strong>Dealing with 'Ugly Gaps':</strong> Old Dunedin homes have native timber floors (like Rimu or Matai) that shrink and expand with seasonal moisture. The gaps are natural, but they cause severe drafts. You have three paths:</p>
+            <ol>
+                <li><strong>The Structural Fix (Best):</strong> Install underfloor insulation (e.g., Expol or Mammoth). This stops the freezing drafts from coming up through the gaps without risking damage to the boards' natural movement.</li>
+                <li><strong>The Modern Fill (Bunnings):</strong> Use a flexible gap filler like <strong>Selleys No More Gaps Timber Floors</strong>. Never use hard/rigid wood putty—when winter comes, the boards will swell and pop the hard putty right out. Flexible filler stretches with the wood.</li>
+                <li><strong>The Traditional Fix:</strong> Push natural jute or hemp rope (stained to match the floor) down into the gaps. It expands/contracts and gives a rustic ship-deck look.</li>
+            </ol>
+        </div>
+
+        <!-- Maintenance Cycle -->
+        <div class="section">
+            <h2>📅 Ongoing Maintenance Cycles</h2>
+            <ul>
+                <li><strong>Weekly/Fortnightly:</strong> Dry dusting. </li>
+                <li><strong>Monthly (Coated Wood):</strong> Wipe down high-touch areas (stair banisters, doors) with diluted Cabot's Wood Floor Cleaner. If you used Beeswax as a finish, simply buff with a clean microfiber cloth to quickly restore the shine (no cleaner needed).</li>
+                <li><strong>Every 6 Months (Dry/Oiled/Waxed Wood):</strong> Apply a 'top off' maintenance coat of Gilly's Orange Oil if it looks dry (you may need to clean off heavy wax first). Alternatively, just add another micro-layer of Beeswax and buff to continuously maintain the protective barrier.</li>
+            </ul>
+        </div>
+        
+        <!-- Conclusion -->
+        <div class="conclusion">
+            <h3>✅ The Execution Summary</h3>
+            <p>
+                Reserve the <strong>Cabot's Floor Cleaner</strong> for the glossy varnished surfaces to keep them pristine. Deep-soak the dry, raw woodwork with <strong>Gilly's Orange Oil</strong> in thin, successive coats, and top it off with your <strong>Wood Beeswax</strong> for a beautiful natural seal. Avoid <strong>Cabot's Wood Cleaner</strong> unless tackling heavy grime. You only need to visit Bunnings if you want a synthetic high-gloss hard-coat.
+            </p>
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -111,3 +111,5 @@ Track commands where user had to manually click "Run" — these should be `SafeT
 ---
 *Graph links  [[ATHENA_MAP]]*
 Related: [[heuristics]] | [[case_studies]] | [[about_priscilla]]
+
+- When hardware is described as an 'AITop super computer', actively anticipate architecture discrepancies (e.g. ARM64 vs x86) before sending binary links. (2026-03-28)

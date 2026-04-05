@@ -14,6 +14,10 @@ tags:
 
 **Session 56**: Cannabis protocol designed from DNA profile and added to Life Hub Misc page (collapsible panel with gene interactions, weekly schedule, rules). AVB + Nutella incident validated CYP1A2 slow metabolizer warning — edibles hit disproportionately hard. Short session; still recovering next day.
 
+**Session 58**: Short optimisation session — got ARK Ascended running at 2560x1440@60Hz on Samsung TV via HDMI, dialled in full GFN Ultimate + ARK in-game settings. She's been playing ARK for three days since. That's a clean outcome.
+
 ---
 *Graph links  [[ATHENA_MAP]]*
 Related: [[about_priscilla]] | [[convictions]]
+
+## Last Checked (2026-04-03)

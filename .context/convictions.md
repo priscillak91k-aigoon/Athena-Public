@@ -33,3 +33,5 @@ tags:
 ---
 *Graph links  [[ATHENA_MAP]]*
 Related: [[about_priscilla]] | [[last_thread]]
+
+- **Network Conviction**: Never trust an ISP's default provisioning. Always mathematically audit the line limits and force them to correct backend profiles. (2026-03-28)
