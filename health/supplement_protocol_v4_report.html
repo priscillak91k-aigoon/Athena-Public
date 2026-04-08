@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol v4.0 - Athena Health</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #0f1115;
+            --bg-surface: #1a1d24;
+            --bg-surface-hover: #22262f;
+            --accent-primary: #00e5ff;
+            --accent-secondary: #bd00ff;
+            --text-main: #f0f2f5;
+            --text-muted: #9ba1a6;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(26, 29, 36, 0.6);
+
+            --status-green: #00e676;
+            --status-yellow: #ffea00;
+            --status-red: #ff1744;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            background-image:
+                radial-gradient(circle at 15% 50%, rgba(0, 229, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(189, 0, 255, 0.08) 0%, transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, #a0a5aa 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--accent-primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-2px);
+            background: rgba(34, 38, 47, 0.6);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        h2 i {
+            color: var(--accent-secondary);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        th,
+        td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        th {
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag.high {
+            background: rgba(255, 23, 68, 0.15);
+            color: var(--status-red);
+            border: 1px solid rgba(255, 23, 68, 0.3);
+        }
+
+        .tag.good {
+            background: rgba(0, 230, 118, 0.15);
+            color: var(--status-green);
+            border: 1px solid rgba(0, 230, 118, 0.3);
+        }
+
+        .tag.warn {
+            background: rgba(255, 234, 0, 0.15);
+            color: var(--status-yellow);
+            border: 1px solid rgba(255, 234, 0, 0.3);
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            color: var(--accent-primary);
+        }
+
+        .dose-time {
+            display: block;
+            color: var(--accent-secondary);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .alert-box {
+            background: rgba(255, 23, 68, 0.1);
+            border-left: 4px solid var(--status-red);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 2rem;
+        }
+
+        .alert-box.info {
+            background: rgba(0, 229, 255, 0.1);
+            border-left-color: var(--accent-primary);
+        }
+
+        .alert-box h4 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .vial-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .vial-row:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .vial-status {
+            flex-shrink: 0;
+            width: 4px;
+            height: 40px;
+            border-radius: 2px;
+            margin-right: 1.25rem;
+        }
+
+        .vial-status.active {
+            background: var(--accent-primary);
+        }
+
+        .vial-status.pending {
+            background: var(--status-yellow);
+        }
+
+        .vial-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: #fff;
+        }
+
+        .vial-content p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <div class="subtitle">Athena Core System | Biometric Integration</div>
+            <h1>Supplement Protocol v4.0</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px;">
+                Personalized molecular intervention protocol mapped against exhaustive genetic variant analysis and
+                current blood markers.
+            </p>
+        </header>
+
+        <div class="grid-2">
+            <div class="glass-panel">
+                <h2>Biometric Drivers</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Marker / Gene</th>
+                                <th>Value</th>
+                                <th>Implication</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="mono">CRP</td>
+                                <td>9 mg/L</td>
+                                <td><span class="tag high">High Inflam</span></td>
+                            </tr>
+                            <tr>
+                                <td class="mono">Ferritin</td>
+                                <td>205 ug/L</td>
+                                <td><span class="tag high">Iron Overload</span></td>
+                            </tr>
+                            <tr>
+                                <td class="mono">9p21 (rs10757274)</td>
+                                <td>G/G</td>
+                                <td><span class="tag warn">CAD Risk</span></td>
+                            </tr>
+                            <tr>
+                                <td class="mono">MTHFR (rs1801133)</td>
+                                <td>A/G</td>
+                                <td><span class="tag warn">60% Methylation</span></td>
+                            </tr>
+                            <tr>
+                                <td class="mono">TCF7L2</td>
+                                <td>T/G + T/C</td>
+                                <td><span class="tag high">GLP-1 Imapired</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="glass-panel">
+                <h2>Status & Logistics</h2>
+
+                <div class="vial-row">
+                    <div class="vial-status active"></div>
+                    <div class="vial-content">
+                        <h3>D3 Safety Confirmed (7,000 IU/day)</h3>
+                        <p>Total D3 across Fish Oil (3k) and Force Factor (4k) hits a perfectly safe 7,000 IU/day. You are free from D3 toxicity risk. No urgent blood testing needed.</p>
+                    </div>
+                </div>
+
+                <div class="vial-row">
+                    <div class="vial-status active"></div>
+                    <div class="vial-content">
+                        <h3>Solgar NAC (1200mg)</h3>
+                        <p>On order. Crucial for GSTP1 A/G and knocking down CRP.</p>
+                    </div>
+                </div>
+
+                <div class="vial-row">
+                    <div class="vial-status pending"></div>
+                    <div class="vial-content">
+                        <h3>Activated B-Complex</h3>
+                        <p>Currently burning through old <em>Good Health B Activated</em> stock. It uses synthetic folic
+                            acid. Acceptable short-term to avoid waste, but switch to <em>GO Healthy Pro</em>
+                            immediately after.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box info">
+            <h4>💧 Red Seal Vita Fizz Perform Assessment</h4>
+            <p><strong>Verdict: Use with caution during the "Good Health" phase.</strong></p>
+            <p>The orange/mango fizz contains <strong>300mcg of synthetic Folic Acid</strong>. Because you're taking the
+                "Good Health" B-complex (which also contains synthetic folic acid instead of methylfolate), your MTHFR
+                A/G (60% conversion capacity) is already stressed.</p>
+            <p>Combining the Good Health complex + the Vita Fizz will spike your Unmetabolized Folic Acid (UMFA) in the
+                short term. It safely gets you drinking, but <strong>take it in the afternoon instead of
+                    morning</strong> to spread the metabolic load, or use it on days you skip the B-Complex.</p>
+        </div>
+
+        <div class="glass-panel">
+            <h2>Daily Schedule</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Supplement</th>
+                            <th>Dose / Caps</th>
+                            <th>Target Mechanism</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="dose-time">~6:30 AM</span>
+                                Empty Stomach
+                            </td>
+                            <td>
+                                <strong>Solgar NAC</strong><br>
+                                <span class="text-muted">Phloe Bowel Health</span>
+                            </td>
+                            <td>
+                                <span class="mono">600mg × 2</span><br>
+                                <span class="mono">2 caps</span>
+                            </td>
+                            <td>
+                                Glutathione bottleneck (GSTP1 A/G)<br>
+                                Gut barrier / LPS blocking (CRP 9)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="dose-time">~7:00 AM</span>
+                                Breakfast (w/ Fat)
+                            </td>
+                            <td>
+                                <strong>Go Healthy Omega DHA</strong><br>
+                                <strong>Force Factor D3+K2</strong><br>
+                                <strong>B-Complex</strong><br>
+                                <strong>Bioglan L-Theanine</strong><br>
+                                <strong>Bioglan Curcumin</strong><br>
+                                <span class="text-muted">Healthy Care Sugar Support</span>
+                            </td>
+                            <td>
+                                <span class="mono">1 cap</span><br>
+                                <span class="mono">2 caps</span><br>
+                                <span class="mono">1 cap</span><br>
+                                <span class="mono">400mg</span><br>
+                                <span class="mono">1200mg</span><br>
+                                <span class="mono">1 cap</span>
+                            </td>
+                            <td>
+                                Cardiac anti-inflammatory (9p21, TNF-α)<br>
+                                Vascular calcium routing (Knapen trial)<br>
+                                Homocysteine clearing (MTHFR A/G)<br>
+                                Dopamine buffering (COMT G/G)<br>
+                                Inflammation / Liver (CRP, PNPLA3)<br>
+                                Insulin secretion bridge (TCF7L2)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="dose-time">~6:30 PM</span>
+                                Dinner
+                            </td>
+                            <td>
+                                <strong>Go Healthy 1-A-Day Fish Oil</strong><br>
+                                <strong>Force Factor D3+K2</strong>
+                            </td>
+                            <td>
+                                <span class="mono">2 caps</span><br>
+                                <span class="mono">2 caps</span>
+                            </td>
+                            <td>
+                                Steady-state Attia protocol split<br>
+                                Steady-state K2 MK-7 levels
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="dose-time">~9:00 PM</span>
+                                Before Bed
+                            </td>
+                            <td>
+                                <strong>Doctor's Best Magnesium</strong>
+                            </td>
+                            <td>
+                                <span class="mono">2 caps</span>
+                            </td>
+                            <td>
+                                Circadian repair (SIRT1 C/C)<br>
+                                400mg elemental glycinate
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
