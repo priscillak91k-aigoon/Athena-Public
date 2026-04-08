@@ -1,6 +1,6 @@
 {
-  "last_beat": "2026-04-06T08:25:59.994882",
-  "boot_count": 29,
+  "last_beat": "2026-04-09T08:10:47.557955",
+  "boot_count": 33,
   "sleep_events": [
     {
       "wake_time": "2026-03-06T17:08:46.893316",
@@ -117,9 +117,25 @@
     {
       "wake_time": "2026-04-06T08:17:25.400944",
       "sleep_duration_minutes": 585
+    },
+    {
+      "wake_time": "2026-04-06T11:02:17.620977",
+      "sleep_duration_minutes": 9
+    },
+    {
+      "wake_time": "2026-04-07T10:16:45.218736",
+      "sleep_duration_minutes": 1385
+    },
+    {
+      "wake_time": "2026-04-08T10:09:04.659575",
+      "sleep_duration_minutes": 580
+    },
+    {
+      "wake_time": "2026-04-09T07:56:33.478475",
+      "sleep_duration_minutes": 552
     }
   ],
   "total_uptime_seconds": 0,
-  "last_dream_time": "2026-04-06T08:17:25.527657",
-  "dream_count": 135
+  "last_dream_time": "2026-04-09T07:56:33.480482",
+  "dream_count": 144
 }
