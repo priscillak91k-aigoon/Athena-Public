@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parker's World: The Complete Ecosystem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050a0e;
+            --surface-color: #0d151c;
+            --accent-color: #26e6a1;
+            --accent-glow: rgba(38, 230, 161, 0.3);
+            --text-primary: #f0f6f9;
+            --text-secondary: #9dafb9;
+            --border-color: #1e303a;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+        header {
+            text-align: center;
+            padding: 5rem 2rem 3rem;
+            background: linear-gradient(to bottom, #091a14 0%, var(--bg-color) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+        h1 {
+            font-size: 4rem;
+            color: var(--accent-color);
+            text-shadow: 0 0 30px var(--accent-glow);
+            margin: 0;
+            line-height: 1.1;
+        }
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-top: 1rem;
+            max-width: 800px;
+            margin: 1rem auto 0 auto;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .section-header {
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-top: 4rem;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .mod-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        .mod-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .mod-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-color: var(--accent-color);
+        }
+        .mod-image-small {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            background: #000;
+        }
+        .mod-title {
+            color: var(--accent-color);
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .mod-meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        .feature-image {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            height: 350px;
+            object-fit: cover;
+            box-shadow: 0 0 40px rgba(0,0,0,0.6);
+        }
+        .tool-banner {
+            background: rgba(38, 230, 161, 0.05);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        .tool-banner h3 {
+            margin-top: 0;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Parker's World Ecosystem</h1>
+    <div class="subtitle">
+        An in-depth report on the 29 custom modifications running on the ARK Safari Server. This environment mimics a serene prehistoric nature documentary, populated by diverse creature installations and completely omitting violent gameplay loops.
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- SECTION: THE TOOLS -->
+    <h2 class="section-header">The Safari Toolkit (The Mechanics)</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+        These three essential tools change the fundamental survival loop into a friendly sanctuary experience.
+    </p>
+
+    <div class="mod-grid" style="grid-template-columns: 1fr;">
+        <div class="mod-card" style="display: flex; gap: 2rem; align-items: center; flex-direction: row;">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/1493/75/256/256/638970167368403874.octet-stream" style="width: 250px; height: 250px;">
+            <div>
+                <h3 class="mod-title">The Taming Gun</h3>
+                <div class="mod-meta">By PullourpoSidehustleModding</div>
+                <p><strong>Function:</strong> A non-violent, instant befriending device.</p>
+                <p>Bypassing the standard knockout mechanics, the Taming Gun acts as a magic wand. Point it at any wild creature, fire a friendly energy beam, and the creature instantly bonds with Parker—ready to follow him back to camp.</p>
+            </div>
+        </div>
+
+        <div class="mod-card" style="display: flex; gap: 2rem; align-items: center; flex-direction: row-reverse;">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/904/667/256/256/638355047673327098.png" style="width: 250px; height: 250px;">
+            <div>
+                <h3 class="mod-title">Super Spyglass Plus</h3>
+                <div class="mod-meta">By kavan87</div>
+                <p><strong>Function:</strong> The Discovery Encyclopedia.</p>
+                <p>Looking through this futuristic scanner drops a localized holographic interface over any animal. It tells Parker exactly what the animal is, its gender, and precisely what it prefers to eat—letting him study massive predators entirely from a safe distance.</p>
+            </div>
+        </div>
+
+        <div class="mod-card" style="display: flex; gap: 2rem; align-items: center; flex-direction: row;">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/910/158/256/256/638363777480918040.png" style="width: 250px; height: 250px;">
+            <div>
+                <h3 class="mod-title">Dino Depot Sanctuary</h3>
+                <div class="mod-meta">By DelilahEve</div>
+                <p><strong>Function:</strong> Safe Animal Storage & Leashing.</p>
+                <p>When the backyard gets too crowded, Parker can store his creature companions safely inside glowing digital crystals. The Depot terminal acts as a central hub to manage his pets, heavily preventing lag and maintaining organization.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SECTION: THE GIANTS -->
+    <h2 class="section-header">The Giants & Apex Predators</h2>
+    <img class="feature-image" src="C:\Users\prisc\.gemini\antigravity\brain\af1227f6-924b-47cd-b262-d6074a1e9015\safari_hero_1775894301316.png" alt="Prehistoric Valley">
+    
+    <div class="tool-banner">
+        <h3>Ecosystem Impact</h3>
+        <p>This category injects colossal dinosaurs directly into the server's biomes. Because Parker has his magic Taming Gun, encountering these massive apex predators isn't a death sentence—it's an epic discovery.</p>
+    </div>
+
+    <div class="mod-grid">
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/894/244/256/256/638337721005591677.jpeg" alt="Acrocanthosaurus">
+            <h3 class="mod-title">Acrocanthosaurus</h3>
+            <div class="mod-meta">By Garuga123</div>
+            <p><strong>Impact:</strong> Introduces a towering, high-spined carnivore. Extremely loud and cinematic when stomping through the jungles.</p>
+        </div>
+
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/894/201/256/256/638337658060585740.octet-stream" alt="Brachiosaurus">
+            <h3 class="mod-title">Brachiosaurus</h3>
+            <div class="mod-meta">By Garuga123</div>
+            <p><strong>Impact:</strong> Fully realized long-neck giants that stand taller than most Redwood trees. Gentle behemoths that serve as majestic landmarks.</p>
+        </div>
+
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/894/232/256/256/638337700467727686.jpeg" alt="Deinotherium">
+            <h3 class="mod-title">Deinotherium</h3>
+            <div class="mod-meta">By Garuga123</div>
+            <p><strong>Impact:</strong> Beautiful prehistoric elephants with downward-curving tusks. They travel in herds through the grassy plains.</p>
+        </div>
+
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/1462/336/256/256/638949185863203619.jpg" alt="BigAL's Spinosaurus">
+            <h3 class="mod-title">WAK Spinosaurus</h3>
+            <div class="mod-meta">By BigAl</div>
+            <p><strong>Impact:</strong> Remasters the legendary river predator. Watching these colossal sail-backed hunters swim and dive for fish is legendary.</p>
+        </div>
+
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/893/517/256/256/638336364345061274.jpeg" alt="Ceratosaurus">
+            <h3 class="mod-title">Ceratosaurus</h3>
+            <div class="mod-meta">By Garuga123</div>
+            <p><strong>Impact:</strong> A rapid, venomous predator that navigates the grasslands. Famous for its speed and terrifying horn structure.</p>
+        </div>
+
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/1537/503/256/256/638998257118799821.png" alt="Apex Predators">
+            <h3 class="mod-title">Paleo ARK: Apex Predators</h3>
+            <div class="mod-meta">By UpFromTheDepths</div>
+            <p><strong>Impact:</strong> Installs high-fidelity, hyper-realistic variants of the Tyrannosaurus Rex and Giganotosaurus. Their animations belong in a Hollywood documentary.</p>
+        </div>
+    </div>
+
+
+    <!-- SECTION: THE OCEANS -->
+    <h2 class="section-header">The Ocean Depths & Aerial Lords</h2>
+    <img class="feature-image" src="C:\Users\prisc\.gemini\antigravity\brain\af1227f6-924b-47cd-b262-d6074a1e9015\ocean_depths_1775894567637.png" alt="Glowing Oceans">
+
+    <div class="tool-banner">
+        <h3>Ecosystem Impact</h3>
+        <p>This entirely transforms the map's massive surrounding oceans into an absolute Subnautica parallel. Dive deep to locate sea-dragons, bioluminescent sharks, and colossal marine reptiles.</p>
+    </div>
+
+    <div class="mod-grid">
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/1049/8/256/256/638577976791558541.jpeg" alt="Archelon">
+            <h3 class="mod-title">Archelon</h3>
+            <div class="mod-meta">By Garuga123</div>
+            <p><strong>Impact:</strong> Massive sea turtles that drift peacefully through the upper water column. You can build small diving bases directly onto their shells.</p>
+        </div>
+
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/1436/979/256/256/638931272387291873.png" alt="Tylosaurus">
+            <h3 class="mod-title">Moro's Tylosaurus</h3>
+            <div class="mod-meta">By Moros</div>
+            <p><strong>Impact:</strong> A horrifying, sleek leviathan of the deep sea. It dominates the ocean trenches as the ultimate aquatic predator.</p>
+        </div>
+
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/1420/47/256/256/638920040695160667.png" alt="Hydrovanta">
+            <h3 class="mod-title">Moro's Hydrovanta</h3>
+            <div class="mod-meta">By Moros</div>
+            <p><strong>Impact:</strong> Breathtaking aquatic "sea dragons". These bioluminescent beasts are incredibly majestic and make ocean exploration totally breathtaking.</p>
+        </div>
+
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/903/347/256/256/638352534440150031.png" alt="Koolasuchus">
+            <h3 class="mod-title">Prehistoric Beasts Series</h3>
+            <div class="mod-meta">By Prehistoric Beasts</div>
+            <p><strong>Impact:</strong> Populates the muddy inland swamps with vast ecosystems including the giant salamander Koolasuchus.</p>
+        </div>
+
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/926/43/256/256/638395354542517944.png" alt="Draconis Glaucus">
+            <h3 class="mod-title">Draconis Glaucus</h3>
+            <div class="mod-meta">By Myrm</div>
+            <p><strong>Impact:</strong> A truly legendary sea-glider dragon. It can leap from the water and glide through the sky, bridging the gap between ocean and sky boundaries.</p>
+        </div>
+
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/1696/499/256/256/639077119048745682.jpeg" alt="Drakyros">
+            <h3 class="mod-title">Drakyros</h3>
+            <div class="mod-meta">By Cyrus</div>
+            <p><strong>Impact:</strong> Adds aerial dragon lords to the skies and mountain peaks, ensuring that even when Parker looks up, the ecosystem is alive with wonder.</p>
+        </div>
+    </div>
+
+
+    <!-- SECTION: THE COMPANIONS -->
+    <h2 class="section-header">The Friendly Companions</h2>
+    <img class="feature-image" src="C:\Users\prisc\.gemini\antigravity\brain\af1227f6-924b-47cd-b262-d6074a1e9015\cute_companions_1775894612565.png" alt="Red Panda Forest">
+
+    <div class="tool-banner">
+        <h3>Ecosystem Impact</h3>
+        <p>The perfect pet collection. These are small, highly detailed creatures that offer no extreme danger and provide immense character to the world.</p>
+    </div>
+
+    <div class="mod-grid">
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/1079/585/256/256/638618662664053770.png" alt="Jumping Spider">
+            <h3 class="mod-title">Jumping Spider</h3>
+            <div class="mod-meta">By Cyrus</div>
+            <p><strong>Impact:</strong> Adorable, fuzzy oversized spiders that act exactly like friendly puppies. They ride on Parker's shoulder safely.</p>
+        </div>
+
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/1234/662/256/256/638809015751039538.png" alt="Red Panda">
+            <h3 class="mod-title">Red Panda</h3>
+            <div class="mod-meta">By Cyrus</div>
+            <p><strong>Impact:</strong> The bamboo forests are now home to extremely cute, animated red pandas that serve as adorable fluffy pets.</p>
+        </div>
+
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/895/831/256/256/638340791557646005.png" alt="Shiny Dinos">
+            <h3 class="mod-title">Shiny! Dinos Ascended</h3>
+            <div class="mod-meta">By nevcairiel</div>
+            <p><strong>Impact:</strong> An absolute gamechanger. Wild dinosaurs will randomly spawn as "Shinies", featuring glowing radioactive skin, holographic textures, and vibrant neon colors, making exploration wildly rewarding.</p>
+        </div>
+
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/1622/914/256/256/639043085573777449.png" alt="Minmi">
+            <h3 class="mod-title">AussieAdditions Minmi</h3>
+            <div class="mod-meta">By AussieAdditions</div>
+            <p><strong>Impact:</strong> The perfect starter pet. A heavily armored, small, peaceful ankylosaur cousin that bumbles around the beaches completely unbothered by threats.</p>
+        </div>
+
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/1043/235/256/256/638570330101335695.jpeg" alt="Maewing">
+            <h3 class="mod-title">Maewing Ported</h3>
+            <div class="mod-meta">By PortedMods</div>
+            <p><strong>Impact:</strong> A bizarre and wonderful flying platypus-squirrel. It serves as a biological glider and a fantastic nursemaid to baby dinosaurs.</p>
+        </div>
+
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/1328/884/256/256/638863813303074202.png" alt="Cricosaurus">
+            <h3 class="mod-title">Cricosaurus</h3>
+            <div class="mod-meta">By Ambient Aquatics</div>
+            <p><strong>Impact:</strong> Fills out the shallow coastal waters with peaceful crocodile-like swimmers, giving life to areas that lack deep water.</p>
+        </div>
+    </div>
+
+
+    <!-- SECTION: THE BACKEND SAFTEY -->
+    <h2 class="section-header">Backend Safety & Base Shields</h2>
+    <div class="tool-banner" style="background: rgba(38, 230, 161, 0.02);">
+        <p>A suite of hidden utility structures that protect the save file, eliminate violent weapons, and provide absolute sanctuary around his home.</p>
+    </div>
+
+    <div class="mod-grid">
+        <div class="mod-card">
+            <img class="mod-image-small" src="https://83374.media.forgecdn.net/avatars/thumbnails/937/591/256/256/638415924904707796.png" alt="LK Shield">
+            <h3 class="mod-title">LK PVE Shield Generator</h3>
+            <div class="mod-meta">By LK Mods</div>
+            <p><strong>Impact:</strong> Gives Parker absolute safety. Placing this generator raises an enormous, impenetrable glowing energy shield around his entire house and property. Wild animals cannot pass through the forcefield, giving him total peace of mind while inside his base.</p>
+        </div>
+
+    <div class="mod-grid">
+        <div class="mod-card">
+            <h3 class="mod-title">Admin Commands | Gaia</h3>
+            <p><strong>Action Required:</strong> Log in, hit the admin key, and physically "Disable" the Engrams for Bows, Shotguns, Assault Rifles, Rockets, and C4. This definitively prevents Parker from engaging in warfare.</p>
+        </div>
+        <div class="mod-card">
+            <h3 class="mod-title">Scribbles - Better Signs</h3>
+            <p><strong>Impact:</strong> Parker can draw and paint anything he likes on wooden canvas signs dotted around his house and dinosaur pens.</p>
+        </div>
+        <div class="mod-card">
+            <h3 class="mod-title">Quality of Life Suite</h3>
+            <p><strong>Impact:</strong> Includes TG Stacking, Utilities Plus, and Advanced Dino Tools. Wood and stone won't weigh him down as quickly, making base-building significantly smoother.</p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
