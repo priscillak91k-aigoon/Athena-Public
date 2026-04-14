@@ -1,0 +1,147 @@
+=== DISPLAY CONFIG ===
+
+
+Name                    : I
+                          n
+                          t
+                          e
+                          l
+                          (
+                          R
+                          )
+                           
+                          U
+                          H
+                          D
+                           
+                          G
+                          r
+                          a
+                          p
+                          h
+                          i
+                          c
+                          s
+                           
+                          6
+                          3
+                          0
+CurrentHorizontalResolu : 1
+                          9
+                          2
+                          0
+CurrentVerticalResoluti : 1
+                          0
+                          8
+                          0
+CurrentRefreshRate      : 1
+                          4
+                          4
+VideoModeDescription    : 1
+                          9
+                          2
+                          0
+                           
+                          x
+                           
+                          1
+                          0
+                          8
+                          0
+                           
+                          x
+                           
+                          4
+                          2
+                          9
+                          4
+                          9
+                          6
+                          7
+                          2
+                          9
+                          6
+                           
+                          c
+                          o
+                          l
+                          o
+                          r
+                          s
+
+Name                    : N
+                          V
+                          I
+                          D
+                          I
+                          A
+                           
+                          Q
+                          u
+                          a
+                          d
+                          r
+                          o
+                           
+                          R
+                          T
+                          X
+                           
+                          3
+                          0
+                          0
+                          0
+CurrentHorizontalResolu : 3
+                          8
+                          4
+                          0
+CurrentVerticalResoluti : 2
+                          1
+                          6
+                          0
+CurrentRefreshRate      : 6
+                          0
+VideoModeDescription    : 3
+                          8
+                          4
+                          0
+                           
+                          x
+                           
+                          2
+                          1
+                          6
+                          0
+                           
+                          x
+                           
+                          4
+                          2
+                          9
+                          4
+                          9
+                          6
+                          7
+                          2
+                          9
+                          6
+                           
+                          c
+                          o
+                          l
+                          o
+                          r
+                          s
+
+
+
+
+=== NVIDIA COLOR VIBRANCE ===
+
+
+ERROR: The system was unable to find the specified registry key or value.
+
+=== NVIDIA COLOR-RELATED REGISTRY KEYS ===
+(none found in 0000)
+=== NVIDIA COLOR KEYS (0001) ===
+(none found in 0001)
