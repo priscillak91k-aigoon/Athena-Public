@@ -1,0 +1,1 @@
+Supplement Protocol v4.0 is fully integrated into the Life Hub; ARK server hardware migration to MATRIX was rejected in favor of FURY's current stability; FURY is currently in 'Ultimate Performance' mode with background bloat purged for gaming.

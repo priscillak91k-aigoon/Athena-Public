@@ -1,13 +1,13 @@
 {
   "scanned_targets": [
-    "Loom",
-    "Mattermost",
-    "Automattic",
-    "Sentry",
+    "Mapbox",
+    "Postman",
+    "Grammarly",
     "Shopify",
-    "Mapbox"
+    "Mattermost",
+    "Sentry"
   ],
-  "last_run": "2026-04-15T08:27:03.725665",
-  "total_runs": 1994,
+  "last_run": "2026-04-15T12:14:16.114469",
+  "total_runs": 2012,
   "findings_count": 0
 }

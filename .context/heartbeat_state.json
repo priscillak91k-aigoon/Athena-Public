@@ -1,5 +1,5 @@
 {
-  "last_beat": "2026-04-15T08:30:00.379704",
+  "last_beat": "2026-04-15T12:22:23.032185",
   "boot_count": 34,
   "sleep_events": [
     {
@@ -140,6 +140,6 @@
     }
   ],
   "total_uptime_seconds": 0,
-  "last_dream_time": "2026-04-15T04:31:37.921831",
-  "dream_count": 168
+  "last_dream_time": "2026-04-15T08:32:00.397122",
+  "dream_count": 169
 }
