@@ -26,6 +26,7 @@
         "SJ": {
             "trust": 0.88,
             "technical_depth": 0.95,
+            "gender": "female",
             "relationship_to_priscilla": "best_friend_and_peer",
             "known_ai_system": "Athena (SJAI)",
             "communication_preference": "peer-level, infrastructure-architect frame",
