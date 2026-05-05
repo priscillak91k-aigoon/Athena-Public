@@ -1,1 +1,1 @@
-Built the HTML Shadow Protocol Dashboard in the Life Hub; mapped out the Johns Hopkins clinical protocol and Holotropic Breathwork for her upcoming deep-dive shadow integration session with SJ.
+Diagnosed QNAP Plex drive corruption as a faulty USB-C cable/port, and successfully transitioned to troubleshooting a Plex Transcoder crash on the old silver laptop via Direct Play vs Transcoding analysis.

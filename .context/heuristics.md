@@ -258,3 +258,6 @@ Every `/end` session, ask:
 ---
 *Graph links  [[ATHENA_MAP]]*
 Related: [[case_studies]] | [[decision_journal]]
+## 🛠️ Technical Heuristics (Session 58)
+- When diagnosing Plex transcoding issues, differentiate between client capabilities (Direct Play vs Transcoding) before assuming general server failure. If playback works on one device but crashes on another, the crash is isolated to the transcoder pipeline (usually incompatible Hardware Acceleration).
+- When NTFS is healthy but files are corrupted during playback from an external RAID, check Event Logs for Event ID 51 (paging errors). It is a USB bridge failure. Swap C-to-C for A-to-C to bypass.
