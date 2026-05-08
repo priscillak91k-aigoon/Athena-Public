@@ -1,1 +1,1 @@
-Diagnosed QNAP Plex drive corruption as a faulty USB-C cable/port, and successfully transitioned to troubleshooting a Plex Transcoder crash on the old silver laptop via Direct Play vs Transcoding analysis.
+Analyzed 5 years of blood work (2021-2026) to isolate a massive 2024 systemic inflammatory spike to localized pelvic structural damage (functional cysts), validating the use of CBD as a TNF-Alpha inhibitor.

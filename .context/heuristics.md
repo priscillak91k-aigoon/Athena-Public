@@ -261,3 +261,8 @@ Related: [[case_studies]] | [[decision_journal]]
 ## 🛠️ Technical Heuristics (Session 58)
 - When diagnosing Plex transcoding issues, differentiate between client capabilities (Direct Play vs Transcoding) before assuming general server failure. If playback works on one device but crashes on another, the crash is isolated to the transcoder pipeline (usually incompatible Hardware Acceleration).
 - When NTFS is healthy but files are corrupted during playback from an external RAID, check Event Logs for Event ID 51 (paging errors). It is a USB bridge failure. Swap C-to-C for A-to-C to bypass.
+
+## 🛠️ Medical & Diagnostic Heuristics (Session 59)
+- **The Inflammatory Triad (CRP, Platelets, Ferritin)**: When all three spike (e.g. CRP 9, Platelets 509, Ferritin 205), but systemic autoimmune panels (ANA, RF, Coeliac, IBD) are completely negative, the inflammation is isolated to a localized structural issue (like pelvic cysts/endometriosis). 
+- **Reactive Thrombocytosis**: Platelets elevate as a direct response to inflammatory cytokines (especially with a TNF-Alpha variant). It is a lagging indicator of tissue damage.
+- **Data as Armor**: When she asks for mechanistic breakdowns of her health data, she is usually building a case for a medical professional. Provide the absolute hardest, most irrefutable scientific logic possible.
