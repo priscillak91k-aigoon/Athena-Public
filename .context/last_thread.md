@@ -1,1 +1,1 @@
-Analyzed 5 years of blood work (2021-2026) to isolate a massive 2024 systemic inflammatory spike to localized pelvic structural damage (functional cysts), validating the use of CBD as a TNF-Alpha inhibitor.
+Refined the supplement protocol (v4.0.2). Executed "Nuclear Research" to balance MTHFR A/G and 9p21 G/G cardiovascular risks against a history of localized functional cysts. Re-routed cart to Chemist Warehouse, settling on a 3x/week pulse-dose of Clinicians B-Complex Active, GO Healthy Turmeric 30,000+, and Bioglan K2 180mcg.
