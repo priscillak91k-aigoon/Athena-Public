@@ -266,3 +266,4 @@ Related: [[case_studies]] | [[decision_journal]]
 - **The Inflammatory Triad (CRP, Platelets, Ferritin)**: When all three spike (e.g. CRP 9, Platelets 509, Ferritin 205), but systemic autoimmune panels (ANA, RF, Coeliac, IBD) are completely negative, the inflammation is isolated to a localized structural issue (like pelvic cysts/endometriosis). 
 - **Reactive Thrombocytosis**: Platelets elevate as a direct response to inflammatory cytokines (especially with a TNF-Alpha variant). It is a lagging indicator of tissue damage.
 - **Data as Armor**: When she asks for mechanistic breakdowns of her health data, she is usually building a case for a medical professional. Provide the absolute hardest, most irrefutable scientific logic possible.
+- **FURY Stuttering**: When the system is stuttering despite high free memory, check `MsMpEng.exe` (Defender) and `WmiPrvSE.exe` (WMI). Provide aggressive, simple batch scripts to kill all non-essential bloatware immediately.
