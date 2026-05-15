@@ -71,28 +71,27 @@ tags:
 | **Evidence** | Attia's personal protocol: ~2.5g EPA + 1g DHA daily. REDUCE-IT trial: 4g EPA reduced cardiovascular events by 25% in high-risk patients. |
 | **⚠️ Change (v5.0)** | Swapped from Advanced (540/360) D3 bundle to Standard (180/120) pure fish oil, enabling 9-cap split dosing without D3 anxiety. |
 
-### 4. Force Factor Vitamin D3 + K2 — 4 capsules/day (2 AM + 2 PM)
-
-| Field | Detail |
-|-------|--------|
-| **Your Dose** | **4 capsules/day** — 2 with breakfast, 2 with dinner |
-| **Per Cap** | Vitamin D3 1,000 IU (25mcg) + Vitamin K2 MK-7 45mcg |
-| **Daily Total** | **D3 4,000 IU + K2 180mcg** |
-| **Why 4 Caps** | The K2 dose is the driver here. The Knapen RCT (2015) used exactly 180mcg/day K2 MK-7 and showed significant vascular elasticity improvement over 3 years. At 45mcg/cap, you need 4 caps to hit that threshold. No clinical trials exist for cardiovascular outcomes at 45mcg. With your 9p21 G/G and Ferritin 205 (calcification risk), sub-180mcg is not acceptable. |
-| **D3 at 4,000 IU** | 4 caps provide 4,000 IU. Since dropping the D3-loaded fish oil, this is your *entire* D3 daily intake. This is a very safe and standard optimal daily maintenance dose. |
-| **Genetic Target** | 9p21 G/G (coronary artery disease), Ferritin 205 (vascular calcification risk), SIRT1 C/C (circadian aging) |
-| **Evidence** | Knapen et al. (2015): K2 MK-7 180mcg/day significantly improved vascular elasticity over 3 years. AVADEC 2024: 720mcg in severe CAC. |
-| **⚠️ Status (v5.0)** | Enforcing 4 caps/day minimum. Do not drop to 2 caps, as 90mcg K2 is insufficient protection for 9p21 heart risk. |
-
-### 5. Activated B-Complex — 1 capsule
+### 4. Bioglan Vitamin K2 + D3 — 1 capsule/day [REPLACES FORCE FACTOR]
 
 | Field | Detail |
 |-------|--------|
 | **Your Dose** | **1 capsule/day** with breakfast |
-| **Why Activated** | Your MTHFR A/G (60% methylation capacity) means your liver **cannot** efficiently convert synthetic folic acid into its active form (L-Methylfolate). Standard B-complexes with synthetic folic acid force your already-impaired liver to do this conversion, causing unmetabolized folic acid (UMFA) to accumulate — linked to impaired NK cell function, cognitive issues, and pseudo-MTHFR syndrome. Activated forms (L-Methylfolate, Methylcobalamin) bypass this entirely. |
+| **Per Cap** | Vitamin K2 MK-7 180mcg + Vitamin D3 1,000 IU |
+| **Why 1 Cap** | One capsule delivers the full **180mcg K2 MK-7** target (Knapen trial dose) that previously required 4 Force Factor capsules. This is much more efficient. |
+| **D3 Gap** | You now only get 1,000 IU D3 from this cap (vs 4,000 IU previously). Given your upcoming Vitamin D blood test, we will monitor if this 1,000 IU maintenance is sufficient or if you need an additional 3,000 IU D3 dropper. |
+| **Genetic Target** | 9p21 G/G (coronary artery disease), Ferritin 205 (vascular calcification risk), SIRT1 C/C (circadian aging) |
+| **Evidence** | Knapen et al. (2015): K2 MK-7 180mcg/day significantly improved vascular elasticity over 3 years. |
+| **⚠️ Status (v5.1)** | **NEW**. Efficiency upgrade. Replaces 4 caps with 1. |
+
+### 5. Clinicians B Complex Active — 1 capsule [REPLACES GO HEALTHY]
+
+| Field | Detail |
+|-------|--------|
+| **Your Dose** | **1 capsule/day (Mon/Wed/Fri)** with breakfast |
+| **Why This** | Uses **Quatrefolic® (L-5-MTHF)** and **Methylcobalamin**. This is perfectly compliant with your MTHFR A/G (60% methylation) limitation. Bypasses the need for liver conversion of synthetic folic acid. |
+| **Pulse Dosing** | Pulsed 3x/week to balance homocysteine clearing against the theoretical risk of fueling cyst proliferation (as noted in Session 47). |
 | **Genetic Target** | MTHFR A/G (60% methylation), COMT G/G (Warrior — fast dopamine clearance), PEMT (reduced choline synthesis) |
-| **Recommended Product** | **GO Healthy Pro Activated B Complex** ($31.99 × 60 at CW NZ) — uses L-5-MTHF (methylfolate) + Methylcobalamin + P5P. |
-| **⚠️ Status (v5.0)** | **Active**. Replaces standard Folic Acid products to protect MTHFR A/G methylation bypass. |
+| **⚠️ Status (v5.1)** | **NEW**. Maintenance of MTHFR-safe methylation bypass. |
 
 ### 6. Bioglan L-Theanine 400mg — 1 capsule
 
@@ -103,15 +102,15 @@ tags:
 | **Genetic Target** | COMT G/G (Warrior — fast dopamine clearance) |
 | **Reorder** | Bioglan L-Theanine 400mg × 60 — $29.99 at CW NZ |
 
-### 7. Bioglan Curcumin Double Strength 1200mg — 1 tablet
+### 7. GO Healthy Turmeric 30,000+ — 2 capsules/day [REPLACES BIOGLAN]
 
 | Field | Detail |
 |-------|--------|
-| **Your Dose** | **1 tablet/day** with breakfast (with fat) |
-| **Why This Dose** | Your CRP is 9 mg/L — triple the upper normal. This product delivers 1200mg of actual curcuminoids per tablet with 12mg BioPerine® for 2000% bioavailability boost. One tablet exceeds the 500mg clinical threshold by 2.4×. No need for 2 tablets — this is already a heavy anti-inflammatory dose. |
-| **Genetic Target** | TNF-Alpha A/G (inflammation), CRP 9 mg/L, PNPLA3 C/G (fatty liver risk — curcumin is hepatoprotective) |
-| **Evidence** | Meta-analysis (Sahebkar, 2014): Curcumin significantly reduces CRP at doses ≥500mg curcuminoids/day. The effect is dose-dependent. Safe up to 4000-8000mg/day. |
-| **⚠️ Change (v4.0)** | Previously GO Healthy Turmeric 30,000+ (~900mg curcuminoids/cap, 1-2 caps). Bioglan Double Strength delivers 1200mg actual curcuminoids per tablet — significant upgrade. One tab is sufficient. |
+| **Your Dose** | **2 capsules/day** with breakfast (with fat) |
+| **Why 2 Caps** | Each capsule contains ~814mg curcuminoids. Taking **2 capsules (1628mg total)** matches and exceeds the high-dose Bioglan anti-inflammatory load required to address your CRP of 9 mg/L. |
+| **Genetic Target** | TNF-Alpha A/G (inflammation), CRP 9 mg/L, PNPLA3 C/G (fatty liver risk) |
+| **Evidence** | Meta-analysis (Sahebkar, 2014): Curcumin significantly reduces CRP at doses ≥500mg curcuminoids/day. |
+| **⚠️ Status (v5.1)** | **NEW**. Standardizing to GO Healthy range. |
 
 ### 8. Healthy Care Blood Sugar Support with Berberine — 1 capsule
 
@@ -150,16 +149,15 @@ tags:
 | **~6:30 AM** (empty stomach) | Life Extension NAC 600mg × 2 | 2 | 30 min before food |
 | | Phloe × 2 | 2 | Before food — gut barrier |
 | **~7:00 AM** (with breakfast + EVOO) | Go Healthy Omega Standard × 3 | 3 | Fat-soluble |
-| | Force Factor D3+K2 × 2 | 2 | Fat-soluble — must hit K2 minimums |
-| | GO Healthy PRO B-Complex | 1 | Methylated B Vitamins — strict MTHFR compliant |
+| | **Bioglan K2+D3** | 1 | Hits 180mcg K2 target in one cap |
+| | **Clinicians B Complex Active** | 1 | Methylated — strict MTHFR compliant |
 | | Bioglan L-Theanine 400mg | 1 | Buffer fast COMT |
-| | Bioglan Curcumin 1200mg | 1 | Needs fat |
+| | **GO Healthy Turmeric 30k** × 2 | 2 | High-dose anti-inflammatory |
 | **~12:30 PM** (lunch pre-carb + meal) | Healthy Care Berberine | 1 | 15 mins *prior* to meal for GLP-1 |
 | | Go Healthy Omega Standard × 3 | 3 | Split dosing with meal |
 | **~6:30 PM** (with dinner + EVOO) | Go Healthy Omega Standard × 3 | 3 | Finishes 2700mg target |
-| | Force Factor D3+K2 × 2 | 2 | Hits 180mcg K2 minimum for 9p21 protection |
 | **~9:00 PM** (before bed) | Doctor's Best Magnesium × 2 | 2 | 400mg elemental target for SIRT1 sleep repair |
-| | | **23** | **Total daily capsules** |
+| | | **21** | **Total daily capsules** |
 
 ---
 

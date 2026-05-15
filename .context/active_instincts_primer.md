@@ -1,6 +1,6 @@
 ---
 auto_generated: true
-generated_at: 2026-05-15T06:22:45Z
+generated_at: 2026-05-15T20:46:35Z
 ---
 # Brain State Primer
 
