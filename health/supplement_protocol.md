@@ -4,8 +4,8 @@ tags:
 ---
 # Supplement Protocol — Master Reference (Personalized)
 
-> **Last Updated**: 2026-04-08 (Session 59)
-> **Previous Version**: 2026-03-22 (v3.0)
+> **Last Updated**: 2026-04-22 (v5.0)
+> **Previous Version**: 2026-04-08 (v4.0)
 > **Source**: DNA Exhaustive Analysis (v3.0) + Blood Markers + Peter Attia / Examine.com / AVADEC Trial
 > **Review Cycle**: Every 6 months or after new blood work
 
@@ -59,18 +59,17 @@ tags:
 
 ## 🍳 AM — With Breakfast
 
-### 3. Go Healthy GO Fish Oil 1-A-Day + Vitamin D3 1000IU — 1 capsule (AM) + 2 capsules (PM)
+### 3. Go Healthy GO Fish Oil Standard — 9 capsules/day
 
 | Field | Detail |
 |-------|--------|
-| **Your Dose** | **3 capsules/day** — 1 cap with breakfast, 2 caps with dinner |
-| **Per Cap** | EPA 540mg + DHA 360mg = 900mg omega-3 per cap (+ 1,000 IU Vitamin D3) |
-| **Daily Total** | **EPA 1620mg + DHA 1080mg = 2700mg total omega-3 (and 3,000 IU D3)** |
-| **Why 3 Caps** | Peter Attia targets ~2.5g EPA + 1g DHA daily (3-3.5g total omega-3) to reach a 12% Omega-3 Index. Your 3-cap protocol delivers 2700mg — within his therapeutic range. Your CRP of 9 and TNF-Alpha A/G = high inflammation make this a non-negotiable cardiovascular intervention. |
+| **Your Dose** | **9 capsules/day** — 3 breakfast, 3 lunch, 3 dinner |
+| **Per Cap** | EPA 180mg + DHA 120mg = 300mg omega-3 per cap |
+| **Daily Total** | **EPA 1620mg + DHA 1080mg = 2700mg total omega-3** |
+| **Why 9 Caps** | Peter Attia targets ~2.5g EPA + 1g DHA daily (3-3.5g total). By splitting standard fish oil 3x/day, you perfectly hit the 2700mg target while dropping the bundled D3 that was causing concern. Your CRP of 9 and TNF-Alpha A/G = high inflammation make this a non-negotiable cardiovascular intervention. |
 | **Genetic Target** | 9p21 G/G (heart disease), TNF-Alpha A/G (inflammation), CRP 9 mg/L |
 | **Evidence** | Attia's personal protocol: ~2.5g EPA + 1g DHA daily. REDUCE-IT trial: 4g EPA reduced cardiovascular events by 25% in high-risk patients. |
-| **Note** | This product throws off exactly 3,000 IU of D3 per day when taking the 3-cap cardiovascular dose. Combined with your Force Factor (4,000 IU), your total daily D3 intake will be 7,000 IU. That is an excellent, robust maintenance level for someone with your 9p21 G/G and SIRT1 C/C variants. |
-| **⚠️ Change (v4.0)** | Name updated based on label read: Go Healthy GO Fish Oil 1-A-Day + Vitamin D3 1000IU. |
+| **⚠️ Change (v5.0)** | Swapped from Advanced (540/360) D3 bundle to Standard (180/120) pure fish oil, enabling 9-cap split dosing without D3 anxiety. |
 
 ### 4. Force Factor Vitamin D3 + K2 — 4 capsules/day (2 AM + 2 PM)
 
@@ -80,10 +79,10 @@ tags:
 | **Per Cap** | Vitamin D3 1,000 IU (25mcg) + Vitamin K2 MK-7 45mcg |
 | **Daily Total** | **D3 4,000 IU + K2 180mcg** |
 | **Why 4 Caps** | The K2 dose is the driver here. The Knapen RCT (2015) used exactly 180mcg/day K2 MK-7 and showed significant vascular elasticity improvement over 3 years. At 45mcg/cap, you need 4 caps to hit that threshold. No clinical trials exist for cardiovascular outcomes at 45mcg. With your 9p21 G/G and Ferritin 205 (calcification risk), sub-180mcg is not acceptable. |
-| **D3 at 4,000 IU** | 4 caps provide 4,000 IU. Taken with the fish oil (3,000 IU), your total D3 becomes 7,000 IU/day. This is a robust and safe daily maintenance dose. |
+| **D3 at 4,000 IU** | 4 caps provide 4,000 IU. Since dropping the D3-loaded fish oil, this is your *entire* D3 daily intake. This is a very safe and standard optimal daily maintenance dose. |
 | **Genetic Target** | 9p21 G/G (coronary artery disease), Ferritin 205 (vascular calcification risk), SIRT1 C/C (circadian aging) |
 | **Evidence** | Knapen et al. (2015): K2 MK-7 180mcg/day significantly improved vascular elasticity over 3 years. AVADEC 2024: 720mcg in severe CAC. |
-| **⚠️ Change (v4.0)** | 4 caps required to maintain K2 at 180mcg clinical threshold. Combines with Fish Oil D3 to reach 7,000 IU/day total. |
+| **⚠️ Status (v5.0)** | Enforcing 4 caps/day minimum. Do not drop to 2 caps, as 90mcg K2 is insufficient protection for 9p21 heart risk. |
 
 ### 5. Activated B-Complex — 1 capsule
 
@@ -93,8 +92,7 @@ tags:
 | **Why Activated** | Your MTHFR A/G (60% methylation capacity) means your liver **cannot** efficiently convert synthetic folic acid into its active form (L-Methylfolate). Standard B-complexes with synthetic folic acid force your already-impaired liver to do this conversion, causing unmetabolized folic acid (UMFA) to accumulate — linked to impaired NK cell function, cognitive issues, and pseudo-MTHFR syndrome. Activated forms (L-Methylfolate, Methylcobalamin) bypass this entirely. |
 | **Genetic Target** | MTHFR A/G (60% methylation), COMT G/G (Warrior — fast dopamine clearance), PEMT (reduced choline synthesis) |
 | **Recommended Product** | **GO Healthy Pro Activated B Complex** ($31.99 × 60 at CW NZ) — uses L-5-MTHF (methylfolate) + Methylcobalamin + P5P. |
-| **⛔ Current (temp)** | Using up **Good Health B Activated Complex** — this product uses **synthetic Folic Acid** for B9, which your MTHFR A/G can't efficiently convert. Acceptable short-term to avoid waste. No acute risk at weeks-scale exposure, but don't rebuy. |
-| **⚠️ Status (v4.0)** | **Using up existing supply** (Good Health). When finished, switch to GO Healthy Pro Activated B Complex. |
+| **⚠️ Status (v5.0)** | **Active**. Replaces standard Folic Acid products to protect MTHFR A/G methylation bypass. |
 
 ### 6. Bioglan L-Theanine 400mg — 1 capsule
 
@@ -145,22 +143,23 @@ tags:
 
 ---
 
-## ⏰ Personalized Daily Schedule (v4.0)
+## ⏰ Personalized Daily Schedule (v5.0)
 
 | Time | What | Caps | Notes |
 |------|------|------|-------|
-| **~6:30 AM** (empty stomach) | NAC 600mg × 2 | 2 | 30 min before food (on order — arriving soon) |
+| **~6:30 AM** (empty stomach) | Life Extension NAC 600mg × 2 | 2 | 30 min before food |
 | | Phloe × 2 | 2 | Before food — gut barrier |
-| **~7:00 AM** (with breakfast) | Go Healthy Omega DHA × 1 | 1 | Fat-soluble |
-| | Force Factor D3+K2 × 2 | 2 | Fat-soluble — stack with fish oil |
-| | B-Complex (activated) | 1 | With food (using up Good Health, then switch to GO Healthy Pro) |
-| | Bioglan L-Theanine 400mg | 1 | With B-Complex |
-| | Bioglan Curcumin 1200mg | 1 | Needs fat — BioPerine® included |
-| | Healthy Care Blood Sugar | 1 | With food |
-| **~6:30 PM** (with dinner) | Go Healthy Omega DHA × 2 | 2 | Split dose per Attia |
-| | Force Factor D3+K2 × 2 | 2 | Split K2 for steady-state |
-| **~9:00 PM** (before bed) | Magnesium Glycinate × 2 | 2 | 400mg elemental target |
-| | | **~17-19** | **Total daily capsules** |
+| **~7:00 AM** (with breakfast + EVOO) | Go Healthy Omega Standard × 3 | 3 | Fat-soluble |
+| | Force Factor D3+K2 × 2 | 2 | Fat-soluble — must hit K2 minimums |
+| | GO Healthy PRO B-Complex | 1 | Methylated B Vitamins — strict MTHFR compliant |
+| | Bioglan L-Theanine 400mg | 1 | Buffer fast COMT |
+| | Bioglan Curcumin 1200mg | 1 | Needs fat |
+| **~12:30 PM** (lunch pre-carb + meal) | Healthy Care Berberine | 1 | 15 mins *prior* to meal for GLP-1 |
+| | Go Healthy Omega Standard × 3 | 3 | Split dosing with meal |
+| **~6:30 PM** (with dinner + EVOO) | Go Healthy Omega Standard × 3 | 3 | Finishes 2700mg target |
+| | Force Factor D3+K2 × 2 | 2 | Hits 180mcg K2 minimum for 9p21 protection |
+| **~9:00 PM** (before bed) | Doctor's Best Magnesium × 2 | 2 | 400mg elemental target for SIRT1 sleep repair |
+| | | **23** | **Total daily capsules** |
 
 ---
 
@@ -168,7 +167,7 @@ tags:
 
 1. **NAC + Selenium**: NEVER combine. Your TSH (0.37) is borderline low — selenium suppresses thyroid further.
 2. **Folic Acid**: AVOID synthetic folic acid in B-complex supplements. Your MTHFR A/G can't efficiently convert it. Use only L-Methylfolate / 5-MTHF / Quatrefolic forms.
-3. **Vitamin D Monitoring**: You are taking 7,000 IU of D3 daily (3k from fish oil + 4k from Force Factor). This is a safe baseline. Get a 25(OH)D blood test during your next regular checkup to ensure you are in the 50-80 ng/mL range.
+3. **Vitamin D Monitoring**: You are taking 4,000 IU of D3 daily (solely from Force Factor). This is an optimal baseline. Get a 25(OH)D blood test during your next regular checkup to ensure you stay in the 50-80 ng/mL range.
 4. **K2 + D3 Synergy**: These MUST be taken together. D3 mobilizes calcium; K2 directs it to bones, not arteries. Never take high-dose D3 without K2.
 5. **Caffeine Hard Cutoff**: 10:00 AM (CYP1A2 A/C slow metabolizer). A 2 PM coffee = 50% still active at midnight.
 6. **Iron**: Do NOT supplement iron. Your Ferritin is 205 (high) and you carry HFE H63D. Donate blood annually.
@@ -197,18 +196,18 @@ tags:
 
 ---
 
-## 🔄 Changelog (v3 → v4)
+## 🔄 Changelog (v4 → v5)
 
 | # | Change | Old | New | Reason |
 |---|--------|-----|-----|--------|
-| 1 | **Fish Oil product** | Go Healthy Fish Oil + D3 1,000IU | Same product (name clarified) | Clarified label confirms 1,000 IU D3 per cap (not 10,000 IU error from v3). Provides 2700mg ω3 + 3000 IU D3 daily at 3 caps. |
-| 2 | **D3 source** | Bundled in fish oil (10,000 IU error) | Handled across Fish Oil + Force Factor | D3 toxicity panic cancelled. 3k (Fish Oil) + 4k (Force Factor) = 7,000 IU/day maintenance. |
-| 3 | **K2 source** | Bioglan K2 90mcg × 2 (180mcg/day) | Force Factor D3+K2 45mcg × 4 (180mcg/day) | Same daily K2 dose (180mcg), now combined with D3 in one product. |
-| 4 | **Curcumin product** | GO Healthy Turmeric 30,000+ (~900mg curcuminoids, 1-2 caps) | Bioglan Curcumin Double Strength (1200mg curcuminoids, 1 tab) | 33% more curcuminoids per unit. BioPerine® confirmed. One tab sufficient. |
-| 5 | **Blood sugar product** | Healthy Care Blood Sugar Control w/ Berberine (same product) | Same product retained | Product is a multi-herb blend (not pure berberine). Adequate for general support. Upgrade to standardized Berberine HCl 500mg recommended next reorder. |
-| 6 | **NAC** | Solgar NAC 600mg × 2 | Same — **on order** | Arriving soon. Resume immediately on delivery. |
-| 7 | **B-Complex** | GO Healthy Pro Activated / Natroceutics | Using up Good Health (temp) | Good Health uses synthetic folic acid — acceptable short-term to avoid waste. Switch to GO Healthy Pro when finished. |
-| 8 | **D3 blood test** | Overdue at 8-12 weeks | Normal checkup timing | "Loading dose" toxicity risk cancelled due to typo in v3 records. No urgent test needed. |
+| 1 | **Fish Oil product** | Go Healthy Advanced (540/360) × 3 | Go Healthy Standard (180/120) × 9 | Eliminated D3 bundle from fish oil to prevent fear of D3 toxicity while maintaining 2700mg Omega-3 target. |
+| 2 | **Force Factor D3+K2** | 4 caps intended, user drifted to 2 | Enforced 4 caps/day (2 AM, 2 PM) | Must hit 180mcg K2 minimum for 9p21 heart risk. D3 tops out at safe 4,000 IU. |
+| 3 | **B-Complex** | Using up Good Health (synthetic folic acid) | GO Healthy PRO Activated B Complex | Removed synthetic folic acid immediately due to MTHFR A/G limitation. Switched to L-5-MTHF. |
+| 4 | **Phloe Timing** | With Breakfast | Empty Stomach (with NAC) | Allows enzymes to access gut lining before food bulk. |
+| 5 | **Berberine Timing** | With breakfast | 15 min pre-carb meal (lunch) | Maximum AMPK/GLP-1 activation for TCF7L2 genetic risk. |
+
+## 🔄 Changelog (v3 → v4)
+*Archived. Clarified previous label read errors regarding Fish Oil D3 content.*
 
 ---
 *Graph links  [[ATHENA_MAP]] | [[about_priscilla]]*

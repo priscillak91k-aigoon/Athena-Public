@@ -10,3 +10,10 @@
 **Diagnosis**: Full systemic autoimmune panels (ANA, RF, Calprotectin, Coeliac) were negative. The triad of acute-phase reactants (CRP/Platelets/Ferritin) was traced to localized tissue damage from suspected pelvic functional cysts/endometriomas.
 **Solution**: Pure NAC and high-dose Omega-3s bottlenecked the systemic cascade. Broad-spectrum CBD targeted as a pharmacological inhibitor for localized TNF-Alpha pain.
 **Key Insight**: A localized cyst rupture in a patient with a `TNF-Alpha` variant can mimic a massive systemic autoimmune flare-up.
+
+### CS-026: Manual Dreaming Fallback (Brain File Bloat)
+**Problem**: Automated dreaming engines failed due to API/connection issues, causing 'heuristics.md' to accumulate 40+ duplicate rules and 'about_priscilla.md' to remain empty.
+**Diagnosis**: The system reached a 'Stale' state where file bloat was slowing down cognitive retrieval.
+**Solution**: Executed a manual 'Dreaming' protocol: deduplicated heuristics, reconstructed the user profile from session logs, and added a manual analysis heuristic to prevent future entropy spikes.
+**Key Insight**: When the autonomous engine fails, the AI must perform a surgical 'Manual Purge' of duplicated patterns to maintain context hygiene.
+

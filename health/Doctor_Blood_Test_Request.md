@@ -114,7 +114,7 @@ Based on my genetic profile and previous results, I'm requesting the following p
 | 4 | **Full Lipid Panel** (Total Chol, LDL, HDL, Triglycerides) | Baseline for 9p21 G/G cardiovascular monitoring. |
 | 5 | **ApoB** (Apolipoprotein B) | The single best predictor of cardiovascular events. With 9p21 G/G, my target should be < 60 mg/dL (5th percentile). LDL alone is insufficient — ApoB counts actual atherogenic particles. |
 | 6 | **HbA1c** (Glycated Haemoglobin) | TCF7L2 T/C = fragile pancreas. HbA1c shows 3-month average blood sugar. Early T2D detection. |
-| 7 | **25(OH)D** (Vitamin D) | GC rs4588 T/T = poor Vitamin D transport. Currently on high-dose D3 loading protocol. Need to check levels — target: 50–80 ng/mL (125–200 nmol/L). |
+| 7 | **25(OH)D** (Vitamin D) | GC rs4588 T/T = poor Vitamin D transport. Currently maintaining on 4,000 IU D3 daily. Need to check levels — target: 50–80 ng/mL (125–200 nmol/L). |
 | 8 | **FBC** (Full Blood Count) | Platelets were 509, WBC was 12.6. Need to track if these are normalising. |
 
 ---
@@ -151,15 +151,16 @@ I am currently taking the following, all based on the genetic + blood analysis a
 | Supplement | Daily Dose | Genetic Target |
 |:-----------|:----------|:---------------|
 | NAC (N-Acetyl Cysteine) | 1200mg | CRP, GSTP1 detox |
-| Vitamin K2 MK-7 | 200mcg | 9p21 CVD, Ferritin calcification |
-| Fish Oil (EPA+DHA) | 2700mg | 9p21, TNF-Alpha inflammation |
-| Vitamin D3 | 30,000 IU (loading — 8 wks) | GC T/T poor transport |
-| Activated B-Complex + L-Theanine | 1 cap | MTHFR A/G, COMT G/G |
-| Turmeric/Curcumin | 2 caps (28,000+ complex) | CRP, TNF-Alpha |
-| Blood Sugar Babe (myo-inositol) | 4g | TCF7L2 diabetes risk |
-| Phloe (Zyactinase) | 2 caps | Gut integrity, CRP |
+| Vitamin K2 MK-7 | 180mcg | 9p21 CVD, Ferritin vascular calcification |
+| Fish Oil (Standard EPA+DHA) | 2700mg (split 3x daily) | 9p21, TNF-Alpha inflammation |
+| Vitamin D3 | 4,000 IU | GC T/T poor transport (maintenance) |
+| GO Healthy PRO Activated B-Complex | 1 cap (L-5-MTHF only) | MTHFR A/G (strict bypass of synthetic folic acid) |
+| L-Theanine | 400mg | COMT G/G fast dopamine clearance |
+| Curcumin Double Strength | 1200mg curcuminoids | CRP, TNF-Alpha |
+| Berberine Blood Sugar Support | 1 cap | TCF7L2 diabetes risk |
+| Phloe (Zyactinase) | 2 caps | Gut barrier integrity, CRP |
 | Magnesium Glycinate | 400mg elemental | SIRT1 circadian, BDNF sleep |
-| Creatine Monohydrate | 10g (split AM/PM) | Neuroprotection, muscle recovery, cognitive support |
+| Creatine Monohydrate | 10g (split AM/PM) | Neuroprotection, cognitive support |
 
 > ⚠️ **Prescribing Note**: My CYP3A4 T/C means I am a **rapid metaboliser** of many drugs including statins. Standard doses may be insufficient. CYP1A2 A/C means caffeine clears very slowly (10+ hour half-life).
 

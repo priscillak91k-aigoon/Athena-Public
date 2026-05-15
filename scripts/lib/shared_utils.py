@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 from supabase import create_client, Client
 
 # --- PATH RESOLUTION ---
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 SDK_PATH = PROJECT_ROOT / "src"
 
 

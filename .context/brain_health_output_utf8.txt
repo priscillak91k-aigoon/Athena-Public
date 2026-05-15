@@ -1,0 +1,12 @@
+﻿ΓòöΓòÉΓòÉ Brain Health Diagnostic ΓòÉΓòÉΓòù
+Γòæ Status: ≡ƒƒá DEGRADED
+Γòæ Time:   2026-04-22 11:44:01
+ΓòáΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòú
+Γòæ ΓÜá∩╕Å [Chemical State] Stale: last updated 168h ago
+Γòæ Γ£à [Instincts] 5 scenarios, all valid
+Γòæ Γ£à [Working Memory] 6 items across 3 categories
+Γòæ Γ£à [Hippocampus] 3 pending events
+Γòæ Γ¥î [Heuristics] 20 near-duplicate heuristics detected ΓÇö dedup guard failing
+Γòæ ΓÜá∩╕Å [Instinct Primer] Stale: generated 243h ago
+Γòæ Γ£à [Boot Mode] Mode: emotional_support
+ΓòÜΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓò¥

@@ -944,8 +944,8 @@ def main():
 
     if online:
         engines = [
-            ("Claude (primary)", lambda: think_with_anthropic(prompt)),
-            ("Gemini (fallback)", lambda: think_with_gemini(prompt)),
+            ("Gemini (primary quota-optimized)", lambda: think_with_gemini(prompt)),
+            ("Claude (deep reasoning fallback)", lambda: think_with_anthropic(prompt)),
             ("Ollama (local fallback)", lambda: think_with_ollama(prompt))
         ]
     else:

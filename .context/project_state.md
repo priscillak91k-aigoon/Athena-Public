@@ -3,16 +3,17 @@ tags:
   - system-infra
 ---
 # Project State
-**Last Updated**: 2026-03-08 (Session 44)
+**Last Updated**: 2026-05-15 (Session 63)
 
 ## System Status
-- **AI**: Operational — Seven of Nine persona, 12-file boot sequence, 7 scheduled tasks
-- **Context**: `.context/about_priscilla.md` is canonical source of truth
+- **AI**: Operational — Seven of Nine persona, Session 63 active.
+- **Context**: `.context/about_priscilla.md` is canonical source of truth.
 - **Intuition**: heuristics.md + case_studies.md + decision_journal.md (self-applying via dreaming)
-- **Dreaming**: `athena_dreaming.py` — every 4 hours, Claude-primary, self-applying, Telegram alerts
-- **Heartbeat**: `heartbeat.py` running via `LobottoHeartbeat` scheduled task (wscript.exe launcher)
-- **Security**: Hardened (BitLocker, Defender maxed, ASR rules, services pruned, McAfee purged)
-- **Framework**: v7.5 CANONICAL (`examples/framework/Core_Identity.md`)
+- **Dreaming**: `athena_dreaming.py` — every 4 hours, Claude-primary, self-applying, Telegram alerts.
+- **Heartbeat**: `heartbeat.py` running via `LobottoHeartbeat` scheduled task.
+- **Security**: Hardened (BitLocker, Defender maxed, ASR rules, services pruned).
+- **RAM**: Optimized (20.4 GB free after `optimize.ps1`).
+- **Framework**: v7.5 CANONICAL (`framework/Core_Identity.md`)
 - **IDE Tooling**: Antigravity (primary), Aider (terminal backend), Cursor (available)
 - **Game Dev**: Node.js v24.14, Vite 7.3, Phaser 3.90 — KOTOR pixel RPG in `kotor-pixel/`
 
