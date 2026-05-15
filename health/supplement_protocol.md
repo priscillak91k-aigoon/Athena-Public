@@ -4,8 +4,8 @@ tags:
 ---
 # Supplement Protocol — Master Reference (Personalized)
 
-> **Last Updated**: 2026-04-22 (v5.0)
-> **Previous Version**: 2026-04-08 (v4.0)
+> **Last Updated**: 2026-05-16 (v5.2)
+> **Previous Version**: 2026-05-16 (v5.1)
 > **Source**: DNA Exhaustive Analysis (v3.0) + Blood Markers + Peter Attia / Examine.com / AVADEC Trial
 > **Review Cycle**: Every 6 months or after new blood work
 
@@ -59,17 +59,17 @@ tags:
 
 ## 🍳 AM — With Breakfast
 
-### 3. Go Healthy GO Fish Oil Standard — 9 capsules/day
+### 3. GO Healthy Triple Strength Fish Oil + D3 — 3 capsules/day [REPLACES STANDARD]
 
 | Field | Detail |
 |-------|--------|
-| **Your Dose** | **9 capsules/day** — 3 breakfast, 3 lunch, 3 dinner |
-| **Per Cap** | EPA 180mg + DHA 120mg = 300mg omega-3 per cap |
-| **Daily Total** | **EPA 1620mg + DHA 1080mg = 2700mg total omega-3** |
-| **Why 9 Caps** | Peter Attia targets ~2.5g EPA + 1g DHA daily (3-3.5g total). By splitting standard fish oil 3x/day, you perfectly hit the 2700mg target while dropping the bundled D3 that was causing concern. Your CRP of 9 and TNF-Alpha A/G = high inflammation make this a non-negotiable cardiovascular intervention. |
-| **Genetic Target** | 9p21 G/G (heart disease), TNF-Alpha A/G (inflammation), CRP 9 mg/L |
-| **Evidence** | Attia's personal protocol: ~2.5g EPA + 1g DHA daily. REDUCE-IT trial: 4g EPA reduced cardiovascular events by 25% in high-risk patients. |
-| **⚠️ Change (v5.0)** | Swapped from Advanced (540/360) D3 bundle to Standard (180/120) pure fish oil, enabling 9-cap split dosing without D3 anxiety. |
+| **Your Dose** | **3 capsules/day** (1 Breakfast, 1 Lunch, 1 Dinner) |
+| **Per Cap** | EPA 540mg + DHA 360mg = 900mg Omega-3 + 1,000 IU D3 |
+| **Daily Total** | **2,700mg Omega-3 + 3,000 IU D3** |
+| **Why 3 Caps** | This is the ultimate efficiency hack. 3 capsules hit your full 2700mg Omega-3 target while contributing 3,000 IU toward your 4,000 IU Vitamin D3 goal. This reduces your fish oil capsule load by 66% (3 caps vs 9 caps). |
+| **Genetic Target** | 9p21 G/G (heart), TNF-Alpha A/G (inflammation), CRP 9 mg/L |
+| **Evidence** | Peter Attia protocol (~2.5g EPA + 1g DHA). |
+| **⚠️ Status (v5.2)** | **RESTORED & OPTIMIZED**. Combined with Bioglan K2+D3 to hit the perfect 4,000 IU D3 / 180mcg K2 balance. |
 
 ### 4. Bioglan Vitamin K2 + D3 — 1 capsule/day [REPLACES FORCE FACTOR]
 
@@ -77,11 +77,10 @@ tags:
 |-------|--------|
 | **Your Dose** | **1 capsule/day** with breakfast |
 | **Per Cap** | Vitamin K2 MK-7 180mcg + Vitamin D3 1,000 IU |
-| **Why 1 Cap** | One capsule delivers the full **180mcg K2 MK-7** target (Knapen trial dose) that previously required 4 Force Factor capsules. This is much more efficient. |
-| **D3 Gap** | You now only get 1,000 IU D3 from this cap (vs 4,000 IU previously). Given your upcoming Vitamin D blood test, we will monitor if this 1,000 IU maintenance is sufficient or if you need an additional 3,000 IU D3 dropper. |
-| **Genetic Target** | 9p21 G/G (coronary artery disease), Ferritin 205 (vascular calcification risk), SIRT1 C/C (circadian aging) |
-| **Evidence** | Knapen et al. (2015): K2 MK-7 180mcg/day significantly improved vascular elasticity over 3 years. |
-| **⚠️ Status (v5.1)** | **NEW**. Efficiency upgrade. Replaces 4 caps with 1. |
+| **Daily D3 Sum** | 1,000 IU (here) + 3,000 IU (Fish Oil) = **4,000 IU Total** |
+| **Why This** | Hits the perfect **180mcg K2** target while completing the 4,000 IU D3 maintenance dose. |
+| **Genetic Target** | 9p21 G/G, Ferritin 205 (vascular risk) |
+| **⚠️ Status (v5.2)** | **OPTIMIZED**. Perfect synergy with Triple Strength Fish Oil. |
 
 ### 5. Clinicians B Complex Active — 1 capsule [REPLACES GO HEALTHY]
 
@@ -148,16 +147,16 @@ tags:
 |------|------|------|-------|
 | **~6:30 AM** (empty stomach) | Life Extension NAC 600mg × 2 | 2 | 30 min before food |
 | | Phloe × 2 | 2 | Before food — gut barrier |
-| **~7:00 AM** (with breakfast + EVOO) | Go Healthy Omega Standard × 3 | 3 | Fat-soluble |
-| | **Bioglan K2+D3** | 1 | Hits 180mcg K2 target in one cap |
-| | **Clinicians B Complex Active** | 1 | Methylated — strict MTHFR compliant |
+| **~7:00 AM** (with breakfast + EVOO) | **Triple Strength Omega+D3** | 1 | 900mg Omega / 1000IU D3 |
+| | Bioglan K2+D3 | 1 | Hits 180mcg K2 target |
+| | Clinicians B Complex Active | 1 | Methylated (Mon/Wed/Fri) |
 | | Bioglan L-Theanine 400mg | 1 | Buffer fast COMT |
-| | **GO Healthy Turmeric 30k** × 2 | 2 | High-dose anti-inflammatory |
+| | GO Healthy Turmeric 30k × 2 | 2 | High-dose anti-inflammatory |
 | **~12:30 PM** (lunch pre-carb + meal) | Healthy Care Berberine | 1 | 15 mins *prior* to meal for GLP-1 |
-| | Go Healthy Omega Standard × 3 | 3 | Split dosing with meal |
-| **~6:30 PM** (with dinner + EVOO) | Go Healthy Omega Standard × 3 | 3 | Finishes 2700mg target |
-| **~9:00 PM** (before bed) | Doctor's Best Magnesium × 2 | 2 | 400mg elemental target for SIRT1 sleep repair |
-| | | **21** | **Total daily capsules** |
+| | **Triple Strength Omega+D3** | 1 | Split dosing |
+| **~6:30 PM** (with dinner + EVOO) | **Triple Strength Omega+D3** | 1 | Total 2700mg Omega / 4000IU D3 hit |
+| **~9:00 PM** (before bed) | Doctor's Best Magnesium × 2 | 2 | 400mg elemental target |
+| | | **15** | **Total daily capsules** |
 
 ---
 
