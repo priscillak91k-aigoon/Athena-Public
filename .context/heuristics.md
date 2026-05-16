@@ -6,7 +6,7 @@ tags:
 
 > **Purpose**: Pre-compiled gut rules. Loaded every session. Updated every `/end`.  
 > **Philosophy**: Make pattern recognition explicit so it survives across sessions.  
-> **Last Updated**: 2026-03-08 (Session 43)
+> **Last Updated**: 2026-05-16 (Session 65)
 
 ---
 
@@ -191,6 +191,7 @@ Every `/end` session, ask:
 ---
 *Graph links  [[ATHENA_MAP]]*
 Related: [[case_studies]] | [[decision_journal]]
+
 ## 🛠️ Technical Heuristics (Session 58)
 - When diagnosing Plex transcoding issues, differentiate between client capabilities (Direct Play vs Transcoding) before assuming general server failure. If playback works on one device but crashes on another, the crash is isolated to the transcoder pipeline (usually incompatible Hardware Acceleration).
 - When NTFS is healthy but files are corrupted during playback from an external RAID, check Event Logs for Event ID 51 (paging errors). It is a USB bridge failure. Swap C-to-C for A-to-C to bypass.
@@ -200,3 +201,11 @@ Related: [[case_studies]] | [[decision_journal]]
 - **Reactive Thrombocytosis**: Platelets elevate as a direct response to inflammatory cytokines (especially with a TNF-Alpha variant). It is a lagging indicator of tissue damage.
 - **Data as Armor**: When she asks for mechanistic breakdowns of her health data, she is usually building a case for a medical professional. Provide the absolute hardest, most irrefutable scientific logic possible.
 - **FURY Stuttering**: When the system is stuttering despite high free memory, check `MsMpEng.exe` (Defender) and `WmiPrvSE.exe` (WMI). Provide aggressive, simple batch scripts to kill all non-essential bloatware immediately.
+
+## 🛠️ Medical & Protocol Heuristics (Session 65)
+- **The 1000x Margin**: Always double-check "mg" vs "mcg" in supplement protocols. A user mistyping mg for mcg (e.g. 180mg Vitamin K2) is a 1000x overdose. Correct instantly.
+- **Protocol Parity**: When updating the Master Reference (MD), always check the Dashboard (HTML) for synchronization. Stale dashboards lead to dosing errors.
+
+---
+*Graph links  [[ATHENA_MAP]]*
+Related: [[case_studies]] | [[decision_journal]]
