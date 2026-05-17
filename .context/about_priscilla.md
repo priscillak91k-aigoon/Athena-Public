@@ -33,3 +33,4 @@
 - **KOTOR Pixel**: Phaser.js RPG.
 - **Moltbook**: AI Social Network registration.
 - **Obsidian Vault**: Graph-based knowledge management.
+- **Spain 2029 Trip**: $10k NZD comfort budget, mapped for morbid/scenic dark tourism.
