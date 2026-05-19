@@ -17,3 +17,9 @@
 **Solution**: Executed a manual 'Dreaming' protocol: deduplicated heuristics, reconstructed the user profile from session logs, and added a manual analysis heuristic to prevent future entropy spikes.
 **Key Insight**: When the autonomous engine fails, the AI must perform a surgical 'Manual Purge' of duplicated patterns to maintain context hygiene.
 
+### CS-027: Translating Mysticism to Mechanics
+**Problem**: User asked for "random deep dives" to learn something new, specifically expressing interest in Carl Jung and DMT entities—topics historically fraught with vague mysticism and pseudoscience.
+**Diagnosis**: User has a COMT G/G, high-masking phenotype and prefers structural, non-sycophantic analysis (Donald Hoffman, interface theory, mechanisms). Delivering generic pop-psychology would result in disengagement.
+**Solution**: Stripped the mysticism entirely. Framed DMT entities as the "anthropomorphized machine code" of a crashed biological rendering engine. Framed Carl Jung's work through his collaboration with Wolfgang Pauli, focusing on quantum entanglement, the Unus Mundus, and the brain as a transducer.
+**Key Insight**: She engages deeply when abstract concepts are mapped to mechanical or evolutionary systems. Always translate the ethereal into the architectural.
+

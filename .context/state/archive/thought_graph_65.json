@@ -1,0 +1,17 @@
+{
+  "session_id": "65",
+  "nodes": [
+    {
+      "id": "query_analysis",
+      "type": "deconstruction",
+      "content": "User wants to format 'nvidia ai top supercomputer' for a fresh setup.",
+      "axioms": [
+        "1. User perceives she has an 'nvidia ai top supercomputer'.",
+        "2. User wants to wipe and reinstall the OS/environment ('formr' -> format).",
+        "3. User's primary node is FURY (MSI laptop), containing vital unbacked context.",
+        "4. This is a potential irreversible ruin event if the target is FURY."
+      ]
+    }
+  ],
+  "edges": []
+}
