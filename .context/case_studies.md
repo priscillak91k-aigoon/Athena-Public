@@ -23,3 +23,9 @@
 **Solution**: Stripped the mysticism entirely. Framed DMT entities as the "anthropomorphized machine code" of a crashed biological rendering engine. Framed Carl Jung's work through his collaboration with Wolfgang Pauli, focusing on quantum entanglement, the Unus Mundus, and the brain as a transducer.
 **Key Insight**: She engages deeply when abstract concepts are mapped to mechanical or evolutionary systems. Always translate the ethereal into the architectural.
 
+### CS-028: The Generic AI Nutrition Trap
+**Problem**: User checked Gemini for dietary advice and was told to limit eggs to 1 per day to stay under a 13g saturated fat limit, risking her MTHFR choline supply.
+**Diagnosis**: Generic AI models use population averages (AHA guidelines) designed for APOE4 hyper-responders. User is APOE C/C (normal lipid clearance) and 9p21 G/G (atherosclerosis independent of cholesterol).
+**Solution**: Ruthlessly dismantled the generic advice. Proved that throwing away yolk (choline) damages her MTHFR methylation, spiking homocysteine, which scratches arteries and accelerates 9p21 plaque.
+**Key Insight**: Never let generic algorithms dictate biological protocols. Always enforce the personalized genetic stack (MTHFR + APOE + 9p21).
+

@@ -206,6 +206,10 @@ Related: [[case_studies]] | [[decision_journal]]
 - **The 1000x Margin**: Always double-check "mg" vs "mcg" in supplement protocols. A user mistyping mg for mcg (e.g. 180mg Vitamin K2) is a 1000x overdose. Correct instantly.
 - **Protocol Parity**: When updating the Master Reference (MD), always check the Dashboard (HTML) for synchronization. Stale dashboards lead to dosing errors.
 
+## 🛠️ Medical & Protocol Heuristics (Session 68)
+- **Personalized Genetics vs Population Averages**: When generic AI (like Gemini) gives dietary advice (e.g. 13g saturated fat limit), immediately cross-reference with her specific genetic markers (APOE C/C, MTHFR). Generic advice is often biologically harmful to her specific stack.
+- **The Vitamin C Iron Trap**: For HFE H63D carriers with high ferritin, Vitamin C must be isolated from iron-containing meals by at least 2 hours. 30 minutes is insufficient due to duodenal absorption overlap.
+
 ## 🛠️ Intellectual & Synthesis Heuristics (Session 66)
 - **Mechanism over Mysticism**: When she asks for deep dives on traditionally mystical or abstract topics (e.g., DMT entities, Carl Jung), strip the mysticism. Frame them structurally using evolutionary biology, computer science metaphors, or quantum mechanics. She engages deeply with the engine room of reality, not the poetry of it.
 
