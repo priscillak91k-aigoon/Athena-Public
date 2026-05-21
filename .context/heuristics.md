@@ -216,3 +216,6 @@ Related: [[case_studies]] | [[decision_journal]]
 ---
 *Graph links  [[ATHENA_MAP]]*
 Related: [[case_studies]] | [[decision_journal]]
+
+## 🛠️ Intellectual & Synthesis Heuristics (Session 69)
+- **Domestic Mechanics**: When user asks about household optimizations or cost-savings, analyze the underlying physics (thermodynamics, power draw) rather than giving generic advice. Prevent "false economies".
