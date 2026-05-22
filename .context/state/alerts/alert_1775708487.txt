@@ -1,0 +1,45 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+t.com → cloudfront.net
+      CANDIDATE: developers.mattermost.com → cloudfront.net
+      CANDIDATE: devs.mattermost.com → cloudfront.net
+      CANDIDATE: api.staging.integrations.mattermost.com → cloudfront.net
+      CANDIDATE: rpm.packages.mattermost.com → cloudfront.net
+      CANDIDATE: api.mattermost.com → cloudfront.net
+      CANDIDATE: api.private-beta.integrations.mattermost.com → cloudfront.net
+      CANDIDATE: plugins-store.test.mattermost.com → cloudfront.net
+      CANDIDATE: helm.mattermost.com → github.io
+      CANDIDATE: deb.packages.mattermost.com → cloudfront.net
+
+  --- Mattermost SUMMARY ---
+  Subdomains: 874 | Live: 0 | Critical: 0 | 403s: 0 | Takeovers: 15 | S3: 3
+
+  TAKEOVER CANDIDATES:
+    licensing.mattermost.com → cloudfront.net
+    pr-builds.mattermost.com → cloudfront.net
+    api.integrations.mattermost.com → cloudfront.net
+    support.mattermost.com → zendesk.com
+    docs.mattermost.com → cloudfront.net
+    notices.mattermost.com → cloudfront.net
+    developers.mattermost.com → cloudfront.net
+    devs.mattermost.com → cloudfront.net
+    api.staging.integrations.mattermost.com → cloudfront.net
+    rpm.packages.mattermost.com → cloudfront.net
+    api.mattermost.com → cloudfront.net
+    api.private-beta.integrations.mattermost.com → cloudfront.net
+    plugins-store.test.mattermost.com → cloudfront.net
+    helm.mattermost.com → github.io
+    deb.packages.mattermost.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260409_161157.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Postman         166      73       64         22       0          0    
+  Loom            55       14       32         11       0          0    
+  Mattermost      874      0        0          0        15         3    

@@ -1,0 +1,60 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+om/graphql
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LTI Integration</t
+    [200] https://lti-integration.grammarly.com/graphiql
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LTI Integration</t
+    [200] https://lti-integration.grammarly.com/swagger-ui.html
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LTI Integration</t
+    [200] https://lti-integration.grammarly.com/swagger-ui/
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LTI Integration</t
+    [200] https://lti-integration.grammarly.com/api-docs
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LTI Integration</t
+
+  INTERESTING 403s (bypass targets):
+    [403] https://engage.grammarly.com/.env
+    [403] https://engage.grammarly.com/.git/config
+    [403] https://engage.grammarly.com/admin
+    [403] https://engage.grammarly.com/graphql
+    [403] https://engage.grammarly.com/actuator/env
+    [403] https://download-bundle.grammarly.com/.env
+    [403] https://download-bundle.grammarly.com/.git/config
+    [403] https://download-bundle.grammarly.com/admin
+    [403] https://download-bundle.grammarly.com/graphql
+    [403] https://download-bundle.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260403_151341.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Shopify         326      302      5          10       0          0    
+  Loom            55       14       32         11       0          0    
+  Grammarly       230      101      32         36       1          0    

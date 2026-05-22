@@ -1,0 +1,54 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ interesting 403s
+  [4] S3 bucket check...
+      [200] sentry-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Sentry SUMMARY ---
+  Subdomains: 33 | Live: 33 | Critical: 0 | 403s: 1 | Takeovers: 0 | S3: 1
+
+  INTERESTING 403s (bypass targets):
+    [403] https://status.sentry.io/.env
+
+============================================================
+  SCANNING: Postman (postman.com) — Max bounty: $3000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 136 subdomains
+      Total (with patterns): 166
+  [2] DNS resolution + HTTP probing...
+      Live: 73 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 32 total, 0 critical, 27 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Postman SUMMARY ---
+  Subdomains: 166 | Live: 73 | Critical: 0 | 403s: 27 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://blog.postman.com/.env
+    [403] https://blog.postman.com/.git/config
+    [403] https://blog.postman.com/admin
+    [403] https://blog.postman.com/graphql
+    [403] https://blog.postman.com/actuator/env
+    [403] https://academy.postman.com/.env
+    [403] https://academy.postman.com/.git/config
+    [403] https://academy.postman.com/admin
+    [403] https://academy.postman.com/graphql
+    [403] https://academy.postman.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260315_114213.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Automattic      46       41       46         30       0          0    
+  Sentry          33       33       0          1        0          1    
+  Postman         166      73       0          27       0          0    

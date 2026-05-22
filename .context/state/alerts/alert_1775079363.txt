@@ -1,0 +1,38 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+!DOCTYPE cross-domain-poli
+    [200] https://trust.mapbox.com/.env
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+    [200] https://trust.mapbox.com/.git/config
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+    [200] https://trust.mapbox.com/.git/HEAD
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+    [200] https://trust.mapbox.com/admin
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+    [200] https://trust.mapbox.com/graphql
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+
+  INTERESTING 403s (bypass targets):
+    [403] https://status.mapbox.com/.env
+    [403] https://artifacts-production-dns.mapbox.com/.env
+    [403] https://artifacts-production-dns.mapbox.com/.git/config
+    [403] https://artifacts-production-dns.mapbox.com/admin
+    [403] https://artifacts-production-dns.mapbox.com/graphql
+    [403] https://artifacts-production-dns.mapbox.com/actuator/env
+    [403] https://api-identity-production.mapbox.com/.env
+    [403] https://api-identity-production.mapbox.com/.git/config
+    [403] https://api-identity-production.mapbox.com/admin
+    [403] https://api-identity-production.mapbox.com/graphql
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260402_103040.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           61       44       72         1        14         0    
+  Loom            55       14       32         11       0          0    
+  Mapbox          143      37       36         11       0          0    

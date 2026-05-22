@@ -1,0 +1,44 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+tps://projectruru.shopify.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://180.shopify.com/.well-known/openid-configuration
+         {"issuer":"https:\/\/shopify.com\/authentication\/18199309","token_endpoint":"https:\/\/shopify.com\
+    [200] https://180.shopify.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://merch.shopify.com/.well-known/openid-configuration
+         {"issuer":"https:\/\/shopify.com\/authentication\/8732632","token_endpoint":"https:\/\/shopify.com\/
+    [200] https://merch.shopify.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+
+============================================================
+  SCANNING: Automattic (automattic.com) — Max bounty: $25000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 0 hosts
+  [3] Content discovery on top 0 hosts...
+      Findings: 0 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Automattic SUMMARY ---
+  Subdomains: 33 | Live: 0 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 0
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260318_143426.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Loom            55       14       32         11       0          0    
+  Shopify         326      302      6          0        0          0    
+  Automattic      33       0        0          0        0          0    

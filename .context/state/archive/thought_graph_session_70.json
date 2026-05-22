@@ -1,0 +1,21 @@
+{
+  "session_id": "70",
+  "topic": "My,Oh. Band OSINT and Merchandise Tracking",
+  "axioms": [
+    "Band name is My,Oh.",
+    "Active in Dunedin in 2011",
+    "Members: Carmen Norgate and Mark Currie",
+    "Released an album in Sept 2011 at Glue Gallery",
+    "Released merchandise, need to track it down"
+  ],
+  "lateral_prism": [
+    "OSINT View: Find social media footprints, Bandcamp, old Facebook pages, Wayback Machine archives for 'Glue Gallery' or 'Mou Very' gigs.",
+    "Merch View: Look for local Dunedin screenprinters active in 2011, vintage NZ band shirt archives (like AudioCulture), or local marketplace listings (TradeMe).",
+    "Network View: Track down Carmen Norgate and Mark Currie's current whereabouts to see if they hold deadstock."
+  ],
+  "plan": [
+    "Identify band discography and online presence (Bandcamp, Soundcloud).",
+    "Identify specific merchandise items produced (shirts, physical CDs).",
+    "Locate current contact info or archives for the band members."
+  ]
+}

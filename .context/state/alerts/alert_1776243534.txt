@@ -1,0 +1,38 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+n"><head><meta charset="utf-8"/><meta name="viewport" content="width=dev
+    [200] https://sandbox.postman.com/openapi.json
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=dev
+    [200] https://sandbox.postman.com/.well-known/openid-configuration
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=dev
+    [200] https://sandbox.postman.com/actuator/env
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=dev
+    [200] https://sandbox.postman.com/actuator/health
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=dev
+    [200] https://sandbox.postman.com/actuator/info
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=dev
+
+  INTERESTING 403s (bypass targets):
+    [403] https://sandbox.postman.com/.env
+    [403] https://sandbox.postman.com/.git/config
+    [403] https://status.postman.com/.env
+    [403] https://problems-registry.api.postman.com/.env
+    [403] https://problems-registry.api.postman.com/.git/config
+    [403] https://auth.postman.com/.env
+    [403] https://auth.postman.com/.git/config
+    [403] https://apisec.cdn.postman.com/.env
+    [403] https://apisec.cdn.postman.com/.git/config
+    [403] https://apisec.cdn.postman.com/admin
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260415_204725.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Nextcloud       33       7        31         0        0          0    
+  Mapbox          33       5        1          3        0          0    
+  Postman         169      74       61         12       0          0    

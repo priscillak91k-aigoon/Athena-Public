@@ -1,0 +1,62 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://hardware.shopify.com/.env
+         <!doctype html>
+<html
+  class="no-js"
+  lang="en"
+>
+  <head>
+    <link href="//hardware.shopify.com/
+    [200] https://hardware.shopify.com/.well-known/openid-configuration
+         {"issuer":"https:\/\/shopify.com\/authentication\/84239056918","token_endpoint":"https:\/\/shopify.c
+    [200] https://hardware.shopify.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://hardware.shopify.com/.DS_Store
+         <!doctype html>
+<html
+  class="no-js"
+  lang="en"
+>
+  <head>
+    <link href="//hardware.shopify.com/
+    [200] https://hardware.shopify.com/.htaccess
+         <!doctype html>
+<html
+  class="no-js"
+  lang="en"
+>
+  <head>
+    <link href="//hardware.shopify.com/
+    [200] https://apps.shopify.com/metrics
+         <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+
+  INTERESTING 403s (bypass targets):
+    [403] https://us-west-2-cselb.cs.shopify.com/.env
+    [403] https://us-west-2-cselb.cs.shopify.com/.git/config
+    [403] https://us-west-2-cselb.cs.shopify.com/admin
+    [403] https://us-west-2-cselb.cs.shopify.com/graphql
+    [403] https://us-west-2-cselb.cs.shopify.com/actuator/env
+    [403] https://datastories.shopify.com/.env
+    [403] https://datastories.shopify.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260414_062834.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Sentry          33       33       0          0        0          1    
+  Postman         33       7        47         19       0          0    
+  Shopify         326      302      6          7        0          0    

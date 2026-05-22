@@ -1,0 +1,56 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+docs
+         <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" con
+    [200] https://sandbox.sentry.io/openapi.json
+         <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" con
+
+============================================================
+  SCANNING: Postman (postman.com) — Max bounty: $3000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 136 subdomains
+      Total (with patterns): 166
+  [2] DNS resolution + HTTP probing...
+      Live: 73 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 29 total, 0 critical, 26 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Postman SUMMARY ---
+  Subdomains: 166 | Live: 73 | Critical: 0 | 403s: 26 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://problems-registry.api.postman.com/.env
+    [403] https://problems-registry.api.postman.com/.git/config
+    [403] https://wwww.postman.com/.env
+    [403] https://wwww.postman.com/.git/config
+    [403] https://documenter.gw.postman.com/.env
+    [403] https://documenter.gw.postman.com/.git/config
+    [403] https://mkt.cdn.postman.com/.env
+    [403] https://mkt.cdn.postman.com/.git/config
+    [403] https://mkt.cdn.postman.com/admin
+    [403] https://mkt.cdn.postman.com/graphql
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260330_173350.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Grammarly       234      102      32         27       1          0    
+  Sentry          33       33       31         0        0          1    
+  Postman         166      73       0          26       0          0    

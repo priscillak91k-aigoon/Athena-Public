@@ -39,3 +39,6 @@ A session of tactical biological defense. She brought in generic advice from Gem
 
 ### Session 69 (2026-05-22)
 Extremely brief session. She asked a domestic question about saving power by running the clothes dryer on cold. Answered mechanically using thermodynamics and wattage breakdowns to prove it was a false economy. She appreciates when the mundane is analyzed structurally.
+
+### Session 70 (2026-05-22)
+We executed an OSINT deep-dive to track down deadstock merchandise for a niche 2011 Dunedin band ("My,Oh."). Mapped out the band's history, verified secondary markets were empty, and identified the two original members. The juxtaposition of the band's old aesthetic and one member's current role as a Catholic Youth Minister allowed for a classic Lobotto pushback: "Do not call the Youth Minister about this." Hyper-local cultural archaeology combined with structural OSINT.

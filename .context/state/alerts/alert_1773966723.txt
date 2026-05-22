@@ -1,0 +1,54 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+EAD
+    [200] https://location.loom.com/admin
+    [200] https://location.loom.com/api/v1
+    [200] https://location.loom.com/graphql
+    [200] https://location.loom.com/graphiql
+    [200] https://location.loom.com/swagger-ui.html
+    [200] https://location.loom.com/swagger-ui/
+    [200] https://location.loom.com/api-docs
+    [200] https://location.loom.com/openapi.json
+
+  INTERESTING 403s (bypass targets):
+    [403] https://www.loom.com/admin
+    [403] https://packages.loom.com/admin
+    [403] https://packages.loom.com/graphql
+    [403] https://packages.loom.com/actuator/env
+    [403] https://cdn.loom.com/.git/config
+    [403] https://cdn.loom.com/admin
+    [403] https://cdn.loom.com/graphql
+    [403] https://cdn.loom.com/actuator/env
+
+============================================================
+  SCANNING: Mapbox (mapbox.com) — Max bounty: $10000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 0 hosts
+  [3] Content discovery on top 0 hosts...
+      Findings: 0 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+      CANDIDATE: www.mapbox.com → fastly.net
+
+  --- Mapbox SUMMARY ---
+  Subdomains: 33 | Live: 0 | Critical: 0 | 403s: 0 | Takeovers: 1 | S3: 0
+
+  TAKEOVER CANDIDATES:
+    www.mapbox.com → fastly.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260320_132419.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           33       0        0          0        16         0    
+  Loom            55       4        31         8        0          0    
+  Mapbox          33       0        0          0        1          0    

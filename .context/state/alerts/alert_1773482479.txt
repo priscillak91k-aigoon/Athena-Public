@@ -1,0 +1,52 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+cation.loom.com/admin
+    [200] https://location.loom.com/api/v1
+    [200] https://location.loom.com/graphql
+    [200] https://location.loom.com/graphiql
+    [200] https://location.loom.com/swagger-ui.html
+    [200] https://location.loom.com/swagger-ui/
+    [200] https://location.loom.com/api-docs
+
+  INTERESTING 403s (bypass targets):
+    [403] https://developers.loom.com/actuator/env
+    [403] https://dev.loom.com/actuator/env
+    [403] https://www.loom.com/admin
+    [403] https://packages.loom.com/.env
+    [403] https://packages.loom.com/.git/config
+    [403] https://packages.loom.com/admin
+    [403] https://packages.loom.com/graphql
+    [403] https://packages.loom.com/actuator/env
+    [403] https://cdn.loom.com/.env
+    [403] https://cdn.loom.com/.git/config
+
+============================================================
+  SCANNING: Sentry (sentry.io) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 89 subdomains
+      Total (with patterns): 117
+  [2] DNS resolution + HTTP probing...
+      Live: 85 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 12 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+      [200] sentry-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Sentry SUMMARY ---
+  Subdomains: 117 | Live: 85 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 1
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260314_225425.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mattermost      33       4        0          3        0          3    
+  Loom            55       14       32         13       0          0    
+  Sentry          117      85       0          0        0          1    

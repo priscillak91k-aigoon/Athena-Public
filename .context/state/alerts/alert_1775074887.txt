@@ -1,0 +1,57 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+200] https://admin.shopify.com/internal
+         
+    <Html>
+      <body>
+        <div id="redirect" data-url="https://admin.shopify.com/login?errorH
+
+  INTERESTING 403s (bypass targets):
+    [403] https://admin.shopify.com/.env
+    [403] https://admin.shopify.com/.git/config
+    [403] https://admin.shopify.com/admin
+    [403] https://admin.shopify.com/graphql
+    [403] https://admin.shopify.com/actuator/env
+    [403] https://www.shopify.com/.env
+    [403] https://www.shopify.com/.git/config
+
+============================================================
+  SCANNING: Nextcloud (nextcloud.com) — Max bounty: $10000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 256 subdomains
+      Total (with patterns): 284
+  [2] DNS resolution + HTTP probing...
+      Live: 60 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 14 total, 3 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Nextcloud SUMMARY ---
+  Subdomains: 284 | Live: 60 | Critical: 3 | 403s: 0 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://crm.nextcloud.com/test
+         OK
+
+    [200] https://c0005.customerpush.nextcloud.com/test
+         OK
+
+    [200] https://monitoring.nextcloud.com/metrics
+         # HELP deprecated_flags_inuse_total The number of deprecated flags currently set.
+# TYPE deprecated_
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260402_090759.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mapbox          33       5        1          3        0          0    
+  Shopify         33       32       3          7        0          0    
+  Nextcloud       284      60       3          0        0          0    

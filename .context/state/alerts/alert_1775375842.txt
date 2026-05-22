@@ -1,0 +1,71 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+charset="utf-8" />
+  <meta name="referrer" content="
+    [200] https://qr.shopify.com/.git/config
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="
+    [200] https://qr.shopify.com/.git/HEAD
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="
+    [200] https://qr.shopify.com/admin
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="
+    [200] https://qr.shopify.com/api/v1
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="
+    [200] https://qr.shopify.com/graphql
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="
+    [200] https://qr.shopify.com/graphiql
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="
+    [200] https://qr.shopify.com/swagger-ui.html
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="
+    [200] https://qr.shopify.com/swagger-ui/
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="
+    [200] https://qr.shopify.com/api-docs
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260405_194022.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Grammarly       234      101      0          35       1          0    
+  Mattermost      874      518      0          0        1          3    
+  Shopify         326      302      32         0        0          0    

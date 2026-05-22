@@ -1,0 +1,60 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+s://events.grammarly.com/actuator/env
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Co
+    [200] https://events.grammarly.com/actuator/health
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Co
+    [200] https://events.grammarly.com/actuator/info
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Co
+    [200] https://lti-integration.grammarly.com/.env
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LTI Integration</t
+    [200] https://lti-integration.grammarly.com/.git/config
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LTI Integration</t
+
+  INTERESTING 403s (bypass targets):
+    [403] https://denali-static.grammarly.com/.env
+    [403] https://denali-static.grammarly.com/.git/config
+    [403] https://denali-static.grammarly.com/admin
+    [403] https://denali-static.grammarly.com/graphql
+    [403] https://denali-static.grammarly.com/actuator/env
+    [403] https://static.grammarly.com/.env
+    [403] https://static.grammarly.com/.git/config
+    [403] https://static.grammarly.com/admin
+    [403] https://static.grammarly.com/graphql
+    [403] https://static.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260406_093328.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Automattic      46       41       0          26       0          0    
+  Sentry          33       33       0          0        0          1    
+  Grammarly       234      101      41         36       1          0    

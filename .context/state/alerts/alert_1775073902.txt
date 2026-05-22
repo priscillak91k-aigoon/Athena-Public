@@ -1,0 +1,50 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+) — Max bounty: $100000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 210 subdomains
+      Total (with patterns): 234
+  [2] DNS resolution + HTTP probing...
+      Live: 101 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 47 total, 1 critical, 41 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+      CANDIDATE: static-id.grammarly.com → cloudfront.net
+
+  --- Grammarly SUMMARY ---
+  Subdomains: 234 | Live: 101 | Critical: 1 | 403s: 41 | Takeovers: 1 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://verifi-integration.grammarly.com/actuator/health
+         {"status":"UP","groups":["liveness","readiness"]}
+
+  INTERESTING 403s (bypass targets):
+    [403] https://login-static.grammarly.com/.env
+    [403] https://login-static.grammarly.com/.git/config
+    [403] https://login-static.grammarly.com/admin
+    [403] https://login-static.grammarly.com/graphql
+    [403] https://login-static.grammarly.com/actuator/env
+    [403] https://chargeback-prevention.grammarly.com/.env
+    [403] https://chargeback-prevention.grammarly.com/.git/config
+    [403] https://chargeback-prevention.grammarly.com/admin
+    [403] https://chargeback-prevention.grammarly.com/graphql
+    [403] https://chargeback-prevention.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260402_085436.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Automattic      46       41       23         26       0          0    
+  Loom            33       5        0          6        0          0    
+  Grammarly       234      101      1          41       1          0    

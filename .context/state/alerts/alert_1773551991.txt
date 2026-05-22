@@ -1,0 +1,47 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+x.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://snap.api.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://d.tiles.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://a.api.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://a.tiles.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+
+  INTERESTING 403s (bypass targets):
+    [403] https://api-identity-staging.mapbox.com/.env
+    [403] https://api-identity-staging.mapbox.com/.git/config
+    [403] https://api-identity-staging.mapbox.com/admin
+    [403] https://api-identity-staging.mapbox.com/graphql
+    [403] https://api-identity-staging.mapbox.com/actuator/env
+    [403] https://artifacts-production-dns.mapbox.com/.env
+    [403] https://artifacts-production-dns.mapbox.com/.git/config
+    [403] https://artifacts-production-dns.mapbox.com/admin
+    [403] https://artifacts-production-dns.mapbox.com/graphql
+    [403] https://artifacts-production-dns.mapbox.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260315_180733.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Grammarly       233      102      30         53       1          0    
+  Automattic      46       41       0          28       0          0    
+  Mapbox          143      37       9          10       0          0    

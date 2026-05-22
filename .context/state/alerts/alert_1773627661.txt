@@ -1,0 +1,60 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+   [200] https://knowledge.grammarly.com/graphql
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Knowledgeshare</ti
+    [200] https://knowledge.grammarly.com/graphiql
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Knowledgeshare</ti
+    [200] https://knowledge.grammarly.com/swagger-ui.html
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Knowledgeshare</ti
+    [200] https://knowledge.grammarly.com/swagger-ui/
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Knowledgeshare</ti
+    [200] https://knowledge.grammarly.com/api-docs
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Knowledgeshare</ti
+
+  INTERESTING 403s (bypass targets):
+    [403] https://static.fridge.grammarly.com/.env
+    [403] https://static.fridge.grammarly.com/.git/config
+    [403] https://static.fridge.grammarly.com/admin
+    [403] https://static.fridge.grammarly.com/graphql
+    [403] https://static.fridge.grammarly.com/actuator/env
+    [403] https://www.nspl.grammarly.com/.env
+    [403] https://autoreport.grammarly.com/.env
+    [403] https://nspl.grammarly.com/.env
+    [403] https://redirect.grammarly.com/.env
+    [403] https://redirect.grammarly.com/.git/config
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260316_151113.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Automattic      46       41       23         28       0          0    
+  Sentry          117      85       2          0        0          1    
+  Grammarly       233      102      64         13       1          0    

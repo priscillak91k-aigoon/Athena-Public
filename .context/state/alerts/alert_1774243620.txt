@@ -1,0 +1,51 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+      Findings: 31 total, 0 critical, 26 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Automattic SUMMARY ---
+  Subdomains: 46 | Live: 41 | Critical: 0 | 403s: 26 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://preview.automattic.com/.env
+    [403] https://preview.automattic.com/.git/config
+    [403] https://cdn.automattic.com/.env
+    [403] https://cdn.automattic.com/.git/config
+    [403] https://internal.automattic.com/.env
+    [403] https://internal.automattic.com/.git/config
+    [403] https://graphql.automattic.com/.env
+    [403] https://graphql.automattic.com/.git/config
+    [403] https://concierge.automattic.com/.env
+    [403] https://concierge.automattic.com/.git/config
+
+============================================================
+  SCANNING: Sentry (sentry.io) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 73 subdomains
+      Total (with patterns): 102
+  [2] DNS resolution + HTTP probing...
+      Live: 73 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 10 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+      [200] sentry-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Sentry SUMMARY ---
+  Subdomains: 102 | Live: 73 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 1
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260323_181939.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Postman         33       7        47         19       0          0    
+  Automattic      46       41       0          26       0          0    
+  Sentry          102      73       0          0        0          1    

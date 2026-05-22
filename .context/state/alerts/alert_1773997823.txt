@@ -1,0 +1,60 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ta name="viewport" con
+    [200] https://sandbox.sentry.io/swagger-ui/
+         <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" con
+    [200] https://sandbox.sentry.io/api-docs
+         <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" con
+    [200] https://sandbox.sentry.io/openapi.json
+         <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" con
+
+============================================================
+  SCANNING: Loom (loom.com) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 5 hosts
+  [3] Content discovery on top 5 hosts...
+      Findings: 10 total, 0 critical, 8 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Loom SUMMARY ---
+  Subdomains: 33 | Live: 5 | Critical: 0 | 403s: 8 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://dev.loom.com/graphql
+    [403] https://dev.loom.com/actuator/env
+    [403] https://www.loom.com/admin
+    [403] https://cdn.loom.com/.env
+    [403] https://cdn.loom.com/.git/config
+    [403] https://cdn.loom.com/admin
+    [403] https://cdn.loom.com/graphql
+    [403] https://cdn.loom.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260320_220358.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Postman         33       7        47         19       0          0    
+  Sentry          33       33       31         0        0          1    
+  Loom            33       5        0          8        0          0    

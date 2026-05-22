@@ -1,0 +1,55 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+/admin
+    [403] https://skylab.postman.com/graphql
+    [403] https://skylab.postman.com/actuator/env
+
+============================================================
+  SCANNING: Sentry (sentry.io) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 33 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 16 total, 0 critical, 1 interesting 403s
+  [4] S3 bucket check...
+      [200] sentry-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Sentry SUMMARY ---
+  Subdomains: 33 | Live: 33 | Critical: 0 | 403s: 1 | Takeovers: 0 | S3: 1
+
+  INTERESTING 403s (bypass targets):
+    [403] https://status.sentry.io/.env
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 304 subdomains
+      Total (with patterns): 326
+  [2] DNS resolution + HTTP probing...
+      Live: 302 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 1 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 326 | Live: 302 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 0
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260321_075435.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Postman         138      71       37         17       0          0    
+  Sentry          33       33       0          1        0          1    
+  Shopify         326      302      0          0        0          0    

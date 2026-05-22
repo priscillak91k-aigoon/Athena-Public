@@ -1,0 +1,51 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+================================================
+  SCANNING: Grammarly (grammarly.com) — Max bounty: $100000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 210 subdomains
+      Total (with patterns): 234
+  [2] DNS resolution + HTTP probing...
+      Live: 102 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 63 total, 1 critical, 51 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+      CANDIDATE: static-id.grammarly.com → cloudfront.net
+
+  --- Grammarly SUMMARY ---
+  Subdomains: 234 | Live: 102 | Critical: 1 | 403s: 51 | Takeovers: 1 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://www.grammarly.com/.env
+         <!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"
+
+  INTERESTING 403s (bypass targets):
+    [403] https://static.grammarly.com/.env
+    [403] https://static.grammarly.com/.git/config
+    [403] https://static.grammarly.com/admin
+    [403] https://static.grammarly.com/graphql
+    [403] https://static.grammarly.com/actuator/env
+    [403] https://gates.grammarly.com/.env
+    [403] https://gates.grammarly.com/.git/config
+    [403] https://gates.grammarly.com/admin
+    [403] https://gates.grammarly.com/graphql
+    [403] https://gates.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260330_225255.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mapbox          33       5        1          3        0          0    
+  Shopify         33       32       3          7        0          0    
+  Grammarly       234      102      1          51       1          0    

@@ -1,0 +1,61 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+     <title></titl
+    [200] https://brand.grammarly.com/swagger-ui/
+         
+<!DOCTYPE html>
+<html lang="en" class="mod modLayout">
+    <head>
+                    <title></titl
+    [200] https://brand.grammarly.com/api-docs
+         
+<!DOCTYPE html>
+<html lang="en" class="mod modLayout">
+    <head>
+                    <title></titl
+    [200] https://brand.grammarly.com/openapi.json
+         
+<!DOCTYPE html>
+<html lang="en" class="mod modLayout">
+    <head>
+                    <title></titl
+    [200] https://brand.grammarly.com/.well-known/openid-configuration
+         
+<!DOCTYPE html>
+<html lang="en" class="mod modLayout">
+    <head>
+                    <title></titl
+    [200] https://brand.grammarly.com/actuator/env
+         
+<!DOCTYPE html>
+<html lang="en" class="mod modLayout">
+    <head>
+                    <title></titl
+
+  INTERESTING 403s (bypass targets):
+    [403] https://image.send.grammarly.com/.env
+    [403] https://image.send.grammarly.com/.git/config
+    [403] https://image.send.grammarly.com/admin
+    [403] https://image.send.grammarly.com/graphql
+    [403] https://image.send.grammarly.com/actuator/env
+    [403] https://dox.grammarly.com/.env
+    [403] https://dox.grammarly.com/.git/config
+    [403] https://dox.grammarly.com/admin
+    [403] https://dox.grammarly.com/graphql
+    [403] https://dox.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260329_191407.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Shopify         326      302      0          0        0          0    
+  Postman         33       7        47         19       0          0    
+  Grammarly       234      102      26         34       1          0    

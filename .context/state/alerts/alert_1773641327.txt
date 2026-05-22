@@ -1,0 +1,55 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+  [200] https://location.loom.com/api-docs
+
+  INTERESTING 403s (bypass targets):
+    [403] https://dev.loom.com/actuator/env
+    [403] https://www.loom.com/admin
+    [403] https://packages.loom.com/.env
+    [403] https://packages.loom.com/.git/config
+    [403] https://packages.loom.com/admin
+    [403] https://packages.loom.com/graphql
+    [403] https://packages.loom.com/actuator/env
+    [403] https://cdn.loom.com/.env
+    [403] https://cdn.loom.com/.git/config
+    [403] https://cdn.loom.com/admin
+
+============================================================
+  SCANNING: Mapbox (mapbox.com) — Max bounty: $10000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 5 hosts
+  [3] Content discovery on top 5 hosts...
+      Findings: 10 total, 1 critical, 3 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Mapbox SUMMARY ---
+  Subdomains: 33 | Live: 5 | Critical: 1 | 403s: 3 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://api.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+
+  INTERESTING 403s (bypass targets):
+    [403] https://status.mapbox.com/.env
+    [403] https://www.mapbox.com/.env
+    [403] https://www.mapbox.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260316_190331.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Automattic      46       41       46         30       0          0    
+  Loom            55       14       32         12       0          0    
+  Mapbox          33       5        1          3        0          0    

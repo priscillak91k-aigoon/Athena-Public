@@ -1,0 +1,68 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+
+	<html lang="en">
+	<head>
+		<title>Private Site</title>
+		<meta charset="UTF-8" />
+
+    [200] https://offline.automattic.com/api-docs
+         	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<title>Private Site</title>
+		<meta charset="UTF-8" />
+
+    [200] https://offline.automattic.com/openapi.json
+         	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<title>Private Site</title>
+		<meta charset="UTF-8" />
+
+    [200] https://offline.automattic.com/.well-known/openid-configuration
+         	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<title>Private Site</title>
+		<meta charset="UTF-8" />
+
+    [200] https://offline.automattic.com/actuator/env
+         	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<title>Private Site</title>
+		<meta charset="UTF-8" />
+
+    [200] https://offline.automattic.com/actuator/health
+         	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<title>Private Site</title>
+		<meta charset="UTF-8" />
+
+
+  INTERESTING 403s (bypass targets):
+    [403] https://jenkins.automattic.com/.env
+    [403] https://jenkins.automattic.com/.git/config
+    [403] https://stage.automattic.com/.env
+    [403] https://stage.automattic.com/.git/config
+    [403] https://qa.automattic.com/.env
+    [403] https://qa.automattic.com/.git/config
+    [403] https://tools.automattic.com/.env
+    [403] https://tools.automattic.com/.git/config
+    [403] https://ci.automattic.com/.env
+    [403] https://ci.automattic.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260315_194721.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mattermost      33       4        0          3        0          3    
+  Sentry          33       33       31         1        0          1    
+  Automattic      46       41       23         30       0          0    

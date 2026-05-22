@@ -1,0 +1,51 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+==============================
+  SCANNING: Grammarly (grammarly.com) — Max bounty: $100000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 210 subdomains
+      Total (with patterns): 234
+  [2] DNS resolution + HTTP probing...
+      Live: 101 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 35 total, 1 critical, 28 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+      CANDIDATE: static-id.grammarly.com → cloudfront.net
+
+  --- Grammarly SUMMARY ---
+  Subdomains: 234 | Live: 101 | Critical: 1 | 403s: 28 | Takeovers: 1 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://www.grammarly.com/.env
+         <!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"
+
+  INTERESTING 403s (bypass targets):
+    [403] https://status.grammarly.com/.env
+    [403] https://sso.grammarly.com/.env
+    [403] https://sso.grammarly.com/.git/config
+    [403] https://sso.grammarly.com/admin
+    [403] https://sso.grammarly.com/graphql
+    [403] https://sso.grammarly.com/actuator/env
+    [403] https://download-bundle.grammarly.com/.env
+    [403] https://download-bundle.grammarly.com/.git/config
+    [403] https://download-bundle.grammarly.com/admin
+    [403] https://download-bundle.grammarly.com/graphql
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260415_211419.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           33       24       105        0        9          0    
+  Mattermost      33       4        0          6        0          3    
+  Grammarly       234      101      1          28       1          0    

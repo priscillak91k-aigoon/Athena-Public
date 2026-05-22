@@ -1,0 +1,50 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+g
+    [403] https://preview.automattic.com/.env
+    [403] https://preview.automattic.com/.git/config
+    [403] https://fieldguide.automattic.com/.env
+    [403] https://fieldguide.automattic.com/.git/config
+    [403] https://trac.automattic.com/.env
+    [403] https://trac.automattic.com/.git/config
+
+============================================================
+  SCANNING: Postman (postman.com) — Max bounty: $3000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 136 subdomains
+      Total (with patterns): 166
+  [2] DNS resolution + HTTP probing...
+      Live: 73 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 14 total, 0 critical, 9 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Postman SUMMARY ---
+  Subdomains: 166 | Live: 73 | Critical: 0 | 403s: 9 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://assets.publish.postman.com/.env
+    [403] https://assets.publish.postman.com/.git/config
+    [403] https://assets.publish.postman.com/admin
+    [403] https://assets.publish.postman.com/graphql
+    [403] https://assets.publish.postman.com/actuator/env
+    [403] https://documenter.gw.postman.com/.env
+    [403] https://documenter.gw.postman.com/.git/config
+    [403] https://documenter.postman.com/.env
+    [403] https://documenter.postman.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260325_115802.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Sentry          117      85       30         1        0          1    
+  Automattic      44       40       23         28       0          0    
+  Postman         166      73       0          9        0          0    

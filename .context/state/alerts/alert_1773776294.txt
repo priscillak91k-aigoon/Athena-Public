@@ -1,0 +1,48 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ https://auth.postman.com/.git/config
+    [403] https://sandbox.postman.com/.env
+
+============================================================
+  SCANNING: Nextcloud (nextcloud.com) — Max bounty: $10000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 256 subdomains
+      Total (with patterns): 284
+  [2] DNS resolution + HTTP probing...
+      Live: 54 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 54 total, 37 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Nextcloud SUMMARY ---
+  Subdomains: 284 | Live: 54 | Critical: 37 | 403s: 0 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://monitoring.nextcloud.com/metrics
+         # HELP deprecated_flags_inuse_total The number of deprecated flags currently set.
+# TYPE deprecated_
+    [500] https://c0005.customerpush.nextcloud.com/test
+    [200] https://staging.push.cloud.nextcloud.com/.env
+    [200] https://staging.push.cloud.nextcloud.com/.git/config
+    [200] https://staging.push.cloud.nextcloud.com/.git/HEAD
+    [200] https://staging.push.cloud.nextcloud.com/admin
+    [200] https://staging.push.cloud.nextcloud.com/api/v1
+    [200] https://staging.push.cloud.nextcloud.com/graphql
+    [200] https://staging.push.cloud.nextcloud.com/graphiql
+    [200] https://staging.push.cloud.nextcloud.com/swagger-ui.html
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260318_082910.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           33       24       105        0        9          0    
+  Postman         33       7        47         19       0          0    
+  Nextcloud       284      54       37         0        0          0    

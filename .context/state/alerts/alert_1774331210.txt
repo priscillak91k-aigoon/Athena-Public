@@ -1,0 +1,51 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+s://blog.postman.com/graphql
+    [403] https://blog.postman.com/actuator/env
+    [403] https://api.postman.com/.env
+    [403] https://api.postman.com/.git/config
+    [403] https://auth.postman.com/.env
+    [403] https://auth.postman.com/.git/config
+    [403] https://sandbox.postman.com/.env
+
+============================================================
+  SCANNING: Automattic (automattic.com) — Max bounty: $25000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 12 subdomains
+      Total (with patterns): 44
+  [2] DNS resolution + HTTP probing...
+      Live: 40 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 34 total, 0 critical, 30 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Automattic SUMMARY ---
+  Subdomains: 44 | Live: 40 | Critical: 0 | 403s: 30 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://login.automattic.com/.env
+    [403] https://login.automattic.com/.git/config
+    [403] https://beta.automattic.com/.env
+    [403] https://beta.automattic.com/.git/config
+    [403] https://jenkins.automattic.com/.env
+    [403] https://jenkins.automattic.com/.git/config
+    [403] https://www.automattic.com/.env
+    [403] https://www.automattic.com/.git/config
+    [403] https://blog.automattic.com/.env
+    [403] https://blog.automattic.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260324_183901.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mapbox          143      37       37         15       0          0    
+  Postman         33       7        47         19       0          0    
+  Automattic      44       40       0          30       0          0    

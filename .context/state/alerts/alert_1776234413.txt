@@ -1,0 +1,47 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+3s (bypass targets):
+    [403] https://api-identity-staging.mapbox.com/.env
+    [403] https://api-identity-staging.mapbox.com/.git/config
+    [403] https://api-identity-staging.mapbox.com/admin
+    [403] https://api-identity-staging.mapbox.com/graphql
+    [403] https://api-identity-staging.mapbox.com/actuator/env
+    [403] https://api-identity-production.mapbox.com/.env
+    [403] https://api-identity-production.mapbox.com/.git/config
+    [403] https://api-identity-production.mapbox.com/admin
+    [403] https://api-identity-production.mapbox.com/graphql
+    [403] https://api-identity-production.mapbox.com/actuator/env
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Error: HTTPSConnectionPool(host='crt.sh', port=443): Read timed out. (read timeout=45)
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 32 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 4 total, 0 critical, 2 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 33 | Live: 32 | Critical: 0 | 403s: 2 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://www.shopify.com/.env
+    [403] https://www.shopify.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260415_181916.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Postman         33       7        47         19       0          0    
+  Mapbox          143      37       38         11       0          0    
+  Shopify         33       32       0          2        0          0    

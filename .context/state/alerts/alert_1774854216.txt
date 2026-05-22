@@ -1,0 +1,54 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+00
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 28 subdomains
+      Total (with patterns): 55
+  [2] DNS resolution + HTTP probing...
+      Live: 14 hosts
+  [3] Content discovery on top 14 hosts...
+      Findings: 59 total, 32 critical, 11 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Loom SUMMARY ---
+  Subdomains: 55 | Live: 14 | Critical: 32 | 403s: 11 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://location.loom.com/.env
+    [200] https://location.loom.com/.git/config
+    [200] https://location.loom.com/.git/HEAD
+    [200] https://location.loom.com/admin
+    [200] https://location.loom.com/api/v1
+    [200] https://location.loom.com/graphql
+    [200] https://location.loom.com/graphiql
+    [200] https://location.loom.com/swagger-ui.html
+    [200] https://location.loom.com/swagger-ui/
+    [200] https://location.loom.com/api-docs
+
+  INTERESTING 403s (bypass targets):
+    [403] https://www.loom.com/admin
+    [403] https://cdn.loom.com/.env
+    [403] https://cdn.loom.com/.git/config
+    [403] https://cdn.loom.com/admin
+    [403] https://cdn.loom.com/graphql
+    [403] https://cdn.loom.com/actuator/env
+    [403] https://packages.loom.com/.env
+    [403] https://packages.loom.com/.git/config
+    [403] https://packages.loom.com/admin
+    [403] https://packages.loom.com/graphql
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260330_195300.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mattermost      874      518      0          0        1          3    
+  Nextcloud       33       7        31         0        0          0    
+  Loom            55       14       32         11       0          0    

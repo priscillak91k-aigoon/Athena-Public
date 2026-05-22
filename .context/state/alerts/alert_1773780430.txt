@@ -1,0 +1,53 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ass targets):
+    [403] https://blog.postman.com/.env
+    [403] https://blog.postman.com/.git/config
+    [403] https://blog.postman.com/admin
+    [403] https://blog.postman.com/graphql
+    [403] https://blog.postman.com/actuator/env
+    [403] https://www.postman.com/.env
+    [403] https://www.postman.com/.git/config
+    [403] https://sandbox.postman.com/.env
+    [403] https://sandbox.postman.com/.git/config
+    [403] https://auth.postman.com/.env
+
+============================================================
+  SCANNING: Mapbox (mapbox.com) — Max bounty: $10000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Error: HTTPSConnectionPool(host='crt.sh', port=443): Read timed out. (read timeout=45)
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 4 hosts
+  [3] Content discovery on top 4 hosts...
+      Findings: 8 total, 1 critical, 2 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Mapbox SUMMARY ---
+  Subdomains: 33 | Live: 4 | Critical: 1 | 403s: 2 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://api.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+
+  INTERESTING 403s (bypass targets):
+    [403] https://www.mapbox.com/.env
+    [403] https://www.mapbox.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260318_094211.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Nextcloud       33       7        31         0        0          0    
+  Postman         33       7        47         19       0          0    
+  Mapbox          33       4        1          2        0          0    

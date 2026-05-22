@@ -1,0 +1,56 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+com/admin
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/api/v1
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/graphql
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/graphiql
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+
+============================================================
+  SCANNING: Imgur (imgur.com) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Error: HTTPSConnectionPool(host='crt.sh', port=443): Max retries exceeded with url: /?q=%25.imgur.com&output=json (Caused by NameResolutionError("HTTPSConnection(host='crt.sh', port=443): Failed to resolve 'crt.sh' ([Errno 11001] getaddrinfo failed)"))
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 0 hosts
+  [3] Content discovery on top 0 hosts...
+      Findings: 0 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Imgur SUMMARY ---
+  Subdomains: 33 | Live: 0 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 0
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260323_085643.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Shopify         326      302      0          5        0          0    
+  Nextcloud       33       7        7          0        0          0    
+  Imgur           33       0        0          0        0          0    

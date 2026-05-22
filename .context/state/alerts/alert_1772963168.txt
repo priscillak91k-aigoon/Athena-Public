@@ -1,0 +1,53 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" con
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 304 subdomains
+      Total (with patterns): 326
+  [2] DNS resolution + HTTP probing...
+      Live: 302 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 12 total, 1 critical, 10 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 326 | Live: 302 | Critical: 1 | 403s: 10 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://accounts.shopify.com/.well-known/openid-configuration
+         {
+  "issuer": "https://accounts.shopify.com",
+  "authorization_endpoint": "https://accounts.shopify.
+
+  INTERESTING 403s (bypass targets):
+    [403] https://accounts.shopify.com/.env
+    [403] https://accounts.shopify.com/.git/config
+    [403] https://accounts.shopify.com/admin
+    [403] https://accounts.shopify.com/graphql
+    [403] https://accounts.shopify.com/actuator/env
+    [403] https://www.exchange.shopify.com/.env
+    [403] https://www.exchange.shopify.com/.git/config
+    [403] https://www.exchange.shopify.com/admin
+    [403] https://www.exchange.shopify.com/graphql
+    [403] https://www.exchange.shopify.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260308_223522.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Automattic      46       41       23         26       0          0    
+  Sentry          33       33       31         0        0          1    
+  Shopify         326      302      1          10       0          0    

@@ -1,0 +1,49 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+] https://developers.loom.com/graphql
+    [403] https://developers.loom.com/actuator/env
+    [403] https://dev.loom.com/graphql
+    [403] https://dev.loom.com/actuator/env
+    [403] https://www.loom.com/admin
+    [403] https://packages.loom.com/.env
+    [403] https://packages.loom.com/.git/config
+    [403] https://packages.loom.com/admin
+    [403] https://packages.loom.com/graphql
+    [403] https://packages.loom.com/actuator/env
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 304 subdomains
+      Total (with patterns): 326
+  [2] DNS resolution + HTTP probing...
+      Live: 302 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 8 total, 2 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 326 | Live: 302 | Critical: 2 | 403s: 0 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://projectruru.shopify.com/.well-known/openid-configuration
+         {"issuer":"https:\/\/shopify.com\/authentication\/5140641","token_endpoint":"https:\/\/shopify.com\/
+    [200] https://projectruru.shopify.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260315_163544.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           61       44       67         1        14         0    
+  Loom            55       14       32         15       0          0    
+  Shopify         326      302      2          0        0          0    

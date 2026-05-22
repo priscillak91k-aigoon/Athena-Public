@@ -1,0 +1,54 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+Y ---
+  Subdomains: 168 | Live: 73 | Critical: 0 | 403s: 28 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://revenueacademy.postman.com/.env
+    [403] https://revenueacademy.postman.com/.git/config
+    [403] https://revenueacademy.postman.com/admin
+    [403] https://revenueacademy.postman.com/graphql
+    [403] https://revenueacademy.postman.com/actuator/env
+    [403] https://assets.publish.postman.com/.env
+    [403] https://assets.publish.postman.com/.git/config
+    [403] https://assets.publish.postman.com/admin
+    [403] https://assets.publish.postman.com/graphql
+    [403] https://assets.publish.postman.com/actuator/env
+
+============================================================
+  SCANNING: Nextcloud (nextcloud.com) — Max bounty: $10000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 256 subdomains
+      Total (with patterns): 284
+  [2] DNS resolution + HTTP probing...
+      Live: 61 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 9 total, 2 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Nextcloud SUMMARY ---
+  Subdomains: 284 | Live: 61 | Critical: 2 | 403s: 0 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://c0005.customerpush.nextcloud.com/test
+         OK
+
+    [200] https://crm.nextcloud.com/test
+         OK
+
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260409_183005.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Loom            55       14       32         11       0          0    
+  Postman         168      73       0          28       0          0    
+  Nextcloud       284      61       2          0        0          0    

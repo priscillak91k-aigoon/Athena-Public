@@ -1,0 +1,57 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ents.grammarly.com/actuator/env
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Co
+    [200] https://events.grammarly.com/actuator/health
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Co
+    [200] https://events.grammarly.com/actuator/info
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Co
+    [200] https://lti-integration.grammarly.com/.env
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LTI Integration</t
+    [200] https://lti-integration.grammarly.com/.git/config
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LTI Integration</t
+
+  INTERESTING 403s (bypass targets):
+    [403] https://stripe-integration.grammarly.com/.env
+    [403] https://stripe-integration.grammarly.com/.git/config
+    [403] https://stripe-integration.grammarly.com/admin
+    [403] https://stripe-integration.grammarly.com/graphql
+    [403] https://stripe-integration.grammarly.com/actuator/env
+    [403] https://config.extension.grammarly.com/.env
+    [403] https://config.extension.grammarly.com/.git/config
+    [403] https://config.extension.grammarly.com/admin
+    [403] https://config.extension.grammarly.com/graphql
+    [403] https://config.extension.grammarly.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260407_155146.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Shopify         33       32       3          5        0          0    
+  Automattic      33       29       0          30       0          0    
+  Grammarly       228      100      67         32       0          0    

@@ -1,0 +1,49 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+titl
+    [200] https://www.postman.com/actuator/info
+         <!doctype html><html lang="en-US" nonce="F9GxlJq53Z07xuY8fd8K0w=="><head><meta charset="UTF-8"><titl
+    [200] https://www.postman.com/debug
+         <!doctype html><html lang="en-US" nonce="5jbaU2gu/4RzoWdnJFx/ig=="><head><meta charset="UTF-8"><titl
+
+  INTERESTING 403s (bypass targets):
+    [403] https://blog.postman.com/.env
+    [403] https://blog.postman.com/.git/config
+    [403] https://blog.postman.com/admin
+    [403] https://blog.postman.com/graphql
+    [403] https://blog.postman.com/actuator/env
+    [403] https://www.postman.com/.env
+    [403] https://www.postman.com/.git/config
+    [403] https://security.postman.com/.env
+    [403] https://security.postman.com/.git/config
+    [403] https://problems-registry.api.postman.com/.env
+
+============================================================
+  SCANNING: Automattic (automattic.com) — Max bounty: $25000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 14 subdomains
+      Total (with patterns): 46
+  [2] DNS resolution + HTTP probing...
+      Live: 1 hosts
+  [3] Content discovery on top 1 hosts...
+      Findings: 0 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Automattic SUMMARY ---
+  Subdomains: 46 | Live: 1 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 0
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260330_024108.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           61       44       73         1        14         0    
+  Postman         166      73       23         16       0          0    
+  Automattic      46       1        0          0        0          0    

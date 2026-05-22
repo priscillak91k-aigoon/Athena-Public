@@ -1,0 +1,47 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+omain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://info.mapbox.com/.env
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/.git/config
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/.git/HEAD
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/admin
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+
+  INTERESTING 403s (bypass targets):
+    [403] https://status.mapbox.com/.env
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 304 subdomains
+      Total (with patterns): 326
+  [2] DNS resolution + HTTP probing...
+      Live: 302 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 2 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 326 | Live: 302 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 0
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260329_234717.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Grammarly       33       8        2          22       0          0    
+  Mapbox          143      37       38         1        0          0    
+  Shopify         326      302      0          0        0          0    

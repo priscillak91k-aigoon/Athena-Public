@@ -1,0 +1,45 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+name="viewport" content="width=
+    [200] https://login.imgur.com/console
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://login.imgur.com/metrics
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://login.imgur.com/config
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://login.imgur.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://login.imgur.com/wp-admin
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://static.imgur.com/admin
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+
+  TAKEOVER CANDIDATES:
+    press.imgur.com → fastly.net
+    8ybhy85kld9zp9xf84x6.imgur.com → fastly.net
+    cdn.imgur.com → fastly.net
+    vpn.imgur.com → fastly.net
+    zrk.imgur.com → fastly.net
+    an.imgur.com → fastly.net
+    g00.imgur.com → fastly.net
+    sandbox.imgur.com → fastly.net
+    dev.imgur.com → fastly.net
+    qa.imgur.com → fastly.net
+    ci.imgur.com → fastly.net
+    ops.imgur.com → fastly.net
+    app.imgur.com → fastly.net
+    git.imgur.com → fastly.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260403_141205.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mapbox          143      37       40         15       0          0    
+  Grammarly       234      101      33         28       1          0    
+  Imgur           61       44       66         0        14         0    

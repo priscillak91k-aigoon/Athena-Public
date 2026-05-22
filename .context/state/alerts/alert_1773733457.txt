@@ -1,0 +1,40 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+erif'; font
+    [200] https://go.postman.com/api/v1
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://go.postman.com/graphql
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://go.postman.com/graphiql
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://go.postman.com/swagger-ui.html
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://go.postman.com/swagger-ui/
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://go.postman.com/api-docs
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+
+  INTERESTING 403s (bypass targets):
+    [403] https://auth.postman.com/.env
+    [403] https://auth.postman.com/.git/config
+    [403] https://security.postman.com/.env
+    [403] https://security.postman.com/.git/config
+    [403] https://learning.postman.com/graphql
+    [403] https://learning.postman.com/actuator/env
+    [403] https://events.postman.com/.env
+    [403] https://mkt.cdn.postman.com/.env
+    [403] https://mkt.cdn.postman.com/.git/config
+    [403] https://mkt.cdn.postman.com/admin
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260317_203745.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Sentry          117      85       0          0        0          1    
+  Shopify         326      302      0          5        0          0    
+  Postman         166      73       64         12       0          0    

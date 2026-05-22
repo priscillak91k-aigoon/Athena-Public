@@ -1,0 +1,49 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+rossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://api.tiles.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://snap.api.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://api.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://d.tiles.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+
+  INTERESTING 403s (bypass targets):
+    [403] https://api-identity-production.mapbox.com/.env
+    [403] https://api-identity-production.mapbox.com/.git/config
+    [403] https://api-identity-production.mapbox.com/admin
+    [403] https://api-identity-production.mapbox.com/graphql
+    [403] https://api-identity-production.mapbox.com/actuator/env
+    [403] https://api-identity-staging.mapbox.com/.env
+    [403] https://api-identity-staging.mapbox.com/.git/config
+    [403] https://api-identity-staging.mapbox.com/admin
+    [403] https://api-identity-staging.mapbox.com/graphql
+    [403] https://api-identity-staging.mapbox.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    www.mapbox.com → fastly.net
+    tiles.mapbox.com → fastly.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260415_015452.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Sentry          33       33       0          0        0          1    
+  Postman         33       7        47         19       0          0    
+  Mapbox          143      25       6          10       2          0    

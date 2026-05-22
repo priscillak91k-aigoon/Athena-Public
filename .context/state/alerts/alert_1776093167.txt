@@ -1,0 +1,51 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+//blog.postman.com/.git/config
+    [403] https://blog.postman.com/admin
+    [403] https://blog.postman.com/graphql
+    [403] https://blog.postman.com/actuator/env
+    [403] https://sandbox.postman.com/.env
+    [403] https://sandbox.postman.com/.git/config
+    [403] https://api.postman.com/.env
+    [403] https://api.postman.com/.git/config
+    [403] https://auth.postman.com/.env
+
+============================================================
+  SCANNING: Mattermost (mattermost.com) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 4 hosts
+  [3] Content discovery on top 4 hosts...
+      Findings: 9 total, 0 critical, 6 interesting 403s
+  [4] S3 bucket check...
+      [400] mattermost-uploads.s3.amazonaws.com
+      [200] mattermost-static.s3.amazonaws.com
+      [200] mattermost-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Mattermost SUMMARY ---
+  Subdomains: 33 | Live: 4 | Critical: 0 | 403s: 6 | Takeovers: 0 | S3: 3
+
+  INTERESTING 403s (bypass targets):
+    [403] https://www.mattermost.com/.env
+    [403] https://www.mattermost.com/.git/config
+    [403] https://www.mattermost.com/admin
+    [403] https://www.mattermost.com/graphql
+    [403] https://www.mattermost.com/actuator/env
+    [403] https://status.mattermost.com/.env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260414_030443.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           33       24       104        1        9          0    
+  Postman         33       7        47         19       0          0    
+  Mattermost      33       4        0          6        0          3    

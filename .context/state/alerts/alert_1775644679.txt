@@ -1,0 +1,50 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+rgets):
+    [403] https://api-identity-production.mapbox.com/.env
+    [403] https://api-identity-production.mapbox.com/.git/config
+    [403] https://api-identity-production.mapbox.com/admin
+    [403] https://api-identity-production.mapbox.com/graphql
+    [403] https://api-identity-production.mapbox.com/actuator/env
+
+============================================================
+  SCANNING: Postman (postman.com) — Max bounty: $3000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 108 subdomains
+      Total (with patterns): 138
+  [2] DNS resolution + HTTP probing...
+      Live: 71 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 30 total, 0 critical, 25 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Postman SUMMARY ---
+  Subdomains: 138 | Live: 71 | Critical: 0 | 403s: 25 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://blog.postman.com/.env
+    [403] https://blog.postman.com/.git/config
+    [403] https://blog.postman.com/admin
+    [403] https://blog.postman.com/graphql
+    [403] https://blog.postman.com/actuator/env
+    [403] https://mkt.cdn.postman.com/.env
+    [403] https://mkt.cdn.postman.com/.git/config
+    [403] https://mkt.cdn.postman.com/admin
+    [403] https://mkt.cdn.postman.com/graphql
+    [403] https://mkt.cdn.postman.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260408_223049.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           33       24       96         1        9          0    
+  Mapbox          143      37       70         5        0          0    
+  Postman         138      71       0          25       0          0    

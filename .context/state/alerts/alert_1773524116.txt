@@ -1,0 +1,47 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="build-time" content="Fri Mar
+    [200] https://privacy.postman.com/api-docs
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="build-time" content="Fri Mar
+
+  INTERESTING 403s (bypass targets):
+    [403] https://revenueacademy.postman.com/.env
+    [403] https://revenueacademy.postman.com/.git/config
+    [403] https://revenueacademy.postman.com/admin
+    [403] https://revenueacademy.postman.com/graphql
+    [403] https://revenueacademy.postman.com/actuator/env
+    [403] https://academy.postman.com/.env
+    [403] https://academy.postman.com/.git/config
+    [403] https://academy.postman.com/admin
+    [403] https://academy.postman.com/graphql
+    [403] https://academy.postman.com/actuator/env
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 304 subdomains
+      Total (with patterns): 326
+  [2] DNS resolution + HTTP probing...
+      Live: 302 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 0 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 326 | Live: 302 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 0
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260315_102238.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Automattic      46       41       23         26       0          0    
+  Postman         150      72       32         20       0          0    
+  Shopify         326      302      0          0        0          0    

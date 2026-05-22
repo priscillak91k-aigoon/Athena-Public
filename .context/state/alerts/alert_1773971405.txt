@@ -1,0 +1,49 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+403] https://cdn.loom.com/.env
+    [403] https://cdn.loom.com/.git/config
+    [403] https://cdn.loom.com/admin
+    [403] https://cdn.loom.com/graphql
+    [403] https://cdn.loom.com/actuator/env
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 304 subdomains
+      Total (with patterns): 326
+  [2] DNS resolution + HTTP probing...
+      Live: 302 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 11 total, 0 critical, 10 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 326 | Live: 302 | Critical: 0 | 403s: 10 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://canada.analytics.shopify.com/.env
+    [403] https://canada.analytics.shopify.com/.git/config
+    [403] https://canada.analytics.shopify.com/admin
+    [403] https://canada.analytics.shopify.com/graphql
+    [403] https://canada.analytics.shopify.com/actuator/env
+    [403] https://kafka-staging01.ec2.shopify.com/.env
+    [403] https://kafka-staging01.ec2.shopify.com/.git/config
+    [403] https://kafka-staging01.ec2.shopify.com/admin
+    [403] https://kafka-staging01.ec2.shopify.com/graphql
+    [403] https://kafka-staging01.ec2.shopify.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260320_144107.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           61       44       88         0        14         0    
+  Loom            55       14       32         15       0          0    
+  Shopify         326      302      0          10       0          0    

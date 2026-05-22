@@ -1,0 +1,55 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+com → fastly.net
+    zrk.imgur.com → fastly.net
+    ops.imgur.com → fastly.net
+    sandbox.imgur.com → fastly.net
+    an.imgur.com → fastly.net
+    app.imgur.com → fastly.net
+    cdn.imgur.com → fastly.net
+
+============================================================
+  SCANNING: Automattic (automattic.com) — Max bounty: $25000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 0 hosts
+  [3] Content discovery on top 0 hosts...
+      Findings: 0 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Automattic SUMMARY ---
+  Subdomains: 33 | Live: 0 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 0
+
+============================================================
+  SCANNING: Sentry (sentry.io) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 33 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 14 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+      [200] sentry-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Sentry SUMMARY ---
+  Subdomains: 33 | Live: 33 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 1
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260408_124115.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           61       44       74         0        14         0    
+  Automattic      33       0        0          0        0          0    
+  Sentry          33       33       0          0        0          1    

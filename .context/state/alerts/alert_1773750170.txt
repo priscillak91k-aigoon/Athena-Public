@@ -1,0 +1,38 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/.git/config
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/.git/HEAD
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/admin
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/api/v1
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/graphql
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+
+  INTERESTING 403s (bypass targets):
+    [403] https://status.mapbox.com/.env
+    [403] https://api-identity-staging.mapbox.com/.env
+    [403] https://api-identity-staging.mapbox.com/.git/config
+    [403] https://api-identity-staging.mapbox.com/admin
+    [403] https://api-identity-staging.mapbox.com/graphql
+    [403] https://api-identity-staging.mapbox.com/actuator/env
+    [403] https://artifacts-testing-dns.mapbox.com/.env
+    [403] https://artifacts-testing-dns.mapbox.com/.git/config
+    [403] https://artifacts-testing-dns.mapbox.com/admin
+    [403] https://artifacts-testing-dns.mapbox.com/graphql
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260318_011344.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Grammarly       233      102      8          36       1          0    
+  Shopify         326      302      2          5        0          0    
+  Mapbox          143      37       67         13       0          0    

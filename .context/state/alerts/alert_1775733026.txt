@@ -1,0 +1,52 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+...
+      Findings: 15 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+      [200] sentry-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Sentry SUMMARY ---
+  Subdomains: 33 | Live: 33 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 1
+
+============================================================
+  SCANNING: Automattic (automattic.com) — Max bounty: $25000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 12 subdomains
+      Total (with patterns): 44
+  [2] DNS resolution + HTTP probing...
+      Live: 40 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 32 total, 0 critical, 30 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Automattic SUMMARY ---
+  Subdomains: 44 | Live: 40 | Critical: 0 | 403s: 30 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://auth.automattic.com/.env
+    [403] https://auth.automattic.com/.git/config
+    [403] https://stage.automattic.com/.env
+    [403] https://stage.automattic.com/.git/config
+    [403] https://internal.automattic.com/.env
+    [403] https://internal.automattic.com/.git/config
+    [403] https://monitor.automattic.com/.env
+    [403] https://monitor.automattic.com/.git/config
+    [403] https://docs.automattic.com/.env
+    [403] https://docs.automattic.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260409_230055.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Shopify         326      302      3          7        0          0    
+  Sentry          33       33       0          0        0          1    
+  Automattic      44       40       0          30       0          0    

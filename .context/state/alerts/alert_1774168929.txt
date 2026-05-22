@@ -1,0 +1,62 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+cy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://hardware.shopify.com/.DS_Store
+         <!doctype html>
+<html
+  class="no-js"
+  lang="en"
+>
+  <head>
+    <link href="//hardware.shopify.com/
+    [200] https://hardware.shopify.com/.htaccess
+         <!doctype html>
+<html
+  class="no-js"
+  lang="en"
+>
+  <head>
+    <link href="//hardware.shopify.com/
+    [200] https://merch.shopify.com/.well-known/openid-configuration
+         {"issuer":"https:\/\/shopify.com\/authentication\/8732632","token_endpoint":"https:\/\/shopify.com\/
+    [200] https://merch.shopify.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://qr.shopify.com/.env
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="
+    [200] https://qr.shopify.com/.git/config
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="
+    [200] https://qr.shopify.com/.git/HEAD
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="
+
+  INTERESTING 403s (bypass targets):
+    [403] https://i.ssl.shopify.com/.env
+    [403] https://i.ssl.shopify.com/.git/config
+    [403] https://i.ssl.shopify.com/admin
+    [403] https://i.ssl.shopify.com/graphql
+    [403] https://i.ssl.shopify.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260322_213335.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Loom            33       5        0          7        0          0    
+  Grammarly       233      102      34         44       1          0    
+  Shopify         326      302      39         5        0          0    

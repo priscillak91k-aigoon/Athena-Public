@@ -1,0 +1,46 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+https://cdn.loom.com/graphql
+    [403] https://cdn.loom.com/actuator/env
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 304 subdomains
+      Total (with patterns): 326
+  [2] DNS resolution + HTTP probing...
+      Live: 302 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 10 total, 4 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 326 | Live: 302 | Critical: 4 | 403s: 0 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://gauntlet.shopify.com/.well-known/openid-configuration
+         {"issuer":"https:\/\/shopify.com\/authentication\/8713916","token_endpoint":"https:\/\/shopify.com\/
+    [200] https://gauntlet.shopify.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://consultant-launch.shopify.com/.well-known/openid-configuration
+         {"issuer":"https:\/\/shopify.com\/authentication\/20815411","token_endpoint":"https:\/\/shopify.com\
+    [200] https://consultant-launch.shopify.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260323_204948.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mattermost      33       3        0          2        0          3    
+  Loom            55       14       32         15       0          0    
+  Shopify         326      302      4          0        0          0    

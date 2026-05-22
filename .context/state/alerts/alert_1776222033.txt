@@ -1,0 +1,39 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ttps://go.postman.com/api/v1
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://go.postman.com/graphql
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://go.postman.com/graphiql
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://go.postman.com/swagger-ui.html
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://go.postman.com/swagger-ui/
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://go.postman.com/api-docs
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+
+  INTERESTING 403s (bypass targets):
+    [403] https://revenueacademy.postman.com/.env
+    [403] https://revenueacademy.postman.com/.git/config
+    [403] https://revenueacademy.postman.com/admin
+    [403] https://revenueacademy.postman.com/graphql
+    [403] https://revenueacademy.postman.com/actuator/env
+    [403] https://wwww.postman.com/.env
+    [403] https://wwww.postman.com/.git/config
+    [403] https://api.postman.com/.env
+    [403] https://api.postman.com/.git/config
+    [403] https://status.postman.com/.env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260415_145433.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Loom            55       14       32         11       0          0    
+  Mapbox          143      37       40         11       0          0    
+  Postman         169      74       55         20       0          0    

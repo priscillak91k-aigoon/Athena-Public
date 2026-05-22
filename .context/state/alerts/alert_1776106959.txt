@@ -1,0 +1,50 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+Grammarly (grammarly.com) — Max bounty: $100000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 198 subdomains
+      Total (with patterns): 222
+  [2] DNS resolution + HTTP probing...
+      Live: 97 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 37 total, 1 critical, 27 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+      CANDIDATE: static-id.grammarly.com → cloudfront.net
+
+  --- Grammarly SUMMARY ---
+  Subdomains: 222 | Live: 97 | Critical: 1 | 403s: 27 | Takeovers: 1 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://app.grammarly.com/openapi.json
+         <!doctype html><html lang="en" translate="no" class="height100"><style>.height100 { height: 100%; } 
+
+  INTERESTING 403s (bypass targets):
+    [403] https://stripe-integration.grammarly.com/.env
+    [403] https://stripe-integration.grammarly.com/.git/config
+    [403] https://stripe-integration.grammarly.com/admin
+    [403] https://stripe-integration.grammarly.com/graphql
+    [403] https://stripe-integration.grammarly.com/actuator/env
+    [403] https://auth.grammarly.com/.env
+    [403] https://auth.grammarly.com/.git/config
+    [403] https://auth.grammarly.com/admin
+    [403] https://auth.grammarly.com/graphql
+    [403] https://auth.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260414_064931.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Automattic      33       29       0          30       0          0    
+  Mapbox          143      37       37         5        0          0    
+  Grammarly       222      97       1          27       1          0    

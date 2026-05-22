@@ -1,0 +1,39 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+rivacy.postman.com/api/v1
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="build-time" content="Fri Mar
+    [200] https://privacy.postman.com/graphql
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="build-time" content="Fri Mar
+    [200] https://privacy.postman.com/graphiql
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="build-time" content="Fri Mar
+    [200] https://privacy.postman.com/swagger-ui.html
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="build-time" content="Fri Mar
+    [200] https://privacy.postman.com/swagger-ui/
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="build-time" content="Fri Mar
+    [200] https://privacy.postman.com/api-docs
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="build-time" content="Fri Mar
+
+  INTERESTING 403s (bypass targets):
+    [403] https://wwww.postman.com/.env
+    [403] https://wwww.postman.com/.git/config
+    [403] https://learning.postman.com/graphql
+    [403] https://learning.postman.com/actuator/env
+    [403] https://static.postman.com/.env
+    [403] https://static.postman.com/.git/config
+    [403] https://static.postman.com/admin
+    [403] https://static.postman.com/graphql
+    [403] https://static.postman.com/actuator/env
+    [403] https://documenter.postman.com/.env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260323_165712.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           61       44       64         1        14         0    
+  Nextcloud       284      60       33         2        0          0    
+  Postman         138      71       32         21       0          0    

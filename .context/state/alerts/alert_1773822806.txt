@@ -1,0 +1,51 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+uator/env
+    [403] https://www.shopify.com/.env
+    [403] https://www.shopify.com/.git/config
+
+============================================================
+  SCANNING: Grammarly (grammarly.com) — Max bounty: $100000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 209 subdomains
+      Total (with patterns): 233
+  [2] DNS resolution + HTTP probing...
+      Live: 102 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 40 total, 0 critical, 38 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+      CANDIDATE: static-id.grammarly.com → cloudfront.net
+
+  --- Grammarly SUMMARY ---
+  Subdomains: 233 | Live: 102 | Critical: 0 | 403s: 38 | Takeovers: 1 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://engage.grammarly.com/.env
+    [403] https://engage.grammarly.com/.git/config
+    [403] https://engage.grammarly.com/admin
+    [403] https://engage.grammarly.com/graphql
+    [403] https://engage.grammarly.com/actuator/env
+    [403] https://static.institution.grammarly.com/.env
+    [403] https://static.institution.grammarly.com/.git/config
+    [403] https://static.institution.grammarly.com/admin
+    [403] https://static.institution.grammarly.com/graphql
+    [403] https://static.institution.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260318_212245.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Sentry          33       33       0          0        0          1    
+  Shopify         33       32       3          7        0          0    
+  Grammarly       233      102      0          38       1          0    

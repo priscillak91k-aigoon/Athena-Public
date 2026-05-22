@@ -1,0 +1,54 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+tuator/env
+    [403] https://status.grammarly.com/.env
+    [403] https://datareport.grammarly.com/.env
+    [403] https://datareport.grammarly.com/.git/config
+    [403] https://datareport.grammarly.com/admin
+    [403] https://datareport.grammarly.com/graphql
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 304 subdomains
+      Total (with patterns): 326
+  [2] DNS resolution + HTTP probing...
+      Live: 302 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 6 total, 1 critical, 5 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 326 | Live: 302 | Critical: 1 | 403s: 5 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://accounts.shopify.com/.well-known/openid-configuration
+         {
+  "issuer": "https://accounts.shopify.com",
+  "authorization_endpoint": "https://accounts.shopify.
+
+  INTERESTING 403s (bypass targets):
+    [403] https://accounts.shopify.com/.env
+    [403] https://accounts.shopify.com/.git/config
+    [403] https://accounts.shopify.com/admin
+    [403] https://accounts.shopify.com/graphql
+    [403] https://accounts.shopify.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260409_114200.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           33       24       104        1        9          0    
+  Grammarly       234      101      0          26       1          0    
+  Shopify         326      302      1          5        0          0    

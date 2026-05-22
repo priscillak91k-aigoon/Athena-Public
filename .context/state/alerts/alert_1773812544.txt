@@ -1,0 +1,49 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+.com/.env
+         <!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"
+    [200] https://app.grammarly.com/openapi.json
+         <!doctype html><html lang="en" translate="no" class="height100"><style>.height100 { height: 100%; } 
+
+  INTERESTING 403s (bypass targets):
+    [403] https://status.grammarly.com/.env
+    [403] https://auth.grammarly.com/.env
+    [403] https://auth.grammarly.com/.git/config
+    [403] https://auth.grammarly.com/admin
+    [403] https://auth.grammarly.com/graphql
+    [403] https://auth.grammarly.com/actuator/env
+    [403] https://blog.grammarly.com/.env
+    [403] https://static.grammarly.com/.env
+    [403] https://static.grammarly.com/.git/config
+    [403] https://static.grammarly.com/admin
+
+============================================================
+  SCANNING: Sentry (sentry.io) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 89 subdomains
+      Total (with patterns): 117
+  [2] DNS resolution + HTTP probing...
+      Live: 85 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 12 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+      [200] sentry-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Sentry SUMMARY ---
+  Subdomains: 117 | Live: 85 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 1
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260318_183545.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Postman         166      73       79         22       0          0    
+  Grammarly       33       8        2          22       0          0    
+  Sentry          117      85       0          0        0          1    

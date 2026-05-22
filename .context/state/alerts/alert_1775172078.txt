@@ -1,0 +1,67 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+\/76156174611","token_endpoint":"https:\/\/shopify.c
+    [200] https://swag.sentry.io/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://live.sentry.io/.env
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/.git/config
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/.git/HEAD
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/admin
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/api/v1
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/graphql
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/graphiql
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/swagger-ui.html
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260403_120956.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           61       44       75         1        14         0    
+  Shopify         33       32       3          7        0          0    
+  Sentry          117      84       34         0        0          1    

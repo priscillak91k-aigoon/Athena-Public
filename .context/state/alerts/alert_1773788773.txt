@@ -1,0 +1,50 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+y on top 15 hosts...
+      Findings: 112 total, 62 critical, 34 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+      CANDIDATE: static-id.grammarly.com → cloudfront.net
+
+  --- Grammarly SUMMARY ---
+  Subdomains: 233 | Live: 102 | Critical: 62 | 403s: 34 | Takeovers: 1 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://rwsgfy.grammarly.com/.git/config
+    [200] https://rwsgfy.grammarly.com/.git/HEAD
+    [200] https://rwsgfy.grammarly.com/admin
+    [200] https://rwsgfy.grammarly.com/api/v1
+    [200] https://rwsgfy.grammarly.com/graphql
+    [200] https://rwsgfy.grammarly.com/graphiql
+    [200] https://rwsgfy.grammarly.com/swagger-ui.html
+    [200] https://rwsgfy.grammarly.com/api-docs
+    [200] https://rwsgfy.grammarly.com/openapi.json
+    [200] https://rwsgfy.grammarly.com/.well-known/openid-configuration
+
+  INTERESTING 403s (bypass targets):
+    [403] https://engage.grammarly.com/.env
+    [403] https://engage.grammarly.com/.git/config
+    [403] https://engage.grammarly.com/admin
+    [403] https://engage.grammarly.com/graphql
+    [403] https://engage.grammarly.com/actuator/env
+    [403] https://api.grammarly.com/.env
+    [403] https://api.grammarly.com/.git/config
+    [403] https://api.grammarly.com/admin
+    [403] https://api.grammarly.com/graphql
+    [403] https://api.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260318_115609.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mattermost      874      518      0          0        1          3    
+  Imgur           33       24       104        1        9          0    
+  Grammarly       233      102      62         34       1          0    

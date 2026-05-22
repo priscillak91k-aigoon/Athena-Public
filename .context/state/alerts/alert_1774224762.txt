@@ -1,0 +1,50 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+om → fastly.net
+    git.imgur.com → fastly.net
+    sandbox.imgur.com → fastly.net
+    app.imgur.com → fastly.net
+    dev.imgur.com → fastly.net
+    ops.imgur.com → fastly.net
+
+============================================================
+  SCANNING: Nextcloud (nextcloud.com) — Max bounty: $10000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 256 subdomains
+      Total (with patterns): 284
+  [2] DNS resolution + HTTP probing...
+      Live: 54 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 86 total, 62 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Nextcloud SUMMARY ---
+  Subdomains: 284 | Live: 54 | Critical: 62 | 403s: 0 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://staging.push.cloud.nextcloud.com/.env
+    [200] https://staging.push.cloud.nextcloud.com/.git/config
+    [200] https://staging.push.cloud.nextcloud.com/.git/HEAD
+    [200] https://staging.push.cloud.nextcloud.com/admin
+    [200] https://staging.push.cloud.nextcloud.com/api/v1
+    [200] https://staging.push.cloud.nextcloud.com/graphql
+    [200] https://staging.push.cloud.nextcloud.com/graphiql
+    [200] https://staging.push.cloud.nextcloud.com/swagger-ui.html
+    [200] https://staging.push.cloud.nextcloud.com/swagger-ui/
+    [200] https://staging.push.cloud.nextcloud.com/api-docs
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260323_130101.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Postman         166      73       55         25       0          0    
+  Imgur           33       24       88         1        9          0    
+  Nextcloud       284      54       62         0        0          0    

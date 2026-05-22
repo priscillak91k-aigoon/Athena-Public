@@ -1,0 +1,53 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+set="UTF-8"><titl
+
+  INTERESTING 403s (bypass targets):
+    [403] https://blog.postman.com/.env
+    [403] https://blog.postman.com/.git/config
+    [403] https://blog.postman.com/admin
+    [403] https://blog.postman.com/graphql
+    [403] https://blog.postman.com/actuator/env
+    [403] https://www.postman.com/.env
+    [403] https://www.postman.com/.git/config
+    [403] https://auth.postman.com/.env
+    [403] https://auth.postman.com/.git/config
+    [403] https://api.postman.com/.env
+
+============================================================
+  SCANNING: Loom (loom.com) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Error: HTTPSConnectionPool(host='crt.sh', port=443): Read timed out. (read timeout=45)
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 5 hosts
+  [3] Content discovery on top 5 hosts...
+      Findings: 9 total, 0 critical, 6 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Loom SUMMARY ---
+  Subdomains: 33 | Live: 5 | Critical: 0 | 403s: 6 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://www.loom.com/admin
+    [403] https://cdn.loom.com/.env
+    [403] https://cdn.loom.com/.git/config
+    [403] https://cdn.loom.com/admin
+    [403] https://cdn.loom.com/graphql
+    [403] https://cdn.loom.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260403_131403.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Sentry          33       33       31         1        0          1    
+  Postman         33       7        47         19       0          0    
+  Loom            33       5        0          6        0          0    

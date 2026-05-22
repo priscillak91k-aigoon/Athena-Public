@@ -1,0 +1,46 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+t>window.LICENSE_EXPIRED=true</script><meta charset=utf-8><
+    [200] https://drone.nextcloud.com/swagger-ui.html
+         <!DOCTYPE html><html lang=en><head><script>window.LICENSE_EXPIRED=true</script><meta charset=utf-8><
+    [200] https://drone.nextcloud.com/swagger-ui/
+         <!DOCTYPE html><html lang=en><head><script>window.LICENSE_EXPIRED=true</script><meta charset=utf-8><
+    [200] https://drone.nextcloud.com/api-docs
+         <!DOCTYPE html><html lang=en><head><script>window.LICENSE_EXPIRED=true</script><meta charset=utf-8><
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 304 subdomains
+      Total (with patterns): 326
+  [2] DNS resolution + HTTP probing...
+      Live: 302 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 7 total, 0 critical, 5 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 326 | Live: 302 | Critical: 0 | 403s: 5 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://www.ux.shopify.com/.env
+    [403] https://www.ux.shopify.com/.git/config
+    [403] https://www.ux.shopify.com/admin
+    [403] https://www.ux.shopify.com/graphql
+    [403] https://www.ux.shopify.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260309_072056.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Loom            33       5        0          8        0          0    
+  Nextcloud       284      60       61         0        0          0    
+  Shopify         326      302      0          5        0          0    

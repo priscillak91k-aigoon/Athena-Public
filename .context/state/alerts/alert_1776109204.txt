@@ -1,0 +1,52 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+403s: 5 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://www.ux.shopify.com/.env
+    [403] https://www.ux.shopify.com/.git/config
+    [403] https://www.ux.shopify.com/admin
+    [403] https://www.ux.shopify.com/graphql
+    [403] https://www.ux.shopify.com/actuator/env
+
+============================================================
+  SCANNING: Automattic (automattic.com) — Max bounty: $25000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 14 subdomains
+      Total (with patterns): 46
+  [2] DNS resolution + HTTP probing...
+      Live: 41 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 30 total, 0 critical, 28 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Automattic SUMMARY ---
+  Subdomains: 46 | Live: 41 | Critical: 0 | 403s: 28 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://dev.automattic.com/.env
+    [403] https://dev.automattic.com/.git/config
+    [403] https://ops.automattic.com/.env
+    [403] https://ops.automattic.com/.git/config
+    [403] https://ci.automattic.com/.env
+    [403] https://ci.automattic.com/.git/config
+    [403] https://vault.automattic.com/.env
+    [403] https://vault.automattic.com/.git/config
+    [403] https://monitor.automattic.com/.env
+    [403] https://monitor.automattic.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260414_072925.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mapbox          143      37       67         10       0          0    
+  Shopify         326      302      0          5        0          0    
+  Automattic      46       41       0          28       0          0    

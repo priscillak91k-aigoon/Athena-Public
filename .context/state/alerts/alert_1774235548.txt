@@ -1,0 +1,51 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+marly.com/.git/config
+    [403] https://config-qa.extension.grammarly.com/admin
+    [403] https://config-qa.extension.grammarly.com/graphql
+    [403] https://config-qa.extension.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 304 subdomains
+      Total (with patterns): 326
+  [2] DNS resolution + HTTP probing...
+      Live: 302 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 10 total, 0 critical, 10 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 326 | Live: 302 | Critical: 0 | 403s: 10 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://f.ssl.shopify.com/.env
+    [403] https://f.ssl.shopify.com/.git/config
+    [403] https://f.ssl.shopify.com/admin
+    [403] https://f.ssl.shopify.com/graphql
+    [403] https://f.ssl.shopify.com/actuator/env
+    [403] https://damian-znc.ec2.shopify.com/.env
+    [403] https://damian-znc.ec2.shopify.com/.git/config
+    [403] https://damian-znc.ec2.shopify.com/admin
+    [403] https://damian-znc.ec2.shopify.com/graphql
+    [403] https://damian-znc.ec2.shopify.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260323_160048.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Sentry          117      85       32         0        0          1    
+  Grammarly       233      102      104        35       1          0    
+  Shopify         326      302      0          10       0          0    

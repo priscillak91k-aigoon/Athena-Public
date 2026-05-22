@@ -1,6 +1,6 @@
 {
-  "last_beat": "2026-05-22T11:02:43.662437",
-  "boot_count": 19,
+  "last_beat": "2026-05-22T12:05:28.311909",
+  "boot_count": 20,
   "sleep_events": [
     {
       "wake_time": "2026-05-05T19:38:47.129017",
@@ -77,6 +77,10 @@
     {
       "wake_time": "2026-05-22T10:09:22.487539",
       "sleep_duration_minutes": 727
+    },
+    {
+      "wake_time": "2026-05-22T11:39:28.277681",
+      "sleep_duration_minutes": 14
     }
   ],
   "total_uptime_seconds": 0,

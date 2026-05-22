@@ -1,0 +1,44 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+/mail.imgur.com/console
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://mail.imgur.com/metrics
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://mail.imgur.com/config
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://mail.imgur.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://mail.imgur.com/wp-admin
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://wiki.imgur.com/admin
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://wiki.imgur.com/graphql
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+
+  INTERESTING 403s (bypass targets):
+    [403] https://status.imgur.com/.env
+
+  TAKEOVER CANDIDATES:
+    app.imgur.com → fastly.net
+    cdn.imgur.com → fastly.net
+    ci.imgur.com → fastly.net
+    dev.imgur.com → fastly.net
+    sandbox.imgur.com → fastly.net
+    qa.imgur.com → fastly.net
+    vpn.imgur.com → fastly.net
+    ops.imgur.com → fastly.net
+    git.imgur.com → fastly.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260413_205342.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Loom            55       14       32         21       0          0    
+  Grammarly       234      101      66         27       1          0    
+  Imgur           33       24       97         1        9          0    

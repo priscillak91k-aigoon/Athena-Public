@@ -1,0 +1,55 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+om/swagger-ui.html
+    [200] https://location.loom.com/swagger-ui/
+    [200] https://location.loom.com/api-docs
+
+  INTERESTING 403s (bypass targets):
+    [403] https://www.loom.com/admin
+    [403] https://packages.loom.com/.env
+    [403] https://packages.loom.com/.git/config
+    [403] https://packages.loom.com/admin
+    [403] https://packages.loom.com/graphql
+    [403] https://packages.loom.com/actuator/env
+    [403] https://cdn.loom.com/.env
+    [403] https://cdn.loom.com/.git/config
+    [403] https://cdn.loom.com/admin
+    [403] https://cdn.loom.com/graphql
+
+============================================================
+  SCANNING: Nextcloud (nextcloud.com) — Max bounty: $10000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 256 subdomains
+      Total (with patterns): 284
+  [2] DNS resolution + HTTP probing...
+      Live: 59 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 10 total, 2 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Nextcloud SUMMARY ---
+  Subdomains: 284 | Live: 59 | Critical: 2 | 403s: 0 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://crm.nextcloud.com/test
+         OK
+
+    [200] https://monitoring.nextcloud.com/metrics
+         # HELP deprecated_flags_inuse_total The number of deprecated flags currently set.
+# TYPE deprecated_
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260405_200116.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Sentry          33       33       31         1        0          1    
+  Loom            55       14       32         11       0          0    
+  Nextcloud       284      59       2          0        0          0    

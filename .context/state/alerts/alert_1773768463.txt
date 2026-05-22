@@ -1,0 +1,52 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+00
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 209 subdomains
+      Total (with patterns): 233
+  [2] DNS resolution + HTTP probing...
+      Live: 102 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 28 total, 2 critical, 18 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+      CANDIDATE: static-id.grammarly.com → cloudfront.net
+
+  --- Grammarly SUMMARY ---
+  Subdomains: 233 | Live: 102 | Critical: 2 | 403s: 18 | Takeovers: 1 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://verifi-integration.grammarly.com/actuator/health
+         {"status":"UP","groups":["liveness","readiness"]}
+    [200] https://www.grammarly.com/.env
+         <!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"
+
+  INTERESTING 403s (bypass targets):
+    [403] https://api.grammarly.com/.env
+    [403] https://api.grammarly.com/.git/config
+    [403] https://api.grammarly.com/admin
+    [403] https://api.grammarly.com/graphql
+    [403] https://api.grammarly.com/actuator/env
+    [403] https://tech.grammarly.com/.env
+    [403] https://fridge.grammarly.com/.env
+    [403] https://fridge.grammarly.com/.git/config
+    [403] https://fridge.grammarly.com/admin
+    [403] https://fridge.grammarly.com/graphql
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260318_061503.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mattermost      33       4        0          3        0          3    
+  Nextcloud       33       7        31         0        0          0    
+  Grammarly       233      102      2          18       1          0    

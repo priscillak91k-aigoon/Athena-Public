@@ -1,0 +1,42 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+="utf-8"> <meta name="viewport" content="width=
+    [200] https://tools.imgur.com/console
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://tools.imgur.com/metrics
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://tools.imgur.com/config
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://tools.imgur.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://tools.imgur.com/wp-admin
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://internal.imgur.com/admin
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://internal.imgur.com/graphql
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+
+  TAKEOVER CANDIDATES:
+    qa.imgur.com → fastly.net
+    app.imgur.com → fastly.net
+    ops.imgur.com → fastly.net
+    ci.imgur.com → fastly.net
+    cdn.imgur.com → fastly.net
+    dev.imgur.com → fastly.net
+    git.imgur.com → fastly.net
+    sandbox.imgur.com → fastly.net
+    vpn.imgur.com → fastly.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260407_133314.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Sentry          117      84       30         0        0          1    
+  Postman         137      70       0          22       0          0    
+  Imgur           33       24       104        0        9          0    

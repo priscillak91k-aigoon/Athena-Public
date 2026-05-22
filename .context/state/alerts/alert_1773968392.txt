@@ -1,0 +1,52 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+.env
+    [403] https://api.grammarly.com/.git/config
+    [403] https://api.grammarly.com/admin
+    [403] https://api.grammarly.com/graphql
+    [403] https://api.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+============================================================
+  SCANNING: Postman (postman.com) — Max bounty: $3000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 136 subdomains
+      Total (with patterns): 166
+  [2] DNS resolution + HTTP probing...
+      Live: 73 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 28 total, 0 critical, 24 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Postman SUMMARY ---
+  Subdomains: 166 | Live: 73 | Critical: 0 | 403s: 24 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://documenter.gw.postman.com/.env
+    [403] https://documenter.gw.postman.com/.git/config
+    [403] https://aws-marketplace.postman.com/.env
+    [403] https://aws-marketplace.postman.com/.git/config
+    [403] https://aws-marketplace.postman.com/admin
+    [403] https://aws-marketplace.postman.com/graphql
+    [403] https://aws-marketplace.postman.com/actuator/env
+    [403] https://skylab.postman.com/.env
+    [403] https://skylab.postman.com/.git/config
+    [403] https://skylab.postman.com/admin
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260320_134317.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mattermost      874      518      0          2        1          3    
+  Grammarly       233      102      40         26       1          0    
+  Postman         166      73       0          24       0          0    

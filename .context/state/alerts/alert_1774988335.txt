@@ -1,0 +1,53 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+a http-equiv="X-UA-Co
+    [200] https://events.grammarly.com/actuator/env
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Co
+    [200] https://events.grammarly.com/actuator/health
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Co
+    [200] https://events.grammarly.com/actuator/info
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Co
+    [200] https://www.grammarly.com/.env
+         <!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"
+    [200] https://app.grammarly.com/openapi.json
+         <!doctype html><html lang="en" translate="no" class="height100"><style>.height100 { height: 100%; } 
+
+  INTERESTING 403s (bypass targets):
+    [403] https://assets.extension.grammarly.com/.env
+    [403] https://assets.extension.grammarly.com/.git/config
+    [403] https://assets.extension.grammarly.com/admin
+    [403] https://assets.extension.grammarly.com/graphql
+    [403] https://assets.extension.grammarly.com/actuator/env
+    [403] https://tech.grammarly.com/.env
+    [403] https://ed.grammarly.com/.env
+    [403] https://id.grammarly.com/.env
+    [403] https://dox.grammarly.com/.env
+    [403] https://dox.grammarly.com/.git/config
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260401_091015.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Postman         33       7        47         19       0          0    
+  Imgur           33       24       97         1        9          0    
+  Grammarly       234      102      11         15       1          0    

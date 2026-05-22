@@ -1,0 +1,33 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+fig
+         <!doctype html><html><head><meta charset="UTF-8"/><meta name="robots" content="noindex"/><meta name=
+    [200] https://fleetm.security.sentry.io/.git/HEAD
+         <!doctype html><html><head><meta charset="UTF-8"/><meta name="robots" content="noindex"/><meta name=
+    [200] https://fleetm.security.sentry.io/admin
+         <!doctype html><html><head><meta charset="UTF-8"/><meta name="robots" content="noindex"/><meta name=
+    [200] https://fleetm.security.sentry.io/graphql
+         <!doctype html><html><head><meta charset="UTF-8"/><meta name="robots" content="noindex"/><meta name=
+    [200] https://fleetm.security.sentry.io/graphiql
+         <!doctype html><html><head><meta charset="UTF-8"/><meta name="robots" content="noindex"/><meta name=
+    [200] https://fleetm.security.sentry.io/swagger-ui.html
+         <!doctype html><html><head><meta charset="UTF-8"/><meta name="robots" content="noindex"/><meta name=
+    [200] https://fleetm.security.sentry.io/swagger-ui/
+         <!doctype html><html><head><meta charset="UTF-8"/><meta name="robots" content="noindex"/><meta name=
+    [200] https://fleetm.security.sentry.io/api-docs
+         <!doctype html><html><head><meta charset="UTF-8"/><meta name="robots" content="noindex"/><meta name=
+    [200] https://fleetm.security.sentry.io/openapi.json
+         <!doctype html><html><head><meta charset="UTF-8"/><meta name="robots" content="noindex"/><meta name=
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260402_032102.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Loom            55       14       32         11       0          0    
+  Automattic      46       41       0          28       0          0    
+  Sentry          109      77       61         0        0          1    

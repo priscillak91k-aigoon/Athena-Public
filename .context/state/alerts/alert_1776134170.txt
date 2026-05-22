@@ -1,0 +1,42 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+l
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://d.tiles.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://c.tiles.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://info.mapbox.com/.env
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/.git/config
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/.git/HEAD
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/admin
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/api/v1
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/graphql
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+
+  INTERESTING 403s (bypass targets):
+    [403] https://status.mapbox.com/.env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260414_142543.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Postman         169      74       61         19       0          0    
+  Nextcloud       33       6        31         0        0          0    
+  Mapbox          143      37       70         1        0          0    

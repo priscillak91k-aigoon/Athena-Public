@@ -1,0 +1,42 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://admin.imgur.com/console
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://admin.imgur.com/metrics
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://admin.imgur.com/config
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://admin.imgur.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://admin.imgur.com/wp-admin
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://test.imgur.com/admin
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://test.imgur.com/graphql
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+
+  TAKEOVER CANDIDATES:
+    qa.imgur.com → fastly.net
+    dev.imgur.com → fastly.net
+    git.imgur.com → fastly.net
+    ops.imgur.com → fastly.net
+    cdn.imgur.com → fastly.net
+    sandbox.imgur.com → fastly.net
+    app.imgur.com → fastly.net
+    vpn.imgur.com → fastly.net
+    ci.imgur.com → fastly.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260415_223316.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Loom            33       5        0          6        0          0    
+  Postman         33       7        47         19       0          0    
+  Imgur           33       24       105        0        9          0    

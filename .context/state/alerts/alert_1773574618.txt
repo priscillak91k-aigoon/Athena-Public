@@ -1,0 +1,63 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+xtcloud.com/graphql
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/graphiql
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/swagger-ui.html
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/swagger-ui/
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/api-docs
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+
+============================================================
+  SCANNING: Sentry (sentry.io) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 89 subdomains
+      Total (with patterns): 117
+  [2] DNS resolution + HTTP probing...
+      Live: 85 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 10 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+      [200] sentry-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Sentry SUMMARY ---
+  Subdomains: 117 | Live: 85 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 1
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260316_002758.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Automattic      33       0        0          0        0          0    
+  Nextcloud       33       7        31         0        0          0    
+  Sentry          117      85       0          0        0          1    

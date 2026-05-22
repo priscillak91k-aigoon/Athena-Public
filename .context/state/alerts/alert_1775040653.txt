@@ -1,0 +1,53 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ Subdomains: 166 | Live: 73 | Critical: 5 | 403s: 17 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://store.postman.com/.env
+         <!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-eq
+    [200] https://store.postman.com/.well-known/openid-configuration
+         {"issuer":"https:\/\/shopify.com\/authentication\/5756682355","token_endpoint":"https:\/\/shopify.co
+    [200] https://store.postman.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://store.postman.com/.DS_Store
+         <!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-eq
+    [200] https://store.postman.com/.htaccess
+         <!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-eq
+
+  INTERESTING 403s (bypass targets):
+    [403] https://assets.publish.postman.com/.env
+    [403] https://assets.publish.postman.com/.git/config
+    [403] https://assets.publish.postman.com/admin
+    [403] https://assets.publish.postman.com/graphql
+    [403] https://assets.publish.postman.com/actuator/env
+    [403] https://wwww.postman.com/.env
+    [403] https://wwww.postman.com/.git/config
+    [403] https://status.postman.com/.env
+    [403] https://static.postman.com/.env
+    [403] https://static.postman.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260401_234142.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Loom            55       14       32         11       0          0    
+  Nextcloud       33       7        31         0        0          0    
+  Postman         166      73       5          17       0          0    

@@ -1,0 +1,53 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+============
+  SCANNING: Nextcloud (nextcloud.com) — Max bounty: $10000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 256 subdomains
+      Total (with patterns): 284
+  [2] DNS resolution + HTTP probing...
+      Live: 62 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 47 total, 29 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Nextcloud SUMMARY ---
+  Subdomains: 284 | Live: 62 | Critical: 29 | 403s: 0 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://usercontent.apps.nextcloud.com/.env
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/.git/config
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/.git/HEAD
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/admin
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/api/v1
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/graphql
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/graphiql
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/swagger-ui.html
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/swagger-ui/
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/openapi.json
+         File not found
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260309_120331.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Grammarly       233      102      1          29       1          0    
+  Imgur           33       24       96         1        9          0    
+  Nextcloud       284      62       29         0        0          0    

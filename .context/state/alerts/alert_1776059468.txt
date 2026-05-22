@@ -1,0 +1,51 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+================================================
+  SCANNING: Grammarly (grammarly.com) — Max bounty: $100000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 210 subdomains
+      Total (with patterns): 234
+  [2] DNS resolution + HTTP probing...
+      Live: 101 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 30 total, 1 critical, 21 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+      CANDIDATE: static-id.grammarly.com → cloudfront.net
+
+  --- Grammarly SUMMARY ---
+  Subdomains: 234 | Live: 101 | Critical: 1 | 403s: 21 | Takeovers: 1 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://www.grammarly.com/.env
+         <!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"
+
+  INTERESTING 403s (bypass targets):
+    [403] https://engage.grammarly.com/.env
+    [403] https://engage.grammarly.com/.git/config
+    [403] https://engage.grammarly.com/admin
+    [403] https://engage.grammarly.com/graphql
+    [403] https://engage.grammarly.com/actuator/env
+    [403] https://irbis.grammarly.com/.env
+    [403] https://irbis.grammarly.com/.git/config
+    [403] https://irbis.grammarly.com/admin
+    [403] https://irbis.grammarly.com/graphql
+    [403] https://irbis.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260413_173739.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           33       24       97         1        9          0    
+  Postman         169      74       0          17       0          0    
+  Grammarly       234      101      1          21       1          0    

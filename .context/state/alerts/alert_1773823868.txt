@@ -1,0 +1,61 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/graphql
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/graphiql
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/swagger-ui.html
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/swagger-ui/
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/api-docs
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+
+  INTERESTING 403s (bypass targets):
+    [403] https://engage.grammarly.com/.env
+    [403] https://engage.grammarly.com/.git/config
+    [403] https://engage.grammarly.com/admin
+    [403] https://engage.grammarly.com/graphql
+    [403] https://engage.grammarly.com/actuator/env
+    [403] https://irbis.grammarly.com/.env
+    [403] https://irbis.grammarly.com/.git/config
+    [403] https://irbis.grammarly.com/admin
+    [403] https://irbis.grammarly.com/graphql
+    [403] https://irbis.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260318_213642.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Nextcloud       33       4        31         0        0          0    
+  Postman         33       7        47         19       0          0    
+  Grammarly       233      102      41         25       1          0    

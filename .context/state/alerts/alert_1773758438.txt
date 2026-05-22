@@ -1,0 +1,46 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://stage.imgur.com/config
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://stage.imgur.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://stage.imgur.com/wp-admin
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://login.imgur.com/admin
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+    [200] https://login.imgur.com/graphql
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+
+  INTERESTING 403s (bypass targets):
+    [403] https://lilsnack.imgur.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    ops.imgur.com → fastly.net
+    zrk.imgur.com → fastly.net
+    cdn.imgur.com → fastly.net
+    g00.imgur.com → fastly.net
+    8ybhy85kld9zp9xf84x6.imgur.com → fastly.net
+    app.imgur.com → fastly.net
+    an.imgur.com → fastly.net
+    ci.imgur.com → fastly.net
+    git.imgur.com → fastly.net
+    sandbox.imgur.com → fastly.net
+    dev.imgur.com → fastly.net
+    press.imgur.com → fastly.net
+    vpn.imgur.com → fastly.net
+    qa.imgur.com → fastly.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260318_033115.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Grammarly       233      102      26         42       1          0    
+  Shopify         33       32       3          5        0          0    
+  Imgur           61       44       41         1        14         0    

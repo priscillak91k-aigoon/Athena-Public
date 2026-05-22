@@ -1,0 +1,38 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+link rel="icon" href="/static/images/fa
+    [200] https://portal.test.cloud.mattermost.com/api/v1
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/static/images/fa
+    [200] https://portal.test.cloud.mattermost.com/graphql
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/static/images/fa
+    [200] https://portal.test.cloud.mattermost.com/graphiql
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/static/images/fa
+    [200] https://portal.test.cloud.mattermost.com/swagger-ui.html
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/static/images/fa
+    [200] https://portal.test.cloud.mattermost.com/swagger-ui/
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/static/images/fa
+    [200] https://portal.test.cloud.mattermost.com/api-docs
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/static/images/fa
+
+  INTERESTING 403s (bypass targets):
+    [403] https://licensing.mattermost.com/.env
+    [403] https://licensing.mattermost.com/.git/config
+    [403] https://licensing.mattermost.com/admin
+    [403] https://licensing.mattermost.com/graphql
+    [403] https://licensing.mattermost.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    devs.mattermost.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260323_112243.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Loom            55       14       32         15       0          0    
+  Grammarly       233      102      58         32       1          0    
+  Mattermost      874      518      32         5        1          3    

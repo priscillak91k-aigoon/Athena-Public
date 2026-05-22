@@ -1,0 +1,55 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ost-uploads.s3.amazonaws.com
+      [200] mattermost-static.s3.amazonaws.com
+      [200] mattermost-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Mattermost SUMMARY ---
+  Subdomains: 33 | Live: 4 | Critical: 0 | 403s: 3 | Takeovers: 0 | S3: 3
+
+  INTERESTING 403s (bypass targets):
+    [403] https://www.mattermost.com/.env
+    [403] https://www.mattermost.com/.git/config
+    [403] https://status.mattermost.com/.env
+
+============================================================
+  SCANNING: Nextcloud (nextcloud.com) — Max bounty: $10000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 256 subdomains
+      Total (with patterns): 284
+  [2] DNS resolution + HTTP probing...
+      Live: 61 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 15 total, 2 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Nextcloud SUMMARY ---
+  Subdomains: 284 | Live: 61 | Critical: 2 | 403s: 0 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://monitoring.nextcloud.com/metrics
+         # HELP deprecated_flags_inuse_total The number of deprecated flags currently set.
+# TYPE deprecated_
+    [200] https://perftesting.nextcloud.com/openapi.json
+         {
+    "openapi": "3.0.3",
+    "info": {
+        "title": "nextcloud",
+        "description": "Nextcl
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260316_023830.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Postman         33       7        47         19       0          0    
+  Mattermost      33       4        0          3        0          3    
+  Nextcloud       284      61       2          0        0          0    

@@ -1,0 +1,55 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+.com/.env
+
+  TAKEOVER CANDIDATES:
+    vpn.imgur.com → fastly.net
+    cdn.imgur.com → fastly.net
+    qa.imgur.com → fastly.net
+    sandbox.imgur.com → fastly.net
+    dev.imgur.com → fastly.net
+    ci.imgur.com → fastly.net
+    git.imgur.com → fastly.net
+    ops.imgur.com → fastly.net
+    app.imgur.com → fastly.net
+
+============================================================
+  SCANNING: Automattic (automattic.com) — Max bounty: $25000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 29 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 30 total, 0 critical, 30 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Automattic SUMMARY ---
+  Subdomains: 33 | Live: 29 | Critical: 0 | 403s: 30 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://graphql.automattic.com/.env
+    [403] https://graphql.automattic.com/.git/config
+    [403] https://www.automattic.com/.env
+    [403] https://www.automattic.com/.git/config
+    [403] https://dev.automattic.com/.env
+    [403] https://dev.automattic.com/.git/config
+    [403] https://vault.automattic.com/.env
+    [403] https://vault.automattic.com/.git/config
+    [403] https://staging.automattic.com/.env
+    [403] https://staging.automattic.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260329_213015.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Loom            55       14       32         21       0          0    
+  Imgur           33       24       96         1        9          0    
+  Automattic      33       29       0          30       0          0    

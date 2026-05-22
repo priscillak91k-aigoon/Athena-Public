@@ -219,3 +219,6 @@ Related: [[case_studies]] | [[decision_journal]]
 
 ## 🛠️ Intellectual & Synthesis Heuristics (Session 69)
 - **Domestic Mechanics**: When user asks about household optimizations or cost-savings, analyze the underlying physics (thermodynamics, power draw) rather than giving generic advice. Prevent "false economies".
+
+## 🛠️ OSINT & Research Heuristics (Session 70)
+- **Social Friction Navigation**: When OSINT tracking reveals high social friction (e.g., asking a Catholic Youth Minister about a track called "Rugby is Fagz"), explicitly warn the user and recommend the lower-friction target.

@@ -1,0 +1,83 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+tle>Problem Loading Page</title>
+
+          </h
+    [200] https://pages.send.grammarly.com/admin
+         
+
+      <html>
+
+          <head>
+
+                <title>Problem Loading Page</title>
+
+          </h
+    [200] https://pages.send.grammarly.com/api/v1
+         
+
+      <html>
+
+          <head>
+
+                <title>Problem Loading Page</title>
+
+          </h
+    [200] https://pages.send.grammarly.com/graphql
+         
+
+      <html>
+
+          <head>
+
+                <title>Problem Loading Page</title>
+
+          </h
+    [200] https://pages.send.grammarly.com/graphiql
+         
+
+      <html>
+
+          <head>
+
+                <title>Problem Loading Page</title>
+
+          </h
+    [200] https://pages.send.grammarly.com/swagger-ui.html
+         
+
+      <html>
+
+          <head>
+
+                <title>Problem Loading Page</title>
+
+          </h
+
+  INTERESTING 403s (bypass targets):
+    [403] https://engage.grammarly.com/.env
+    [403] https://engage.grammarly.com/.git/config
+    [403] https://engage.grammarly.com/admin
+    [403] https://engage.grammarly.com/graphql
+    [403] https://engage.grammarly.com/actuator/env
+    [403] https://dox.grammarly.com/.env
+    [403] https://dox.grammarly.com/.git/config
+    [403] https://dox.grammarly.com/admin
+    [403] https://dox.grammarly.com/graphql
+    [403] https://dox.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260325_025924.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Automattic      46       41       0          26       0          0    
+  Sentry          33       33       0          1        0          1    
+  Grammarly       229      102      33         24       1          0    

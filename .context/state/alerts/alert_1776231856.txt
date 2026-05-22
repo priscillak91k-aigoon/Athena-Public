@@ -1,0 +1,51 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-eq
+    [200] https://store.postman.com/swagger-ui.html
+         <section id="shopify-section-template--14896074817633__related-products" class="shopify-section sect
+    [200] https://store.postman.com/.well-known/openid-configuration
+         {"issuer":"https:\/\/shopify.com\/authentication\/5756682355","token_endpoint":"https:\/\/shopify.co
+    [200] https://store.postman.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://store.postman.com/.DS_Store
+         <!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-eq
+    [200] https://store.postman.com/.htaccess
+         <!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-eq
+
+  INTERESTING 403s (bypass targets):
+    [403] https://revenueacademy.postman.com/.env
+    [403] https://revenueacademy.postman.com/.git/config
+    [403] https://revenueacademy.postman.com/admin
+    [403] https://revenueacademy.postman.com/graphql
+    [403] https://revenueacademy.postman.com/actuator/env
+    [403] https://wwww.postman.com/.env
+    [403] https://wwww.postman.com/.git/config
+    [403] https://blog.postman.com/.env
+    [403] https://blog.postman.com/.git/config
+    [403] https://blog.postman.com/admin
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260415_173732.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Nextcloud       33       6        31         0        0          0    
+  Imgur           33       24       112        1        9          0    
+  Postman         169      74       6          24       0          0    

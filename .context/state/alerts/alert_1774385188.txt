@@ -1,0 +1,39 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+omain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://trust.mapbox.com/.env
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+    [200] https://trust.mapbox.com/.git/config
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+    [200] https://trust.mapbox.com/.git/HEAD
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+    [200] https://trust.mapbox.com/admin
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+    [200] https://trust.mapbox.com/graphql
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+
+  INTERESTING 403s (bypass targets):
+    [403] https://artifacts-testing-dns.mapbox.com/.env
+    [403] https://artifacts-testing-dns.mapbox.com/.git/config
+    [403] https://artifacts-testing-dns.mapbox.com/admin
+    [403] https://artifacts-testing-dns.mapbox.com/graphql
+    [403] https://artifacts-testing-dns.mapbox.com/actuator/env
+    [403] https://status.mapbox.com/.env
+    [403] https://api-identity-production.mapbox.com/.env
+    [403] https://api-identity-production.mapbox.com/.git/config
+    [403] https://api-identity-production.mapbox.com/admin
+    [403] https://api-identity-production.mapbox.com/graphql
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260325_093004.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Grammarly       234      102      56         33       1          0    
+  Mattermost      874      518      0          7        1          3    
+  Mapbox          143      37       36         16       0          0    

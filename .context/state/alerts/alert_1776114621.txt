@@ -1,0 +1,50 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ING 403s (bypass targets):
+    [403] https://admin.shopify.com/.env
+    [403] https://admin.shopify.com/.git/config
+    [403] https://admin.shopify.com/admin
+    [403] https://admin.shopify.com/graphql
+    [403] https://admin.shopify.com/actuator/env
+
+============================================================
+  SCANNING: Postman (postman.com) — Max bounty: $3000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 139 subdomains
+      Total (with patterns): 169
+  [2] DNS resolution + HTTP probing...
+      Live: 74 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 23 total, 0 critical, 16 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Postman SUMMARY ---
+  Subdomains: 169 | Live: 74 | Critical: 0 | 403s: 16 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://assets.publish.postman.com/.env
+    [403] https://assets.publish.postman.com/.git/config
+    [403] https://assets.publish.postman.com/admin
+    [403] https://assets.publish.postman.com/graphql
+    [403] https://assets.publish.postman.com/actuator/env
+    [403] https://problems-registry.api.postman.com/.env
+    [403] https://problems-registry.api.postman.com/.git/config
+    [403] https://wwww.postman.com/.env
+    [403] https://wwww.postman.com/.git/config
+    [403] https://skylab.postman.com/.env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260414_085933.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           33       24       97         1        9          0    
+  Shopify         33       32       3          5        0          0    
+  Postman         169      74       0          16       0          0    

@@ -1,0 +1,52 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+olution + HTTP probing...
+      Live: 29 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 30 total, 0 critical, 30 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Automattic SUMMARY ---
+  Subdomains: 33 | Live: 29 | Critical: 0 | 403s: 30 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://tools.automattic.com/.env
+    [403] https://tools.automattic.com/.git/config
+    [403] https://static.automattic.com/.env
+    [403] https://static.automattic.com/.git/config
+    [403] https://docs.automattic.com/.env
+    [403] https://docs.automattic.com/.git/config
+    [403] https://cdn.automattic.com/.env
+    [403] https://cdn.automattic.com/.git/config
+    [403] https://admin.automattic.com/.env
+    [403] https://admin.automattic.com/.git/config
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 32 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 1 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 33 | Live: 32 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 0
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260317_212650.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Sentry          33       33       31         1        0          1    
+  Automattic      33       29       0          30       0          0    
+  Shopify         33       32       0          0        0          0    

@@ -1,0 +1,38 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+'; font
+    [200] https://info.mapbox.com/.git/HEAD
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/admin
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/api/v1
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/graphql
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+    [200] https://info.mapbox.com/graphiql
+         <!DOCTYPE HTML><head><title>404 - Page not found</title> <style>body{font-family: 'sans-serif'; font
+
+  INTERESTING 403s (bypass targets):
+    [403] https://api-identity-production.mapbox.com/.env
+    [403] https://api-identity-production.mapbox.com/.git/config
+    [403] https://api-identity-production.mapbox.com/admin
+    [403] https://api-identity-production.mapbox.com/graphql
+    [403] https://api-identity-production.mapbox.com/actuator/env
+    [403] https://artifacts-production-dns.mapbox.com/.env
+    [403] https://artifacts-production-dns.mapbox.com/.git/config
+    [403] https://artifacts-production-dns.mapbox.com/admin
+    [403] https://artifacts-production-dns.mapbox.com/graphql
+    [403] https://artifacts-production-dns.mapbox.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260316_044540.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Nextcloud       284      60       94         0        0          0    
+  Loom            33       5        0          7        0          0    
+  Mapbox          143      37       67         15       0          0    

@@ -1,0 +1,56 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+    [403] https://discount.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+============================================================
+  SCANNING: Imgur (imgur.com) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 30 subdomains
+      Total (with patterns): 61
+  [2] DNS resolution + HTTP probing...
+      Live: 44 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 0 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+      CANDIDATE: press.imgur.com → fastly.net
+      CANDIDATE: ci.imgur.com → fastly.net
+      CANDIDATE: ops.imgur.com → fastly.net
+      CANDIDATE: g00.imgur.com → fastly.net
+      CANDIDATE: qa.imgur.com → fastly.net
+      CANDIDATE: an.imgur.com → fastly.net
+      CANDIDATE: dev.imgur.com → fastly.net
+      CANDIDATE: cdn.imgur.com → fastly.net
+      CANDIDATE: vpn.imgur.com → fastly.net
+
+  --- Imgur SUMMARY ---
+  Subdomains: 61 | Live: 44 | Critical: 0 | 403s: 0 | Takeovers: 9 | S3: 0
+
+  TAKEOVER CANDIDATES:
+    press.imgur.com → fastly.net
+    ci.imgur.com → fastly.net
+    ops.imgur.com → fastly.net
+    g00.imgur.com → fastly.net
+    qa.imgur.com → fastly.net
+    an.imgur.com → fastly.net
+    dev.imgur.com → fastly.net
+    cdn.imgur.com → fastly.net
+    vpn.imgur.com → fastly.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260325_153044.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Sentry          117      85       0          0        0          1    
+  Grammarly       234      102      33         23       1          0    
+  Imgur           61       44       0          0        9          0    

@@ -1,0 +1,35 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ges/fa
+    [200] https://portal.dev.cloud.mattermost.com/.git/HEAD
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/static/images/fa
+    [200] https://portal.dev.cloud.mattermost.com/admin
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/static/images/fa
+    [200] https://portal.dev.cloud.mattermost.com/api/v1
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/static/images/fa
+    [200] https://portal.dev.cloud.mattermost.com/graphql
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/static/images/fa
+    [200] https://portal.dev.cloud.mattermost.com/graphiql
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/static/images/fa
+    [200] https://portal.dev.cloud.mattermost.com/swagger-ui.html
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/static/images/fa
+    [200] https://portal.dev.cloud.mattermost.com/swagger-ui/
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/static/images/fa
+    [200] https://portal.dev.cloud.mattermost.com/api-docs
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/static/images/fa
+
+  TAKEOVER CANDIDATES:
+    devs.mattermost.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260321_070120.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Nextcloud       33       7        31         0        0          0    
+  Grammarly       233      102      32         35       1          0    
+  Mattermost      874      518      32         0        1          3    

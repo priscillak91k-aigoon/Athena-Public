@@ -1,0 +1,44 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+rossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://api.stla.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://d.tiles.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://c.tiles.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://trust.mapbox.com/.env
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+    [200] https://trust.mapbox.com/.git/config
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+    [200] https://trust.mapbox.com/.git/HEAD
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+
+  INTERESTING 403s (bypass targets):
+    [403] https://api-identity-production.mapbox.com/.env
+    [403] https://api-identity-production.mapbox.com/.git/config
+    [403] https://api-identity-production.mapbox.com/admin
+    [403] https://api-identity-production.mapbox.com/graphql
+    [403] https://api-identity-production.mapbox.com/actuator/env
+    [403] https://www.mapbox.com/.env
+    [403] https://www.mapbox.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260315_215226.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mattermost      33       4        0          3        0          3    
+  Automattic      46       8        46         12       0          0    
+  Mapbox          143      37       38         7        0          0    

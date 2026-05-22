@@ -1,0 +1,52 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+docs
+
+  INTERESTING 403s (bypass targets):
+    [403] https://dev.loom.com/.env
+    [403] https://dev.loom.com/.git/config
+    [403] https://dev.loom.com/admin
+    [403] https://dev.loom.com/graphql
+    [403] https://dev.loom.com/actuator/env
+    [403] https://developers.loom.com/.env
+    [403] https://developers.loom.com/.git/config
+    [403] https://developers.loom.com/admin
+    [403] https://developers.loom.com/graphql
+    [403] https://developers.loom.com/actuator/env
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 304 subdomains
+      Total (with patterns): 326
+  [2] DNS resolution + HTTP probing...
+      Live: 302 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 5 total, 0 critical, 5 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 326 | Live: 302 | Critical: 0 | 403s: 5 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://kafka-staging01.ec2.shopify.com/.env
+    [403] https://kafka-staging01.ec2.shopify.com/.git/config
+    [403] https://kafka-staging01.ec2.shopify.com/admin
+    [403] https://kafka-staging01.ec2.shopify.com/graphql
+    [403] https://kafka-staging01.ec2.shopify.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260316_064822.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Automattic      46       41       23         28       0          0    
+  Loom            55       14       32         21       0          0    
+  Shopify         326      302      0          5        0          0    

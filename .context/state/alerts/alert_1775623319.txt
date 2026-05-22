@@ -1,0 +1,38 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+     <!doctype html><html lang="en-US" nonce="CjdSne3bsnyCYJcU7LzddQ=="><head><meta charset="UTF-8"><titl
+    [200] https://www.postman.com/openapi.json
+         <!doctype html><html lang="en-US" nonce="9uNZJZuXTt73d3SWVpEN7g=="><head><meta charset="UTF-8"><titl
+    [200] https://www.postman.com/actuator/env
+         <!doctype html><html lang="en-US" nonce="PfuS/n86KvMzB8iqMREuEA=="><head><meta charset="UTF-8"><titl
+    [200] https://www.postman.com/actuator/health
+         <!doctype html><html lang="en-US" nonce="t9hauK5puOS3NXFMrgtVJQ=="><head><meta charset="UTF-8"><titl
+    [200] https://www.postman.com/actuator/info
+         <!doctype html><html lang="en-US" nonce="6XrBzTfTrbfTQM0y8nt/CQ=="><head><meta charset="UTF-8"><titl
+    [200] https://www.postman.com/debug
+         <!doctype html><html lang="en-US" nonce="SCxSYSQvpiTFA2mTSsM6Kw=="><head><meta charset="UTF-8"><titl
+
+  INTERESTING 403s (bypass targets):
+    [403] https://academy.postman.com/.env
+    [403] https://academy.postman.com/.git/config
+    [403] https://academy.postman.com/admin
+    [403] https://academy.postman.com/graphql
+    [403] https://academy.postman.com/actuator/env
+    [403] https://assets.publish.postman.com/.env
+    [403] https://assets.publish.postman.com/.git/config
+    [403] https://assets.publish.postman.com/admin
+    [403] https://assets.publish.postman.com/graphql
+    [403] https://assets.publish.postman.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260408_163338.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mattermost      874      518      0          0        1          3    
+  Sentry          33       33       31         0        0          1    
+  Postman         138      71       60         23       0          0    

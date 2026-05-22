@@ -1,0 +1,43 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ps://store.postman.com/.htaccess
+         <!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-eq
+    [200] https://sandbox.postman.com/admin
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=dev
+    [200] https://sandbox.postman.com/graphql
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=dev
+    [200] https://sandbox.postman.com/graphiql
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=dev
+    [200] https://sandbox.postman.com/swagger-ui/
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=dev
+    [200] https://sandbox.postman.com/api-docs
+         <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=dev
+
+  INTERESTING 403s (bypass targets):
+    [403] https://wwww.postman.com/.env
+    [403] https://wwww.postman.com/.git/config
+    [403] https://sandbox.postman.com/.env
+    [403] https://sandbox.postman.com/.git/config
+    [403] https://documenter.gw.postman.com/.env
+    [403] https://documenter.gw.postman.com/.git/config
+    [403] https://skylab.postman.com/.env
+    [403] https://skylab.postman.com/.git/config
+    [403] https://skylab.postman.com/admin
+    [403] https://skylab.postman.com/graphql
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260315_145509.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Loom            55       14       32         15       0          0    
+  Imgur           61       44       72         1        14         0    
+  Postman         166      73       29         21       0          0    

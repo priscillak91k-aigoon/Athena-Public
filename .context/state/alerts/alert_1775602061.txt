@@ -1,0 +1,56 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+=========================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 256 subdomains
+      Total (with patterns): 284
+  [2] DNS resolution + HTTP probing...
+      Live: 61 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 14 total, 2 critical, 2 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Nextcloud SUMMARY ---
+  Subdomains: 284 | Live: 61 | Critical: 2 | 403s: 2 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://c0004.customerpush.nextcloud.com/test
+         OK
+
+    [500] https://sentry.nextcloud.com/wp-login.php
+
+  INTERESTING 403s (bypass targets):
+    [403] https://projects.nextcloud.com/.env
+    [403] https://projects.nextcloud.com/.git/config
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Error: HTTPSConnectionPool(host='crt.sh', port=443): Read timed out. (read timeout=45)
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 0 hosts
+  [3] Content discovery on top 0 hosts...
+      Findings: 0 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 33 | Live: 0 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 0
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260408_103539.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Postman         138      71       0          14       0          0    
+  Nextcloud       284      61       2          2        0          0    
+  Shopify         33       0        0          0        0          0    

@@ -1,0 +1,50 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+F-8" />
+    <meta name="viewport" con
+
+============================================================
+  SCANNING: Nextcloud (nextcloud.com) — Max bounty: $10000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 256 subdomains
+      Total (with patterns): 284
+  [2] DNS resolution + HTTP probing...
+      Live: 60 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 52 total, 36 critical, 2 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Nextcloud SUMMARY ---
+  Subdomains: 284 | Live: 60 | Critical: 36 | 403s: 2 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://staging.push.cloud.nextcloud.com/.env
+    [200] https://staging.push.cloud.nextcloud.com/.git/config
+    [200] https://staging.push.cloud.nextcloud.com/.git/HEAD
+    [200] https://staging.push.cloud.nextcloud.com/admin
+    [200] https://staging.push.cloud.nextcloud.com/api/v1
+    [200] https://staging.push.cloud.nextcloud.com/graphql
+    [200] https://staging.push.cloud.nextcloud.com/graphiql
+    [200] https://staging.push.cloud.nextcloud.com/swagger-ui.html
+    [200] https://staging.push.cloud.nextcloud.com/swagger-ui/
+    [200] https://staging.push.cloud.nextcloud.com/api-docs
+
+  INTERESTING 403s (bypass targets):
+    [403] https://projects.nextcloud.com/.env
+    [403] https://projects.nextcloud.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260318_193157.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Shopify         33       32       3          7        0          0    
+  Sentry          33       33       31         0        0          1    
+  Nextcloud       284      60       36         2        0          0    

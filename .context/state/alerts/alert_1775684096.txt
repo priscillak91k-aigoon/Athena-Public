@@ -1,0 +1,61 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ammarly Authorsh
+    [200] https://authorship.grammarly.com/api/v1
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/graphql
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/graphiql
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/swagger-ui.html
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/swagger-ui/
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+
+  INTERESTING 403s (bypass targets):
+    [403] https://auth.grammarly.com/.env
+    [403] https://auth.grammarly.com/.git/config
+    [403] https://auth.grammarly.com/admin
+    [403] https://auth.grammarly.com/graphql
+    [403] https://auth.grammarly.com/actuator/env
+    [403] https://goldengate.grammarly.com/.env
+    [403] https://goldengate.grammarly.com/.git/config
+    [403] https://goldengate.grammarly.com/admin
+    [403] https://goldengate.grammarly.com/graphql
+    [403] https://goldengate.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260409_092617.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mattermost      33       4        0          3        0          3    
+  Mapbox          143      37       36         15       0          0    
+  Grammarly       230      101      65         28       1          0    

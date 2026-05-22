@@ -1,0 +1,48 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+      CANDIDATE: static-id.grammarly.com → cloudfront.net
+
+  --- Grammarly SUMMARY ---
+  Subdomains: 233 | Live: 102 | Critical: 30 | 403s: 37 | Takeovers: 1 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://rwsgfy.grammarly.com/.git/config
+    [200] https://rwsgfy.grammarly.com/.git/HEAD
+    [200] https://rwsgfy.grammarly.com/admin
+    [200] https://rwsgfy.grammarly.com/api/v1
+    [200] https://rwsgfy.grammarly.com/graphql
+    [200] https://rwsgfy.grammarly.com/graphiql
+    [200] https://rwsgfy.grammarly.com/swagger-ui.html
+    [200] https://rwsgfy.grammarly.com/api-docs
+    [200] https://rwsgfy.grammarly.com/openapi.json
+    [200] https://rwsgfy.grammarly.com/.well-known/openid-configuration
+
+  INTERESTING 403s (bypass targets):
+    [403] https://goldengate.grammarly.com/.env
+    [403] https://goldengate.grammarly.com/.git/config
+    [403] https://goldengate.grammarly.com/admin
+    [403] https://goldengate.grammarly.com/graphql
+    [403] https://goldengate.grammarly.com/actuator/env
+    [403] https://config.extension.grammarly.com/.env
+    [403] https://config.extension.grammarly.com/.git/config
+    [403] https://config.extension.grammarly.com/admin
+    [403] https://config.extension.grammarly.com/graphql
+    [403] https://config.extension.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260316_201151.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Sentry          117      85       30         0        0          1    
+  Automattic      46       8        46         12       0          0    
+  Grammarly       233      102      30         37       1          0    

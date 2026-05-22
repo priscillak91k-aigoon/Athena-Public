@@ -1,0 +1,42 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+  <!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-eq
+    [200] https://www.postman.com/admin
+         <!doctype html><html lang="en-US" nonce="T+m9mUngROUWE5B3rU2fSw=="><head><meta charset="UTF-8"><titl
+    [200] https://www.postman.com/graphiql
+         <!doctype html><html lang="en-US" nonce="zmscey59JqRSYjkhEl0myA=="><head><meta charset="UTF-8"><titl
+    [200] https://www.postman.com/swagger-ui.html
+         <!doctype html><html lang="en-US" nonce="ldNdgNMaH/4cR0FhMCxITg=="><head><meta charset="UTF-8"><titl
+    [200] https://www.postman.com/swagger-ui/
+         <!doctype html><html lang="en-US" nonce="AF9N3pRuyrtnT0zuebG6ig=="><head><meta charset="UTF-8"><titl
+    [200] https://www.postman.com/api-docs
+         <!doctype html><html lang="en-US" nonce="81Hzo7pq8TI7QgTImTjKFg=="><head><meta charset="UTF-8"><titl
+
+  INTERESTING 403s (bypass targets):
+    [403] https://assets.publish.postman.com/.env
+    [403] https://assets.publish.postman.com/.git/config
+    [403] https://assets.publish.postman.com/admin
+    [403] https://assets.publish.postman.com/graphql
+    [403] https://assets.publish.postman.com/actuator/env
+    [403] https://problems-registry.api.postman.com/.env
+    [403] https://problems-registry.api.postman.com/.git/config
+    [403] https://wwww.postman.com/.env
+    [403] https://wwww.postman.com/.git/config
+    [403] https://www.postman.com/.env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260405_213009.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Grammarly       234      101      32         28       1          0    
+  Loom            33       5        0          6        0          0    
+  Postman         137      70       28         11       0          0    

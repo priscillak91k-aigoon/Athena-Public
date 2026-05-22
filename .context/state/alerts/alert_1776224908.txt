@@ -1,0 +1,71 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/.git/config
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/.git/HEAD
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/admin
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/api/v1
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/graphql
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/graphiql
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/swagger-ui.html
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/swagger-ui/
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+    [200] https://live.sentry.io/api-docs
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="wi
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260415_154316.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mapbox          143      37       39         10       0          0    
+  Mattermost      33       4        0          6        0          3    
+  Sentry          117      82       32         0        0          1    

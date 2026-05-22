@@ -1,0 +1,54 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+lti-integration.grammarly.com/.git/config
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LTI Integration</t
+
+  INTERESTING 403s (bypass targets):
+    [403] https://api.grammarly.com/.env
+    [403] https://api.grammarly.com/.git/config
+    [403] https://api.grammarly.com/admin
+    [403] https://api.grammarly.com/graphql
+    [403] https://api.grammarly.com/actuator/env
+    [403] https://assets.extension.grammarly.com/.env
+    [403] https://assets.extension.grammarly.com/.git/config
+    [403] https://assets.extension.grammarly.com/admin
+    [403] https://assets.extension.grammarly.com/graphql
+    [403] https://assets.extension.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+============================================================
+  SCANNING: Sentry (sentry.io) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 89 subdomains
+      Total (with patterns): 117
+  [2] DNS resolution + HTTP probing...
+      Live: 85 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 16 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+      [200] sentry-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Sentry SUMMARY ---
+  Subdomains: 117 | Live: 85 | Critical: 0 | 403s: 0 | Takeovers: 0 | S3: 1
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260325_090321.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mattermost      33       4        0          3        0          3    
+  Grammarly       233      102      40         31       1          0    
+  Sentry          117      85       0          0        0          1    

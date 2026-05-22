@@ -1,0 +1,47 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+  [1] Subdomain enumeration (crt.sh)...
+      Error: HTTPSConnectionPool(host='crt.sh', port=443): Read timed out. (read timeout=45)
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 8 hosts
+  [3] Content discovery on top 8 hosts...
+      Findings: 31 total, 4 critical, 22 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Grammarly SUMMARY ---
+  Subdomains: 33 | Live: 8 | Critical: 4 | 403s: 22 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [500] https://status.grammarly.com/admin
+    [500] https://status.grammarly.com/graphql
+    [200] https://www.grammarly.com/.env
+         <!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"
+    [200] https://app.grammarly.com/openapi.json
+         <!doctype html><html lang="en" translate="no" class="height100"><style>.height100 { height: 100%; } 
+
+  INTERESTING 403s (bypass targets):
+    [403] https://status.grammarly.com/.env
+    [403] https://static.grammarly.com/.env
+    [403] https://static.grammarly.com/.git/config
+    [403] https://static.grammarly.com/admin
+    [403] https://static.grammarly.com/graphql
+    [403] https://static.grammarly.com/actuator/env
+    [403] https://auth.grammarly.com/.env
+    [403] https://auth.grammarly.com/.git/config
+    [403] https://auth.grammarly.com/admin
+    [403] https://auth.grammarly.com/graphql
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260409_192615.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mapbox          33       5        1          3        0          0    
+  Imgur           33       24       104        1        9          0    
+  Grammarly       33       8        4          22       0          0    

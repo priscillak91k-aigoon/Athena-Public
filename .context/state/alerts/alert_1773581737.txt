@@ -1,0 +1,60 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+hip.grammarly.com/graphql
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/graphiql
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/swagger-ui.html
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/swagger-ui/
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+    [200] https://authorship.grammarly.com/api-docs
+         <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammarly Authorsh
+
+  INTERESTING 403s (bypass targets):
+    [403] https://api.payments.grammarly.com/.env
+    [403] https://api.payments.grammarly.com/.git/config
+    [403] https://api.payments.grammarly.com/admin
+    [403] https://api.payments.grammarly.com/graphql
+    [403] https://api.payments.grammarly.com/actuator/env
+    [403] https://properties.grammarly.com/.env
+    [403] https://properties.grammarly.com/.git/config
+    [403] https://properties.grammarly.com/admin
+    [403] https://properties.grammarly.com/graphql
+    [403] https://properties.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260316_022845.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Shopify         33       32       3          5        0          0    
+  Loom            33       5        0          7        0          0    
+  Grammarly       233      102      64         26       1          0    

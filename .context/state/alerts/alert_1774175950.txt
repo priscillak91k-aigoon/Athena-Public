@@ -1,0 +1,50 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ content="width=
+    [200] https://login.imgur.com/graphql
+         <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+
+  INTERESTING 403s (bypass targets):
+    [403] https://status.imgur.com/.env
+
+============================================================
+  SCANNING: Grammarly (grammarly.com) — Max bounty: $100000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 209 subdomains
+      Total (with patterns): 233
+  [2] DNS resolution + HTTP probing...
+      Live: 102 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 48 total, 0 critical, 43 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Grammarly SUMMARY ---
+  Subdomains: 233 | Live: 102 | Critical: 0 | 403s: 43 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://auth.grammarly.com/.env
+    [403] https://auth.grammarly.com/.git/config
+    [403] https://auth.grammarly.com/admin
+    [403] https://auth.grammarly.com/graphql
+    [403] https://auth.grammarly.com/actuator/env
+    [403] https://download-editor.grammarly.com/.env
+    [403] https://download-editor.grammarly.com/.git/config
+    [403] https://download-editor.grammarly.com/admin
+    [403] https://download-editor.grammarly.com/graphql
+    [403] https://download-editor.grammarly.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260322_224235.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mattermost      874      518      0          2        0          3    
+  Imgur           33       24       97         1        0          0    
+  Grammarly       233      102      0          43       0          0    

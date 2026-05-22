@@ -1,0 +1,50 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+y.com/graphql
+    [403] https://discount.grammarly.com/actuator/env
+    [403] https://config.extension.grammarly.com/.env
+    [403] https://config.extension.grammarly.com/.git/config
+    [403] https://config.extension.grammarly.com/admin
+    [403] https://config.extension.grammarly.com/graphql
+    [403] https://config.extension.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+============================================================
+  SCANNING: Mattermost (mattermost.com) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Error: HTTPSConnectionPool(host='crt.sh', port=443): Read timed out. (read timeout=45)
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 4 hosts
+  [3] Content discovery on top 4 hosts...
+      Findings: 6 total, 0 critical, 3 interesting 403s
+  [4] S3 bucket check...
+      [400] mattermost-uploads.s3.amazonaws.com
+      [200] mattermost-static.s3.amazonaws.com
+      [200] mattermost-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Mattermost SUMMARY ---
+  Subdomains: 33 | Live: 4 | Critical: 0 | 403s: 3 | Takeovers: 0 | S3: 3
+
+  INTERESTING 403s (bypass targets):
+    [403] https://www.mattermost.com/.env
+    [403] https://www.mattermost.com/.git/config
+    [403] https://status.mattermost.com/.env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260320_141257.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mapbox          143      37       39         5        0          0    
+  Grammarly       231      101      9          21       1          0    
+  Mattermost      33       4        0          3        0          3    

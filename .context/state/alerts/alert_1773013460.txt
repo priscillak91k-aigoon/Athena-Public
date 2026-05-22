@@ -1,0 +1,54 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta
+
+  INTERESTING 403s (bypass targets):
+    [403] https://assets.extension.grammarly.com/.env
+    [403] https://assets.extension.grammarly.com/.git/config
+    [403] https://assets.extension.grammarly.com/admin
+    [403] https://assets.extension.grammarly.com/graphql
+    [403] https://assets.extension.grammarly.com/actuator/env
+    [403] https://irbis.grammarly.com/.env
+    [403] https://irbis.grammarly.com/.git/config
+    [403] https://irbis.grammarly.com/admin
+    [403] https://irbis.grammarly.com/graphql
+    [403] https://irbis.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+============================================================
+  SCANNING: Sentry (sentry.io) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 33 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 16 total, 0 critical, 1 interesting 403s
+  [4] S3 bucket check...
+      [200] sentry-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Sentry SUMMARY ---
+  Subdomains: 33 | Live: 33 | Critical: 0 | 403s: 1 | Takeovers: 0 | S3: 1
+
+  INTERESTING 403s (bypass targets):
+    [403] https://status.sentry.io/.env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260309_123450.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Postman         33       7        47         19       0          0    
+  Grammarly       228      102      94         36       1          0    
+  Sentry          33       33       0          1        0          1    

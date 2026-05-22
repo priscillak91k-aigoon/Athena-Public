@@ -1,0 +1,42 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+//a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://api.stla.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://d.tiles.mapbox.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!-- http://a.tiles.mapbox.com/crossdomain.xml -->
+<!DOCTYPE cross-domain-poli
+    [200] https://trust.mapbox.com/.env
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+    [200] https://trust.mapbox.com/.git/config
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+    [200] https://trust.mapbox.com/.git/HEAD
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+    [200] https://trust.mapbox.com/admin
+         <!doctype html><html lang="en" class="font-sans text-gray-800 text-body leading-[1.15] min-h-screen"
+
+  INTERESTING 403s (bypass targets):
+    [403] https://www.mapbox.com/.env
+    [403] https://www.mapbox.com/.git/config
+    [403] https://artifacts-testing-dns.mapbox.com/.env
+    [403] https://artifacts-testing-dns.mapbox.com/.git/config
+    [403] https://artifacts-testing-dns.mapbox.com/admin
+    [403] https://artifacts-testing-dns.mapbox.com/graphql
+    [403] https://artifacts-testing-dns.mapbox.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260325_083041.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           61       44       73         3        14         0    
+  Automattic      46       41       23         28       0          0    
+  Mapbox          143      37       37         7        0          0    

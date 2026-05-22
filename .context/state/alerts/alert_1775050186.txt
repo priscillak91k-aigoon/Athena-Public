@@ -1,0 +1,49 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ps://artifacts-testing-dns.mapbox.com/.env
+    [403] https://artifacts-testing-dns.mapbox.com/.git/config
+    [403] https://artifacts-testing-dns.mapbox.com/admin
+    [403] https://artifacts-testing-dns.mapbox.com/graphql
+    [403] https://artifacts-testing-dns.mapbox.com/actuator/env
+
+============================================================
+  SCANNING: Automattic (automattic.com) — Max bounty: $25000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 14 subdomains
+      Total (with patterns): 46
+  [2] DNS resolution + HTTP probing...
+      Live: 41 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 35 total, 0 critical, 28 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Automattic SUMMARY ---
+  Subdomains: 46 | Live: 41 | Critical: 0 | 403s: 28 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://app.automattic.com/.env
+    [403] https://app.automattic.com/.git/config
+    [403] https://test.automattic.com/.env
+    [403] https://test.automattic.com/.git/config
+    [403] https://jenkins.automattic.com/.env
+    [403] https://jenkins.automattic.com/.git/config
+    [403] https://static.automattic.com/.env
+    [403] https://static.automattic.com/.git/config
+    [403] https://museum.automattic.com/.env
+    [403] https://museum.automattic.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260402_022056.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           61       44       96         0        14         0    
+  Mapbox          143      37       38         11       0          0    
+  Automattic      46       41       0          28       0          0    

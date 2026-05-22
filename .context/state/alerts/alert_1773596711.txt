@@ -1,0 +1,39 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+n.com/api-docs
+         <!doctype html><html lang="en-US" nonce="rHFVU9m2AxjfJ9Cu+5UiUA=="><head><meta charset="UTF-8"><titl
+    [200] https://www.postman.com/openapi.json
+         <!doctype html><html lang="en-US" nonce="bgQcL+nHqmMlmMycnze1IA=="><head><meta charset="UTF-8"><titl
+    [200] https://www.postman.com/actuator/env
+         <!doctype html><html lang="en-US" nonce="+r35lVUyjRTQqLq7VLUyTw=="><head><meta charset="UTF-8"><titl
+    [200] https://www.postman.com/actuator/health
+         <!doctype html><html lang="en-US" nonce="/5qcx245X+eW9rRl/7YI5g=="><head><meta charset="UTF-8"><titl
+    [200] https://www.postman.com/actuator/info
+         <!doctype html><html lang="en-US" nonce="OT2KsfLyRj7mQ9nTstKCvQ=="><head><meta charset="UTF-8"><titl
+    [200] https://www.postman.com/debug
+         <!doctype html><html lang="en-US" nonce="wzpuJCb0PuaTJXOPTaqXyg=="><head><meta charset="UTF-8"><titl
+
+  INTERESTING 403s (bypass targets):
+    [403] https://revenueacademy.postman.com/.env
+    [403] https://revenueacademy.postman.com/.git/config
+    [403] https://revenueacademy.postman.com/admin
+    [403] https://revenueacademy.postman.com/graphql
+    [403] https://revenueacademy.postman.com/actuator/env
+    [403] https://wwww.postman.com/.env
+    [403] https://wwww.postman.com/.git/config
+    [403] https://www.postman.com/.env
+    [403] https://www.postman.com/.git/config
+    [403] https://sandbox.postman.com/.env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260316_063929.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Sentry          33       33       31         1        0          1    
+  Loom            55       14       32         14       0          0    
+  Postman         166      73       52         37       0          0    

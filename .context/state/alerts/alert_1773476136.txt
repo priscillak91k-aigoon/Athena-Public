@@ -1,0 +1,50 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+bypass targets):
+    [403] https://status.sentry.io/.env
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 304 subdomains
+      Total (with patterns): 326
+  [2] DNS resolution + HTTP probing...
+      Live: 302 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 11 total, 2 critical, 7 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 326 | Live: 302 | Critical: 2 | 403s: 7 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://consultant-launch.shopify.com/.well-known/openid-configuration
+         {"issuer":"https:\/\/shopify.com\/authentication\/20815411","token_endpoint":"https:\/\/shopify.com\
+    [200] https://consultant-launch.shopify.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+
+  INTERESTING 403s (bypass targets):
+    [403] https://k.ssl.shopify.com/.env
+    [403] https://k.ssl.shopify.com/.git/config
+    [403] https://k.ssl.shopify.com/admin
+    [403] https://k.ssl.shopify.com/graphql
+    [403] https://k.ssl.shopify.com/actuator/env
+    [403] https://datastories.shopify.com/.env
+    [403] https://datastories.shopify.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260314_210209.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           61       44       67         2        14         0    
+  Sentry          33       33       0          1        0          1    
+  Shopify         326      302      2          7        0          0    

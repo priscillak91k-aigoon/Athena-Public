@@ -1,0 +1,65 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+e>Private Site</title>
+		<meta charset="UTF-8" />
+
+    [200] https://offline.automattic.com/api-docs
+         	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<title>Private Site</title>
+		<meta charset="UTF-8" />
+
+    [200] https://offline.automattic.com/openapi.json
+         	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<title>Private Site</title>
+		<meta charset="UTF-8" />
+
+    [200] https://offline.automattic.com/.well-known/openid-configuration
+         	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<title>Private Site</title>
+		<meta charset="UTF-8" />
+
+    [200] https://offline.automattic.com/actuator/env
+         	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<title>Private Site</title>
+		<meta charset="UTF-8" />
+
+    [200] https://offline.automattic.com/actuator/health
+         	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<title>Private Site</title>
+		<meta charset="UTF-8" />
+
+
+  INTERESTING 403s (bypass targets):
+    [403] https://offline.automattic.com/.env
+    [403] https://offline.automattic.com/.git/config
+    [403] https://graphql.automattic.com/.env
+    [403] https://graphql.automattic.com/.git/config
+    [403] https://staging.automattic.com/.env
+    [403] https://staging.automattic.com/.git/config
+    [403] https://preview.automattic.com/.env
+    [403] https://preview.automattic.com/.git/config
+    [403] https://fieldguide.automattic.com/.env
+    [403] https://fieldguide.automattic.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260407_161735.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Postman         166      73       0          17       0          0    
+  Nextcloud       284      59       65         0        0          0    
+  Automattic      46       41       46         28       0          0    

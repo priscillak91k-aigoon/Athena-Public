@@ -1,0 +1,57 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ass targets):
+    [403] https://store.imgur.com/.env
+
+  TAKEOVER CANDIDATES:
+    app.imgur.com → fastly.net
+    an.imgur.com → fastly.net
+    qa.imgur.com → fastly.net
+    zrk.imgur.com → fastly.net
+    press.imgur.com → fastly.net
+    8ybhy85kld9zp9xf84x6.imgur.com → fastly.net
+    g00.imgur.com → fastly.net
+    ci.imgur.com → fastly.net
+    git.imgur.com → fastly.net
+    cdn.imgur.com → fastly.net
+    sandbox.imgur.com → fastly.net
+    vpn.imgur.com → fastly.net
+    dev.imgur.com → fastly.net
+    ops.imgur.com → fastly.net
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 304 subdomains
+      Total (with patterns): 326
+  [2] DNS resolution + HTTP probing...
+      Live: 302 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 5 total, 0 critical, 5 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 326 | Live: 302 | Critical: 0 | 403s: 5 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://cselb.cs.shopify.com/.env
+    [403] https://cselb.cs.shopify.com/.git/config
+    [403] https://cselb.cs.shopify.com/admin
+    [403] https://cselb.cs.shopify.com/graphql
+    [403] https://cselb.cs.shopify.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260316_202617.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Postman         138      71       37         10       0          0    
+  Imgur           61       44       74         1        14         0    
+  Shopify         326      302      0          5        0          0    

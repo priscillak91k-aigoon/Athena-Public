@@ -1,0 +1,55 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ver check (unresolved subs)...
+
+  --- Postman SUMMARY ---
+  Subdomains: 166 | Live: 72 | Critical: 5 | 403s: 9 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://store.postman.com/.env
+         <!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-eq
+    [200] https://store.postman.com/.well-known/openid-configuration
+         {"issuer":"https:\/\/shopify.com\/authentication\/5756682355","token_endpoint":"https:\/\/shopify.co
+    [200] https://store.postman.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://store.postman.com/.DS_Store
+         <!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-eq
+    [200] https://store.postman.com/.htaccess
+         <!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-eq
+
+  INTERESTING 403s (bypass targets):
+    [403] https://wwww.postman.com/.env
+    [403] https://wwww.postman.com/.git/config
+    [403] https://documenter.gw.postman.com/.env
+    [403] https://documenter.gw.postman.com/.git/config
+    [403] https://flow.cdn.postman.com/.env
+    [403] https://flow.cdn.postman.com/.git/config
+    [403] https://flow.cdn.postman.com/admin
+    [403] https://flow.cdn.postman.com/graphql
+    [403] https://flow.cdn.postman.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260318_141332.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Grammarly       233      102      72         21       1          0    
+  Sentry          33       33       31         6        0          1    
+  Postman         166      72       5          9        0          0    

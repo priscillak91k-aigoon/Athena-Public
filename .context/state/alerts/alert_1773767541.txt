@@ -1,0 +1,59 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 5 total, 0 critical, 2 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 33 | Live: 32 | Critical: 0 | 403s: 2 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://www.shopify.com/.env
+    [403] https://www.shopify.com/.git/config
+
+============================================================
+  SCANNING: Nextcloud (nextcloud.com) — Max bounty: $10000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 256 subdomains
+      Total (with patterns): 284
+  [2] DNS resolution + HTTP probing...
+      Live: 61 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 13 total, 2 critical, 2 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Nextcloud SUMMARY ---
+  Subdomains: 284 | Live: 61 | Critical: 2 | 403s: 2 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://perftesting.nextcloud.com/openapi.json
+         {
+    "openapi": "3.0.3",
+    "info": {
+        "title": "nextcloud",
+        "description": "Nextcl
+    [200] https://c0004.customerpush.nextcloud.com/test
+         OK
+
+
+  INTERESTING 403s (bypass targets):
+    [403] https://projects.nextcloud.com/.env
+    [403] https://projects.nextcloud.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260318_060131.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Loom            33       5        0          7        0          0    
+  Shopify         33       32       0          2        0          0    
+  Nextcloud       284      61       2          2        0          0    

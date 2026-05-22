@@ -1,0 +1,53 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+================
+  SCANNING: Nextcloud (nextcloud.com) — Max bounty: $10000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 256 subdomains
+      Total (with patterns): 284
+  [2] DNS resolution + HTTP probing...
+      Live: 61 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 45 total, 32 critical, 0 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Nextcloud SUMMARY ---
+  Subdomains: 284 | Live: 61 | Critical: 32 | 403s: 0 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://usercontent.apps.nextcloud.com/.env
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/.git/config
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/.git/HEAD
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/admin
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/api/v1
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/graphql
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/graphiql
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/swagger-ui.html
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/swagger-ui/
+         File not found
+    [200] https://usercontent.apps.nextcloud.com/api-docs
+         File not found
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260317_200747.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Postman         166      73       0          18       0          0    
+  Mattermost      33       4        0          3        0          3    
+  Nextcloud       284      61       32         0        0          0    

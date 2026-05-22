@@ -1,0 +1,58 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://hardware.shopify.com/.env
+         <!doctype html>
+<html
+  class="no-js"
+  lang="en"
+>
+  <head>
+    <link href="//hardware.shopify.com/
+    [200] https://hardware.shopify.com/.well-known/openid-configuration
+         {"issuer":"https:\/\/shopify.com\/authentication\/84239056918","token_endpoint":"https:\/\/shopify.c
+    [200] https://hardware.shopify.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+    [200] https://hardware.shopify.com/.DS_Store
+         <!doctype html>
+<html
+  class="no-js"
+  lang="en"
+>
+  <head>
+    <link href="//hardware.shopify.com/
+    [200] https://hardware.shopify.com/.htaccess
+         <!doctype html>
+<html
+  class="no-js"
+  lang="en"
+>
+  <head>
+    <link href="//hardware.shopify.com/
+
+  INTERESTING 403s (bypass targets):
+    [403] https://damian-znc.ec2.shopify.com/.env
+    [403] https://damian-znc.ec2.shopify.com/.git/config
+    [403] https://damian-znc.ec2.shopify.com/admin
+    [403] https://damian-znc.ec2.shopify.com/graphql
+    [403] https://damian-znc.ec2.shopify.com/actuator/env
+    [403] https://help.shopify.com/.env
+    [403] https://help.shopify.com/.git/config
+    [403] https://help.shopify.com/admin
+    [403] https://help.shopify.com/graphql
+    [403] https://help.shopify.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260325_084425.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Nextcloud       284      59       34         0        0          0    
+  Loom            55       14       32         15       0          0    
+  Shopify         326      302      7          15       0          0    

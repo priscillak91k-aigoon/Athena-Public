@@ -1,0 +1,52 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+om/.env
+    [403] https://datareport.grammarly.com/.git/config
+    [403] https://datareport.grammarly.com/admin
+    [403] https://datareport.grammarly.com/graphql
+    [403] https://datareport.grammarly.com/actuator/env
+
+  TAKEOVER CANDIDATES:
+    static-id.grammarly.com → cloudfront.net
+
+============================================================
+  SCANNING: Automattic (automattic.com) — Max bounty: $25000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 14 subdomains
+      Total (with patterns): 46
+  [2] DNS resolution + HTTP probing...
+      Live: 41 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 33 total, 0 critical, 28 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Automattic SUMMARY ---
+  Subdomains: 46 | Live: 41 | Critical: 0 | 403s: 28 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://staging.automattic.com/.env
+    [403] https://staging.automattic.com/.git/config
+    [403] https://git.automattic.com/.env
+    [403] https://git.automattic.com/.git/config
+    [403] https://vault.automattic.com/.env
+    [403] https://vault.automattic.com/.git/config
+    [403] https://status.automattic.com/.env
+    [403] https://status.automattic.com/.git/config
+    [403] https://auth.automattic.com/.env
+    [403] https://auth.automattic.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260413_102346.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Imgur           61       44       80         1        14         0    
+  Grammarly       234      101      63         24       1          0    
+  Automattic      46       41       0          28       0          0    

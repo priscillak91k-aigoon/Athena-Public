@@ -1,0 +1,57 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+"width=dev
+    [200] https://store.imgur.com/_debug
+         <!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=dev
+
+  INTERESTING 403s (bypass targets):
+    [403] https://store.imgur.com/.env
+
+  TAKEOVER CANDIDATES:
+    qa.imgur.com → fastly.net
+    cdn.imgur.com → fastly.net
+    sandbox.imgur.com → fastly.net
+    an.imgur.com → fastly.net
+    dev.imgur.com → fastly.net
+    vpn.imgur.com → fastly.net
+    ci.imgur.com → fastly.net
+    press.imgur.com → fastly.net
+    g00.imgur.com → fastly.net
+    8ybhy85kld9zp9xf84x6.imgur.com → fastly.net
+    git.imgur.com → fastly.net
+    ops.imgur.com → fastly.net
+    app.imgur.com → fastly.net
+    zrk.imgur.com → fastly.net
+
+============================================================
+  SCANNING: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 32 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 4 total, 0 critical, 2 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 33 | Live: 32 | Critical: 0 | 403s: 2 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://www.shopify.com/.env
+    [403] https://www.shopify.com/.git/config
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260402_072522.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Grammarly       234      101      62         37       1          0    
+  Imgur           61       44       89         1        14         0    
+  Shopify         33       32       0          2        0          0    

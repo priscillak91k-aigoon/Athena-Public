@@ -1,0 +1,51 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+oint":"https:\/\/shopify.com\
+    [200] https://unitestore.shopify.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+
+  INTERESTING 403s (bypass targets):
+    [403] https://cs.staging.shopify.com/.env
+    [403] https://cs.staging.shopify.com/.git/config
+    [403] https://cs.staging.shopify.com/admin
+    [403] https://cs.staging.shopify.com/graphql
+    [403] https://cs.staging.shopify.com/actuator/env
+    [403] https://accounts.shopify.com/.env
+    [403] https://accounts.shopify.com/.git/config
+    [403] https://accounts.shopify.com/admin
+    [403] https://accounts.shopify.com/graphql
+    [403] https://accounts.shopify.com/actuator/env
+
+============================================================
+  SCANNING: Sentry (sentry.io) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 33 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 16 total, 0 critical, 1 interesting 403s
+  [4] S3 bucket check...
+      [200] sentry-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Sentry SUMMARY ---
+  Subdomains: 33 | Live: 33 | Critical: 0 | 403s: 1 | Takeovers: 0 | S3: 1
+
+  INTERESTING 403s (bypass targets):
+    [403] https://status.sentry.io/.env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260402_020931.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Loom            55       14       32         11       0          0    
+  Shopify         326      302      5          10       0          0    
+  Sentry          33       33       0          1        0          1    

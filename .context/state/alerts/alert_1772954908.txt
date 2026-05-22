@@ -1,0 +1,57 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+gur.com/actuator/env
+    [403] https://status.imgur.com/.env
+
+  TAKEOVER CANDIDATES:
+    git.imgur.com → fastly.net
+    cdn.imgur.com → fastly.net
+    an.imgur.com → fastly.net
+    dev.imgur.com → fastly.net
+    vpn.imgur.com → fastly.net
+    zrk.imgur.com → fastly.net
+    qa.imgur.com → fastly.net
+    ops.imgur.com → fastly.net
+    g00.imgur.com → fastly.net
+    app.imgur.com → fastly.net
+    8ybhy85kld9zp9xf84x6.imgur.com → fastly.net
+    ci.imgur.com → fastly.net
+    sandbox.imgur.com → fastly.net
+    press.imgur.com → fastly.net
+
+============================================================
+  SCANNING: Mattermost (mattermost.com) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 845 subdomains
+      Total (with patterns): 874
+  [2] DNS resolution + HTTP probing...
+      Live: 518 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 0 total, 0 critical, 0 interesting 403s
+  [4] S3 bucket check...
+      [400] mattermost-uploads.s3.amazonaws.com
+      [200] mattermost-static.s3.amazonaws.com
+      [200] mattermost-public.s3.amazonaws.com
+  [5] Subdomain takeover check (unresolved subs)...
+      CANDIDATE: devs.mattermost.com → cloudfront.net
+
+  --- Mattermost SUMMARY ---
+  Subdomains: 874 | Live: 518 | Critical: 0 | 403s: 0 | Takeovers: 1 | S3: 3
+
+  TAKEOVER CANDIDATES:
+    devs.mattermost.com → cloudfront.net
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260308_201808.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Grammarly       33       8        2          22       0          0    
+  Imgur           61       44       80         2        14         0    
+  Mattermost      874      518      0          0        1          3    

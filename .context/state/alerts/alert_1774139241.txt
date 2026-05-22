@@ -1,0 +1,49 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+NG: Shopify (shopify.com) — Max bounty: $50000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Found: 304 subdomains
+      Total (with patterns): 326
+  [2] DNS resolution + HTTP probing...
+      Live: 302 hosts
+  [3] Content discovery on top 15 hosts...
+      Findings: 15 total, 2 critical, 10 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Shopify SUMMARY ---
+  Subdomains: 326 | Live: 302 | Critical: 2 | 403s: 10 | Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://beastmodeabusiness.shopify.com/.well-known/openid-configuration
+         {"issuer":"https:\/\/shopify.com\/authentication\/20980167","token_endpoint":"https:\/\/shopify.com\
+    [200] https://beastmodeabusiness.shopify.com/crossdomain.xml
+         <?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross
+
+  INTERESTING 403s (bypass targets):
+    [403] https://f.ssl.shopify.com/.env
+    [403] https://f.ssl.shopify.com/.git/config
+    [403] https://f.ssl.shopify.com/admin
+    [403] https://f.ssl.shopify.com/graphql
+    [403] https://f.ssl.shopify.com/actuator/env
+    [403] https://i.ssl.shopify.com/.env
+    [403] https://i.ssl.shopify.com/.git/config
+    [403] https://i.ssl.shopify.com/admin
+    [403] https://i.ssl.shopify.com/graphql
+    [403] https://i.ssl.shopify.com/actuator/env
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260322_132101.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Automattic      46       8        46         12       0          0    
+  Sentry          33       33       0          1        0          1    
+  Shopify         326      302      2          10       0          0    

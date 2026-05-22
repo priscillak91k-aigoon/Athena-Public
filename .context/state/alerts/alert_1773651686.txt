@@ -1,0 +1,67 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+ Takeovers: 0 | S3: 0
+
+  CRITICAL FINDINGS:
+    [200] https://monitoring.nextcloud.com/metrics
+         # HELP deprecated_flags_inuse_total The number of deprecated flags currently set.
+# TYPE deprecated_
+    [200] https://c0004.customerpush.nextcloud.com/test
+         OK
+
+    [200] https://sermo.nextcloud.com/openapi.json
+         {
+    "openapi": "3.0.3",
+    "info": {
+        "title": "nextcloud",
+        "description": "Nextcl
+    [500] https://sentry.nextcloud.com/wp-login.php
+    [200] https://status.nextcloud.com/.env
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/.git/config
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/.git/HEAD
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/admin
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/api/v1
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+    [200] https://status.nextcloud.com/graphql
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conte
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260316_214859.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Mattermost      33       4        0          3        0          3    
+  Postman         166      73       47         31       0          0    
+  Nextcloud       284      55       36         0        0          0    

@@ -1,0 +1,53 @@
+⚠️ BOUNTY REAPER HIT ⚠️
+
+      <div id="redirect" data-url="https://admin.shopify.com/login?errorH
+
+  INTERESTING 403s (bypass targets):
+    [403] https://admin.shopify.com/.env
+    [403] https://admin.shopify.com/.git/config
+    [403] https://admin.shopify.com/admin
+    [403] https://admin.shopify.com/graphql
+    [403] https://admin.shopify.com/actuator/env
+    [403] https://www.shopify.com/.env
+    [403] https://www.shopify.com/.git/config
+
+============================================================
+  SCANNING: Loom (loom.com) — Max bounty: $5000
+============================================================
+
+  [1] Subdomain enumeration (crt.sh)...
+      Total (with patterns): 33
+  [2] DNS resolution + HTTP probing...
+      Live: 5 hosts
+  [3] Content discovery on top 5 hosts...
+      Findings: 13 total, 0 critical, 11 interesting 403s
+  [4] S3 bucket check...
+  [5] Subdomain takeover check (unresolved subs)...
+
+  --- Loom SUMMARY ---
+  Subdomains: 33 | Live: 5 | Critical: 0 | 403s: 11 | Takeovers: 0 | S3: 0
+
+  INTERESTING 403s (bypass targets):
+    [403] https://dev.loom.com/.env
+    [403] https://dev.loom.com/.git/config
+    [403] https://dev.loom.com/admin
+    [403] https://dev.loom.com/graphql
+    [403] https://dev.loom.com/actuator/env
+    [403] https://www.loom.com/admin
+    [403] https://cdn.loom.com/.env
+    [403] https://cdn.loom.com/.git/config
+    [403] https://cdn.loom.com/admin
+    [403] https://cdn.loom.com/graphql
+
+
+============================================================
+  ALL SCANS COMPLETE
+  Results: multi_recon_20260318_022503.json
+============================================================
+
+  TARGET COMPARISON:
+  Target          Subs     Live     Critical   403s     Takeover   S3   
+  -----------------------------------------------------------------
+  Sentry          33       33       0          0        0          1    
+  Shopify         33       32       3          7        0          0    
+  Loom            33       5        0          11       0          0    
