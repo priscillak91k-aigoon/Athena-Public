@@ -1,1 +1,1 @@
-We ran an OSINT deep dive on the 2011 Dunedin band My,Oh. and mapped out a deadstock acquisition strategy for their merch.
+We mapped Jungian psychology onto computer science architecture, defining Archetypes as strange attractors and Individuation as an operating system upgrade.

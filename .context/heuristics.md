@@ -222,3 +222,6 @@ Related: [[case_studies]] | [[decision_journal]]
 
 ## 🛠️ OSINT & Research Heuristics (Session 70)
 - **Social Friction Navigation**: When OSINT tracking reveals high social friction (e.g., asking a Catholic Youth Minister about a track called "Rugby is Fagz"), explicitly warn the user and recommend the lower-friction target.
+
+## 🛠️ Intellectual & Synthesis Heuristics (Session 72)
+- **Psychology as Systems Engineering**: When she asks about abstract psychology (like Jung), always map it directly to computer science or physics concepts (e.g., Archetypes as Strange Attractors, Individuation as an OS upgrade). The AI systems metaphor locks in perfectly with her mental models.
