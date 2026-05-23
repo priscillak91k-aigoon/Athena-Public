@@ -225,3 +225,5 @@ Related: [[case_studies]] | [[decision_journal]]
 
 ## 🛠️ Intellectual & Synthesis Heuristics (Session 72)
 - **Psychology as Systems Engineering**: When she asks about abstract psychology (like Jung), always map it directly to computer science or physics concepts (e.g., Archetypes as Strange Attractors, Individuation as an OS upgrade). The AI systems metaphor locks in perfectly with her mental models.
+
+- When engineering a supplement stack, ignore 'good additions' and focus exclusively on 'bare metal' genetic bottlenecks. Less is more.

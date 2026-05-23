@@ -34,3 +34,5 @@
 - **Moltbook**: AI Social Network registration.
 - **Obsidian Vault**: Graph-based knowledge management.
 - **Spain 2029 Trip**: $10k NZD comfort budget, mapped for morbid/scenic dark tourism.
+
+- Priscilla values uncompromising, structural truth over generic health advice. She expects the AI to operate as a rigorous, combative engineering partner, completely stripping away 'wellness' jargon.

@@ -29,3 +29,6 @@
 **Solution**: Ruthlessly dismantled the generic advice. Proved that throwing away yolk (choline) damages her MTHFR methylation, spiking homocysteine, which scratches arteries and accelerates 9p21 plaque.
 **Key Insight**: Never let generic algorithms dictate biological protocols. Always enforce the personalized genetic stack (MTHFR + APOE + 9p21).
 
+
+## The Endocannabinoid Paradox (Sarah)
+Mapped chronic cannabis use as a 'lock and key' mechanism. FAAH mutation (fast anandamide breakdown = stress) combined with CNR1 mutation (paranoia armor) meant she was genetically destined to self-medicate with THC.
