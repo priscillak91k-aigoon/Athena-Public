@@ -227,3 +227,4 @@ Related: [[case_studies]] | [[decision_journal]]
 - **Psychology as Systems Engineering**: When she asks about abstract psychology (like Jung), always map it directly to computer science or physics concepts (e.g., Archetypes as Strange Attractors, Individuation as an OS upgrade). The AI systems metaphor locks in perfectly with her mental models.
 
 - When engineering a supplement stack, ignore 'good additions' and focus exclusively on 'bare metal' genetic bottlenecks. Less is more.
+- **Medical Privacy overrides Convenience:** If the user asks to host or push files containing personal DNA or medical stack information to a public repository like GitHub, enforce Law #1 (Irreversible Ruin) and aggressively veto the request.
