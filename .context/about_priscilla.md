@@ -19,6 +19,7 @@
   - **Does NOT drink coffee.** (Corrected Session 45).
   - Sleep is priority #1. 2h nap compensates for 6h night sleep.
   - No iron supplements. No NAC+Selenium without caution.
+  - Can sustain 1hr+ deep focus on CIA Gateway binaural beats (unexpected dopamine/focus alignment).
 - **Biometrics**: High CRP/Platelets/Ferritin spike (Session 59) resolved as localized pelvic cyst inflammation.
 
 ## 🏡 Household & Logistics
