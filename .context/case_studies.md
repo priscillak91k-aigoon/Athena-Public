@@ -32,3 +32,9 @@
 
 ## The Endocannabinoid Paradox (Sarah)
 Mapped chronic cannabis use as a 'lock and key' mechanism. FAAH mutation (fast anandamide breakdown = stress) combined with CNR1 mutation (paranoia armor) meant she was genetically destined to self-medicate with THC.
+
+### CS-029: The Netflix Handshake Crash (AV Mechanics)
+**Problem**: User's Firestick worked on the home screen but dropped the HDMI connection immediately upon launching Netflix. User assumed coincidence.
+**Diagnosis**: The 1080p SDR home screen passed basic HDMI checks, but Netflix instantly requested HDCP 2.2 encryption and HDR switching. The Samsung TV port couldn't handle the bandwidth spike, causing a full handshake collapse.
+**Solution**: Stripped the software demands. Locked Firestick to static 2160p/60Hz, disabled dynamic range switching, disabled CEC, and routed PCM stereo via optical.
+**Key Insight**: When AV hardware works until a specific app launches, it is never a physical hardware failure; it is an HDCP/HDR software encryption wall. Treat AV troubleshooting purely mechanically.

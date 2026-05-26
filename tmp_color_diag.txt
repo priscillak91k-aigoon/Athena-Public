@@ -1,137 +1,17 @@
 === DISPLAY CONFIG ===
 
 
-Name                    : I
-                          n
-                          t
-                          e
-                          l
-                          (
-                          R
-                          )
-                           
-                          U
-                          H
-                          D
-                           
-                          G
-                          r
-                          a
-                          p
-                          h
-                          i
-                          c
-                          s
-                           
-                          6
-                          3
-                          0
-CurrentHorizontalResolu : 1
-                          9
-                          2
-                          0
-CurrentVerticalResoluti : 1
-                          0
-                          8
-                          0
-CurrentRefreshRate      : 1
-                          4
-                          4
-VideoModeDescription    : 1
-                          9
-                          2
-                          0
-                           
-                          x
-                           
-                          1
-                          0
-                          8
-                          0
-                           
-                          x
-                           
-                          4
-                          2
-                          9
-                          4
-                          9
-                          6
-                          7
-                          2
-                          9
-                          6
-                           
-                          c
-                          o
-                          l
-                          o
-                          r
-                          s
+Name                        : Intel(R) UHD Graphics 630
+CurrentHorizontalResolution : 1920
+CurrentVerticalResolution   : 1080
+CurrentRefreshRate          : 144
+VideoModeDescription        : 1920 x 1080 x 4294967296 colors
 
-Name                    : N
-                          V
-                          I
-                          D
-                          I
-                          A
-                           
-                          Q
-                          u
-                          a
-                          d
-                          r
-                          o
-                           
-                          R
-                          T
-                          X
-                           
-                          3
-                          0
-                          0
-                          0
-CurrentHorizontalResolu : 3
-                          8
-                          4
-                          0
-CurrentVerticalResoluti : 2
-                          1
-                          6
-                          0
-CurrentRefreshRate      : 6
-                          0
-VideoModeDescription    : 3
-                          8
-                          4
-                          0
-                           
-                          x
-                           
-                          2
-                          1
-                          6
-                          0
-                           
-                          x
-                           
-                          4
-                          2
-                          9
-                          4
-                          9
-                          6
-                          7
-                          2
-                          9
-                          6
-                           
-                          c
-                          o
-                          l
-                          o
-                          r
-                          s
+Name                        : NVIDIA Quadro RTX 3000
+CurrentHorizontalResolution : 
+CurrentVerticalResolution   : 
+CurrentRefreshRate          : 
+VideoModeDescription        : 
 
 
 

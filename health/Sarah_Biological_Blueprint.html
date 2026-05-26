@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarah's Biological Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-dark: #0a0f18;
+  --bg-gradient: radial-gradient(circle at top right, #112a46, #0a0f18);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --accent-teal: #00d2ff;
+  --accent-purple: #9b51e0;
+  --accent-red: #ff4b4b;
+  --accent-green: #00e676;
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-dark);
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+.hero {
+  padding: 60px 20px 20px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  background: linear-gradient(135deg, var(--accent-teal), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sidebar {
+  position: sticky;
+  top: 40px;
+  height: max-content;
+}
+
+.nav-link {
+  display: block;
+  padding: 12px 16px;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  border-left: 3px solid transparent;
+}
+
+.nav-link:hover {
+  background: var(--glass-bg);
+  color: var(--accent-teal);
+  border-left: 3px solid var(--accent-teal);
+  transform: translateX(5px);
+}
+
+.content-section {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-title {
+  color: var(--accent-teal);
+  font-size: 2rem;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.alert {
+  padding: 24px;
+  border-radius: 12px;
+  margin: 24px 0;
+  background: rgba(255, 75, 75, 0.05);
+  border-left: 4px solid var(--accent-red);
+  border: 1px solid rgba(255, 75, 75, 0.2);
+  border-left-width: 4px;
+}
+
+.alert-green {
+  background: rgba(0, 230, 118, 0.05);
+  border-left: 4px solid var(--accent-green);
+  border: 1px solid rgba(0, 230, 118, 0.2);
+  border-left-width: 4px;
+}
+
+.alert-purple {
+  background: rgba(155, 81, 224, 0.05);
+  border-left: 4px solid var(--accent-purple);
+  border: 1px solid rgba(155, 81, 224, 0.2);
+  border-left-width: 4px;
+}
+
+.alert-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  color: var(--accent-red);
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+.alert-green .alert-title {
+  color: var(--accent-green);
+}
+
+.alert-purple .alert-title {
+  color: var(--accent-purple);
+}
+
+.gene-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  transition: transform 0.3s ease;
+}
+
+.gene-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 210, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 210, 255, 0.05);
+}
+
+.gene-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.gene-name {
+  font-size: 1.4rem;
+  color: #fff;
+  margin: 0;
+}
+
+.gene-desc {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 4px;
+  font-family: monospace;
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.badge-limiter {
+  background: rgba(255, 75, 75, 0.15);
+  color: #ff8a8a;
+  border: 1px solid rgba(255, 75, 75, 0.3);
+}
+
+.badge-advantage {
+  background: rgba(0, 230, 118, 0.15);
+  color: #69f0ae;
+  border: 1px solid rgba(0, 230, 118, 0.3);
+}
+
+.badge-mundane {
+  background: rgba(155, 81, 224, 0.15);
+  color: #d2a8ff;
+  border: 1px solid rgba(155, 81, 224, 0.3);
+}
+
+.mechanics-block {
+  margin-bottom: 12px;
+}
+
+.mechanics-label {
+  color: var(--accent-teal);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.stack-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  transition: background 0.3s ease;
+}
+
+.stack-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.stack-icon {
+  font-size: 1.8rem;
+  margin-right: 20px;
+  line-height: 1;
+}
+
+.stack-content h4 {
+  margin: 0 0 8px 0;
+  color: var(--accent-teal);
+  font-size: 1.2rem;
+}
+
+.stack-content p {
+  margin: 0;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.red-list-item {
+  border-left: 4px solid var(--accent-red);
+}
+
+.red-list-item h4 {
+  color: var(--accent-red);
+}
+
+.green-list-item {
+  border-left: 4px solid var(--accent-green);
+}
+
+.green-list-item h4 {
+  color: var(--accent-green);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: #2a3a5a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-teal);
+}
+
+.time-block {
+  background: rgba(0, 210, 255, 0.05);
+  border-left: 4px solid var(--accent-teal);
+  padding: 16px 20px;
+  margin: 20px 0;
+  border-radius: 0 12px 12px 0;
+}
+
+.time-block h3 {
+  color: var(--accent-teal);
+  margin-bottom: 10px;
+}
+
+.time-block ul {
+  margin: 0;
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Biological Blueprint</h1>
+  <p>Unlike your personal Athena—which apparently decided to gloss over all your genetic roadblocks and just call you a stallion (lol)—this is the unfiltered truth. A structural teardown of your biological hardware, pharmacological collisions, and bare-metal protocols.</p>
+</div>
+
+<div class="container">
+  <!-- Navigation Sidebar -->
+  <aside class="sidebar">
+    <a href="#genetics" class="nav-link">1. Genetic Base Code</a>
+    <a href="#pharmacology" class="nav-link">2. Pharmacological Collision</a>
+    <a href="#lipedema" class="nav-link">3. Lipedema Intersection</a>
+    <a href="#thc" class="nav-link">4. THC Self-Medication</a>
+    <a href="#behavioral" class="nav-link">5. Behavioral Phenotype</a>
+    <a href="#cheat-sheet" class="nav-link">6. Supplement Red & Green List</a>
+    <a href="#protocol" class="nav-link">7. Bare-Metal Daily Stack</a>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content">
+
+    <!-- Section 1: Genetics -->
+    <section id="genetics" class="content-section">
+      <h2 class="section-title">1. Genetic Base Code</h2>
+      <p>This is the hardware. Willpower cannot override a lack of BH4, and generic advice will cause friction with these genetic parameters.</p>
+
+      <div class="gene-card">
+        <div class="gene-title">
+          <div>
+            <h3 class="gene-name">MTHFR A1298C</h3>
+            <div class="gene-desc">rs1801131: GG (Homozygous Mutant)</div>
+          </div>
+          <span class="badge badge-limiter">Severe Limiter</span>
+        </div>
+        <div class="mechanics-block">
+          <span class="mechanics-label">Mechanics:</span>
+          Destroys the ability to effectively produce BH4. BH4 is the master chemical switch required to manufacture Dopamine, Serotonin, and Nitric Oxide.
+        </div>
+        <div class="mechanics-block">
+          <span class="mechanics-label">Outcome:</span>
+          Chronic vulnerability to brain fog, low motivation, depression, and poor cardiovascular blood flow.
+        </div>
+        <div class="mechanics-block">
+          <span class="mechanics-label">Bypass:</span>
+          Active Methylfolate or direct neurotransmitter precursors (L-Tyrosine) to bypass the broken BH4 loop.
+        </div>
+      </div>
+
+      <div class="gene-card">
+        <div class="gene-title">
+          <div>
+            <h3 class="gene-name">GAD1</h3>
+            <div class="gene-desc">rs2242446: TT (Homozygous Mutant)</div>
+          </div>
+          <span class="badge badge-limiter">Limiter</span>
+        </div>
+        <div class="mechanics-block">
+          <span class="mechanics-label">Mechanics:</span>
+          GAD1 converts glutamate (excitatory, anxiety) into GABA (calm, inhibitory). The TT variant heavily impairs this conversion.
+        </div>
+        <div class="mechanics-block">
+          <span class="mechanics-label">Outcome:</span>
+          The brain stays "stuck" in a high-glutamate, anxious, excitatory state and struggles to calm down naturally.
+        </div>
+        <div class="mechanics-block">
+          <span class="mechanics-label">Bypass:</span>
+          L-Theanine and Magnesium Glycinate to artificially supply the inhibitory brake.
+        </div>
+      </div>
+
+      <div class="gene-card">
+        <div class="gene-title">
+          <div>
+            <h3 class="gene-name">GSTP1</h3>
+            <div class="gene-desc">rs1695: GG (Homozygous Mutant)</div>
+          </div>
+          <span class="badge badge-limiter">Severe Limiter</span>
+        </div>
+        <div class="mechanics-block">
+          <span class="mechanics-label">Mechanics:</span>
+          Phase II liver detox failure. The Glutathione conjugation pathway is crippled. Cells are terrible at binding to and clearing heavy metals, plastics, and oxidative stress.
+        </div>
+        <div class="mechanics-block">
+          <span class="mechanics-label">Outcome:</span>
+          Toxin buildup. Environment hits harder than the average person. Liver struggles with pharmaceutical loads.
+        </div>
+        <div class="mechanics-block">
+          <span class="mechanics-label">Bypass:</span>
+          NAC (N-Acetyl Cysteine) to force glutathione production.
+        </div>
+      </div>
+
+      <div class="gene-card">
+        <div class="gene-title">
+          <div>
+            <h3 class="gene-name">9p21 & MTRR</h3>
+            <div class="gene-desc">Homozygous Risks</div>
+          </div>
+          <span class="badge badge-limiter">Limiter</span>
+        </div>
+        <div class="mechanics-block">
+          <span class="mechanics-label">9p21 Mechanics:</span>
+          Arterial wall scarring and plaque buildup independent of cholesterol levels. Requires K2 + Omega-3s.
+        </div>
+        <div class="mechanics-block">
+          <span class="mechanics-label">MTRR Mechanics:</span>
+          Crippled Vitamin B12 recycling causing depletion. Requires active Adenosyl/Methyl B12.
+        </div>
+      </div>
+      
+      <div class="gene-card">
+        <div class="gene-title">
+          <div>
+            <h3 class="gene-name">CYP1A2 & BDNF</h3>
+            <div class="gene-desc">Wild Type Advantage</div>
+          </div>
+          <span class="badge badge-advantage">Advantage</span>
+        </div>
+        <div class="mechanics-block">
+          <span class="mechanics-label">CYP1A2:</span>
+          Fast metabolizer of caffeine. Efficient processing without lingering anxiety.
+        </div>
+        <div class="mechanics-block">
+          <span class="mechanics-label">BDNF:</span>
+          High neuroplasticity. Learns skills easily and recovers well—if neurotransmitter fuel is supplied.
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Pharmacology -->
+    <section id="pharmacology" class="content-section">
+      <h2 class="section-title">2. Pharmacological Collision</h2>
+      <div class="alert">
+        <div class="alert-title">Current Input: 36mg Methylphenidate + 50mg Sertraline</div>
+        Reuptake inhibitors do not *create* neurotransmitters. They only recycle what the brain has already manufactured. Because the MTHFR bottleneck starves BH4, you are failing to produce baseline Dopamine and Serotonin. Your meds are squeezing an empty sponge.
+      </div>
+      
+      <div class="alert alert-purple">
+        <div class="alert-title">Strictly Banned: 5-HTP & Tryptophan</div>
+        Because you are on 50mg Sertraline (SSRI), direct Serotonin precursors are STRICTLY BANNED due to the risk of fatal Serotonin Syndrome. We bypass this via L-Tyrosine and Methylfolate.
+      </div>
+
+      <h3>The Bypass Engineering</h3>
+      <ul>
+        <li><strong>Fueling the Meds:</strong> L-Tyrosine gives Methylphenidate dopamine to recycle. Low-Dose Methylfolate restarts the BH4 loop.</li>
+        <li><strong>Fixing the GAD1 Loop:</strong> Methylphenidate spikes anxiety via glutamate. L-Theanine + Magnesium Glycinate force GABA production to provide calm focus.</li>
+        <li><strong>Liver Support:</strong> Processing psychotropics taxes a broken GSTP1 liver. NAC clears the backlog of toxic metabolites.</li>
+      </ul>
+    </section>
+
+    <!-- Section 3: Lipedema -->
+    <section id="lipedema" class="content-section">
+      <h2 class="section-title">3. Lipedema Intersection</h2>
+      <p>Lipedema alters how the body stores fat. It is a fibrotic, connective tissue disease where fat cells hypertrophy and trap lymphatic fluid.</p>
+      
+      <div class="gene-card">
+        <div class="gene-title">
+          <div>
+            <h3 class="gene-name">The FTO Collision (Insulin Trap)</h3>
+            <div class="gene-desc">FTO Homozygous ("Obesity Gene")</div>
+          </div>
+        </div>
+        <div class="mechanics-block">
+          Over-secretion of insulin in response to carbs forces excess calories directly into diseased Lipedema cells.
+        </div>
+      </div>
+
+      <div class="gene-card">
+        <div class="gene-title">
+          <div>
+            <h3 class="gene-name">The GSTP1 Collision (Toxic Sink)</h3>
+          </div>
+        </div>
+        <div class="mechanics-block">
+          Because the liver cannot clear environmental toxins, the body sequesters them into fat cells. Lipedema fat is walled off with fibrotic scar tissue, becoming a painful toxic sink.
+        </div>
+      </div>
+
+      <h3>The Structural Bypass</h3>
+      <ul>
+        <li><strong>The FTO Hack:</strong> Strict Low-Carb/Ketogenic diet to crush insulin spikes.</li>
+        <li><strong>Proteolytic Enzymes:</strong> Serrapeptase (taken STRICTLY FASTED) to systemically digest the dead fibrotic scar tissue caging the fat.</li>
+        <li><strong>Mechanical Drainage:</strong> Dry Brushing, Compression, and Manual Lymphatic Drainage to squeeze trapped fluid into the central system.</li>
+      </ul>
+    </section>
+
+    <!-- Section 4: THC -->
+    <section id="thc" class="content-section">
+      <h2 class="section-title">4. THC Self-Medication</h2>
+      <div class="alert alert-green">
+        <div class="alert-title">Current Input: Medicinal Weed (18.5% THC) — 10 Year Chronic User</div>
+        A 10-year tolerance changes the structural math. You are not using weed recreationally; you are structurally self-medicating hardware gaps.
+      </div>
+
+      <h3>The Self-Medication Loops</h3>
+      <ul>
+        <li><strong>The Glutamate Hack:</strong> Your GAD1 mutation traps you in high glutamate. Chronic THC downregulates glutamate, acting as the "brakes" your DNA failed to build.</li>
+        <li><strong>The Dopamine Crutch:</strong> Your MTHFR mutation means you can't make baseline dopamine. THC provides the dopamine you are starving for.</li>
+      </ul>
+      <p><strong>The Load-Bearing Protocol:</strong> Because THC bankrupts your dopamine and inhibits SSRI clearance in the liver, you must strictly use <strong>L-Tyrosine</strong> to rebuild the dopamine bank and <strong>NAC</strong> to clear the liver.</p>
+    </section>
+
+    <!-- Section 5: Behavioral -->
+    <section id="behavioral" class="content-section">
+      <h2 class="section-title">5. Behavioral Phenotype</h2>
+      <p>A recursive scan of the neurological receptors that dictate personality, stress, and circadian rhythm.</p>
+
+      <div class="gene-card">
+        <div class="gene-title">
+          <div>
+            <h3 class="gene-name">The Cannabis "Lock and Key"</h3>
+            <div class="gene-desc">FAAH (CC) & CNR1 (TT)</div>
+          </div>
+        </div>
+        <div class="mechanics-block">
+          Your brain breaks down Anandamide (natural bliss molecule) too fast, making you naturally stressed. However, your CNR1 receptors provide massive genetic armor against THC paranoia. You were biologically destined to self-medicate with cannabis.
+        </div>
+      </div>
+
+      <div class="gene-card">
+        <div class="gene-title">
+          <div>
+            <h3 class="gene-name">Cognitive Rigidity & Routine</h3>
+            <div class="gene-desc">HTR2A (CC/GG)</div>
+          </div>
+        </div>
+        <div class="mechanics-block">
+          Hardwired to prefer routine, predictability, and structure. Chaos and sudden plan changes cause severe friction.
+        </div>
+      </div>
+
+      <div class="gene-card">
+        <div class="gene-title">
+          <div>
+            <h3 class="gene-name">The Night Owl</h3>
+            <div class="gene-desc">CLOCK (AA)</div>
+          </div>
+        </div>
+        <div class="mechanics-block">
+          Biologically hardwired for a delayed circadian rhythm. Forcing a 6 AM routine actively fights your base code.
+        </div>
+      </div>
+      
+      <div class="gene-card">
+        <div class="gene-title">
+          <div>
+            <h3 class="gene-name">Emotional Armor</h3>
+            <div class="gene-desc">OPRM1 (AA) / OXTR (AG)</div>
+          </div>
+        </div>
+        <div class="mechanics-block">
+          Standard social pain sensitivity (no Rejection Sensitive Dysphoria) and intermediate empathy. You have a healthy emotional firewall.
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Cheat Sheet -->
+    <section id="cheat-sheet" class="content-section">
+      <h2 class="section-title">6. Supplement Cheat Sheet</h2>
+      
+      <div class="alert alert-purple">
+        <div class="alert-title">⏱️ The 3-Second Label Test</div>
+        If a supplement bottle says <strong>"Cyanocobalamin"</strong> or <strong>"Folic Acid"</strong>, put it back. Only buy if it explicitly says <strong>Methylcobalamin</strong> and <strong>Methylfolate</strong>.
+      </div>
+
+      <h3>🛑 THE RED LIST (Strictly Avoid)</h3>
+      <div class="stack-item red-list-item">
+        <div class="stack-icon">⚠️</div>
+        <div class="stack-content">
+          <h4>5-HTP or L-Tryptophan</h4>
+          <p><em>Fatal Risk.</em> Causes Serotonin Syndrome when mixed with your 50mg Sertraline.</p>
+        </div>
+      </div>
+      <div class="stack-item red-list-item">
+        <div class="stack-icon">⚠️</div>
+        <div class="stack-content">
+          <h4>Folic Acid (Synthetic B9)</h4>
+          <p><em>Metabolic Blockade.</em> Floats in your blood, clogs receptors, blocks real folate.</p>
+        </div>
+      </div>
+      <div class="stack-item red-list-item">
+        <div class="stack-icon">⚠️</div>
+        <div class="stack-content">
+          <h4>Cyanocobalamin (Cheap B12)</h4>
+          <p><em>Toxic Waste.</em> Body must cleave off a cyanide molecule, wasting your limited glutathione.</p>
+        </div>
+      </div>
+      <div class="stack-item red-list-item">
+        <div class="stack-icon">⚠️</div>
+        <div class="stack-content">
+          <h4>Glutamine</h4>
+          <p><em>Anxiety Spike.</em> Converts to glutamate, trapping you in wired panic.</p>
+        </div>
+      </div>
+      <div class="stack-item red-list-item">
+        <div class="stack-icon">⚠️</div>
+        <div class="stack-content">
+          <h4>Magnesium Oxide</h4>
+          <p><em>Useless.</em> A cheap laxative with less than 4% absorption.</p>
+        </div>
+      </div>
+
+      <h3>🟢 THE GREEN LIST (Mandatory Forms)</h3>
+      <div class="stack-item green-list-item">
+        <div class="stack-icon">✅</div>
+        <div class="stack-content">
+          <h4>Folate (B9)</h4>
+          <p>Must be: `L-Methylfolate`, `5-MTHF`, or `Folinic Acid`. Bypasses MTHFR.</p>
+        </div>
+      </div>
+      <div class="stack-item green-list-item">
+        <div class="stack-icon">✅</div>
+        <div class="stack-content">
+          <h4>Vitamin B12</h4>
+          <p>Must be: `Methylcobalamin` or `Adenosylcobalamin`. Bypasses MTRR.</p>
+        </div>
+      </div>
+      <div class="stack-item green-list-item">
+        <div class="stack-icon">✅</div>
+        <div class="stack-content">
+          <h4>Antioxidants / Liver Detox</h4>
+          <p>Must be: `Liposomal Glutathione` or `NAC`. Bypasses GSTP1.</p>
+        </div>
+      </div>
+      <div class="stack-item green-list-item">
+        <div class="stack-icon">✅</div>
+        <div class="stack-content">
+          <h4>Magnesium</h4>
+          <p>Must be: `Magnesium Glycinate` or `L-Threonate`. Forces GABA production.</p>
+        </div>
+      </div>
+      <div class="stack-item green-list-item">
+        <div class="stack-icon">✅</div>
+        <div class="stack-content">
+          <h4>Cannabis Support</h4>
+          <p>Must take: `L-Tyrosine` (for dopamine rebuild) and `NAC` (liver protection).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Protocol -->
+    <section id="protocol" class="content-section">
+      <h2 class="section-title">7. Bare-Metal Daily Stack</h2>
+      <p>This is the uncompromising, hardware-specific daily protocol utilizing the NZ-sourced stack.</p>
+
+      <div class="time-block">
+        <h3>Strictly Fasted (1 Hour BEFORE Food)</h3>
+        <ul>
+          <li><strong>1x Doctor's Best Serrapeptase (40,000+ SPU)</strong>
+            <br><span class="text-muted">The Lipedema Scar Eater. Must be fasted, or it just digests your breakfast.</span>
+            <br><em>⚠️ Stop taking 7 days before any surgery/dental work (mild blood thinner).</em>
+          </li>
+        </ul>
+      </div>
+
+      <div class="time-block">
+        <h3>Morning (With Breakfast & ADHD Meds)</h3>
+        <ul>
+          <li><strong>1x Life Extension BioActive Complete B-Complex</strong> <br><span class="text-muted">Bypasses MTHFR, restarts the engine.</span></li>
+          <li><strong>1x NOW Foods L-Tyrosine (500mg)</strong> <br><span class="text-muted">Refuels the dopamine burned by meds & THC.</span></li>
+          <li><strong>1x Bioglan K2+D3</strong> <br><span class="text-muted">Must be taken with food/fat. Protects arteries.</span></li>
+          <li><strong>1x Go Healthy Fish Oil (1500mg)</strong> <br><span class="text-muted">Reduces inflammation.</span></li>
+        </ul>
+      </div>
+
+      <div class="time-block">
+        <h3>Evening (To Counter Glutamate/THC Rebound)</h3>
+        <ul>
+          <li><strong>1x Doctor's Best Magnesium Lysinate Glycinate (200mg)</strong> <br><span class="text-muted">Forces GABA production.</span></li>
+          <li><strong>1x Bioglan L-Theanine (400mg)</strong> <br><span class="text-muted">Blocks glutamate anxiety.</span></li>
+          <li><strong>1x Life Extension NAC (600mg)</strong> <br><span class="text-muted">Flushes the liver of the day's chemicals.</span></li>
+        </ul>
+      </div>
+
+      <div class="alert alert-purple" style="margin-top: 30px;">
+        <div class="alert-title">The "Toss" List</div>
+        Throw away the plain D3, the Turmeric, the Healtheries Theanine, and the Clinicians B-Complex. They are redundant or synthetic poison.
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>
