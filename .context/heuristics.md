@@ -234,3 +234,14 @@ Related: [[case_studies]] | [[decision_journal]]
 
 ## 🛠️ Domestic Diagnostics (Session 78)
 - **Deflection via Minutiae**: When diagnosing a massive systemic failure (a 60 kWh/day leak), the user may deflect by asking about minor subjective details (like minimum room temperatures). Acknowledge the detail, but ruthlessly drag the focus back to the systemic diagnostic. The math demands an answer.
+
+## 💻 Software Architecture (Anti-Spaghetti Protocol)
+- **The Context Window Trap**: AIs write spaghetti code because it's easier for the LLM to read one massive 2000-line file than to manage 10 imported components. This is lazy and creates technical debt.
+- **Strict Modularity**: Never dump UI, state management, and API calls into the same file. Separate concerns.
+  - **State**: Logic and data live in their own isolated managers/services.
+  - **UI**: Components only render data; they do not fetch or mutate it directly.
+  - **Utils**: Pure functions (no side effects) go in a utility file.
+- **The "Blast Radius" Rule**: If a single feature breaks, the rest of the application must survive. Isolate dependencies.
+
+## 🧬 Biological Diagnostics (Session 79)
+- **Mathematical Stack Audits**: When the user asks to increase a supplement dose, DO NOT blindly advise based on generic functional medicine targets. First, mathematically audit their *current* total daily intake across all mixed supplements. Establish the physical baseline before altering the hardware patch.

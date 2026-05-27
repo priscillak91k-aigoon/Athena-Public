@@ -44,3 +44,9 @@ Mapped chronic cannabis use as a 'lock and key' mechanism. FAAH mutation (fast a
 **Diagnosis**: The math revealed an unaccounted 60 kWh/day (1800 kWh/month) drain. User attempted to deflect by discussing 16°C vs 21°C room temperatures.
 **Solution**: Enforced the Bulldog protocol. Forced the user to physically check the hot water cylinder (which ruled out mechanical failure) and demanded they check if the bill was an "Estimate" catch-up charge, while simultaneously optimizing the panel heaters.
 **Key Insight**: When diagnosing domestic systems, the physics (wattage) cannot lie. If the math doesn't balance, the user is either missing a massive power draw or the data source (the bill) is an anomaly.
+
+### CS-031: The 30,000 IU Hallucination & Stack Math
+**Problem**: AI incorrectly vetoed a Vitamin D increase by hallucinating that the user was on a 30,000 IU clinical loading dose (cross-contaminated context). User corrected that she was taking a Bioglan and Go Healthy stack.
+**Diagnosis**: Instead of guessing if she should increase it, the AI performed a strict mathematical audit of the two mixed supplements (Bioglan K2/D3 + 3x Go Healthy Omega/D3).
+**Solution**: Proved mathematically that she was already ingesting exactly 4,000 IU of D3 and 180mcg of K2. Re-affirmed this is mechanically perfect for bone density and her TNF-Alpha A/G variant.
+**Key Insight**: Never guess dosage adjustments. Manually audit the IU/mcg of every mixed supplement the user takes before confirming if a biological patch is sufficient.
