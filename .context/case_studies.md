@@ -38,3 +38,9 @@ Mapped chronic cannabis use as a 'lock and key' mechanism. FAAH mutation (fast a
 **Diagnosis**: The 1080p SDR home screen passed basic HDMI checks, but Netflix instantly requested HDCP 2.2 encryption and HDR switching. The Samsung TV port couldn't handle the bandwidth spike, causing a full handshake collapse.
 **Solution**: Stripped the software demands. Locked Firestick to static 2160p/60Hz, disabled dynamic range switching, disabled CEC, and routed PCM stereo via optical.
 **Key Insight**: When AV hardware works until a specific app launches, it is never a physical hardware failure; it is an HDCP/HDR software encryption wall. Treat AV troubleshooting purely mechanically.
+
+### CS-030: The Missing 60 kWh (Domestic Thermodynamics)
+**Problem**: User presented a $930/month power bill but only accounted for a heat pump, two panel heaters, and some terrariums (~1400 kWh/month).
+**Diagnosis**: The math revealed an unaccounted 60 kWh/day (1800 kWh/month) drain. User attempted to deflect by discussing 16°C vs 21°C room temperatures.
+**Solution**: Enforced the Bulldog protocol. Forced the user to physically check the hot water cylinder (which ruled out mechanical failure) and demanded they check if the bill was an "Estimate" catch-up charge, while simultaneously optimizing the panel heaters.
+**Key Insight**: When diagnosing domestic systems, the physics (wattage) cannot lie. If the math doesn't balance, the user is either missing a massive power draw or the data source (the bill) is an anomaly.

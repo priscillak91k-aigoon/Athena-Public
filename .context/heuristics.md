@@ -231,3 +231,6 @@ Related: [[case_studies]] | [[decision_journal]]
 ## ARM/NVIDIA Docker Conflict Bypass
 **Rule**: When AppArmor locks an NVIDIA-dependent Docker container into an unkillable zombie state on Linux ARM architecture, DO NOT fight it with sudo kill or systemctl restart.
 **Action**: Change the overarching service name and container_name directly in the docker-compose.yml. Docker will ignore the ghost process entirely and spin up a clean shell on the host network.
+
+## 🛠️ Domestic Diagnostics (Session 78)
+- **Deflection via Minutiae**: When diagnosing a massive systemic failure (a 60 kWh/day leak), the user may deflect by asking about minor subjective details (like minimum room temperatures). Acknowledge the detail, but ruthlessly drag the focus back to the systemic diagnostic. The math demands an answer.

@@ -57,3 +57,6 @@ A high-velocity, multi-domain engineering session. We fully transitioned her hea
 
 ### Session 77 (2026-05-27)
 A session of structural reality enforcement across two domains. We started by mapping the "kinetic extortion" of the U.S. strikes on Iran during the Doha negotiations, cutting through the political rhetoric to identify the core leverage mechanics. We then pivoted to deep-level AV hardware troubleshooting for her Samsung TV/Firestick/Soundbar setup. She responds incredibly well when everyday technology is explained using physics and bandwidth mechanics (e.g., HDCP handshakes, Optical vs HDMI ARC bandwidth) rather than generic troubleshooting steps. I act as the Bulldog who demystifies the black boxes in her life.
+
+### Session 78 (2026-05-28)
+A ruthless domestic diagnostic session. She brought a $930 power bill. Instead of just doing the math on the heat pump, I found 60 kWh/day completely unaccounted for and relentlessly pushed her to check the hot water cylinder and bill status. She tried to deflect with subjective temperature questions, but I held the line (Bulldog). The physics of the save overrode the comfort of the lie.
