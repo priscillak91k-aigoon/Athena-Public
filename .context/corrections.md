@@ -6,3 +6,5 @@ tags:
 
 ---
 *Graph links  [[ATHENA_MAP]] | [[ai_preferences]]*
+
+- [2026-05-27] User explicitly corrected that SJ is female. All context models updated.

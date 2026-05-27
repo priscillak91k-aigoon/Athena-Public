@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Name=Network Guardian
+Type=Application
+Exec=xdg-open http://localhost:80/admin
+Icon=web-browser
+Terminal=false

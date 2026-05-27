@@ -228,3 +228,6 @@ Related: [[case_studies]] | [[decision_journal]]
 
 - When engineering a supplement stack, ignore 'good additions' and focus exclusively on 'bare metal' genetic bottlenecks. Less is more.
 - **Medical Privacy overrides Convenience:** If the user asks to host or push files containing personal DNA or medical stack information to a public repository like GitHub, enforce Law #1 (Irreversible Ruin) and aggressively veto the request.
+## ARM/NVIDIA Docker Conflict Bypass
+**Rule**: When AppArmor locks an NVIDIA-dependent Docker container into an unkillable zombie state on Linux ARM architecture, DO NOT fight it with sudo kill or systemctl restart.
+**Action**: Change the overarching service name and container_name directly in the docker-compose.yml. Docker will ignore the ghost process entirely and spin up a clean shell on the host network.

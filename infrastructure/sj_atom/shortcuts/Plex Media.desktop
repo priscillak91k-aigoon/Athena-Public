@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Name=Plex Media
+Type=Application
+Exec=xdg-open http://localhost:32400/web
+Icon=web-browser
+Terminal=false

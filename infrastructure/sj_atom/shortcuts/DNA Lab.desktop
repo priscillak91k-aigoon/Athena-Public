@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Name=DNA Lab
+Type=Application
+Exec=xdg-open http://localhost:8888
+Icon=web-browser
+Terminal=false

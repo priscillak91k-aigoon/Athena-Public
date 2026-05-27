@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Name=Audiobookshelf
+Type=Application
+Exec=xdg-open http://localhost:13378
+Icon=web-browser
+Terminal=false

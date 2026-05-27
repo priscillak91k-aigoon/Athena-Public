@@ -15,3 +15,7 @@
 
 ## 2026-05-23: Sarah's Protocol
 Engineered Sarah's biological architecture. Deconstructed her MTHFR, GSTP1, GAD1, and 9p21 mutations. Built a strict bypass protocol using NZ-available supplements. Reframed her cannabis use as a necessary mechanical patch given her FAAH/CNR1 genetics.
+### 2026-05-27: Hybrid AI Bare-Metal Pivot (SJ Atom)
+**Context**: Deploying 5 sovereign container stacks on a Gigabyte AI Top ARM Workstation. The NVIDIA Container Toolkit caused fatal kernel-level AppArmor locks on all containers requesting GPU capabilities.
+**Decision**: Ripped the AI Inference Engine (Ollama) out of Docker and installed it directly to bare-metal Ubuntu. Removed GPU requests from Plex, Audio Factory, and Jupyter.
+**Rationale**: Bare-metal AI unlocks 100% un-bottlenecked access to the 128GB GPU. The massive 20-core ARM CPU is more than capable of brute-forcing media transcoding and audio generation without needing the GPU hooks that were crashing Docker.

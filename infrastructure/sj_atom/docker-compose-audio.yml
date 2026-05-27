@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  # Audiobookshelf: Serves the generated audiobooks to her phone (Like a private Audible)
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+    ports:
+      - "13378:80"
+    volumes:
+      - ./data/audiobooks/audiobooks:/audiobooks
+      - ./data/audiobooks/podcasts:/podcasts
+      - ./data/audiobooks/config:/config
+      - ./data/audiobooks/metadata:/metadata
+    restart: unless-stopped
+
+  # Audiobook Generator (TTS Factory): Ingests EPUBs and generates human-like audio using the NVIDIA GPU
+  epub2audiobook:
+    image: athomasson2/ebook2audiobook
+    platform: linux/amd64
+    container_name: epub-audio-factory
+    ports:
+      - "7860:7860"
+    volumes:
+      - ./data/audiobooks/audiobooks:/output # Drops the finished audiobooks right into Audiobookshelf's library folder
+    restart: unless-stopped

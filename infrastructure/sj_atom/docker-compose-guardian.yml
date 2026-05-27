@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  # Ad-blocking and DNS routing
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80/tcp"
+    environment:
+      TZ: 'Pacific/Auckland'
+      WEBPASSWORD: 'admin' # Change this immediately on deployment
+    volumes:
+      - './data/pihole/etc-pihole:/etc/pihole'
+      - './data/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
+    restart: unless-stopped
+
+  # Secure Remote Tunnel
+  tailscale:
+    container_name: tailscale
+    image: tailscale/tailscale:latest
+    network_mode: host
+    volumes:
+      - ./data/tailscale:/var/lib/tailscale
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - net_admin
+      - sys_module
+    restart: unless-stopped
