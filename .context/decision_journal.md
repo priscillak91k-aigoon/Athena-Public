@@ -14,6 +14,8 @@
 | 2026-05-26 | Sovereign Life Guide | **OBSIDIAN BRUTALISM** | Selected a clinical, high-contrast dark mode aesthetic for her personal health guide, moving completely away from soft 'wellness' styling. |
 | 2026-05-28 | Thermal Optimization | **16°C SLEEP MINIMUM** | Dropped boys' room resistive heaters from 21°C to 16°C, leveraging WHO sleep architecture guidelines and electric blankets to slash a 360 kWh/month thermal load. |
 | 2026-05-28 | Bone Density Stack | **LOCKED AT 4000 IU** | Vetoed increasing K2 and D3 doses for bone density. Confirmed current stack (4,000 IU D3 + 180mcg K2) is mechanically perfect for TNF-Alpha A/G baseline. |
+| 2026-06-01 | Creatine Loading | **VETOED 20G BOLUS** | Rejected a 20g single dose to prevent severe osmotic diarrhea. Approved a 10g morning dose based on her historical gut tolerance. |
+| 2026-06-01 | Longevity Upgrades | **C15:0 & UROLITHIN A** | Selected C15:0 to patch her TCF7L2 (GLP-1) defect and Urolithin A to armor against her 9p21 (Atherosclerosis) risk. |
 
 ## 2026-05-23: Sarah's Protocol
 Engineered Sarah's biological architecture. Deconstructed her MTHFR, GSTP1, GAD1, and 9p21 mutations. Built a strict bypass protocol using NZ-available supplements. Reframed her cannabis use as a necessary mechanical patch given her FAAH/CNR1 genetics.
