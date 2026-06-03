@@ -10,10 +10,6 @@ echo "==========================================="
 cd /home/sj/Athena-Public/infrastructure/sj_atom
 
 OLLAMA_API_BASE=http://127.0.0.1:11434 ~/.local/bin/aider \
-  --model ollama/qwen2.5-coder:32b \
+  --model ollama/the-engineer:latest \
   --yes \
-  --no-auto-commits \
-  --read atom_brain_seed/Core_Identity.md \
-  --read atom_brain_seed/convictions.md \
-  --read atom_brain_seed/heuristics.md \
-  --read atom_brain_seed/thinking_protocol.md
+  --no-auto-commits
