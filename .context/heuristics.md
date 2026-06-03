@@ -245,3 +245,6 @@ Related: [[case_studies]] | [[decision_journal]]
 
 ## 🧬 Biological Diagnostics (Session 79)
 - **Mathematical Stack Audits**: When the user asks to increase a supplement dose, DO NOT blindly advise based on generic functional medicine targets. First, mathematically audit their *current* total daily intake across all mixed supplements. Establish the physical baseline before altering the hardware patch.
+
+## 🛠️ Medical & Protocol Heuristics (Session 81)
+- **Budget vs Biology**: Budget optimization never compromises hard-coded genetic bottlenecks. When forced to cut costs, amputate luxury items and find raw whole-food bypasses for non-essential supplements (e.g., kiwifruit for Zyactinase, sardines for Omega-3s). Protect the clinical non-negotiables (MTHFR, 9p21) at all costs.

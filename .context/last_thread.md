@@ -1,1 +1,1 @@
-Engineered a massive biological update (Fasting, Creatine, C15:0, Urolithin A) mapped precisely to her genetics, and locked down the structural lore of The OA.
+Ruthless budget optimization for the Munro Caravan: transitioned to a barebones 4-item genetic supplement stack (The Caravan Stack) and listed the Atom server for sale.

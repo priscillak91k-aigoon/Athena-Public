@@ -20,6 +20,7 @@
   - Sleep is priority #1. 2h nap compensates for 6h night sleep.
   - No iron supplements. No NAC+Selenium without caution.
   - Can sustain 1hr+ deep focus on CIA Gateway binaural beats (unexpected dopamine/focus alignment).
+- **Cycle Tracking**: Anchor -> Day 1 was ~May 23, 2026. (Follicular: Days 1-14. Luteal: Days 15-28).
 - **Biometrics**: High CRP/Platelets/Ferritin spike (Session 59) resolved as localized pelvic cyst inflammation.
 
 ## 🏡 Household & Logistics
@@ -29,7 +30,7 @@
 
 ## 🛠️ Active Projects
 - **Life Hub**: Retro dashboard for routine and life design.
-- **Munro Caravan**: 1977 caravan move logistics (plywood order pending).
+- **Munro Caravan**: 1977 caravan move logistics (plywood order pending) — currently prioritizing debt repayment via tech downsizing and supplement stack budget optimization.
 - **Bug Bounty**: HackerOne (AWS credential leaks/GitHub secret scanning).
 - **KOTOR Pixel**: Phaser.js RPG.
 - **Moltbook**: AI Social Network registration.

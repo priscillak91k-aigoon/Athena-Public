@@ -4,9 +4,9 @@ tags:
 ---
 # Supplement Protocol — Master Reference (Personalized)
 
-> **Last Updated**: 2026-05-16 (v5.2)
-> **Previous Version**: 2026-05-16 (v5.1)
-> **Source**: DNA Exhaustive Analysis (v3.0) + Blood Markers + Peter Attia / Examine.com / AVADEC Trial
+> **Last Updated**: 2026-06-03 (v6.0 - Caravan Stack Edition)
+> **Previous Version**: 2026-05-16 (v5.2)
+> **Source**: DNA Exhaustive Analysis (v3.0) + Blood Markers + Budget Optimization
 > **Review Cycle**: Every 6 months or after new blood work
 
 ---
@@ -39,172 +39,84 @@ tags:
 | Field | Detail |
 |-------|--------|
 | **Your Dose** | **1200mg/day** (2 capsules) — take both 30 min before breakfast |
-| **Why Not Label (600mg)** | Your CRP is 9 mg/L (3× the upper normal limit). Meta-analyses show ≥1200mg/day NAC is required to meaningfully lower CRP (NIH, 2024). 600mg maintains glutathione but does NOT move CRP. |
+| **Why Not Label (600mg)** | Your CRP is 9 mg/L. Meta-analyses show ≥1200mg/day NAC is required to meaningfully lower CRP. 600mg maintains glutathione but does NOT move CRP. |
 | **Genetic Target** | GSTP1 A/G (reduced glutathione), TNF-Alpha A/G (high inflammation) |
-| **Evidence** | Doses of 1200mg/day significantly reduced hs-CRP in multiple RCTs (hemodialysis patients, COPD, STEMI). Safe up to 2000mg/day orally. (Examine.com; NIH PubMed) |
-| **⚠️ Warning** | Do NOT use NAC blends containing Selenium — your TSH (0.37) is already borderline low. Excess selenium suppresses thyroid further. |
-| **Reorder** | Solgar NAC 600mg × 60 — $49.99 at CW NZ (confirmed selenium-free ✅) |
-| **⚠️ Status (v4.0)** | **On order** — arriving soon. Continue as normal once delivered. Priority #1 in the stack. |
-
-### 2. Phloe Bowel & Gut Health — 2 capsules
-
-| Field | Detail |
-|-------|--------|
-| **Your Dose** | **2 capsules/day** directly before breakfast |
-| **Why** | Standard adult dose per manufacturer (575mg Zyactinase® kiwifruit extract per cap). Gut barrier integrity directly modulates systemic inflammation. With CRP at 9, maintaining gut lining prevents LPS (bacterial endotoxin) translocation which amplifies your TNF-Alpha A/G inflammatory cascade. Can increase to 4 caps/day if bowel regularity is still an issue. |
-| **Evidence** | Clinical trials on Zyactinase® show improved bowel regularity and reduced bloating at 2 caps/day (Phloe.co.nz; Kenpharm). |
-| **Reorder** | Phloe Bowel Health 180 Capsules — $34.99 at CW NZ (best value, 3-month supply) |
+| **⚠️ Warning** | Do NOT use NAC blends containing Selenium — your TSH (0.37) is already borderline low. |
 
 ---
 
 ## 🍳 AM — With Breakfast
 
-### 3. GO Healthy Triple Strength Fish Oil + D3 — 3 capsules/day [REPLACES STANDARD]
-
-| Field | Detail |
-|-------|--------|
-| **Your Dose** | **3 capsules/day** (1 Breakfast, 1 Lunch, 1 Dinner) |
-| **Per Cap** | EPA 540mg + DHA 360mg = 900mg Omega-3 + 1,000 IU D3 |
-| **Daily Total** | **2,700mg Omega-3 + 3,000 IU D3** |
-| **Why 3 Caps** | This is the ultimate efficiency hack. 3 capsules hit your full 2700mg Omega-3 target while contributing 3,000 IU toward your 4,000 IU Vitamin D3 goal. This reduces your fish oil capsule load by 66% (3 caps vs 9 caps). |
-| **Genetic Target** | 9p21 G/G (heart), TNF-Alpha A/G (inflammation), CRP 9 mg/L |
-| **Evidence** | Peter Attia protocol (~2.5g EPA + 1g DHA). |
-| **⚠️ Status (v5.2)** | **RESTORED & OPTIMIZED**. Combined with Bioglan K2+D3 to hit the perfect 4,000 IU D3 / 180mcg K2 balance. |
-
-### 4. Bioglan Vitamin K2 + D3 — 1 capsule/day [REPLACES FORCE FACTOR]
+### 2. Bioglan Vitamin K2 + D3 — 1 capsule/day
 
 | Field | Detail |
 |-------|--------|
 | **Your Dose** | **1 capsule/day** with breakfast |
 | **Per Cap** | Vitamin K2 MK-7 180mcg + Vitamin D3 1,000 IU |
-| **Daily D3 Sum** | 1,000 IU (here) + 3,000 IU (Fish Oil) = **4,000 IU Total** |
-| **Why This** | Hits the perfect **180mcg K2** target while completing the 4,000 IU D3 maintenance dose. |
+| **Why This** | Hits the exact **180mcg K2** clinical target. K2 MK-7 is virtually non-existent in the standard Western diet. It is the only thing directing calcium away from your arteries. |
 | **Genetic Target** | 9p21 G/G, Ferritin 205 (vascular risk) |
-| **⚠️ Status (v5.2)** | **OPTIMIZED**. Perfect synergy with Triple Strength Fish Oil. |
 
-### 5. Clinicians B Complex Active — 1 capsule [REPLACES GO HEALTHY]
+### 3. Clinicians B Complex Active — 1 capsule (Mon/Wed/Fri)
 
 | Field | Detail |
 |-------|--------|
 | **Your Dose** | **1 capsule/day (Mon/Wed/Fri)** with breakfast |
-| **Why This** | Uses **Quatrefolic® (L-5-MTHF)** and **Methylcobalamin**. This is perfectly compliant with your MTHFR A/G (60% methylation) limitation. Bypasses the need for liver conversion of synthetic folic acid. |
-| **Pulse Dosing** | Pulsed 3x/week to balance homocysteine clearing against the theoretical risk of fueling cyst proliferation (as noted in Session 47). |
-| **Genetic Target** | MTHFR A/G (60% methylation), COMT G/G (Warrior — fast dopamine clearance), PEMT (reduced choline synthesis) |
-| **⚠️ Status (v5.1)** | **NEW**. Maintenance of MTHFR-safe methylation bypass. |
-
-### 6. Bioglan L-Theanine 400mg — 1 capsule
-
-| Field | Detail |
-|-------|--------|
-| **Your Dose** | **400mg/day** (1 capsule) with breakfast, alongside B-Complex |
-| **Why** | COMT G/G (Warrior) = fast dopamine clearance. L-Theanine promotes alpha-wave activity and buffers against the "wired but empty" neurochemical state of fast COMT. 400mg is a strong clinical dose — double the minimum effective. |
-| **Genetic Target** | COMT G/G (Warrior — fast dopamine clearance) |
-| **Reorder** | Bioglan L-Theanine 400mg × 60 — $29.99 at CW NZ |
-
-### 7. GO Healthy Turmeric 30,000+ — 2 capsules/day [REPLACES BIOGLAN]
-
-| Field | Detail |
-|-------|--------|
-| **Your Dose** | **2 capsules/day** with breakfast (with fat) |
-| **Why 2 Caps** | Each capsule contains ~814mg curcuminoids. Taking **2 capsules (1628mg total)** matches and exceeds the high-dose Bioglan anti-inflammatory load required to address your CRP of 9 mg/L. |
-| **Genetic Target** | TNF-Alpha A/G (inflammation), CRP 9 mg/L, PNPLA3 C/G (fatty liver risk) |
-| **Evidence** | Meta-analysis (Sahebkar, 2014): Curcumin significantly reduces CRP at doses ≥500mg curcuminoids/day. |
-| **⚠️ Status (v5.1)** | **NEW**. Standardizing to GO Healthy range. |
-
-### 8. Healthy Care Blood Sugar Support with Berberine — 1 capsule
-
-| Field | Detail |
-|-------|--------|
-| **Your Dose** | **1 capsule/day** with breakfast |
-| **What It Actually Contains** | Multi-herb blend: Indian Barberry extract 50mg (equiv. 5g dry root), Fenugreek 60mg, Gymnema 60mg, Bitter Melon 50mg, Chromium 10mcg, Biotin 10mcg, B6 116mcg. |
-| **Genetic Target** | TCF7L2 (rs12255372 T/G + rs7903146 T/C) — high T2D risk, impaired GLP-1 insulin secretion |
-| **⚠️ Limitation** | This is NOT pure berberine HCl. Clinical RCTs showing Metformin-equivalent HbA1c reduction used 500-1500mg berberine HCl daily. This product contains only 50mg Indian barberry extract — sub-clinical for direct AMPK/GLP-1 activation. The supporting herbs (gymnema, fenugreek, bitter melon) have modest evidence for blood sugar support but are not equivalent to targeted berberine therapy. |
-| **Verdict** | 🟡 **Use it** — it has value as a general blood sugar support blend. But it's the weakest link in the stack for your specific TCF7L2 mechanism. |
-| **Future Upgrade** | When this bottle runs out, switch to a standardized **Berberine HCl 500mg** product (97%+ berberine from *Berberis aristata*). Take 2/day = 1000mg. This would directly target your TCF7L2 GLP-1 pathway. |
-| **⚠️ Interactions** | Berberine (and barberry extracts) affect CYP3A4/CYP2D6 liver enzymes. Do NOT combine with statins, blood thinners, immunosuppressants, or grapefruit. You are currently clear of all interactions. |
-| **⚠️ Contains** | Gluten and sulfites (per manufacturer). |
+| **Why This** | Uses **Quatrefolic® (L-5-MTHF)** and **Methylcobalamin**. Perfectly compliant with your MTHFR A/G (60% methylation) limitation. Bypasses the need for liver conversion of synthetic folic acid. |
+| **Genetic Target** | MTHFR A/G (60% methylation), COMT G/G, PEMT |
 
 ---
 
 ## 🌙 PM — Before Bed
 
-### 9. Doctor's Best High Absorption Magnesium Lysinate Glycinate — 400mg elemental
+### 4. Doctor's Best High Absorption Magnesium Lysinate Glycinate — 400mg elemental
 
 | Field | Detail |
 |-------|--------|
 | **Your Dose** | **400mg elemental magnesium** (2 capsules — each cap = 200mg elemental) |
 | **When** | 30-60 minutes before bed |
-| **Why Not Lower** | Your SIRT1 C/C = disrupted circadian aging. Protecting your sleep architecture is genetically critical. 300mg is maintenance; 400mg is the upper evidence-based therapeutic dose for sleep quality improvement (meta-analyses show 300-400mg elemental Mg improves sleep latency and quality). |
-| **Why Doctor's Best** | 100% chelated (Albion TRAACS process). Better bioavailability and less gut irritation than Swisse Ultiboost. 2 caps hits exactly 400mg elemental — vs 3 caps needed with Swisse. |
-| **Genetic Target** | SIRT1 C/C (circadian aging), BDNF T/C (lower brain plasticity under stress — sleep is repair time) |
-| **Evidence** | Systematic reviews (2024): 300-400mg elemental Mg glycinate significantly improves sleep onset latency and sleep quality. |
+| **Why** | Your SIRT1 C/C = disrupted circadian aging. Protecting your sleep architecture is genetically critical. 400mg is the upper evidence-based therapeutic dose for sleep quality improvement. New Zealand soils are depleted of magnesium, making this difficult to get purely from food. |
+| **Genetic Target** | SIRT1 C/C (circadian aging), BDNF T/C (sleep is repair time) |
 
 ---
 
-## ⏰ Personalized Daily Schedule (v5.0)
+## 🍽️ Dietary Substitutions (The Caravan Stack)
 
-| Time | What | Caps | Notes |
-|------|------|------|-------|
-| **~6:30 AM** (empty stomach) | Life Extension NAC 600mg × 2 | 2 | 30 min before food |
-| | Phloe × 2 | 2 | Before food — gut barrier |
-| **~7:00 AM** (with breakfast + EVOO) | **Triple Strength Omega+D3** | 1 | 900mg Omega / 1000IU D3 |
-| | Bioglan K2+D3 | 1 | Hits 180mcg K2 target |
-| | Clinicians B Complex Active | 1 | Methylated (Mon/Wed/Fri) |
-| | Bioglan L-Theanine 400mg | 1 | Buffer fast COMT |
-| | GO Healthy Turmeric 30k × 2 | 2 | High-dose anti-inflammatory |
-| **~12:30 PM** (lunch pre-carb + meal) | Healthy Care Berberine | 1 | 15 mins *prior* to meal for GLP-1 |
-| | **Triple Strength Omega+D3** | 1 | Split dosing |
-| **~6:30 PM** (with dinner + EVOO) | **Triple Strength Omega+D3** | 1 | Total 2700mg Omega / 4000IU D3 hit |
-| **~9:00 PM** (before bed) | Doctor's Best Magnesium × 2 | 2 | 400mg elemental target |
-| | | **15** | **Total daily capsules** |
+To optimize budget, the following supplements were CUT and replaced with whole foods that target the exact same biological pathways:
+
+| Cut Supplement | Replaced With | Why it Works |
+|----------------|---------------|--------------|
+| **Phloe Bowel Health** | **2x Green Kiwifruit daily** | Phloe's active ingredient (Zyactinase) is literally just green kiwifruit extract. |
+| **GO Healthy Triple Strength Fish Oil** | **Canned Sardines or Mackerel (3-4x week)** | $1.50 NZD can contains ~1.5g of pure EPA/DHA. Radically cheaper than premium capsules. |
+| **GO Healthy Turmeric 30,000+** | **Raw Turmeric Powder + Black Pepper + Fat** | Turmeric supplements just package curcumin with piperine. Add bulk turmeric powder to eggs/rice. |
+| **Healthy Care Blood Sugar Support** | **Apple Cider Vinegar + 10-min Post-Meal Walk** | Activates the same AMPK pathway as Berberine for your TCF7L2 genetic risk, for free. |
+| **Bioglan L-Theanine 400mg** | **Decaf Green Tea + Routine** | A nice-to-have buffer for fast COMT, but financially expendable. |
+
+---
+
+## ⏰ Personalized Daily Schedule (v6.0)
+
+| Time | What | Caps |
+|------|------|------|
+| **~6:30 AM** (empty stomach) | Solgar NAC 600mg × 2 | 2 |
+| **~7:00 AM** (with breakfast) | Bioglan K2+D3 | 1 |
+| | Clinicians B Complex Active | 1 (M/W/F) |
+| **~9:00 PM** (before bed) | Doctor's Best Magnesium × 2 | 2 |
+| | | **5-6 total** |
 
 ---
 
 ## ⚠️ Critical Interactions & Warnings
 
-1. **NAC + Selenium**: NEVER combine. Your TSH (0.37) is borderline low — selenium suppresses thyroid further.
-2. **Folic Acid**: AVOID synthetic folic acid in B-complex supplements. Your MTHFR A/G can't efficiently convert it. Use only L-Methylfolate / 5-MTHF / Quatrefolic forms.
-3. **Vitamin D Monitoring**: You are taking 4,000 IU of D3 daily (solely from Force Factor). This is an optimal baseline. Get a 25(OH)D blood test during your next regular checkup to ensure you stay in the 50-80 ng/mL range.
-4. **K2 + D3 Synergy**: These MUST be taken together. D3 mobilizes calcium; K2 directs it to bones, not arteries. Never take high-dose D3 without K2.
-5. **Caffeine Hard Cutoff**: 10:00 AM (CYP1A2 A/C slow metabolizer). A 2 PM coffee = 50% still active at midnight.
-6. **Iron**: Do NOT supplement iron. Your Ferritin is 205 (high) and you carry HFE H63D. Donate blood annually.
-7. **Curcumin**: Take with fat-containing food. BioPerine® is included in the Bioglan product for bioavailability.
-8. **Fish Oil Split**: Split dosing (AM + PM) improves absorption and maintains steady-state omega-3 levels vs. taking all 3 at once.
-9. **Berberine/Barberry + CYP enzymes**: Berberine-containing products inhibit CYP3A4 and CYP2D6. If you are ever prescribed statins, blood thinners, or immunosuppressants, STOP the Healthy Care product and consult your doctor.
-10. **Healthy Care product contains gluten and sulfites** — monitor for any GI sensitivity.
+1. **NAC + Selenium**: NEVER combine. Your TSH (0.37) is borderline low.
+2. **Folic Acid**: AVOID synthetic folic acid in fortified foods and supplements (MTHFR A/G limitation).
+3. **K2 + D3 Synergy**: Must be taken together with fat for absorption.
+4. **Iron**: Do NOT supplement iron. Your Ferritin is 205 (high) and you carry HFE H63D. Donate blood annually.
 
 ---
 
-## 📚 Sources
+## 🔄 Changelog (v5.2 → v6.0 Caravan Stack)
 
-- Attia, P. — Omega-3 protocol: ~2.5g EPA + 1g DHA/day, Omega-3 Index target 12%
-- AVADEC Trial (2024, JACC) — K2 MK-7 720mcg slowed CAC progression
-- Knapen et al. (2015, Thromb Haemost) — K2 MK-7 180mcg improved vascular elasticity over 3 years
-- NIH PubMed meta-analyses — NAC ≥1200mg/day reduces CRP
-- Examine.com — NAC dosing: 600-1800mg/day, safe up to 2000mg
-- Sahebkar (2014, meta-analysis) — Curcumin ≥500mg curcuminoids/day reduces CRP
-- Phloe.co.nz / Kenpharm — Zyactinase® 2 caps/day adult dose
-- Systematic reviews (2024) — Mg glycinate 300-400mg elemental for sleep quality
-- NIH / MTHFR Support — UMFA risks for MTHFR heterozygotes at >200mcg synthetic folic acid
-- Berberine RCTs — HbA1c reduction comparable to Metformin at 1000-1500mg/day (NIH PubMed)
-- Bioglan Curcumin Double Strength — 1200mg curcuminoids + 12mg BioPerine® per tablet (manufacturer)
-- Force Factor D3+K2 — 1000 IU D3 + 45mcg K2 per capsule (manufacturer)
-- Go Healthy PRO EPA/DHA Advanced — 540mg EPA + 405mg DHA per capsule (manufacturer)
-
----
-
-## 🔄 Changelog (v4 → v5)
-
-| # | Change | Old | New | Reason |
-|---|--------|-----|-----|--------|
-| 1 | **Fish Oil product** | Go Healthy Advanced (540/360) × 3 | Go Healthy Standard (180/120) × 9 | Eliminated D3 bundle from fish oil to prevent fear of D3 toxicity while maintaining 2700mg Omega-3 target. |
-| 2 | **Force Factor D3+K2** | 4 caps intended, user drifted to 2 | Enforced 4 caps/day (2 AM, 2 PM) | Must hit 180mcg K2 minimum for 9p21 heart risk. D3 tops out at safe 4,000 IU. |
-| 3 | **B-Complex** | Using up Good Health (synthetic folic acid) | GO Healthy PRO Activated B Complex | Removed synthetic folic acid immediately due to MTHFR A/G limitation. Switched to L-5-MTHF. |
-| 4 | **Phloe Timing** | With Breakfast | Empty Stomach (with NAC) | Allows enzymes to access gut lining before food bulk. |
-| 5 | **Berberine Timing** | With breakfast | 15 min pre-carb meal (lunch) | Maximum AMPK/GLP-1 activation for TCF7L2 genetic risk. |
-
-## 🔄 Changelog (v3 → v4)
-*Archived. Clarified previous label read errors regarding Fish Oil D3 content.*
-
----
-*Graph links  [[ATHENA_MAP]] | [[about_priscilla]]*
+| Change | Reason |
+|--------|--------|
+| **CUT 5 Supplements** | Removed Phloe, Fish Oil, Turmeric, Berberine, and L-Theanine to save massive monthly recurring costs while paying off the caravan. Replaced with whole food equivalents (kiwifruit, sardines, raw turmeric powder, ACV). |
+| **KEPT 4 Non-Negotiables** | Retained NAC, K2+D3, B-Complex, and Magnesium as they address hard biological bottlenecks (MTHFR, 9p21, SIRT1) that are extremely difficult to manage purely with diet. |

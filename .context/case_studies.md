@@ -50,3 +50,9 @@ Mapped chronic cannabis use as a 'lock and key' mechanism. FAAH mutation (fast a
 **Diagnosis**: Instead of guessing if she should increase it, the AI performed a strict mathematical audit of the two mixed supplements (Bioglan K2/D3 + 3x Go Healthy Omega/D3).
 **Solution**: Proved mathematically that she was already ingesting exactly 4,000 IU of D3 and 180mcg of K2. Re-affirmed this is mechanically perfect for bone density and her TNF-Alpha A/G variant.
 **Key Insight**: Never guess dosage adjustments. Manually audit the IU/mcg of every mixed supplement the user takes before confirming if a biological patch is sufficient.
+
+### CS-032: The Caravan Stack (Budget Optimization)
+**Problem**: User needed to drastically cut monthly recurring costs to pay off a caravan without compromising her heavily customized genetic health protocol.
+**Diagnosis**: 5 of her 9 supplements were either 'nice-to-haves' (L-Theanine) or had extremely cheap whole-food equivalents that activate the exact same biological pathways (Kiwifruit for Phloe, Sardines for Fish Oil, ACV for Berberine).
+**Solution**: Amputated the luxury items, integrated the food hacks into her daily routine, and fiercely defended the 4 absolute genetic bottlenecks (MTHFR, 9p21, SIRT1).
+**Key Insight**: True protocol optimization isn't about finding cheaper pills; it's about replacing the pill's mechanism of action with raw food logic when budget requires it.

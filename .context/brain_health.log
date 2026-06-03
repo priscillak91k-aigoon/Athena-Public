@@ -1116,3 +1116,81 @@
 ║ ⚠️ [Instinct Primer] Stale: generated 26h ago
 ║ ✅ [Boot Mode] Mode: emotional_support
 ╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟡 WARNINGS
+║ Time:   2026-05-27 15:24:07
+╠══════════════════════════════╣
+║ ⚠️ [Chemical State] Stale: last updated 30h ago
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ✅ [Heuristics] 233 lines, 134 rules, no duplicates
+║ ⚠️ [Instinct Primer] Stale: generated 30h ago
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟡 WARNINGS
+║ Time:   2026-05-28 07:31:13
+╠══════════════════════════════╣
+║ ⚠️ [Chemical State] Stale: last updated 46h ago
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ✅ [Heuristics] 233 lines, 134 rules, no duplicates
+║ ⚠️ [Instinct Primer] Stale: generated 46h ago
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟡 WARNINGS
+║ Time:   2026-05-28 09:06:47
+╠══════════════════════════════╣
+║ ⚠️ [Chemical State] Stale: last updated 48h ago
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ✅ [Heuristics] 236 lines, 135 rules, no duplicates
+║ ⚠️ [Instinct Primer] Stale: generated 48h ago
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟡 WARNINGS
+║ Time:   2026-05-31 18:39:56
+╠══════════════════════════════╣
+║ ⚠️ [Chemical State] Stale: last updated 129h ago
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ✅ [Heuristics] 247 lines, 142 rules, no duplicates
+║ ⚠️ [Instinct Primer] Stale: generated 129h ago
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟡 WARNINGS
+║ Time:   2026-06-03 11:20:42
+╠══════════════════════════════╣
+║ ⚠️ [Chemical State] Stale: last updated 194h ago
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ✅ [Heuristics] 247 lines, 142 rules, no duplicates
+║ ⚠️ [Instinct Primer] Stale: generated 194h ago
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟢 HEALTHY
+║ Time:   2026-06-03 11:21:23
+╠══════════════════════════════╣
+║ ✅ [Chemical State] 12 chemicals, all within bounds
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ✅ [Heuristics] 247 lines, 142 rules, no duplicates
+║ ✅ [Instinct Primer] Present and fresh
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝

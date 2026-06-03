@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biological Audit: Fasting & mTOR | Athena</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #0a0a0c;
+            --bg-surface: #121418;
+            --bg-surface-hover: #1a1d24;
+            --accent-primary: #ff3366; /* Aggressive red/pink for brutalism */
+            --accent-secondary: #00e5ff;
+            --text-main: #e0e2e5;
+            --text-muted: #8a8f98;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            
+            --status-green: #00e676;
+            --status-red: #ff1744;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2rem;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--accent-primary);
+            padding-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-primary);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        .section-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-secondary);
+        }
+
+        .section-card.critical {
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: var(--accent-secondary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+            background: rgba(255,255,255,0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--text-main);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .gene-match {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(0, 230, 118, 0.05);
+            border: 1px solid rgba(0, 230, 118, 0.2);
+            margin-bottom: 0.5rem;
+        }
+        
+        .gene-match.warning {
+            background: rgba(255, 23, 68, 0.05);
+            border: 1px solid rgba(255, 23, 68, 0.2);
+        }
+
+        .gene-name {
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .tag {
+            padding: 0.2rem 0.6rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 2px;
+        }
+
+        .tag.good { background: var(--status-green); color: #000; }
+        .tag.bad { background: var(--status-red); color: #fff; }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="subtitle">ULTRATHINK V3.0 | ADVERSARIAL SYNTHESIS</div>
+            <h1>Fasting & Oncology Audit</h1>
+            <p style="color: var(--text-main);">Target Node: Priscilla (COMT G/G, TNF-α A/G, TCF7L2, 9p21)</p>
+        </header>
+
+        <div class="section-card">
+            <h2>The Base Mechanics: mTOR, AMPK, & IGF-1</h2>
+            <p>Cancer is not a mystical disease; it is a metabolic engineering failure. Cells forget how to die, and they hijack your fuel lines to replicate indefinitely. Fasting manipulates three specific metabolic levers to force a hostile environment for tumor growth.</p>
+            
+            <div class="grid-2">
+                <div>
+                    <h3>1. IGF-1 (The Growth Signal)</h3>
+                    <p>Insulin-like Growth Factor 1 tells cells to multiply. High IGF-1 is heavily correlated with breast, prostate, and colon cancers. <strong>Fasting tanks IGF-1 levels.</strong> Without this signal, pre-cancerous cells stall out and fail to replicate.</p>
+                </div>
+                <div>
+                    <h3>2. mTOR (The Engine)</h3>
+                    <p>Mammalian Target of Rapamycin is the cellular engine for protein synthesis and growth. Overactive mTOR = cancer. Fasting shuts mTOR down, shifting the cell from "build mode" to "repair mode."</p>
+                </div>
+                <div>
+                    <h3>3. AMPK (The Cleanup Crew)</h3>
+                    <p>AMP-activated Protein Kinase is the body's low-fuel sensor. Fasting activates AMPK, which triggers <strong>Autophagy</strong> (the cell eats its own damaged proteins and organelles). This clears out the junk that causes DNA mutations.</p>
+                </div>
+                <div>
+                    <h3>4. Differential Stress Resistance</h3>
+                    <p>Healthy cells adapt to fasting by hunkering down and protecting their DNA. Cancer cells, driven by broken mutations, cannot adapt. They starve and undergo apoptosis (cell suicide) while healthy cells survive.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card critical">
+            <h2>The Cilla Genetic Overlay</h2>
+            <p>Generic fasting advice is irrelevant. Here is exactly how fasting maps to your specific biological architecture (DNA + Bloods).</p>
+            
+            <div class="gene-match">
+                <div>
+                    <div class="gene-name">TCF7L2 (GLP-1 Impaired)</div>
+                    <p style="margin:0; font-size: 0.9rem;">Your insulin curve is structurally flawed.</p>
+                </div>
+                <div class="tag good">PERFECT SYNERGY</div>
+            </div>
+            <p class="mono" style="margin-bottom: 1.5rem;">Fasting is the most aggressive non-pharmacological way to force insulin sensitivity. By shrinking your eating window, you minimize the hours your broken GLP-1 system has to struggle. You run on ketones instead.</p>
+
+            <div class="gene-match">
+                <div>
+                    <div class="gene-name">TNF-Alpha A/G & CRP 9</div>
+                    <p style="margin:0; font-size: 0.9rem;">Prone to severe localized inflammatory spikes.</p>
+                </div>
+                <div class="tag good">PERFECT SYNERGY</div>
+            </div>
+            <p class="mono" style="margin-bottom: 1.5rem;">Fasting radically downregulates systemic inflammation. The cytokine storm driven by TNF-Alpha requires fuel. Fasting cuts the fuel line, reducing baseline CRP levels.</p>
+
+            <div class="gene-match">
+                <div>
+                    <div class="gene-name">COMT G/G (Warrior)</div>
+                    <p style="margin:0; font-size: 0.9rem;">Fast dopamine clearance, high stress tolerance.</p>
+                </div>
+                <div class="tag good">HIGH LEVERAGE</div>
+            </div>
+            <p class="mono" style="margin-bottom: 1.5rem;">Fasting spikes cortisol, adrenaline, and dopamine. For a Worrier (COMT A/A), this causes crippling anxiety. For you (Warrior), this will act like a neurological stimulant. Expect hyper-focus and a massive mood lift while fasting.</p>
+            
+            <div class="gene-match">
+                <div>
+                    <div class="gene-name">9p21 G/G (CAD Risk)</div>
+                    <p style="margin:0; font-size: 0.9rem;">Atherosclerosis independent of cholesterol.</p>
+                </div>
+                <div class="tag good">PROTECTIVE</div>
+            </div>
+            <p class="mono" style="margin-bottom: 1.5rem;">9p21 plaque is driven by vascular smooth muscle proliferation. By suppressing mTOR and IGF-1 via fasting, you inhibit the exact cellular proliferation that clogs your arteries.</p>
+        </div>
+
+        <div class="section-card critical" style="border-color: var(--status-red);">
+            <h2 style="color: var(--status-red);">Red Team Vetoes (The Catch)</h2>
+            <p>I ran an adversarial check on incorporating this into your life. I am vetoing prolonged fasting (24-48 hours) for three structural reasons:</p>
+            
+            <ul style="color: var(--text-muted); margin-left: 1.5rem;">
+                <li style="margin-bottom: 0.5rem;"><strong>Sleep Architecture:</strong> Your #1 priority is sleep (2h nap compensation). Prolonged fasting elevates nighttime cortisol, which will destroy your deep sleep phases.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Hormonal Baseline:</strong> Female physiology treats severe caloric restriction as an existential threat, downregulating thyroid function and GnRH. We want longevity, not a metabolic crash.</li>
+                <li><strong>Shift Work:</strong> Managing Sunday 11-5 shifts while deep-fasted introduces unnecessary cognitive risk.</li>
+            </ul>
+        </div>
+
+        <div class="section-card">
+            <h2>The Protocol (Time-Restricted Feeding)</h2>
+            <p><strong>Verdict: YES. You must include this in your lifestyle upgrade.</strong> But we do it precisely. We do not do multi-day water fasts. We do a strict <strong>16:8 Time-Restricted Feeding (TRF)</strong> protocol.</p>
+            
+            <p><strong>The Execution:</strong></p>
+            <ul style="color: var(--text-muted); margin-left: 1.5rem;">
+                <li><strong>Fasting Window:</strong> 16 hours. (e.g., 8:00 PM to 12:00 PM the next day).</li>
+                <li><strong>Eating Window:</strong> 8 hours. (e.g., 12:00 PM to 8:00 PM).</li>
+                <li><strong>Mechanism:</strong> 16 hours is exactly enough time to deplete hepatic glycogen, activate AMPK, suppress mTOR, and trigger autophagy, without permanently spiking cortisol or disrupting your sleep architecture.</li>
+                <li><strong>Integration:</strong> Your morning supplement protocol (NAC, Fish Oil, B-Complex) can be taken during the fast *if* they don't cause stomach upset, but since you take Fish Oil, you should take that with your first meal at 12:00 PM to ensure fat-soluble absorption.</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>

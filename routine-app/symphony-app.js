@@ -2732,24 +2732,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // AM — With Breakfast
         const supplementsAM_Food = [
-            { text: "🧬 Doctor's Best Vitamin K2 MK-7 × 2 caps (200mcg) — With food (fat-soluble)", points: 2, suppSync: "Vitamin K2", suppDose: 2 },
-            { text: "🐟 Go Healthy Fish Oil + D3 10,000IU × 1 cap — With food", points: 1, suppSync: "Fish Oil", suppDose: 1 },
-            { text: "🧠 Natroceutics Activated B-Complex + L-Theanine × 1 cap — With breakfast", points: 1, suppSync: "B-Complex", suppDose: 1 },
-            { text: "🔥 Sanderson Turmeric 28,000+ × 2 caps — With food (needs fat)", points: 2, suppSync: "Turmeric", suppDose: 2 },
-            { text: "🩸 Even Blood Sugar Babe × 2 caps — With biggest carb meal", points: 2, suppSync: "Blood Sugar Babe", suppDose: 2 },
-            { text: "💊 Phloe Bowel & Gut Health × 2 caps — Before breakfast", points: 1, suppSync: "Phloe", suppDose: 2 }
+            { text: "🧬 Bioglan Vitamin K2 + D3 × 1 cap (180mcg/1000IU) — With food", points: 1, suppSync: "Vitamin K2", suppDose: 1 },
+            { text: "🧠 Clinicians B-Complex Active × 1 cap (Mon/Wed/Fri) — With breakfast", points: 1, suppSync: "B-Complex", suppDose: 1 }
         ];
         createListItems(supplementsAM_Food, 'supp-am-food-body');
 
         // PM — With Dinner
-        const supplementsPM_Dinner = [
-            { text: "🐟 Go Healthy Fish Oil + D3 × 1 cap — With dinner (maintenance dose)", points: 1, suppSync: "Fish Oil", suppDose: 1 }
-        ];
+        const supplementsPM_Dinner = [];
         createListItems(supplementsPM_Dinner, 'supp-pm-dinner-body');
 
         // PM — Before Bed
         const supplementsPM = [
-            { text: "🌙 Swisse Magnesium Glycinate × 3 caps (450mg elemental) — 30-60 min before bed", points: 2, suppSync: "Magnesium Glycinate", suppDose: 3 }
+            { text: "🌙 Doctor's Best Magnesium × 2 caps (400mg elemental) — 30-60 min before bed", points: 2, suppSync: "Magnesium", suppDose: 2 }
         ];
         createListItems(supplementsPM, 'supp-pm-bed-body');
 
