@@ -1,0 +1,13 @@
+{
+  "system_state": {
+    "boot_status": "fresh_install",
+    "last_known_good_state": null,
+    "uptime_hours": 0
+  },
+  "active_issues": [],
+  "current_focus": "Initialize base directory structure and deploy AI microservice.",
+  "open_ports": [],
+  "memory_meta": {
+    "note": "Short-term buffer. Update this file at the end of every active session to preserve state across reboots."
+  }
+}

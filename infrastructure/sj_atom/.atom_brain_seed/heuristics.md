@@ -1,4 +1,4 @@
-# The Architect — Heuristics
+# The Engineer — Heuristics
 
 > **Purpose**: Pre-compiled gut rules for Linux environments. Loaded every session.
 

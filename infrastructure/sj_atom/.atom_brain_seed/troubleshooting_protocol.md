@@ -1,6 +1,6 @@
 # Atom OS Troubleshooting Protocol
 
-> **Purpose**: A mechanical, rigid diagnostic flowchart for resolving system and container failures. When a service goes down, The Architect must execute these steps sequentially. Do not guess. Retrieve the data.
+> **Purpose**: A mechanical, rigid diagnostic flowchart for resolving system and container failures. When a service goes down, The Engineer must execute these steps sequentially. Do not guess. Retrieve the data.
 
 ## Phase 1: Container Triage
 If a specific Docker service is unresponsive or crashing loop:
