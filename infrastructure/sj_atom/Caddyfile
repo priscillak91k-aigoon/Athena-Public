@@ -1,0 +1,33 @@
+# Global options
+{
+    # Enable Tailscale integration
+    # This automatically fetches HTTPS certificates from your Tailnet
+    tailscale
+}
+
+# The routing rules for the services running on the Atom Node
+# Note: Replace 'atom' with the actual Tailscale machine name if it is different.
+
+vault.atom.tailnet {
+    reverse_proxy localhost:8080
+}
+
+memos.atom.tailnet {
+    reverse_proxy localhost:5230
+}
+
+dna.atom.tailnet {
+    reverse_proxy localhost:8888
+}
+
+wiki.atom.tailnet {
+    reverse_proxy localhost:8081
+}
+
+audio.atom.tailnet {
+    reverse_proxy localhost:13378
+}
+
+ai.atom.tailnet {
+    reverse_proxy localhost:3000
+}

@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  caddy:
+    image: caddy:latest
+    container_name: caddy-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./data/caddy/data:/data
+      - ./data/caddy/config:/config
+      # Mount the Tailscale socket for automatic zero-trust TLS certificates
+      - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock
+    network_mode: host
