@@ -1,58 +1,53 @@
 # Global options
 {
-    # Enable Tailscale integration
-    # This automatically fetches HTTPS certificates from your Tailnet
-    # tailscale
+    # Force Caddy to use internal self-signed certificates for everything
+    # This completely stops Let's Encrypt from crashing when MagicDNS fails
+    local_certs
 }
 
-# The routing rules for the services running on the Atom Node
-# Note: Replace 'atom' with the actual Tailscale machine name if it is different.
-
-# Fallback raw IP route with self-signed cert in case MagicDNS is dead
+# Fallback raw IP route
 100.73.93.94 {
     reverse_proxy vaultwarden:80
-    tls internal
 }
 
 vault.atom.tailnet {
     reverse_proxy vaultwarden:80
-    tls internal
 }
 
 memos.atom.tailnet {
-    reverse_proxy localhost:5230
+    reverse_proxy host.docker.internal:5230
 }
 
 dna.atom.tailnet {
-    reverse_proxy localhost:8888
+    reverse_proxy host.docker.internal:8888
 }
 
 wiki.atom.tailnet {
-    reverse_proxy localhost:8081
+    reverse_proxy host.docker.internal:8081
 }
 
 audio.atom.tailnet {
-    reverse_proxy localhost:13378
+    reverse_proxy host.docker.internal:13378
 }
 
 ai.atom.tailnet {
-    reverse_proxy localhost:3000
+    reverse_proxy host.docker.internal:3000
 }
 
 agent.atom.tailnet {
-    reverse_proxy localhost:5678
+    reverse_proxy host.docker.internal:5678
 }
 
 search.atom.tailnet {
-    reverse_proxy localhost:8082
+    reverse_proxy host.docker.internal:8082
 }
 
 sync.atom.tailnet {
-    reverse_proxy localhost:8384
+    reverse_proxy host.docker.internal:8384
 }
 
 tts.atom.tailnet {
-    reverse_proxy localhost:7860
+    reverse_proxy host.docker.internal:7860
 }
 
 
