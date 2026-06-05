@@ -4,6 +4,7 @@
     # This completely stops Let's Encrypt from crashing when MagicDNS fails
     local_certs
     debug
+    default_sni 100.73.93.94
 }
 
 # Strict IP route for HTTPS only
