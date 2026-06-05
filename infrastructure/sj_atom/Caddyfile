@@ -5,13 +5,15 @@
     local_certs
 }
 
-# Fallback raw IP route
-100.73.93.94 {
-    reverse_proxy 100.73.93.94:8083
+# Catch-all fallback for any raw IP address hitting the server
+http://100.73.93.94, https://100.73.93.94 {
+    tls internal
+    reverse_proxy vaultwarden:80
 }
 
 vault.atom.tailnet {
-    reverse_proxy 100.73.93.94:8083
+    tls internal
+    reverse_proxy vaultwarden:80
 }
 
 memos.atom.tailnet {
