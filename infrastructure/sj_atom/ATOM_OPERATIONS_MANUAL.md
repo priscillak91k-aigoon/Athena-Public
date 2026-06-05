@@ -85,4 +85,27 @@ This is the step-by-step workflow for turning a raw ebook into a streaming audio
 
 ---
 
-*This manual is a living document and will be updated as new AI capabilities (Council of Minds, Obsidian Vault) come online.*
+## 🧠 Open WebUI & The Memory Engine
+*Your private, sovereign AI interface and automatic digital diary.*
+
+**Access URLs:**
+- Tailscale IP: `http://100.73.93.94:3000`
+- MagicDNS: `http://ai.atom.tailnet`
+
+**How to Use the Digital Diary:**
+1. Open the URL in your browser or phone.
+2. Ensure you are logged into your isolated account (e.g., SJ's account).
+3. At the top of the chat screen, click the dropdown and select the **`SJ Diary`** custom model.
+4. Talk to it like a journal. It is programmed to listen, validate emotions, and extract core facts. It is also time-aware.
+
+**How the Permanent Memory Works:**
+You do **not** need to click "save" or manually export your chats. 
+1. **The Chat:** You talk to the AI normally throughout the day.
+2. **The Extraction:** Every night at 11:59 PM, an autonomous background robot (`n8n`) silently wakes up. It pulls your raw chat logs for the day and feeds them to the Atom's bare-metal processor.
+3. **The Synthesis:** The AI automatically extracts the key events, facts, and emotional states, stripping away the conversational fluff.
+4. **The Vault:** It writes a pristine Markdown file (e.g., `SJ_Diary_2026-06-05.md`) directly into the Atom's `/obsidian_vault` hard drive.
+5. **The Sync:** Syncthing instantly beams that new file to your laptop, where you can view it in the Obsidian app as a physical 3D Knowledge Graph.
+
+---
+
+*This manual is a living document and will be updated as new AI capabilities (Council of Minds, Ambient Intelligence) come online.*
