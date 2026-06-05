@@ -8,7 +8,7 @@ services:
     network_mode: host
     environment:
       - OLLAMA_BASE_URL=http://localhost:11434
-      - WEBUI_PORT=3000
+      - PORT=3000
       # Force Open WebUI to outsource embedding math to Ollama to save ARM CPU cycles
       - EMBEDDING_ENGINE=ollama
       - EMBEDDING_MODEL=nomic-embed-text
