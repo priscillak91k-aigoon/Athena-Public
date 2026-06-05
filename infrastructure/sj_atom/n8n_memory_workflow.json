@@ -30,25 +30,41 @@
     },
     {
       "parameters": {
-        "model": "llama3:latest",
-        "prompt": "=You are an autonomous memory synthesis engine. Read the following raw chat logs from SJ's digital diary today. Extract the core emotional states, key events, and actionable thoughts. Format your output strictly as a clean Markdown journal entry with headers. Do not include any conversational filler.\n\nRaw Logs:\n{{$json.data}}",
-        "options": {
-          "baseUrl": "http://host.docker.internal:11434"
-        }
+        "method": "POST",
+        "url": "http://host.docker.internal:11434/api/generate",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "llama3"
+            },
+            {
+              "name": "prompt",
+              "value": "=You are an autonomous memory synthesis engine. Read the following raw chat logs from SJ's digital diary today. Extract the core emotional states, key events, and actionable thoughts. Format your output strictly as a clean Markdown journal entry with headers. Do not include any conversational filler.\n\nRaw Logs:\n{{$json.data}}"
+            },
+            {
+              "name": "stream",
+              "value": "false"
+            }
+          ]
+        },
+        "options": {}
       },
       "name": "Ollama Brain",
-      "type": "n8n-nodes-base.ollama",
+      "type": "n8n-nodes-base.httpRequest",
       "position": [600, 300],
-      "typeVersion": 1
+      "typeVersion": 4.1
     },
     {
       "parameters": {
+        "operation": "append",
         "fileName": "=/vault/SJ_Diary_{{$now.format('yyyy-MM-dd')}}.md",
-        "fileContent": "={{$json.message.content}}",
+        "dataPropertyName": "response",
         "options": {}
       },
       "name": "Write to Obsidian Vault",
-      "type": "n8n-nodes-base.writeAndAppendFile",
+      "type": "n8n-nodes-base.readWriteFile",
       "position": [800, 300],
       "typeVersion": 1
     }
