@@ -5,8 +5,8 @@
     local_certs
 }
 
-# Catch-all fallback for any raw IP address hitting the server
-http://100.73.93.94, https://100.73.93.94 {
+# Strict IP route for HTTPS only
+100.73.93.94 {
     tls internal
     reverse_proxy vaultwarden:80
 }
