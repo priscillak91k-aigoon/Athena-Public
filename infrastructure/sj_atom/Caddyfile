@@ -16,6 +16,7 @@
 
 vault.atom.tailnet {
     reverse_proxy vaultwarden:80
+    tls internal
 }
 
 memos.atom.tailnet {
