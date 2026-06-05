@@ -264,3 +264,13 @@ Related: [[case_studies]] | [[decision_journal]]
 - **n8n Local Tailnet Access**: To access the n8n web UI locally over a VPN/mesh without an SSL certificate, `N8N_SECURE_COOKIE=false` must be set in the environment variables, or it will refuse connections.
 - **Docker Internal Routing**: When containers need to talk to a host-exposed port (like an AI API), `host.docker.internal` is infinitely superior and less brittle than engineering custom bridge networks.
 - **n8n Determinism**: Raw HTTP nodes are preferable to opaque "Advanced AI" nodes (like Langchain wrappers) when building cognitive pipelines. They provide explicit control over the payload and eliminate hidden prompt-chaining behaviors.
+
+## 🛠️ Architecture & Networking Heuristics (Session 91)
+- **n8n Read/Write Node Execution (v2+)**: The `Append` operation from older templates is moved. Use `Write` operation with the `Append` toggle. For JSON text, use `Convert to File` first because the Write node strictly demands binary.
+- **n8n Container Write Security**: Even with `chmod 777` on the host volume, n8n v2.23+ aggressively blocks file writing natively. You MUST inject `- N8N_RESTRICT_FILE_ACCESS_TO=/your/volume/path` into the docker compose environment, AND set `N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false`.
+- **Open WebUI API Bypass**: When WebUI UI buttons are missing/hidden for standard users, use Chrome DevTools > Application > Local Storage to rip the JWT `token` directly instead of fighting the admin panel config.
+
+## ??? Architecture & Networking Heuristics (Session 91)
+- **n8n Read/Write Node Execution (v2+)**: The Append operation from older templates is moved. Use Write operation with the Append toggle. For JSON text, use Convert to File first because the Write node strictly demands binary.
+- **n8n Container Write Security**: Even with chmod 777 on the host volume, n8n v2.23+ aggressively blocks file writing natively. You MUST inject - N8N_RESTRICT_FILE_ACCESS_TO=/your/volume/path into the docker compose environment, AND set N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false.
+- **Open WebUI API Bypass**: When WebUI UI buttons are missing/hidden for standard users, use Chrome DevTools > Application > Local Storage to rip the JWT 	oken directly instead of fighting the admin panel config.

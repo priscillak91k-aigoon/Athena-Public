@@ -53,3 +53,7 @@ Engineered Sarah's biological architecture. Deconstructed her MTHFR, GSTP1, GAD1
 - **Failure:** UFW blocked custom ports (8085), MagicDNS failed to resolve the new subdomain, and the browser's HSTS/HTTPS-upgrade forced HTTPS on bare IPs, killing the connection.
 - **Pivot:** Scrapped Caddy entirely for this task. Spun up a standalone python:3-slim container serving HTTP on 8085.
 - **Reasoning:** By using Docker's bridge network (ports: mapping), Docker automatically injects an iptables rule that punches cleanly through UFW, and binding directly to the IP/Port bypasses Tailscale DNS and HTTPS-upgrade rules. It is brutally simple and mechanically bulletproof.
+
+### 2026-06-06: The Midnight Memory Architecture
+- **Decision (n8n File Security):** Bypassed n8n's strict internal filesystem jail (is not writable error) by injecting N8N_RESTRICT_FILE_ACCESS_TO=/vault into the Docker compose file. chmod 777 was insufficient due to n8n's v2.23+ application-level security sandboxing.
+- **Decision (Open WebUI Auth):** Bypassed missing UI elements for API key generation by extracting the active JWT token directly from the browser's Local Storage to authenticate the Midnight Memory Extractor.
