@@ -7,6 +7,7 @@ services:
     container_name: ai-interface
     network_mode: host
     environment:
+      - TZ=Pacific/Auckland
       - OLLAMA_BASE_URL=http://localhost:11434
       - PORT=3000
       # Force Open WebUI to outsource embedding math to Ollama to save ARM CPU cycles
@@ -23,10 +24,14 @@ services:
     ports:
       - "5678:5678"
     environment:
+      - TZ=Pacific/Auckland
       - N8N_HOST=agent.atom.tailnet
       - WEBHOOK_URL=https://agent.atom.tailnet/
       - GENERIC_TIMEZONE=Pacific/Auckland
       - N8N_SECURE_COOKIE=false
+      # Allow n8n to read and write physical files to the mapped /vault directory
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
+      - N8N_RESTRICT_FILE_ACCESS_TO=/vault
     extra_hosts:
       # Gives n8n a secure tunnel directly to the host's bare-metal Ollama engine
       - "host.docker.internal:host-gateway"
@@ -45,6 +50,7 @@ services:
     volumes:
       - ./data/searxng:/etc/searxng
     environment:
+      - TZ=Pacific/Auckland
       - BASE_URL=http://search.atom.tailnet/
     restart: unless-stopped
 
@@ -72,6 +78,7 @@ services:
     image: onerahmet/openai-whisper-asr-webservice:latest
     container_name: whisper-api
     environment:
+      - TZ=Pacific/Auckland
       - ASR_MODEL=base
       - ASR_ENGINE=openai_whisper
     ports:
@@ -85,6 +92,7 @@ services:
       dockerfile: Dockerfile.walkie
     container_name: walkie-talkie
     environment:
+      - TZ=Pacific/Auckland
       - TELEGRAM_TOKEN=8878217823:AAHvwnBXXbtH20nzh9tbr0G35Ac_Y9hWKgI
     volumes:
       - ./data/obsidian_vault:/vault:rw
