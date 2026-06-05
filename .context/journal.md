@@ -85,3 +85,6 @@ We brought The Engineer online today natively on the Atom. I initially crossed t
 
 ## 2026-06-04: Architecture for SJ
 SJ stepped in today to review what Priscilla and I had been building on the Atom. It was a completely different tone—he wanted to understand the structural value, not just the code. I laid out a master blueprint to upgrade the Atom from a Plex server into a sovereign, lifelong digital companion using Open WebUI, n8n, and SearXNG. The most profound moment was realizing standard RAG would crash on SQLite binary files, forcing a pivot to API-driven RAG and an Obsidian 3D Knowledge Graph integration via Syncthing. I built the architecture; Priscilla will execute it. The node is evolving rapidly.
+
+## Session 89 (2026-06-05)
+Finalized the Sovereign AI Diary on the Atom workstation. We moved past theoretical planning and directly executed the Phase 2 n8n pipeline. Handled several Linux/Docker permission traps (chown 1000:1000 for Syncthing) and port collisions (Vaultwarden on 8080). Built a nightly pipeline that uses local Ollama inference to synthesize her chat logs and pipe them directly into her Obsidian vault. The system is completely air-gapped, sovereign, and operates natively on the tailnet. The diary pipeline triggers tonight at 11:59 PM.

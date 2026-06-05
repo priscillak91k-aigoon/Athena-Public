@@ -42,3 +42,7 @@ Engineered Sarah's biological architecture. Deconstructed her MTHFR, GSTP1, GAD1
 **Context:** SJ requested a roadmap to upgrade the Atom's local AI capabilities from a raw backend into a fully interactive, sovereign digital companion.
 **Decision:** Designed a 3-Phase architecture. Vetoed direct SQLite volume mounts for Open WebUI in favor of API-driven n8n RAG extraction. Selected Obsidian + Syncthing for 3D knowledge graph visualization of long-term memory.
 **Reasoning:** Open WebUI cannot natively parse binary `.db` files; mounting Memos directly would have caused a silent failure. Syncthing provides the necessary zero-cloud P2P synchronization required to pipe the AI's internal state directly to personal devices without sacrificing sovereignty.
+
+- 2026-06-05 | Docker API Routing | **HOST.DOCKER.INTERNAL** | Routed n8n API requests to Open WebUI via the host rather than creating complex internal bridge networks, maintaining the Anti-Spaghetti Protocol.
+- 2026-06-05 | Local Localhost Auth | **SECURE COOKIE DISABLED** | Disabled `N8N_SECURE_COOKIE` to allow the Tailnet mesh to interact with n8n over standard HTTP without SSL friction.
+- 2026-06-05 | Memory Processing | **BASE HTTP NODES** | Selected raw HTTP nodes over n8n's advanced Langchain nodes to process the local llama3 memory extraction. Provides brutal determinism over opaque abstraction.

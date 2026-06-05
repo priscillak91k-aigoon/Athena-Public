@@ -259,3 +259,8 @@ Related: [[case_studies]] | [[decision_journal]]
 ### Architecture & Backup Mechanics
 - **Recursive Loop Prevention:** Never mount external backup drives (e.g., /mnt/qnap) inside active data directories (e.g., /opt/atom/data) to prevent backup scripts from looping infinitely.
 - **AI Tooling Separation:** Aider is a rigid code editor that hallucinates on conversational prompts. Use ollama run for pure identity-based chat.
+
+## 🛠️ Architecture & Networking Heuristics (Session 89)
+- **n8n Local Tailnet Access**: To access the n8n web UI locally over a VPN/mesh without an SSL certificate, `N8N_SECURE_COOKIE=false` must be set in the environment variables, or it will refuse connections.
+- **Docker Internal Routing**: When containers need to talk to a host-exposed port (like an AI API), `host.docker.internal` is infinitely superior and less brittle than engineering custom bridge networks.
+- **n8n Determinism**: Raw HTTP nodes are preferable to opaque "Advanced AI" nodes (like Langchain wrappers) when building cognitive pipelines. They provide explicit control over the payload and eliminate hidden prompt-chaining behaviors.
