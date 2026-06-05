@@ -20,7 +20,7 @@ services:
     volumes:
       - ./data/vw-data/:/data/
     ports:
-      - "8080:80"
+      - "8083:80"
     restart: unless-stopped
 
   # DNA Parsing & Machine Learning Engine

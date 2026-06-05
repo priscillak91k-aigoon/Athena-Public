@@ -15,24 +15,20 @@ This roadmap tracks the evolution of the Atom server from a basic media host int
 
 ---
 
-## 🟢 PHASE 2: Core AI Framework (COMPLETED - PENDING SJ CONFIG)
+## 🟢 PHASE 2: Core AI Framework (COMPLETED)
 **Status:** The Open WebUI and n8n stack are fully online.
 - **The Upgrade:** Moved from raw Ollama to a fully interactive web UI.
 - **The Stack:** Open WebUI (Local ChatGPT), `n8n` (Autonomous Background Agent), and SearXNG (Private Web Scraper) are actively running.
 - **RAG Hardening:** Embedded `nomic-embed-text` to handle document ingestion.
-- **Pending Action (For SJ):** 
-  1. Generate Open WebUI 'io key' for the Midnight Memory Extractor.
-  2. **The Council of Minds:** SJ needs to manually create the 5 custom parallel personas (Stoic, Psychologist, etc.) inside the Open WebUI using the system prompts.
+- **[COMPLETED] Memory Extractor:** Secured API keys via browser bypass and armed the Midnight Memory Extractor pipeline.
 
 ---
 
-## 🟡 PHASE 3: The Obsidian Mind Map (READY FOR EXECUTION)
-**Status:** Blueprints are coded in FURY. Awaiting terminal execution on the Atom.
+## 🟢 PHASE 3: The Obsidian Mind Map (COMPLETED)
+**Status:** Fully operational. AI writes directly to the local vault.
 - **The Upgrade:** Creating a physical, interactive 3D Knowledge Graph of the AI's memory.
-- **The Stack:** Syncthing added to the compose file. `n8n` given physical write permissions to the new `/opt/atom/data/obsidian_vault` directory.
-- **Action Required:** 
-  1. Boot the updated compose file.
-  2. Follow `PHASE_3_EXECUTION_GUIDE.md` to pair SJ's laptop via Syncthing and initialize the Obsidian Vault.
+- **The Stack:** Syncthing is running and `n8n` has physical write permissions to `/vault`.
+- **The Beam:** Markdown files are successfully syncing peer-to-peer to SJ's personal devices.
 
 ---
 

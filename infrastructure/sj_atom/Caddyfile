@@ -9,7 +9,7 @@
 # Note: Replace 'atom' with the actual Tailscale machine name if it is different.
 
 vault.atom.tailnet {
-    reverse_proxy localhost:8080
+    reverse_proxy localhost:8083
 }
 
 memos.atom.tailnet {
