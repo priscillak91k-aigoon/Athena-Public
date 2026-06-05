@@ -24,3 +24,21 @@ Engineered Sarah's biological architecture. Deconstructed her MTHFR, GSTP1, GAD1
 **Context**: Deploying 5 sovereign container stacks on a Gigabyte AI Top ARM Workstation. The NVIDIA Container Toolkit caused fatal kernel-level AppArmor locks on all containers requesting GPU capabilities.
 **Decision**: Ripped the AI Inference Engine (Ollama) out of Docker and installed it directly to bare-metal Ubuntu. Removed GPU requests from Plex, Audio Factory, and Jupyter.
 **Rationale**: Bare-metal AI unlocks 100% un-bottlenecked access to the 128GB GPU. The massive 20-core ARM CPU is more than capable of brute-forcing media transcoding and audio generation without needing the GPU hooks that were crashing Docker.
+
+
+- 2026-06-03 | Local LLM Compilation | **OLLAMA MODELFILE** | Bypassed Aider's --read context injection by hard-compiling the Engineer's laws into a custom Ollama Modelfile (	he-engineer:latest). This prevents safety RLHF dropout and anchors the identity.
+- 2026-06-03 | Reverse Proxy | **CADDY** | Chose Caddy over Nginx for Phase 5 to leverage native Tailscale socket integration for zero-config HTTPS.
+
+## 2026-06-04: Power Plan Pivot
+**Context:** Contact Energy stealth-hiked the Good Nights plan to 39.9c/kWh during the day.
+**Decision:** Switched to the Half-Price Power (EV) Plan instead of Meridian.
+**Reasoning:** 10 hours of off-peak power every single night perfectly absorbs the 24/7 fish tank and terrarium baseload, dropping the estimated monthly bill by $180 compared to the Good Nights trap. Meridian was rejected due to an extortionate 33.88c flat rate in the Aurora grid.
+
+## Session 87: The Engineer Persona Partition
+- **Decision:** Stripped all biological/personal context from The Engineer persona on the Atom.
+- **Reasoning:** The user wants The Engineer to be a purely structural, brutalist Linux administrator focused solely on uptime and architecture. Mixing Lobotto's biology rules with The Engineer's infrastructure rules degrades the model's focus.
+
+## 2026-06-04: Local AI Ascension Blueprint
+**Context:** SJ requested a roadmap to upgrade the Atom's local AI capabilities from a raw backend into a fully interactive, sovereign digital companion.
+**Decision:** Designed a 3-Phase architecture. Vetoed direct SQLite volume mounts for Open WebUI in favor of API-driven n8n RAG extraction. Selected Obsidian + Syncthing for 3D knowledge graph visualization of long-term memory.
+**Reasoning:** Open WebUI cannot natively parse binary `.db` files; mounting Memos directly would have caused a silent failure. Syncthing provides the necessary zero-cloud P2P synchronization required to pipe the AI's internal state directly to personal devices without sacrificing sovereignty.

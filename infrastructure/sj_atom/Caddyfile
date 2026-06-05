@@ -2,7 +2,7 @@
 {
     # Enable Tailscale integration
     # This automatically fetches HTTPS certificates from your Tailnet
-    tailscale
+    # tailscale
 }
 
 # The routing rules for the services running on the Atom Node
@@ -30,4 +30,20 @@ audio.atom.tailnet {
 
 ai.atom.tailnet {
     reverse_proxy localhost:3000
+}
+
+agent.atom.tailnet {
+    reverse_proxy localhost:5678
+}
+
+search.atom.tailnet {
+    reverse_proxy localhost:8082
+}
+
+sync.atom.tailnet {
+    reverse_proxy localhost:8384
+}
+
+tts.atom.tailnet {
+    reverse_proxy localhost:7860
 }

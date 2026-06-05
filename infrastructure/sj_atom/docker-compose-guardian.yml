@@ -8,7 +8,7 @@ services:
     ports:
       - "53:53/tcp"
       - "53:53/udp"
-      - "80:80/tcp"
+      - "8053:80/tcp"
     environment:
       TZ: 'Pacific/Auckland'
       WEBPASSWORD: 'admin' # Change this immediately on deployment

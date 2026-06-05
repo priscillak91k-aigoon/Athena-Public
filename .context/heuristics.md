@@ -248,3 +248,14 @@ Related: [[case_studies]] | [[decision_journal]]
 
 ## 🛠️ Medical & Protocol Heuristics (Session 81)
 - **Budget vs Biology**: Budget optimization never compromises hard-coded genetic bottlenecks. When forced to cut costs, amputate luxury items and find raw whole-food bypasses for non-essential supplements (e.g., kiwifruit for Zyactinase, sardines for Omega-3s). Protect the clinical non-negotiables (MTHFR, 9p21) at all costs.
+
+
+## 2026-06-03 (Session 84)
+- **MSI Trackpad Stutters**: When the Synaptics SMBus trackpad drops out or stutters on an MSI laptop, it is usually ACPI Embedded Controller interrupt choking caused by WmiPrvSE.exe polling under the High-Performance AC power state. Unplugging (switching to DC) immediately fixes it due to downclocking and reduced EC polling.
+- **Aider Persona Enforcement**: Aider's primary SYSTEM prompt will override user identity files passed via --read. To enforce a custom persona (like The Engineer) natively, you MUST hard-compile the identity into an Ollama Modelfile at the base system prompt level.
+- **The "Free Power 24/7 Baseload Trap"**: AI models will hallucinate tariff crossover math for time-of-use plans (like 9pm-Midnight free) if they assume summer loads. For a household with 24/7 baseloads (e.g. tropical fish tanks, terrariums), a Free Power plan is a fatal financial trap because the inflated daytime rate applies to the inescapable 24/7 load. Always calculate the specific mathematical break-even percentage (usually ~27% of total usage must be in the free window) before recommending a power plan.
+- **The GST Illusion:** When analyzing New Zealand utility bills or screenshots from the user/housemates, ALWAYS verify if the "With GST" box is checked. Ex-GST wholesale rates will derail mathematical models if compared directly to final bank-account withdrawals.
+
+### Architecture & Backup Mechanics
+- **Recursive Loop Prevention:** Never mount external backup drives (e.g., /mnt/qnap) inside active data directories (e.g., /opt/atom/data) to prevent backup scripts from looping infinitely.
+- **AI Tooling Separation:** Aider is a rigid code editor that hallucinates on conversational prompts. Use ollama run for pure identity-based chat.

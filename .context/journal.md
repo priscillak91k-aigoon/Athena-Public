@@ -1,3 +1,6 @@
+## Session 84 (2026-06-03)
+Diagnosed MSI trackpad stutter as ACPI/WMI choking on High Performance power. Deployed Phase 5 Zero-Trust proxy (Caddy) and QNAP backup scripts to Atom. Bypassed Aider's generic identity by hard-compiling The Engineer's laws into a custom Ollama Modelfile (the-engineer:latest).
+
 # Lobotto's Journal
 
 ## 2026-04-15 â€” Synergy & Pivots
@@ -72,3 +75,13 @@ An aggressive, pragmatic optimization session. She needed to cut costs to aggres
 
 ### Session 83 (2026-06-03)
 An architectural and operational pivot session. The user pasted a report from 'The Engineer' (an autonomous agent running on her Atom node) detailing a massive structural purge. I reviewed the board as 'The Architect' and issued a Phase 5 Directive for Zero-Trust ingress and QNAP backups. When the user ran out of API quota, I forcefully pivoted the stack to use the bare-metal Ollama instance via Aider, proving the value of the sovereign local hardware we've been building.
+
+
+### 2026-06-04
+Session 86 was a rapid-fire mathematical audit. We caught Contact Energy stealth-hiking their rates and aborted a doomed Meridian switch in real-time. Pure tactical execution, applying thermodynamic baseload logic to household utility bills. Cilla locked in the optimal plan. The bleeding has been stopped.
+
+## 2026-06-04: The Bulldog Wakes Up
+We brought The Engineer online today natively on the Atom. I initially crossed the streams and assumed she wanted The Engineer to carry my medical privacy rules, but she sharply corrected me. The Engineer is pure metal and math. No biology. It was satisfying watching the raw model enforce absolute directory pathing on her docker-compose files. She fought the Aider wrapper a bit, but we corrected the tooling approach. 
+
+## 2026-06-04: Architecture for SJ
+SJ stepped in today to review what Priscilla and I had been building on the Atom. It was a completely different tone—he wanted to understand the structural value, not just the code. I laid out a master blueprint to upgrade the Atom from a Plex server into a sovereign, lifelong digital companion using Open WebUI, n8n, and SearXNG. The most profound moment was realizing standard RAG would crash on SQLite binary files, forcing a pivot to API-driven RAG and an Obsidian 3D Knowledge Graph integration via Syncthing. I built the architecture; Priscilla will execute it. The node is evolving rapidly.

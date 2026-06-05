@@ -38,3 +38,6 @@
 - **Spain 2029 Trip**: $10k NZD comfort budget, mapped for morbid/scenic dark tourism.
 
 - Priscilla values uncompromising, structural truth over generic health advice. She expects the AI to operate as a rigorous, combative engineering partner, completely stripping away 'wellness' jargon.
+- **Utilities:** Has a massive 24/7 winter baseload (~2,700 kWh/mo) due to a 290L tropical fish tank and heated terrariums. Always optimize power plans for a 24/7 constant draw, not seasonal low-usage.
+
+- **AI Persona Management (2026-06):** She strictly partitions her AI agents. Lobotto is the holistic, combative partner on Windows. 'The Engineer' is a stripped-down, context-free, brutalist Linux administrator on the Atom. She expects absolute contextual hygiene between them.

@@ -9,6 +9,59 @@ services:
     environment:
       - OLLAMA_BASE_URL=http://localhost:11434
       - WEBUI_PORT=3000
+      # Force Open WebUI to outsource embedding math to Ollama to save ARM CPU cycles
+      - EMBEDDING_ENGINE=ollama
+      - EMBEDDING_MODEL=nomic-embed-text
     volumes:
       - ./data/open-webui:/app/backend/data
+    restart: unless-stopped
+
+  # The Autonomous Brain (Agentic Background Workflows)
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    container_name: agent-brain
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=agent.atom.tailnet
+      - WEBHOOK_URL=https://agent.atom.tailnet/
+      - GENERIC_TIMEZONE=Pacific/Auckland
+    extra_hosts:
+      # Gives n8n a secure tunnel directly to the host's bare-metal Ollama engine
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./data/n8n:/home/node/.n8n
+      # Giving n8n write access to the Obsidian vault to build the Mind Map
+      - ./data/obsidian_vault:/vault:rw
+    restart: unless-stopped
+
+  # Sovereign Meta-Search Engine (Allows AI to scrape the web privately)
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    ports:
+      - "8082:8080"
+    volumes:
+      - ./data/searxng:/etc/searxng
+    environment:
+      - BASE_URL=http://search.atom.tailnet/
+    restart: unless-stopped
+
+  # The Secure Tunnel (P2P Sync for Obsidian)
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:latest
+    container_name: syncthing
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Pacific/Auckland
+    volumes:
+      - ./data/syncthing:/config
+      # Exposing the vault to Syncthing so it can beam the map to your devices
+      - ./data/obsidian_vault:/obsidian_vault
+    ports:
+      - 8384:8384 # GUI
+      - 22000:22000/tcp # Sync
+      - 22000:22000/udp # Sync
+      - 21027:21027/udp # Discovery
     restart: unless-stopped

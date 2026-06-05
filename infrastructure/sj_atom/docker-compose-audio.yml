@@ -14,13 +14,17 @@ services:
       - ./data/audiobooks/metadata:/metadata
     restart: unless-stopped
 
-  # Audiobook Generator (TTS Factory): Ingests EPUBs and generates human-like audio using the NVIDIA GPU
+  # Audiobook Generator (TTS Factory): Ingests EPUBs and generates human-like audio
   epub2audiobook:
-    image: athomasson2/ebook2audiobook
-    platform: linux/amd64
+    image: ghcr.io/p0n1/epub_to_audiobook:latest
     container_name: epub-audio-factory
+    environment:
+      # EdgeTTS requires no API key and is highly optimized. 
+      # If you get an OpenAI or Azure key later, you inject them here.
+      - TTS_PROVIDER=EdgeTTS 
     ports:
-      - "7860:7860"
+      - "7860:7860" # WebUI port
     volumes:
-      - ./data/audiobooks/audiobooks:/output # Drops the finished audiobooks right into Audiobookshelf's library folder
+      - ./data/audiobooks/audiobooks:/app/output # Drops the finished audiobooks right into Audiobookshelf's library folder
+    command: 'python3 /app_src/main_ui.py --host 0.0.0.0 --port 7860'
     restart: unless-stopped

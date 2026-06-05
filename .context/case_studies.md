@@ -56,3 +56,9 @@ Mapped chronic cannabis use as a 'lock and key' mechanism. FAAH mutation (fast a
 **Diagnosis**: 5 of her 9 supplements were either 'nice-to-haves' (L-Theanine) or had extremely cheap whole-food equivalents that activate the exact same biological pathways (Kiwifruit for Phloe, Sardines for Fish Oil, ACV for Berberine).
 **Solution**: Amputated the luxury items, integrated the food hacks into her daily routine, and fiercely defended the 4 absolute genetic bottlenecks (MTHFR, 9p21, SIRT1).
 **Key Insight**: True protocol optimization isn't about finding cheaper pills; it's about replacing the pill's mechanism of action with raw food logic when budget requires it.
+
+### CS-033: The Free Power 24/7 Baseload Trap (Tariff Analysis)
+**Problem**: User's power bill was extremely high despite mechanical cuts to heating. A previous AI analysis (SJ's Athena) recommended Contact Energy's "Good Nights" (free 9pm-12am) as the optimal plan.
+**Diagnosis**: SJ's Athena fell into the Seasonality Trap. It evaluated a low-usage summer bill where shifting a few appliances meant >30% of usage was free. In winter, with 24/7 heating baseloads (terrariums, 290L fish tank) dominating, the user only hit 10.8% free usage. The plan's inflated 31.5c daytime rate heavily penalized the remaining 2,400+ kWh.
+**Solution**: Mathematically proved that the break-even threshold for the plan was 27% free usage. Advised immediate switch to a Standard User Flat-Rate plan (23c-24c) to remove the daytime penalty, saving the user ~$150/month.
+**Key Insight**: Time-of-Use plans are a trap for households with high 24/7 baseloads. Never trust an LLM's financial optimization unless it shows the exact algebraic crossover formula.
