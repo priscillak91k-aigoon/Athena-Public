@@ -17,6 +17,8 @@ services:
     container_name: vaultwarden
     environment:
       - WEBSOCKET_ENABLED=true
+      - SIGNUPS_ALLOWED=false
+      - ADMIN_TOKEN=q9vM2xK5jP8cH3nZ7tR4wB1yF6gD0sL5
     volumes:
       - ./data/vw-data/:/data/
     ports:
