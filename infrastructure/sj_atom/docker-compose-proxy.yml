@@ -13,6 +13,19 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - ./data/caddy/data:/data
       - ./data/caddy/config:/config
+      # Mount the local drop folder to act as a static HTML file server
       # Mount the Tailscale socket for automatic zero-trust TLS certificates
       - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock
     network_mode: host
+
+  # Standalone HTTP Server for the Drop Page (Bypasses UFW firewall via Docker bridge)
+  drop_page:
+    image: python:3-slim
+    container_name: drop_page
+    restart: unless-stopped
+    volumes:
+      - ./data/drop:/var/www/drop
+    working_dir: /var/www/drop
+    command: python -m http.server 8085
+    ports:
+      - "8085:8085"

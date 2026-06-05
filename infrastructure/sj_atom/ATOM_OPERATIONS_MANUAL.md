@@ -98,13 +98,54 @@ This is the step-by-step workflow for turning a raw ebook into a streaming audio
 3. At the top of the chat screen, click the dropdown and select the **`SJ Diary`** custom model.
 4. Talk to it like a journal. It is programmed to listen, validate emotions, and extract core facts. It is also time-aware.
 
-**How the Permanent Memory Works:**
+**How the Permanent Memory Works (Technical Breakdown):**
 You do **not** need to click "save" or manually export your chats. 
-1. **The Chat:** You talk to the AI normally throughout the day.
-2. **The Extraction:** Every night at 11:59 PM, an autonomous background robot (`n8n`) silently wakes up. It pulls your raw chat logs for the day and feeds them to the Atom's bare-metal processor.
-3. **The Synthesis:** The AI automatically extracts the key events, facts, and emotional states, stripping away the conversational fluff.
-4. **The Vault:** It writes a pristine Markdown file (e.g., `SJ_Diary_2026-06-05.md`) directly into the Atom's `/obsidian_vault` hard drive.
+1. **The Trigger:** Every night at 11:59 PM, the `n8n` container silently wakes up.
+2. **The Extraction:** It fires an API request securely to the internal Open WebUI server (`http://host.docker.internal:3000/api/v1/chats/`) using SJ's exact JSON Web Token (JWT). This pulls down all raw chat logs from her private account for that specific day.
+3. **The Synthesis (Ollama Brain):** It then takes that raw, messy JSON data and feeds it into the Atom's bare-metal Ollama API (`llama3`) with this exact cryptographic prompt:
+   > *"You are an autonomous memory synthesis engine. Read the following raw chat logs from SJ's digital diary today. Extract the core emotional states, key events, and actionable thoughts. Format your output strictly as a clean Markdown journal entry with headers. Do not include any conversational filler."*
+4. **The Vault:** Once the AI finishes thinking, it takes the pristine summary and physically writes it into the Atom's `/obsidian_vault` hard drive (e.g., `SJ_Diary_2026-06-05.md`).
 5. **The Sync:** Syncthing instantly beams that new file to your laptop, where you can view it in the Obsidian app as a physical 3D Knowledge Graph.
+
+**How to Test or Manually Run the Pipeline:**
+If you don't want to wait until midnight, you can force the extraction at any time:
+1. Open n8n (`http://100.73.93.94:5678`) and open the **SJ's Daily Memory Extractor** workflow.
+2. Click **Execute Workflow** at the bottom of the screen.
+3. The **Ollama Brain** node will say "Running..." and display a spinning loading icon. This can take a few minutes because the local processor is physically reading your entire day's chat log and writing a summary from scratch, entirely offline.
+4. **How to know it worked:** When it finishes, a small green checkmark (✅) will appear on the top right of the Ollama node, and the final "Write to Obsidian Vault" node will execute instantly and turn green.
+5. Check your Obsidian Vault—the new `.md` file will be sitting there waiting for you.
+
+---
+
+## 📱 The Walkie-Talkie (Ambient Intelligence)
+*Your direct, hands-free link to your private diary via Telegram.*
+
+**How to Use the Walkie-Talkie:**
+1. Open the Telegram app on your phone and open the private chat with your Diary Bot.
+2. **Text Notes:** Type any text message and hit send. It will instantly log to your diary.
+3. **Voice Notes:** While driving or walking, hold the microphone button in Telegram to record a voice note, then send it.
+4. The Atom will instantly intercept the message, securely transcribe the audio using its offline Whisper AI, and append it directly to today's `.md` file in your Obsidian vault. 
+5. The bot will automatically reply `✅ Voice note transcribed and logged to vault.` to confirm it was captured.
+
+**Zero-Trust Security:**
+Because Telegram bots are technically public, the Walkie-Talkie engine is cryptographically locked to SJ's exact Telegram User ID. If anyone else on the internet guesses the bot's username and tries to send it a message, the server will instantly incinerate it. Your diary cannot be written to by anyone but you.
+
+---
+
+## 🌅 Proactive Morning Briefing
+*The Atom reaches out to you, instead of waiting for you to reach out to it.*
+
+**How it Works:**
+This is a completely autonomous pipeline. You do not need to push any buttons.
+1. At exactly **7:00 AM** every morning, the `n8n` engine wakes up.
+2. It fetches the current weather forecast (high/low temperatures and conditions).
+3. It reaches into your Obsidian Vault and reads the synthesized memory entry from the previous day.
+4. It feeds this environmental and emotional context into the bare-metal Ollama `llama3` processor.
+5. The AI generates a customized, 3-sentence morning briefing, designed to prepare you for the day and reflect warmly on your past thoughts.
+6. The finalized text is transmitted directly to your phone via your private Telegram bot.
+
+**Graceful Degradation:**
+If you did not write a diary entry the previous day, the system will not crash. It will gracefully acknowledge the empty context and simply provide the weather and a standard encouraging morning greeting.
 
 ---
 

@@ -66,3 +66,28 @@ services:
       - 22000:22000/udp # Sync
       - 21027:21027/udp # Discovery
     restart: unless-stopped
+
+  # Local Audio Transcription Engine (For Telegram Voice Notes)
+  whisper:
+    image: onerahmet/openai-whisper-asr-webservice:latest
+    container_name: whisper-api
+    environment:
+      - ASR_MODEL=base
+      - ASR_ENGINE=openai_whisper
+    ports:
+      - "9000:9000"
+    restart: unless-stopped
+
+  # Sovereign Telegram Bridge (Polling, Zero Public Exposure)
+  walkie-talkie:
+    build: 
+      context: .
+      dockerfile: Dockerfile.walkie
+    container_name: walkie-talkie
+    environment:
+      - TELEGRAM_TOKEN=8878217823:AAHvwnBXXbtH20nzh9tbr0G35Ac_Y9hWKgI
+    volumes:
+      - ./data/obsidian_vault:/vault:rw
+    depends_on:
+      - whisper
+    restart: unless-stopped

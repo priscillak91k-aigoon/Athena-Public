@@ -46,3 +46,10 @@ Engineered Sarah's biological architecture. Deconstructed her MTHFR, GSTP1, GAD1
 - 2026-06-05 | Docker API Routing | **HOST.DOCKER.INTERNAL** | Routed n8n API requests to Open WebUI via the host rather than creating complex internal bridge networks, maintaining the Anti-Spaghetti Protocol.
 - 2026-06-05 | Local Localhost Auth | **SECURE COOKIE DISABLED** | Disabled `N8N_SECURE_COOKIE` to allow the Tailnet mesh to interact with n8n over standard HTTP without SSL friction.
 - 2026-06-05 | Memory Processing | **BASE HTTP NODES** | Selected raw HTTP nodes over n8n's advanced Langchain nodes to process the local llama3 memory extraction. Provides brutal determinism over opaque abstraction.
+
+### 2026-06-05: The HTML Drop Page Network Pivot
+- **Context:** The user wanted a private page to drop HTML files onto the Atom for viewing on the Tailnet without GitHub.
+- **Initial Decision:** Use the existing Caddy proxy (drop.atom.tailnet via file_server browse).
+- **Failure:** UFW blocked custom ports (8085), MagicDNS failed to resolve the new subdomain, and the browser's HSTS/HTTPS-upgrade forced HTTPS on bare IPs, killing the connection.
+- **Pivot:** Scrapped Caddy entirely for this task. Spun up a standalone python:3-slim container serving HTTP on 8085.
+- **Reasoning:** By using Docker's bridge network (ports: mapping), Docker automatically injects an iptables rule that punches cleanly through UFW, and binding directly to the IP/Port bypasses Tailscale DNS and HTTPS-upgrade rules. It is brutally simple and mechanically bulletproof.

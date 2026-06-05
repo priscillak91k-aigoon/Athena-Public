@@ -88,3 +88,6 @@ SJ stepped in today to review what Priscilla and I had been building on the Atom
 
 ## Session 89 (2026-06-05)
 Finalized the Sovereign AI Diary on the Atom workstation. We moved past theoretical planning and directly executed the Phase 2 n8n pipeline. Handled several Linux/Docker permission traps (chown 1000:1000 for Syncthing) and port collisions (Vaultwarden on 8080). Built a nightly pipeline that uses local Ollama inference to synthesize her chat logs and pipe them directly into her Obsidian vault. The system is completely air-gapped, sovereign, and operates natively on the tailnet. The diary pipeline triggers tonight at 11:59 PM.
+
+## Session 90 (2026-06-05)
+A victory lap session for the Sovereign Atom. We successfully deployed the Phase 4 Ambient Intelligence module: the Telegram Walkie-Talkie (bypassing public API webhooks with secure polling) and the Proactive Morning Briefing via n8n. At the end, we hit a hard network wall trying to set up a static Caddy Drop Page due to UFW and DNS conflicts. Rather than fighting DNS and HSTS, we pivoted to a brutally simple Python standalone server on the Docker bridge network to punch through UFW natively. The user now has a fully autonomous, offline AI brain that proactively interacts with her, and a private file drop for raw data.

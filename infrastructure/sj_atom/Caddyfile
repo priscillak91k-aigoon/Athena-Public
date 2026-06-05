@@ -47,3 +47,5 @@ sync.atom.tailnet {
 tts.atom.tailnet {
     reverse_proxy localhost:7860
 }
+
+
