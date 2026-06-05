@@ -1,0 +1,95 @@
+{
+  "name": "SJ's Daily Memory Extractor",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "59 23 * * *"
+            }
+          ]
+        }
+      },
+      "name": "Cron Trigger (11:59 PM)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [200, 300],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "url": "http://ai-interface:3000/api/v1/chats/",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "name": "Fetch Today's Chats",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [400, 300],
+      "typeVersion": 4.1
+    },
+    {
+      "parameters": {
+        "model": "llama3:latest",
+        "prompt": "=You are an autonomous memory synthesis engine. Read the following raw chat logs from SJ's digital diary today. Extract the core emotional states, key events, and actionable thoughts. Format your output strictly as a clean Markdown journal entry with headers. Do not include any conversational filler.\n\nRaw Logs:\n{{$json.data}}",
+        "options": {
+          "baseUrl": "http://host.docker.internal:11434"
+        }
+      },
+      "name": "Ollama Brain",
+      "type": "n8n-nodes-base.ollama",
+      "position": [600, 300],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "fileName": "=/vault/SJ_Diary_{{$now.format('yyyy-MM-dd')}}.md",
+        "fileContent": "={{$json.message.content}}",
+        "options": {}
+      },
+      "name": "Write to Obsidian Vault",
+      "type": "n8n-nodes-base.writeAndAppendFile",
+      "position": [800, 300],
+      "typeVersion": 1
+    }
+  ],
+  "connections": {
+    "Cron Trigger (11:59 PM)": {
+      "main": [
+        [
+          {
+            "node": "Fetch Today's Chats",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Today's Chats": {
+      "main": [
+        [
+          {
+            "node": "Ollama Brain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Brain": {
+      "main": [
+        [
+          {
+            "node": "Write to Obsidian Vault",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
