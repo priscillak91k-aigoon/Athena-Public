@@ -40,7 +40,7 @@ This roadmap tracks the evolution of the Atom server from a basic media host int
 **Status:** Discussed with SJ. Awaiting architectural blueprinting.
 - **The Walkie-Talkie:** Telegram/Signal bot wired into `n8n` + Whisper so SJ can send voice notes to the AI while driving for frictionless journaling.
 - **The Desktop HUD:** Global hotkey integration (`Ctrl+Space`) so the AI acts as a transparent spotlight search on his laptop.
-- **Proactive Notifications:** The AI pushing morning briefings (weather, schedule, journal insights) to his phone instead of waiting to be spoken to.
+- **Proactive Notifications:** Time-aware contextual reminders sent directly to SJ's phone via push notifications or Telegram. The AI will push morning briefings (weather, schedule, journal insights) and remind her of commitments extracted from her diary.
 
 ---
 
