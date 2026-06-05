@@ -8,8 +8,14 @@
 # The routing rules for the services running on the Atom Node
 # Note: Replace 'atom' with the actual Tailscale machine name if it is different.
 
+# Fallback raw IP route with self-signed cert in case MagicDNS is dead
+100.73.93.94 {
+    reverse_proxy host.docker.internal:8083
+    tls internal
+}
+
 vault.atom.tailnet {
-    reverse_proxy localhost:8083
+    reverse_proxy host.docker.internal:8083
 }
 
 memos.atom.tailnet {

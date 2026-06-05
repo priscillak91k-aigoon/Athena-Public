@@ -16,7 +16,8 @@ services:
       # Mount the local drop folder to act as a static HTML file server
       # Mount the Tailscale socket for automatic zero-trust TLS certificates
       - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock
-    network_mode: host
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   # Standalone HTTP Server for the Drop Page (Bypasses UFW firewall via Docker bridge)
   drop_page:
