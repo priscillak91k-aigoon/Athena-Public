@@ -7,47 +7,47 @@
 
 # Fallback raw IP route
 100.73.93.94 {
-    reverse_proxy vaultwarden:80
+    reverse_proxy 100.73.93.94:8083
 }
 
 vault.atom.tailnet {
-    reverse_proxy vaultwarden:80
+    reverse_proxy 100.73.93.94:8083
 }
 
 memos.atom.tailnet {
-    reverse_proxy host.docker.internal:5230
+    reverse_proxy 100.73.93.94:5230
 }
 
 dna.atom.tailnet {
-    reverse_proxy host.docker.internal:8888
+    reverse_proxy 100.73.93.94:8888
 }
 
 wiki.atom.tailnet {
-    reverse_proxy host.docker.internal:8081
+    reverse_proxy 100.73.93.94:8081
 }
 
 audio.atom.tailnet {
-    reverse_proxy host.docker.internal:13378
+    reverse_proxy 100.73.93.94:13378
 }
 
 ai.atom.tailnet {
-    reverse_proxy host.docker.internal:3000
+    reverse_proxy 100.73.93.94:3000
 }
 
 agent.atom.tailnet {
-    reverse_proxy host.docker.internal:5678
+    reverse_proxy 100.73.93.94:5678
 }
 
 search.atom.tailnet {
-    reverse_proxy host.docker.internal:8082
+    reverse_proxy 100.73.93.94:8082
 }
 
 sync.atom.tailnet {
-    reverse_proxy host.docker.internal:8384
+    reverse_proxy 100.73.93.94:8384
 }
 
 tts.atom.tailnet {
-    reverse_proxy host.docker.internal:7860
+    reverse_proxy 100.73.93.94:7860
 }
 
 
