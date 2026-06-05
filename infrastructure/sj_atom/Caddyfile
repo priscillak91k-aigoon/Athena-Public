@@ -3,10 +3,11 @@
     # Force Caddy to use internal self-signed certificates for everything
     # This completely stops Let's Encrypt from crashing when MagicDNS fails
     local_certs
+    debug
 }
 
 # Strict IP route for HTTPS only
-100.73.93.94 {
+https://100.73.93.94 {
     tls internal
     reverse_proxy vaultwarden:80
 }
