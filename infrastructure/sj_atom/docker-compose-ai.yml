@@ -26,6 +26,7 @@ services:
       - N8N_HOST=agent.atom.tailnet
       - WEBHOOK_URL=https://agent.atom.tailnet/
       - GENERIC_TIMEZONE=Pacific/Auckland
+      - N8N_SECURE_COOKIE=false
     extra_hosts:
       # Gives n8n a secure tunnel directly to the host's bare-metal Ollama engine
       - "host.docker.internal:host-gateway"
