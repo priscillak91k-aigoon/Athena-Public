@@ -10,12 +10,12 @@
 
 # Fallback raw IP route with self-signed cert in case MagicDNS is dead
 100.73.93.94 {
-    reverse_proxy host.docker.internal:8083
+    reverse_proxy vaultwarden:80
     tls internal
 }
 
 vault.atom.tailnet {
-    reverse_proxy host.docker.internal:8083
+    reverse_proxy vaultwarden:80
 }
 
 memos.atom.tailnet {
