@@ -10,7 +10,7 @@ TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
 FLY_FROM = os.getenv("FLY_FROM", "DUD") # Default Dunedin
 FLY_TO = os.getenv("FLY_TO", "WLG") # Default Wellington
-TARGET_PRICE = int(os.getenv("TARGET_PRICE", "150")) # Default 150 NZD
+TARGET_PRICE = int(os.getenv("TARGET_PRICE", "300")) # Default 300 NZD
 DATE_RANGE_DAYS = int(os.getenv("DATE_RANGE_DAYS", "30")) # Look 30 days ahead
 
 TEQUILA_ENDPOINT = "https://api.tequila.kiwi.com/v2/search"
@@ -42,6 +42,9 @@ def check_flights():
         "fly_to": FLY_TO,
         "date_from": today.strftime("%d/%m/%Y"),
         "date_to": date_to.strftime("%d/%m/%Y"),
+        "flight_type": "round",
+        "nights_in_dst_from": 2,
+        "nights_in_dst_to": 7,
         "curr": "NZD",
         "price_to": TARGET_PRICE,
         "limit": 5,
