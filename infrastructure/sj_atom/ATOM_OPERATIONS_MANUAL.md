@@ -134,20 +134,20 @@ Because Telegram bots are technically public, the Walkie-Talkie engine is crypto
 
 ---
 
-## 🌅 Proactive Morning Briefing
-*The Atom reaches out to you, instead of waiting for you to reach out to it.*
+## 🌅 The Sunday Reflection (Weekly Synthesis)
+*The Atom connects your present to your past, without ever pinging your phone.*
 
 **How it Works:**
-This is a completely autonomous pipeline. You do not need to push any buttons.
-1. At exactly **7:00 AM** every morning, the `n8n` engine wakes up.
-2. It fetches the current weather forecast (high/low temperatures and conditions).
-3. It reaches into your Obsidian Vault and reads the synthesized memory entry from the previous day.
-4. It feeds this environmental and emotional context into the bare-metal Ollama `llama3` processor.
-5. The AI generates a customized, 3-sentence morning briefing, designed to prepare you for the day and reflect warmly on your past thoughts.
-6. The finalized text is transmitted directly to your phone via your private Telegram bot.
+This is a completely autonomous, silent pipeline built natively into the Walkie-Talkie engine. You do not need to push any buttons.
+1. At exactly **8:00 PM every Sunday**, the Python engine wakes up.
+2. It silently reaches into your Obsidian Vault and reads every single diary entry from the past **7 days**.
+3. It specifically hunts for `SJ_Diary_` files from exactly **30 days ago** and **365 days ago**.
+4. It feeds all of this environmental and historical context into the bare-metal Ollama `llama3` processor.
+5. The AI generates a customized, profoundly personal Weekly Synthesis. It identifies your core emotional themes of the week and reflects on your psychological growth by comparing your present state to your historical echoes.
+6. The finalized Markdown file is silently dropped into your vault as `SJ_Weekly_Synthesis_[Date].md`.
 
 **Graceful Degradation:**
-If you did not write a diary entry the previous day, the system will not crash. It will gracefully acknowledge the empty context and simply provide the weather and a standard encouraging morning greeting.
+If you did not write any diary entries this week, the system will simply skip the synthesis and go back to sleep. If historical echoes (T-30/T-365) don't exist yet, it will just summarize the current week.
 
 ---
 
