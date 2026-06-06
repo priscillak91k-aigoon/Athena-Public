@@ -276,3 +276,5 @@ Related: [[case_studies]] | [[decision_journal]]
 - **Open WebUI API Bypass**: When WebUI UI buttons are missing/hidden for standard users, use Chrome DevTools > Application > Local Storage to rip the JWT 	oken directly instead of fighting the admin panel config.
 
 - **Port Collision Avoidance**: If a user runs a stack of services, always pick obscure ports (8000+ range) for new frontends to avoid colliding with hidden host-mode containers like Open WebUI or Memos.
+
+- **Genetic Parsing**: Never feed raw 700k line DNA files to an LLM. Always use a python pre-parser to filter SNPs against a clinical database before passing to the AI context window.

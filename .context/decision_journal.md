@@ -63,3 +63,9 @@ Engineered Sarah's biological architecture. Deconstructed her MTHFR, GSTP1, GAD1
 - **Decision**: Physically downloaded marked.min.js and removed the jsdelivr CDN link.
 - **Reasoning**: A truly Sovereign architecture cannot rely on remote external CDNs for fundamental runtime execution.
 
+
+### 2026-06-06: DNA Parser Architecture
+- **Context**: Deployed the dna-parser microservice for both SJ and FURY.
+- **Decision**: Restored the exhaustive God Mode SNP dictionary for the dynamic AI parser.
+- **Reasoning**: Priscilla demands zero shortcuts. The AI must be fed the exhaustive clinical picture to provide accurate overrides.
+
