@@ -108,7 +108,7 @@ services:
     container_name: flight-scanner
     environment:
       - TZ=Pacific/Auckland
-      - TEQUILA_API_KEY=your_kiwi_api_key_here
+      - SERPAPI_KEY=your_serpapi_key_here
       - TELEGRAM_TOKEN=8878217823:AAHvwnBXXbtH20nzh9tbr0G35Ac_Y9hWKgI
       - TELEGRAM_CHAT_ID=your_chat_id_here
       - FLY_FROM=DUD
