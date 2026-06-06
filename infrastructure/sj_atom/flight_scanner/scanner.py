@@ -57,6 +57,7 @@ def check_flights():
             "outbound_date": outbound_date,
             "return_date": return_date,
             "type": "1", # Round trip
+            "stops": "1", # 1 = Nonstop only in Google Flights
             "currency": "NZD",
             "api_key": SERPAPI_KEY
         }
