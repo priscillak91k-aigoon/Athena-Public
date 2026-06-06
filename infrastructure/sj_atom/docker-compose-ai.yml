@@ -127,3 +127,18 @@ services:
     volumes:
       - ./:/usr/share/nginx/html:ro
     restart: unless-stopped
+
+  # Autonomous Genomic Engine (DNA Parser)
+  dna-parser:
+    build:
+      context: ./dna_parser
+      dockerfile: Dockerfile.dna
+    container_name: dna-parser
+    environment:
+      - TZ=Pacific/Auckland
+    volumes:
+      - ./data/obsidian_vault:/vault:rw
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
