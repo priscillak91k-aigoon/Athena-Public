@@ -65,6 +65,16 @@
 > [!TIP]
 > **Previewing Voices:** You can test voices in real-time using the [Microsoft Voice Gallery](https://speech.microsoft.com/portal/voicegallery) or the [Hugging Face Edge-TTS Interface](https://huggingface.co/spaces/innoai/Edge-TTS-Text-to-Speech).
 
+### How to Narrate Custom Writing
+
+If any horny slags want to write their own smut and have it narrated to them, the Audio Factory is perfect because it is 100% uncensored. Since it runs strictly bare-metal on the Atom, no cloud provider (like OpenAI or Microsoft) will ever flag it or ban your account.
+
+1. **Write the Story:** Write it in whatever app you prefer (Google Docs, Apple Pages, Obsidian).
+2. **Export as EPUB:** The Audio Factory works best with `.epub` files because it automatically understands chapter breaks and pacing. 
+   - *Google Docs:* `File -> Download -> EPUB Publication (.epub)`.
+   - *Apple Pages:* `File -> Export To -> EPUB`.
+3. **Upload & Generate:** Drop the `.epub` file into the TTS interface (`http://100.73.93.94:7860`), select a narrator, and hit Start. It will autonomously chew through the text and output a pristine, professional-grade Audiobook file.
+
 ---
 
 ## 🧠 Open WebUI & The Memory Engine
