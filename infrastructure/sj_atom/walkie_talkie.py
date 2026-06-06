@@ -2,6 +2,7 @@ import os
 import time
 import requests
 import datetime
+import schedule
 
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 WHISPER_URL = "http://whisper-api:9000/asr"
@@ -100,14 +101,66 @@ def send_message(chat_id, text):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
     requests.post(url, json={"chat_id": chat_id, "text": text})
 
+def update_core_profile():
+    print("Initiating daily Core Profile synthesis...")
+    yesterday = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+    diary_path = os.path.join(VAULT_DIR, f"SJ_Diary_{yesterday}.md")
+    # For now, looking in the vault directly, assuming we move the seed file here or it syncs here
+    profile_path = os.path.join(VAULT_DIR, "SJ_Core_Profile.md")
+    
+    # If there's no diary from yesterday or no profile, we can't update
+    if not os.path.exists(diary_path) or not os.path.exists(profile_path):
+        print("Missing diary or profile. Skipping Core Profile update.")
+        return
+
+    with open(profile_path, "r", encoding="utf-8") as f:
+        current_profile = f.read()
+        
+    with open(diary_path, "r", encoding="utf-8") as f:
+        yesterday_diary = f.read()
+
+    prompt = f"""You are the Memory Tier 2 Engine. Your job is to update SJ's Core Profile based on her latest diary entry.
+
+CURRENT CORE PROFILE:
+{current_profile}
+
+YESTERDAY'S DIARY:
+{yesterday_diary}
+
+INSTRUCTIONS:
+1. Did any fundamental, long-term facts about SJ's life change in the diary? (e.g., new job, new relationship, major health event, moved cities, core belief shift).
+2. If absolutely NOTHING fundamental changed, you MUST output exactly: NO_CHANGE
+3. If a fundamental fact DID change, rewrite the ENTIRE Core Profile incorporating the new information. Keep the same Markdown structure.
+"""
+    try:
+        resp = requests.post(
+            "http://host.docker.internal:11434/api/generate",
+            json={"model": "llama3", "prompt": prompt, "stream": False},
+            timeout=300
+        )
+        if resp.status_code == 200:
+            result = resp.json().get("response", "").strip()
+            if result != "NO_CHANGE" and "NO_CHANGE" not in result:
+                print("Core Profile updated. Writing to vault...")
+                with open(profile_path, "w", encoding="utf-8") as f:
+                    f.write(result)
+            else:
+                print("No fundamental changes detected. Core Profile remains unchanged.")
+    except Exception as e:
+        print(f"Ollama profile synthesis failed: {e}")
+
 def main():
     print("Starting Sovereign Walkie-Talkie Bridge...")
     if not TELEGRAM_TOKEN:
         print("ERROR: TELEGRAM_TOKEN not set!")
         return
         
+    # Run the profile updater daily at 3:00 AM
+    schedule.every().day.at("03:00").do(update_core_profile)
+    
     offset = None
     while True:
+        schedule.run_pending()
         updates = get_updates(offset)
         for update in updates:
             offset = update["update_id"] + 1
