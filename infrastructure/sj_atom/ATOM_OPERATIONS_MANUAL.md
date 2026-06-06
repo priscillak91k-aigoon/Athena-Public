@@ -107,6 +107,12 @@ You do **not** need to click "save" or manually export your chats.
 4. **The Vault:** Once the AI finishes thinking, it takes the pristine summary and physically writes it into the Atom's `/obsidian_vault` hard drive (e.g., `SJ_Diary_2026-06-05.md`).
 5. **The Sync:** Syncthing instantly beams that new file to your laptop, where you can view it in the Obsidian app as a physical 3D Knowledge Graph.
 
+**The Core Profile (Tier 2 Memory) & Auto-Bake Protocol:**
+The engine maintains a foundational document (`SJ_Core_Profile.md`) containing your core demographic and psychological facts. 
+1. Every night at 3:00 AM, the engine checks yesterday's diary for any fundamental life changes (e.g., new job, new relationship).
+2. If it detects a major shift, it automatically overwrites `SJ_Core_Profile.md`.
+3. **The Auto-Bake:** It then instantly sends an API request directly into the Ollama kernel to physically rebuild the `sj-diary` chat model, permanently baking the new facts into its neural weights. The Open WebUI model never goes stale and perfectly tracks your life trajectory.
+
 **How to Test or Manually Run the Pipeline:**
 If you don't want to wait until midnight, you can force the extraction at any time:
 1. Open n8n (`http://100.73.93.94:5678`) and open the **SJ's Daily Memory Extractor** workflow.
@@ -125,8 +131,8 @@ If you don't want to wait until midnight, you can force the extraction at any ti
 2. **Text Notes:** Type any text message and hit send. It will instantly log to your diary.
 3. **Voice Notes:** While driving or walking, hold the microphone button in Telegram to record a voice note, then send it.
 4. The Atom will instantly intercept the message and securely transcribe the audio using its offline Whisper AI.
-5. **Memory Synthesis:** Before saving, the Atom securely routes the raw text through your local `llama3` LLM. The AI extracts the core emotion, detects key entities as `#tags`, and structures your raw thoughts into clean bullet points.
-6. It appends this highly structured summary to today's `.md` file in your Obsidian vault, hiding the messy raw transcript inside a collapsible `<details>` dropdown.
+5. **Memory Synthesis & Silence Filter:** Before saving, the Atom securely routes the raw text through your local `llama3` LLM. The AI extracts the core emotion, detects key entities as `#tags`, and structures your raw thoughts into clean bullet points. If it detects that the transcript is just wind noise or Whisper AI hallucination garbage (e.g., "Thanks for watching"), it will instantly incinerate the file to keep your vault pristine and text you a warning.
+6. It appends this highly structured summary to today's `.md` file in your Obsidian vault, hiding the messy raw transcript inside a collapsible `<details>` dropdown. It also embeds hidden JSON psychological telemetry (`mood`, `stress`, `energy`) at the bottom of the file for longitudinal tracking.
 7. The bot will automatically reply `✅ Voice note transcribed, synthesized, and logged to vault.` to confirm it was captured.
 
 **Zero-Trust Security:**
