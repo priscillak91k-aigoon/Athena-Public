@@ -274,3 +274,5 @@ Related: [[case_studies]] | [[decision_journal]]
 - **n8n Read/Write Node Execution (v2+)**: The Append operation from older templates is moved. Use Write operation with the Append toggle. For JSON text, use Convert to File first because the Write node strictly demands binary.
 - **n8n Container Write Security**: Even with chmod 777 on the host volume, n8n v2.23+ aggressively blocks file writing natively. You MUST inject - N8N_RESTRICT_FILE_ACCESS_TO=/your/volume/path into the docker compose environment, AND set N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false.
 - **Open WebUI API Bypass**: When WebUI UI buttons are missing/hidden for standard users, use Chrome DevTools > Application > Local Storage to rip the JWT 	oken directly instead of fighting the admin panel config.
+
+- **Port Collision Avoidance**: If a user runs a stack of services, always pick obscure ports (8000+ range) for new frontends to avoid colliding with hidden host-mode containers like Open WebUI or Memos.

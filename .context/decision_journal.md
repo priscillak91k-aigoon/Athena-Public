@@ -57,3 +57,9 @@ Engineered Sarah's biological architecture. Deconstructed her MTHFR, GSTP1, GAD1
 ### 2026-06-06: The Midnight Memory Architecture
 - **Decision (n8n File Security):** Bypassed n8n's strict internal filesystem jail (is not writable error) by injecting N8N_RESTRICT_FILE_ACCESS_TO=/vault into the Docker compose file. chmod 777 was insufficient due to n8n's v2.23+ application-level security sandboxing.
 - **Decision (Open WebUI Auth):** Bypassed missing UI elements for API key generation by extracting the active JWT token directly from the browser's Local Storage to authenticate the Midnight Memory Extractor.
+
+### 2026-06-06: Localizing CDN Dependencies
+- **Context**: Deployed a dynamic markdown viewer for the operations manual.
+- **Decision**: Physically downloaded marked.min.js and removed the jsdelivr CDN link.
+- **Reasoning**: A truly Sovereign architecture cannot rely on remote external CDNs for fundamental runtime execution.
+
