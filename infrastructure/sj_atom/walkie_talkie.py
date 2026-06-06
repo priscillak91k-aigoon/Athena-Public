@@ -55,7 +55,8 @@ INSTRUCTIONS:
 1. Extract the core emotional state or sentiment (e.g., Anxious, Excited, Reflective).
 2. Extract key entities (people, places, projects) and list them as #tags.
 3. Summarize the main points into clear, concise bullet points.
-4. Output strictly in this Markdown format, with NO conversational filler:
+4. Extrapolate her psychological telemetry. Estimate on a scale of 1-10 her Mood, Stress, and Energy levels based on the text.
+5. Output strictly in this Markdown format, with NO conversational filler:
 
 **Emotional State:** [Emotion]
 **Key Entities:** #tag1 #tag2
@@ -63,6 +64,8 @@ INSTRUCTIONS:
 **Synthesis:**
 - [Bullet point 1]
 - [Bullet point 2]
+
+<!-- {"mood": [1-10], "stress": [1-10], "energy": [1-10]} -->
 """
     try:
         resp = requests.post(
