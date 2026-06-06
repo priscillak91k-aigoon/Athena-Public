@@ -56,7 +56,8 @@ INSTRUCTIONS:
 2. Extract key entities (people, places, projects) and list them as #tags.
 3. Summarize the main points into clear, concise bullet points.
 4. Extrapolate her psychological telemetry. Estimate on a scale of 1-10 her Mood, Stress, and Energy levels based on the text.
-5. Output strictly in this Markdown format, with NO conversational filler:
+5. SILENCE FILTER: If the raw transcript is just background noise or YouTube filler (e.g., "Thank you for watching", "Subscribe to my channel") and contains no actual journal content, output EXACTLY the phrase: IGNORED_HALLUCINATION
+6. If it is a valid entry, output strictly in this Markdown format, with NO conversational filler:
 
 **Emotional State:** [Emotion]
 **Key Entities:** #tag1 #tag2
@@ -147,6 +148,19 @@ INSTRUCTIONS:
                 print("Core Profile updated. Writing to vault...")
                 with open(profile_path, "w", encoding="utf-8") as f:
                     f.write(result)
+                    
+                # THE AUTO-BAKE PROTOCOL
+                print("Re-baking the sj-diary model dynamically...")
+                modelfile_payload = f"FROM llama3\nSYSTEM \"\"\"You are SJ's lifelong autonomous AI companion.\nBelow is her foundational Core Profile. You must never forget these facts.\n\n{result}\"\"\""
+                try:
+                    requests.post(
+                        "http://host.docker.internal:11434/api/create", 
+                        json={"name": "sj-diary:latest", "modelfile": modelfile_payload}, 
+                        timeout=120
+                    )
+                    print("sj-diary model successfully updated in Open WebUI.")
+                except Exception as ex:
+                    print(f"Failed to auto-bake model: {ex}")
             else:
                 print("No fundamental changes detected. Core Profile remains unchanged.")
     except Exception as e:
@@ -258,8 +272,13 @@ def main():
                     print(f"Transcription: {raw_text[:50]}...")
                     print("Synthesizing memory via Ollama...")
                     synthesized_text = synthesize_memory(raw_text)
-                    write_to_vault(raw_text, synthesized_text)
-                    send_message(chat_id, "✅ Voice note transcribed, synthesized, and logged to vault.")
+                    
+                    if synthesized_text == "IGNORED_HALLUCINATION":
+                        print("Dropped whisper hallucination.")
+                        send_message(chat_id, "⚠️ Dropped empty audio/background noise.")
+                    else:
+                        write_to_vault(raw_text, synthesized_text)
+                        send_message(chat_id, "✅ Voice note transcribed, synthesized, and logged to vault.")
                 else:
                     send_message(chat_id, "❌ Failed to transcribe audio. Is Whisper running?")
                     
