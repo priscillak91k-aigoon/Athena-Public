@@ -123,7 +123,7 @@ services:
     image: nginx:alpine
     container_name: atom_manual_server
     ports:
-      - "8081:80"
+      - "8999:80"
     volumes:
       - ./:/usr/share/nginx/html:ro
     restart: unless-stopped
