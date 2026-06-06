@@ -1,3 +1,43 @@
+<style>
+  body {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif !important;
+    line-height: 1.7;
+    color: #e2e8f0;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+  }
+  h1, h2, h3 {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #f8fafc;
+    margin-top: 1.8em;
+  }
+  h1 { font-size: 2.2em; border-bottom: 2px solid #334155; padding-bottom: 10px; }
+  h2 { font-size: 1.6em; border-bottom: 1px solid #1e293b; padding-bottom: 8px; }
+  p, li { font-size: 1.05em; color: #cbd5e1; }
+  strong { color: #38bdf8; font-weight: 600; }
+  em { color: #94a3b8; }
+  code {
+    background-color: #1e293b !important;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.9em;
+    color: #f1f5f9;
+  }
+  blockquote {
+    border-left: 4px solid #38bdf8;
+    padding: 10px 15px;
+    background-color: rgba(56, 189, 248, 0.05);
+    margin-left: 0;
+    font-style: italic;
+    border-radius: 0 8px 8px 0;
+  }
+  hr { border: 0; border-top: 1px solid #334155; margin: 2.5em 0; }
+</style>
+
 # 📖 Sovereign Atom: Operations Manual
 
 Welcome to the Atom's sovereign media infrastructure. This manual outlines how to operate the services from anywhere in the world without relying on cloud providers.
