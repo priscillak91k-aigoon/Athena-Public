@@ -152,6 +152,71 @@ INSTRUCTIONS:
     except Exception as e:
         print(f"Ollama profile synthesis failed: {e}")
 
+def generate_weekly_synthesis():
+    print("Initiating Weekly Passive Synthesis...")
+    today = datetime.datetime.now()
+    
+    # 1. Gather the last 7 days of diaries
+    weekly_diaries = ""
+    for i in range(7):
+        date_str = (today - datetime.timedelta(days=i)).strftime("%Y-%m-%d")
+        path = os.path.join(VAULT_DIR, f"SJ_Diary_{date_str}.md")
+        if os.path.exists(path):
+            with open(path, "r", encoding="utf-8") as f:
+                weekly_diaries += f"--- {date_str} ---\n{f.read()}\n\n"
+                
+    if not weekly_diaries:
+        print("No diaries found for the week. Skipping synthesis.")
+        return
+        
+    # 2. Gather historical context (T-30, T-365)
+    t_30_str = (today - datetime.timedelta(days=30)).strftime("%Y-%m-%d")
+    t_365_str = (today - datetime.timedelta(days=365)).strftime("%Y-%m-%d")
+    
+    historical = ""
+    t30_path = os.path.join(VAULT_DIR, f"SJ_Diary_{t_30_str}.md")
+    t365_path = os.path.join(VAULT_DIR, f"SJ_Diary_{t_365_str}.md")
+    
+    if os.path.exists(t30_path):
+        with open(t30_path, "r", encoding="utf-8") as f:
+            historical += f"--- EXACTLY 30 DAYS AGO ---\n{f.read()}\n\n"
+    if os.path.exists(t365_path):
+        with open(t365_path, "r", encoding="utf-8") as f:
+            historical += f"--- EXACTLY 1 YEAR AGO ---\n{f.read()}\n\n"
+            
+    # 3. Ask Ollama to synthesize
+    prompt = f"""You are SJ's autonomous cognitive engine. Your task is to write a profound, deeply personal Weekly Reflection for her.
+
+THIS WEEK'S DIARIES:
+{weekly_diaries}
+
+HISTORICAL ECHOES:
+{historical if historical else "No historical echoes available."}
+
+INSTRUCTIONS:
+1. Synthesize her week. What were the core emotional themes?
+2. Connect her present state to her past (if historical echoes exist). Point out her growth, resilience, or recurring patterns.
+3. Output entirely in a beautifully formatted Markdown structure. Use headers and bullet points.
+4. Do not include conversational filler.
+5. Title the reflection: "# Weekly Synthesis"
+"""
+    try:
+        resp = requests.post(
+            "http://host.docker.internal:11434/api/generate",
+            json={"model": "llama3", "prompt": prompt, "stream": False},
+            timeout=300
+        )
+        if resp.status_code == 200:
+            result = resp.json().get("response", "").strip()
+            
+            # Save silently to the vault
+            synthesis_filename = f"SJ_Weekly_Synthesis_{today.strftime('%Y-%m-%d')}.md"
+            with open(os.path.join(VAULT_DIR, synthesis_filename), "w", encoding="utf-8") as f:
+                f.write(result)
+            print(f"Weekly synthesis saved to {synthesis_filename}")
+    except Exception as e:
+        print(f"Ollama weekly synthesis failed: {e}")
+
 def main():
     print("Starting Sovereign Walkie-Talkie Bridge...")
     if not TELEGRAM_TOKEN:
@@ -160,6 +225,9 @@ def main():
         
     # Run the profile updater daily at 3:00 AM
     schedule.every().day.at("03:00").do(update_core_profile)
+    
+    # Run the passive weekly synthesis every Sunday at 8:00 PM
+    schedule.every().sunday.at("20:00").do(generate_weekly_synthesis)
     
     offset = None
     while True:
