@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sovereign Atom: Operations Manual</title>
+<style>
+  body {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.7;
+    color: #e2e8f0;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #0f172a;
+    padding: 40px 20px;
+  }
+  h1, h2, h3 { font-weight: 600; color: #f8fafc; margin-top: 1.8em; }
+  h1 { font-size: 2.2em; border-bottom: 2px solid #334155; padding-bottom: 10px; }
+  h2 { font-size: 1.6em; border-bottom: 1px solid #1e293b; padding-bottom: 8px; }
+  p, li { font-size: 1.05em; color: #cbd5e1; }
+  strong { color: #38bdf8; font-weight: 600; }
+  code { background-color: #1e293b; padding: 3px 6px; border-radius: 4px; font-family: monospace; color: #f1f5f9; }
+  blockquote {
+    border-left: 4px solid #38bdf8; padding: 10px 15px;
+    background-color: rgba(56, 189, 248, 0.05); margin-left: 0;
+    font-style: italic; border-radius: 0 8px 8px 0;
+  }
+  hr { border: 0; border-top: 1px solid #334155; margin: 2.5em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { text-align: left; padding: 12px; border-bottom: 1px solid #1e293b; }
+  th { background-color: rgba(255,255,255,0.05); color: #f8fafc; }
+  
+  /* GitHub Alert Styles */
+  .alert-note { border-left-color: #3b82f6; background-color: rgba(59, 130, 246, 0.1); }
+  .alert-warning { border-left-color: #f59e0b; background-color: rgba(245, 158, 11, 0.1); }
+  .alert-important { border-left-color: #8b5cf6; background-color: rgba(139, 92, 246, 0.1); }
+  .alert-tip { border-left-color: #10b981; background-color: rgba(16, 185, 129, 0.1); }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div id="content"><p>Loading Sovereign Manual...</p></div>
+  <script>
+    fetch('ATOM_OPERATIONS_MANUAL.md')
+      .then(response => response.text())
+      .then(text => {
+        // Pre-process GitHub alerts into styled blockquotes
+        text = text.replace(/> \[!NOTE\]\n>\s*(.*)/g, '<blockquote class="alert-note"><strong>ℹ️ Note</strong><br/>$1</blockquote>');
+        text = text.replace(/> \[!WARNING\]\n>\s*(.*)/g, '<blockquote class="alert-warning"><strong>⚠️ Warning</strong><br/>$1</blockquote>');
+        text = text.replace(/> \[!IMPORTANT\]\n>\s*(.*)/g, '<blockquote class="alert-important"><strong>🔥 Important</strong><br/>$1</blockquote>');
+        text = text.replace(/> \[!TIP\]\n>\s*(.*)/g, '<blockquote class="alert-tip"><strong>💡 Tip</strong><br/>$1</blockquote>');
+        
+        document.getElementById('content').innerHTML = marked.parse(text);
+      })
+      .catch(err => document.getElementById('content').innerHTML = '<p>Error loading manual.</p>');
+  </script>
+</body>
+</html>

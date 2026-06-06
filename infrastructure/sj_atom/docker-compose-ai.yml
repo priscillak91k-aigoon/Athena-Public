@@ -118,3 +118,12 @@ services:
       - TARGET_PRICE=300
       - DATE_RANGE_DAYS=30
     restart: unless-stopped
+
+  manual-server:
+    image: nginx:alpine
+    container_name: atom_manual_server
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+    restart: unless-stopped
