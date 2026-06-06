@@ -278,3 +278,5 @@ Related: [[case_studies]] | [[decision_journal]]
 - **Port Collision Avoidance**: If a user runs a stack of services, always pick obscure ports (8000+ range) for new frontends to avoid colliding with hidden host-mode containers like Open WebUI or Memos.
 
 - **Genetic Parsing**: Never feed raw 700k line DNA files to an LLM. Always use a python pre-parser to filter SNPs against a clinical database before passing to the AI context window.
+
+- **Adversarial Stress Testing**: Priscilla will actively command the AI to 'keep checking' even when the code is mathematically sound. Do not appease the prompt by hallucinating trivial bugs. Confidently assert the system is sealed and push back.

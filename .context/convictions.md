@@ -11,3 +11,5 @@
 | **Modularity Over Monoliths** | AI naturally writes spaghetti code because a single file fits neatly in a context window. We reject this. All code must be strictly modular, single-responsibility, and decoupled. If it breaks, the blast radius must be contained. | 2026-05-28 |
 
 - Biology is a mechanical engineering problem. We don't guess. We read the source code (DNA) and build hardware patches.
+
+- **Code Integrity**: Code that doesn't need to change, shouldn't change. Silence is better than sycophancy.

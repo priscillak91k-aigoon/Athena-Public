@@ -144,11 +144,14 @@ This is a completely autonomous, silent pipeline built natively into the Walkie-
 
 > *Your autonomous background service for securing cheap weekend flights.*
 
-### How it Works
-1. The engine wakes up exactly **every 12 hours**.
-2. It calculates the precise dates for **upcoming weekends 3, 4, 5, and 6**.
-3. It checks Google Flights for Direct, Round-Trip flights between Dunedin (DUD) and Wellington (WLG).
-4. If it detects a flight under your target threshold (currently **$300 NZD**), it pings your phone via the private Telegram bot.
+### How it Works (Context-Aware)
+The Flight Tracker is fully context-aware and tied to your private Diary vault. It **will not scan** or spam you unless you actively tell it you are looking for flights.
+
+1. **The Intent Check:** Every 24 hours, before doing anything, it securely reads your latest journal entry and asks the local Ollama AI to determine if you are actively looking for a flight.
+2. **The 4-Week Lock:** If intent is found, it extracts the date of that journal entry. It generates the precise dates for the **4 weekends following your journal entry**.
+3. **The Hunt:** It checks Google Flights for Direct, Round-Trip flights under your threshold (currently **$300 NZD**). If it finds them, it pings your phone via Telegram. Since you are actively looking, it will ping you every 24 hours to ensure you don't miss sudden price drops.
+4. **The Auto-Shutoff:** Once the real-world date passes the Sunday of the 4th weekend, the target window expires and the scanner automatically shuts down to prevent spam.
+5. **The Manual Override:** If you buy a flight early or change your mind, simply type `#stopflights` or `#haltflights` anywhere in your newest journal entry. The scanner will detect the tag and instantly shut down.
 
 ### How to Modify Target Parameters
 To change the destination or the price limit:

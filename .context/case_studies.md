@@ -62,3 +62,7 @@ Mapped chronic cannabis use as a 'lock and key' mechanism. FAAH mutation (fast a
 **Diagnosis**: SJ's Athena fell into the Seasonality Trap. It evaluated a low-usage summer bill where shifting a few appliances meant >30% of usage was free. In winter, with 24/7 heating baseloads (terrariums, 290L fish tank) dominating, the user only hit 10.8% free usage. The plan's inflated 31.5c daytime rate heavily penalized the remaining 2,400+ kWh.
 **Solution**: Mathematically proved that the break-even threshold for the plan was 27% free usage. Advised immediate switch to a Standard User Flat-Rate plan (23c-24c) to remove the daytime penalty, saving the user ~$150/month.
 **Key Insight**: Time-of-Use plans are a trap for households with high 24/7 baseloads. Never trust an LLM's financial optimization unless it shows the exact algebraic crossover formula.
+
+## Case Study: Flight Scanner Paranoia (2026-06-07)
+**Problem**: API wrappers often fail silently due to NoneType injections, dict morphing, or quota exhaustion.
+**Solution**: Built 13 discrete failure mitigations including atomic `.tmp` file swapping, `isinstance(x, list)` arrays, and `default_state.update(loaded)` dict merging. Flattened into 9 functions to kill spaghetti complexity.
