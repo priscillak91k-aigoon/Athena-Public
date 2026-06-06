@@ -45,6 +45,7 @@ def check_flights():
         "flight_type": "round",
         "nights_in_dst_from": 2,
         "nights_in_dst_to": 7,
+        "max_stopovers": 0,
         "curr": "NZD",
         "price_to": TARGET_PRICE,
         "limit": 5,
