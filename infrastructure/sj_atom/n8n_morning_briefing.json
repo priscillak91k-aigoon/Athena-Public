@@ -31,9 +31,29 @@
       "parameters": {
         "fileName": "=/vault/SJ_Diary_{{$now.minus({'days':1}).format('yyyy-MM-dd')}}.md"
       },
-      "name": "Read Yesterday's Diary",
+      "name": "Read Yesterday Diary",
       "type": "n8n-nodes-base.readWriteFile",
       "position": [400, 0],
+      "typeVersion": 1,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "fileName": "=/vault/SJ_Diary_{{$now.minus({'days':30}).format('yyyy-MM-dd')}}.md"
+      },
+      "name": "Read T-30 Diary",
+      "type": "n8n-nodes-base.readWriteFile",
+      "position": [600, 0],
+      "typeVersion": 1,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "fileName": "=/vault/SJ_Diary_{{$now.minus({'days':365}).format('yyyy-MM-dd')}}.md"
+      },
+      "name": "Read T-365 Diary",
+      "type": "n8n-nodes-base.readWriteFile",
+      "position": [800, 0],
       "typeVersion": 1,
       "continueOnFail": true
     },
@@ -50,7 +70,7 @@
             },
             {
               "name": "prompt",
-              "value": "=You are a supportive, autonomous ambient intelligence assistant providing a morning briefing to SJ.\n\nToday's Weather: Max {{$('Fetch Weather (Dunedin)').item.json.daily.temperature_2m_max[0]}}°C, Min {{$('Fetch Weather (Dunedin)').item.json.daily.temperature_2m_min[0]}}°C.\nYesterday's Diary Context:\n{{$json.data || 'No diary entry yesterday.'}}\n\nTask: Write a concise, 3-sentence morning briefing for her. Be encouraging. Mention the weather and reflect warmly on a key theme from her diary if it exists. Do not include any conversational filler like 'Here is your briefing'."
+              "value": "=You are a supportive, autonomous ambient intelligence assistant providing a morning briefing to SJ.\n\nToday's Weather: Max {{$('Fetch Weather (Dunedin)').item.json.daily.temperature_2m_max[0]}}°C, Min {{$('Fetch Weather (Dunedin)').item.json.daily.temperature_2m_min[0]}}°C.\n\nYESTERDAY'S DIARY:\n{{$('Read Yesterday Diary').item.json.data || 'No diary entry yesterday.'}}\n\nEXACTLY 30 DAYS AGO:\n{{$('Read T-30 Diary').item.json.data || 'No diary entry 30 days ago.'}}\n\nEXACTLY 1 YEAR AGO:\n{{$('Read T-365 Diary').item.json.data || 'No diary entry 1 year ago.'}}\n\nTask: Write a concise, profound 3-sentence morning briefing for her. Mention the weather. If there is a meaningful connection between her past thoughts (30 days or 1 year ago) and her current state (yesterday), gently reflect on her growth or resilience. Do not include any conversational filler."
             },
             {
               "name": "stream",
@@ -62,7 +82,7 @@
       },
       "name": "Ollama Brain",
       "type": "n8n-nodes-base.httpRequest",
-      "position": [600, 0],
+      "position": [1000, 0],
       "typeVersion": 4.1
     },
     {
@@ -73,7 +93,7 @@
       },
       "name": "Telegram (Send to SJ)",
       "type": "n8n-nodes-base.telegram",
-      "position": [800, 0],
+      "position": [1200, 0],
       "typeVersion": 1
     }
   ],
@@ -93,14 +113,36 @@
       "main": [
         [
           {
-            "node": "Read Yesterday's Diary",
+            "node": "Read Yesterday Diary",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Read Yesterday's Diary": {
+    "Read Yesterday Diary": {
+      "main": [
+        [
+          {
+            "node": "Read T-30 Diary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read T-30 Diary": {
+      "main": [
+        [
+          {
+            "node": "Read T-365 Diary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read T-365 Diary": {
       "main": [
         [
           {
