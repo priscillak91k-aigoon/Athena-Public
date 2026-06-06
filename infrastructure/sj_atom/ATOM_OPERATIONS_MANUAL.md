@@ -124,8 +124,10 @@ If you don't want to wait until midnight, you can force the extraction at any ti
 1. Open the Telegram app on your phone and open the private chat with your Diary Bot.
 2. **Text Notes:** Type any text message and hit send. It will instantly log to your diary.
 3. **Voice Notes:** While driving or walking, hold the microphone button in Telegram to record a voice note, then send it.
-4. The Atom will instantly intercept the message, securely transcribe the audio using its offline Whisper AI, and append it directly to today's `.md` file in your Obsidian vault. 
-5. The bot will automatically reply `✅ Voice note transcribed and logged to vault.` to confirm it was captured.
+4. The Atom will instantly intercept the message and securely transcribe the audio using its offline Whisper AI.
+5. **Memory Synthesis:** Before saving, the Atom securely routes the raw text through your local `llama3` LLM. The AI extracts the core emotion, detects key entities as `#tags`, and structures your raw thoughts into clean bullet points.
+6. It appends this highly structured summary to today's `.md` file in your Obsidian vault, hiding the messy raw transcript inside a collapsible `<details>` dropdown.
+7. The bot will automatically reply `✅ Voice note transcribed, synthesized, and logged to vault.` to confirm it was captured.
 
 **Zero-Trust Security:**
 Because Telegram bots are technically public, the Walkie-Talkie engine is cryptographically locked to SJ's exact Telegram User ID. If anyone else on the internet guesses the bot's username and tries to send it a message, the server will instantly incinerate it. Your diary cannot be written to by anyone but you.
@@ -150,3 +152,23 @@ If you did not write a diary entry the previous day, the system will not crash. 
 ---
 
 *This manual is a living document and will be updated as new AI capabilities (Council of Minds, Ambient Intelligence) come online.*
+
+---
+
+## ✈️ Automated Flight Tracker (The Hunter)
+*Your autonomous background service for securing cheap weekend flights.*
+
+**How it Works:**
+This is a completely "set it and forget it" microservice that runs autonomously in the dark.
+1. The engine wakes up exactly **every 12 hours**.
+2. It mathematically calculates the precise dates for **upcoming weekends 3, 4, 5, and 6** (skipping the immediate two weeks to avoid expensive last-minute pricing).
+3. It securely proxies an API request to Google Flights to check the exact prices for **Direct, Round-Trip flights** between Dunedin (DUD) and Wellington (WLG).
+4. If it detects a flight under your target threshold (currently **$300 NZD** total round-trip), it instantly pings your phone via the private Telegram bot with a direct booking link.
+5. If no flights match the criteria, the engine stays completely silent and goes back to sleep to conserve your 250/month free API quota.
+
+**How to Modify Target Parameters:**
+If you ever need to change the destination or the price limit:
+1. Open `~/Athena-Public/infrastructure/sj_atom/docker-compose-ai.yml` on the Atom.
+2. Locate the `flight-scanner` service block at the bottom of the file.
+3. Edit the `FLY_TO`, `FLY_FROM`, or `TARGET_PRICE` environment variables.
+4. Run the standard boot sequence (`sudo docker compose -f docker-compose-ai.yml up -d --build`) to permanently lock in the new parameters.
