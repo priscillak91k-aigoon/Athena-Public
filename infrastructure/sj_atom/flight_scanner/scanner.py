@@ -32,8 +32,9 @@ def get_next_weekends():
         days_ahead += 7
     next_friday = today + timedelta(days=days_ahead)
     
-    # Generate next 4 weekends (Friday to Sunday)
-    for i in range(4):
+    # Skip the next 2 weekends (they are usually expensive/booked), 
+    # and generate the 4 weekends after that (Weeks 3, 4, 5, 6)
+    for i in range(2, 6):
         outbound = next_friday + timedelta(weeks=i)
         inbound = outbound + timedelta(days=2)
         weekends.append((outbound.strftime("%Y-%m-%d"), inbound.strftime("%Y-%m-%d")))
