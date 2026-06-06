@@ -96,6 +96,8 @@ services:
       - TELEGRAM_TOKEN=8878217823:AAHvwnBXXbtH20nzh9tbr0G35Ac_Y9hWKgI
     volumes:
       - ./data/obsidian_vault:/vault:rw
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
       - whisper
     restart: unless-stopped

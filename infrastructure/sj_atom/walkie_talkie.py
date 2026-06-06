@@ -43,7 +43,39 @@ def transcribe_audio(file_path):
             print(f"Transcription error: {e}")
             return None
 
-def write_to_vault(text):
+def synthesize_memory(raw_text):
+    prompt = f"""You are an autonomous memory synthesis engine for SJ's lifelong digital diary. 
+Read her raw stream-of-consciousness transcript and structure it for long-term vector database storage.
+
+RAW TRANSCRIPT:
+"{raw_text}"
+
+INSTRUCTIONS:
+1. Extract the core emotional state or sentiment (e.g., Anxious, Excited, Reflective).
+2. Extract key entities (people, places, projects) and list them as #tags.
+3. Summarize the main points into clear, concise bullet points.
+4. Output strictly in this Markdown format, with NO conversational filler:
+
+**Emotional State:** [Emotion]
+**Key Entities:** #tag1 #tag2
+
+**Synthesis:**
+- [Bullet point 1]
+- [Bullet point 2]
+"""
+    try:
+        resp = requests.post(
+            "http://host.docker.internal:11434/api/generate",
+            json={"model": "llama3", "prompt": prompt, "stream": False},
+            timeout=120
+        )
+        if resp.status_code == 200:
+            return resp.json().get("response", "").strip()
+    except Exception as e:
+        print(f"Ollama synthesis failed: {e}")
+    return None
+
+def write_to_vault(raw_text, synthesized_text):
     date_str = datetime.datetime.now().strftime("%Y-%m-%d")
     time_str = datetime.datetime.now().strftime("%I:%M %p")
     file_name = f"SJ_Diary_{date_str}.md"
@@ -54,7 +86,12 @@ def write_to_vault(text):
     if not os.path.exists(file_path):
         header = f"# Sovereign Journal - {date_str}\n\n"
         
-    entry = f"{header}### 🎙️ Walkie-Talkie Log ({time_str})\n{text.strip()}\n\n"
+    if synthesized_text:
+        content = f"{synthesized_text}\n\n<details>\n<summary>Raw Transcript</summary>\n\n{raw_text.strip()}\n</details>"
+    else:
+        content = raw_text.strip()
+        
+    entry = f"{header}### 🎙️ Walkie-Talkie Log ({time_str})\n{content}\n\n---\n\n"
     
     with open(file_path, "a", encoding="utf-8") as f:
         f.write(entry)
@@ -91,12 +128,14 @@ def main():
                 download_file(file_id, audio_path)
                 
                 print("Transcribing via Local Whisper...")
-                text = transcribe_audio(audio_path)
+                raw_text = transcribe_audio(audio_path)
                 
-                if text:
-                    print(f"Transcription: {text[:50]}...")
-                    write_to_vault(text)
-                    send_message(chat_id, "✅ Voice note transcribed and logged to vault.")
+                if raw_text:
+                    print(f"Transcription: {raw_text[:50]}...")
+                    print("Synthesizing memory via Ollama...")
+                    synthesized_text = synthesize_memory(raw_text)
+                    write_to_vault(raw_text, synthesized_text)
+                    send_message(chat_id, "✅ Voice note transcribed, synthesized, and logged to vault.")
                 else:
                     send_message(chat_id, "❌ Failed to transcribe audio. Is Whisper running?")
                     
@@ -104,10 +143,12 @@ def main():
             
             # Handle Text Notes
             elif "text" in message:
-                text = message["text"]
-                print(f"Received text note: {text[:50]}...")
-                write_to_vault(text)
-                send_message(chat_id, "✅ Text logged to vault.")
+                raw_text = message["text"]
+                print(f"Received text note: {raw_text[:50]}...")
+                print("Synthesizing memory via Ollama...")
+                synthesized_text = synthesize_memory(raw_text)
+                write_to_vault(raw_text, synthesized_text)
+                send_message(chat_id, "✅ Text synthesized and logged to vault.")
                 
         time.sleep(POLL_INTERVAL)
 
