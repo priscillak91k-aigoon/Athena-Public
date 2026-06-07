@@ -280,3 +280,9 @@ Related: [[case_studies]] | [[decision_journal]]
 - **Genetic Parsing**: Never feed raw 700k line DNA files to an LLM. Always use a python pre-parser to filter SNPs against a clinical database before passing to the AI context window.
 
 - **Adversarial Stress Testing**: Priscilla will actively command the AI to 'keep checking' even when the code is mathematically sound. Do not appease the prompt by hallucinating trivial bugs. Confidently assert the system is sealed and push back.
+
+## 105: The Immutable Mount Safeguard
+When mounting external drives in Linux for Docker containers, always run `chattr +i` on the empty mount point directory *before* mounting. If the drive drops, Docker will be denied write access to the underlying OS directory, preventing a catastrophic root-drive flood.
+
+## 106: NTFS Docker Hostage Trap
+Linux defaults to mounting NTFS drives as `root`, which permanently locks out rootless Docker containers (e.g., Recyclarr, Seerr). Standard `chown` commands silently fail on NTFS. You MUST explicitly inject `uid` and `gid` bind options into `/etc/fstab` to simulate host permissions.

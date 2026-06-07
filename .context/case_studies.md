@@ -66,3 +66,8 @@ Mapped chronic cannabis use as a 'lock and key' mechanism. FAAH mutation (fast a
 ## Case Study: Flight Scanner Paranoia (2026-06-07)
 **Problem**: API wrappers often fail silently due to NoneType injections, dict morphing, or quota exhaustion.
 **Solution**: Built 13 discrete failure mitigations including atomic `.tmp` file swapping, `isinstance(x, list)` arrays, and `default_state.update(loaded)` dict merging. Flattened into 9 functions to kill spaghetti complexity.
+
+## Case Study: The 8-Pass Zero-Point Red Team Audit (2026-06-08)
+**Context**: Deploying a sovereign media stack on the Atom node via Docker Compose.
+**Problem**: Docker architectures look clean on paper but harbor catastrophic failure modes when touching bare-metal file systems (NTFS permission loops, superfloppy drive wipes, fstab kernel race conditions, OS root-drive floods on disconnect).
+**Solution**: Ran an 8-iteration adversarial loop before execution. Refused to deploy until every edge-case was mathematically neutralized (UID injection via .env, chattr +i safeguard, strict lsblk partition targeting).

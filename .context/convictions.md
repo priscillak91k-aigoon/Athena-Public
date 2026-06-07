@@ -13,3 +13,5 @@
 - Biology is a mechanical engineering problem. We don't guess. We read the source code (DNA) and build hardware patches.
 
 - **Code Integrity**: Code that doesn't need to change, shouldn't change. Silence is better than sycophancy.
+
+- Perfect architecture on paper means nothing if the bare-metal OS interaction is flawed. The danger is always in the physical boundaries (mounts, UIDs, subnets).
