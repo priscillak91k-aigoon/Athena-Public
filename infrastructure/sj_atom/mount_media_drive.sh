@@ -110,29 +110,7 @@ mkdir -p "$MOUNT_POINT"
 # this prevents Docker from writing to the root OS drive and filling it up!
 chattr +i "$MOUNT_POINT" 2>/dev/null || true
 
-# Step 5: Mount the drive
-echo "Mounting $DEVICE_PATH to $MOUNT_POINT..."
-mount "$DEVICE_PATH" "$MOUNT_POINT"
-echo "✅ Mounted."
-
-# Step 6: Add to /etc/fstab (idempotent)
-UUID=$(blkid -s UUID -o value "$DEVICE_PATH")
-
-if [ -z "$UUID" ]; then
-    echo "❌ FATAL: Could not read UUID from $DEVICE_PATH. System needs a reboot or partition table is corrupt."
-    exit 1
-fi
-
-if grep -q "$UUID" /etc/fstab; then
-    echo "ℹ️  fstab entry already exists. Skipping."
-else
-    echo "Adding to /etc/fstab for reboot persistence..."
-    # Use the DETECTED filesystem type and add x-systemd.automount for external drive resilience
-    echo "UUID=$UUID  $MOUNT_POINT  $FSTYPE  defaults,nofail,x-systemd.automount  0  2" >> /etc/fstab
-    echo "✅ fstab updated."
-fi
-
-# Step 7: Dynamic Permission Sync (.env generation)
+# Step 4.5: Dynamic Permission Sync (.env generation & NTFS Mapping)
 echo ""
 echo "Syncing Docker permissions to your user account..."
 if [ -n "${SUDO_USER:-}" ]; then
@@ -149,6 +127,34 @@ echo "PUID=$CURRENT_UID" > "$ENV_FILE"
 echo "PGID=$CURRENT_GID" >> "$ENV_FILE"
 echo "✅ .env file generated (PUID=$CURRENT_UID, PGID=$CURRENT_GID)"
 
+# Step 5: Mount the drive
+MOUNT_OPTS="defaults"
+if [[ "$FSTYPE" == "ntfs" || "$FSTYPE" == "exfat" || "$FSTYPE" == "vfat" ]]; then
+    echo "⚠️  Non-native filesystem detected. Applying strict UID/GID mount bindings..."
+    MOUNT_OPTS="uid=$CURRENT_UID,gid=$CURRENT_GID,dmask=022,fmask=111"
+fi
+
+echo "Mounting $DEVICE_PATH to $MOUNT_POINT with options: $MOUNT_OPTS..."
+mount -o "$MOUNT_OPTS" "$DEVICE_PATH" "$MOUNT_POINT"
+echo "✅ Mounted."
+
+# Step 6: Add to /etc/fstab (idempotent)
+UUID=$(blkid -s UUID -o value "$DEVICE_PATH")
+
+if [ -z "$UUID" ]; then
+    echo "❌ FATAL: Could not read UUID from $DEVICE_PATH. System needs a reboot or partition table is corrupt."
+    exit 1
+fi
+
+if grep -q "$UUID" /etc/fstab; then
+    echo "ℹ️  fstab entry already exists. Skipping."
+else
+    echo "Adding to /etc/fstab for reboot persistence..."
+    # Use the DETECTED filesystem type and add x-systemd.automount for external drive resilience
+    echo "UUID=$UUID  $MOUNT_POINT  $FSTYPE  $MOUNT_OPTS,nofail,x-systemd.automount  0  2" >> /etc/fstab
+    echo "✅ fstab updated."
+fi
+
 echo ""
 echo "Creating unified media directory structure..."
 mkdir -p "$MOUNT_POINT/data/torrents/movies"
@@ -157,7 +163,9 @@ mkdir -p "$MOUNT_POINT/data/media/movies"
 mkdir -p "$MOUNT_POINT/data/media/tv"
 
 # Set ownership to match the dynamic host user
-chown -R "$CURRENT_UID:$CURRENT_GID" "$MOUNT_POINT/data"
+# Note: This will error safely on NTFS drives because they don't support native POSIX chown,
+# but the uid/gid mount options we applied above already fixed it.
+chown -R "$CURRENT_UID:$CURRENT_GID" "$MOUNT_POINT/data" 2>/dev/null || true
 
 # Step 8: Pre-create Docker config directories to prevent permission errors
 # Rootless containers (Recyclarr, Seerr) will crash if Docker auto-creates these as root
