@@ -171,7 +171,7 @@ services:
     container_name: cycle-tracker-priscilla
     environment:
       - TZ=Pacific/Auckland
-      - TELEGRAM_TOKEN=INSERT_YOUR_NEW_BOT_TOKEN_HERE
+      - TELEGRAM_TOKEN=8430674917:AAFReTq9N-Na4r-vD5e8OOelqykLlmJDa0I
       - TELEGRAM_CHAT_ID=8582867462
       - STATE_FILE=/context/.cycle_state_priscilla.json
     volumes:
