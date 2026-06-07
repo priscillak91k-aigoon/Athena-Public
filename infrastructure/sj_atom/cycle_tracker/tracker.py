@@ -15,6 +15,7 @@ TOKEN = os.environ.get("TELEGRAM_TOKEN")
 CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 STATE_FILE = os.environ.get("STATE_FILE", "/context/.cycle_state.json")
 NZT = pytz.timezone('Pacific/Auckland')
+TONE = os.environ.get("TONE", "warm").lower()
 
 # ============================================================================
 # PHASE DEFINITIONS — Evidence-Based Cycle Syncing
@@ -25,7 +26,7 @@ NZT = pytz.timezone('Pacific/Auckland')
 # trackers universally separate them for UX clarity.
 # ============================================================================
 
-PHASES = {
+WARM_PHASES = {
     1: {
         "name": "🩸 Menstrual Phase",
         "days": "Days 1–5",
@@ -116,6 +117,47 @@ PHASES = {
     }
 }
 
+CLINICAL_PHASES = {
+    1: {
+        "name": "Menstrual Phase",
+        "days": "Days 1–5",
+        "msg": (
+            "<b>State:</b> Hormonal baseline. Estrogen and progesterone are at their lowest.\n\n"
+            "<b>Effects:</b> Reduced energy levels, potential fatigue.\n\n"
+            "<b>Action:</b> Focus on rest, low-intensity movement (walking, yoga), and iron-rich foods combined with Vitamin C for absorption."
+        )
+    },
+    6: {
+        "name": "Follicular Phase",
+        "days": "Days 6–12",
+        "msg": (
+            "<b>State:</b> Estrogen rising.\n\n"
+            "<b>Effects:</b> Increased cognitive clarity, energy, and motivation.\n\n"
+            "<b>Action:</b> Optimal window for high-intensity training, project initiation, and complex tasks."
+        )
+    },
+    13: {
+        "name": "Ovulatory Phase",
+        "days": "Days 13–14",
+        "msg": (
+            "<b>State:</b> Estrogen peak, accompanied by a minor testosterone spike.\n\n"
+            "<b>Effects:</b> Peak physical and verbal performance.\n\n"
+            "<b>Action:</b> Prioritise high-output activities, strength training, and social engagements."
+        )
+    },
+    15: {
+        "name": "Luteal Phase",
+        "days": "Days 15–28",
+        "msg": (
+            "<b>State:</b> Progesterone rising. Core body temperature increases.\n\n"
+            "<b>Effects:</b> Metabolism increases by ~3-5% (30-120 kcal/day). Potential for decreased insulin sensitivity and increased systemic inflammation.\n\n"
+            "<b>Action:</b> Transition to moderate, steady-state exercise. Increase complex carbohydrate and healthy fat intake. Monitor for signs of fatigue."
+        )
+    }
+}
+
+PHASES = CLINICAL_PHASES if TONE == "clinical" else WARM_PHASES
+
 # Sorted phase transition days for lookup
 PHASE_DAYS = sorted(PHASES.keys())
 
@@ -205,9 +247,10 @@ async def reset_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     today_str = datetime.datetime.now(NZT).date().strftime("%Y-%m-%d")
     save_state({"anchor_date": today_str})
 
-    await update.message.reply_text(
-        f"Got it — I've noted today ({today_str}) as Day 1. 🤍"
-    )
+    if TONE == "clinical":
+        await update.message.reply_text(f"Cycle anchor reset. Current day: 1.")
+    else:
+        await update.message.reply_text(f"Got it — I've noted today ({today_str}) as Day 1. 🤍")
 
     # Send the Day 1 phase info immediately
     phase = PHASES[1]
@@ -226,13 +269,22 @@ async def status_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     current_day = get_current_day(state["anchor_date"])
     phase = get_phase_for_day(current_day)
 
-    msg = (
-        f"📊 <b>How you're tracking</b>\n\n"
-        f"Last period started: {state['anchor_date']}\n"
-        f"Today: <b>Day {current_day}</b>\n"
-        f"Phase: <b>{phase['name']}</b>\n\n"
-        f'<i>Just send "period" or /reset when your next one begins.</i>'
-    )
+    if TONE == "clinical":
+        msg = (
+            f"<b>Status Report</b>\n\n"
+            f"Anchor Date: {state['anchor_date']}\n"
+            f"Current Day: <b>{current_day}</b>\n"
+            f"Phase: <b>{phase['name']}</b>\n\n"
+            f'<i>Send "reset" or "period" to re-anchor cycle.</i>'
+        )
+    else:
+        msg = (
+            f"📊 <b>How you're tracking</b>\n\n"
+            f"Last period started: {state['anchor_date']}\n"
+            f"Today: <b>Day {current_day}</b>\n"
+            f"Phase: <b>{phase['name']}</b>\n\n"
+            f'<i>Just send "period" or /reset when your next one begins.</i>'
+        )
     await update.message.reply_text(msg, parse_mode="HTML")
 
 
