@@ -1,20 +1,287 @@
 version: "3.8"
 
+# =============================================================================
+# ATOM MEDIA STACK — Sovereign Media Automation
+# =============================================================================
+# Deploy:  docker compose -f docker-compose-media.yml up -d
+# Status:  docker compose -f docker-compose-media.yml ps
+# Logs:    docker compose -f docker-compose-media.yml logs -f <service>
+# Nuke:    docker compose -f docker-compose-media.yml down
+#
+# PREREQUISITE: Run mount_media_drive.sh FIRST to set up /mnt/media/data/
+# =============================================================================
+
+networks:
+  media-net:
+    driver: bridge
+
 services:
-  # The Media Empire
+
+  # ---------------------------------------------------------------------------
+  # MEDIA SERVER — Plex
+  # ---------------------------------------------------------------------------
+  # Serves media to TV, phone, browser.
+  # Uses network_mode: host for DLNA/GDM discovery on local network.
+  # GPU passthrough enabled for hardware transcoding (requires Plex Pass).
+  # NOTE: If NVENC stays greyed out on the GB10, switch to Jellyfin (see below).
+  #
+  # ⚠️ NETWORKING: Plex uses host networking, so it is NOT on media-net.
+  # Other containers (Seerr, Radarr, Sonarr) must reach Plex via the
+  # HOST'S LAN IP (e.g., http://192.168.x.x:32400), NOT "http://plex:32400".
+  # In Plex Settings > Network > LAN Networks, add your Docker bridge
+  # subnet (172.17.0.0/16) so Plex treats container traffic as local.
   plex:
     image: lscr.io/linuxserver/plex:latest
     container_name: plex
     network_mode: host
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
       - TZ=Pacific/Auckland
       - VERSION=docker
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
     volumes:
       - ./data/plex/config:/config
-      - /mnt/media/movies:/movies # Change this path to match the 4.1TB drive mount
-      - /mnt/media/tv:/tv
+      - /mnt/media/data/media:/data/media:ro   # Read-only: Plex only reads
+      - /dev/shm:/transcode                     # RAM-backed transcoding temp
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # ALTERNATIVE: Jellyfin (uncomment to use instead of Plex)
+  # ---------------------------------------------------------------------------
+  # Free hardware transcoding, no account required, zero telemetry.
+  # If using Jellyfin, comment out the entire Plex block above.
+  #
+  # jellyfin:
+  #   image: lscr.io/linuxserver/jellyfin:latest
+  #   container_name: jellyfin
+  #   networks:
+  #     - media-net
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Pacific/Auckland
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #     - NVIDIA_DRIVER_CAPABILITIES=all
+  #   ports:
+  #     - "8096:8096"
+  #   volumes:
+  #     - ./data/jellyfin/config:/config
+  #     - /mnt/media/data/media:/data/media:ro
+  #     - /dev/shm:/transcode
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: 1
+  #             capabilities: [gpu]
+  #   restart: unless-stopped
+
+  # ===========================================================================
+  # DOWNLOAD CLIENT — Two deployment modes (pick ONE):
+  #   Mode A: NO VPN (default) — works immediately, no credentials needed
+  #   Mode B: WITH VPN — uncomment Gluetun, comment out Mode A qBittorrent
+  #
+  # To upgrade from Mode A → Mode B:
+  #   1. Uncomment the Gluetun service below
+  #   2. Comment out the "Mode A" qBittorrent block
+  #   3. Uncomment the "Mode B" qBittorrent block
+  #   4. Fill in your VPN credentials in Gluetun
+  #   5. docker compose -f docker-compose-media.yml up -d
+  # ===========================================================================
+
+  # ---------------------------------------------------------------------------
+  # MODE A: qBittorrent WITHOUT VPN (active by default)
+  # ---------------------------------------------------------------------------
+  # ⚠️ WARNING: Your Atom's real IP is visible to torrent swarms.
+  # Use this to get the stack running immediately. Upgrade to Mode B when
+  # you have VPN credentials ready.
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    networks:
+      - media-net
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=Pacific/Auckland
+      - WEBUI_PORT=8080
+    ports:
+      - "8080:8080"
+      - "6881:6881"          # Peer connection port (TCP)
+      - "6881:6881/udp"      # Peer connection port (UDP)
+    volumes:
+      - ./data/qbittorrent/config:/config
+      - /mnt/media/data:/data               # UNIFIED PATH — same as Radarr/Sonarr
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # MODE B: VPN TUNNEL — Gluetun + qBittorrent (uncomment when ready)
+  # ---------------------------------------------------------------------------
+  # Gluetun creates a VPN tunnel. qBittorrent shares its network stack.
+  # If VPN drops, qBit's network dies with it. No IP leak possible.
+  #
+  # ⚠️ CRITICAL: Gluetun will NOT pass its healthcheck without valid
+  # credentials. If credentials are wrong/missing, qBittorrent will
+  # never start, and the entire download pipeline is bricked.
+  #
+  # CONFIGURATION: https://github.com/qdm12/gluetun-wiki
+  #
+  # gluetun:
+  #   image: qmcgaw/gluetun:latest
+  #   container_name: gluetun
+  #   networks:
+  #     - media-net
+  #   cap_add:
+  #     - NET_ADMIN
+  #   devices:
+  #     - /dev/net/tun:/dev/net/tun
+  #   ports:
+  #     # qBittorrent WebUI (exposed here because qBit uses Gluetun's network)
+  #     - "8080:8080"
+  #   environment:
+  #     - TZ=Pacific/Auckland
+  #     - VPN_SERVICE_PROVIDER=mullvad      # or: windscribe, protonvpn, pia, etc.
+  #     - VPN_TYPE=wireguard                # or: openvpn
+  #     # - WIREGUARD_PRIVATE_KEY=<your-key>
+  #     # - WIREGUARD_ADDRESSES=<your-address>
+  #     # - SERVER_COUNTRIES=New Zealand
+  #   restart: unless-stopped
+  #
+  # # Mode B qBittorrent (uses Gluetun's network — comment out Mode A first)
+  # qbittorrent:
+  #   image: lscr.io/linuxserver/qbittorrent:latest
+  #   container_name: qbittorrent
+  #   network_mode: "service:gluetun"
+  #   depends_on:
+  #     gluetun:
+  #       condition: service_healthy
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Pacific/Auckland
+  #     - WEBUI_PORT=8080
+  #   volumes:
+  #     - ./data/qbittorrent/config:/config
+  #     - /mnt/media/data:/data
+  #   restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # MOVIE AUTOMATION — Radarr
+  # ---------------------------------------------------------------------------
+  # Searches for movies via Prowlarr, sends to qBittorrent, hardlinks to library.
+  # Root Folder (set in UI): /data/media/movies
+  # Download Client Host: qbittorrent (port 8080, category: radarr)
+  #   → If using Mode B (VPN): host is 'gluetun' instead
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    networks:
+      - media-net
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=Pacific/Auckland
+    ports:
+      - "7878:7878"
+    volumes:
+      - ./data/radarr/config:/config
+      - /mnt/media/data:/data                # UNIFIED PATH — enables hardlinks
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # TV AUTOMATION — Sonarr
+  # ---------------------------------------------------------------------------
+  # Same as Radarr but for TV shows.
+  # Root Folder (set in UI): /data/media/tv
+  # Download Client Host: qbittorrent (port 8080, category: sonarr)
+  #   → If using Mode B (VPN): host is 'gluetun' instead
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    networks:
+      - media-net
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=Pacific/Auckland
+    ports:
+      - "8989:8989"
+    volumes:
+      - ./data/sonarr/config:/config
+      - /mnt/media/data:/data                # UNIFIED PATH — enables hardlinks
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # INDEXER MANAGER — Prowlarr
+  # ---------------------------------------------------------------------------
+  # Central hub for indexers. Syncs to Radarr + Sonarr automatically.
+  # Add your indexers here, then connect to Radarr/Sonarr under Settings > Apps.
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    networks:
+      - media-net
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=Pacific/Auckland
+    ports:
+      - "9696:9696"
+    volumes:
+      - ./data/prowlarr/config:/config
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # REQUEST MANAGEMENT — Seerr (successor to Overseerr + Jellyseerr)
+  # ---------------------------------------------------------------------------
+  # Web UI for browsing/requesting movies + TV shows.
+  # Built-in Telegram notifications ("your movie is ready").
+  # Connect to Plex/Jellyfin + Radarr + Sonarr in the setup wizard.
+  seerr:
+    image: ghcr.io/seerr-team/seerr:latest
+    container_name: seerr
+    user: ${PUID:-1000}:${PGID:-1000}
+    init: true
+    networks:
+      - media-net
+    environment:
+      - LOG_LEVEL=info
+      - TZ=Pacific/Auckland
+      - PORT=5055
+    ports:
+      - "5055:5055"
+    volumes:
+      - ./data/seerr/config:/app/config
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # QUALITY PROFILE AUTOMATION — Recyclarr
+  # ---------------------------------------------------------------------------
+  # Runs daily. Syncs TRaSH Guide quality profiles + custom formats to
+  # Radarr and Sonarr. No manual profile management needed.
+  # Config: ./data/recyclarr/config/recyclarr.yml (auto-generated on first run)
+  #
+  # NOTE: :latest tag is deprecated upstream. Use major version tag (:8).
+  # Container is rootless — user: must match PUID/PGID of other services.
+  recyclarr:
+    image: ghcr.io/recyclarr/recyclarr:8
+    container_name: recyclarr
+    user: ${PUID:-1000}:${PGID:-1000}
+    networks:
+      - media-net
+    environment:
+      - TZ=Pacific/Auckland
+      - CRON_SCHEDULE=@daily
+    volumes:
+      - ./data/recyclarr/config:/config
     restart: unless-stopped

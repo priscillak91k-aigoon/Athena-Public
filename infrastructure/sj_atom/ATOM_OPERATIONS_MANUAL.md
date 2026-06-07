@@ -159,3 +159,61 @@ To change the destination or the price limit:
 2. Locate the `flight-scanner` service block at the bottom of the file.
 3. Edit the `FLY_TO`, `FLY_FROM`, or `TARGET_PRICE` environment variables.
 4. Run `sudo docker compose -f docker-compose-ai.yml up -d --build` to permanently lock in the new parameters.
+
+---
+
+## 🎬 Media Automation Stack (The Empire)
+
+> *Sovereign media acquisition and serving. Request a movie → it appears on your TV.*
+
+### Architecture
+```
+Telegram ← Seerr (notifications)
+                ↓
+         Radarr / Sonarr
+                ↓
+            Prowlarr (indexers)
+                ↓
+     qBittorrent ← [Gluetun VPN — optional]
+                ↓
+      /mnt/media/data/media/
+                ↓
+              Plex → TV/Phone/Browser
+```
+
+### Service Map
+
+| Service | Port | What It Does |
+|---------|------|-------------|
+| Plex | 32400 | Media server (host network) |
+| Radarr | 7878 | Movie automation |
+| Sonarr | 8989 | TV show automation |
+| Prowlarr | 9696 | Indexer management |
+| Seerr | 5055 | Request management + Telegram |
+| qBittorrent | 8080 | Download client |
+| Gluetun | — | VPN kill-switch (optional — Mode B) |
+| Recyclarr | — | TRaSH Guide quality sync (daily cron) |
+
+### Deploy Commands
+```bash
+# First time: mount the media drive
+sudo bash mount_media_drive.sh
+
+# Deploy the stack
+cd ~/Athena-Public/infrastructure/sj_atom
+docker compose -f docker-compose-media.yml up -d
+
+# Check status
+docker compose -f docker-compose-media.yml ps
+
+# Verify VPN (only if using Mode B)
+docker exec gluetun curl -s ifconfig.me
+```
+
+### Critical Path Notes
+- ⚠️ Plex uses `network_mode: host` for DLNA discovery. It is NOT on the Docker bridge network. Seerr must connect to Plex via the host's LAN IP (e.g., `http://192.168.x.x:32400`), not by container name.
+- VPN is **optional** (Mode B in compose file). Stack runs out of the box in Mode A without VPN credentials.
+
+### Full Setup Guide
+See: `MEDIA_STACK_SETUP.md` for the complete post-deploy wiring walkthrough.
+
