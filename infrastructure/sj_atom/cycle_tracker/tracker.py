@@ -4,7 +4,7 @@ import logging
 import datetime
 import pytz
 from telegram import Update
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, Defaults
 
 # Setup logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -31,19 +31,21 @@ PHASES = {
         "days": "Days 1–5",
         "msg": (
             "Hey lovely, your cycle has started again. Take it easy today. 🤍\n\n"
-            "🔬 *What's going on:* Your hormones are at their quietest right now — "
+            "🔬 <b>What's going on:</b> Your hormones are at their quietest right now — "
             "estrogen and progesterone have both dipped. Your body is doing its "
             "natural reset.\n\n"
-            "⚡ *How you might feel:* You may feel a bit more tired than usual, "
+            "⚡ <b>How you might feel:</b> You may feel a bit more tired than usual, "
             "and you might want more time to yourself. That's completely okay — "
             "it's your body asking for rest, not weakness.\n\n"
-            "🏋️ *Movement:* Gentle is the word — a walk, some yoga, or just "
+            "🏋️ <b>Movement:</b> Gentle is the word — a walk, some yoga, or just "
             "stretching. If you feel like doing more, go for it. But there's no "
             "pressure to push through anything right now.\n\n"
-            "🍽️ *Nourishment:* Iron-rich foods are your friend (think red meat, "
-            "lentils, spinach). Stay hydrated. And if you're craving dark chocolate — "
-            "that's actually your body asking for magnesium. Have some. 🍫\n\n"
-            "💡 *A gentle reminder:* This is a beautiful time for reflection and "
+            "🍽️ <b>Nourishment:</b> Iron-rich foods are your friend (think red meat, "
+            "lentils, spinach). Pair them with something rich in vitamin C "
+            "(kiwifruit, capsicum, citrus) to help your body absorb it. Stay hydrated. "
+            "And if you're craving dark chocolate — that's actually your body asking "
+            "for magnesium. Have some. 🍫\n\n"
+            "💡 <b>A gentle reminder:</b> This is a beautiful time for reflection and "
             "quietness. You don't have to be 'on' right now."
         )
     },
@@ -53,18 +55,18 @@ PHASES = {
         "msg": (
             "Good morning! You're entering your Follicular phase — things are "
             "about to feel a lot brighter. ✨\n\n"
-            "🔬 *What's going on:* Estrogen is gently rising, and your body is "
+            "🔬 <b>What's going on:</b> Estrogen is gently rising, and your body is "
             "building up fresh energy reserves.\n\n"
-            "⚡ *How you might feel:* You'll probably notice your mind feels "
+            "⚡ <b>How you might feel:</b> You'll probably notice your mind feels "
             "sharper and clearer. Ideas flow easier. Motivation starts to come "
             "back naturally — don't fight it, ride it.\n\n"
-            "🏋️ *Movement:* Your body is ready for more now — resistance training, "
+            "🏋️ <b>Movement:</b> Your body is ready for more now — resistance training, "
             "a good run, or anything that gets your heart going. Recovery is "
             "faster during this phase too, so push a little if it feels good.\n\n"
-            "🍽️ *Nourishment:* Lean proteins and wholesome carbs will fuel the "
+            "🍽️ <b>Nourishment:</b> Lean proteins and wholesome carbs will fuel the "
             "energy you're building. Great time to try that new recipe you've "
             "been saving.\n\n"
-            "💡 *A gentle reminder:* This is your power window. If there's something "
+            "💡 <b>A gentle reminder:</b> This is your power window. If there's something "
             "big you've been putting off — a conversation, a project, a decision — "
             "now is the time."
         )
@@ -74,17 +76,17 @@ PHASES = {
         "days": "Days 13–14",
         "msg": (
             "You're glowing — ovulation is here or just around the corner. 🌟\n\n"
-            "🔬 *What's going on:* Estrogen is at its peak. There's a brief "
+            "🔬 <b>What's going on:</b> Estrogen is at its peak. There's a brief "
             "little spike of testosterone too, which adds to the confidence.\n\n"
-            "⚡ *How you might feel:* This is often when you feel your most "
-            "magnetic — more social, more articulate, more *you*. If you feel "
+            "⚡ <b>How you might feel:</b> This is often when you feel your most "
+            "magnetic — more social, more articulate, more <i>you</i>. If you feel "
             "like you could take on the world today, that's real.\n\n"
-            "🏋️ *Movement:* You're at your physical peak right now. If there's "
+            "🏋️ <b>Movement:</b> You're at your physical peak right now. If there's "
             "a workout you love, today is the day. Strength, cardio, whatever "
             "lights you up.\n\n"
-            "🍽️ *Nourishment:* Anti-inflammatory foods (salmon, berries, leafy "
+            "🍽️ <b>Nourishment:</b> Anti-inflammatory foods (salmon, berries, leafy "
             "greens) support the hormonal shift that's coming next.\n\n"
-            "💡 *A gentle reminder:* Enjoy this energy. Say yes to the social "
+            "💡 <b>A gentle reminder:</b> Enjoy this energy. Say yes to the social "
             "thing. Start the conversation. You're in your element."
         )
     },
@@ -94,20 +96,20 @@ PHASES = {
         "msg": (
             "The Luteal phase is here. Time to slow down a little — and that's "
             "a good thing. 🍵\n\n"
-            "🔬 *What's going on:* Progesterone is rising, and your body is "
+            "🔬 <b>What's going on:</b> Progesterone is rising, and your body is "
             "naturally shifting gears. Your temperature goes up slightly too.\n\n"
-            "⚡ *How you might feel:* You may feel things more deeply during this "
+            "⚡ <b>How you might feel:</b> You may feel things more deeply during this "
             "time — emotions might be closer to the surface, and that's perfectly "
             "natural. You might also notice you're hungrier than usual (your "
             "metabolism actually speeds up a little).\n\n"
-            "🏋️ *Movement:* Moderate is your sweet spot — Pilates, swimming, a "
+            "🏋️ <b>Movement:</b> Moderate is your sweet spot — Pilates, swimming, a "
             "long walk. Your body is actually better at burning fat for fuel "
             "right now, so steady movement feels surprisingly good.\n\n"
-            "🍽️ *Nourishment:* Honour your appetite — your body genuinely needs "
+            "🍽️ <b>Nourishment:</b> Honour your appetite — your body genuinely needs "
             "a bit more right now. Complex carbs and healthy fats help keep "
             "your mood steady. Calcium and Vitamin D are your allies. If bloating "
             "shows up, easing off salt and caffeine can help.\n\n"
-            "💡 *A gentle reminder:* You're not slowing down because something is "
+            "💡 <b>A gentle reminder:</b> You're not slowing down because something is "
             "wrong. You're slowing down because your body is wise. Finish what's "
             "open, rest what can wait, and be kind to yourself."
         )
@@ -177,13 +179,13 @@ async def daily_check(context: ContextTypes.DEFAULT_TYPE):
     if current_day in PHASES:
         phase = PHASES[current_day]
         msg = (
-            f"🔔 *Cycle Update — Day {current_day}*\n\n"
-            f"*{phase['name']} ({phase['days']})*\n\n"
+            f"🔔 <b>Cycle Update — Day {current_day}</b>\n\n"
+            f"<b>{phase['name']} ({phase['days']})</b>\n\n"
             f"{phase['msg']}"
         )
         try:
             await context.bot.send_message(
-                chat_id=CHAT_ID, text=msg, parse_mode="Markdown"
+                chat_id=CHAT_ID, text=msg, parse_mode="HTML"
             )
         except Exception as e:
             logger.error(f"Failed to send daily notification: {e}")
@@ -202,13 +204,13 @@ async def reset_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     save_state({"anchor_date": today_str})
 
     await update.message.reply_text(
-        f"✅ Cycle anchor reset to today ({today_str}). You are now on Day 1."
+        f"Got it — I've noted today ({today_str}) as Day 1. 🤍"
     )
 
     # Send the Day 1 phase info immediately
     phase = PHASES[1]
-    info_msg = f"*{phase['name']} ({phase['days']})*\n\n{phase['msg']}"
-    await update.message.reply_text(info_msg, parse_mode="Markdown")
+    info_msg = f"<b>{phase['name']} ({phase['days']})</b>\n\n{phase['msg']}"
+    await update.message.reply_text(info_msg, parse_mode="HTML")
 
 
 async def status_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -221,13 +223,13 @@ async def status_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     phase = get_phase_for_day(current_day)
 
     msg = (
-        f"📊 *Cycle Status*\n\n"
-        f"Anchor Date: {state['anchor_date']}\n"
-        f"Current Day: *Day {current_day}*\n"
-        f"Current Phase: *{phase['name']}*\n\n"
-        f"_Send \"period\" or /reset when your next cycle begins._"
+        f"📊 <b>How you're tracking</b>\n\n"
+        f"Last period started: {state['anchor_date']}\n"
+        f"Today: <b>Day {current_day}</b>\n"
+        f"Phase: <b>{phase['name']}</b>\n\n"
+        f'<i>Just send "period" or /reset when your next one begins.</i>'
     )
-    await update.message.reply_text(msg, parse_mode="Markdown")
+    await update.message.reply_text(msg, parse_mode="HTML")
 
 
 async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -247,7 +249,8 @@ def main():
         logger.error("FATAL: TELEGRAM_TOKEN and TELEGRAM_CHAT_ID must be set!")
         return
 
-    app = Application.builder().token(TOKEN).build()
+    defaults = Defaults(tzinfo=NZT)
+    app = Application.builder().token(TOKEN).defaults(defaults).build()
 
     # Register command handlers
     app.add_handler(CommandHandler("reset", reset_command))
