@@ -118,7 +118,7 @@ services:
       - TARGET_PRICE=300
       - DATE_RANGE_DAYS=30
     volumes:
-      - ../../.context:/context:ro
+      - ../../.context:/context:rw
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
@@ -142,6 +142,22 @@ services:
       - TZ=Pacific/Auckland
     volumes:
       - ./data/obsidian_vault:/vault:rw
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  # Autonomous Menstrual Cycle Tracker
+  cycle-tracker:
+    build:
+      context: ./cycle_tracker
+      dockerfile: Dockerfile.cycle
+    container_name: cycle-tracker
+    environment:
+      - TZ=Pacific/Auckland
+      - TELEGRAM_TOKEN=8646377686:AAGN4oezMOmmJLiEtJkR-yKTfuBV1H_3N3Q
+      - TELEGRAM_CHAT_ID=8309108979
+    volumes:
+      - ../../.context:/context:rw
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
