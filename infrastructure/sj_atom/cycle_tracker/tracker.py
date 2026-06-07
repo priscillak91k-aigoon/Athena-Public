@@ -197,7 +197,9 @@ async def daily_check(context: ContextTypes.DEFAULT_TYPE):
 
 async def reset_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Reset the cycle anchor to today. Triggered by /reset or texting 'period'."""
+    logger.info(f"Received reset command from chat_id: {update.message.chat_id}")
     if str(update.message.chat_id) != str(CHAT_ID):
+        logger.warning(f"Unauthorized chat_id {update.message.chat_id} tried to reset. Expected {CHAT_ID}.")
         return
 
     today_str = datetime.datetime.now(NZT).date().strftime("%Y-%m-%d")
@@ -215,7 +217,9 @@ async def reset_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def status_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show current cycle day and phase. Triggered by /status or any text."""
+    logger.info(f"Received status command from chat_id: {update.message.chat_id}")
     if str(update.message.chat_id) != str(CHAT_ID):
+        logger.warning(f"Unauthorized chat_id {update.message.chat_id} tried to get status. Expected {CHAT_ID}.")
         return
 
     state = load_state()
@@ -236,6 +240,8 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle free-text messages. 'period'/'reset'/'started' resets; else status."""
     if not update.message or not update.message.text:
         return
+
+    logger.info(f"Received text '{update.message.text}' from chat_id: {update.message.chat_id}")
 
     text = update.message.text.lower().strip()
     if any(keyword in text for keyword in ["reset", "started", "period"]):
