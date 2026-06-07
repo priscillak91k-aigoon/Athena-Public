@@ -146,7 +146,7 @@ services:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
 
-  # Autonomous Menstrual Cycle Tracker
+  # Autonomous Menstrual Cycle Tracker (SJ)
   cycle-tracker:
     build:
       context: ./cycle_tracker
@@ -156,9 +156,26 @@ services:
       - TZ=Pacific/Auckland
       - TELEGRAM_TOKEN=8646377686:AAGN4oezMOmmJLiEtJkR-yKTfuBV1H_3N3Q
       - TELEGRAM_CHAT_ID=8309108979
+      - STATE_FILE=/context/.cycle_state.json
     volumes:
       - ../../.context:/context:rw
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
 
+  # Autonomous Menstrual Cycle Tracker (Priscilla)
+  cycle-tracker-priscilla:
+    build:
+      context: ./cycle_tracker
+      dockerfile: Dockerfile.cycle
+    container_name: cycle-tracker-priscilla
+    environment:
+      - TZ=Pacific/Auckland
+      - TELEGRAM_TOKEN=INSERT_YOUR_NEW_BOT_TOKEN_HERE
+      - TELEGRAM_CHAT_ID=8582867462
+      - STATE_FILE=/context/.cycle_state_priscilla.json
+    volumes:
+      - ../../.context:/context:rw
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped

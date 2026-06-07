@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 # Constants
 TOKEN = os.environ.get("TELEGRAM_TOKEN")
 CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
-STATE_FILE = "/context/.cycle_state.json"
+STATE_FILE = os.environ.get("STATE_FILE", "/context/.cycle_state.json")
 NZT = pytz.timezone('Pacific/Auckland')
 
 # ============================================================================
