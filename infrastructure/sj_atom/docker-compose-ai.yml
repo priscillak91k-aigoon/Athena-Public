@@ -155,7 +155,7 @@ services:
     environment:
       - TZ=Pacific/Auckland
       - TELEGRAM_TOKEN=8646377686:AAGN4oezMOmmJLiEtJkR-yKTfuBV1H_3N3Q
-      - TELEGRAM_CHAT_ID=8309108979
+      - TELEGRAM_CHAT_ID=8582867462
     volumes:
       - ../../.context:/context:rw
     extra_hosts:
