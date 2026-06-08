@@ -123,7 +123,7 @@ services:
       - "6881:6881/udp"      # Peer connection port (UDP)
     volumes:
       - ./data/qbittorrent/config:/config
-      - /mnt/media/data:/data               # UNIFIED PATH — same as Radarr/Sonarr
+      - /mnt/qnap:/data               # UNIFIED PATH — same as Radarr/Sonarr
     restart: unless-stopped
 
   # ---------------------------------------------------------------------------
@@ -197,7 +197,7 @@ services:
       - "7878:7878"
     volumes:
       - ./data/radarr/config:/config
-      - /mnt/media/data:/data                # UNIFIED PATH — enables hardlinks
+      - /mnt/qnap:/data                # UNIFIED PATH — enables hardlinks
     restart: unless-stopped
 
   # ---------------------------------------------------------------------------
@@ -220,7 +220,7 @@ services:
       - "8989:8989"
     volumes:
       - ./data/sonarr/config:/config
-      - /mnt/media/data:/data                # UNIFIED PATH — enables hardlinks
+      - /mnt/qnap:/data                # UNIFIED PATH — enables hardlinks
     restart: unless-stopped
 
   # ---------------------------------------------------------------------------
