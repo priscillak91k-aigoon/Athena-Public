@@ -114,9 +114,9 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=Pacific/Auckland
-      - WEBUI_PORT=8085
+      - WEBUI_PORT=8088
     ports:
-      - "8085:8085"
+      - "8088:8088"
       - "6881:6881"          # Peer connection port (TCP)
       - "6881:6881/udp"      # Peer connection port (UDP)
     volumes:
