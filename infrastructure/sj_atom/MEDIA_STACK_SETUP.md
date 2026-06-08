@@ -31,7 +31,7 @@
 
 ## Step 2: Configure qBittorrent
 
-**URL**: `http://atom:8080`
+**URL**: `http://atom:8088`
 
 1. **Get initial password**: `docker logs qbittorrent 2>&1 | grep "temporary password"`
 2. Login with `admin` / `<temporary password>`
@@ -55,7 +55,7 @@
 2. **Download Client**: Settings → Download Clients → Add
    - Type: qBittorrent
    - Host: `qbittorrent` (or `gluetun` if using Mode B VPN)
-   - Port: `8080`
+   - Port: `8088`
    - Username: `admin`
    - Password: (the one you set in qBit)
    - Category: `radarr`
@@ -78,9 +78,9 @@ Same as Radarr, but:
 
 **URL**: `http://atom:5055`
 
-1. **Setup Wizard**: Connect to Plex
-   - ⚠️ Plex is on `network_mode: host`, so use the **host's LAN IP** (e.g., `http://192.168.x.x:32400`), NOT `http://plex:32400`
-   - Sign in with your Plex account
+1. **Setup Wizard**: Connect to Jellyfin (or Plex)
+   - **Jellyfin**: Enter `http://jellyfin:8096` as the server address, plus your Jellyfin username and password.
+   - **Plex**: Use the **host's LAN IP** (e.g., `http://192.168.x.x:32400`), NOT `http://plex:32400`
 2. **Connect Radarr**:
    - Hostname: `radarr`
    - Port: `7878`
@@ -92,6 +92,10 @@ Same as Radarr, but:
    - Bot Token: `8878217823:AAHvwnBXXbtH20nzh9tbr0G35Ac_Y9hWKgI` (Reused from your existing AI bot)
    - Chat ID: `8309108979`
    - Enable: "Media Available" (so you get notified when it's ready to watch)
+5. **Telegram Request Bot** (Conversational Requests):
+   - Go to **Settings → General** in Seerr and copy your **API Key**.
+   - Open your `docker-compose-media.yml` file and replace `PLACEHOLDER_INSERT_SEERR_API_KEY_HERE` under the `seerr-bot` service with this key.
+   - Run `docker compose -f docker-compose-media.yml up -d seerr-bot` to launch the conversational request bot.
 
 > **Plex LAN Networks**: In Plex → Settings → Network → LAN Networks, add `172.16.0.0/12,192.168.0.0/16` so Plex treats all Docker and LAN traffic as local (prevents "remote access" throttling).
 
@@ -165,3 +169,39 @@ Recyclarr v8 requires you to generate the initial configuration file.
 | Plex doesn't see new files | Force library scan, or check that Plex volume maps to `/data/media` |
 | Hardlinks not working | Confirm downloads and media are on the same filesystem (same `/data` root) |
 | NVENC greyed out in Plex | Known GB10 issue — consider switching to Jellyfin (uncomment in compose) |
+
+---
+
+## Step 7: Public Smart TV Access (Tailscale Funnel)
+
+If you have users with standard Smart TVs (Samsung/LG) that cannot install the Tailscale app, you can expose Jellyfin to the public internet securely using **Tailscale Funnel**. This gives you a public URL without opening router ports or exposing your home IP.
+
+**Part 1: Enable Funnel in Access Controls**
+Before you can open a funnel, you must authorize it in your Tailscale Admin Console.
+1. Go to your dashboard: `https://login.tailscale.com/admin/machines`
+2. Click the **DNS** tab and ensure **Enable HTTPS** is turned ON.
+3. Click the **Access Controls** tab.
+4. Scroll to the bottom of your configuration code and paste this block right before the final `}`:
+```json
+	"nodeAttrs": [
+		{
+			"target": ["*"],
+			"attr":   ["funnel"],
+		},
+	],
+```
+5. Click **Save**.
+
+**Part 2: Open the Funnel on the Server**
+1. SSH into the Atom node.
+2. Force the daemon to sync with your new Access Controls:
+   ```bash
+   sudo tailscale up --force-reauth
+   ```
+3. Bind Jellyfin's port to the public relay as a background process:
+   ```bash
+   sudo tailscale funnel --bg 8096
+   ```
+
+**Part 3: Client Connection**
+Tailscale will generate a secure HTTPS URL (e.g., `https://athena.tail42cb1a.ts.net`). Give this URL to your users. They just type it into the "Server URL" field of the Jellyfin app on their TV or phone. No VPN is required on their end.

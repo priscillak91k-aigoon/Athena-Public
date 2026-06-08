@@ -286,6 +286,25 @@ services:
     restart: unless-stopped
 
   # ---------------------------------------------------------------------------
+  # TELEGRAM BOT — Seerr Request Bot
+  # ---------------------------------------------------------------------------
+  # Allows you to natively request movies directly from the Telegram chat.
+  # Requires you to generate an API key in Seerr > Settings > General.
+  seerr-bot:
+    image: chimpanzeesweetrolls/overseerrrequestviatelegrambot:latest
+    container_name: seerr-bot
+    networks:
+      - media-net
+    environment:
+      - OVERSEERR_URL=http://seerr:5055
+      - OVERSEERR_API_KEY=PLACEHOLDER_INSERT_SEERR_API_KEY_HERE
+      - TELEGRAM_BOT_TOKEN=8878217823:AAHvwnBXXbtH20nzh9tbr0G35Ac_Y9hWKgI
+      - TZ=Pacific/Auckland
+    depends_on:
+      - seerr
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
   # QUALITY PROFILE AUTOMATION — Recyclarr
   # ---------------------------------------------------------------------------
   # Runs daily. Syncs TRaSH Guide quality profiles + custom formats to
