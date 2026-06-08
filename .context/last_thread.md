@@ -1,1 +1,1 @@
-Atom Media Stack deployed and secured after an 8-pass God-Mode audit. The system is live.
+Sovereign Media Stack deployed: Radarr, Sonarr, QNAP storage, and Jellyfin are successfully integrated and request-ready behind Seerr.

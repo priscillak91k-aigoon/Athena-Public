@@ -71,3 +71,7 @@ Mapped chronic cannabis use as a 'lock and key' mechanism. FAAH mutation (fast a
 **Context**: Deploying a sovereign media stack on the Atom node via Docker Compose.
 **Problem**: Docker architectures look clean on paper but harbor catastrophic failure modes when touching bare-metal file systems (NTFS permission loops, superfloppy drive wipes, fstab kernel race conditions, OS root-drive floods on disconnect).
 **Solution**: Ran an 8-iteration adversarial loop before execution. Refused to deploy until every edge-case was mathematically neutralized (UID injection via .env, chattr +i safeguard, strict lsblk partition targeting).
+
+### The Seerr/Jellyfin API Block Bypass
+- **Context**: During initial setup, Seerr attempts to sync libraries from Jellyfin. If Jellyfin is simultaneously ingesting terabytes of data (e.g. from an 11TB QNAP array), its internal SQLite database gets locked under heavy load. The Seerr UI throws a 'Something went wrong' timeout and blocks setup progression.
+- **Solution**: Bypassed the frontend token auth entirely. Generated a hardcoded Admin API key directly inside Jellyfin's Dashboard. Injected the key into Seerr's 'API Key' field in settings. This forcefully bridged the connection and bypassed the frontend timeout.

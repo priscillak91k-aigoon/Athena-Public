@@ -78,3 +78,7 @@ Engineered Sarah's biological architecture. Deconstructed her MTHFR, GSTP1, GAD1
 ## 2026-06-08: Atom Media Stack Deployment
 **Decision**: Forced a strict Mode A/B separation for VPN integration rather than trying to auto-configure Gluetun without credentials.
 **Reasoning**: Gluetun has a hard kill-switch healthcheck. If it boots with dummy credentials, it crash-loops. Because `qbittorrent` relies on Gluetun’s network stack, this would brick the entire download pipeline out of the box. Mode A ensures immediate functional gratification, while Mode B is cleanly compartmentalized for later activation.
+
+### June 9, 2026 - Sovereign Media Stack Finalization
+**Decision**: Re-mapped Radarr/Sonarr/qBittorrent paths natively to /mnt/qnap:/data instead of the internal Atom drive.
+**Reasoning**: Prevented internal 4TB SSD exhaustion and stopped 'spaghettification' by ensuring all raw media is immediately ingested, downloaded, and hardlinked onto the 11TB QNAP array. Kept the storage pipeline fully linear.

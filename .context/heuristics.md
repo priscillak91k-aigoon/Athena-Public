@@ -286,3 +286,7 @@ When mounting external drives in Linux for Docker containers, always run `chattr
 
 ## 106: NTFS Docker Hostage Trap
 Linux defaults to mounting NTFS drives as `root`, which permanently locks out rootless Docker containers (e.g., Recyclarr, Seerr). Standard `chown` commands silently fail on NTFS. You MUST explicitly inject `uid` and `gid` bind options into `/etc/fstab` to simulate host permissions.
+
+### Media Stack / Storage
+- When mounting NTFS drives on Linux for Docker containers, never default to o. Use explicit mappings: w,uid=1000,gid=1000,dmask=000,fmask=111 to prevent permission lockout for rootless containers.
+- If Seerr fails to 'Sync Libraries' with Jellyfin during initial setup, it's often an API timeout due to Jellyfin scanning. Bypass the UI block by generating an Admin API key directly in Jellyfin and pasting it into Seerr.
