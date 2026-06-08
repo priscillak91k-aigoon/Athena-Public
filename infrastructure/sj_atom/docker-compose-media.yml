@@ -244,6 +244,25 @@ services:
     restart: unless-stopped
 
   # ---------------------------------------------------------------------------
+  # CLOUDFLARE BYPASS — FlareSolverr
+  # ---------------------------------------------------------------------------
+  # Required by Prowlarr to bypass Cloudflare bot checks on public indexers
+  # like 1337x and TorrentGalaxy.
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=info
+      - LOG_HTML=false
+      - CAPTCHA_SOLVER=none
+      - TZ=Pacific/Auckland
+    networks:
+      - media-net
+    ports:
+      - "8191:8191"
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
   # REQUEST MANAGEMENT — Seerr (successor to Overseerr + Jellyseerr)
   # ---------------------------------------------------------------------------
   # Web UI for browsing/requesting movies + TV shows.
