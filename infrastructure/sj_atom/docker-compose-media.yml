@@ -76,6 +76,8 @@ services:
     volumes:
       - ./data/jellyfin/config:/config
       - /mnt/media/data/media:/data/media:ro
+      - /mnt/qnap/Movies:/data/qnap-movies:ro
+      - /mnt/qnap/TV Series:/data/qnap-tv:ro
       - /dev/shm:/transcode
     deploy:
       resources:
