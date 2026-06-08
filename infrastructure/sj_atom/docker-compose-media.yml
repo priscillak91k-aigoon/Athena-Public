@@ -60,31 +60,31 @@ services:
   # Free hardware transcoding, no account required, zero telemetry.
   # If using Jellyfin, comment out the entire Plex block above.
   #
-  # jellyfin:
-  #   image: lscr.io/linuxserver/jellyfin:latest
-  #   container_name: jellyfin
-  #   networks:
-  #     - media-net
-  #   environment:
-  #     - PUID=1000
-  #     - PGID=1000
-  #     - TZ=Pacific/Auckland
-  #     - NVIDIA_VISIBLE_DEVICES=all
-  #     - NVIDIA_DRIVER_CAPABILITIES=all
-  #   ports:
-  #     - "8096:8096"
-  #   volumes:
-  #     - ./data/jellyfin/config:/config
-  #     - /mnt/media/data/media:/data/media:ro
-  #     - /dev/shm:/transcode
-  #   deploy:
-  #     resources:
-  #       reservations:
-  #         devices:
-  #           - driver: nvidia
-  #             count: 1
-  #             capabilities: [gpu]
-  #   restart: unless-stopped
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    networks:
+      - media-net
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Pacific/Auckland
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    ports:
+      - "8096:8096"
+    volumes:
+      - ./data/jellyfin/config:/config
+      - /mnt/media/data/media:/data/media:ro
+      - /dev/shm:/transcode
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
 
   # ===========================================================================
   # DOWNLOAD CLIENT — Two deployment modes (pick ONE):
