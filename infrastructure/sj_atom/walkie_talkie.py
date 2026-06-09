@@ -268,17 +268,20 @@ def main():
                 file_id = message["voice"]["file_id"]
                 print(f"Received voice note from {chat_id}. Downloading...")
                 audio_path = f"/tmp/{file_id}.ogg"
-                download_file(file_id, audio_path)
+                saved_path = download_file(file_id, audio_path)
                 
                 print("Transcribing via Local Whisper...")
-                raw_text = transcribe_audio(audio_path)
+                if saved_path and os.path.exists(saved_path):
+                    raw_text = transcribe_audio(saved_path)
+                else:
+                    raw_text = None
                 
                 if raw_text:
                     print(f"Transcription: {raw_text[:50]}...")
                     print("Synthesizing memory via Ollama...")
                     synthesized_text = synthesize_memory(raw_text)
                     
-                    if synthesized_text == "IGNORED_HALLUCINATION":
+                    if "IGNORED_HALLUCINATION" in synthesized_text:
                         print("Dropped whisper hallucination.")
                         send_message(chat_id, "⚠️ Dropped empty audio/background noise.")
                     else:
