@@ -45,7 +45,7 @@ def transcribe_audio(file_path):
     with open(file_path, "rb") as f:
         files = {"audio_file": f}
         try:
-            resp = requests.post(WHISPER_URL, files=files)
+            resp = requests.post(WHISPER_URL, files=files, timeout=300)
             if resp.headers.get('content-type') == 'application/json':
                 return resp.json().get('text', '')
             else:
