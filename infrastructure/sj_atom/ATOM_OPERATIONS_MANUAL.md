@@ -61,6 +61,8 @@
    - **Voice:** Select your preferred narrator. *(Recommended: `en-GB-ThomasNeural` for a classic, deep storyteller vibe).*
    - **Voice Rate/Pitch:** For a "sleep story" or older narrator feel, drop Rate to `-15` and Pitch to `-10`.
 4. Hit **Start**. You can close your laptop. The Atom will autonomously crunch the entire book in the background and drop it into your library.
+   > [!TIP]
+   > **Library Sync:** Once the generation finishes, you may need to open Audiobookshelf and click **Scan Library** for the new book to physically appear.
 
 > [!TIP]
 > **Previewing Voices:** You can test voices in real-time using the [Microsoft Voice Gallery](https://speech.microsoft.com/portal/voicegallery) or the [Hugging Face Edge-TTS Interface](https://huggingface.co/spaces/innoai/Edge-TTS-Text-to-Speech).
@@ -87,6 +89,7 @@ If any horny slags want to write their own smut and have it narrated to them, th
 | :--- | :--- |
 | **Tailscale IP** | `http://100.73.93.94:3000` |
 | **MagicDNS** | `http://ai.atom.tailnet` |
+| **Home WiFi** | `http://192.168.88.50:3000` |
 
 ### Permanent Memory Pipeline
 You do **not** need to click "save" or manually export your chats. 
@@ -101,7 +104,7 @@ You do **not** need to click "save" or manually export your chats.
 The engine maintains a foundational document (`SJ_Core_Profile.md`) containing core demographic and psychological facts. 
 
 > [!IMPORTANT]
-> Every night at 3:00 AM, the engine checks yesterday's diary for any fundamental life changes. If it detects a major shift, it automatically overwrites `SJ_Core_Profile.md` and instantly fires an API request to **rebuild the `sj-diary` chat model on the fly**. The Open WebUI model never goes stale.
+> Every night at 3:00 AM, the engine checks yesterday's diary for any fundamental life changes. If it detects a major shift, it automatically overwrites `SJ_Core_Profile.md` and instantly fires an API request to **rebuild BOTH your `sj-diary` (Fast Chat) and `sj-diary-reasoning` (Deep Think) models on the fly**. This guarantees your Open WebUI models never go stale.
 
 ---
 
@@ -189,6 +192,8 @@ You do **not** need to manually download torrents or interact with Radarr/Sonarr
 The fastest way to request media is via the autonomous Telegram Bot.
 1. Open the private chat or shared group chat with the Seerr Bot in Telegram.
 2. Type `/check <Movie or Show Title>` (e.g. `/check The Matrix`).
+   > [!TIP]
+   > **First Time Setup:** If the bot replies "No user configured", tap the **🔄 Switch User** button and select the main profile. It will permanently link your Telegram ID so you never have to do it again.
 3. Tap the **1080p** or **4K** button underneath the poster.
 4. The bot will autonomously route the request to Seerr, which triggers Radarr/Sonarr, which sends it to qBittorrent to download directly to the 11TB QNAP array.
 
