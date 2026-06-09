@@ -37,7 +37,7 @@
           "parameters": [
             {
               "name": "model",
-              "value": "llama3"
+              "value": "hermes3:8b"
             },
             {
               "name": "prompt",

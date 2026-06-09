@@ -72,8 +72,8 @@ INSTRUCTIONS:
     try:
         resp = requests.post(
             "http://host.docker.internal:11434/api/generate",
-            json={"model": "llama3", "prompt": prompt, "stream": False},
-            timeout=120
+            json={"model": "hermes3:8b", "prompt": prompt, "stream": False},
+            timeout=600
         )
         if resp.status_code == 200:
             return resp.json().get("response", "").strip()
@@ -140,8 +140,8 @@ INSTRUCTIONS:
     try:
         resp = requests.post(
             "http://host.docker.internal:11434/api/generate",
-            json={"model": "deepseek-r1:8b", "prompt": prompt, "stream": False},
-            timeout=300
+            json={"model": "deepseek-r1:14b", "prompt": prompt, "stream": False},
+            timeout=600
         )
         if resp.status_code == 200:
             result = resp.json().get("response", "").strip()
@@ -154,11 +154,11 @@ INSTRUCTIONS:
                     
                 # THE AUTO-BAKE PROTOCOL
                 print("Re-baking the sj-diary models dynamically...")
-                payload_quick = f"FROM llama3\nSYSTEM \"\"\"You are SJ's lifelong autonomous AI companion.\nBelow is her foundational Core Profile. You must never forget these facts.\n\n{clean_result}\"\"\""
-                payload_reasoning = f"FROM deepseek-r1:8b\nSYSTEM \"\"\"You are SJ's lifelong autonomous AI companion.\nBelow is her foundational Core Profile. You must never forget these facts.\n\n{clean_result}\"\"\""
+                payload_quick = f"FROM hermes3:8b\nSYSTEM \"\"\"You are SJ's lifelong autonomous AI companion.\nBelow is her foundational Core Profile. You must never forget these facts.\n\n{clean_result}\"\"\""
+                payload_reasoning = f"FROM deepseek-r1:14b\nSYSTEM \"\"\"You are SJ's lifelong autonomous AI companion.\nBelow is her foundational Core Profile. You must never forget these facts.\n\n{clean_result}\"\"\""
                 try:
-                    requests.post("http://host.docker.internal:11434/api/create", json={"name": "sj-diary:latest", "modelfile": payload_quick}, timeout=120)
-                    requests.post("http://host.docker.internal:11434/api/create", json={"name": "sj-diary-reasoning:latest", "modelfile": payload_reasoning}, timeout=120)
+                    requests.post("http://host.docker.internal:11434/api/create", json={"name": "sj-diary:latest", "modelfile": payload_quick}, timeout=600)
+                    requests.post("http://host.docker.internal:11434/api/create", json={"name": "sj-diary-reasoning:latest", "modelfile": payload_reasoning}, timeout=600)
                     print("sj-diary model successfully updated in Open WebUI.")
                 except Exception as ex:
                     print(f"Failed to auto-bake model: {ex}")
@@ -218,8 +218,8 @@ INSTRUCTIONS:
     try:
         resp = requests.post(
             "http://host.docker.internal:11434/api/generate",
-            json={"model": "deepseek-r1:8b", "prompt": prompt, "stream": False},
-            timeout=300
+            json={"model": "deepseek-r1:14b", "prompt": prompt, "stream": False},
+            timeout=600
         )
         if resp.status_code == 200:
             result = resp.json().get("response", "").strip()
