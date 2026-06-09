@@ -3,6 +3,7 @@ import time
 import requests
 import datetime
 import schedule
+import re
 
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 WHISPER_URL = "http://whisper-api:9000/asr"
@@ -144,15 +145,17 @@ INSTRUCTIONS:
         )
         if resp.status_code == 200:
             result = resp.json().get("response", "").strip()
-            if result != "NO_CHANGE" and "NO_CHANGE" not in result:
+            # AUDIT FIX: Strip DeepSeek reasoning tags so they don't corrupt the Llama3 system prompt
+            clean_result = re.sub(r'<think>.*?</think>', '', result, flags=re.DOTALL).strip()
+            if clean_result and clean_result != "NO_CHANGE" and "NO_CHANGE" not in clean_result:
                 print("Core Profile updated. Writing to vault...")
                 with open(profile_path, "w", encoding="utf-8") as f:
-                    f.write(result)
+                    f.write(clean_result)
                     
                 # THE AUTO-BAKE PROTOCOL
                 print("Re-baking the sj-diary models dynamically...")
-                payload_quick = f"FROM llama3\nSYSTEM \"\"\"You are SJ's lifelong autonomous AI companion.\nBelow is her foundational Core Profile. You must never forget these facts.\n\n{result}\"\"\""
-                payload_reasoning = f"FROM deepseek-r1:8b\nSYSTEM \"\"\"You are SJ's lifelong autonomous AI companion.\nBelow is her foundational Core Profile. You must never forget these facts.\n\n{result}\"\"\""
+                payload_quick = f"FROM llama3\nSYSTEM \"\"\"You are SJ's lifelong autonomous AI companion.\nBelow is her foundational Core Profile. You must never forget these facts.\n\n{clean_result}\"\"\""
+                payload_reasoning = f"FROM deepseek-r1:8b\nSYSTEM \"\"\"You are SJ's lifelong autonomous AI companion.\nBelow is her foundational Core Profile. You must never forget these facts.\n\n{clean_result}\"\"\""
                 try:
                     requests.post("http://host.docker.internal:11434/api/create", json={"name": "sj-diary:latest", "modelfile": payload_quick}, timeout=120)
                     requests.post("http://host.docker.internal:11434/api/create", json={"name": "sj-diary-reasoning:latest", "modelfile": payload_reasoning}, timeout=120)
@@ -221,11 +224,15 @@ INSTRUCTIONS:
         if resp.status_code == 200:
             result = resp.json().get("response", "").strip()
             
-            # Save silently to the vault
-            synthesis_filename = f"SJ_Weekly_Synthesis_{today.strftime('%Y-%m-%d')}.md"
-            with open(os.path.join(VAULT_DIR, synthesis_filename), "w", encoding="utf-8") as f:
-                f.write(result)
-            print(f"Weekly synthesis saved to {synthesis_filename}")
+            # AUDIT FIX: Strip DeepSeek reasoning tags so Obsidian markdown remains perfectly formatted
+            clean_result = re.sub(r'<think>.*?</think>', '', result, flags=re.DOTALL).strip()
+            
+            # Save silently to the vault only if we have actual content
+            if clean_result:
+                synthesis_filename = f"SJ_Weekly_Synthesis_{today.strftime('%Y-%m-%d')}.md"
+                with open(os.path.join(VAULT_DIR, synthesis_filename), "w", encoding="utf-8") as f:
+                    f.write(clean_result)
+                print(f"Weekly synthesis saved to {synthesis_filename}")
     except Exception as e:
         print(f"Ollama weekly synthesis failed: {e}")
 
