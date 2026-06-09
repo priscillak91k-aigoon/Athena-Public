@@ -181,16 +181,37 @@ Telegram ← Seerr (notifications)
               Plex → TV/Phone/Browser
 ```
 
+### How to Use The Stack (Daily Operation)
+
+You do **not** need to manually download torrents or interact with Radarr/Sonarr. The entire pipeline is operated exclusively through Seerr and Jellyfin.
+
+**1. Requesting Content (Seerr)**
+1. Open **Seerr** (`http://192.168.88.50:5055` or `http://seerr.atom.tailnet` via VPN).
+2. Search for any movie or TV show.
+3. Click **Request**.
+4. Seerr will automatically ping Radarr/Sonarr, which will find the best torrent, send it to qBittorrent, and download it directly to the 11TB QNAP array.
+
+**2. Watching Content (Jellyfin)**
+1. Open the **Jellyfin** app on your TV, phone, or browser (`http://192.168.88.50:8096`).
+2. Once the download hits 100%, Radarr/Sonarr will seamlessly move it to the QNAP folder, and the movie/show will magically appear on your Jellyfin home screen.
+3. Click play.
+
+**3. Troubleshooting Stalled Downloads**
+If a movie is taking hours and hasn't finished:
+1. Open **qBittorrent** (`http://192.168.88.50:8088`). Check if the torrent has 0 seeders or is stuck on "Stalled".
+2. If it is stalled, open **Radarr** or **Sonarr**, search for the title, click the manual "Search" tab, and explicitly pick a different torrent with more seeders.
+
 ### Service Map
 
 | Service | Port | What It Does |
 |---------|------|-------------|
-| Plex | 32400 | Media server (host network) |
+| Jellyfin| 8096 | Primary sovereign media server |
+| Plex | 32400 | Secondary media server (host network) |
 | Radarr | 7878 | Movie automation |
 | Sonarr | 8989 | TV show automation |
 | Prowlarr | 9696 | Indexer management |
 | Seerr | 5055 | Request management + Telegram |
-| qBittorrent | 8080 | Download client |
+| qBittorrent | 8088 | Download client |
 | Gluetun | — | VPN kill-switch (optional — Mode B) |
 | Recyclarr | — | TRaSH Guide quality sync (daily cron) |
 
