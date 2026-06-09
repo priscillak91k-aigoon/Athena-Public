@@ -71,7 +71,7 @@ INSTRUCTIONS:
     try:
         resp = requests.post(
             "http://host.docker.internal:11434/api/generate",
-            json={"model": "llama3", "prompt": prompt, "stream": False},
+            json={"model": "deepseek-r1:8b", "prompt": prompt, "stream": False},
             timeout=120
         )
         if resp.status_code == 200:
@@ -139,7 +139,7 @@ INSTRUCTIONS:
     try:
         resp = requests.post(
             "http://host.docker.internal:11434/api/generate",
-            json={"model": "llama3", "prompt": prompt, "stream": False},
+            json={"model": "deepseek-r1:8b", "prompt": prompt, "stream": False},
             timeout=300
         )
         if resp.status_code == 200:
@@ -151,7 +151,7 @@ INSTRUCTIONS:
                     
                 # THE AUTO-BAKE PROTOCOL
                 print("Re-baking the sj-diary model dynamically...")
-                modelfile_payload = f"FROM llama3\nSYSTEM \"\"\"You are SJ's lifelong autonomous AI companion.\nBelow is her foundational Core Profile. You must never forget these facts.\n\n{result}\"\"\""
+                modelfile_payload = f"FROM deepseek-r1:8b\nSYSTEM \"\"\"You are SJ's lifelong autonomous AI companion.\nBelow is her foundational Core Profile. You must never forget these facts.\n\n{result}\"\"\""
                 try:
                     requests.post(
                         "http://host.docker.internal:11434/api/create", 
@@ -217,7 +217,7 @@ INSTRUCTIONS:
     try:
         resp = requests.post(
             "http://host.docker.internal:11434/api/generate",
-            json={"model": "llama3", "prompt": prompt, "stream": False},
+            json={"model": "deepseek-r1:8b", "prompt": prompt, "stream": False},
             timeout=300
         )
         if resp.status_code == 200:
