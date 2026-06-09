@@ -1,1 +1,1 @@
-Sovereign Media Stack deployed: Radarr, Sonarr, QNAP storage, and Jellyfin are successfully integrated and request-ready behind Seerr.
+Sovereign Media automation finalized; Audiobookshelf diagnostics resolved via direct database override.

@@ -290,3 +290,5 @@ Linux defaults to mounting NTFS drives as `root`, which permanently locks out ro
 ### Media Stack / Storage
 - When mounting NTFS drives on Linux for Docker containers, never default to o. Use explicit mappings: w,uid=1000,gid=1000,dmask=000,fmask=111 to prevent permission lockout for rootless containers.
 - If Seerr fails to 'Sync Libraries' with Jellyfin during initial setup, it's often an API timeout due to Jellyfin scanning. Bypass the UI block by generating an Admin API key directly in Jellyfin and pasting it into Seerr.
+
+- **Automation Race Conditions:** Never let the base tool (qBittorrent) automatically delete files if an upstream tool (Radarr/Sonarr) is relying on its existence for post-processing.

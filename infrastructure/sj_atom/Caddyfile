@@ -54,4 +54,10 @@ tts.atom.tailnet {
     reverse_proxy 100.73.93.94:7860
 }
 
+seerr.atom.tailnet {
+    reverse_proxy 100.73.93.94:5055
+}
 
+media.atom.tailnet {
+    reverse_proxy 100.73.93.94:32400
+}
