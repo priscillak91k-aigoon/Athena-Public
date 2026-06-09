@@ -183,18 +183,24 @@ Telegram ← Seerr (notifications)
 
 ### How to Use The Stack (Daily Operation)
 
-You do **not** need to manually download torrents or interact with Radarr/Sonarr. The entire pipeline is operated exclusively through Seerr and Jellyfin.
+You do **not** need to manually download torrents or interact with Radarr/Sonarr. The entire pipeline is operated exclusively through Telegram and Jellyfin.
 
-**1. Requesting Content (Seerr)**
-1. Open **Seerr** (`http://192.168.88.50:5055` or `http://seerr.atom.tailnet` via VPN).
-2. Search for any movie or TV show.
-3. Click **Request**.
-4. Seerr will automatically ping Radarr/Sonarr, which will find the best torrent, send it to qBittorrent, and download it directly to the 11TB QNAP array.
+**1. Requesting Content (Telegram Bot)**
+The fastest way to request media is via the autonomous Telegram Bot.
+1. Open the private chat or shared group chat with the Seerr Bot in Telegram.
+2. Type `/check <Movie or Show Title>` (e.g. `/check The Matrix`).
+3. Tap the **1080p** or **4K** button underneath the poster.
+4. The bot will autonomously route the request to Seerr, which triggers Radarr/Sonarr, which sends it to qBittorrent to download directly to the 11TB QNAP array.
+
+*(Alternatively, you can request via the Seerr Web UI at `http://192.168.88.50:5055` or `http://seerr.atom.tailnet` via Tailscale).*
 
 **2. Watching Content (Jellyfin)**
-1. Open the **Jellyfin** app on your TV, phone, or browser (`http://192.168.88.50:8096`).
-2. Once the download hits 100%, Radarr/Sonarr will seamlessly move it to the QNAP folder, and the movie/show will magically appear on your Jellyfin home screen.
-3. Click play.
+1. Open the **Jellyfin** app on your TV, phone, or browser.
+   - **On Home WiFi:** Use `http://192.168.88.50:8096`
+   - **Outside Network (Cellular/Travel):** You **must** activate the Tailscale VPN on your device first, then connect to `http://100.73.93.94:8096` or `http://jellyfin.atom.tailnet`
+2. Log in with your standard Jellyfin username and password.
+3. Once a requested download hits 100%, it will magically appear on your Jellyfin home screen.
+4. Click play.
 
 **3. Troubleshooting Stalled Downloads**
 If a movie is taking hours and hasn't finished:
