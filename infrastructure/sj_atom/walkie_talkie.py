@@ -281,12 +281,15 @@ def main():
                     print("Synthesizing memory via Ollama...")
                     synthesized_text = synthesize_memory(raw_text)
                     
-                    if "IGNORED_HALLUCINATION" in synthesized_text:
+                    if synthesized_text and "IGNORED_HALLUCINATION" in synthesized_text:
                         print("Dropped whisper hallucination.")
                         send_message(chat_id, "⚠️ Dropped empty audio/background noise.")
                     else:
                         write_to_vault(raw_text, synthesized_text)
-                        send_message(chat_id, "✅ Voice note transcribed, synthesized, and logged to vault.")
+                        if synthesized_text:
+                            send_message(chat_id, "✅ Voice note transcribed, synthesized, and logged to vault.")
+                        else:
+                            send_message(chat_id, "⚠️ Voice note transcribed and logged, but Ollama synthesis failed.")
                 else:
                     send_message(chat_id, "❌ Failed to transcribe audio. Is Whisper running?")
                     
@@ -298,8 +301,16 @@ def main():
                 print(f"Received text note: {raw_text[:50]}...")
                 print("Synthesizing memory via Ollama...")
                 synthesized_text = synthesize_memory(raw_text)
-                write_to_vault(raw_text, synthesized_text)
-                send_message(chat_id, "✅ Text synthesized and logged to vault.")
+                
+                if synthesized_text and "IGNORED_HALLUCINATION" in synthesized_text:
+                    print("Dropped non-journal text noise.")
+                    send_message(chat_id, "⚠️ Dropped non-journal text message.")
+                else:
+                    write_to_vault(raw_text, synthesized_text)
+                    if synthesized_text:
+                        send_message(chat_id, "✅ Text synthesized and logged to vault.")
+                    else:
+                        send_message(chat_id, "⚠️ Text logged to vault, but Ollama synthesis failed.")
                 
         time.sleep(POLL_INTERVAL)
 
