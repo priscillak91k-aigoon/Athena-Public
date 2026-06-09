@@ -37,7 +37,7 @@
           "parameters": [
             {
               "name": "model",
-              "value": "deepseek-r1:8b"
+              "value": "llama3"
             },
             {
               "name": "prompt",
