@@ -296,10 +296,13 @@ services:
     networks:
       - media-net
     environment:
-      - OVERSEERR_URL=http://seerr:5055
-      - OVERSEERR_API_KEY=PLACEHOLDER_INSERT_SEERR_API_KEY_HERE
-      - TELEGRAM_BOT_TOKEN=8878217823:AAHvwnBXXbtH20nzh9tbr0G35Ac_Y9hWKgI
+      - OVERSEERR_API_URL=http://seerr:5055/api/v1
+      - OVERSEERR_API_KEY=MTc4MDkzMTIyMDEzNGQ2NzAwMjY4LWQ3OGMtNGVmZS05MmZkLTIxOWVhOGUzZWFhNQ==
+      - TELEGRAM_TOKEN=8878217823:AAHvwnBXXbtH20nzh9tbr0G35Ac_Y9hWKgI
+      - PASSWORD=""
       - TZ=Pacific/Auckland
+    volumes:
+      - ./data/seerr-bot:/app/data
     depends_on:
       - seerr
     restart: unless-stopped
