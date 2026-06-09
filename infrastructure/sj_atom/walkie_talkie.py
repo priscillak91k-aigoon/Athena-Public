@@ -108,8 +108,13 @@ def write_to_vault(raw_text, synthesized_text):
         
     entry = f"{header}### 🎙️ Walkie-Talkie Log ({time_str})\n{content}\n\n---\n\n"
     
-    with open(file_path, "a", encoding="utf-8") as f:
-        f.write(entry)
+    try:
+        with open(file_path, "a", encoding="utf-8") as f:
+            f.write(entry)
+        return True
+    except Exception as e:
+        print(f"CRITICAL FILE IO ERROR writing to vault: {e}")
+        return False
 
 def send_message(chat_id, text):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
@@ -161,8 +166,12 @@ INSTRUCTIONS:
             clean_result = re.sub(r'<think>.*?</think>', '', result, flags=re.DOTALL).strip()
             if clean_result and clean_result != "NO_CHANGE" and "NO_CHANGE" not in clean_result:
                 print("Core Profile updated. Writing to vault...")
-                with open(profile_path, "w", encoding="utf-8") as f:
-                    f.write(clean_result)
+                try:
+                    with open(profile_path, "w", encoding="utf-8") as f:
+                        f.write(clean_result)
+                except Exception as e:
+                    print(f"CRITICAL FILE IO ERROR writing to profile: {e}")
+                    return
                     
                 # THE AUTO-BAKE PROTOCOL
                 print("Re-baking the sj-diary models dynamically...")
@@ -242,9 +251,12 @@ INSTRUCTIONS:
             # Save silently to the vault only if we have actual content
             if clean_result:
                 synthesis_filename = f"SJ_Weekly_Synthesis_{today.strftime('%Y-%m-%d')}.md"
-                with open(os.path.join(VAULT_DIR, synthesis_filename), "w", encoding="utf-8") as f:
-                    f.write(clean_result)
-                print(f"Weekly synthesis saved to {synthesis_filename}")
+                try:
+                    with open(os.path.join(VAULT_DIR, synthesis_filename), "w", encoding="utf-8") as f:
+                        f.write(clean_result)
+                    print(f"Weekly synthesis saved to {synthesis_filename}")
+                except Exception as e:
+                    print(f"CRITICAL FILE IO ERROR writing weekly synthesis: {e}")
     except Exception as e:
         print(f"Ollama weekly synthesis failed: {e}")
 
@@ -269,8 +281,10 @@ def process_voice_note(message, chat_id):
             print("Dropped whisper hallucination.")
             send_message(chat_id, "⚠️ Dropped empty audio/background noise.")
         else:
-            write_to_vault(raw_text, synthesized_text)
-            if synthesized_text:
+            success = write_to_vault(raw_text, synthesized_text)
+            if not success:
+                send_message(chat_id, "🚨 CRITICAL ERROR: Failed to write to vault! (Disk full or disconnected?)")
+            elif synthesized_text:
                 send_message(chat_id, "✅ Voice note transcribed, synthesized, and logged to vault.")
             else:
                 send_message(chat_id, "⚠️ Voice note transcribed and logged, but Ollama synthesis failed.")
@@ -293,8 +307,10 @@ def process_text_note(message, chat_id):
         print("Dropped non-journal text noise.")
         send_message(chat_id, "⚠️ Dropped non-journal text message.")
     else:
-        write_to_vault(raw_text, synthesized_text)
-        if synthesized_text:
+        success = write_to_vault(raw_text, synthesized_text)
+        if not success:
+            send_message(chat_id, "🚨 CRITICAL ERROR: Failed to write to vault! (Disk full or disconnected?)")
+        elif synthesized_text:
             send_message(chat_id, "✅ Text synthesized and logged to vault.")
         else:
             send_message(chat_id, "⚠️ Text logged to vault, but Ollama synthesis failed.")
