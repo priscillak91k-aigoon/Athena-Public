@@ -82,3 +82,7 @@ Engineered Sarah's biological architecture. Deconstructed her MTHFR, GSTP1, GAD1
 ### June 9, 2026 - Sovereign Media Stack Finalization
 **Decision**: Re-mapped Radarr/Sonarr/qBittorrent paths natively to /mnt/qnap:/data instead of the internal Atom drive.
 **Reasoning**: Prevented internal 4TB SSD exhaustion and stopped 'spaghettification' by ensuring all raw media is immediately ingested, downloaded, and hardlinked onto the 11TB QNAP array. Kept the storage pipeline fully linear.
+
+### Session 90 (2026-06-09)
+**Decision:** Upgraded Hawkeye Scanner deployment on Atom to `llama3.2-vision:90b`.
+**Reasoning:** SJ revealed the Atom node is actually a GB10 supercomputer with 128GB of memory. An 11B model would waste the hardware. 90B is required for accurate spatial/architectural blueprint reasoning.

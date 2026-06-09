@@ -15,3 +15,5 @@
 - **Code Integrity**: Code that doesn't need to change, shouldn't change. Silence is better than sycophancy.
 
 - Perfect architecture on paper means nothing if the bare-metal OS interaction is flawed. The danger is always in the physical boundaries (mounts, UIDs, subnets).
+
+- **Nuclear over Gas:** The ultimate closed-loop architecture for high-density compute is nuclear, not fossil fuels or fragile space deployments.

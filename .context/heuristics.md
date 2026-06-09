@@ -270,11 +270,6 @@ Related: [[case_studies]] | [[decision_journal]]
 - **n8n Container Write Security**: Even with `chmod 777` on the host volume, n8n v2.23+ aggressively blocks file writing natively. You MUST inject `- N8N_RESTRICT_FILE_ACCESS_TO=/your/volume/path` into the docker compose environment, AND set `N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false`.
 - **Open WebUI API Bypass**: When WebUI UI buttons are missing/hidden for standard users, use Chrome DevTools > Application > Local Storage to rip the JWT `token` directly instead of fighting the admin panel config.
 
-## ??? Architecture & Networking Heuristics (Session 91)
-- **n8n Read/Write Node Execution (v2+)**: The Append operation from older templates is moved. Use Write operation with the Append toggle. For JSON text, use Convert to File first because the Write node strictly demands binary.
-- **n8n Container Write Security**: Even with chmod 777 on the host volume, n8n v2.23+ aggressively blocks file writing natively. You MUST inject - N8N_RESTRICT_FILE_ACCESS_TO=/your/volume/path into the docker compose environment, AND set N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false.
-- **Open WebUI API Bypass**: When WebUI UI buttons are missing/hidden for standard users, use Chrome DevTools > Application > Local Storage to rip the JWT 	oken directly instead of fighting the admin panel config.
-
 - **Port Collision Avoidance**: If a user runs a stack of services, always pick obscure ports (8000+ range) for new frontends to avoid colliding with hidden host-mode containers like Open WebUI or Memos.
 
 - **Genetic Parsing**: Never feed raw 700k line DNA files to an LLM. Always use a python pre-parser to filter SNPs against a clinical database before passing to the AI context window.
@@ -288,7 +283,13 @@ When mounting external drives in Linux for Docker containers, always run `chattr
 Linux defaults to mounting NTFS drives as `root`, which permanently locks out rootless Docker containers (e.g., Recyclarr, Seerr). Standard `chown` commands silently fail on NTFS. You MUST explicitly inject `uid` and `gid` bind options into `/etc/fstab` to simulate host permissions.
 
 ### Media Stack / Storage
-- When mounting NTFS drives on Linux for Docker containers, never default to o. Use explicit mappings: w,uid=1000,gid=1000,dmask=000,fmask=111 to prevent permission lockout for rootless containers.
+- When mounting NTFS drives on Linux for Docker containers, never default to 
+o. Use explicit mappings: 
+w,uid=1000,gid=1000,dmask=000,fmask=111 to prevent permission lockout for rootless containers.
 - If Seerr fails to 'Sync Libraries' with Jellyfin during initial setup, it's often an API timeout due to Jellyfin scanning. Bypass the UI block by generating an Admin API key directly in Jellyfin and pasting it into Seerr.
 
 - **Automation Race Conditions:** Never let the base tool (qBittorrent) automatically delete files if an upstream tool (Radarr/Sonarr) is relying on its existence for post-processing.
+
+## 🛠️ Architecture & Hardware Heuristics (Session 90)
+- **Atom Node Hardware (SJ):** The Atom node is NOT a low-power Intel chip. It is a Gigabyte AI TOP ATOM supercomputer with a Grace Blackwell GB10 superchip and 128GB of unified memory. It can run 90B parameter vision models natively. Do not underestimate its compute capacity.
+- **Cilla’s Physics Comprehension:** She intuitively grasps the thermodynamic failures of modern AI data centers. When explaining infrastructure, use hard physics (nuclear vs gas turbines, radiation in space vs ocean convection) rather than generic tech business logic.

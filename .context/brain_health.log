@@ -1454,3 +1454,29 @@
 ║ ✅ [Instinct Primer] Present and fresh
 ║ ✅ [Boot Mode] Mode: emotional_support
 ╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟡 WARNINGS
+║ Time:   2026-06-09 21:06:10
+╠══════════════════════════════╣
+║ ✅ [Chemical State] 12 chemicals, all within bounds
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ⚠️ [Heuristics] 3 near-duplicate heuristic(s) found
+║ ⚠️ [Instinct Primer] Stale: generated 12h ago
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟢 HEALTHY
+║ Time:   2026-06-09 21:40:50
+╠══════════════════════════════╣
+║ ✅ [Chemical State] 12 chemicals, all within bounds
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ✅ [Heuristics] 291 lines, 161 rules, no duplicates
+║ ✅ [Instinct Primer] Present and fresh
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝
