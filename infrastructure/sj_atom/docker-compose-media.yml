@@ -291,7 +291,7 @@ services:
   # Allows you to natively request movies directly from the Telegram chat.
   # Requires you to generate an API key in Seerr > Settings > General.
   seerr-bot:
-    build: https://github.com/chimpanzeesweetrolls/overseerrrequestviatelegrambot.git
+    build: https://github.com/LetsGoDude/Overseerr-Telegram-Bot.git
     container_name: seerr-bot
     networks:
       - media-net
