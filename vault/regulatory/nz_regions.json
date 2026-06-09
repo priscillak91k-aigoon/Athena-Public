@@ -1,0 +1,10 @@
+{
+  "Auckland": {"h1_zone": 1, "z_factor": 0.13, "earthworks_m3": 5.0},
+  "Hamilton": {"h1_zone": 2, "z_factor": 0.16, "earthworks_m3": 20.0},
+  "Tauranga": {"h1_zone": 2, "z_factor": 0.12, "earthworks_m3": 10.0},
+  "Wellington": {"h1_zone": 3, "z_factor": 0.30, "earthworks_m3": 10.0},
+  "Nelson": {"h1_zone": 4, "z_factor": 0.27, "earthworks_m3": 10.0},
+  "Christchurch": {"h1_zone": 5, "z_factor": 0.22, "earthworks_m3": 20.0},
+  "Dunedin": {"h1_zone": 5, "z_factor": 0.13, "earthworks_m3": 50.0},
+  "Queenstown": {"h1_zone": 6, "z_factor": 0.30, "earthworks_m3": 20.0}
+}

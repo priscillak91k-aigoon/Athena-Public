@@ -1,0 +1,11 @@
+{
+  "id": "lynn_street",
+  "name": "64 Lynn Street Alterations",
+  "city": "Dunedin",
+  "target_bca": "Dunedin City Council",
+  "wind_zone": "High",
+  "foundation_type": "Timber Subfloor",
+  "description": "Internal load-bearing wall removal for open-plan living.",
+  "is_alteration": true,
+  "bracing": {"lost_demand": 186.8, "panel_length": 1.2, "panel_capacity": 60.0}
+}

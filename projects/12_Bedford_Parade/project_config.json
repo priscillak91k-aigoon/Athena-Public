@@ -1,0 +1,11 @@
+{
+  "id": "bedford_parade",
+  "name": "12 Bedford Parade Change of Use",
+  "city": "Dunedin",
+  "target_bca": "Dunedin City Council",
+  "wind_zone": "High",
+  "foundation_type": "Suspended Concrete Slab",
+  "description": "Garage conversion to self-contained unit (Section 115 Change of Use).",
+  "is_alteration": true,
+  "dimensions": {"ground_area": 60.0}
+}

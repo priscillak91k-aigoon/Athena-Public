@@ -1,0 +1,11 @@
+{
+  "id": "mock_wellington",
+  "name": "Mock Wellington Build",
+  "city": "Wellington",
+  "target_bca": "Wellington City Council",
+  "wind_zone": "Very High",
+  "foundation_type": "slab",
+  "description": "New residential build.",
+  "is_alteration": false,
+  "dimensions": {"width": 8.0, "length": 12.0, "wall_height": 2.4, "roof_pitch_deg": 25.0, "ground_area": 96.0}
+}

@@ -1,0 +1,11 @@
+{
+  "id": "portobello",
+  "name": "675 Portobello Road Alterations",
+  "city": "Dunedin",
+  "target_bca": "Dunedin City Council",
+  "wind_zone": "High",
+  "foundation_type": "Concrete Slab-on-Ground",
+  "description": "Habitable extension adding a bedroom and living space.",
+  "is_alteration": false,
+  "dimensions": {"width": 3.5, "length": 4.64, "wall_height": 2.4, "roof_pitch_deg": 15.0, "ground_area": 16.24}
+}
