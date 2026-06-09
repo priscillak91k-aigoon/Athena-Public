@@ -94,6 +94,7 @@ services:
     environment:
       - TZ=Pacific/Auckland
       - TELEGRAM_TOKEN=8878217823:AAHvwnBXXbtH20nzh9tbr0G35Ac_Y9hWKgI
+      - ALLOWED_CHAT_ID=8309108979
     volumes:
       - ./data/obsidian_vault:/vault:rw
     extra_hosts:

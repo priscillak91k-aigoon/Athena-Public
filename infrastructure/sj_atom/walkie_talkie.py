@@ -6,6 +6,7 @@ import schedule
 import re
 
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
+ALLOWED_CHAT_ID = os.environ.get("ALLOWED_CHAT_ID", "8309108979")
 WHISPER_URL = "http://whisper-api:9000/asr"
 VAULT_DIR = "/vault"
 POLL_INTERVAL = 5
@@ -22,15 +23,23 @@ def get_updates(offset):
 
 def download_file(file_id, save_path):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/getFile?file_id={file_id}"
-    resp = requests.get(url).json()
-    if not resp.get("ok"): return None
-    file_path = resp["result"]["file_path"]
-    
-    dl_url = f"https://api.telegram.org/file/bot{TELEGRAM_TOKEN}/{file_path}"
-    file_data = requests.get(dl_url).content
-    with open(save_path, "wb") as f:
-        f.write(file_data)
-    return save_path
+    try:
+        resp = requests.get(url, timeout=15).json()
+        if not resp.get("ok"): 
+            print(f"Error: Telegram getFile returned not ok: {resp}")
+            return None
+        file_path = resp.get("result", {}).get("file_path")
+        if not file_path:
+            return None
+        
+        dl_url = f"https://api.telegram.org/file/bot{TELEGRAM_TOKEN}/{file_path}"
+        file_data = requests.get(dl_url, timeout=60).content
+        with open(save_path, "wb") as f:
+            f.write(file_data)
+        return save_path
+    except Exception as e:
+        print(f"Error downloading file: {e}")
+        return None
 
 def transcribe_audio(file_path):
     with open(file_path, "rb") as f:
@@ -104,7 +113,10 @@ def write_to_vault(raw_text, synthesized_text):
 
 def send_message(chat_id, text):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    requests.post(url, json={"chat_id": chat_id, "text": text})
+    try:
+        requests.post(url, json={"chat_id": chat_id, "text": text}, timeout=10)
+    except Exception as e:
+        print(f"Error sending message to {chat_id}: {e}")
 
 def update_core_profile():
     print("Initiating daily Core Profile synthesis...")
@@ -236,6 +248,57 @@ INSTRUCTIONS:
     except Exception as e:
         print(f"Ollama weekly synthesis failed: {e}")
 
+def process_voice_note(message, chat_id):
+    file_id = message["voice"]["file_id"]
+    print(f"Received voice note from {chat_id}. Downloading...")
+    audio_path = f"/tmp/{file_id}.ogg"
+    saved_path = download_file(file_id, audio_path)
+    
+    print("Transcribing via Local Whisper...")
+    if saved_path and os.path.exists(saved_path):
+        raw_text = transcribe_audio(saved_path)
+    else:
+        raw_text = None
+    
+    if raw_text:
+        print(f"Transcription: {raw_text[:50]}...")
+        print("Synthesizing memory via Ollama...")
+        synthesized_text = synthesize_memory(raw_text)
+        
+        if synthesized_text and "IGNORED_HALLUCINATION" in synthesized_text:
+            print("Dropped whisper hallucination.")
+            send_message(chat_id, "⚠️ Dropped empty audio/background noise.")
+        else:
+            write_to_vault(raw_text, synthesized_text)
+            if synthesized_text:
+                send_message(chat_id, "✅ Voice note transcribed, synthesized, and logged to vault.")
+            else:
+                send_message(chat_id, "⚠️ Voice note transcribed and logged, but Ollama synthesis failed.")
+    else:
+        send_message(chat_id, "❌ Failed to transcribe audio. Is Whisper running?")
+        
+    if os.path.exists(audio_path): 
+        try:
+            os.remove(audio_path)
+        except Exception as e:
+            print(f"Failed to remove audio file {audio_path}: {e}")
+
+def process_text_note(message, chat_id):
+    raw_text = message["text"]
+    print(f"Received text note: {raw_text[:50]}...")
+    print("Synthesizing memory via Ollama...")
+    synthesized_text = synthesize_memory(raw_text)
+    
+    if synthesized_text and "IGNORED_HALLUCINATION" in synthesized_text:
+        print("Dropped non-journal text noise.")
+        send_message(chat_id, "⚠️ Dropped non-journal text message.")
+    else:
+        write_to_vault(raw_text, synthesized_text)
+        if synthesized_text:
+            send_message(chat_id, "✅ Text synthesized and logged to vault.")
+        else:
+            send_message(chat_id, "⚠️ Text logged to vault, but Ollama synthesis failed.")
+
 def main():
     print("Starting Sovereign Walkie-Talkie Bridge...")
     if not TELEGRAM_TOKEN:
@@ -250,68 +313,29 @@ def main():
     
     offset = None
     while True:
-        schedule.run_pending()
-        updates = get_updates(offset)
-        for update in updates:
-            offset = update["update_id"] + 1
-            message = update.get("message", {})
-            chat_id = message.get("chat", {}).get("id")
-            
-            if not chat_id: continue
-            
-            # ZERO-TRUST LOCKDOWN: Only accept messages from SJ
-            if str(chat_id) != "8309108979":
-                print(f"SECURITY BLOCK: Dropped unauthorized message from {chat_id}")
-                continue
-            # Handle Voice Notes
-            if "voice" in message:
-                file_id = message["voice"]["file_id"]
-                print(f"Received voice note from {chat_id}. Downloading...")
-                audio_path = f"/tmp/{file_id}.ogg"
-                saved_path = download_file(file_id, audio_path)
+        try:
+            schedule.run_pending()
+            updates = get_updates(offset)
+            for update in updates:
+                offset = update["update_id"] + 1
+                message = update.get("message", {})
+                chat_id = message.get("chat", {}).get("id")
                 
-                print("Transcribing via Local Whisper...")
-                if saved_path and os.path.exists(saved_path):
-                    raw_text = transcribe_audio(saved_path)
-                else:
-                    raw_text = None
+                if not chat_id: continue
                 
-                if raw_text:
-                    print(f"Transcription: {raw_text[:50]}...")
-                    print("Synthesizing memory via Ollama...")
-                    synthesized_text = synthesize_memory(raw_text)
+                # ZERO-TRUST LOCKDOWN: Only accept messages from SJ
+                if str(chat_id) != ALLOWED_CHAT_ID:
+                    print(f"SECURITY BLOCK: Dropped unauthorized message from {chat_id}")
+                    continue
+                
+                if "voice" in message:
+                    process_voice_note(message, chat_id)
+                elif "text" in message:
+                    process_text_note(message, chat_id)
                     
-                    if synthesized_text and "IGNORED_HALLUCINATION" in synthesized_text:
-                        print("Dropped whisper hallucination.")
-                        send_message(chat_id, "⚠️ Dropped empty audio/background noise.")
-                    else:
-                        write_to_vault(raw_text, synthesized_text)
-                        if synthesized_text:
-                            send_message(chat_id, "✅ Voice note transcribed, synthesized, and logged to vault.")
-                        else:
-                            send_message(chat_id, "⚠️ Voice note transcribed and logged, but Ollama synthesis failed.")
-                else:
-                    send_message(chat_id, "❌ Failed to transcribe audio. Is Whisper running?")
-                    
-                if os.path.exists(audio_path): os.remove(audio_path)
+        except Exception as e:
+            print(f"Critical error in main loop: {e}")
             
-            # Handle Text Notes
-            elif "text" in message:
-                raw_text = message["text"]
-                print(f"Received text note: {raw_text[:50]}...")
-                print("Synthesizing memory via Ollama...")
-                synthesized_text = synthesize_memory(raw_text)
-                
-                if synthesized_text and "IGNORED_HALLUCINATION" in synthesized_text:
-                    print("Dropped non-journal text noise.")
-                    send_message(chat_id, "⚠️ Dropped non-journal text message.")
-                else:
-                    write_to_vault(raw_text, synthesized_text)
-                    if synthesized_text:
-                        send_message(chat_id, "✅ Text synthesized and logged to vault.")
-                    else:
-                        send_message(chat_id, "⚠️ Text logged to vault, but Ollama synthesis failed.")
-                
         time.sleep(POLL_INTERVAL)
 
 if __name__ == "__main__":
