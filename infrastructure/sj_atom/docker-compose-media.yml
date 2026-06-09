@@ -298,7 +298,7 @@ services:
     environment:
       - OVERSEERR_API_URL=http://seerr:5055/api/v1
       - OVERSEERR_API_KEY=MTc4MDkzMTIyMDEzNGQ2NzAwMjY4LWQ3OGMtNGVmZS05MmZkLTIxOWVhOGUzZWFhNQ==
-      - TELEGRAM_TOKEN=8878217823:AAHvwnBXXbtH20nzh9tbr0G35Ac_Y9hWKgI
+      - TELEGRAM_TOKEN=8388630227:AAGlxUaDH3GZP1rEW-Ai19MNUQq7JmQOimk
       - PASSWORD=""
       - TZ=Pacific/Auckland
     volumes:
