@@ -402,8 +402,10 @@ class HawkeyeVerifier:
         
         # Save JSON output as metadata artifact
         json_file = OUTPUT_REPORT_DIR / "hawkeye_v5_audit_metadata.json"
-        with open(json_file, "w", encoding="utf-8") as f:
+        tmp_json = json_file.with_suffix('.json.tmp')
+        with open(tmp_json, "w", encoding="utf-8") as f:
             json.dump(self.audit_results, f, indent=2)
+        os.replace(tmp_json, json_file)
         print(f"Audit metadata saved to: {json_file.name}")
         
         return report_file

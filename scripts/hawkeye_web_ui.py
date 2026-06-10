@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+import os
 import re
 import subprocess
 from pathlib import Path
@@ -125,8 +126,10 @@ def render_config_panel(selected_project_dir, regions):
                     backup_path = config_path.with_name(config_path.name + ".bak")
                     shutil.copy2(config_path, backup_path)
                     
-                with open(config_path, "w", encoding="utf-8") as f:
+                tmp_path = config_path.with_suffix('.json.tmp')
+                with open(tmp_path, "w", encoding="utf-8") as f:
                     json.dump(cfg, f, indent=2)
+                os.replace(tmp_path, config_path)
                 st.success("Configuration saved! (Baseline locked & version backed up)")
             except Exception as e:
                 st.error(f"Failed to save configuration: {e}")
@@ -287,8 +290,10 @@ def render_project_creation(regions):
             }
             
             config_path = project_dir / "project_config.json"
-            with open(config_path, "w", encoding="utf-8") as f:
+            tmp_path = config_path.with_suffix('.json.tmp')
+            with open(tmp_path, "w", encoding="utf-8") as f:
                 json.dump(cfg, f, indent=2)
+            os.replace(tmp_path, config_path)
                 
             st.success(f"Project {project_id} created successfully!")
             
