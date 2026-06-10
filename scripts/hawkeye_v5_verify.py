@@ -386,5 +386,19 @@ class HawkeyeVerifier:
         return report_file
 
 if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--project", type=str, default=None, help="Specific project ID to audit")
+    args = parser.parse_args()
+    
     verifier = HawkeyeVerifier()
+    
+    if args.project:
+        if args.project in verifier.projects:
+            # Filter the dictionary to only process the selected project
+            verifier.projects = {args.project: verifier.projects[args.project]}
+        else:
+            print(f"Error: Project '{args.project}' not found in configuration.")
+            sys.exit(1)
+            
     verifier.run()

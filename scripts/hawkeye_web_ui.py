@@ -185,7 +185,7 @@ def render_file_upload(selected_project_dir):
             else:
                 st.warning(f"File '{file.name}' already exists. Skipping.")
 
-def render_audit_runner():
+def render_audit_runner(selected_project_dir):
     """Render the execution trigger and results."""
     st.divider()
     if st.button("Run Hawkeye Audit", type="primary"):
@@ -193,7 +193,7 @@ def render_audit_runner():
             try:
                 # Added timeout to prevent infinite hangs (Failure Mode Audit)
                 result = subprocess.run(
-                    ["python", "scripts/hawkeye_v5_verify.py"], 
+                    ["python", "scripts/hawkeye_v5_verify.py", "--project", selected_project_dir], 
                     cwd=str(PROJECT_ROOT), 
                     capture_output=True, 
                     text=True,
@@ -283,7 +283,6 @@ def render_project_creation(regions):
                 json.dump(cfg, f, indent=2)
                 
             st.success(f"Project {project_id} created successfully!")
-            st.rerun()
             
         except Exception as e:
             st.error(f"Failed to create project: {e}")
@@ -303,7 +302,7 @@ def main():
             if selected_project:
                 render_config_panel(selected_project, regions)
                 render_file_upload(selected_project)
-                render_audit_runner()
+                render_audit_runner(selected_project)
                 render_report()
                 
     with tab2:
