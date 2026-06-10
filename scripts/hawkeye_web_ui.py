@@ -102,25 +102,49 @@ def render_config_panel(selected_project_dir, regions):
         cfg["width"] = st.number_input("Building Width (m)", value=float(cfg.get("width", 0.0)), step=0.1)
         cfg["roof_pitch"] = st.number_input("Roof Pitch (°)", value=float(cfg.get("roof_pitch", 0.0)), step=1.0)
 
-    if st.button("Save Configuration"):
-        try:
-            if config_path.exists():
-                import shutil
-                
-                # 1. Preserve the pure baseline original (only happens once)
-                original_path = config_path.with_name("project_config.original.json")
-                if not original_path.exists():
-                    shutil.copy2(config_path, original_path)
+    st.divider()
+    col_s1, col_s2, col_s3 = st.columns(3)
+    
+    with col_s1:
+        if st.button("💾 Save Configuration", use_container_width=True, type="primary"):
+            try:
+                if config_path.exists():
+                    import shutil
+                    original_path = config_path.with_name("project_config.original.json")
+                    if not original_path.exists():
+                        shutil.copy2(config_path, original_path)
+                    backup_path = config_path.with_name(config_path.name + ".bak")
+                    shutil.copy2(config_path, backup_path)
                     
-                # 2. Maintain a rolling backup of the immediate previous state
-                backup_path = config_path.with_suffix(".json.bak")
-                shutil.copy2(config_path, backup_path)
-                
-            with open(config_path, "w", encoding="utf-8") as f:
-                json.dump(cfg, f, indent=2)
-            st.success("Configuration saved! (Original baseline locked & previous version backed up)")
-        except Exception as e:
-            st.error(f"Failed to save configuration: {e}")
+                with open(config_path, "w", encoding="utf-8") as f:
+                    json.dump(cfg, f, indent=2)
+                st.success("Configuration saved! (Baseline locked & version backed up)")
+            except Exception as e:
+                st.error(f"Failed to save configuration: {e}")
+
+    with col_s2:
+        undo_clicked = st.button("⏪ Undo Last Save", use_container_width=True)
+
+    with col_s3:
+        restore_clicked = st.button("⏮️ Restore Baseline", use_container_width=True)
+        
+    if undo_clicked:
+        backup_path = config_path.with_name(config_path.name + ".bak")
+        if backup_path.exists():
+            import shutil
+            shutil.copy2(backup_path, config_path)
+            st.rerun()
+        else:
+            st.warning("No previous save found.")
+            
+    if restore_clicked:
+        original_path = config_path.with_name("project_config.original.json")
+        if original_path.exists():
+            import shutil
+            shutil.copy2(original_path, config_path)
+            st.rerun()
+        else:
+            st.warning("No baseline found.")
 
 def render_file_upload(selected_project_dir):
     """Render a file uploader to accept building plans."""
