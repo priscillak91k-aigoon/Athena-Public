@@ -327,9 +327,12 @@ class HawkeyeVerifier:
         else:
             report_name = "hawkeye_report_combined.html"
             
-        # Save HTML file
+        # Save HTML file atomically
         output_file = OUTPUT_REPORT_DIR / report_name
-        output_file.write_text(html_content, encoding="utf-8")
+        tmp_html = output_file.with_suffix('.html.tmp')
+        tmp_html.write_text(html_content, encoding="utf-8")
+        os.replace(tmp_html, output_file)
+        
         print(f"Interactive HTML Discrepancy Report saved to: {output_file.as_uri()}")
         return output_file
 
@@ -342,30 +345,33 @@ class HawkeyeVerifier:
         # Read all PDFs in the folder
         folder = Path(meta["folder_path"])
         all_text = ""
-        total_pages = 0
         for pdf in folder.glob("**/*.pdf"):
+            pdf_text = ""
+            pdf_pages = 0
             try:
                 with fitz.open(str(pdf)) as doc:
-                    total_pages += len(doc)
-                    for i in range(len(doc)):
+                    pdf_pages = len(doc)
+                    for i in range(pdf_pages):
                         try:
-                            all_text += f"\n--- Sheet {i+1} ---\n" + doc[i].get_text("text")
+                            page_text = doc[i].get_text("text")
+                            pdf_text += page_text
+                            all_text += f"\n--- Sheet {i+1} ---\n{page_text}"
                         except Exception as page_e:
                             print(f"Error reading page {i+1} of {pdf.name}: {page_e}")
             except Exception as e:
                 print(f"Error reading PDF {pdf.name}: {e}")
                 
-        # Check for scanned image PDFs (low text volume)
-        if total_pages > 0 and len(all_text.strip()) < (total_pages * 20):
-            findings.append({
-                "project": project_id,
-                "id": f"RFI-{project_id.upper()}-OCR",
-                "severity": "WARNING",
-                "category": "System / Document Parsing",
-                "clause": "Pre-Processing",
-                "message": f"PDF extraction yielded abnormally low text volume ({len(all_text.strip())} chars across {total_pages} pages). These plans appear to be rasterized scanned images without a text layer.",
-                "remediation": "Run the plans through an OCR engine (e.g., PyMuPDF / Tesseract) to generate a text layer before re-auditing."
-            })
+            # Check for scanned image on a PER-PDF basis
+            if pdf_pages > 0 and len(pdf_text.strip()) < (pdf_pages * 20):
+                findings.append({
+                    "project": project_id,
+                    "id": f"RFI-{project_id.upper()}-OCR",
+                    "severity": "WARNING",
+                    "category": "System / Document Parsing",
+                    "clause": "Pre-Processing",
+                    "message": f"Document '{pdf.name}' yielded abnormally low text volume. It appears to be a rasterized scanned image without a text layer.",
+                    "remediation": f"Run '{pdf.name}' through an OCR engine (e.g., PyMuPDF / Tesseract) to generate a text layer before re-auditing."
+                })
             
         # Normalize foundation type
         raw_f_type = meta.get("foundation_type", "slab").lower()
