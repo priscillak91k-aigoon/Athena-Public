@@ -11,6 +11,7 @@ cd /home/sj/Athena-Public/infrastructure/sj_atom
 
 OLLAMA_API_BASE=http://127.0.0.1:11434 ~/.local/bin/aider \
   --model ollama/the-engineer:latest \
+  --edit-format diff-fenced \
   --yes \
   --no-auto-commits \
   docker-compose-*.yml
