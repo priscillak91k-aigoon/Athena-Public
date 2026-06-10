@@ -318,8 +318,14 @@ class HawkeyeVerifier:
             print(f"Warning: Template not found at {template_path}. Outputting raw JSON instead.")
             html_content = f"<html><body><h1>Template Missing</h1><pre>{findings_json}</pre></body></html>"
         
+        if len(self.projects) == 1:
+            pid = list(self.projects.keys())[0]
+            report_name = f"hawkeye_report_{pid}.html"
+        else:
+            report_name = "hawkeye_report_combined.html"
+            
         # Save HTML file
-        output_file = OUTPUT_REPORT_DIR / "hawkeye_v5_audit_report.html"
+        output_file = OUTPUT_REPORT_DIR / report_name
         output_file.write_text(html_content, encoding="utf-8")
         print(f"Interactive HTML Discrepancy Report saved to: {output_file.as_uri()}")
         return output_file
@@ -400,8 +406,14 @@ class HawkeyeVerifier:
                 self._audit_dynamic_project(pid)
         report_file = self.compile_html_report()
         
+        if len(self.projects) == 1:
+            pid = list(self.projects.keys())[0]
+            json_name = f"hawkeye_metadata_{pid}.json"
+        else:
+            json_name = "hawkeye_metadata_combined.json"
+            
         # Save JSON output as metadata artifact
-        json_file = OUTPUT_REPORT_DIR / "hawkeye_v5_audit_metadata.json"
+        json_file = OUTPUT_REPORT_DIR / json_name
         tmp_json = json_file.with_suffix('.json.tmp')
         with open(tmp_json, "w", encoding="utf-8") as f:
             json.dump(self.audit_results, f, indent=2)

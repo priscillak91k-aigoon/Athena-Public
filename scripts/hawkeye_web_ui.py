@@ -8,7 +8,6 @@ from pathlib import Path
 PROJECT_ROOT = Path("c:/Users/prisc/Documents/Athena-Public")
 PROJECTS_DIR = PROJECT_ROOT / "projects"
 ARTIFACTS_DIR = PROJECT_ROOT / "artifacts"
-REPORT_PATH = ARTIFACTS_DIR / "hawkeye_v5_audit_report.html"
 REGIONS_PATH = PROJECT_ROOT / "vault" / "regulatory" / "nz_regions.json"
 
 AUDIT_TIMEOUT_SECONDS = 120
@@ -219,13 +218,14 @@ def render_audit_runner(selected_project_dir):
             except Exception as e:
                 st.error(f"System error running audit: {e}")
 
-def render_report():
+def render_report(selected_project_dir):
     """Embed the generated HTML report."""
     st.divider()
     st.header("Audit Report")
-    if REPORT_PATH.exists():
+    report_path = ARTIFACTS_DIR / f"hawkeye_report_{selected_project_dir}.html"
+    if report_path.exists():
         try:
-            with open(REPORT_PATH, "r", encoding="utf-8") as f:
+            with open(report_path, "r", encoding="utf-8") as f:
                 html_data = f.read()
             st.components.v1.html(html_data, height=REPORT_EMBED_HEIGHT, scrolling=True)
         except Exception as e:
@@ -316,7 +316,7 @@ def main():
                 render_config_panel(selected_project, regions)
                 render_file_upload(selected_project)
                 render_audit_runner(selected_project)
-                render_report()
+                render_report(selected_project)
                 
     with tab2:
         render_project_creation(regions)
