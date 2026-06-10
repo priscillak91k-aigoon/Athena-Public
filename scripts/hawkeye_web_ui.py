@@ -26,6 +26,21 @@ def load_regions():
                 pass
     return []
 
+def log_activity(project_dir_name, message):
+    """Append a timestamped event to the project's persistent activity log."""
+    if not project_dir_name: return
+    project_dir = PROJECTS_DIR / project_dir_name
+    if not project_dir.exists(): return
+    log_path = project_dir / "activity_log.txt"
+    from datetime import datetime
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log_entry = f"[{timestamp}] {message}\n"
+    try:
+        with open(log_path, "a", encoding="utf-8") as f:
+            f.write(log_entry)
+    except Exception:
+        pass
+
 def get_available_projects():
     """Scan for projects that have a configuration file."""
     projects = []
@@ -145,6 +160,7 @@ def render_config_panel(selected_project_dir, regions):
                 with open(tmp_path, "w", encoding="utf-8") as f:
                     json.dump(cfg, f, indent=2)
                 os.replace(tmp_path, config_path)
+                log_activity(selected_project_dir, "Configuration saved and baseline locked.")
                 st.success("Configuration saved! (Baseline locked & version backed up)")
             except Exception as e:
                 st.error(f"Failed to save configuration: {e}")
@@ -162,6 +178,7 @@ def render_config_panel(selected_project_dir, regions):
         if backup_path.exists():
             import shutil
             shutil.copy2(backup_path, config_path)
+            log_activity(selected_project_dir, "Configuration reverted via Undo Last Save.")
             st.rerun()
         else:
             st.warning("No previous save found.")
@@ -171,6 +188,7 @@ def render_config_panel(selected_project_dir, regions):
         if original_path.exists():
             import shutil
             shutil.copy2(original_path, config_path)
+            log_activity(selected_project_dir, "Configuration restored to original baseline.")
             st.rerun()
         else:
             st.warning("No baseline found.")
@@ -193,6 +211,7 @@ def render_file_upload(selected_project_dir):
                     if st.button("❌", key=f"del_{f.name}"):
                         try:
                             f.unlink()
+                            log_activity(selected_project_dir, f"Deleted PDF: '{f.name}'")
                             st.rerun()
                         except Exception as e:
                             st.error(f"Failed to delete '{f.name}': {e}")
@@ -211,6 +230,7 @@ def render_file_upload(selected_project_dir):
                                 f.unlink()
                             except Exception as e:
                                 st.error(f"Failed to delete '{f.name}': {e}")
+                        log_activity(selected_project_dir, "Purged all PDF plans from project.")
                         st.session_state[f"confirm_clear_{selected_project_dir}"] = False
                         st.rerun()
                 with c_no:
@@ -228,6 +248,7 @@ def render_file_upload(selected_project_dir):
                 try:
                     with open(file_path, "wb") as f:
                         f.write(file.getbuffer())
+                    log_activity(selected_project_dir, f"Uploaded PDF: '{file.name}'")
                     st.success(f"File '{file.name}' saved successfully!")
                 except Exception as e:
                     st.error(f"Failed to save '{file.name}': {e}")
@@ -248,6 +269,7 @@ def render_audit_runner(selected_project_dir):
                     text=True,
                     timeout=AUDIT_TIMEOUT_SECONDS
                 )
+                log_activity(selected_project_dir, "Executed Hawkeye Audit engine.")
                 st.code(result.stdout, language="text")
                 if result.returncode == 0:
                     st.success("Audit completed successfully.")
@@ -277,6 +299,21 @@ def render_report(selected_project_dir):
             st.error(f"Failed to load HTML report: {e}")
     else:
         st.info("No audit report generated yet. Click 'Run Hawkeye Audit' above.")
+
+def render_activity_log(selected_project_dir):
+    """Render the persistent activity trail."""
+    st.divider()
+    with st.expander("📝 Activity Log", expanded=False):
+        log_path = PROJECTS_DIR / selected_project_dir / "activity_log.txt"
+        if log_path.exists():
+            try:
+                with open(log_path, "r", encoding="utf-8") as f:
+                    logs = f.read()
+                st.text_area("Audit Trail", value=logs, height=200, disabled=True, label_visibility="collapsed")
+            except Exception as e:
+                st.error(f"Could not read log: {e}")
+        else:
+            st.info("No activity recorded yet.")
 
 def render_project_creation(regions):
     """Render the form to create a new project."""
@@ -356,7 +393,8 @@ def render_project_creation(regions):
             with open(tmp_path, "w", encoding="utf-8") as f:
                 json.dump(cfg, f, indent=2)
             os.replace(tmp_path, config_path)
-                
+            
+            log_activity(project_id, f"Project created.")
             st.success(f"Project {project_id} created successfully!")
             
         except Exception as e:
@@ -379,6 +417,7 @@ def main():
                 render_file_upload(selected_project)
                 render_audit_runner(selected_project)
                 render_report(selected_project)
+                render_activity_log(selected_project)
                 
     with tab2:
         render_project_creation(regions)
