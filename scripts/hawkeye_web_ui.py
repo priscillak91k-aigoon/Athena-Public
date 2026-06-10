@@ -106,12 +106,19 @@ def render_config_panel(selected_project_dir, regions):
         try:
             if config_path.exists():
                 import shutil
+                
+                # 1. Preserve the pure baseline original (only happens once)
+                original_path = config_path.with_name("project_config.original.json")
+                if not original_path.exists():
+                    shutil.copy2(config_path, original_path)
+                    
+                # 2. Maintain a rolling backup of the immediate previous state
                 backup_path = config_path.with_suffix(".json.bak")
                 shutil.copy2(config_path, backup_path)
                 
             with open(config_path, "w", encoding="utf-8") as f:
                 json.dump(cfg, f, indent=2)
-            st.success("Configuration saved! (Previous version backed up to .bak)")
+            st.success("Configuration saved! (Original baseline locked & previous version backed up)")
         except Exception as e:
             st.error(f"Failed to save configuration: {e}")
 
