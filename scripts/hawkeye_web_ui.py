@@ -43,18 +43,20 @@ def render_sidebar(projects):
     
     st.sidebar.divider()
     st.sidebar.markdown("### Danger Zone")
-    if st.sidebar.button("🗑️ Delete Current Project"):
-        success = False
-        try:
-            target_dir = PROJECTS_DIR / selected
-            if target_dir.exists():
-                import shutil
-                shutil.rmtree(target_dir)
-                success = True
-        except Exception as e:
-            st.sidebar.error(f"Failed to delete: {e}")
-        if success:
-            st.rerun()
+    with st.sidebar.expander("Delete Project"):
+        st.warning("This will permanently delete the project and all associated files.")
+        if st.button("Confirm Delete"):
+            success = False
+            try:
+                target_dir = PROJECTS_DIR / selected
+                if target_dir.exists():
+                    import shutil
+                    shutil.rmtree(target_dir)
+                    success = True
+            except Exception as e:
+                st.error(f"Failed to delete: {e}")
+            if success:
+                st.rerun()
         
     return selected
 
@@ -157,7 +159,14 @@ def render_file_upload(selected_project_dir):
         if existing_files:
             st.write("**Currently Uploaded Plans:**")
             for f in existing_files:
-                st.text(f"📄 {f.name}")
+                col_f1, col_f2 = st.columns([0.9, 0.1])
+                with col_f1:
+                    st.text(f"📄 {f.name}")
+                with col_f2:
+                    if st.button("❌", key=f"del_{f.name}"):
+                        f.unlink()
+                        st.rerun()
+                        
             if st.button("🗑️ Clear All PDF Plans"):
                 for f in existing_files:
                     f.unlink()
@@ -180,25 +189,25 @@ def render_audit_runner():
     """Render the execution trigger and results."""
     st.divider()
     if st.button("Run Hawkeye Audit", type="primary"):
-        st.info("Executing Hawkeye v5.0 compliance engine...")
-        try:
-            # Added timeout to prevent infinite hangs (Failure Mode Audit)
-            result = subprocess.run(
-                ["python", "scripts/hawkeye_v5_verify.py"], 
-                cwd=str(PROJECT_ROOT), 
-                capture_output=True, 
-                text=True,
-                timeout=AUDIT_TIMEOUT_SECONDS
-            )
-            st.code(result.stdout, language="text")
-            if result.returncode == 0:
-                st.success("Audit completed successfully.")
-            else:
-                st.error(f"Audit failed.\n{result.stderr}")
-        except subprocess.TimeoutExpired:
-            st.error("Audit timed out after 120 seconds. The process may be hanging.")
-        except Exception as e:
-            st.error(f"System error running audit: {e}")
+        with st.spinner("Executing Hawkeye v5.0 compliance engine (this may take up to 2 minutes)..."):
+            try:
+                # Added timeout to prevent infinite hangs (Failure Mode Audit)
+                result = subprocess.run(
+                    ["python", "scripts/hawkeye_v5_verify.py"], 
+                    cwd=str(PROJECT_ROOT), 
+                    capture_output=True, 
+                    text=True,
+                    timeout=AUDIT_TIMEOUT_SECONDS
+                )
+                st.code(result.stdout, language="text")
+                if result.returncode == 0:
+                    st.success("Audit completed successfully.")
+                else:
+                    st.error(f"Audit failed.\n{result.stderr}")
+            except subprocess.TimeoutExpired:
+                st.error("Audit timed out after 120 seconds. The process may be hanging.")
+            except Exception as e:
+                st.error(f"System error running audit: {e}")
 
 def render_report():
     """Embed the generated HTML report."""
@@ -219,7 +228,7 @@ def render_project_creation(regions):
     st.header("Create New Project")
     
     with st.form(key="new_project_form"):
-        project_id = st.text_input("Project ID (e.g. project_alpha)").strip().lower()
+        project_id = st.text_input("Project ID (e.g. project_alpha)").strip().lower().replace(" ", "_")
         name = st.text_input("Project Name")
         
         city = st.selectbox("City", regions if regions else ["Unknown"])
