@@ -61,6 +61,12 @@ def render_sidebar(projects):
         
     return selected
 
+def safe_float(val, default=0.0):
+    try:
+        return float(val)
+    except (ValueError, TypeError):
+        return default
+
 def render_config_panel(selected_project_dir, regions):
     """Render the configuration editor for the selected project."""
     config_path = PROJECTS_DIR / selected_project_dir / "project_config.json"
@@ -101,9 +107,9 @@ def render_config_panel(selected_project_dir, regions):
         cfg["description"] = st.text_area("Description", cfg.get("description", ""))
 
     with col3:
-        cfg["length"] = st.number_input("Building Length (m)", value=float(cfg.get("length", 0.0)), step=0.1)
-        cfg["width"] = st.number_input("Building Width (m)", value=float(cfg.get("width", 0.0)), step=0.1)
-        cfg["roof_pitch"] = st.number_input("Roof Pitch (°)", value=float(cfg.get("roof_pitch", 0.0)), step=1.0)
+        cfg["length"] = st.number_input("Building Length (m)", value=safe_float(cfg.get("length", 0.0)), step=0.1)
+        cfg["width"] = st.number_input("Building Width (m)", value=safe_float(cfg.get("width", 0.0)), step=0.1)
+        cfg["roof_pitch"] = st.number_input("Roof Pitch (°)", value=safe_float(cfg.get("roof_pitch", 0.0)), step=1.0)
 
     st.divider()
     col_s1, col_s2, col_s3 = st.columns(3)

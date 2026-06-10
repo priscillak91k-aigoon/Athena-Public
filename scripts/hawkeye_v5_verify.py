@@ -355,12 +355,35 @@ class HawkeyeVerifier:
                 })
                 
         # Generic Bracing solver 
-        if "width" in meta and "length" in meta and meta["width"] > 0 and meta["length"] > 0:
+        try:
+            width = float(meta.get("width", 0))
+            length = float(meta.get("length", 0))
+        except (ValueError, TypeError):
+            width = length = 0.0
+            
+        if width > 0 and length > 0:
             print("Running generic NZS 3604 bracing demand solver...")
-            wind = self.compliance_solver.calculate_wind_bracing_demand(
-                width=meta["width"], length=meta["length"], wall_height=meta.get("wall_height", 2.4), 
-                roof_pitch_deg=meta.get("roof_pitch", 15.0), wind_zone=meta.get("wind_zone", "High").lower(), roof_type="gable"
-            )
+            try:
+                wind = self.compliance_solver.calculate_wind_bracing_demand(
+                    width=width, length=length, wall_height=float(meta.get("wall_height", 2.4)), 
+                    roof_pitch_deg=float(meta.get("roof_pitch", 15.0)), wind_zone=meta.get("wind_zone", "High").lower(), roof_type="gable"
+                )
+                seismic = self.compliance_solver.calculate_seismic_bracing_demand(
+                    ground_area=width * length, Z_factor=float(meta.get("z_factor", 0.13)), 
+                    wall_cladding="light", roof_cladding="light", foundation_type=meta.get("foundation_type", "slab").lower()
+                )
+                
+                findings.append({
+                    "project": project_id,
+                    "id": f"RFI-{project_id.upper()}-BRACING",
+                    "severity": "MEDIUM",
+                    "category": "B1 Structure / Baseline Bracing",
+                    "clause": "NZS 3604 Section 5",
+                    "message": f"Calculated Baseline Bracing Demand: Wind = {wind:.1f} BUs, Seismic = {seismic:.1f} BUs.",
+                    "remediation": "Cross-reference these calculated baseline demands against the provided structural drawings to ensure adequate bracing is specified."
+                })
+            except Exception as e:
+                print(f"Bracing calculation failed: {e}")
                 
         self.audit_results["findings"].extend(findings)
         print(f"{meta.get('name', project_id)} dynamic audit complete. Flagged {len(findings)} RFI hazards.")
