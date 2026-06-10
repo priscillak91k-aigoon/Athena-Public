@@ -370,18 +370,24 @@ class HawkeyeVerifier:
             
         # --- Generic Plumbing Checks ---
         if len(all_text.strip()) > 0:
-            print("Running generic plumbing and drainage NLP heuristics...")
-            # Rule: Terminal Vent
-            stack_labels = re.findall(r".*stack.*", all_text, re.IGNORECASE) or ["100Ø Stack"]
-            vent_check = self.compliance_solver.assert_terminal_vent(stack_labels)
-            if vent_check["status"] == "FAIL":
-                findings.append({"project": project_id, "id": f"RFI-{project_id.upper()}-VENT", "severity": "CRITICAL", "category": "G13 Sanitary Plumbing / Venting", "clause": vent_check["clause"], "message": vent_check["message"], "remediation": "Update stack labels on the floor plans and drainage schematics to explicitly designate the vertical run as a '100Ø Stack + Terminal Vent' extending to open air."})
-                
-            # Rule: ORG Check
-            org_labels = re.findall(r".*\borg\b.*|.*overflow.*", all_text, re.IGNORECASE)
-            org_check = self.compliance_solver.assert_org_presence(org_labels)
-            if org_check["status"] == "FAIL":
-                findings.append({"project": project_id, "id": f"RFI-{project_id.upper()}-ORG", "severity": "CRITICAL", "category": "G13 Sanitary Plumbing / Drainage", "clause": org_check["clause"], "message": org_check["message"], "remediation": "Update the external drainage plans to show the location and details of the mandatory Overflow Relief Gully (ORG) with relative levels showing it is at least 150mm lower than the shower tray."})
+            plumbing_keywords = ["w.c", "w/c", "toilet", "shower", "bath", "sink", "basin", "drainage", "sewer", "plumbing"]
+            has_plumbing = any(kw in all_text.lower() for kw in plumbing_keywords)
+            
+            if has_plumbing:
+                print("Running generic plumbing and drainage NLP heuristics...")
+                # Rule: Terminal Vent
+                stack_labels = re.findall(r".*stack.*", all_text, re.IGNORECASE) or ["100Ø Stack"]
+                vent_check = self.compliance_solver.assert_terminal_vent(stack_labels)
+                if vent_check["status"] == "FAIL":
+                    findings.append({"project": project_id, "id": f"RFI-{project_id.upper()}-VENT", "severity": "CRITICAL", "category": "G13 Sanitary Plumbing / Venting", "clause": vent_check["clause"], "message": vent_check["message"], "remediation": "Update stack labels on the floor plans and drainage schematics to explicitly designate the vertical run as a '100Ø Stack + Terminal Vent' extending to open air."})
+                    
+                # Rule: ORG Check
+                org_labels = re.findall(r".*\borg\b.*|.*overflow.*", all_text, re.IGNORECASE)
+                org_check = self.compliance_solver.assert_org_presence(org_labels)
+                if org_check["status"] == "FAIL":
+                    findings.append({"project": project_id, "id": f"RFI-{project_id.upper()}-ORG", "severity": "CRITICAL", "category": "G13 Sanitary Plumbing / Drainage", "clause": org_check["clause"], "message": org_check["message"], "remediation": "Update the external drainage plans to show the location and details of the mandatory Overflow Relief Gully (ORG) with relative levels showing it is at least 150mm lower than the shower tray."})
+            else:
+                print("No plumbing fixtures detected in plans. Skipping G13 checks.")
             
             
         # Generic H1 check if dimensions exist
