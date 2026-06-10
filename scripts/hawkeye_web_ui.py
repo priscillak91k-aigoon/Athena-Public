@@ -88,6 +88,19 @@ def render_config_panel(selected_project_dir, regions):
         except Exception as e:
             st.error(f"Failed to save configuration: {e}")
 
+def render_file_upload(selected_project_dir):
+    """Render a file uploader to accept building plans."""
+    st.divider()
+    st.header("Upload Building Plans")
+    uploaded_files = st.file_uploader("Upload PDF Plans", type=["pdf"], accept_multiple_files=True)
+    if uploaded_files:
+        for file in uploaded_files:
+            file_path = PROJECTS_DIR / selected_project_dir / file.name
+            if not file_path.exists():
+                with open(file_path, "wb") as f:
+                    f.write(file.getbuffer())
+                st.success(f"File '{file.name}' saved successfully to {selected_project_dir}!")
+
 def render_audit_runner():
     """Render the execution trigger and results."""
     st.divider()
@@ -194,6 +207,7 @@ def main():
             selected_project = render_sidebar(projects)
             if selected_project:
                 render_config_panel(selected_project, regions)
+                render_file_upload(selected_project)
                 render_audit_runner()
                 render_report()
                 
