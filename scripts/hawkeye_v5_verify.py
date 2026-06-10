@@ -339,14 +339,40 @@ class HawkeyeVerifier:
         # Read all PDFs in the folder
         folder = Path(meta["folder_path"])
         all_text = ""
+        total_pages = 0
         for pdf in folder.glob("**/*.pdf"):
-            all_text += self._read_pdf(pdf)
+            try:
+                doc = fitz.open(pdf)
+                total_pages += len(doc)
+                for i in range(len(doc)):
+                    all_text += f"\n--- Sheet {i+1} ---\n" + doc[i].get_text("text")
+            except Exception as e:
+                print(f"Error reading PDF {pdf.name}: {e}")
+                
+        # Check for scanned image PDFs (low text volume)
+        if total_pages > 0 and len(all_text.strip()) < (total_pages * 20):
+            findings.append({
+                "project": project_id,
+                "id": f"RFI-{project_id.upper()}-OCR",
+                "severity": "WARNING",
+                "category": "System / Document Parsing",
+                "clause": "Pre-Processing",
+                "message": f"PDF extraction yielded abnormally low text volume ({len(all_text.strip())} chars across {total_pages} pages). These plans appear to be rasterized scanned images without a text layer.",
+                "remediation": "Run the plans through an OCR engine (e.g., PyMuPDF / Tesseract) to generate a text layer before re-auditing."
+            })
+            
+        # Normalize foundation type
+        raw_f_type = meta.get("foundation_type", "slab").lower()
+        if "slab" in raw_f_type:
+            f_type = "slab"
+        else:
+            f_type = "suspended"
             
         # Generic H1 check if dimensions exist
         if "width" in meta and "length" in meta and not meta.get("is_alteration", False):
             print("Checking generic H1 energy efficiency compliance...")
             h1_check = self.compliance_solver.assert_h1_compliance(
-                climate_zone=meta.get("climate_zone", 1), floor_type=meta.get("foundation_type", "slab").lower(), 
+                climate_zone=meta.get("climate_zone", 1), floor_type=f_type, 
                 r_roof=6.6, r_wall=3.2, r_floor=1.3, is_alteration=False
             )
             if h1_check["status"] == "FAIL":
@@ -376,7 +402,7 @@ class HawkeyeVerifier:
                 )
                 seismic = self.compliance_solver.calculate_seismic_bracing_demand(
                     ground_area=width * length, Z_factor=float(meta.get("z_factor", 0.13)), 
-                    wall_cladding="light", roof_cladding="light", foundation_type=meta.get("foundation_type", "slab").lower()
+                    wall_cladding="light", roof_cladding="light", foundation_type=f_type
                 )
                 
                 findings.append({

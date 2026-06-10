@@ -226,6 +226,11 @@ def render_report(selected_project_dir):
     report_path = ARTIFACTS_DIR / f"hawkeye_report_{selected_project_dir}.html"
     if report_path.exists():
         try:
+            mtime = os.path.getmtime(report_path)
+            from datetime import datetime
+            last_run = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d %H:%M:%S")
+            st.caption(f"⏱️ **Last Audited:** {last_run}")
+            
             with open(report_path, "r", encoding="utf-8") as f:
                 html_data = f.read()
             st.components.v1.html(html_data, height=REPORT_EMBED_HEIGHT, scrolling=True)
