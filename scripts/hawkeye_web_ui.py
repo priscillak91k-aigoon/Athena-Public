@@ -231,8 +231,6 @@ def render_file_upload(selected_project_dir):
                     st.success(f"File '{file.name}' saved successfully!")
                 except Exception as e:
                     st.error(f"Failed to save '{file.name}': {e}")
-            else:
-                st.warning(f"File '{file.name}' already exists. Skipping.")
 
 def render_audit_runner(selected_project_dir):
     """Render the execution trigger and results."""
