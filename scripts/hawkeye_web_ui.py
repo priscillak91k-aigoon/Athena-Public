@@ -44,15 +44,17 @@ def render_sidebar(projects):
     st.sidebar.divider()
     st.sidebar.markdown("### Danger Zone")
     if st.sidebar.button("🗑️ Delete Current Project"):
+        success = False
         try:
             target_dir = PROJECTS_DIR / selected
             if target_dir.exists():
                 import shutil
                 shutil.rmtree(target_dir)
-                st.sidebar.success(f"Project '{selected}' deleted!")
-                st.rerun()
+                success = True
         except Exception as e:
             st.sidebar.error(f"Failed to delete: {e}")
+        if success:
+            st.rerun()
         
     return selected
 
@@ -115,22 +117,28 @@ def render_file_upload(selected_project_dir):
     
     project_path = PROJECTS_DIR / selected_project_dir
     if project_path.exists():
-        existing_files = [f.name for f in project_path.iterdir() if f.is_file() and f.name.endswith(".pdf")]
+        existing_files = [f for f in project_path.iterdir() if f.is_file() and f.name.endswith(".pdf")]
         if existing_files:
             st.write("**Currently Uploaded Plans:**")
             for f in existing_files:
-                st.text(f"📄 {f}")
+                st.text(f"📄 {f.name}")
+            if st.button("🗑️ Clear All PDF Plans"):
+                for f in existing_files:
+                    f.unlink()
+                st.rerun()
         else:
             st.info("No plans uploaded yet.")
             
     uploaded_files = st.file_uploader("Upload New PDF Plans", type=["pdf"], accept_multiple_files=True)
     if uploaded_files:
         for file in uploaded_files:
-            file_path = PROJECTS_DIR / selected_project_dir / file.name
+            file_path = PROJECTS_DIR / selected_project_dir / Path(file.name).name
             if not file_path.exists():
                 with open(file_path, "wb") as f:
                     f.write(file.getbuffer())
-                st.success(f"File '{file.name}' saved successfully to {selected_project_dir}!")
+                st.success(f"File '{file.name}' saved successfully!")
+            else:
+                st.warning(f"File '{file.name}' already exists. Skipping.")
 
 def render_audit_runner():
     """Render the execution trigger and results."""
