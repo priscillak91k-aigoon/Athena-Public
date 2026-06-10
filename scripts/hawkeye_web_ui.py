@@ -301,6 +301,11 @@ def render_project_creation(regions):
             st.error("Project ID cannot be empty.")
             return
             
+        reserved_ids = ["portobello", "lynn_street", "bedford_parade"]
+        if project_id in reserved_ids:
+            st.error(f"Project ID '{project_id}' is a reserved legacy namespace. Please choose a different ID.")
+            return
+            
         project_dir = PROJECTS_DIR / project_id
         if project_dir.exists():
             st.error(f"Project directory '{project_id}' already exists!")

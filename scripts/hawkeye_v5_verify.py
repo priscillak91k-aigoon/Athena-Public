@@ -98,7 +98,7 @@ class HawkeyeVerifier:
         print(f"Reading PDF: {filepath.name}...")
         text = ""
         try:
-            with fitz.open(filepath) as doc:
+            with fitz.open(str(filepath)) as doc:
                 for i in range(len(doc)):
                     try:
                         text += f"\n--- Sheet {i+1} ---\n" + doc[i].get_text("text")
@@ -345,7 +345,7 @@ class HawkeyeVerifier:
         total_pages = 0
         for pdf in folder.glob("**/*.pdf"):
             try:
-                with fitz.open(pdf) as doc:
+                with fitz.open(str(pdf)) as doc:
                     total_pages += len(doc)
                     for i in range(len(doc)):
                         try:
