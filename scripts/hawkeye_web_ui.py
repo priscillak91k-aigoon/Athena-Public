@@ -120,10 +120,10 @@ def render_config_panel(selected_project_dir, regions):
         cfg["description"] = st.text_area("Description", cfg.get("description", ""))
 
     with col3:
-        cfg["length"] = st.number_input("Building Length (m)", value=safe_float(cfg.get("length", 0.0)), step=0.1)
-        cfg["width"] = st.number_input("Building Width (m)", value=safe_float(cfg.get("width", 0.0)), step=0.1)
-        cfg["wall_height"] = st.number_input("Wall Height (m)", value=safe_float(cfg.get("wall_height", 2.4)), step=0.1)
-        cfg["roof_pitch"] = st.number_input("Roof Pitch (°)", value=safe_float(cfg.get("roof_pitch", 0.0)), step=1.0)
+        cfg["length"] = st.number_input("Building Length (m)", value=safe_float(cfg.get("length", 0.0)), step=0.1, min_value=0.0)
+        cfg["width"] = st.number_input("Building Width (m)", value=safe_float(cfg.get("width", 0.0)), step=0.1, min_value=0.0)
+        cfg["wall_height"] = st.number_input("Wall Height (m)", value=safe_float(cfg.get("wall_height", 2.4)), step=0.1, min_value=0.0)
+        cfg["roof_pitch"] = st.number_input("Roof Pitch (°)", value=safe_float(cfg.get("roof_pitch", 0.0)), step=1.0, min_value=0.0, max_value=90.0)
 
     st.divider()
     col_s1, col_s2, col_s3 = st.columns(3)
@@ -304,13 +304,13 @@ def render_project_creation(regions):
         
         dim_col1, dim_col2, dim_col3, dim_col4 = st.columns(4)
         with dim_col1:
-            length = st.number_input("Building Length (m)", value=0.0, step=0.1)
+            length = st.number_input("Building Length (m)", value=0.0, step=0.1, min_value=0.0)
         with dim_col2:
-            width = st.number_input("Building Width (m)", value=0.0, step=0.1)
+            width = st.number_input("Building Width (m)", value=0.0, step=0.1, min_value=0.0)
         with dim_col3:
-            wall_height = st.number_input("Wall Height (m)", value=2.4, step=0.1)
+            wall_height = st.number_input("Wall Height (m)", value=2.4, step=0.1, min_value=0.0)
         with dim_col4:
-            roof_pitch = st.number_input("Roof Pitch (°)", value=0.0, step=1.0)
+            roof_pitch = st.number_input("Roof Pitch (°)", value=0.0, step=1.0, min_value=0.0, max_value=90.0)
         
         is_alteration = st.checkbox("Is Alteration?", False)
         description = st.text_area("Description")
