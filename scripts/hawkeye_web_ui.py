@@ -308,7 +308,15 @@ def render_activity_log(selected_project_dir):
         if log_path.exists():
             try:
                 with open(log_path, "r", encoding="utf-8") as f:
-                    logs = f.read()
+                    lines = f.readlines()
+                
+                # Protect browser memory: only render the most recent 100 events
+                MAX_LINES = 100
+                if len(lines) > MAX_LINES:
+                    logs = f"... {len(lines) - MAX_LINES} older events truncated ...\n" + "".join(lines[-MAX_LINES:])
+                else:
+                    logs = "".join(lines)
+                    
                 st.text_area("Audit Trail", value=logs, height=200, disabled=True, label_visibility="collapsed")
             except Exception as e:
                 st.error(f"Could not read log: {e}")
