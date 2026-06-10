@@ -1,6 +1,7 @@
 import streamlit as st
 import json
 import os
+import sys
 import re
 import subprocess
 from pathlib import Path
@@ -184,12 +185,18 @@ def render_file_upload(selected_project_dir):
                     st.text(f"📄 {f.name}")
                 with col_f2:
                     if st.button("❌", key=f"del_{f.name}"):
-                        f.unlink()
-                        st.rerun()
+                        try:
+                            f.unlink()
+                            st.rerun()
+                        except Exception as e:
+                            st.error(f"Failed to delete '{f.name}': {e}")
                         
             if st.button("🗑️ Clear All PDF Plans"):
                 for f in existing_files:
-                    f.unlink()
+                    try:
+                        f.unlink()
+                    except Exception as e:
+                        st.error(f"Failed to delete '{f.name}': {e}")
                 st.rerun()
         else:
             st.info("No plans uploaded yet.")
@@ -199,9 +206,12 @@ def render_file_upload(selected_project_dir):
         for file in uploaded_files:
             file_path = PROJECTS_DIR / selected_project_dir / Path(file.name).name
             if not file_path.exists():
-                with open(file_path, "wb") as f:
-                    f.write(file.getbuffer())
-                st.success(f"File '{file.name}' saved successfully!")
+                try:
+                    with open(file_path, "wb") as f:
+                        f.write(file.getbuffer())
+                    st.success(f"File '{file.name}' saved successfully!")
+                except Exception as e:
+                    st.error(f"Failed to save '{file.name}': {e}")
             else:
                 st.warning(f"File '{file.name}' already exists. Skipping.")
 
@@ -213,8 +223,8 @@ def render_audit_runner(selected_project_dir):
             try:
                 # Added timeout to prevent infinite hangs (Failure Mode Audit)
                 result = subprocess.run(
-                    ["python", "scripts/hawkeye_v5_verify.py", "--project", selected_project_dir], 
-                    cwd=str(PROJECT_ROOT), 
+                    [sys.executable, "scripts/hawkeye_v5_verify.py", "--project", selected_project_dir], 
+                    cwd=str(PROJECT_ROOT),  
                     capture_output=True, 
                     text=True,
                     timeout=AUDIT_TIMEOUT_SECONDS
