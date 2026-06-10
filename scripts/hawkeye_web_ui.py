@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+import re
 import subprocess
 from pathlib import Path
 
@@ -228,7 +229,8 @@ def render_project_creation(regions):
     st.header("Create New Project")
     
     with st.form(key="new_project_form"):
-        project_id = st.text_input("Project ID (e.g. project_alpha)").strip().lower().replace(" ", "_")
+        project_id_raw = st.text_input("Project ID (e.g. project_alpha)").strip().lower().replace(" ", "_")
+        project_id = re.sub(r'[^a-z0-9_]', '', project_id_raw)
         name = st.text_input("Project Name")
         
         city = st.selectbox("City", regions if regions else ["Unknown"])
