@@ -4,7 +4,7 @@
 
 echo "==========================================="
 echo "⚡ Booting The Sovereign Engineer..."
-echo "Injecting Core Identity and Directives into local Qwen model..."
+echo "Injecting Core Identity and Directives into local DeepSeek model..."
 echo "==========================================="
 
 cd /home/sj/Athena-Public/infrastructure/sj_atom
