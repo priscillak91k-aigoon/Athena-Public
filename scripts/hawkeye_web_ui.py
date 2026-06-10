@@ -103,6 +103,16 @@ def render_config_panel(selected_project_dir, regions):
         found_idx = foundation_types.index(current_found) if current_found in foundation_types else 0
         cfg["foundation_type"] = st.selectbox("Foundation Type", foundation_types, index=found_idx)
         
+        wall_claddings = ["Light", "Medium", "Heavy"]
+        current_wall_clad = str(cfg.get("wall_cladding", "Light")).capitalize()
+        wall_clad_idx = wall_claddings.index(current_wall_clad) if current_wall_clad in wall_claddings else 0
+        cfg["wall_cladding"] = st.selectbox("Wall Cladding", wall_claddings, index=wall_clad_idx)
+
+        roof_claddings = ["Light", "Heavy"]
+        current_roof_clad = str(cfg.get("roof_cladding", "Light")).capitalize()
+        roof_clad_idx = roof_claddings.index(current_roof_clad) if current_roof_clad in roof_claddings else 0
+        cfg["roof_cladding"] = st.selectbox("Roof Cladding", roof_claddings, index=roof_clad_idx)
+        
         cfg["is_alteration"] = st.checkbox("Is Alteration?", cfg.get("is_alteration", False))
         cfg["description"] = st.text_area("Description", cfg.get("description", ""))
 
@@ -255,6 +265,12 @@ def render_project_creation(regions):
         foundation_types = ["Concrete Slab-on-Ground", "Timber Subfloor", "Suspended Concrete Slab", "slab"]
         foundation_type = st.selectbox("Foundation Type", foundation_types)
         
+        clad_col1, clad_col2 = st.columns(2)
+        with clad_col1:
+            wall_cladding = st.selectbox("Wall Cladding Weight", ["Light", "Medium", "Heavy"])
+        with clad_col2:
+            roof_cladding = st.selectbox("Roof Cladding Weight", ["Light", "Heavy"])
+        
         dim_col1, dim_col2, dim_col3, dim_col4 = st.columns(4)
         with dim_col1:
             length = st.number_input("Building Length (m)", value=0.0, step=0.1)
@@ -290,6 +306,8 @@ def render_project_creation(regions):
                 "city": city,
                 "wind_zone": wind_zone,
                 "foundation_type": foundation_type,
+                "wall_cladding": wall_cladding,
+                "roof_cladding": roof_cladding,
                 "length": length,
                 "width": width,
                 "wall_height": wall_height,
