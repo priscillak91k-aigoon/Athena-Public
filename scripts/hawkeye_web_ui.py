@@ -39,7 +39,14 @@ def render_sidebar(projects):
     if not projects:
         st.sidebar.warning("No projects found.")
         return None
-    return st.sidebar.selectbox("Select Project", projects)
+    selected = st.sidebar.selectbox("Select Project", projects)
+    
+    st.sidebar.divider()
+    st.sidebar.markdown("### Danger Zone")
+    if st.sidebar.button("🗑️ Delete Current Project"):
+        st.sidebar.error("Delete functionality pending implementation.")
+        
+    return selected
 
 def render_config_panel(selected_project_dir, regions):
     """Render the configuration editor for the selected project."""
@@ -54,7 +61,7 @@ def render_config_panel(selected_project_dir, regions):
             return
 
     st.header(f"Configuration: {cfg.get('name', selected_project_dir)}")
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
 
     with col1:
         cfg["name"] = st.text_input("Project Name", cfg.get("name", ""))
@@ -80,6 +87,11 @@ def render_config_panel(selected_project_dir, regions):
         cfg["is_alteration"] = st.checkbox("Is Alteration?", cfg.get("is_alteration", False))
         cfg["description"] = st.text_area("Description", cfg.get("description", ""))
 
+    with col3:
+        cfg["length"] = st.number_input("Building Length (m)", value=float(cfg.get("length", 0.0)), step=0.1)
+        cfg["width"] = st.number_input("Building Width (m)", value=float(cfg.get("width", 0.0)), step=0.1)
+        cfg["roof_pitch"] = st.number_input("Roof Pitch (°)", value=float(cfg.get("roof_pitch", 0.0)), step=1.0)
+
     if st.button("Save Configuration"):
         try:
             with open(config_path, "w", encoding="utf-8") as f:
@@ -92,7 +104,18 @@ def render_file_upload(selected_project_dir):
     """Render a file uploader to accept building plans."""
     st.divider()
     st.header("Upload Building Plans")
-    uploaded_files = st.file_uploader("Upload PDF Plans", type=["pdf"], accept_multiple_files=True)
+    
+    project_path = PROJECTS_DIR / selected_project_dir
+    if project_path.exists():
+        existing_files = [f.name for f in project_path.iterdir() if f.is_file() and f.name.endswith(".pdf")]
+        if existing_files:
+            st.write("**Currently Uploaded Plans:**")
+            for f in existing_files:
+                st.text(f"📄 {f}")
+        else:
+            st.info("No plans uploaded yet.")
+            
+    uploaded_files = st.file_uploader("Upload New PDF Plans", type=["pdf"], accept_multiple_files=True)
     if uploaded_files:
         for file in uploaded_files:
             file_path = PROJECTS_DIR / selected_project_dir / file.name
@@ -154,6 +177,14 @@ def render_project_creation(regions):
         foundation_types = ["Concrete Slab-on-Ground", "Timber Subfloor", "Suspended Concrete Slab", "slab"]
         foundation_type = st.selectbox("Foundation Type", foundation_types)
         
+        dim_col1, dim_col2, dim_col3 = st.columns(3)
+        with dim_col1:
+            length = st.number_input("Building Length (m)", value=0.0, step=0.1)
+        with dim_col2:
+            width = st.number_input("Building Width (m)", value=0.0, step=0.1)
+        with dim_col3:
+            roof_pitch = st.number_input("Roof Pitch (°)", value=0.0, step=1.0)
+        
         is_alteration = st.checkbox("Is Alteration?", False)
         description = st.text_area("Description")
         
@@ -179,6 +210,9 @@ def render_project_creation(regions):
                 "city": city,
                 "wind_zone": wind_zone,
                 "foundation_type": foundation_type,
+                "length": length,
+                "width": width,
+                "roof_pitch": roof_pitch,
                 "is_alteration": is_alteration,
                 "description": description
             }
