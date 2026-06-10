@@ -177,7 +177,9 @@ def render_config_panel(selected_project_dir, regions):
         backup_path = config_path.with_name(config_path.name + ".bak")
         if backup_path.exists():
             import shutil
-            shutil.copy2(backup_path, config_path)
+            tmp_path = config_path.with_suffix('.json.undo.tmp')
+            shutil.copy2(backup_path, tmp_path)
+            os.replace(tmp_path, config_path)
             log_activity(selected_project_dir, "Configuration reverted via Undo Last Save.")
             st.rerun()
         else:
@@ -187,7 +189,9 @@ def render_config_panel(selected_project_dir, regions):
         original_path = config_path.with_name("project_config.original.json")
         if original_path.exists():
             import shutil
-            shutil.copy2(original_path, config_path)
+            tmp_path = config_path.with_suffix('.json.restore.tmp')
+            shutil.copy2(original_path, tmp_path)
+            os.replace(tmp_path, config_path)
             log_activity(selected_project_dir, "Configuration restored to original baseline.")
             st.rerun()
         else:
@@ -372,14 +376,14 @@ def render_project_creation(regions):
             return
             
         project_dir = PROJECTS_DIR / project_id
-        if project_dir.exists():
+        try:
+            # Directive VII: Explicit Error Handling
+            project_dir.mkdir(parents=True, exist_ok=False)
+        except FileExistsError:
             st.error(f"Project directory '{project_id}' already exists!")
             return
             
         try:
-            # Directive VII: Explicit Error Handling
-            project_dir.mkdir(parents=True, exist_ok=False)
-            
             cfg = {
                 "id": project_id,
                 "name": name,
@@ -402,11 +406,18 @@ def render_project_creation(regions):
                 json.dump(cfg, f, indent=2)
             os.replace(tmp_path, config_path)
             
+            # Save the original baseline state
+            original_path = config_path.with_name("project_config.original.json")
+            import shutil
+            shutil.copy2(config_path, original_path)
+            
             log_activity(project_id, f"Project created.")
             st.success(f"Project {project_id} created successfully!")
             
         except Exception as e:
-            st.error(f"Failed to create project: {e}")
+            import shutil
+            shutil.rmtree(project_dir, ignore_errors=True)
+            st.error(f"Failed to create project configuration: {e}. Project creation rolled back.")
 
 def main():
     st.title("Hawkeye v5.0 Commercial Auditor")
