@@ -337,7 +337,7 @@ class HawkeyeVerifier:
             all_text += self._read_pdf(pdf)
             
         # Generic H1 check if dimensions exist
-        if "dimensions" in meta and not meta.get("is_alteration", False):
+        if "width" in meta and "length" in meta and not meta.get("is_alteration", False):
             print("Checking generic H1 energy efficiency compliance...")
             h1_check = self.compliance_solver.assert_h1_compliance(
                 climate_zone=meta.get("climate_zone", 1), floor_type=meta.get("foundation_type", "slab").lower(), 
