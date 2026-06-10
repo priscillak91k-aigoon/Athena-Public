@@ -197,15 +197,26 @@ def render_file_upload(selected_project_dir):
                         except Exception as e:
                             st.error(f"Failed to delete '{f.name}': {e}")
                         
-            clear_btn = st.button("🗑️ Clear All PDF Plans")
+            if st.button("🗑️ Clear All PDF Plans"):
+                st.session_state[f"confirm_clear_{selected_project_dir}"] = True
             st.caption("Instantly purges all uploaded PDFs from the project directory.")
-            if clear_btn:
-                for f in existing_files:
-                    try:
-                        f.unlink()
-                    except Exception as e:
-                        st.error(f"Failed to delete '{f.name}': {e}")
-                st.rerun()
+            
+            if st.session_state.get(f"confirm_clear_{selected_project_dir}", False):
+                st.warning("Are you sure you want to permanently delete all uploaded PDFs?")
+                c_yes, c_no = st.columns(2)
+                with c_yes:
+                    if st.button("✅ Yes, Delete All", type="primary"):
+                        for f in existing_files:
+                            try:
+                                f.unlink()
+                            except Exception as e:
+                                st.error(f"Failed to delete '{f.name}': {e}")
+                        st.session_state[f"confirm_clear_{selected_project_dir}"] = False
+                        st.rerun()
+                with c_no:
+                    if st.button("❌ No, Cancel"):
+                        st.session_state[f"confirm_clear_{selected_project_dir}"] = False
+                        st.rerun()
         else:
             st.info("No plans uploaded yet.")
             
