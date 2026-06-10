@@ -486,6 +486,7 @@ class HawkeyeVerifier:
 
 if __name__ == "__main__":
     import argparse
+    import sys
     parser = argparse.ArgumentParser()
     parser.add_argument("--project", type=str, default=None, help="Specific project ID to audit")
     args = parser.parse_args()
@@ -500,4 +501,8 @@ if __name__ == "__main__":
             print(f"Error: Project '{args.project}' not found in configuration.")
             sys.exit(1)
             
-    verifier.run()
+    try:
+        verifier.run()
+    except Exception as e:
+        print(f"Critical failure during audit: {e}")
+        sys.exit(1)

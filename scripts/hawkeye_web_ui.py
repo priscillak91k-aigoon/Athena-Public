@@ -47,7 +47,9 @@ def render_sidebar(projects):
     st.sidebar.markdown("### Danger Zone")
     with st.sidebar.expander("Delete Project"):
         st.warning("This will permanently delete the project and all associated files.")
-        if st.button("Confirm Delete"):
+        del_submit = st.button("Confirm Delete")
+        st.caption("Wipes all PDFs, configurations, and reports from the local drive.")
+        if del_submit:
             success = False
             try:
                 target_dir = PROJECTS_DIR / selected
@@ -127,7 +129,9 @@ def render_config_panel(selected_project_dir, regions):
     col_s1, col_s2, col_s3 = st.columns(3)
     
     with col_s1:
-        if st.button("💾 Save Configuration", use_container_width=True, type="primary"):
+        save_btn = st.button("💾 Save Configuration", use_container_width=True, type="primary")
+        st.caption("Locks in configuration changes and creates an automatic rollback backup.")
+        if save_btn:
             try:
                 if config_path.exists():
                     import shutil
@@ -147,9 +151,11 @@ def render_config_panel(selected_project_dir, regions):
 
     with col_s2:
         undo_clicked = st.button("⏪ Undo Last Save", use_container_width=True)
+        st.caption("Reverts the configuration to the state it was in before your last save.")
 
     with col_s3:
         restore_clicked = st.button("⏮️ Restore Baseline", use_container_width=True)
+        st.caption("Reverts the configuration to the original state from project creation.")
         
     if undo_clicked:
         backup_path = config_path.with_name(config_path.name + ".bak")
@@ -191,7 +197,9 @@ def render_file_upload(selected_project_dir):
                         except Exception as e:
                             st.error(f"Failed to delete '{f.name}': {e}")
                         
-            if st.button("🗑️ Clear All PDF Plans"):
+            clear_btn = st.button("🗑️ Clear All PDF Plans")
+            st.caption("Instantly purges all uploaded PDFs from the project directory.")
+            if clear_btn:
                 for f in existing_files:
                     try:
                         f.unlink()
@@ -218,7 +226,9 @@ def render_file_upload(selected_project_dir):
 def render_audit_runner(selected_project_dir):
     """Render the execution trigger and results."""
     st.divider()
-    if st.button("Run Hawkeye Audit", type="primary"):
+    audit_btn = st.button("🚀 Run Hawkeye Audit", type="primary", use_container_width=True)
+    st.caption("Executes the local compliance engine against the current configuration and PDFs. Takes ~5-15 seconds depending on document size.")
+    if audit_btn:
         with st.spinner("Executing Hawkeye v5.0 compliance engine (this may take up to 2 minutes)..."):
             try:
                 # Added timeout to prevent infinite hangs (Failure Mode Audit)
@@ -295,6 +305,7 @@ def render_project_creation(regions):
         description = st.text_area("Description")
         
         submit = st.form_submit_button("Create Project")
+        st.caption("Initializes a new secure project workspace. ID must be unique.")
         
     if submit:
         if not project_id:
