@@ -9,7 +9,7 @@ echo "==========================================="
 
 # Create the Modelfile
 cat << 'EOF' > Modelfile.engineer
-FROM qwen2.5-coder:32b
+FROM deepseek-coder-v2
 PARAMETER temperature 0.1
 PARAMETER num_ctx 32768
 SYSTEM """
