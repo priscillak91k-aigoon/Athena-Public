@@ -494,9 +494,15 @@ if __name__ == "__main__":
     verifier = HawkeyeVerifier()
     
     if args.project:
-        if args.project in verifier.projects:
-            # Filter the dictionary to only process the selected project
-            verifier.projects = {args.project: verifier.projects[args.project]}
+        target_id = None
+        for pid, cfg in verifier.projects.items():
+            folder_name = Path(cfg.get("folder_path", "")).name
+            if pid == args.project or folder_name == args.project:
+                target_id = pid
+                break
+                
+        if target_id:
+            verifier.projects = {target_id: verifier.projects[target_id]}
         else:
             print(f"Error: Project '{args.project}' not found in configuration.")
             sys.exit(1)

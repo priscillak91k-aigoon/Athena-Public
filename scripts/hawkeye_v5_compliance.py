@@ -29,7 +29,7 @@ class HawkeyeComplianceSolver:
                 print(f"Error loading compliance file: {e}")
         else:
             # Fallback if the specific KI directory isn't mounted or structured this way
-            print(f"Compliance resource not found at {self.resource_path}. Running with empty compliance index.")
+            pass
             
     def search_rules(self, query: str, max_results: int = 5):
         """
