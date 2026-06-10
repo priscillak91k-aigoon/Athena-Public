@@ -355,14 +355,12 @@ class HawkeyeVerifier:
                 })
                 
         # Generic Bracing solver 
-        if "dimensions" in meta:
-            dims = meta["dimensions"]
-            if "width" in dims and "length" in dims:
-                print("Running generic NZS 3604 bracing demand solver...")
-                wind = self.compliance_solver.calculate_wind_bracing_demand(
-                    width=dims["width"], length=dims["length"], wall_height=dims.get("wall_height", 2.4), 
-                    roof_pitch_deg=dims.get("roof_pitch_deg", 15.0), wind_zone=meta.get("wind_zone", "High").lower(), roof_type="gable"
-                )
+        if "width" in meta and "length" in meta and meta["width"] > 0 and meta["length"] > 0:
+            print("Running generic NZS 3604 bracing demand solver...")
+            wind = self.compliance_solver.calculate_wind_bracing_demand(
+                width=meta["width"], length=meta["length"], wall_height=meta.get("wall_height", 2.4), 
+                roof_pitch_deg=meta.get("roof_pitch", 15.0), wind_zone=meta.get("wind_zone", "High").lower(), roof_type="gable"
+            )
                 
         self.audit_results["findings"].extend(findings)
         print(f"{meta.get('name', project_id)} dynamic audit complete. Flagged {len(findings)} RFI hazards.")

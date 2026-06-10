@@ -44,7 +44,15 @@ def render_sidebar(projects):
     st.sidebar.divider()
     st.sidebar.markdown("### Danger Zone")
     if st.sidebar.button("🗑️ Delete Current Project"):
-        st.sidebar.error("Delete functionality pending implementation.")
+        try:
+            target_dir = PROJECTS_DIR / selected
+            if target_dir.exists():
+                import shutil
+                shutil.rmtree(target_dir)
+                st.sidebar.success(f"Project '{selected}' deleted!")
+                st.rerun()
+        except Exception as e:
+            st.sidebar.error(f"Failed to delete: {e}")
         
     return selected
 
