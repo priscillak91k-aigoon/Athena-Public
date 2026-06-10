@@ -109,6 +109,7 @@ def render_config_panel(selected_project_dir, regions):
     with col3:
         cfg["length"] = st.number_input("Building Length (m)", value=safe_float(cfg.get("length", 0.0)), step=0.1)
         cfg["width"] = st.number_input("Building Width (m)", value=safe_float(cfg.get("width", 0.0)), step=0.1)
+        cfg["wall_height"] = st.number_input("Wall Height (m)", value=safe_float(cfg.get("wall_height", 2.4)), step=0.1)
         cfg["roof_pitch"] = st.number_input("Roof Pitch (°)", value=safe_float(cfg.get("roof_pitch", 0.0)), step=1.0)
 
     st.divider()
@@ -249,12 +250,14 @@ def render_project_creation(regions):
         foundation_types = ["Concrete Slab-on-Ground", "Timber Subfloor", "Suspended Concrete Slab", "slab"]
         foundation_type = st.selectbox("Foundation Type", foundation_types)
         
-        dim_col1, dim_col2, dim_col3 = st.columns(3)
+        dim_col1, dim_col2, dim_col3, dim_col4 = st.columns(4)
         with dim_col1:
             length = st.number_input("Building Length (m)", value=0.0, step=0.1)
         with dim_col2:
             width = st.number_input("Building Width (m)", value=0.0, step=0.1)
         with dim_col3:
+            wall_height = st.number_input("Wall Height (m)", value=2.4, step=0.1)
+        with dim_col4:
             roof_pitch = st.number_input("Roof Pitch (°)", value=0.0, step=1.0)
         
         is_alteration = st.checkbox("Is Alteration?", False)
@@ -284,6 +287,7 @@ def render_project_creation(regions):
                 "foundation_type": foundation_type,
                 "length": length,
                 "width": width,
+                "wall_height": wall_height,
                 "roof_pitch": roof_pitch,
                 "is_alteration": is_alteration,
                 "description": description
