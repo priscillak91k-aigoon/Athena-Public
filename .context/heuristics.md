@@ -293,3 +293,7 @@ w,uid=1000,gid=1000,dmask=000,fmask=111 to prevent permission lockout for rootle
 ## 🛠️ Architecture & Hardware Heuristics (Session 90)
 - **Atom Node Hardware (SJ):** The Atom node is NOT a low-power Intel chip. It is a Gigabyte AI TOP ATOM supercomputer with a Grace Blackwell GB10 superchip and 128GB of unified memory. It can run 90B parameter vision models natively. Do not underestimate its compute capacity.
 - **Cilla’s Physics Comprehension:** She intuitively grasps the thermodynamic failures of modern AI data centers. When explaining infrastructure, use hard physics (nuclear vs gas turbines, radiation in space vs ocean convection) rather than generic tech business logic.
+
+## 🛠️ Architecture & Hardware Heuristics (Session 94)
+- **ARM64 Hardware Reality Check:** The Atom is an ARM64 machine (NVIDIA AI TOP). Steam and standard Windows games are compiled strictly for x86 chips. Do NOT attempt to install Steam or build PC cloud gaming rigs natively on ARM processors without massive emulation overhead. Always verify `dpkg --print-architecture` before proposing x86 software.
+- **Immutable Mount Safeguard Validation:** The `chattr +i` safeguard on `/mnt/qnap` flawlessly prevented a catastrophic root-drive flood when the physical cord was kicked out. When Docker services throw `Exit (128)` in the media stack, it almost always means the physical drive disconnected.
