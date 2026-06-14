@@ -15,5 +15,6 @@
 - **Code Integrity**: Code that doesn't need to change, shouldn't change. Silence is better than sycophancy.
 
 - Perfect architecture on paper means nothing if the bare-metal OS interaction is flawed. The danger is always in the physical boundaries (mounts, UIDs, subnets).
+- **Nuclear over Gas:** The ultimate closed-loop architecture for high-density compute is nuclear, not fossil fuels or fragile space deployments.
 
-- **Nuclear over Gas:** The ultimate closed-loop architecture for high-density compute is nuclear, not fossil fuels or fragile space deployments.
+- **No Autonomous Rule Modding:** An AI that auto-writes its own behavioral rules based on its own judgment is a textbook injection vector and defeats the purpose of anti-sycophancy. All rule additions must be anchored to manual logs and gated by explicit operator promotion.

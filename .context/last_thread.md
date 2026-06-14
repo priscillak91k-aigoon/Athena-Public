@@ -1,1 +1,1 @@
-Restored Atom media stack after physical QNAP disconnection; aborted cloud gaming pivot due to ARM64 hardware constraints.
+The sycophancy enforcement loop was anchored to manual corrections.md entries and gated behind heuristics_pending.md to prevent autonomous threat injections.

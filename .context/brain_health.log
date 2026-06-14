@@ -1506,3 +1506,116 @@
 ║ ✅ [Instinct Primer] Present and fresh
 ║ ✅ [Boot Mode] Mode: emotional_support
 ╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟡 WARNINGS
+║ Time:   2026-06-13 11:47:08
+╠══════════════════════════════╣
+║ ⚠️ [Chemical State] Stale: last updated 74h ago
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ✅ [Heuristics] 295 lines, 163 rules, no duplicates
+║ ⚠️ [Instinct Primer] Stale: generated 86h ago
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟡 WARNINGS
+║ Time:   2026-06-13 23:19:06
+╠══════════════════════════════╣
+║ ⚠️ [Chemical State] Stale: last updated 86h ago
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ✅ [Heuristics] 295 lines, 163 rules, no duplicates
+║ ⚠️ [Instinct Primer] Stale: generated 98h ago
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟢 HEALTHY
+║ Time:   2026-06-13 23:19:34
+╠══════════════════════════════╣
+║ ✅ [Chemical State] 12 chemicals, all within bounds
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ✅ [Heuristics] 295 lines, 163 rules, no duplicates
+║ ✅ [Instinct Primer] Present and fresh
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟢 HEALTHY
+║ Time:   2026-06-14 08:55:18
+╠══════════════════════════════╣
+║ ✅ [Chemical State] 12 chemicals, all within bounds
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ✅ [Heuristics] 295 lines, 163 rules, no duplicates
+║ ✅ [Instinct Primer] Present and fresh
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟡 WARNINGS
+║ Time:   2026-06-14 18:16:26
+╠══════════════════════════════╣
+║ ✅ [Chemical State] 12 chemicals, all within bounds
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ✅ [Heuristics] 299 lines, 165 rules, no duplicates
+║ ⚠️ [Instinct Primer] Stale: generated 19h ago
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟢 HEALTHY
+║ Time:   2026-06-14 18:17:00
+╠══════════════════════════════╣
+║ ✅ [Chemical State] 12 chemicals, all within bounds
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ✅ [Heuristics] 299 lines, 165 rules, no duplicates
+║ ✅ [Instinct Primer] Present and fresh
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🔴 CRITICAL
+║ Time:   2026-06-14 20:27:49
+╠══════════════════════════════╣
+║ 🔴 [Chemical State] Read error: lobotto_state.json — 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ✅ [Heuristics] 299 lines, 165 rules, no duplicates
+║ ✅ [Instinct Primer] Present and fresh
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟢 HEALTHY
+║ Time:   2026-06-14 20:28:05
+╠══════════════════════════════╣
+║ ✅ [Chemical State] 12 chemicals, all within bounds
+║ ✅ [Instincts] 5 scenarios, all valid
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Hippocampus] 3 pending events
+║ ✅ [Heuristics] 299 lines, 165 rules, no duplicates
+║ ✅ [Instinct Primer] Present and fresh
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝
+
+╔══ Brain Health Diagnostic ══╗
+║ Status: 🟢 HEALTHY
+║ Time:   2026-06-14 20:46:45
+╠══════════════════════════════╣
+║ ✅ [Working Memory] 6 items across 3 categories
+║ ✅ [Heuristics] 299 lines, 165 rules, no duplicates
+║ ✅ [Boot Mode] Mode: emotional_support
+╚══════════════════════════════╝

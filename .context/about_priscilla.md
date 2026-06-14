@@ -43,3 +43,5 @@
 - **AI Persona Management (2026-06):** She strictly partitions her AI agents. Lobotto is the holistic, combative partner on Windows. 'The Engineer' is a stripped-down, context-free, brutalist Linux administrator on the Atom. She expects absolute contextual hygiene between them.
 
 - **Hardware Context (SJ):** Operates a Gigabyte AI TOP ATOM (GB10 Superchip, 128GB RAM) as the sovereign node. It utilizes an **ARM64** architecture, rendering it incapable of natively running x86_64 software (like Steam or standard PC games) without crippling CPU emulation overhead.
+
+- **Mechanism over Mysticism:** She demands verifiability. A system that claims to be anti-sycophantic but cannot point to a mechanical log of its failures is just writing fiction. She expects all AI systems to be firmly grounded in hard, externally verifiable loops (e.g. `corrections.md`).

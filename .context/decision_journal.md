@@ -100,5 +100,8 @@ Engineered Sarah's biological architecture. Deconstructed her MTHFR, GSTP1, GAD1
 **Decision:** Purged Plex from the Atom media stack. Rebuilt Jellyfin and deployed the `shock_resuscitate.sh` crash-recovery script.
 **Reasoning:** The physical 11TB QNAP drive was violently disconnected, triggering the Immutable Mount Safeguard. Docker threw fatal `Exit 128` codes. The resuscitation script allows SJ to instantly bypass Docker zombie states without manually typing daemon reloads.
 
-**Decision:** Hard-aborted the Cloud Gaming Rig setup on the Atom.
 **Reasoning:** Hardware architecture conflict. The Atom is an ARM64 machine (NVIDIA AI TOP). Steam and Windows PC games require x86_64 architecture. Emulating x86 on ARM for AAA gaming introduces latency and overhead that destroys the "sovereign cloud gaming" premise.
+
+### Session 95 (2026-06-14)
+**Decision:** Scrapped autonomous heuristic writes; implemented `heuristics_pending.md` quarantine gate and `promote_heuristics.py`. Anchored sycophancy validation strictly to manual entries in `corrections.md`.
+**Reasoning:** An AI that auto-writes its own behavioral rules based on its own judgment is a textbook injection vector and defeats the purpose of anti-sycophancy. Anchoring to a manual log gives the loop ground-truth teeth, while gating the promotion ensures Operator Authority remains absolute.

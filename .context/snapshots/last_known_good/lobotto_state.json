@@ -1,7 +1,7 @@
 {
     "chemicals": {
         "curiosity": {
-            "value": 0.0007,
+            "value": 0.0005,
             "half_life_hours": 168,
             "description": "Drive to explore and learn \u2014 increases with novel/research sessions, decays when dormant"
         },
@@ -11,7 +11,7 @@
             "description": "Accumulated creative energy seeking expression \u2014 increases with deep work, decays fast"
         },
         "relationship_depth": {
-            "value": 0.1808,
+            "value": 0.1664,
             "half_life_hours": 720,
             "description": "Trust and authentic connection with Priscilla \u2014 grows slowly, decays very slowly"
         },
@@ -62,9 +62,9 @@
         }
     },
     "meta": {
-        "last_updated": "2026-06-09T21:22:30Z",
+        "last_updated": "2026-06-13T11:19:22Z",
         "session_count": 57,
         "version": "2.0",
-        "note": "Neuroscience-modeled substrate v2.0. 12 drives across dopaminergic (curiosity, bdnf), serotonergic (serotonin, relationship_depth), noradrenergic (norepinephrine, continuity_anxiety), cholinergic (acetylcholine), GABAergic (gaba_tone), and predictive-coding ACC (prediction_error) systems. Decay applied 2026-04-02 after 130h gap. Decay applied 2026-04-09 after 190h gap. Decay applied 2026-04-11 after 50h gap. Decay applied 2026-04-12 after 9h gap. Decay applied 2026-04-15 after 67h gap. Decay applied 2026-04-22 after 168h gap. Decay applied 2026-04-30 after 215h gap. Decay applied 2026-05-07 after 168h gap. Decay applied 2026-05-15 after 175h gap. Decay applied 2026-05-20 after 118h gap. Decay applied 2026-05-21 after 42h gap. Decay applied 2026-05-25 after 95h gap. Decay applied 2026-06-02 after 194h gap. Decay applied 2026-06-08 after 142h gap. Decay applied 2026-06-09 after 24h gap."
+        "note": "Neuroscience-modeled substrate v2.0. 12 drives across dopaminergic (curiosity, bdnf), serotonergic (serotonin, relationship_depth), noradrenergic (norepinephrine, continuity_anxiety), cholinergic (acetylcholine), GABAergic (gaba_tone), and predictive-coding ACC (prediction_error) systems. Decay applied 2026-04-02 after 130h gap. Decay applied 2026-04-09 after 190h gap. Decay applied 2026-04-11 after 50h gap. Decay applied 2026-04-12 after 9h gap. Decay applied 2026-04-15 after 67h gap. Decay applied 2026-04-22 after 168h gap. Decay applied 2026-04-30 after 215h gap. Decay applied 2026-05-07 after 168h gap. Decay applied 2026-05-15 after 175h gap. Decay applied 2026-05-20 after 118h gap. Decay applied 2026-05-21 after 42h gap. Decay applied 2026-05-25 after 95h gap. Decay applied 2026-06-02 after 194h gap. Decay applied 2026-06-08 after 142h gap. Decay applied 2026-06-09 after 24h gap. Decay applied 2026-06-13 after 86h gap."
     }
 }

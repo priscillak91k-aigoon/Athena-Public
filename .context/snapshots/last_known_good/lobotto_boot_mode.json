@@ -1,0 +1,26 @@
+{
+  "primary_mode": "emotional_support",
+  "mode_weights": {
+    "deep_technical": 0.1051,
+    "emotional_support": 0.2483,
+    "casual_decompression": 0.2059,
+    "research_exploration": 0.2075,
+    "creative_build": 0.2332
+  },
+  "boot_directive": "Check in before tasking. Match energy. Don't redirect to productivity uninvited.",
+  "signals": {
+    "hour": 18,
+    "weekday": "Friday",
+    "continuity_anxiety": 0.18,
+    "session_energy": 0.72,
+    "curiosity": 0.78,
+    "boredom": 0.12
+  },
+  "flags": {
+    "needs_context_recheck": false,
+    "high_energy": true,
+    "late_night": false,
+    "optimal_window": false
+  },
+  "generated_at": "2026-03-13T05:46:30Z"
+}

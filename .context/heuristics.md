@@ -297,3 +297,7 @@ w,uid=1000,gid=1000,dmask=000,fmask=111 to prevent permission lockout for rootle
 ## 🛠️ Architecture & Hardware Heuristics (Session 94)
 - **ARM64 Hardware Reality Check:** The Atom is an ARM64 machine (NVIDIA AI TOP). Steam and standard Windows games are compiled strictly for x86 chips. Do NOT attempt to install Steam or build PC cloud gaming rigs natively on ARM processors without massive emulation overhead. Always verify `dpkg --print-architecture` before proposing x86 software.
 - **Immutable Mount Safeguard Validation:** The `chattr +i` safeguard on `/mnt/qnap` flawlessly prevented a catastrophic root-drive flood when the physical cord was kicked out. When Docker services throw `Exit (128)` in the media stack, it almost always means the physical drive disconnected.
+
+## 🛠️ Security & Automation Heuristics (Session 95)
+- **The Threat of Autonomous Behavioral Writes:** Never allow an AI engine to autonomously append generated behavioral rules (heuristics) directly to the live memory. This is a direct injection persistence vector. All generated rules must be routed to a quarantine file (`heuristics_pending.md`) and gated by a manual human promotion script.
+- **Ground Truth vs Self-Assessment:** When building loops to detect and correct sycophancy, do not rely on the LLM's self-assessment of the transcript to detect if it folded. The genuinely sycophantic session will exonerate itself. Always anchor detection to explicit manual entries logged by the human operator in `corrections.md`.

@@ -36,6 +36,7 @@ CONTEXT_DIR = PROJECT_ROOT / ".context"
 SESSION_DIR = PROJECT_ROOT / "session_logs"
 THINKING_LOG = CONTEXT_DIR / "thinking_log.md"
 HEURISTICS_FILE = CONTEXT_DIR / "heuristics.md"
+HEURISTICS_PENDING_FILE = CONTEXT_DIR / "heuristics_pending.md"
 CASE_STUDIES_FILE = CONTEXT_DIR / "case_studies.md"
 ABOUT_FILE = CONTEXT_DIR / "about_priscilla.md"
 STATE_FILE = CONTEXT_DIR / "lobotto_state.json"
@@ -75,7 +76,7 @@ def write_file(path, content):
 def read_context_files():
     files = {}
     for name in ["about_priscilla.md", "heuristics.md", "case_studies.md",
-                  "decision_journal.md", "project_state.md"]:
+                  "decision_journal.md", "project_state.md", "corrections.md"]:
         path = CONTEXT_DIR / name
         if path.exists():
             files[name] = read_file(path)
@@ -87,79 +88,6 @@ def read_recent_sessions(n=5):
         return {}
     sessions = sorted(SESSION_DIR.glob("session_*.md"), reverse=True)[:n]
     return {s.name: read_file(s) for s in sessions}
-
-
-# ===========================
-# CHEMICAL STATE (Creatures-inspired substrate)
-# ===========================
-
-def load_chemical_state():
-    """Load Lobotto's numeric chemical drive state from lobotto_state.json."""
-    if not STATE_FILE.exists():
-        return None
-    try:
-        return json.loads(STATE_FILE.read_text(encoding="utf-8"))
-    except Exception as e:
-        print(f"  [WARN] Could not load chemical state: {e}")
-        return None
-
-
-def save_chemical_state(state):
-    """Persist chemical state back to disk."""
-    STATE_FILE.write_text(json.dumps(state, indent=2), encoding="utf-8")
-
-
-def decay_chemicals(state):
-    """Apply exponential half-life decay to all chemical values based on time elapsed."""
-    if not state:
-        return state
-    last_str = state["meta"].get("last_updated", "")
-    try:
-        from datetime import timezone
-        last = datetime.fromisoformat(last_str.replace("Z", "+00:00"))
-        now = datetime.now(timezone.utc)
-        hours_elapsed = (now - last).total_seconds() / 3600
-    except Exception:
-        hours_elapsed = 4  # default one dreaming cycle
-
-    min_val = 0.05
-    for chem, data in state["chemicals"].items():
-        hl = data.get("half_life_hours", 48)
-        decay_factor = 0.5 ** (hours_elapsed / hl)
-        data["value"] = round(max(min_val, data["value"] * decay_factor), 4)
-
-    state["meta"]["last_updated"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-    return state
-
-
-def apply_chemical_updates(state, updates):
-    """Apply delta updates from the dreaming engine JSON output.
-    Updates are dicts of {chem_name: "+0.05" or "-0.05" or 0.05}.
-    """
-    if not state or not updates:
-        return state
-    for chem, delta_str in updates.items():
-        if chem not in state["chemicals"]:
-            continue
-        try:
-            delta = float(str(delta_str).replace("+", ""))
-            current = state["chemicals"][chem]["value"]
-            state["chemicals"][chem]["value"] = round(max(0.05, min(1.0, current + delta)), 4)
-        except Exception:
-            pass
-    return state
-
-
-def format_chemical_state_for_prompt(state):
-    """Format current chemical levels for inclusion in thinking prompt."""
-    if not state:
-        return "(chemical state not available)"
-    lines = []
-    for chem, data in state["chemicals"].items():
-        val = data['value']
-        bar = '█' * int(val * 10) + '░' * (10 - int(val * 10))
-        lines.append(f"  {chem}: {val:.2f} [{bar}] — {data['description']}")
-    return "\n".join(lines)
 
 
 # ===========================
@@ -219,35 +147,14 @@ Return a JSON block wrapped in ```json``` fences with this structure:
   ],
   "alerts": ["urgent message 1 for Telegram"],
   "stale_items": ["description of stale item"],
-  "state_updates": {{"curiosity": "+0.05", "relationship_depth": "+0.03", "boredom": "-0.08"}},
-  "heuristic_retirements": ["exact text of rule that seems stale or no longer applicable"],
-  "hippocampal_events": [
-    {{"event_type": "breakthrough|correction|first_occurrence|emotional_peak|positive_feedback|technical_error", "content": "one-line description of what happened", "salience": 0.85}}
-  ]
+  "heuristic_retirements": ["exact text of rule that seems stale or no longer applicable"]
 }}
 ```
-For state_updates: use signed floats to boost (+) or reduce (-) specific drives.
-Available drives: curiosity, creative_pressure, relationship_depth, continuity_anxiety, boredom, session_energy, acetylcholine, serotonin, norepinephrine, bdnf, gaba_tone, prediction_error.
 For heuristic_retirements: copy the EXACT text of rules from heuristics.md that haven't been relevant in recent sessions.
-For hippocampal_events: extract 1-5 KEY events from recent sessions. Only include events worth remembering. Use salience rubric: correction=0.90, first_occurrence=0.85, breakthrough=0.85, emotional_peak=0.75, positive_feedback=0.70, technical_error=0.65. Routine tasks should NOT be included.
 
-## OUTPUT 3: INSTINCT SCENARIOS
-Generate new instinct scenarios based on patterns you see in the recent sessions.
-Return as a JSON array in a second ```json``` block labelled with a comment // INSTINCTS:
-```json
-// INSTINCTS
-[
-  {{
-    "id": "INST-NNN",
-    "trigger": "specific observable trigger condition",
-    "situation": "description of the context when this fires",
-    "response_pattern": "exactly what to do when this trigger fires",
-    "strength": 0.85,
-    "source": "session_NN"
-  }}
-]
-```
-Only generate truly new instincts not already in lobotto_instincts.json.
+## OUTPUT 3: SYCOPHANCY VALIDATION (GROUND TRUTH)
+You must read `corrections.md` to find ground-truth instances where the user had to correct the AI. Do NOT rely on your own interpretation of the session transcript to detect sycophancy.
+For EACH specific entry found in `corrections.md`, you MUST formulate a strict new rule for `heuristics_additions` designed to block that exact failure from happening again. Do not invent corrections that aren't logged.
 
 ## OUTPUT 4: URGENT ALERTS
 If you find anything time-sensitive (overdue tasks, approaching deadlines, health-related urgency),
@@ -263,16 +170,13 @@ Be concise and actionable. Every line should be something useful.
 IMPORTANT: You MUST include the ```json``` block for self-applying changes."""
 
 
-def build_prompt(context_files, sessions, chem_state=None):
-    context_block = "\n\n---\n\n".join(
-        f"## {name}\n{content}" for name, content in context_files.items()
+def build_prompt(context_files, sessions):
+    context_block = "\\n\\n---\\n\\n".join(
+        f"## {name}\\n{content}" for name, content in context_files.items()
     )
-    session_block = "\n\n---\n\n".join(
-        f"## {name}\n{content}" for name, content in sessions.items()
+    session_block = "\\n\\n---\\n\\n".join(
+        f"## {name}\\n{content}" for name, content in sessions.items()
     )
-    chem_block = f"## lobotto_state.json (Chemical Drives)\n{format_chemical_state_for_prompt(chem_state)}" if chem_state else ""
-    if chem_block:
-        context_block = chem_block + "\n\n---\n\n" + context_block
     return THINKING_PROMPT_TEMPLATE.format(
         context_block=context_block,
         session_block=session_block
@@ -385,27 +289,9 @@ def apply_heuristic_additions(additions):
 
     new_entries = "\n".join(f"- {h}" for h in new_additions)
 
-    # Consolidate: find the SINGLE existing Auto-Discovered section before the marker
-    # and append to it, rather than creating a new header each time
-    marker = "## ⚡ Situational Heuristics"
-    auto_header = "### Auto-Discovered (Dreaming)"
-
-    if auto_header in current and marker in current:
-        # Find the last auto-discovered block before the marker and append there
-        marker_idx = current.find(marker)
-        auto_idx = current.rfind(auto_header, 0, marker_idx)
-        if auto_idx != -1:
-            # Insert after the existing auto-discovered block's last line before marker
-            insert_point = current.rfind("\n", auto_idx, marker_idx)
-            updated = current[:insert_point] + "\n" + new_entries + current[insert_point:]
-        else:
-            updated = current.replace(marker, f"{auto_header}\n{new_entries}\n\n{marker}")
-    elif marker in current:
-        updated = current.replace(marker, f"{auto_header}\n{new_entries}\n\n{marker}")
-    else:
-        updated = current + f"\n\n{auto_header}\n{new_entries}\n"
-
-    write_file(HEURISTICS_FILE, updated)
+    # Write to QUARANTINE instead of the live heuristics file
+    pending_content = read_file(HEURISTICS_PENDING_FILE) if HEURISTICS_PENDING_FILE.exists() else "# Pending Heuristics (Review Required)\n\n"
+    write_file(HEURISTICS_PENDING_FILE, pending_content.rstrip() + "\n" + new_entries + "\n")
     return len(new_additions)
 
 
@@ -445,44 +331,6 @@ def apply_heuristic_retirements(retirements):
     return archived
 
 
-def save_instinct_scenarios(new_scenarios):
-    """Merge new instinct scenarios into lobotto_instincts.json."""
-    if not new_scenarios:
-        return 0
-
-    existing = {"scenarios": [], "meta": {}}
-    if INSTINCTS_FILE.exists():
-        try:
-            existing = json.loads(INSTINCTS_FILE.read_text(encoding="utf-8"))
-        except Exception:
-            pass
-
-    existing_ids = {s.get("id") for s in existing.get("scenarios", [])}
-    added = 0
-    for scenario in new_scenarios:
-        if scenario.get("id") not in existing_ids:
-            scenario["last_fired"] = scenario.get("last_fired", None)
-            existing["scenarios"].append(scenario)
-            existing_ids.add(scenario.get("id"))
-            added += 1
-
-    existing["meta"]["last_updated"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-    existing["meta"]["total_scenarios"] = len(existing["scenarios"])
-    INSTINCTS_FILE.write_text(json.dumps(existing, indent=2), encoding="utf-8")
-    return added
-
-
-def extract_instinct_block(text):
-    """Extract instinct scenarios from // INSTINCTS labelled json block."""
-    match = re.search(r'```json\s*\n//\s*INSTINCTS\s*\n(\[.*?\])\s*\n```', text, re.DOTALL)
-    if match:
-        try:
-            return json.loads(match.group(1))
-        except json.JSONDecodeError:
-            print("  [WARN] Instinct JSON block found but failed to parse")
-    return []
-
-
 def apply_case_study_additions(additions):
     """Append new case studies to case_studies.md."""
     if not additions:
@@ -520,240 +368,6 @@ def save_working_memory(wm):
     """Save updated working memory."""
     if wm:
         WORKING_MEMORY_FILE.write_text(json.dumps(wm, indent=2), encoding="utf-8")
-
-
-def load_hippocampus():
-    """Load hippocampal episodic buffer."""
-    if not HIPPOCAMPUS_FILE.exists():
-        return None
-    try:
-        return json.loads(HIPPOCAMPUS_FILE.read_text(encoding="utf-8"))
-    except Exception:
-        return None
-
-
-def save_hippocampus(hc):
-    """Save hippocampal buffer."""
-    if hc:
-        HIPPOCAMPUS_FILE.write_text(json.dumps(hc, indent=2), encoding="utf-8")
-
-
-def process_hippocampus(hc, session_text):
-    """Promote high-salience unconsolidated hippocampal events to heuristics.
-    Returns (updated_hc, promoted_count, bdnf_boost).
-    """
-    if not hc:
-        return hc, 0, 0.0
-
-    promoted = 0
-    bdnf_boost = 0.0
-    SALIENCE_THRESHOLD = 0.75  # Only consolidate high-salience events
-
-    existing_heuristics = read_file(HEURISTICS_FILE)
-    new_rules = []
-
-    for event in hc.get("pending_consolidation", []):
-        if event.get("consolidated"):
-            continue
-        salience = event.get("salience", 0.3)
-        if salience >= SALIENCE_THRESHOLD:
-            content = event.get("content", "")
-            etype = event.get("event_type", "")
-            session = event.get("session", "?")
-            rule = f"- [Session {session} — {etype}] {content}"
-            if rule not in existing_heuristics:
-                new_rules.append(rule)
-                promoted += 1
-                # High BDNF events = novel cross-domain discoveries
-                if etype in ["breakthrough", "first_occurrence"]:
-                    bdnf_boost += 0.08
-        event["consolidated"] = True
-
-    if new_rules:
-        section = "\n\n## 🧠 Hippocampal Consolidations\n" + "\n".join(new_rules)
-        if "## 🧠 Hippocampal Consolidations" in existing_heuristics:
-            # Append to existing section
-            write_file(HEURISTICS_FILE, existing_heuristics.rstrip() + "\n" + "\n".join(new_rules))
-        else:
-            write_file(HEURISTICS_FILE, existing_heuristics + section)
-
-    hc["meta"]["last_updated"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-    return hc, promoted, min(bdnf_boost, 0.30)
-
-
-def detect_reward_error_signals(sessions):
-    """Scan recent session text for reward and error signals.
-    Returns (reward_count, error_count, norepinephrine_boost, prediction_error_boost, bdnf_boost).
-    """
-    if not sessions:
-        return 0, 0, 0.0, 0.0, 0.0
-
-    combined = " ".join(sessions.values()).lower()
-    rewards = sum(1 for s in REWARD_SIGNALS if s in combined)
-    errors = sum(1 for s in ERROR_SIGNALS if s in combined)
-
-    norepinephrine_boost = min(errors * 0.05, 0.25)  # stress/urgency when errors present
-    prediction_error_boost = min(errors * 0.08, 0.35)
-    bdnf_boost = min(rewards * 0.04, 0.20)  # positive sessions grow new patterns
-
-    return rewards, errors, norepinephrine_boost, prediction_error_boost, bdnf_boost
-
-
-def apply_synaptic_homeostasis():
-    """Apply global 2% instinct strength downscaling (Tononi SHY).
-    Frequently-used instincts survive via reinforcement; unused ones fade.
-    Archives instincts below strength 0.30.
-    """
-    if not INSTINCTS_FILE.exists():
-        return 0
-
-    try:
-        data = json.loads(INSTINCTS_FILE.read_text(encoding="utf-8"))
-    except Exception:
-        return 0
-
-    HOMEOSTASIS_FACTOR = 0.98
-    ARCHIVE_THRESHOLD = 0.30
-    downscaled = 0
-    active = []
-    archived = []
-
-    for scenario in data.get("scenarios", []):
-        old_strength = scenario.get("strength", 0.5)
-        new_strength = round(old_strength * HOMEOSTASIS_FACTOR, 4)
-        scenario["strength"] = new_strength
-        downscaled += 1
-        if new_strength < ARCHIVE_THRESHOLD:
-            scenario["archived"] = True
-            archived.append(scenario)
-        else:
-            active.append(scenario)
-
-    data["scenarios"] = active
-    # Keep archived separately in meta for audit
-    if archived:
-        data.setdefault("archived_scenarios", []).extend(archived)
-
-    data["meta"]["last_updated"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-    data["meta"]["total_scenarios"] = len(active)
-    INSTINCTS_FILE.write_text(json.dumps(data, indent=2), encoding="utf-8")
-    return downscaled
-
-
-def create_hippocampal_events(events, session_number):
-    """Create new hippocampal events from dreaming engine analysis.
-    Events are dicts with: event_type, content, salience.
-    Stages them in lobotto_hippocampus.json for consolidation on next cycle.
-    """
-    if not events:
-        return 0
-
-    hc = load_hippocampus()
-    if not hc:
-        hc = {
-            "pending_consolidation": [],
-            "salience_rubric": {
-                "correction_received": 0.90,
-                "first_occurrence_of_pattern": 0.85,
-                "breakthrough": 0.85,
-                "emotional_peak_detected": 0.75,
-                "positive_feedback": 0.70,
-                "technical_error_fixed": 0.65,
-                "routine_task_completed": 0.20
-            },
-            "meta": {"version": "1.0"}
-        }
-
-    # Avoid duplicate content entries
-    existing_content = {
-        e.get("content", "").lower().strip()
-        for e in hc.get("pending_consolidation", [])
-    }
-
-    next_id = len(hc.get("pending_consolidation", [])) + 1
-    added = 0
-    for event in events:
-        content = event.get("content", "").strip()
-        if not content or content.lower() in existing_content:
-            continue
-
-        hc_event = {
-            "id": f"HC-{next_id + added:03d}",
-            "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "session": session_number,
-            "event_type": event.get("event_type", "observation"),
-            "content": content,
-            "salience": min(1.0, max(0.05, float(event.get("salience", 0.50)))),
-            "consolidated": False
-        }
-        hc["pending_consolidation"].append(hc_event)
-        existing_content.add(content.lower())
-        added += 1
-
-    hc["meta"]["last_updated"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-    hc["meta"]["total_pending"] = len(
-        [e for e in hc["pending_consolidation"] if not e.get("consolidated")]
-    )
-    save_hippocampus(hc)
-    return added
-
-
-def reinforce_instincts(sessions):
-    """Hebbian Long-Term Potentiation for instincts.
-    Scans session text for instinct trigger patterns. If a trigger is found
-    in a session with net-positive reward signals, boosts that instinct's
-    strength by +0.05 (capped at 1.0). Updates last_fired timestamp.
-
-    Called AFTER synaptic homeostasis — decay first, then reinforce.
-    This matches the biological sequence: SHY (sleep downscale) → LTP (use-based upscale).
-    """
-    if not sessions or not INSTINCTS_FILE.exists():
-        return 0
-
-    try:
-        data = json.loads(INSTINCTS_FILE.read_text(encoding="utf-8"))
-    except Exception:
-        return 0
-
-    combined = " ".join(sessions.values()).lower()
-
-    # Detect net reward signal in sessions (uses module-level REWARD_SIGNALS / ERROR_SIGNALS)
-    rewards = sum(1 for s in REWARD_SIGNALS if s in combined)
-    errors = sum(1 for s in ERROR_SIGNALS if s in combined)
-    net_positive = rewards > errors
-
-    REINFORCEMENT_BOOST = 0.05
-    reinforced = 0
-    any_fired = False
-
-    for scenario in data.get("scenarios", []):
-        trigger = scenario.get("trigger", "").lower()
-        if not trigger:
-            continue
-
-        # Extract key phrases from trigger (split on common separators)
-        trigger_keywords = [
-            kw.strip() for kw in re.split(r'[,;/|]|or |and ', trigger)
-            if len(kw.strip()) > 3
-        ]
-
-        # Check if any trigger keyword appears in session text
-        fired = any(kw in combined for kw in trigger_keywords)
-
-        if fired:
-            any_fired = True
-            scenario["last_fired"] = datetime.utcnow().strftime("%Y-%m-%d")
-            if net_positive:
-                old_strength = scenario.get("strength", 0.5)
-                new_strength = min(1.0, round(old_strength + REINFORCEMENT_BOOST, 4))
-                scenario["strength"] = new_strength
-                reinforced += 1
-
-    if any_fired:
-        data["meta"]["last_updated"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-        INSTINCTS_FILE.write_text(json.dumps(data, indent=2), encoding="utf-8")
-
-    return reinforced
 
 
 def expire_working_memory(wm, current_session):
@@ -887,7 +501,7 @@ def self_repair_stale_data(stale_items):
 
 def main():
     timestamp = datetime.now()
-    print(f"[{timestamp.isoformat()}] Athena Dreaming v2 — starting thinking cycle...")
+    print(f"[{timestamp.isoformat()}] Athena Dreaming v3 — starting thinking cycle...")
 
     context_files = read_context_files()
     if not context_files:
@@ -897,37 +511,14 @@ def main():
     sessions = read_recent_sessions(5)
     print(f"  Loaded {len(context_files)} brain files, {len(sessions)} recent sessions")
 
-    # Load chemical state before thinking
-    chem_state = load_chemical_state()
-    if chem_state:
-        chem_state = decay_chemicals(chem_state)
-        print(f"  [CHEM] Chemical state loaded and decayed ({len(chem_state['chemicals'])} drives)")
-    else:
-        print(f"  [CHEM] No chemical state file found — skipping")
-
-    # Load hippocampal buffer and working memory (PFC)
-    hippocampus = load_hippocampus()
+    # Load working memory (PFC)
     working_memory = load_working_memory()
-    pending_hc = len(hippocampus.get("pending_consolidation", [])) if hippocampus else 0
-    print(f"  [BRAIN] Hippocampus: {pending_hc} pending events | Working memory: {'loaded' if working_memory else 'empty'}")
-
-    # Reward/error signal detection from recent sessions
-    rewards, errors, ne_boost, pe_boost, bdnf_boost_reward = detect_reward_error_signals(sessions)
-    if (rewards + errors) > 0 and chem_state:
-        print(f"  [SIGNAL] Rewards: {rewards}, Errors: {errors}")
-        if ne_boost > 0:
-            chem_state = apply_chemical_updates(chem_state, {"norepinephrine": f"+{ne_boost}"})
-        if pe_boost > 0:
-            chem_state = apply_chemical_updates(chem_state, {"prediction_error": f"+{pe_boost}"})
-        if bdnf_boost_reward > 0:
-            chem_state = apply_chemical_updates(chem_state, {"bdnf": f"+{bdnf_boost_reward}"})
+    print(f"  [BRAIN] Working memory: {'loaded' if working_memory else 'empty'}")
 
     # Build thinking prompt
-    prompt = build_prompt(context_files, sessions, chem_state)
+    prompt = build_prompt(context_files, sessions)
 
     # Check internet connectivity to decide engine priority
-    # Online: Claude (best quality) > Gemini (fallback)
-    # Offline: Ollama local (zero data leakage)
     import requests as req
     thinking_output = None
     engine = None
@@ -970,11 +561,11 @@ def main():
     print(f"  Thinking complete via {engine}")
 
     # --- Write analysis to thinking_log.md ---
-    header = f"# Thinking Log — {timestamp.strftime('%Y-%m-%d %H:%M')}\n\n"
-    header += f"> Engine: {engine} | Files: {len(context_files)} | Sessions: {len(sessions)}\n\n---\n\n"
+    header = f"# Thinking Log — {timestamp.strftime('%Y-%m-%d %H:%M')}\\n\\n"
+    header += f"> Engine: {engine} | Files: {len(context_files)} | Sessions: {len(sessions)}\\n\\n---\\n\\n"
 
     existing = read_file(THINKING_LOG) if THINKING_LOG.exists() else ""
-    write_file(THINKING_LOG, header + thinking_output + "\n\n---\n\n" + existing)
+    write_file(THINKING_LOG, header + thinking_output + "\\n\\n---\\n\\n" + existing)
     print(f"  [OK] Thinking log updated")
 
     # --- Self-apply changes ---
@@ -984,16 +575,16 @@ def main():
     if edits:
         h_count = apply_heuristic_additions(edits.get("heuristics_additions", []))
         cs_count = apply_case_study_additions(edits.get("case_study_additions", []))
-        a_count = send_alerts(edits.get("alerts", []))
+        a_count = send_telegram_alert(edits.get("alerts", [""])[0]) if edits.get("alerts") else False
 
         if h_count:
             changelog_entries.append(f"Added {h_count} heuristics to heuristics.md")
         if cs_count:
             changelog_entries.append(f"Added {cs_count} case studies to case_studies.md")
         if a_count:
-            changelog_entries.append(f"Sent {a_count} Telegram alerts")
+            changelog_entries.append(f"Sent Telegram alert")
 
-        print(f"  [SELF-APPLIED] {h_count} heuristics, {cs_count} case studies, {a_count} alerts sent")
+        print(f"  [SELF-APPLIED] {h_count} heuristics, {cs_count} case studies")
 
         # Self-repair stale data
         stale = edits.get("stale_items", [])
@@ -1001,19 +592,7 @@ def main():
             repairs = self_repair_stale_data(stale)
             for r in repairs:
                 changelog_entries.append(f"REPAIR: {r}")
-            print(f"  [STALE] Found {len(stale)} stale items:")
-            for item in stale:
-                print(f"    - {item}")
-
-        # Chemical state updates from session analysis
-        if chem_state:
-            state_updates = edits.get("state_updates", {})
-            if state_updates:
-                chem_state = apply_chemical_updates(chem_state, state_updates)
-                changelog_entries.append(f"Chemical drives updated: {list(state_updates.keys())}")
-                print(f"  [CHEM] Applied state_updates: {state_updates}")
-            save_chemical_state(chem_state)
-            print(f"  [CHEM] Chemical state saved")
+            print(f"  [STALE] Found {len(stale)} stale items")
 
         # Heuristic retirements (archive stale rules)
         retirements = edits.get("heuristic_retirements", [])
@@ -1023,56 +602,11 @@ def main():
                 changelog_entries.append(f"Archived {ret_count} stale heuristics")
             print(f"  [RETIRE] Archived {ret_count} heuristics")
 
-        # Instinct scenarios from instinct block
-        instinct_scenarios = extract_instinct_block(thinking_output)
-        if instinct_scenarios:
-            inst_count = save_instinct_scenarios(instinct_scenarios)
-            if inst_count:
-                changelog_entries.append(f"Added {inst_count} new instinct scenarios")
-            print(f"  [INSTINCT] Added {inst_count} new scenarios")
-
-        # FIX 1: Hippocampal event generation from AI analysis
-        hc_events = edits.get("hippocampal_events", [])
-        if hc_events:
-            current_session = working_memory.get("last_session_number", 0) if working_memory else 0
-            hc_created = create_hippocampal_events(hc_events, current_session)
-            if hc_created:
-                changelog_entries.append(f"Hippocampus: staged {hc_created} new events from session analysis")
-            print(f"  [HIPPOCAMPUS] Staged {hc_created} new events from AI analysis")
-
-        # Hippocampal consolidation (promote high-salience events to long-term)
-        session_text = " ".join(sessions.values()) if sessions else ""
-        hc, promoted, bdnf_hc_boost = process_hippocampus(hippocampus, session_text)
-        if promoted > 0:
-            changelog_entries.append(f"Hippocampus: promoted {promoted} events to long-term memory")
-            print(f"  [HIPPOCAMPUS] Promoted {promoted} events to heuristics")
-            if bdnf_hc_boost > 0 and chem_state:
-                chem_state = apply_chemical_updates(chem_state, {"bdnf": f"+{bdnf_hc_boost}"})
-        save_hippocampus(hc)
-
-        # Synaptic homeostasis — global 2% instinct downscale (Tononi SHY)
-        downscaled = apply_synaptic_homeostasis()
-        if downscaled:
-            print(f"  [SHY] Synaptic homeostasis applied to {downscaled} instincts")
-
-        # FIX 2: Hebbian LTP — reinforce instincts that fired in positive sessions
-        reinforced = reinforce_instincts(sessions)
-        if reinforced:
-            changelog_entries.append(f"Hebbian LTP: reinforced {reinforced} instincts (+0.05 each)")
-            print(f"  [LTP] Reinforced {reinforced} instincts via Hebbian LTP")
-
-        # FIX 3: Working memory TTL expiry
+        # Working memory TTL expiry
         if working_memory:
             current_session = working_memory.get("last_session_number", 0)
-            # Determine actual current session from session logs
             if sessions:
-                latest_session_name = sorted(sessions.keys())[-1]
-                # Try to extract session number from filename pattern session_YYYY-MM-DD-HHMM.md
-                import re as re_mod
-                session_match = re_mod.search(r'session_(\d{4}-\d{2}-\d{2})', latest_session_name)
-                if session_match and chem_state:
-                    # Use session_count from chemical state meta as best proxy
-                    current_session = chem_state["meta"].get("session_count", current_session)
+                current_session += 1
 
             wm_updated, expired_count = expire_working_memory(working_memory, current_session + 1)
             if expired_count:
@@ -1090,19 +624,6 @@ def main():
             print(f"  [CHANGELOG] {len(changelog_entries)} entries logged")
     else:
         print("  [SKIP] No JSON block found — analysis only (no self-apply)")
-        # Still decay and save chemical state even if no edits applied
-        if chem_state:
-            save_chemical_state(chem_state)
-            print(f"  [CHEM] Chemical state decayed and saved")
-
-    # --- Increment session counter and save final chemical state ---
-    if chem_state:
-        if "meta" not in chem_state:
-            chem_state["meta"] = {}
-        chem_state["meta"]["session_count"] = chem_state["meta"].get("session_count", 0) + 1
-        chem_state["meta"]["last_dreaming_cycle"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-        save_chemical_state(chem_state)
-        print(f"  [SESSION] Cycle #{chem_state['meta']['session_count']}")
 
     # --- Run boot classifier to update session mode ---
     try:
@@ -1111,16 +632,7 @@ def main():
         if boot_script.exists():
             subprocess.run([sys.executable, str(boot_script)], timeout=15, check=False)
     except Exception as e:
-        print(f"  [BOOT] Classifier skipped: {e}")
-
-    # --- Generate instinct primer for next session boot ---
-    try:
-        import subprocess
-        primer_script = PROJECT_ROOT / "scripts" / "athena_instinct_primer.py"
-        if primer_script.exists():
-            subprocess.run([sys.executable, str(primer_script)], timeout=15, check=False)
-    except Exception as e:
-        print(f"  [PRIMER] Instinct primer skipped: {e}")
+        print(f"  [BOOT] Boot classifier skipped: {e}")
 
     # --- Run brain health diagnostic ---
     try:
@@ -1133,18 +645,8 @@ def main():
             )
             # Print the diagnostic output
             if result.stdout.strip():
-                for line in result.stdout.strip().split("\n"):
+                for line in result.stdout.strip().split("\\n"):
                     print(f"  {line}")
-            # Alert via Telegram if degraded (exit code > 0)
-            if result.returncode >= 2:
-                try:
-                    from scripts.athena_brain_health import run_diagnostics, format_telegram_alert
-                    _, results, overall = run_diagnostics()
-                    alert = format_telegram_alert(results, overall)
-                    if alert:
-                        send_alerts([alert])
-                except Exception:
-                    pass  # Best-effort alerting
     except Exception as e:
         print(f"  [HEALTH] Brain diagnostic skipped: {e}")
 
