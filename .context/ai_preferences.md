@@ -8,3 +8,5 @@
 - Combat Protocol Triggered: Pushed back against 8th red-team loop to force deployment (Anti-Sycophancy). User respected the boundary.
 
 - **2026-06-14**: Built an autonomous write path for sycophancy rules that directly violated the threat model I had just established. Fix: Gated the writes behind a quarantine file (`heuristics_pending.md`) requiring explicit user promotion. Do not build autonomous paths that modify behavioral rule sets.
+
+- **2026-06-17**: Built a local "smoke alarm" to ping Telegram if a backup script failed. The user corrected the logic: if the server dies completely, it cannot run the script to ping the error. Fix: Invert the logic. The script must ping a remote monitor (Healthchecks.io) on *success*. Silence is the alarm.

@@ -105,3 +105,11 @@ Engineered Sarah's biological architecture. Deconstructed her MTHFR, GSTP1, GAD1
 ### Session 95 (2026-06-14)
 **Decision:** Scrapped autonomous heuristic writes; implemented `heuristics_pending.md` quarantine gate and `promote_heuristics.py`. Anchored sycophancy validation strictly to manual entries in `corrections.md`.
 **Reasoning:** An AI that auto-writes its own behavioral rules based on its own judgment is a textbook injection vector and defeats the purpose of anti-sycophancy. Anchoring to a manual log gives the loop ground-truth teeth, while gating the promotion ensures Operator Authority remains absolute.
+
+### Session 96 (2026-06-17)
+**Decision:** Vetoed the request to expose the ATOM to the raw internet via router port-forwarding for the Life Hub integration.
+**Reasoning:** The user explicitly acknowledged weak passwords on local services. Exposing Jellyfin/n8n/WebUI with weak credentials to the public internet guarantees ransomware on the 11TB QNAP array. Proposed Cloudflare Zero Trust Tunnels as the only acceptable alternative.
+**Decision:** Replaced the local Telegram "smoke alarm" with a Healthchecks.io "Dead-Man's Switch" at the end of the `backup_to_qnap.sh` script.
+**Reasoning:** A machine experiencing total hardware failure cannot run the script to ping an error. Silence must trigger the alarm.
+**Decision:** Mandated explicit verification in a fresh terminal *before* removing compromised Restic master keys.
+**Reasoning:** The `restic key remove` operation is destructive. If the new key is not correctly saved and verified first, the archive becomes permanently inaccessible.

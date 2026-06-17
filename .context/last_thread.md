@@ -1,1 +1,1 @@
-The sycophancy enforcement loop was anchored to manual corrections.md entries and gated behind heuristics_pending.md to prevent autonomous threat injections.
+The Sovereign Journal is now backed by a Dead-Man's Switch, the master restic key must be rotated on the ATOM, and the Life Hub public tunnel is waiting on a domain name.
