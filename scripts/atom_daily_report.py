@@ -10,10 +10,11 @@ import json
 from datetime import datetime
 
 # ==========================================
-# ATOM NODE - ENTERPRISE HEALTH REPORTER (v3.1 - HOURLY SILENT)
+# ATOM NODE - ENTERPRISE HEALTH REPORTER (v3.2 - P2P FAILSAFE)
 # ==========================================
 
 COMPOSE_PATH = "/home/sj/Athena-Public/infrastructure/sj_atom/docker-compose-ai.yml"
+OBSIDIAN_VAULT = "/home/sj/Athena-Public/infrastructure/sj_atom/data/obsidian_vault"
 PANIC_LOG = "/home/sj/atom_health_panic.log"
 
 HTTP_ENDPOINTS = {
@@ -41,10 +42,30 @@ def get_telegram_creds():
     return token, chat_id
 
 def log_local_panic(message, error_detail=""):
-    """Failsafe: If Telegram is unreachable, write to a physical panic log on the ATOM."""
+    """Failsafe Level 1: Terminal Broadcast & Deep Fallback Log
+       Failsafe Level 2: Write an emergency Markdown file into the Obsidian Vault so Syncthing pushes it P2P to the laptop/phone over WiFi.
+    """
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    # 1. P2P Vault Failsafe
+    if os.path.exists(OBSIDIAN_VAULT):
+        try:
+            vault_file = os.path.join(OBSIDIAN_VAULT, f"🚨_ATOM_PANIC_ALERT_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md")
+            with open(vault_file, "w") as f:
+                f.write(f"# 🚨 ATOM NODE CRITICAL FAILURE 🚨\n\n**Time:** {timestamp}\n\n**Message:**\n{message}\n\n**Error Trace:**\n```\n{error_detail}\n```\n")
+        except Exception:
+            pass
+
+    # 2. Terminal Broadcast
+    try:
+        subprocess.run(["wall", f"ATOM HEALTH PANIC: Telegram API unreachable. Check {PANIC_LOG} or Obsidian Vault!"], capture_output=True)
+    except Exception:
+        pass
+
+    # 3. Physical Failsafe
     try:
         with open(PANIC_LOG, "a") as f:
-            f.write(f"\n[{datetime.now()}] PANIC:\n{message}\nError: {error_detail}\n")
+            f.write(f"\n[{timestamp}] PANIC:\n{message}\nError: {error_detail}\n")
     except Exception:
         pass
 
@@ -55,9 +76,9 @@ def send_telegram(message, token, chat_id):
     try:
         urllib.request.urlopen(req, timeout=10)
     except Exception as e:
-        # Failsafe 1: Telegram is completely down or ATOM lost internet
+        # Failsafe Activated: Telegram is completely down or ATOM lost internet
         log_local_panic(message, str(e))
-        print(f"Failed to send Telegram alert: {e}\nMessage logged to {PANIC_LOG}")
+        print(f"Failed to send Telegram alert: {e}\nFailsafe P2P triggered.")
 
 def run_command(cmd_list, timeout=10):
     try:
@@ -161,7 +182,7 @@ def main():
     now = datetime.now()
     date_str = now.strftime("%Y-%m-%d %H:%M:%S")
     
-    report = f"🤖 **ATOM NODE HOURLY AUDIT (v3.1)** 🤖\n⏱️ {date_str}\n\n"
+    report = f"🤖 **ATOM NODE HOURLY AUDIT (v3.2)** 🤖\n⏱️ {date_str}\n\n"
     report += "**--- SYSTEM RESOURCES ---**\n" + get_system_metrics() + "\n\n"
     report += "**--- CORE SERVICES ---**\n" + get_systemd_status() + "\n"
     
@@ -171,10 +192,7 @@ def main():
     report += "\n**--- DOCKER MATRIX ---**\n" + get_docker_status()
     
     # SILENT MODE LOGIC
-    # If there is a Red Circle, Warning, or Error in the report, it is a failure.
     has_failure = "🔴" in report or "⚠️" in report or "ERROR" in report
-    
-    # Only fire the Telegram message IF there's a failure, OR if it's the 8:00 AM daily heartbeat
     is_daily_heartbeat = (now.hour == 8)
     
     if has_failure:
@@ -184,7 +202,6 @@ def main():
         report = f"✅ **MORNING HEARTBEAT (ALL GREEN)** ✅\n\n{report}"
         send_telegram(report, token, chat_id)
     else:
-        # All Green, not 8 AM. Stay silent to prevent alarm fatigue.
         pass
 
 if __name__ == "__main__":
