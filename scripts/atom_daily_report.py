@@ -10,10 +10,11 @@ import json
 from datetime import datetime
 
 # ==========================================
-# ATOM NODE - ENTERPRISE HEALTH REPORTER (v3.0 - AUDITED)
+# ATOM NODE - ENTERPRISE HEALTH REPORTER (v3.1 - HOURLY SILENT)
 # ==========================================
 
 COMPOSE_PATH = "/home/sj/Athena-Public/infrastructure/sj_atom/docker-compose-ai.yml"
+PANIC_LOG = "/home/sj/atom_health_panic.log"
 
 HTTP_ENDPOINTS = {
     "Open WebUI": "http://127.0.0.1:3000/",
@@ -39,6 +40,14 @@ def get_telegram_creds():
         pass
     return token, chat_id
 
+def log_local_panic(message, error_detail=""):
+    """Failsafe: If Telegram is unreachable, write to a physical panic log on the ATOM."""
+    try:
+        with open(PANIC_LOG, "a") as f:
+            f.write(f"\n[{datetime.now()}] PANIC:\n{message}\nError: {error_detail}\n")
+    except Exception:
+        pass
+
 def send_telegram(message, token, chat_id):
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     data = json.dumps({"chat_id": chat_id, "text": message, "parse_mode": "Markdown"}).encode('utf-8')
@@ -46,7 +55,9 @@ def send_telegram(message, token, chat_id):
     try:
         urllib.request.urlopen(req, timeout=10)
     except Exception as e:
-        print(f"Failed to send Telegram alert: {e}\nMessage: {message}")
+        # Failsafe 1: Telegram is completely down or ATOM lost internet
+        log_local_panic(message, str(e))
+        print(f"Failed to send Telegram alert: {e}\nMessage logged to {PANIC_LOG}")
 
 def run_command(cmd_list, timeout=10):
     try:
@@ -147,9 +158,10 @@ def get_systemd_status():
 
 def main():
     token, chat_id = get_telegram_creds()
-    date_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    now = datetime.now()
+    date_str = now.strftime("%Y-%m-%d %H:%M:%S")
     
-    report = f"🤖 **ATOM NODE DAILY REPORT (v3.0)** 🤖\n⏱️ {date_str}\n\n"
+    report = f"🤖 **ATOM NODE HOURLY AUDIT (v3.1)** 🤖\n⏱️ {date_str}\n\n"
     report += "**--- SYSTEM RESOURCES ---**\n" + get_system_metrics() + "\n\n"
     report += "**--- CORE SERVICES ---**\n" + get_systemd_status() + "\n"
     
@@ -158,7 +170,22 @@ def main():
             
     report += "\n**--- DOCKER MATRIX ---**\n" + get_docker_status()
     
-    send_telegram(report, token, chat_id)
+    # SILENT MODE LOGIC
+    # If there is a Red Circle, Warning, or Error in the report, it is a failure.
+    has_failure = "🔴" in report or "⚠️" in report or "ERROR" in report
+    
+    # Only fire the Telegram message IF there's a failure, OR if it's the 8:00 AM daily heartbeat
+    is_daily_heartbeat = (now.hour == 8)
+    
+    if has_failure:
+        report = f"🚨 **FAILURE DETECTED** 🚨\n\n{report}"
+        send_telegram(report, token, chat_id)
+    elif is_daily_heartbeat:
+        report = f"✅ **MORNING HEARTBEAT (ALL GREEN)** ✅\n\n{report}"
+        send_telegram(report, token, chat_id)
+    else:
+        # All Green, not 8 AM. Stay silent to prevent alarm fatigue.
+        pass
 
 if __name__ == "__main__":
     try:
@@ -168,4 +195,6 @@ if __name__ == "__main__":
         error_trace = traceback.format_exc()
         msg = f"🚨 **ATOM HEALTH MONITOR CRASHED** 🚨\n```python\n{error_trace}\n```"
         send_telegram(msg, token, chat_id)
+        # Final physical failsafe
+        log_local_panic("HEALTH SCRIPT GLOBAL CRASH", error_trace)
         print(msg)
