@@ -14,8 +14,6 @@ services:
       - ./data/caddy/data:/data
       - ./data/caddy/config:/config
       # Mount the local drop folder to act as a static HTML file server
-      # Mount the Tailscale socket for automatic zero-trust TLS certificates
-      - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
