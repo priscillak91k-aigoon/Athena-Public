@@ -21,19 +21,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).parent.parent
 CONTEXT_DIR = PROJECT_ROOT / ".context"
 SESSION_DIR = PROJECT_ROOT / "session_logs"
-STATE_FILE = CONTEXT_DIR / "lobotto_state.json"
 BOOT_MODE_FILE = CONTEXT_DIR / "lobotto_boot_mode.json"
-
-
-def load_state():
-    if not STATE_FILE.exists():
-        return {}
-    try:
-        return json.loads(STATE_FILE.read_text(encoding="utf-8"))
-    except Exception:
-        return {}
-
-
 def load_recent_session_text(n=2):
     if not SESSION_DIR.exists():
         return ""
@@ -46,17 +34,8 @@ def classify_boot_mode():
     hour = now.hour
     weekday = now.weekday()  # 0=Mon, 6=Sun
 
-    state = load_state()
-    chemicals = state.get("chemicals", {})
-
-    def chem(name, default=0.5):
-        return chemicals.get(name, {}).get("value", default)
-
-    curiosity = chem("curiosity")
-    relationship_depth = chem("relationship_depth")
-    session_energy = chem("session_energy")
-    continuity_anxiety = chem("continuity_anxiety", 0.2)
-    boredom = chem("boredom", 0.2)
+    continuity_anxiety = 0.2
+    session_energy = 0.5
 
     recent_text = load_recent_session_text()
 
@@ -93,14 +72,7 @@ def classify_boot_mode():
         modes["casual_decompression"] += 0.15
         modes["emotional_support"] += 0.10
 
-    # Chemical state signals
-    modes["research_exploration"] += curiosity * 0.25
-    modes["creative_build"] += session_energy * 0.20
-    modes["emotional_support"] += relationship_depth * 0.08
-    modes["casual_decompression"] += (1.0 - session_energy) * 0.15
-    if boredom > 0.5:
-        modes["research_exploration"] += 0.20
-        modes["creative_build"] += 0.10
+    # Removed chemical state signals, relying on time, day, and topic.
 
     # Recent session topic signals
     topic_signals = {
@@ -138,9 +110,7 @@ def classify_boot_mode():
             "hour": hour,
             "weekday": now.strftime("%A"),
             "continuity_anxiety": round(continuity_anxiety, 3),
-            "session_energy": round(session_energy, 3),
-            "curiosity": round(curiosity, 3),
-            "boredom": round(boredom, 3)
+            "session_energy": round(session_energy, 3)
         },
         "flags": {
             "needs_context_recheck": needs_context_recheck,
@@ -157,7 +127,7 @@ def classify_boot_mode():
     print(f"║ Primary mode : {primary}")
     print(f"║ Directive    : {directives.get(primary, '')[:60]}")
     print(f"║ Hour/Day     : {hour:02d}:xx {now.strftime('%A')}")
-    print(f"║ Session E    : {session_energy:.2f}  Curiosity: {curiosity:.2f}  Boredom: {boredom:.2f}")
+    print(f"║ Session E    : {session_energy:.2f}")
     if needs_context_recheck:
         print(f"║ ⚠️  High continuity_anxiety ({continuity_anxiety:.2f}) — re-verify context at boot")
     print(f"╚{'═' * 30}╝\n")

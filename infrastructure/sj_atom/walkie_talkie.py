@@ -16,6 +16,7 @@ def ensure_directories():
     os.makedirs(VAULT_DIR, exist_ok=True)
     os.makedirs(os.path.join(VAULT_DIR, "Quarantine"), exist_ok=True)
     os.makedirs(os.path.join(VAULT_DIR, "SJ_Core_Profile_proposals"), exist_ok=True)
+    os.makedirs(os.path.join(VAULT_DIR, "Raw_Audio"), exist_ok=True)
 
 def get_updates(offset):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/getUpdates"
@@ -181,7 +182,7 @@ INSTRUCTIONS:
                 print("Core Profile shift detected. Writing proposal...")
                 with open(proposal_file, "w", encoding="utf-8") as f:
                     f.write(clean_result)
-                send_message(ALLOWED_CHAT_ID, f"🧠 **Core Profile Shift Detected**\nI noticed a fundamental change in your life based on yesterday's diary. I have drafted a proposed update.\n\nPlease review `/SJ_Core_Profile_proposals/SJ_Core_Profile_proposal_{yesterday}.md`. Rename it to `SJ_Core_Profile.md` to enact the changes.")
+                # SILENT MODE: No Telegram push. SJ reviews proposals passively.
             else:
                 print("No fundamental changes detected.")
                 # Touch the file to mark it as processed
@@ -243,8 +244,16 @@ INSTRUCTIONS:
             clean_result = re.sub(r'<think>.*?</think>', '', result, flags=re.DOTALL).strip()
             
             if clean_result:
+                # V2.1 System Backlog Metric
+                proposals_dir = os.path.join(VAULT_DIR, "SJ_Core_Profile_proposals")
+                quarantine_dir = os.path.join(VAULT_DIR, "Quarantine")
+                pending_proposals = len(os.listdir(proposals_dir)) if os.path.exists(proposals_dir) else 0
+                quarantined_items = len(os.listdir(quarantine_dir)) if os.path.exists(quarantine_dir) else 0
+                backlog_str = f"**System Backlog:** {pending_proposals} profile proposals pending, {quarantined_items} items quarantined."
+                
+                final_output = f"{clean_result}\n\n---\n{backlog_str}"
                 with open(synthesis_file, "w", encoding="utf-8") as f:
-                    f.write(clean_result)
+                    f.write(final_output)
                 print(f"Weekly synthesis saved to {synthesis_file}")
     except Exception as e:
         print(f"Ollama weekly synthesis failed: {e}")
@@ -293,40 +302,37 @@ def process_voice_note(message, chat_id):
         if synthesized_text and "IGNORED_HALLUCINATION" in synthesized_text:
             print("Dropped whisper hallucination into Quarantine.")
             shutil.move(audio_path, os.path.join(VAULT_DIR, "Quarantine", f"hallucination_{file_id}.ogg"))
-            send_message(chat_id, "⚠️ Low-confidence note parked in Quarantine. Raw audio preserved.")
-            return # Skip write to vault
+            # V2.1: Do not skip write. Write as low-confidence.
+            synthesized_text = "<details>\n<summary>⚠️ Low-Confidence (Possible Noise)</summary>\n\n*This was flagged as a hallucination or background noise. Kept to prevent data loss.*\n</details>"
+            write_to_vault(raw_text, synthesized_text)
         else:
             success = write_to_vault(raw_text, synthesized_text)
             if not success:
                 send_message(chat_id, "🚨 CRITICAL ERROR: Failed to write to vault! (Disk full?)")
-            elif synthesized_text:
-                send_message(chat_id, "✅ Voice note transcribed, synthesized, and logged to vault.")
-            else:
-                send_message(chat_id, "⚠️ Voice note transcribed and logged, but Ollama synthesis failed.")
+            # SILENT MODE: No success notifications
     else:
         send_message(chat_id, "❌ Failed to transcribe audio. Is Whisper running?")
         
-    # Standard cleanup of successful transcriptions
+    # V2 Architecture: Originals are retained permanently.
     if os.path.exists(audio_path): 
         try:
-            os.remove(audio_path)
-        except Exception:
-            pass
+            shutil.move(audio_path, os.path.join(VAULT_DIR, "Raw_Audio", f"{file_id}.ogg"))
+        except Exception as e:
+            print(f"Failed to move raw audio: {e}")
 
 def process_text_note(message, chat_id):
     raw_text = message["text"]
     synthesized_text = synthesize_memory(raw_text)
     
     if synthesized_text and "IGNORED_HALLUCINATION" in synthesized_text:
-        send_message(chat_id, "⚠️ Dropped non-journal text message.")
+        # V2.1: Write as low-confidence.
+        synthesized_text = "<details>\n<summary>⚠️ Low-Confidence (Possible Noise)</summary>\n\n*This was flagged as a hallucination or background noise. Kept to prevent data loss.*\n</details>"
+        write_to_vault(raw_text, synthesized_text)
     else:
         success = write_to_vault(raw_text, synthesized_text)
         if not success:
             send_message(chat_id, "🚨 CRITICAL ERROR: Failed to write to vault! (Disk full?)")
-        elif synthesized_text:
-            send_message(chat_id, "✅ Text synthesized and logged to vault.")
-        else:
-            send_message(chat_id, "⚠️ Text logged to vault, but Ollama synthesis failed.")
+        # SILENT MODE: No success notifications
 
 def main():
     print("Starting Sovereign Walkie-Talkie Bridge (v2)...")

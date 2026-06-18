@@ -7,7 +7,7 @@
           "interval": [
             {
               "field": "cronExpression",
-              "expression": "59 23 * * *"
+              "expression": "0 * * * *"
             }
           ]
         }
@@ -41,7 +41,7 @@
             },
             {
               "name": "prompt",
-              "value": "=You are an autonomous memory synthesis engine. Read the following raw chat logs from SJ's digital diary today. Extract the core emotional states, key events, and actionable thoughts. Format your output strictly as a clean Markdown journal entry with headers. Do not include any conversational filler.\n\nRaw Logs:\n{{$json.data}}"
+              "value": "=You are an autonomous memory synthesis engine. Read the following raw chat logs from SJ's digital diary today. Extract the core emotional states, key events, and actionable thoughts. Format your output strictly as a clean Markdown journal entry with headers. Wrap your entire response inside the following fences: \n\n### 💬 WebUI Deep Chat Extraction\n[Your content here]\n---\n\nDo not include any conversational filler.\n\nRaw Logs:\n{{$json.data}}"
             },
             {
               "name": "stream",

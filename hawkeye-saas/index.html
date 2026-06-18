@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <meta name="description" content="Automated NZ Building Code Compliance checking for architectural plans using advanced AI Vision models.">
+    
+    <!-- SEO / Metadata -->
+    <meta property="og:title" content="Hawkeye Scanner | AI Architectural Compliance">
+    <meta property="og:description" content="Upload your PDFs. Our 90B AI vision engine scans for load-bearing flaws and NZ building code violations in 5 minutes.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="data:,">
+
+    <title>Hawkeye Scanner | AI Architectural Compliance</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <noscript>
+        <style>
+            .glass-panel { opacity: 1 !important; transform: none !important; }
+        </style>
+    </noscript>
+</head>
+<body>
+    <div class="glow-orb top-left"></div>
+    <div class="glow-orb bottom-right"></div>
+
+    <nav class="navbar" aria-label="Main Navigation">
+        <div class="logo">HAWKEYE<span>.SCAN</span></div>
+        <ul class="nav-links">
+            <li><a href="#how-it-works">How it Works</a></li>
+            <li><a href="#pricing" class="btn-outline">Start Scan</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="badge">NZ Building Code (NZBC) Pre-Consent Scanner</div>
+            <h1>Automate your <br><span class="gradient-text">Compliance Verification</span></h1>
+            <p>Upload your architectural CAD exports or PDFs. Our localized vision engine cross-references your geometries against NZBC clauses (B1 Structure, C Fire, D1 Access) to flag consent liabilities in 5 minutes.</p>
+            <div class="cta-group">
+                <a href="#pricing" class="btn-primary">Initiate Code Scan</a>
+                <span class="price-subtext">Flat rate. $50 per scan.</span>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="glass-panel image-container">
+                <img src="assets/hero_blueprint.png" alt="AI blueprint scanning visualization" fetchpriority="high">
+                <div class="scanner-line"></div>
+            </div>
+        </div>
+    </header>
+
+    <section id="how-it-works" class="steps-section">
+        <h2>Bare-Metal Verification</h2>
+        <div class="steps-grid">
+            <div class="step-card glass-panel">
+                <div class="step-number">01</div>
+                <h3>Secure Transmission</h3>
+                <p>Transmit your PDF floor plans via our encrypted Concierge portal. Files are routed directly to our offline processing nodes.</p>
+            </div>
+            <div class="step-card glass-panel">
+                <div class="step-number">02</div>
+                <h3>Spatial Analysis</h3>
+                <p>The neural engine performs structural parsing, cross-referencing egress widths, load path continuity, and local municipal bylaws.</p>
+            </div>
+            <div class="step-card glass-panel">
+                <div class="step-number">03</div>
+                <h3>Post-Scan Purge</h3>
+                <p>Receive a comprehensive PDF audit outlining specific NZBC clause violations. All client files are permanently purged from our hardware immediately after generation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing-section">
+        <div class="pricing-card glass-panel premium-glow">
+            <h2>Single Scan</h2>
+            <div class="price">$50<span>/report</span></div>
+            <ul class="feature-list">
+                <li>✓ NZBC B1 Structure Analysis</li>
+                <li>✓ NZBC C1-C6 Fire Protection</li>
+                <li>✓ Egress & Spatial Geometry Check</li>
+                <li>✓ Pre-Consent PDF Audit Report</li>
+                <li>✓ Post-Scan Hardware Purge</li>
+            </ul>
+            <!-- Replace href with actual Stripe Payment Link -->
+            <a href="mailto:sj@example.com?subject=Hawkeye Scan Request" class="btn-primary full-width">Pay & Upload (Concierge)</a>
+            <p class="concierge-note">Currently in Concierge Beta. Pay securely, email your plan, receive your report.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="legal-disclaimer">
+            <p><strong>B2B LEGAL DISCLAIMER:</strong> Hawkeye Scanner is an AI-assisted pre-consent verification tool provided strictly for Business-to-Business (B2B) use by licensed architectural and engineering professionals. By utilizing this service, you agree to contract out of the Consumer Guarantees Act. This tool is <strong>NOT</strong> a replacement for a Licensed Building Practitioner (LBP), Structural Engineer, or Municipal Council Consent. Reports do not constitute legal or architectural advice. You assume all liability for final council submissions.</p>
+        </div>
+        <p>&copy; 2026 Hawkeye Scanner. Sovereign AI Infrastructure.</p>
+    </footer>
+
+    <script>
+        // Simple intersection observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.glass-panel').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

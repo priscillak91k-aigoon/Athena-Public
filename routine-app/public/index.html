@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Life Hub | Daily Routine Optimizer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=4">
+                <link rel="stylesheet" href="styles.css?v=4">
 </head>
 
 <body>
@@ -32,9 +29,9 @@
         </div>
         <div style="padding: 4px; display: flex; gap: 4px;">
             <button onclick="clearErrorLog()"
-                style="flex: 1; padding: 2px; background: #c0c0c0; border: 2px outset #fff; font-family: 'VT323', monospace;">Clear</button>
+                style="flex: 1; padding: 2px; background: #c0c0c0; border: 2px outset #fff; font-family: ui-monospace, monospace;">Clear</button>
             <button onclick="downloadErrorLog()"
-                style="flex: 1; padding: 2px; background: #c0c0c0; border: 2px outset #fff; font-family: 'VT323', monospace;">Export</button>
+                style="flex: 1; padding: 2px; background: #c0c0c0; border: 2px outset #fff; font-family: ui-monospace, monospace;">Export</button>
         </div>
     </div>
 
@@ -126,19 +123,8 @@
         });
     </script>
 
-    <!-- Lock Screen -->
-    <div id="lock-screen" class="glass-panel lock-container">
-        <h2><span class="icon">🔒</span> The Life Hub Access</h2>
-        <p class="subtitle" style="margin-bottom: 2rem;">Please enter password to unlock.</p>
-        <div class="password-input-group">
-            <input type="password" id="password-input" placeholder="Enter password...">
-            <button id="unlock-btn" class="tab-btn active" style="margin-top: 1rem;">Unlock</button>
-        </div>
-        <div id="password-error" class="error-msg" style="display: none;">Incorrect password.</div>
-    </div>
-
-    <!-- Main App Content (Hidden by default) -->
-    <div class="app-container" id="app-content" style="display: none;">
+    <!-- Main App Content -->
+    <div class="app-container" id="app-content">
         <header class="glass-panel" style="position: relative;">
             <div class="date-display">
                 <span id="current-date">Loading...</span>
@@ -148,19 +134,22 @@
             <p class="subtitle">Your dynamic routine tracker & visual schedule.</p>
             <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; margin-top: 10px;">
                 <a href="workshop.html"
-                    style="background: rgba(0,0,0,0.6); border: 1px solid #c084fc; color: #c084fc; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #c084fc; text-decoration: none;"
+                    style="background: rgba(0,0,0,0.6); border: 1px solid #c084fc; color: #c084fc; font-family: ui-monospace, monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #c084fc; text-decoration: none;"
                     title="My Workshop">⚒ Workshop</a>
                 <a href="toolbox.html"
-                    style="background: rgba(0,0,0,0.6); border: 1px solid #f59e0b; color: #f59e0b; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #f59e0b; text-decoration: none;"
+                    style="background: rgba(0,0,0,0.6); border: 1px solid #f59e0b; color: #f59e0b; font-family: ui-monospace, monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #f59e0b; text-decoration: none;"
                     title="Toolbox - Ad-Free Utilities">🔧 Toolbox</a>
                 <a href="shadow.html"
-                    style="background: rgba(0,0,0,0.6); border: 1px solid #818cf8; color: #818cf8; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #818cf8; text-decoration: none;"
+                    style="background: rgba(0,0,0,0.6); border: 1px solid #818cf8; color: #818cf8; font-family: ui-monospace, monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #818cf8; text-decoration: none;"
                     title="Shadow Protocol">🌑 Shadow Work</a>
                 <a href="workout.html"
-                    style="background: rgba(0,0,0,0.6); border: 1px solid #00c9a0; color: #00c9a0; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #00c9a0; text-decoration: none;"
+                    style="background: rgba(0,0,0,0.6); border: 1px solid #00c9a0; color: #00c9a0; font-family: ui-monospace, monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #00c9a0; text-decoration: none;"
                     title="Workout Routine">💪 Workout</a>
+                <a href="https://hub.atom.tailnet" target="_blank"
+                    style="background: rgba(0,0,0,0.6); border: 1px solid #10B981; color: #10B981; font-family: ui-monospace, monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #10B981; text-decoration: none;"
+                    title="SJ's Infrastructure (Secure Node)">🟢 SJ Hub</a>
                 <button id="audio-toggle" onclick="toggleRetroAudio()"
-                    style="background: rgba(0,0,0,0.6); border: 1px solid #0f0; color: #0f0; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #0f0;"
+                    style="background: rgba(0,0,0,0.6); border: 1px solid #0f0; color: #0f0; font-family: ui-monospace, monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #0f0;"
                     title="Toggle Music">🔊 Music</button>
             </div>
         </header>
@@ -209,14 +198,14 @@
                         Click here to write your morning intentions...
                     </div>
                     <textarea id="morning-read-editor"
-                        style="display: none; width: 100%; min-height: 120px; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 2px solid var(--accent-yellow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem; line-height: 1.6; resize: vertical; border-radius: 3px;"
+                        style="display: none; width: 100%; min-height: 120px; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 2px solid var(--accent-yellow); color: #fff; font-family: ui-monospace, monospace; font-size: 1rem; line-height: 1.6; resize: vertical; border-radius: 3px;"
                         placeholder="Write what you need to remember every morning...&#10;&#10;Examples:&#10;• Ask Parker to show me how he rides his bike&#10;• Check if Quinny's worming is due&#10;• Pick up parcel from post office&#10;• Call dentist to reschedule&#10;• Defrost chicken for dinner"></textarea>
                     <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.5rem;">
                         <button id="morning-read-edit-btn"
-                            style="padding: 0.3rem 0.8rem; background: rgba(251,191,36,0.15); border: 1px solid rgba(251,191,36,0.3); color: var(--accent-yellow); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 3px;">✏️
+                            style="padding: 0.3rem 0.8rem; background: rgba(251,191,36,0.15); border: 1px solid rgba(251,191,36,0.3); color: var(--accent-yellow); font-family: ui-monospace, monospace; font-size: 0.85rem; cursor: pointer; border-radius: 3px;">✏️
                             Edit</button>
                         <button id="morning-read-save-btn"
-                            style="display: none; padding: 0.3rem 0.8rem; background: rgba(52,211,153,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 3px;">💾
+                            style="display: none; padding: 0.3rem 0.8rem; background: rgba(52,211,153,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: ui-monospace, monospace; font-size: 0.85rem; cursor: pointer; border-radius: 3px;">💾
                             Save</button>
                     </div>
                 </div>
@@ -340,7 +329,7 @@
                                 <label for="input-hours" style="font-weight: bold; color: var(--text-secondary);">Hours
                                     Worked:</label>
                                 <input type="number" id="input-hours" value="28.5" step="0.5" min="0"
-                                    style="width: 80px; padding: 0.25rem; font-family: 'VT323', monospace; font-size: 1.2rem; border: 2px inset var(--win-shadow);">
+                                    style="width: 80px; padding: 0.25rem; font-family: ui-monospace, monospace; font-size: 1.2rem; border: 2px inset var(--win-shadow);">
                             </div>
                             <div style="display: flex; align-items: center; justify-content: space-between;">
                                 <label style="font-weight: bold; color: var(--text-secondary);">Public Holiday (1.5x
@@ -425,25 +414,25 @@
                         <div
                             style="display: flex; flex-direction: column; gap: 0.5rem; padding: 0.75rem; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); margin-bottom: 1rem;">
                             <input type="text" id="expense-name-input" placeholder="Expense name (e.g., Rent)"
-                                style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
+                                style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: ui-monospace, monospace; font-size: 1rem;">
                             <div style="display: flex; gap: 0.5rem;">
                                 <input type="number" id="expense-amount-input" placeholder="$" step="0.01" min="0"
-                                    style="flex: 1; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
+                                    style="flex: 1; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: ui-monospace, monospace; font-size: 1rem;">
                                 <select id="expense-freq-input"
-                                    style="padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace;">
+                                    style="padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: ui-monospace, monospace;">
                                     <option value="weekly">Weekly</option>
                                     <option value="fortnightly">Fortnightly</option>
                                     <option value="monthly">Monthly</option>
                                     <option value="yearly">Yearly</option>
                                 </select>
                                 <select id="expense-cat-input"
-                                    style="padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace;">
+                                    style="padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: ui-monospace, monospace;">
                                     <option value="essential">🛡️ Essential</option>
                                     <option value="flexible">🎮 Flexible</option>
                                 </select>
                             </div>
                             <button id="add-expense-btn" class="tab-btn active"
-                                style="margin: 0; padding: 0.4rem; background: rgba(52,211,153,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: 'VT323', monospace; font-size: 1rem;">+
+                                style="margin: 0; padding: 0.4rem; background: rgba(52,211,153,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: ui-monospace, monospace; font-size: 1rem;">+
                                 Add Expense</button>
                         </div>
 
@@ -522,12 +511,12 @@
 
                 <!-- View Toggle -->
                 <div id="planner-view-toggle"
-                    style="display:flex; gap:0.5rem; margin-bottom:1.25rem; font-family:'VT323',monospace;">
+                    style="display:flex; gap:0.5rem; margin-bottom:1.25rem; font-family: ui-monospace, monospace;">
                     <button id="planner-view-template"
-                        style="padding:0.3rem 1.1rem; background:rgba(0,200,160,0.18); border:1px solid var(--accent-green); color:var(--accent-green); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px; font-weight:bold;">📋
+                        style="padding:0.3rem 1.1rem; background:rgba(0,200,160,0.18); border:1px solid var(--accent-green); color:var(--accent-green); font-family: ui-monospace, monospace; font-size:1rem; cursor:pointer; border-radius:3px; font-weight:bold;">📋
                         Template</button>
                     <button id="planner-view-yearly"
-                        style="padding:0.3rem 1.1rem; background:transparent; border:1px solid var(--glass-border); color:var(--text-secondary); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px;">📌
+                        style="padding:0.3rem 1.1rem; background:transparent; border:1px solid var(--glass-border); color:var(--text-secondary); font-family: ui-monospace, monospace; font-size:1rem; cursor:pointer; border-radius:3px;">📌
                         Yearly</button>
                 </div>
 
@@ -579,22 +568,22 @@
             <div id="block-modal"
                 style="display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
                 <div
-                    style="background:#1a1a2e; border:2px solid var(--accent-green); border-radius:8px; padding:1.5rem; min-width:320px; max-width:420px; font-family:'VT323',monospace;">
+                    style="background:#1a1a2e; border:2px solid var(--accent-green); border-radius:8px; padding:1.5rem; min-width:320px; max-width:420px; font-family: ui-monospace, monospace;">
                     <h3 id="block-modal-title" style="margin:0 0 1rem 0; color:var(--accent-yellow); font-size:1.3rem;">
                         Add Block</h3>
                     <div style="display:flex; flex-direction:column; gap:0.75rem;">
                         <input id="block-label" type="text" placeholder="Block name (e.g. Morning Routine)"
-                            style="padding:0.4rem 0.6rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family:'VT323',monospace; font-size:1rem; border-radius:3px;">
+                            style="padding:0.4rem 0.6rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family: ui-monospace, monospace; font-size:1rem; border-radius:3px;">
                         <div style="display:flex; gap:0.5rem;">
                             <div style="flex:1;">
                                 <label style="font-size:0.8rem; color:var(--text-secondary);">Start</label>
                                 <input id="block-start" type="time"
-                                    style="width:100%; padding:0.4rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family:'VT323',monospace; font-size:1rem; border-radius:3px;">
+                                    style="width:100%; padding:0.4rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family: ui-monospace, monospace; font-size:1rem; border-radius:3px;">
                             </div>
                             <div style="flex:1;">
                                 <label style="font-size:0.8rem; color:var(--text-secondary);">End</label>
                                 <input id="block-end" type="time"
-                                    style="width:100%; padding:0.4rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family:'VT323',monospace; font-size:1rem; border-radius:3px;">
+                                    style="width:100%; padding:0.4rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family: ui-monospace, monospace; font-size:1rem; border-radius:3px;">
                             </div>
                         </div>
                         <div>
@@ -605,11 +594,11 @@
                     </div>
                     <div style="display:flex; gap:0.5rem; margin-top:1.25rem; justify-content:flex-end;">
                         <button id="block-modal-delete"
-                            style="display:none; padding:0.3rem 0.9rem; background:rgba(239,68,68,0.2); border:1px solid #ef4444; color:#ef4444; font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Delete</button>
+                            style="display:none; padding:0.3rem 0.9rem; background:rgba(239,68,68,0.2); border:1px solid #ef4444; color:#ef4444; font-family: ui-monospace, monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Delete</button>
                         <button id="block-modal-cancel"
-                            style="padding:0.3rem 0.9rem; background:rgba(0,0,0,0.3); border:1px solid var(--glass-border); color:var(--text-secondary); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Cancel</button>
+                            style="padding:0.3rem 0.9rem; background:rgba(0,0,0,0.3); border:1px solid var(--glass-border); color:var(--text-secondary); font-family: ui-monospace, monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Cancel</button>
                         <button id="block-modal-save"
-                            style="padding:0.3rem 0.9rem; background:rgba(52,211,153,0.2); border:1px solid var(--accent-green); color:var(--accent-green); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px; font-weight:bold;">Save</button>
+                            style="padding:0.3rem 0.9rem; background:rgba(52,211,153,0.2); border:1px solid var(--accent-green); color:var(--accent-green); font-family: ui-monospace, monospace; font-size:1rem; cursor:pointer; border-radius:3px; font-weight:bold;">Save</button>
                     </div>
                 </div>
             </div>
@@ -618,13 +607,13 @@
             <div id="event-modal"
                 style="display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
                 <div
-                    style="background:#1a1a2e; border:2px solid var(--accent-yellow); border-radius:8px; padding:1.5rem; min-width:320px; max-width:420px; font-family:'VT323',monospace;">
+                    style="background:#1a1a2e; border:2px solid var(--accent-yellow); border-radius:8px; padding:1.5rem; min-width:320px; max-width:420px; font-family: ui-monospace, monospace;">
                     <h3 id="event-modal-title" style="margin:0 0 1rem 0; color:var(--accent-yellow); font-size:1.3rem;">
                         Add Event</h3>
                     <div style="display:flex; flex-direction:column; gap:0.75rem;">
                         <div style="display:flex; gap:0.5rem; align-items:center;">
                             <select id="event-emoji"
-                                style="padding:0.4rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family:'VT323',monospace; font-size:1.1rem; border-radius:3px; width:70px;">
+                                style="padding:0.4rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family: ui-monospace, monospace; font-size:1.1rem; border-radius:3px; width:70px;">
                                 <option>🎂</option>
                                 <option>✈️</option>
                                 <option>❤️</option>
@@ -637,7 +626,7 @@
                                 <option>📅</option>
                             </select>
                             <input id="event-label" type="text" placeholder="Event name"
-                                style="flex:1; padding:0.4rem 0.6rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family:'VT323',monospace; font-size:1rem; border-radius:3px;">
+                                style="flex:1; padding:0.4rem 0.6rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family: ui-monospace, monospace; font-size:1rem; border-radius:3px;">
                         </div>
                         <div>
                             <label style="font-size:0.8rem; color:var(--text-secondary);">Colour</label>
@@ -651,11 +640,11 @@
                     </div>
                     <div style="display:flex; gap:0.5rem; margin-top:1.25rem; justify-content:flex-end;">
                         <button id="event-modal-delete"
-                            style="display:none; padding:0.3rem 0.9rem; background:rgba(239,68,68,0.2); border:1px solid #ef4444; color:#ef4444; font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Delete</button>
+                            style="display:none; padding:0.3rem 0.9rem; background:rgba(239,68,68,0.2); border:1px solid #ef4444; color:#ef4444; font-family: ui-monospace, monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Delete</button>
                         <button id="event-modal-cancel"
-                            style="padding:0.3rem 0.9rem; background:rgba(0,0,0,0.3); border:1px solid var(--glass-border); color:var(--text-secondary); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Cancel</button>
+                            style="padding:0.3rem 0.9rem; background:rgba(0,0,0,0.3); border:1px solid var(--glass-border); color:var(--text-secondary); font-family: ui-monospace, monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Cancel</button>
                         <button id="event-modal-save"
-                            style="padding:0.3rem 0.9rem; background:rgba(249,115,22,0.2); border:1px solid #f97316; color:#f97316; font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px; font-weight:bold;">Save</button>
+                            style="padding:0.3rem 0.9rem; background:rgba(249,115,22,0.2); border:1px solid #f97316; color:#f97316; font-family: ui-monospace, monospace; font-size:1rem; cursor:pointer; border-radius:3px; font-weight:bold;">Save</button>
                     </div>
                 </div>
             </div>
@@ -684,7 +673,7 @@
                     </div>
                     <div style="flex: 1;">
                         <div
-                            style="font-size: 1.5rem; font-weight: 700; color: var(--accent-yellow); font-family: 'VT323', monospace;">
+                            style="font-size: 1.5rem; font-weight: 700; color: var(--accent-yellow); font-family: ui-monospace, monospace;">
                             Quinny</div>
                         <div id="quinny-age"
                             style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.25rem;">
@@ -693,9 +682,9 @@
                         <div style="margin-top: 0.5rem; display: flex; gap: 0.5rem; align-items: center;">
                             <label style="font-size: 0.8rem; color: var(--text-secondary);">🎂 Birthday:</label>
                             <input type="date" id="quinny-birthday-input"
-                                style="padding: 0.3rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 0.9rem;">
+                                style="padding: 0.3rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: ui-monospace, monospace; font-size: 0.9rem;">
                             <button id="quinny-birthday-save"
-                                style="margin: 0; padding: 0.3rem 0.6rem; background: rgba(52,211,153,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer;">Save</button>
+                                style="margin: 0; padding: 0.3rem 0.6rem; background: rgba(52,211,153,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: ui-monospace, monospace; font-size: 0.85rem; cursor: pointer;">Save</button>
                         </div>
                     </div>
                 </div>
@@ -712,22 +701,22 @@
                             <div
                                 style="display: flex; flex-direction: column; gap: 0.5rem; padding: 0.75rem; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); margin-bottom: 0.75rem;">
                                 <input type="text" id="vacc-name-input" placeholder="Vaccine name (e.g., Parvovirus)"
-                                    style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
+                                    style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: ui-monospace, monospace; font-size: 1rem;">
                                 <div style="display: flex; gap: 0.5rem;">
                                     <div style="flex: 1;">
                                         <label style="font-size: 0.7rem; color: var(--text-secondary);">Date
                                             Given</label>
                                         <input type="date" id="vacc-date-input"
-                                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 0.9rem;">
+                                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: ui-monospace, monospace; font-size: 0.9rem;">
                                     </div>
                                     <div style="flex: 1;">
                                         <label style="font-size: 0.7rem; color: var(--text-secondary);">Next Due</label>
                                         <input type="date" id="vacc-next-input"
-                                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 0.9rem;">
+                                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: ui-monospace, monospace; font-size: 0.9rem;">
                                     </div>
                                 </div>
                                 <button id="vacc-add-btn" class="tab-btn active"
-                                    style="margin: 0; padding: 0.4rem; background: rgba(59,130,246,0.2); border: 1px solid var(--accent-blue); color: var(--accent-blue); font-family: 'VT323', monospace; font-size: 1rem;">+
+                                    style="margin: 0; padding: 0.4rem; background: rgba(59,130,246,0.2); border: 1px solid var(--accent-blue); color: var(--accent-blue); font-family: ui-monospace, monospace; font-size: 1rem;">+
                                     Add Vaccination</button>
                             </div>
                             <div id="vacc-list" style="display: flex; flex-direction: column; gap: 0.3rem;">
@@ -748,28 +737,28 @@
                                 style="display: flex; flex-direction: column; gap: 0.5rem; padding: 0.75rem; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); margin-bottom: 0.75rem;">
                                 <div style="display: flex; gap: 0.5rem;">
                                     <select id="treat-type-input"
-                                        style="flex: 1; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace;">
+                                        style="flex: 1; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: ui-monospace, monospace;">
                                         <option value="worming">🐛 Worming</option>
                                         <option value="flea">🪲 Flea/Tick</option>
                                     </select>
                                     <input type="text" id="treat-product-input" placeholder="Product name"
-                                        style="flex: 1; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
+                                        style="flex: 1; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: ui-monospace, monospace; font-size: 1rem;">
                                 </div>
                                 <div style="display: flex; gap: 0.5rem;">
                                     <div style="flex: 1;">
                                         <label style="font-size: 0.7rem; color: var(--text-secondary);">Date
                                             Given</label>
                                         <input type="date" id="treat-date-input"
-                                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 0.9rem;">
+                                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: ui-monospace, monospace; font-size: 0.9rem;">
                                     </div>
                                     <div style="flex: 1;">
                                         <label style="font-size: 0.7rem; color: var(--text-secondary);">Next Due</label>
                                         <input type="date" id="treat-next-input"
-                                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 0.9rem;">
+                                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: ui-monospace, monospace; font-size: 0.9rem;">
                                     </div>
                                 </div>
                                 <button id="treat-add-btn" class="tab-btn active"
-                                    style="margin: 0; padding: 0.4rem; background: rgba(34,197,94,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: 'VT323', monospace; font-size: 1rem;">+
+                                    style="margin: 0; padding: 0.4rem; background: rgba(34,197,94,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: ui-monospace, monospace; font-size: 1rem;">+
                                     Add Treatment</button>
                             </div>
                             <div id="treat-list" style="display: flex; flex-direction: column; gap: 0.3rem;">
@@ -813,7 +802,7 @@
                 <!-- DNA Report Button -->
                 <div style="margin-bottom: 1rem; text-align: center;">
                     <button id="dna-report-btn"
-                        style="padding: 0.6rem 1.5rem; background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(59,130,246,0.3)); border: 2px solid rgba(139,92,246,0.5); color: #a78bfa; font-family: 'VT323', monospace; font-size: 1.1rem; cursor: pointer; border-radius: 4px; transition: all 0.3s; text-shadow: 0 0 8px rgba(139,92,246,0.5);">
+                        style="padding: 0.6rem 1.5rem; background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(59,130,246,0.3)); border: 2px solid rgba(139,92,246,0.5); color: #a78bfa; font-family: ui-monospace, monospace; font-size: 1.1rem; cursor: pointer; border-radius: 4px; transition: all 0.3s; text-shadow: 0 0 8px rgba(139,92,246,0.5);">
                         🧬 View Nuclear DNA Report
                     </button>
                 </div>
@@ -824,7 +813,7 @@
                     <div
                         style="max-width: 900px; margin: 2rem auto; padding: 2rem; background: var(--bg-surface); border: 2px solid rgba(139,92,246,0.4); border-radius: 8px; position: relative;">
                         <button id="dna-report-close"
-                            style="position: sticky; top: 0; float: right; background: rgba(239,68,68,0.2); border: 1px solid var(--accent-red); color: var(--accent-red); font-family: 'VT323', monospace; font-size: 1rem; padding: 0.4rem 1rem; cursor: pointer; border-radius: 4px; z-index: 10;">✕
+                            style="position: sticky; top: 0; float: right; background: rgba(239,68,68,0.2); border: 1px solid var(--accent-red); color: var(--accent-red); font-family: ui-monospace, monospace; font-size: 1rem; padding: 0.4rem 1rem; cursor: pointer; border-radius: 4px; z-index: 10;">✕
                             Close</button>
                         <div id="dna-report-content"
                             style="color: var(--text-primary); line-height: 1.8; font-size: 0.95rem;">
@@ -859,14 +848,14 @@
                         <div
                             style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 0.5rem; border: 1px solid var(--glass-border); border-radius: 4px; margin-bottom: 1rem;">
                             <button id="supp-date-prev"
-                                style="background: #c0c0c0; border: 2px outset var(--win-highlight); cursor: pointer; padding: 2px 12px; font-family: 'VT323', monospace; font-weight: bold; color: #000;">◄
+                                style="background: #c0c0c0; border: 2px outset var(--win-highlight); cursor: pointer; padding: 2px 12px; font-family: ui-monospace, monospace; font-weight: bold; color: #000;">◄
                                 Prev Day</button>
                             <div id="supp-date-display"
-                                style="font-weight: bold; font-size: 1.1rem; color: var(--accent-blue); font-family: 'VT323', monospace; letter-spacing: 1px;">
+                                style="font-weight: bold; font-size: 1.1rem; color: var(--accent-blue); font-family: ui-monospace, monospace; letter-spacing: 1px;">
                                 Today
                             </div>
                             <button id="supp-date-next"
-                                style="background: #c0c0c0; border: 2px outset var(--win-highlight); cursor: pointer; padding: 2px 12px; font-family: 'VT323', monospace; font-weight: bold; color: #000;"
+                                style="background: #c0c0c0; border: 2px outset var(--win-highlight); cursor: pointer; padding: 2px 12px; font-family: ui-monospace, monospace; font-weight: bold; color: #000;"
                                 disabled>Next Day ►</button>
                         </div>
 
@@ -1030,7 +1019,7 @@
                                     style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 0.25rem;">
                                     DNA Grade</div>
                                 <div id="food-grade-badge"
-                                    style="font-size: 2.5rem; font-weight: 900; color: #22c55e; text-shadow: 0 0 10px rgba(34,197,94,0.5); font-family: 'VT323', monospace;">
+                                    style="font-size: 2.5rem; font-weight: 900; color: #22c55e; text-shadow: 0 0 10px rgba(34,197,94,0.5); font-family: ui-monospace, monospace;">
                                     --</div>
                                 <div id="food-grade-score" style="font-size: 0.7rem; color: var(--text-secondary);">Log
                                     food to grade</div>
@@ -1047,7 +1036,7 @@
                                 <div style="position: relative; margin-top: 0.75rem;">
                                     <input type="text" id="food-search-input"
                                         placeholder="Search food (e.g., Chicken Breast)..." autocomplete="off"
-                                        style="width: 100%; padding: 0.75rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 1rem;">
+                                        style="width: 100%; padding: 0.75rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: ui-monospace, monospace; font-size: 1rem;">
                                     <div id="food-autocomplete-results"
                                         style="position: absolute; top: 100%; left: 0; width: 100%; max-height: 250px; overflow-y: auto; background: #1e293b; border: 1px solid var(--glass-border); border-top: none; z-index: 10; display: none; margin-top: 2px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); font-family: 'Segoe UI', Arial, sans-serif; font-size: 0.95rem; color: #f1f5f9;">
                                     </div>
@@ -1066,14 +1055,14 @@
                                     <div
                                         style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
                                         <input type="number" id="portion-amount" value="100" min="1" max="5000"
-                                            style="width: 80px; padding: 0.4rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 1rem; text-align: center;">
+                                            style="width: 80px; padding: 0.4rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: ui-monospace, monospace; font-size: 1rem; text-align: center;">
                                         <select id="portion-unit"
-                                            style="padding: 0.4rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace;">
+                                            style="padding: 0.4rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: ui-monospace, monospace;">
                                             <option value="g">grams</option>
                                             <option value="ml">ml</option>
                                         </select>
                                         <button id="portion-serving-btn"
-                                            style="padding: 0.4rem 0.6rem; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: var(--accent-blue); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 4px; white-space: nowrap;"
+                                            style="padding: 0.4rem 0.6rem; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: var(--accent-blue); font-family: ui-monospace, monospace; font-size: 0.85rem; cursor: pointer; border-radius: 4px; white-space: nowrap;"
                                             title="Use product serving size">1 Serving</button>
                                     </div>
                                     <!-- Live macro preview -->
@@ -1082,7 +1071,7 @@
                                         0 kcal | 0P 0C 0F
                                     </div>
                                     <button id="portion-add-btn"
-                                        style="width: 100%; padding: 0.5rem; background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.4); color: var(--accent-green); font-family: 'VT323', monospace; font-size: 1rem; cursor: pointer; border-radius: 4px;">
+                                        style="width: 100%; padding: 0.5rem; background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.4); color: var(--accent-green); font-family: ui-monospace, monospace; font-size: 1rem; cursor: pointer; border-radius: 4px;">
                                         + Add to Log
                                     </button>
                                 </div>
@@ -1101,7 +1090,7 @@
                                             <!-- Populated by JS -->
                                         </div>
                                         <button id="create-recipe-btn"
-                                            style="width: 100%; padding: 0.4rem; background: rgba(192, 132, 252, 0.1); border: 1px solid rgba(192, 132, 252, 0.3); color: var(--accent-purple); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 4px;">
+                                            style="width: 100%; padding: 0.4rem; background: rgba(192, 132, 252, 0.1); border: 1px solid rgba(192, 132, 252, 0.3); color: var(--accent-purple); font-family: ui-monospace, monospace; font-size: 0.85rem; cursor: pointer; border-radius: 4px;">
                                             + New Recipe
                                         </button>
                                     </div>
@@ -1118,7 +1107,7 @@
                                     </div>
                                     <input type="text" id="recipe-name-input"
                                         placeholder="Recipe name (e.g., Morning Smoothie)"
-                                        style="width: 100%; padding: 0.4rem; margin-bottom: 0.5rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace;">
+                                        style="width: 100%; padding: 0.4rem; margin-bottom: 0.5rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: ui-monospace, monospace;">
                                     <ul id="recipe-items-list" class="task-list"
                                         style="font-size: 0.8rem; margin-bottom: 0.5rem;">
                                         <li style="color: var(--text-secondary); font-style: italic;">Search and add
@@ -1128,7 +1117,7 @@
                                         style="font-size: 0.8rem; color: var(--accent-blue); margin-bottom: 0.5rem;">
                                     </div>
                                     <button id="save-recipe-btn"
-                                        style="width: 100%; padding: 0.4rem; background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.4); color: var(--accent-green); font-family: 'VT323', monospace; cursor: pointer; border-radius: 4px;">
+                                        style="width: 100%; padding: 0.4rem; background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.4); color: var(--accent-green); font-family: ui-monospace, monospace; cursor: pointer; border-radius: 4px;">
                                         Save Recipe
                                     </button>
                                 </div>
@@ -1205,11 +1194,11 @@
                                     <h3>Grade History</h3>
                                     <div style="display: flex; gap: 0.25rem;">
                                         <button class="grade-range-btn" data-days="7"
-                                            style="padding: 2px 8px; background: rgba(56,189,248,0.2); border: 1px solid rgba(56,189,248,0.4); color: var(--accent-blue); font-family: 'VT323', monospace; font-size: 0.8rem; cursor: pointer; border-radius: 3px;">7d</button>
+                                            style="padding: 2px 8px; background: rgba(56,189,248,0.2); border: 1px solid rgba(56,189,248,0.4); color: var(--accent-blue); font-family: ui-monospace, monospace; font-size: 0.8rem; cursor: pointer; border-radius: 3px;">7d</button>
                                         <button class="grade-range-btn active" data-days="14"
-                                            style="padding: 2px 8px; background: rgba(56,189,248,0.4); border: 1px solid rgba(56,189,248,0.6); color: #fff; font-family: 'VT323', monospace; font-size: 0.8rem; cursor: pointer; border-radius: 3px;">14d</button>
+                                            style="padding: 2px 8px; background: rgba(56,189,248,0.4); border: 1px solid rgba(56,189,248,0.6); color: #fff; font-family: ui-monospace, monospace; font-size: 0.8rem; cursor: pointer; border-radius: 3px;">14d</button>
                                         <button class="grade-range-btn" data-days="30"
-                                            style="padding: 2px 8px; background: rgba(56,189,248,0.2); border: 1px solid rgba(56,189,248,0.4); color: var(--accent-blue); font-family: 'VT323', monospace; font-size: 0.8rem; cursor: pointer; border-radius: 3px;">30d</button>
+                                            style="padding: 2px 8px; background: rgba(56,189,248,0.2); border: 1px solid rgba(56,189,248,0.4); color: var(--accent-blue); font-family: ui-monospace, monospace; font-size: 0.8rem; cursor: pointer; border-radius: 3px;">30d</button>
                                     </div>
                                 </div>
                                 <div style="height: 200px;">
@@ -1401,7 +1390,7 @@
                                 needs solving?</label>
                             <input type="text" id="logistics-title-input"
                                 placeholder="e.g., Hire tracked bike to tow caravan behind new house"
-                                style="width: 100%; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: #fff; font-family: 'VT323', monospace; border-radius: 4px; font-size: 1rem;">
+                                style="width: 100%; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: #fff; font-family: ui-monospace, monospace; border-radius: 4px; font-size: 1rem;">
                         </div>
                         <button id="add-logistics-btn" class="tab-btn active"
                             style="margin: 0; height: 36px; padding: 0 1.5rem; background: rgba(56,189,248,0.2); border: 1px solid var(--accent-blue); color: var(--accent-blue); white-space: nowrap;">+
@@ -1451,21 +1440,21 @@
                                 style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.3rem;">Supplement
                                 Name</label>
                             <input type="text" id="supp-name-input" placeholder="e.g., Magnesium Glycinate"
-                                style="width: 100%; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: #fff; font-family: 'VT323', monospace; border-radius: 4px;">
+                                style="width: 100%; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: #fff; font-family: ui-monospace, monospace; border-radius: 4px;">
                         </div>
                         <div>
                             <label
                                 style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.3rem;">Total
                                 Pills (Capacity)</label>
                             <input type="number" id="supp-capacity-input" placeholder="e.g., 60"
-                                style="width: 100%; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: #fff; font-family: 'VT323', monospace; border-radius: 4px;">
+                                style="width: 100%; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: #fff; font-family: ui-monospace, monospace; border-radius: 4px;">
                         </div>
                         <div>
                             <label
                                 style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.3rem;">Daily
                                 Dose</label>
                             <input type="number" id="supp-dose-input" placeholder="e.g., 2"
-                                style="width: 100%; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: #fff; font-family: 'VT323', monospace; border-radius: 4px;">
+                                style="width: 100%; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: #fff; font-family: ui-monospace, monospace; border-radius: 4px;">
                         </div>
                         <button id="add-supp-btn" class="tab-btn active"
                             style="margin: 0; height: 36px; padding: 0 1rem; background: rgba(34,197,94,0.2); border: 1px solid var(--accent-green); color: var(--accent-green);">Add
@@ -1495,7 +1484,7 @@
                 <div style="margin-bottom: 2rem;">
                     <div style="display:flex; align-items:baseline; gap:0.75rem; margin-bottom:0.5rem;">
                         <h3
-                            style="font-family:'VT323',monospace; font-size:1.4rem; color:var(--accent-green); letter-spacing:1px; margin:0;">
+                            style="font-family: ui-monospace, monospace; font-size:1.4rem; color:var(--accent-green); letter-spacing:1px; margin:0;">
                             🗓️ THE IDEAL WEEK</h3>
                         <span style="font-size:0.85rem; color:var(--text-secondary);">Target · Asleep by 12:00 AM every
                             night</span>
@@ -1625,8 +1614,8 @@
         </main>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="vendor/marked.min.js"></script>
+    <script src="vendor/chart.js"></script>
     <script src="retro-audio.js"></script>
     <script src="symphony-app.js?v=5"></script>
     <script src="_planner_v2.js?v=1"></script>
@@ -1769,7 +1758,7 @@
                     document.body.style.overflow = 'hidden';
                     if (!dnaLoaded) {
                         // Try fetching from GitHub Pages path
-                        var paths = ['../health/DNA_God_Mode_Report.md', 'https://raw.githubusercontent.com/priscillak91k-aigoon/Athena-Public/main/health/DNA_God_Mode_Report.md'];
+                        var paths = ['../health/DNA_God_Mode_Report.md'];
                         function tryFetch(idx) {
                             if (idx >= paths.length) {
                                 dnaContent.innerHTML = '<div style="color:var(--accent-red);padding:2rem;text-align:center;">Could not load DNA report. Please view on the <a href="https://priscillak91k-aigoon.github.io/Athena-Public/routine-app/" style="color:var(--accent-blue);">live site</a>.</div>';
@@ -1782,7 +1771,7 @@
                                 if (typeof marked !== 'undefined' && marked.parse) {
                                     dnaContent.innerHTML = marked.parse(md);
                                 } else {
-                                    dnaContent.innerHTML = '<pre style="white-space:pre-wrap;font-family:VT323,monospace;font-size:0.9rem;">' + md + '</pre>';
+                                    dnaContent.innerHTML = '<pre style="white-space:pre-wrap;font-family: ui-monospace, monospace;font-size:0.9rem;">' + md + '</pre>';
                                 }
                                 dnaLoaded = true;
                                 // Style the rendered markdown
@@ -2093,7 +2082,7 @@
                     padding: 0.4rem 0.6rem;
                     margin: 2px 0;
                     border-radius: 3px;
-                    font-family: 'VT323', monospace;
+                    font-family: ui-monospace, monospace;
                     font-size: 0.95rem;
                     display: flex;
                     justify-content: space-between;
@@ -2255,7 +2244,7 @@
                     background: #1e1e2e; border: 2px solid #a855f7;
                     border-radius: 8px; padding: 1.25rem; width: 900px; max-width: 95vw;
                     height: 85vh; display: flex; flex-direction: column;
-                    font-family: 'VT323', monospace; color: #e2e8f0;
+                    font-family: ui-monospace, monospace; color: #e2e8f0;
                     box-shadow: 0 0 30px rgba(168,85,247,0.3);
                 `;
 
@@ -2269,8 +2258,8 @@
 
                     <!-- Add New Task -->
                     <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem; padding: 0.4rem; background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.2); border-radius: 4px;">
-                        <input type="text" id="tpl-add-label" placeholder="New task label (e.g. 🏋️ Exercise)" style="flex: 1; padding: 0.3rem 0.5rem; background: #0f0f1a; border: 1px solid #334155; color: #e2e8f0; font-family: 'VT323', monospace; font-size: 0.95rem;">
-                        <button id="tpl-add-btn" style="padding: 0.3rem 0.75rem; background: rgba(168,85,247,0.2); border: 1px solid #a855f7; color: #a855f7; font-family: 'VT323', monospace; font-size: 0.95rem; cursor: pointer; font-weight: bold;">+ Add to Parking</button>
+                        <input type="text" id="tpl-add-label" placeholder="New task label (e.g. 🏋️ Exercise)" style="flex: 1; padding: 0.3rem 0.5rem; background: #0f0f1a; border: 1px solid #334155; color: #e2e8f0; font-family: ui-monospace, monospace; font-size: 0.95rem;">
+                        <button id="tpl-add-btn" style="padding: 0.3rem 0.75rem; background: rgba(168,85,247,0.2); border: 1px solid #a855f7; color: #a855f7; font-family: ui-monospace, monospace; font-size: 0.95rem; cursor: pointer; font-weight: bold;">+ Add to Parking</button>
                     </div>
 
                     <!-- Two Column Layout -->
@@ -2297,8 +2286,8 @@
 
                     <!-- Footer -->
                     <div style="display: flex; gap: 0.5rem; margin-top: 0.6rem; justify-content: flex-end;">
-                        <button id="tpl-cancel" style="padding: 0.4rem 0.8rem; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: #ef4444; font-family: 'VT323', monospace; font-size: 1rem; cursor: pointer; border-radius: 4px;">Cancel</button>
-                        <button id="tpl-save" style="padding: 0.4rem 0.8rem; background: rgba(168,85,247,0.2); border: 1px solid #a855f7; color: #a855f7; font-family: 'VT323', monospace; font-size: 1rem; cursor: pointer; border-radius: 4px; font-weight: bold;">💾 Save Template</button>
+                        <button id="tpl-cancel" style="padding: 0.4rem 0.8rem; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: #ef4444; font-family: ui-monospace, monospace; font-size: 1rem; cursor: pointer; border-radius: 4px;">Cancel</button>
+                        <button id="tpl-save" style="padding: 0.4rem 0.8rem; background: rgba(168,85,247,0.2); border: 1px solid #a855f7; color: #a855f7; font-family: ui-monospace, monospace; font-size: 1rem; cursor: pointer; border-radius: 4px; font-weight: bold;">💾 Save Template</button>
                     </div>
                 `;
 
@@ -2332,7 +2321,7 @@
                         const input = document.createElement('input');
                         input.type = 'text';
                         input.value = task.label;
-                        input.style.cssText = 'background: #0f0f1a; border: 1px solid #a855f7; color: #e2e8f0; font-family: "VT323", monospace; font-size: 0.9rem; padding: 1px 4px; width: 100%;';
+                        input.style.cssText = 'background: #0f0f1a; border: 1px solid #a855f7; color: #e2e8f0; font-family: ui-monospace, monospace; font-size: 0.9rem; padding: 1px 4px; width: 100%;';
                         labelSpan.replaceWith(input);
                         input.focus();
                         input.select();

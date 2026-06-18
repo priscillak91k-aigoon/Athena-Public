@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shadow Protocol | The Life Hub</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+                <link rel="stylesheet" href="styles.css">
     <style>
         /* Aurora Teal / Indigo Specific Overrides */
         :root {
@@ -116,7 +113,7 @@
             background: rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.1);
             color: #f8fafc;
-            font-family: 'Outfit', sans-serif;
+            font-family: system-ui, -apple-system, sans-serif;
             padding: 1rem;
             border-radius: 8px;
             resize: vertical;
@@ -136,7 +133,7 @@
             padding: 0.5rem 1rem;
             border-radius: 6px;
             cursor: pointer;
-            font-family: 'VT323', monospace;
+            font-family: ui-monospace, monospace;
             font-size: 1.1rem;
             transition: all 0.2s;
         }
@@ -170,7 +167,7 @@
             border: 1px solid rgba(239, 68, 68, 0.3);
             color: #fca5a5;
             margin-right: 0.5rem;
-            font-family: 'VT323', monospace;
+            font-family: ui-monospace, monospace;
         }
     </style>
 </head>
@@ -208,10 +205,10 @@
             </div>
 
             <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
-                <button class="btn-teal" onclick="adjustSeesaw(-10)" style="border-color: #94a3b8; color: #94a3b8;">+ Performed "I'm Fine"</button>
-                <button class="btn-teal" onclick="adjustSeesaw(10)">+ Chose Vulnerability</button>
+                <button class="btn-teal" data-action="seesaw" data-amount="-10" style="border-color: #94a3b8; color: #94a3b8;">+ Performed "I'm Fine"</button>
+                <button class="btn-teal" data-action="seesaw" data-amount="10">+ Chose Vulnerability</button>
             </div>
-            <div style="text-align: center; margin-top: 0.5rem; font-family: 'VT323'; color: var(--aurora-teal);" id="seesaw-status">Balance is neutral.</div>
+            <div style="text-align: center; margin-top: 0.5rem; font-family: ui-monospace, monospace; color: var(--aurora-teal);" id="seesaw-status">Balance is neutral.</div>
         </section>
 
         <!-- Daily Trigger Journal -->
@@ -219,7 +216,7 @@
             <h2 style="margin-top: 0; display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.2rem;">📓</span> Daily Trigger Journal</h2>
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <p style="color: #cbd5e1; font-size: 0.9rem; margin: 0;">What part of yourself are you seeing in others?</p>
-                <button class="btn-teal" onclick="rotatePrompt()" style="font-size: 0.9rem; padding: 0.3rem 0.6rem;">🔄 Change Prompt</button>
+                <button class="btn-teal" data-action="rotate-prompt" style="font-size: 0.9rem; padding: 0.3rem 0.6rem;">🔄 Change Prompt</button>
             </div>
             
             <div style="background: rgba(99, 102, 241, 0.1); border-left: 3px solid var(--aurora-indigo); padding: 0.75rem; margin-top: 1rem; border-radius: 0 4px 4px 0; font-style: italic; color: #c7d2fe;" id="journal-prompt">
@@ -229,9 +226,9 @@
             <textarea class="journal-textarea" id="shadow-journal" placeholder="Write without censoring. The shadow speaks here..."></textarea>
             
             <div style="display: flex; justify-content: flex-end; margin-top: 0.75rem; gap: 0.5rem;">
-                <span id="journal-save-msg" style="color: var(--aurora-teal); align-self: center; font-family: 'VT323'; display: none;">Saved to LocalStorage.</span>
-                <button class="btn-teal" onclick="saveJournal()">💾 Save Entry</button>
-                <button class="btn-teal" onclick="clearJournal()" style="background: transparent; border-color: #ef4444; color: #ef4444;">🗑️ Clear</button>
+                <span id="journal-save-msg" style="color: var(--aurora-teal); align-self: center; font-family: ui-monospace, monospace; display: none;">Saved to LocalStorage.</span>
+                <button class="btn-teal" data-action="save-journal">💾 Save Entry</button>
+                <button class="btn-teal" data-action="clear-journal" style="background: transparent; border-color: #ef4444; color: #ef4444;">🗑️ Clear</button>
             </div>
         </section>
 
@@ -241,15 +238,15 @@
             <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 1.5rem;">Process a specific conflict or trigger by physically or mentally shifting perspectives.</p>
 
             <div class="chair-tabs">
-                <div class="chair-tab active" onclick="switchChair(0)">
+                <div class="chair-tab active" data-action="chair" data-idx="0">
                     <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">👤</div>
                     <strong>1. Ego</strong>
                 </div>
-                <div class="chair-tab" onclick="switchChair(1)">
+                <div class="chair-tab" data-action="chair" data-idx="1">
                     <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">🌑</div>
                     <strong>2. Shadow</strong>
                 </div>
-                <div class="chair-tab" onclick="switchChair(2)">
+                <div class="chair-tab" data-action="chair" data-idx="2">
                     <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">👁️</div>
                     <strong>3. Self</strong>
                 </div>
@@ -258,94 +255,28 @@
             <div class="chair-content active" id="chair-0">
                 <h3 style="color: #cbd5e1;">The Everyday Self</h3>
                 <p style="font-size: 0.9rem; color: #94a3b8;">State the problem from your Persona's perspective. How were you wronged? Why are you "fine" or justified?</p>
-                <textarea class="journal-textarea" style="min-height: 100px;" placeholder="The problem is..."></textarea>
+                <textarea class="journal-textarea" id="chair-0-text" style="min-height: 100px;" placeholder="The problem is..."></textarea>
             </div>
 
             <div class="chair-content" id="chair-1">
                 <h3 style="color: #818cf8;">The Disowned Part</h3>
                 <p style="font-size: 0.9rem; color: #94a3b8;">Speak as the part you exile. What is its truth? Are you actually angry? Do you secretly need something?</p>
-                <textarea class="journal-textarea" style="min-height: 100px; border-color: rgba(99, 102, 241, 0.3);" placeholder="Actually, I am..."></textarea>
+                <textarea class="journal-textarea" id="chair-1-text" style="min-height: 100px; border-color: rgba(99, 102, 241, 0.3);" placeholder="Actually, I am..."></textarea>
             </div>
 
             <div class="chair-content" id="chair-2">
                 <h3 style="color: #5eead4;">The Synthesizer (The Mandorla)</h3>
                 <p style="font-size: 0.9rem; color: #94a3b8;">Hold both truths simultaneously. What is the integrated response? (e.g., "I am independent AND I need connection")</p>
-                <textarea class="journal-textarea" style="min-height: 100px; border-color: rgba(13, 148, 136, 0.3);" placeholder="Holding both, I choose to..."></textarea>
+                <textarea class="journal-textarea" id="chair-2-text" style="min-height: 100px; border-color: rgba(13, 148, 136, 0.3);" placeholder="Holding both, I choose to..."></textarea>
+            </div>
+            
+            <div style="display: flex; justify-content: flex-end; margin-top: 1rem; gap: 0.5rem;">
+                <span id="chair-save-msg" style="color: var(--aurora-teal); align-self: center; font-family: ui-monospace, monospace; display: none;">Saved to Backend.</span>
+                <button class="btn-teal" data-action="save-chair">💾 Save Exercise</button>
             </div>
         </section>
 
     </div>
-
-    <script>
-        // Teeter Totter Logic
-        let tilt = 0;
-        function adjustSeesaw(amount) {
-            tilt += amount;
-            if (tilt > 30) tilt = 30;
-            if (tilt < -30) tilt = -30;
-            
-            document.getElementById('seesaw-board').style.transform = `rotate(${tilt}deg)`;
-            
-            const status = document.getElementById('seesaw-status');
-            if (tilt < -10) {
-                status.innerText = "⚠️ Warning: Persona overload. Shadow weight accumulating.";
-                status.style.color = "#ef4444";
-            } else if (tilt > 10) {
-                status.innerText = "⭐ Integration active. Tension is releasing.";
-                status.style.color = "#5eead4";
-            } else {
-                status.innerText = "Balance is neutral.";
-                status.style.color = "var(--aurora-teal)";
-            }
-        }
-
-        // Journal Logic
-        const prompts = [
-            "What quality do I hate most in others right now? Do I possess it?",
-            "What am I pretending not to need today?",
-            "If I had no 'independent' image to maintain, what would I do differently?",
-            "What would I scream right now if no one could hear?",
-            "Where did I say 'I'm fine' today when I actually wasn't?"
-        ];
-        let promptIdx = 0;
-        
-        function rotatePrompt() {
-            promptIdx = (promptIdx + 1) % prompts.length;
-            document.getElementById('journal-prompt').innerText = `"${prompts[promptIdx]}"`;
-        }
-
-        function saveJournal() {
-            const text = document.getElementById('shadow-journal').value;
-            localStorage.setItem('shadow_journal_draft', text);
-            const msg = document.getElementById('journal-save-msg');
-            msg.style.display = 'inline';
-            setTimeout(() => { msg.style.display = 'none'; }, 2000);
-        }
-
-        function clearJournal() {
-            if(confirm("Clear current entry?")) {
-                document.getElementById('shadow-journal').value = '';
-                localStorage.removeItem('shadow_journal_draft');
-            }
-        }
-
-        // Load saved draft on boot
-        window.onload = () => {
-            const saved = localStorage.getItem('shadow_journal_draft');
-            if (saved) document.getElementById('shadow-journal').value = saved;
-        };
-
-        // Chair Logic
-        function switchChair(idx) {
-            const tabs = document.querySelectorAll('.chair-tab');
-            const contents = document.querySelectorAll('.chair-content');
-            
-            tabs.forEach(t => t.classList.remove('active'));
-            contents.forEach(c => c.classList.remove('active'));
-            
-            tabs[idx].classList.add('active');
-            contents[idx].classList.add('active');
-        }
-    </script>
+    <script src="shadow.js"></script>
 </body>
 </html>

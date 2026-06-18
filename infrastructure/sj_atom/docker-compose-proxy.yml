@@ -30,3 +30,13 @@ services:
     command: python -m http.server 8085
     ports:
       - "8085:8085"
+
+  # LifeHub Sovereign Backend
+  lifehub:
+    build: ../../routine-app
+    container_name: lifehub
+    restart: unless-stopped
+    volumes:
+      - ../../routine-app/server/data:/app/server/data
+    ports:
+      - "127.0.0.1:8086:8086"

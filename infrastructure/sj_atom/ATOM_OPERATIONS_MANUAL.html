@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Atom Operations Manual</title>
+<style>
+    body {
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+        line-height: 1.6;
+        color: #e6edf3;
+        background-color: #0d1117;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px;
+    }
+    h1, h2, h3 { color: #c9d1d9; border-bottom: 1px solid #21262d; padding-bottom: 0.3em; }
+    a { color: #58a6ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    pre { background-color: #161b22; padding: 16px; border-radius: 6px; overflow: auto; }
+    code { font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; background-color: rgba(110,118,129,0.4); padding: 0.2em 0.4em; border-radius: 6px; font-size: 85%; }
+    pre code { background-color: transparent; padding: 0; }
+    blockquote { border-left: 0.25em solid #30363d; padding: 0 1em; color: #8b949e; margin-left: 0; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 16px; }
+    th, td { padding: 6px 13px; border: 1px solid #30363d; }
+    th { background-color: #161b22; }
+    tr:nth-child(2n) { background-color: #161b22; }
+</style>
+</head>
+<body>
+<h1>📖 Sovereign Atom: Operations Manual</h1>
+<blockquote>
+<p>[!NOTE]
+Welcome to the Atom's sovereign media infrastructure. This manual outlines how to operate the services from anywhere in the world without relying on cloud providers.</p>
+</blockquote>
+<hr />
+<h2>🌐 The Zero-Trust Network (Tailscale)</h2>
+<blockquote>
+<p>[!IMPORTANT]
+The Atom server is invisible to the public internet. To access any of the services below while away from your home WiFi, you <strong>must</strong> use Tailscale.</p>
+</blockquote>
+<p><strong>Connection Steps:</strong>
+1. Install the <strong>Tailscale</strong> app on your phone, laptop, or tablet.
+2. Log in with your authorized account.
+3. Toggle the VPN to <strong>Active</strong>.
+4. You can now use the <code>100.x</code> IP addresses or <code>.tailnet</code> domains exactly as if you were sitting in your living room.</p>
+<hr />
+<h2>🎧 Audiobookshelf (The Library)</h2>
+<blockquote>
+<p><em>Your private, sovereign replacement for Audible.</em></p>
+</blockquote>
+<h3>Access Points</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Connection Type</th>
+<th style="text-align: left;">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Tailscale IP</strong></td>
+<td style="text-align: left;"><code>http://100.73.93.94:13378</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>MagicDNS</strong></td>
+<td style="text-align: left;"><code>http://audio.atom.tailnet</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Home WiFi</strong></td>
+<td style="text-align: left;"><code>http://192.168.88.50:13378</code></td>
+</tr>
+</tbody>
+</table>
+<h3>Usage Guide</h3>
+<ol>
+<li>Open the URL in your browser or download the official <strong>Audiobookshelf App</strong> (iOS/Android) and use the URL as the Server Address.</li>
+<li><strong>Streaming:</strong> Click any book and hit play. It will stream directly from the Atom to your device.</li>
+<li><strong>Offline Listening:</strong> Use the mobile app to "Download" a book to your phone before a flight or road trip.</li>
+<li><strong>Progress Sync:</strong> Your listening progress automatically syncs across all devices.</li>
+</ol>
+<hr />
+<h2>🏭 EdgeTTS (The Audiobook Generator)</h2>
+<blockquote>
+<p><em>Your private factory for converting text/EPUBs into high-quality, human-like neural audio.</em></p>
+</blockquote>
+<h3>Access Points</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Connection Type</th>
+<th style="text-align: left;">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Tailscale IP</strong></td>
+<td style="text-align: left;"><code>http://100.73.93.94:7860</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>MagicDNS</strong></td>
+<td style="text-align: left;"><code>http://tts.atom.tailnet</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Home WiFi</strong></td>
+<td style="text-align: left;"><code>http://192.168.88.50:7860</code></td>
+</tr>
+</tbody>
+</table>
+<h3>How to Generate a Book</h3>
+<ol>
+<li>Obtain an <code>.epub</code> file of the book you want.</li>
+<li>Open the EdgeTTS URL and drag your <code>.epub</code> into the upload box.</li>
+<li>
+<p><strong>Configure Settings:</strong></p>
+<blockquote>
+<p>[!WARNING]
+<strong>Output Directory:</strong> You must set this to exactly <code>/app/output</code>. If you forget this, the book will be lost inside the container matrix.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Worker Count:</strong> Set between <code>5</code> and <code>8</code> for maximum speed.</p>
+</li>
+<li><strong>Voice:</strong> Select your preferred narrator. <em>(Recommended: <code>en-GB-ThomasNeural</code> for a classic, deep storyteller vibe).</em></li>
+<li><strong>Voice Rate/Pitch:</strong> For a "sleep story" or older narrator feel, drop Rate to <code>-15</code> and Pitch to <code>-10</code>.</li>
+<li>Hit <strong>Start</strong>. You can close your laptop. The Atom will autonomously crunch the entire book in the background and drop it into your library.<blockquote>
+<p>[!TIP]
+<strong>Library Sync:</strong> Once the generation finishes, you may need to open Audiobookshelf and click <strong>Scan Library</strong> for the new book to physically appear.</p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>[!TIP]
+<strong>Previewing Voices:</strong> You can test voices in real-time using the <a href="https://speech.microsoft.com/portal/voicegallery">Microsoft Voice Gallery</a> or the <a href="https://huggingface.co/spaces/innoai/Edge-TTS-Text-to-Speech">Hugging Face Edge-TTS Interface</a>.</p>
+</blockquote>
+<h3>How to Narrate Custom Writing</h3>
+<p>If any horny slags want to write their own smut and have it narrated to them, the Audio Factory is perfect because it is 100% uncensored. Since it runs strictly bare-metal on the Atom, no cloud provider (like OpenAI or Microsoft) will ever flag it or ban your account.</p>
+<ol>
+<li><strong>Write the Story:</strong> Write it in whatever app you prefer (Google Docs, Apple Pages, Obsidian).</li>
+<li><strong>Export as EPUB:</strong> The Audio Factory works best with <code>.epub</code> files because it automatically understands chapter breaks and pacing. </li>
+<li><em>Google Docs:</em> <code>File -&gt; Download -&gt; EPUB Publication (.epub)</code>.</li>
+<li><em>Apple Pages:</em> <code>File -&gt; Export To -&gt; EPUB</code>.</li>
+<li><strong>Upload &amp; Generate:</strong> Drop the <code>.epub</code> file into the TTS interface (<code>http://100.73.93.94:7860</code>), select a narrator, and hit Start. It will autonomously chew through the text and output a pristine, professional-grade Audiobook file.</li>
+</ol>
+<hr />
+<h2>🧠 Open WebUI &amp; The Memory Engine</h2>
+<blockquote>
+<p><em>Your private, sovereign AI interface and automatic digital diary.</em></p>
+</blockquote>
+<h3>Access Points</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Connection Type</th>
+<th style="text-align: left;">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Tailscale IP</strong></td>
+<td style="text-align: left;"><code>http://100.73.93.94:3000</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>MagicDNS</strong></td>
+<td style="text-align: left;"><code>http://ai.atom.tailnet</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Home WiFi</strong></td>
+<td style="text-align: left;"><code>http://192.168.88.50:3000</code></td>
+</tr>
+</tbody>
+</table>
+<h3>Permanent Memory Pipeline</h3>
+<p>You do <strong>not</strong> need to click "save" or manually export your chats. </p>
+<ol>
+<li><strong>The Trigger:</strong> Every night at 11:59 PM, the <code>n8n</code> container silently wakes up.</li>
+<li><strong>The Extraction:</strong> It pulls down all raw chat logs from your private account securely via the internal Open WebUI server.</li>
+<li><strong>The Synthesis:</strong> It feeds that data into the bare-metal Ollama API (<code>llama3</code>) to extract core emotional states, key events, and actionable thoughts.</li>
+<li><strong>The Vault:</strong> It takes the pristine summary and physically writes it into the Atom's <code>/obsidian_vault</code> hard drive (e.g., <code>SJ_Diary_2026-06-05.md</code>).</li>
+<li><strong>The Sync:</strong> Syncthing instantly beams that new file to your laptop to view in the Obsidian app.</li>
+</ol>
+<h3>The Core Profile (Tier 2 Memory) &amp; Auto-Bake</h3>
+<p>The engine maintains a foundational document (<code>SJ_Core_Profile.md</code>) containing core demographic and psychological facts. </p>
+<blockquote>
+<p>[!IMPORTANT]
+Every night at 3:00 AM, the engine checks yesterday's diary for any fundamental life changes. If it detects a major shift, it automatically overwrites <code>SJ_Core_Profile.md</code> and instantly fires an API request to <strong>rebuild BOTH your <code>sj-diary</code> (Fast Chat) and <code>sj-diary-reasoning</code> (Deep Think) models on the fly</strong>. This guarantees your Open WebUI models never go stale.</p>
+</blockquote>
+<hr />
+<h2>📱 The Walkie-Talkie (Ambient Intelligence)</h2>
+<blockquote>
+<p><em>Your direct, hands-free link to your private diary via Telegram.</em></p>
+</blockquote>
+<h3>Usage Guide</h3>
+<ol>
+<li>Open the Telegram app on your phone and open the private chat with your Diary Bot.</li>
+<li><strong>Text Notes:</strong> Type any text message and hit send. It will instantly log to your diary.</li>
+<li><strong>Voice Notes:</strong> While driving or walking, hold the microphone button to record a voice note. The Atom will instantly intercept the message and securely transcribe the audio using offline Whisper AI.</li>
+</ol>
+<h3>Memory Synthesis &amp; Silence Filter</h3>
+<p>Before saving, the Atom securely routes the raw text through your local <code>llama3</code> LLM to structure your thoughts into clean bullet points. </p>
+<blockquote>
+<p>[!WARNING]
+<strong>Silence Filter:</strong> If it detects that the transcript is just wind noise or Whisper hallucination garbage (e.g., "Thanks for watching"), it will instantly incinerate the file to keep your vault pristine and text you a warning.</p>
+</blockquote>
+<p>It appends the structured summary to today's <code>.md</code> file, hiding the messy transcript inside a collapsible <code>&lt;details&gt;</code> dropdown, and embeds hidden JSON psychological telemetry (<code>mood</code>, <code>stress</code>, <code>energy</code>).</p>
+<blockquote>
+<p>[!NOTE]
+<strong>Zero-Trust Security:</strong> The Walkie-Talkie engine is cryptographically locked to SJ's exact Telegram User ID. Your diary cannot be written to by anyone but you.</p>
+</blockquote>
+<hr />
+<h2>🌅 The Sunday Reflection (Weekly Synthesis)</h2>
+<blockquote>
+<p><em>The Atom connects your present to your past, without ever pinging your phone.</em></p>
+</blockquote>
+<p>This is a completely autonomous, silent pipeline built natively into the Walkie-Talkie engine. </p>
+<ol>
+<li>At exactly <strong>8:00 PM every Sunday</strong>, the Python engine wakes up.</li>
+<li>It silently reads every single diary entry from the past <strong>7 days</strong>, plus historical echoes from exactly <strong>30 days ago</strong> and <strong>365 days ago</strong>.</li>
+<li>The AI generates a customized Weekly Synthesis, identifying core emotional themes and reflecting on psychological growth.</li>
+<li>The finalized Markdown file is silently dropped into your vault as <code>SJ_Weekly_Synthesis_[Date].md</code>.</li>
+</ol>
+<hr />
+<h2>✈️ Automated Flight Tracker (The Hunter)</h2>
+<blockquote>
+<p><em>Your autonomous background service for securing cheap weekend flights.</em></p>
+</blockquote>
+<h3>How it Works (Context-Aware)</h3>
+<p>The Flight Tracker is fully context-aware and tied to your private Diary vault. It <strong>will not scan</strong> or spam you unless you actively tell it you are looking for flights.</p>
+<ol>
+<li><strong>The Intent Check:</strong> Every 24 hours, before doing anything, it securely reads your latest journal entry and asks the local Ollama AI to determine if you are actively looking for a flight.</li>
+<li><strong>The 4-Week Lock:</strong> If intent is found, it extracts the date of that journal entry. It generates the precise dates for the <strong>4 weekends following your journal entry</strong>.</li>
+<li><strong>The Hunt:</strong> It checks Google Flights for Direct, Round-Trip flights under your threshold (currently <strong>$300 NZD</strong>). If it finds them, it pings your phone via Telegram. Since you are actively looking, it will ping you every 24 hours to ensure you don't miss sudden price drops.</li>
+<li><strong>The Auto-Shutoff:</strong> Once the real-world date passes the Sunday of the 4th weekend, the target window expires and the scanner automatically shuts down to prevent spam.</li>
+<li><strong>The Manual Override:</strong> If you buy a flight early or change your mind, simply type <code>#stopflights</code> or <code>#haltflights</code> anywhere in your newest journal entry. The scanner will detect the tag and instantly shut down.</li>
+</ol>
+<h3>How to Modify Target Parameters</h3>
+<p>To change the destination or the price limit:
+1. Open <code>~/Athena-Public/infrastructure/sj_atom/docker-compose-ai.yml</code> on the Atom.
+2. Locate the <code>flight-scanner</code> service block at the bottom of the file.
+3. Edit the <code>FLY_TO</code>, <code>FLY_FROM</code>, or <code>TARGET_PRICE</code> environment variables.
+4. Run <code>sudo docker compose -f docker-compose-ai.yml up -d --build</code> to permanently lock in the new parameters.</p>
+<hr />
+<h2>🎬 Media Automation Stack (The Empire)</h2>
+<blockquote>
+<p><em>Sovereign media acquisition and serving. Request a movie → it appears on your TV.</em></p>
+</blockquote>
+<h3>Architecture</h3>
+<pre><code>Telegram ← Seerr (notifications)
+                ↓
+         Radarr / Sonarr
+                ↓
+            Prowlarr (indexers)
+                ↓
+     qBittorrent ← [Gluetun VPN — optional]
+                ↓
+      /mnt/media/data/media/
+                ↓
+              Plex → TV/Phone/Browser
+</code></pre>
+<h3>How to Use The Stack (Daily Operation)</h3>
+<p>You do <strong>not</strong> need to manually download torrents or interact with Radarr/Sonarr. The entire pipeline is operated exclusively through Telegram and Jellyfin.</p>
+<p><strong>1. Requesting Content (Telegram Bot)</strong>
+The fastest way to request media is via the autonomous Telegram Bot.
+1. Open the private chat or shared group chat with the Seerr Bot in Telegram.
+2. Type <code>/check &lt;Movie or Show Title&gt;</code> (e.g. <code>/check The Matrix</code>).</p>
+<blockquote>
+<p>[!TIP]
+<strong>First Time Setup:</strong> If the bot replies "No user configured", tap the <strong>🔄 Switch User</strong> button and select the main profile. It will permanently link your Telegram ID so you never have to do it again.
+3. Tap the <strong>1080p</strong> or <strong>4K</strong> button underneath the poster.
+4. The bot will autonomously route the request to Seerr, which triggers Radarr/Sonarr, which sends it to qBittorrent to download directly to the 11TB QNAP array.</p>
+</blockquote>
+<p><em>(Alternatively, you can request via the Seerr Web UI at <code>http://192.168.88.50:5055</code> or <code>http://seerr.atom.tailnet</code> via Tailscale).</em></p>
+<p><strong>2. Watching Content (Jellyfin)</strong>
+1. Open the <strong>Jellyfin</strong> app on your TV, phone, or browser.
+   - <strong>On Home WiFi:</strong> Use <code>http://192.168.88.50:8096</code>
+   - <strong>Outside Network (Cellular/Travel):</strong> You <strong>must</strong> activate the Tailscale VPN on your device first, then connect to <code>http://100.73.93.94:8096</code> or <code>http://jellyfin.atom.tailnet</code>
+2. Log in with your standard Jellyfin username and password.
+3. Once a requested download hits 100%, it will magically appear on your Jellyfin home screen.
+4. Click play.</p>
+<p><strong>3. Troubleshooting Stalled Downloads</strong>
+If a movie is taking hours and hasn't finished:
+1. Open <strong>qBittorrent</strong> (<code>http://192.168.88.50:8088</code>). Check if the torrent has 0 seeders or is stuck on "Stalled".
+2. If it is stalled, open <strong>Radarr</strong> or <strong>Sonarr</strong>, search for the title, click the manual "Search" tab, and explicitly pick a different torrent with more seeders.</p>
+<h3>Service Map</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Port</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jellyfin</td>
+<td>8096</td>
+<td>Primary sovereign media server</td>
+</tr>
+<tr>
+<td>Plex</td>
+<td>32400</td>
+<td>Secondary media server (host network)</td>
+</tr>
+<tr>
+<td>Radarr</td>
+<td>7878</td>
+<td>Movie automation</td>
+</tr>
+<tr>
+<td>Sonarr</td>
+<td>8989</td>
+<td>TV show automation</td>
+</tr>
+<tr>
+<td>Prowlarr</td>
+<td>9696</td>
+<td>Indexer management</td>
+</tr>
+<tr>
+<td>Seerr</td>
+<td>5055</td>
+<td>Request management + Telegram</td>
+</tr>
+<tr>
+<td>qBittorrent</td>
+<td>8088</td>
+<td>Download client</td>
+</tr>
+<tr>
+<td>Gluetun</td>
+<td>—</td>
+<td>VPN kill-switch (optional — Mode B)</td>
+</tr>
+<tr>
+<td>Recyclarr</td>
+<td>—</td>
+<td>TRaSH Guide quality sync (daily cron)</td>
+</tr>
+</tbody>
+</table>
+<h3>Deploy Commands</h3>
+<pre><code class="language-bash"># First time: mount the media drive
+sudo bash mount_media_drive.sh
+
+# Deploy the stack
+cd ~/Athena-Public/infrastructure/sj_atom
+docker compose -f docker-compose-media.yml up -d
+
+# Check status
+docker compose -f docker-compose-media.yml ps
+
+# Verify VPN (only if using Mode B)
+docker exec gluetun curl -s ifconfig.me
+</code></pre>
+<h3>Critical Path Notes</h3>
+<ul>
+<li>⚠️ Plex uses <code>network_mode: host</code> for DLNA discovery. It is NOT on the Docker bridge network. Seerr must connect to Plex via the host's LAN IP (e.g., <code>http://192.168.x.x:32400</code>), not by container name.</li>
+<li>VPN is <strong>optional</strong> (Mode B in compose file). Stack runs out of the box in Mode A without VPN credentials.</li>
+</ul>
+<h3>Full Setup Guide</h3>
+<p>See: <code>MEDIA_STACK_SETUP.md</code> for the complete post-deploy wiring walkthrough.</p>
+</body>
+</html>

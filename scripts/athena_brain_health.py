@@ -28,12 +28,8 @@ CONTEXT_DIR = PROJECT_ROOT / ".context"
 
 # Brain files to validate
 BRAIN_FILES = {
-    "lobotto_state.json": CONTEXT_DIR / "lobotto_state.json",
-    "lobotto_instincts.json": CONTEXT_DIR / "lobotto_instincts.json",
     "lobotto_working_memory.json": CONTEXT_DIR / "lobotto_working_memory.json",
-    "lobotto_hippocampus.json": CONTEXT_DIR / "lobotto_hippocampus.json",
     "heuristics.md": CONTEXT_DIR / "heuristics.md",
-    "active_instincts_primer.md": CONTEXT_DIR / "active_instincts_primer.md",
     "lobotto_boot_mode.json": CONTEXT_DIR / "lobotto_boot_mode.json",
 }
 
@@ -56,93 +52,6 @@ def load_json_safe(path):
     except Exception as e:
         return None, f"Read error: {path.name} — {str(e)[:80]}"
 
-
-def check_chemical_state():
-    """Validate lobotto_state.json — chemical values, bounds, staleness."""
-    results = []
-    data, err = load_json_safe(BRAIN_FILES["lobotto_state.json"])
-    if err:
-        return [(CRITICAL, "Chemical State", err)]
-
-    chemicals = data.get("chemicals", {})
-    if not chemicals:
-        return [(ERROR, "Chemical State", "No chemicals dict found")]
-
-    # Check each chemical is within valid bounds [0.0, 1.0]
-    out_of_bounds = []
-    for name, chem in chemicals.items():
-        val = chem.get("value")
-        if val is None:
-            results.append((WARN, "Chemical State", f"Chemical '{name}' has no value field"))
-        elif not (0.0 <= val <= 1.0):
-            out_of_bounds.append(f"{name}={val}")
-
-    if out_of_bounds:
-        results.append((ERROR, "Chemical State", f"Out of bounds: {', '.join(out_of_bounds)}"))
-
-    # Check expected chemical count (should be 12)
-    if len(chemicals) < 10:
-        results.append((WARN, "Chemical State", f"Only {len(chemicals)} chemicals (expected 12)"))
-
-    # Check staleness — last_updated should be within 24h
-    meta = data.get("meta", {})
-    last_updated = meta.get("last_updated") or meta.get("last_dreaming_cycle")
-    if last_updated:
-        try:
-            lu = datetime.fromisoformat(last_updated.replace("Z", "+00:00"))
-            age_hours = (datetime.now(lu.tzinfo) - lu).total_seconds() / 3600
-            if age_hours > 24:
-                results.append((WARN, "Chemical State", f"Stale: last updated {age_hours:.0f}h ago"))
-        except (ValueError, TypeError):
-            results.append((WARN, "Chemical State", f"Can't parse last_updated: {last_updated}"))
-
-    if not results:
-        results.append((OK, "Chemical State", f"{len(chemicals)} chemicals, all within bounds"))
-
-    return results
-
-
-def check_instincts():
-    """Validate lobotto_instincts.json — schema, strength values, duplicates."""
-    results = []
-    data, err = load_json_safe(BRAIN_FILES["lobotto_instincts.json"])
-    if err:
-        return [(CRITICAL, "Instincts", err)]
-
-    scenarios = data.get("scenarios", [])
-    if not scenarios:
-        return [(WARN, "Instincts", "No scenarios found")]
-
-    # Check strengths are valid
-    bad_strengths = []
-    missing_fields = []
-    for s in scenarios:
-        strength = s.get("strength")
-        if strength is None:
-            missing_fields.append(s.get("id", "unknown"))
-        elif not (0.0 <= strength <= 1.0):
-            bad_strengths.append(f"{s.get('id', '?')}={strength}")
-
-        # Required fields
-        for field in ["trigger", "response_pattern", "id"]:
-            if not s.get(field):
-                missing_fields.append(f"{s.get('id', '?')} missing '{field}'")
-
-    if bad_strengths:
-        results.append((ERROR, "Instincts", f"Invalid strengths: {', '.join(bad_strengths)}"))
-    if missing_fields:
-        results.append((WARN, "Instincts", f"Missing fields: {', '.join(missing_fields[:5])}"))
-
-    # Check for duplicate IDs
-    ids = [s.get("id") for s in scenarios if s.get("id")]
-    dupe_ids = [i for i in set(ids) if ids.count(i) > 1]
-    if dupe_ids:
-        results.append((ERROR, "Instincts", f"Duplicate IDs: {', '.join(dupe_ids)}"))
-
-    if not results:
-        results.append((OK, "Instincts", f"{len(scenarios)} scenarios, all valid"))
-
-    return results
 
 
 def check_working_memory():
@@ -170,22 +79,6 @@ def check_working_memory():
 
     return results
 
-
-def check_hippocampus():
-    """Validate lobotto_hippocampus.json — schema, event buildup."""
-    results = []
-    data, err = load_json_safe(BRAIN_FILES["lobotto_hippocampus.json"])
-    if err:
-        return [(CRITICAL, "Hippocampus", err)]
-
-    pending = data.get("pending_consolidation", [])
-    if len(pending) > 50:
-        results.append((WARN, "Hippocampus", f"Backlog: {len(pending)} pending events (consolidation may be stalled)"))
-
-    if not results:
-        results.append((OK, "Hippocampus", f"{len(pending)} pending events"))
-
-    return results
 
 
 def check_heuristics():
@@ -232,37 +125,6 @@ def check_heuristics():
     return results
 
 
-def check_primer():
-    """Validate active_instincts_primer.md — existence, freshness."""
-    results = []
-    path = BRAIN_FILES["active_instincts_primer.md"]
-    if not path.exists():
-        return [(ERROR, "Instinct Primer", "File missing — /start will boot without brain state")]
-
-    content = path.read_text(encoding="utf-8")
-
-    # Check it's not empty
-    if len(content.strip()) < 50:
-        results.append((ERROR, "Instinct Primer", "File is nearly empty"))
-
-    # Check freshness from YAML frontmatter
-    if "generated_at:" in content:
-        import re
-        match = re.search(r'generated_at:\s*(\S+)', content)
-        if match:
-            try:
-                gen_time = datetime.fromisoformat(match.group(1).replace("Z", "+00:00"))
-                age_hours = (datetime.now(gen_time.tzinfo) - gen_time).total_seconds() / 3600
-                if age_hours > 12:
-                    results.append((WARN, "Instinct Primer", f"Stale: generated {age_hours:.0f}h ago"))
-            except (ValueError, TypeError):
-                pass
-
-    if not results:
-        results.append((OK, "Instinct Primer", "Present and fresh"))
-
-    return results
-
 
 def check_boot_mode():
     """Validate lobotto_boot_mode.json — existence, recency."""
@@ -284,12 +146,8 @@ def run_diagnostics():
     """Run all brain health checks. Returns (exit_code, results_list, summary)."""
     all_results = []
     checks = [
-        check_chemical_state,
-        check_instincts,
         check_working_memory,
-        check_hippocampus,
         check_heuristics,
-        check_primer,
         check_boot_mode,
     ]
 

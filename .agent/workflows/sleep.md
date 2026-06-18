@@ -23,6 +23,8 @@ description: Close session and save state before Fury sleeps
     - Any pending research requests
     - Cilla's last known vibe/energy level
   - Append session log to `session_logs/`
+- [ ] Generate state snapshot (Rollback mechanism):
+  - Run `python scripts/athena_state_recovery.py --backup`
 
 ## Phase 3: Queue Overnight Work (V2)
 

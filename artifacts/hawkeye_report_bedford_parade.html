@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hawkeye v5.0 Consent Discrepancy Report</title>
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-panel: #111827;
+            --bg-card: #1f2937;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --primary: #3b82f6;
+            --primary-glow: rgba(59, 130, 246, 0.15);
+            --accent: #a78bfa;
+            --danger: #ef4444;
+            --danger-glow: rgba(239, 68, 68, 0.15);
+            --warning: #f59e0b;
+            --warning-glow: rgba(245, 158, 11, 0.15);
+            --success: #10b981;
+            --border: #374151;
+            --font: 'Outfit', 'Inter', -apple-system, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font);
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e1b4b, #0f172a);
+            padding: 3rem 2rem;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            color: var(--text-muted);
+            margin-top: 0.75rem;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .timestamp {
+            font-size: 0.85rem;
+            color: #818cf8;
+            margin-top: 0.5rem;
+            font-family: monospace;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Global Statistics Row */
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .card {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: #4b5563;
+        }
+
+        .card.critical-card {
+            border-left: 4px solid var(--danger);
+        }
+
+        .card.warning-card {
+            border-left: 4px solid var(--warning);
+        }
+
+        .card.coverage-card {
+            border-left: 4px solid var(--success);
+        }
+        
+        .card-val {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 0.5rem 0;
+            line-height: 1;
+        }
+        
+        .card-val.critical { color: var(--danger); text-shadow: 0 0 15px rgba(239, 68, 68, 0.3); }
+        .card-val.warning { color: var(--warning); text-shadow: 0 0 15px rgba(245, 158, 11, 0.3); }
+        .card-val.success { color: var(--success); text-shadow: 0 0 15px rgba(16, 185, 129, 0.3); }
+        
+        /* Filter Controls */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+            background-color: var(--bg-panel);
+            padding: 1.25rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .filter-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-group {
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .filter-btn {
+            background-color: var(--bg-card);
+            color: var(--text-muted);
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            background-color: #374151;
+            color: var(--text-main);
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: var(--text-main);
+        }
+
+        /* Projects Section Grid */
+        .project-section {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 2.5rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+            display: none; /* Controlled by JS */
+        }
+
+        .project-section.visible {
+            display: block;
+        }
+
+        .project-header {
+            background: linear-gradient(90deg, #1f2937, #111827);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .project-title-area {
+            flex: 1;
+        }
+
+        .project-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin: 0;
+            color: #f3f4f6;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Glassmorphic Project Badge Parameters */
+        .project-meta-grid {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-pill {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 9999px;
+            padding: 0.35rem 0.85rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: #cbd5e1;
+        }
+
+        .meta-pill strong {
+            color: #60a5fa;
+        }
+
+        /* Findings List */
+        .findings-list {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .finding {
+            background-color: var(--bg-card);
+            border-left: 6px solid var(--primary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: none; /* Controlled by JS */
+        }
+
+        .finding.visible {
+            display: block;
+        }
+        
+        .finding:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .finding.critical { border-left-color: var(--danger); }
+        .finding.medium { border-left-color: var(--warning); }
+        
+        .finding-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .finding-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+            color: #f3f4f6;
+        }
+        
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .badge.critical { background-color: var(--danger-glow); color: var(--danger); border: 1px solid var(--danger); }
+        .badge.medium { background-color: var(--warning-glow); color: var(--warning); border: 1px solid var(--warning); }
+        
+        .finding-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 0.75rem;
+        }
+        
+        .meta-item strong {
+            color: #e5e7eb;
+        }
+        
+        .finding-msg {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            color: #d1d5db;
+        }
+        
+        .finding-remediation {
+            background-color: rgba(59, 130, 246, 0.04);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 8px;
+            padding: 1.25rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .remediation-title {
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Bracing Solver Card inside Bedford Parade */
+        .bracing-comp-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .bracing-comp-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .bracing-comp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .bracing-city {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0.75rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .bracing-city-name {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .bracing-city-val {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-top: 0.25rem;
+        }
+        
+        .no-findings {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Master Checksheet Reference Card */
+        .checksheet-ref-card {
+            background: linear-gradient(135deg, #1e1b4b, #111827);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .checksheet-ref-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .checksheet-ref-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin: 0 0 0.5rem 0;
+            color: #cbd5e1;
+        }
+
+        .checksheet-ref-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .checksheet-btn {
+            background-color: transparent;
+            color: #60a5fa;
+            border: 1.5px solid #60a5fa;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .checksheet-btn:hover {
+            background-color: #60a5fa;
+            color: var(--bg-dark);
+            box-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 5rem;
+            background-color: var(--bg-panel);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hawkeye v5.0 Consent Discrepancy Report</h1>
+        <div class="subtitle">Sovereign Bionic Plan Set Auditor • National NZBC Compliance Engine</div>
+        <div class="timestamp">Generated: 2026-06-10 16:18:57 NZT</div>
+    </header>
+    
+    <div class="container">
+        <!-- Statistics Dashboard -->
+        <div class="summary-cards">
+            <div class="card critical-card">
+                <div class="card-val critical">1</div>
+                <div class="subtitle">Critical RFI Hazards</div>
+            </div>
+            <div class="card warning-card">
+                <div class="card-val warning">1</div>
+                <div class="subtitle">Medium Risks</div>
+            </div>
+            <div class="card coverage-card">
+                <div class="card-val success">100%</div>
+                <div class="subtitle">National NZBC Coverage</div>
+            </div>
+        </div>
+
+        <!-- Master Checksheet Link -->
+        <div class="checksheet-ref-card">
+            <div class="checksheet-ref-text">
+                <h3 class="checksheet-ref-title">National Consent Master Checksheet</h3>
+                <p class="checksheet-ref-desc">All verification audits are validated against the generalized 43-section NZBC checksheet database covering E2/AS1, B1/AS1, and statutory compliance pathways.</p>
+            </div>
+            <button class="checksheet-btn" onclick="window.open('https://github.com/priscillak91k-aigoon/Athena-Public/blob/feature/hawkeye-dynamic/vault/regulatory/nzbc/NZ_Consent_Master_Checksheet.md', '_blank')">View Checksheet</button>
+        </div>
+        
+        <!-- Controls & Filters -->
+        <div class="controls">
+            <div class="filter-group">
+                <span class="filter-label">Filter Project</span>
+                <div class="btn-group">
+                    <button class="filter-btn active" onclick="setProjectFilter('all')">All Projects</button>
+                    <button class="filter-btn" onclick="setProjectFilter('portobello')">675 Portobello</button>
+                    <button class="filter-btn" onclick="setProjectFilter('lynn_street')">64 Lynn St</button>
+                    <button class="filter-btn" onclick="setProjectFilter('bedford_parade')">12 Bedford Parade</button>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <span class="filter-label">Severity</span>
+                <div class="btn-group">
+                    <button class="filter-btn active" onclick="setSeverityFilter('all')">All</button>
+                    <button class="filter-btn" onclick="setSeverityFilter('critical')">Critical Only</button>
+                    <button class="filter-btn" onclick="setSeverityFilter('medium')">Medium Only</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Audited Discrepancies by Project -->
+        <div id="projects-container">
+            <!-- Dynamic Injection Area -->
+        </div>
+    </div>
+    
+    <footer>
+        <p>Hawkeye v5.0 • Powered by DeepSeek-R1 • Athena public project suite</p>
+    </footer>
+
+    <script>
+        const findings = [
+  {
+    "project": "bedford_parade",
+    "id": "RFI-BEDFORD-01",
+    "severity": "MEDIUM",
+    "category": "H1 Energy Efficiency / Change of Use",
+    "clause": "Building Act 2004 s.115 / NZBC H1/AS1",
+    "message": "Existing suspended concrete floor slab R-value is R0.40, failing the new-build H1/AS1 minimum of R3.0 for Climate Zone 5. However, under Section 115 (Change of Use), compliance can be demonstrated under the ANARP (As Nearly As Reasonably Practicable) path.",
+    "remediation": "Submit a Section 115 ANARP report detailing headroom constraints to Council, and compensate by upgrading wall insulation to R2.8+ or ceiling to R7.0+."
+  },
+  {
+    "project": "bedford_parade",
+    "id": "RFI-BEDFORD-02",
+    "severity": "CRITICAL",
+    "category": "C Fire Safety / Thermal Envelope",
+    "clause": "NZBC Clauses C3.4 & H1/AS1",
+    "message": "The proposed 1.49m x 1.015m floor opening and trapdoor to the basement storage unit below lacks fire-rating and insulation detailing. A residential unit above a separate storage/garage space requires a fire separation (min FRR 30/30/30) and continuous air-tight seals.",
+    "remediation": "Specify a fire-rated access hatch / floor door with a certified FD30 rating, and detail continuous compression draft seals and thermal insulation on the underside of the door."
+  }
+];
+        const projects = {
+  "bedford_parade": {
+    "id": "bedford_parade",
+    "name": "12 Bedford Parade Change of Use",
+    "city": "Dunedin",
+    "target_bca": "Dunedin City Council",
+    "wind_zone": "High",
+    "foundation_type": "Timber Subfloor",
+    "description": "Garage conversion to self-contained unit (Section 115 Change of Use).",
+    "is_alteration": true,
+    "dimensions": {
+      "ground_area": 60.0
+    },
+    "climate_zone": 5,
+    "z_factor": 0.13,
+    "earthworks_m3": 50.0,
+    "folder_path": "C:\\Users\\prisc\\Documents\\Athena-Public\\projects\\12_Bedford_Parade"
+  },
+  "lynn_street": {
+    "id": "lynn_street",
+    "name": "64 Lynn Street Alterations",
+    "city": "Dunedin",
+    "target_bca": "Dunedin City Council",
+    "wind_zone": "High",
+    "foundation_type": "Timber Subfloor",
+    "description": "Internal load-bearing wall removal for open-plan living.",
+    "is_alteration": true,
+    "bracing": {
+      "lost_demand": 186.8,
+      "panel_length": 1.2,
+      "panel_capacity": 60.0
+    },
+    "climate_zone": 5,
+    "z_factor": 0.13,
+    "earthworks_m3": 50.0,
+    "folder_path": "C:\\Users\\prisc\\Documents\\Athena-Public\\projects\\64_Lynn_Street"
+  },
+  "portobello": {
+    "id": "portobello",
+    "name": "675 Portobello Road Alterations",
+    "city": "Dunedin",
+    "target_bca": "Dunedin City Council",
+    "wind_zone": "High",
+    "foundation_type": "Concrete Slab-on-Ground",
+    "description": "Habitable extension adding a bedroom and living space.",
+    "is_alteration": false,
+    "dimensions": {
+      "width": 3.5,
+      "length": 4.64,
+      "wall_height": 2.4,
+      "roof_pitch_deg": 15.0,
+      "ground_area": 16.24
+    },
+    "climate_zone": 5,
+    "z_factor": 0.13,
+    "earthworks_m3": 50.0,
+    "folder_path": "C:\\Users\\prisc\\Documents\\Athena-Public\\projects\\675_Portobello_Road"
+  },
+  "mock_wellington": {
+    "id": "mock_wellington",
+    "name": "Mock Wellington Build",
+    "city": "Wellington",
+    "target_bca": "Wellington City Council",
+    "wind_zone": "Very High",
+    "foundation_type": "slab",
+    "description": "New residential build.",
+    "is_alteration": false,
+    "dimensions": {
+      "width": 8.0,
+      "length": 12.0,
+      "wall_height": 2.4,
+      "roof_pitch_deg": 25.0,
+      "ground_area": 96.0
+    },
+    "climate_zone": 3,
+    "z_factor": 0.3,
+    "earthworks_m3": 10.0,
+    "folder_path": "C:\\Users\\prisc\\Documents\\Athena-Public\\projects\\Mock_Wellington_Build"
+  }
+};
+        
+        let currentProjectFilter = 'all';
+        let currentSeverityFilter = 'all';
+
+        function renderReport() {
+            const container = document.getElementById('projects-container');
+            container.innerHTML = '';
+
+            let renderedProjectsCount = 0;
+
+            for (const projectId in projects) {
+                const project = projects[projectId];
+                
+                // Check if project matches filter
+                if (currentProjectFilter !== 'all' && currentProjectFilter !== projectId) {
+                    continue;
+                }
+
+                // Filter findings for this project
+                const projectFindings = findings.filter(f => f.project === projectId && 
+                    (currentSeverityFilter === 'all' || f.severity.toLowerCase() === currentSeverityFilter)
+                );
+
+                // If filtering by severity and no findings match, do not show project section
+                if (currentSeverityFilter !== 'all' && projectFindings.length === 0) {
+                    continue;
+                }
+
+                renderedProjectsCount++;
+
+                // Build project section
+                const section = document.createElement('div');
+                section.className = 'project-section visible';
+
+                let bracingComparisonHtml = '';
+                if (projectId === 'bedford_parade') {
+                    bracingComparisonHtml = `
+                        <div class="bracing-comp-box">
+                            <div class="bracing-comp-title">NZS 3604 Bracing Demand Comparison (60m² dwelling)</div>
+                            <div class="bracing-comp-grid">
+                                <div class="bracing-city">
+                                    <div class="bracing-city-name">Dunedin (Z=0.13)</div>
+                                    <div class="bracing-city-val">85.0 BUs</div>
+                                </div>
+                                <div class="bracing-city">
+                                    <div class="bracing-city-name">Wellington (Z=0.30)</div>
+                                    <div class="bracing-city-val" style="color: #f59e0b;">180.0 BUs</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                section.innerHTML = `
+                    <div class="project-header">
+                        <div class="project-title-area">
+                            <h2 class="project-title">${project.name}</h2>
+                            <div class="project-desc">${project.description}</div>
+                        </div>
+                        <div class="project-meta-grid">
+                            <div class="meta-pill">BCA: <strong>${project.target_bca}</strong></div>
+                            <div class="meta-pill">Climate Zone: <strong>${project.climate_zone}</strong></div>
+                            <div class="meta-pill">Wind: <strong>${project.wind_zone}</strong></div>
+                            <div class="meta-pill">Z-Factor: <strong>${project.z_factor}</strong></div>
+                            <div class="meta-pill">Subfloor: <strong>${project.foundation_type}</strong></div>
+                        </div>
+                    </div>
+                    <div class="findings-list">
+                        ${projectFindings.length === 0 ? '<div class="no-findings">No RFI items flagged under this severity level.</div>' : ''}
+                    </div>
+                `;
+
+                const listContainer = section.querySelector('.findings-list');
+
+                // Append findings
+                projectFindings.forEach(finding => {
+                    const card = document.createElement('div');
+                    card.className = `finding visible ${finding.severity.toLowerCase()}`;
+                    card.innerHTML = `
+                        <div class="finding-header">
+                            <h3 class="finding-title">${finding.category}</h3>
+                            <span class="badge ${finding.severity.toLowerCase()}">${finding.severity}</span>
+                        </div>
+                        <div class="finding-meta">
+                            <div class="meta-item"><strong>RFI ID:</strong> ${finding.id}</div>
+                            <div class="meta-item"><strong>NZBC Clause:</strong> ${finding.clause}</div>
+                        </div>
+                        <div class="finding-msg">
+                            ${finding.message}
+                        </div>
+                        <div class="finding-remediation">
+                            <div class="remediation-title">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline; margin-right:4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Proposed Remediation Action
+                            </div>
+                            ${finding.remediation}
+                        </div>
+                    `;
+                    listContainer.appendChild(card);
+                });
+
+                if (projectId === 'bedford_parade' && listContainer) {
+                    const bracingDiv = document.createElement('div');
+                    bracingDiv.innerHTML = bracingComparisonHtml;
+                    listContainer.appendChild(bracingDiv);
+                }
+
+                container.appendChild(section);
+            }
+
+            if (renderedProjectsCount === 0) {
+                container.innerHTML = '<div class="card" style="padding:3rem;"><div class="subtitle" style="font-style:italic;">No projects or findings match the current filters.</div></div>';
+            }
+        }
+
+        function setProjectFilter(projectId) {
+            currentProjectFilter = projectId;
+            
+            // Update active button state
+            const buttons = document.querySelectorAll('.controls .filter-group:nth-child(1) .filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            const idx = projectId === 'all' ? 0 : (projectId === 'portobello' ? 1 : (projectId === 'lynn_street' ? 2 : 3));
+            buttons[idx].classList.add('active');
+
+            renderReport();
+        }
+
+        function setSeverityFilter(severity) {
+            currentSeverityFilter = severity;
+            
+            // Update active button state
+            const buttons = document.querySelectorAll('.controls .filter-group:nth-child(2) .filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            const idx = severity === 'all' ? 0 : (severity === 'critical' ? 1 : 2);
+            buttons[idx].classList.add('active');
+
+            renderReport();
+        }
+
+        // Initial load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderReport();
+        });
+    </script>
+</body>
+</html>

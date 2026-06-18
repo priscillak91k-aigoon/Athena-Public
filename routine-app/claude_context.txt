@@ -1,3 +1,6 @@
+===============
+FILE: index.html
+===============
 <!DOCTYPE html>
 <html lang="en">
 
@@ -139,16 +142,33 @@
 
     <!-- Main App Content (Hidden by default) -->
     <div class="app-container" id="app-content" style="display: none;">
-        <header class="glass-panel">
+        <header class="glass-panel" style="position: relative;">
             <div class="date-display">
                 <span id="current-date">Loading...</span>
                 <span class="badge">Day Off</span>
             </div>
             <h1>The Life Hub</h1>
             <p class="subtitle">Your dynamic routine tracker & visual schedule.</p>
-            <button id="audio-toggle" onclick="toggleRetroAudio()"
-                style="position: absolute; top: 12px; right: 16px; background: rgba(0,0,0,0.6); border: 1px solid #0f0; color: #0f0; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #0f0;"
-                title="Toggle Music">🔊 Music</button>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; margin-top: 10px;">
+                <a href="workshop.html"
+                    style="background: rgba(0,0,0,0.6); border: 1px solid #c084fc; color: #c084fc; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #c084fc; text-decoration: none;"
+                    title="My Workshop">⚒ Workshop</a>
+                <a href="toolbox.html"
+                    style="background: rgba(0,0,0,0.6); border: 1px solid #f59e0b; color: #f59e0b; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #f59e0b; text-decoration: none;"
+                    title="Toolbox - Ad-Free Utilities">🔧 Toolbox</a>
+                <a href="shadow.html"
+                    style="background: rgba(0,0,0,0.6); border: 1px solid #818cf8; color: #818cf8; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #818cf8; text-decoration: none;"
+                    title="Shadow Protocol">🌑 Shadow Work</a>
+                <a href="workout.html"
+                    style="background: rgba(0,0,0,0.6); border: 1px solid #00c9a0; color: #00c9a0; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #00c9a0; text-decoration: none;"
+                    title="Workout Routine">💪 Workout</a>
+                <a href="https://hub.atom.tailnet" target="_blank"
+                    style="background: rgba(0,0,0,0.6); border: 1px solid #10B981; color: #10B981; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #10B981; text-decoration: none;"
+                    title="SJ's Infrastructure (Secure Node)">🟢 SJ Hub</a>
+                <button id="audio-toggle" onclick="toggleRetroAudio()"
+                    style="background: rgba(0,0,0,0.6); border: 1px solid #0f0; color: #0f0; font-family: 'VT323', monospace; font-size: 1rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; text-shadow: 0 0 4px #0f0;"
+                    title="Toggle Music">🔊 Music</button>
+            </div>
         </header>
 
         <div class="tabs">
@@ -156,22 +176,20 @@
                 style="color: var(--accent-yellow); text-shadow: 0 0 5px var(--accent-yellow); font-weight: 700;">⚡
                 Pulse</button>
             <button class="tab-btn" data-tab="today">Today's Schedule</button>
-            <button class="tab-btn" data-tab="productivity">Productivity</button>
             <button class="tab-btn" data-tab="finances">Finances</button>
-            <button class="tab-btn" data-tab="weekly">Weekly/Monthly</button>
+            <button class="tab-btn" data-tab="planner">Planner</button>
             <button class="tab-btn" data-tab="dog">Quinny</button>
             <button class="tab-btn" data-tab="workout">Workout</button>
             <button class="tab-btn" data-tab="bio">Bio Tracking</button>
             <button class="tab-btn" data-tab="food">Food Metrics</button>
-            <button class="tab-btn" data-tab="reminders">Reminders</button>
             <button class="tab-btn" data-tab="logistics"
                 style="color: var(--accent-blue); text-shadow: 0 0 5px var(--accent-blue);">🔧 Logistics</button>
-            <button class="tab-btn" data-tab="procurement">Wants vs Needs</button>
-            <button class="tab-btn" data-tab="ideas">Ideas</button>
             <button class="tab-btn" data-tab="manual"
                 style="color: var(--accent-magenta); text-shadow: 0 0 5px var(--accent-magenta);">User Manual</button>
             <button class="tab-btn" data-tab="supps"
                 style="color: var(--accent-green); text-shadow: 0 0 5px var(--accent-green);">Supps Vault</button>
+            <button class="tab-btn" data-tab="misc"
+                style="color: var(--accent-purple); text-shadow: 0 0 5px var(--accent-purple);">✦ Misc</button>
         </div>
 
         <main class="content-area">
@@ -280,486 +298,27 @@
 
             </section>
 
-            <!-- Today's View -->
+            <!-- Today's View (Readonly Week Schedule) -->
             <section id="today" class="tab-content glass-panel">
                 <div class="section-header">
-                    <h2><span class="icon">✨</span> Today's Action Plan</h2>
-                    <div class="progress-container">
-                        <div class="progress-bar" id="today-progress"></div>
-                    </div>
+                    <h2><span class="icon">📅</span> Weekly Schedule</h2>
+                    <p class="sub-text">Read-only view of your planned week. Edit in Planner.</p>
                 </div>
-                <div class="today-grid">
-
-                    <!-- Left: Task Pool with Expandable Sections -->
-                    <div class="sub-panel">
-                        <h3 style="color: var(--text-primary); margin-bottom: 0.75rem;"><span class="icon">📥</span>
-                            Task Pool</h3>
-
-                        <!-- Quick Add -->
-                        <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
-                            <input type="text" id="quick-add-input" placeholder="Quick add a new task..."
-                                style="flex-grow: 1; min-width: 0; padding: 0.5rem;">
-
-                            <select id="quick-add-category"
-                                style="padding: 0.5rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 1rem;">
-                                <option value="Unscheduled">Unscheduled</option>
-                                <option value="Daily Flexible">Daily</option>
-                                <option value="Weekly">Weekly</option>
-                                <option value="Monthly">Monthly</option>
-                            </select>
-
-                            <select id="quick-add-priority"
-                                style="padding: 0.5rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 1rem;">
-                                <option value="ORANGE">Orange (Flex Today)</option>
-                                <option value="RED">Red (Crucial)</option>
-                                <option value="GREEN">Green (Flexible)</option>
-                            </select>
-
-                            <button id="quick-add-btn">Add</button>
-                        </div>
-
-                        <!-- Priority Legend -->
-                        <div
-                            style="font-size: 0.8rem; display: flex; gap: 0.75rem; margin-bottom: 1rem; padding: 0.5rem; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: var(--radius-sm);">
-                            <div style="display:flex; align-items:center; gap: 4px;">
-                                <div style="width:10px; height:10px; border-radius:50%; background:var(--accent-red);">
-                                </div>
-                                <span style="color:var(--text-secondary);"><strong>Crucial</strong> (Strict
-                                    Time)</span>
-                            </div>
-                            <div style="display:flex; align-items:center; gap: 4px;">
-                                <div
-                                    style="width:10px; height:10px; border-radius:50%; background:var(--accent-orange);">
-                                </div>
-                                <span style="color:var(--text-secondary);"><strong>Flex Today</strong>
-                                    (Required)</span>
-                            </div>
-                            <div style="display:flex; align-items:center; gap: 4px;">
-                                <div
-                                    style="width:10px; height:10px; border-radius:50%; background:var(--accent-green);">
-                                </div>
-                                <span style="color:var(--text-secondary);"><strong>Flexible</strong>
-                                    (Moveable)</span>
-                            </div>
-                        </div>
-
-                        <!-- Accordion: Today's Tasks -->
-                        <div class="pool-accordion">
-                            <div class="pool-accordion-header expanded" data-pool="pool-today">
-                                <span>📅 TODAY'S TASKS</span>
-                                <span class="pool-toggle">▼</span>
-                            </div>
-                            <div class="pool-accordion-body drop-zone" id="pool-today" data-time="Unscheduled"
-                                style="display: block;">
-                                <!-- Populated by JS -->
-                            </div>
-                        </div>
-
-
-                        <!-- Accordion: Backlog / Future Tasks -->
-                        <div class="pool-accordion">
-                            <div class="pool-accordion-header" data-pool="pool-future">
-                                <span>🔮 BACKLOG</span>
-                                <span class="pool-toggle">►</span>
-                            </div>
-                            <div class="pool-accordion-body drop-zone" id="pool-future" data-time="Unscheduled"
-                                style="display: none;">
-                                <!-- Add item form -->
-                                <div style="display: flex; gap: 4px; margin-bottom: 4px;">
-                                    <input type="text" id="pool-future-input" placeholder="Add a future item..."
-                                        style="flex: 1; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 0.95rem;">
-                                    <button id="pool-future-add-btn"
-                                        style="padding: 4px 10px; background: #c0c0c0; border: 2px outset var(--win-highlight); font-family: 'VT323', monospace; cursor: pointer; font-weight: bold;">+</button>
-                                </div>
-                                <!-- Populated by JS -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right: The Timeline Drop Zones -->
-                    <div class="sub-panel">
-
-                        <!-- Coming Up This Week -->
-                        <div
-                            style="background: #ffffcc; border: 2px inset var(--win-shadow); padding: 0.5rem; margin-bottom: 0.75rem;">
-                            <h3
-                                style="color: #800000; font-family: 'Press Start 2P', monospace; font-size: 0.5rem; margin: 0 0 0.4rem 0;">
-                                📆 COMING UP THIS WEEK</h3>
-                            <div id="coming-up-this-week"
-                                style="display: flex; flex-direction: column; gap: 4px; font-family: 'VT323', monospace;">
-                                <div style="color: #808080; font-style: italic; font-size: 0.9rem;">Loading events...
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Template Schedule Controls -->
-                        <div
-                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                            <h3 style="margin: 0;"><span class="icon">⏱️</span> Timeline
-                                <span id="template-day-badge"
-                                    style="font-size: 0.75rem; padding: 2px 8px; border-radius: 3px; margin-left: 6px; font-weight: 600;"></span>
-                            </h3>
-                            <div style="display: flex; gap: 0.5rem;">
-                                <button id="reset-template-btn"
-                                    style="padding: 0.35rem 0.75rem; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: var(--accent-red); font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 3px;"
-                                    title="Reset today's schedule to the default template">🔄 Reset</button>
-                                <button id="edit-template-btn"
-                                    style="padding: 0.35rem 0.75rem; background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.4); color: #a855f7; font-family: 'VT323', monospace; font-size: 0.85rem; cursor: pointer; border-radius: 3px;"
-                                    title="Edit the default template for this day type">✏️ Edit Template</button>
-                                <button id="lock-in-btn" class="tab-btn active"
-                                    style="background: var(--accent-green); color: #000; padding: 0.35rem 0.75rem; border-radius: 3px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s;">
-                                    🔒 Lock In
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Template Colour Legend -->
-                        <div
-                            style="font-size: 0.8rem; display: flex; gap: 0.75rem; margin-bottom: 0.75rem; padding: 0.4rem 0.6rem; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 3px;">
-                            <div style="display:flex; align-items:center; gap: 4px;">
-                                <div style="width:10px; height:10px; border-radius:50%; background:#ef4444;"></div>
-                                <span style="color:var(--text-secondary);"><strong>Routine</strong></span>
-                            </div>
-                            <div style="display:flex; align-items:center; gap: 4px;">
-                                <div style="width:10px; height:10px; border-radius:50%; background:#a855f7;"></div>
-                                <span style="color:var(--text-secondary);"><strong>Ad-hoc</strong></span>
-                            </div>
-                            <div style="display:flex; align-items:center; gap: 4px;">
-                                <div style="width:10px; height:10px; border-radius:50%; background:#22c55e;"></div>
-                                <span style="color:var(--text-secondary);"><strong>Done</strong></span>
-                            </div>
-                        </div>
-
-                        <!-- Add Ad-hoc Item -->
-                        <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
-                            <input type="text" id="adhoc-input" placeholder="Add something to today..."
-                                style="flex-grow: 1; min-width: 0; padding: 0.4rem 0.6rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 0.95rem;">
-                            <select id="adhoc-time-select"
-                                style="padding: 0.4rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: 'VT323', monospace; font-size: 0.9rem;">
-                            </select>
-                            <button id="adhoc-add-btn"
-                                style="padding: 0.4rem 0.8rem; background: rgba(168,85,247,0.2); border: 1px solid #a855f7; color: #a855f7; font-family: 'VT323', monospace; font-size: 0.95rem; cursor: pointer; font-weight: bold;">+
-                                Add</button>
-                        </div>
-                        <div class="timeline" id="today-timeline">
-                            <!-- Half-hour Time Slots -->
-                            <div class="time-slot" data-time="06:00 AM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    06:00 AM</div>
-                                <div class="drop-zone" data-time="06:00 AM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="06:30 AM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    06:30 AM</div>
-                                <div class="drop-zone" data-time="06:30 AM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="07:00 AM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    07:00 AM</div>
-                                <div class="drop-zone" data-time="07:00 AM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="07:30 AM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    07:30 AM</div>
-                                <div class="drop-zone" data-time="07:30 AM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="08:00 AM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    08:00 AM</div>
-                                <div class="drop-zone" data-time="08:00 AM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="08:30 AM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    08:30 AM</div>
-                                <div class="drop-zone" data-time="08:30 AM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="09:00 AM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    09:00 AM</div>
-                                <div class="drop-zone" data-time="09:00 AM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="09:30 AM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    09:30 AM</div>
-                                <div class="drop-zone" data-time="09:30 AM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="10:00 AM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    10:00 AM</div>
-                                <div class="drop-zone" data-time="10:00 AM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="10:30 AM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    10:30 AM</div>
-                                <div class="drop-zone" data-time="10:30 AM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="11:00 AM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    11:00 AM</div>
-                                <div class="drop-zone" data-time="11:00 AM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="11:30 AM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    11:30 AM</div>
-                                <div class="drop-zone" data-time="11:30 AM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="12:00 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    12:00 PM</div>
-                                <div class="drop-zone" data-time="12:00 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="12:30 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    12:30 PM</div>
-                                <div class="drop-zone" data-time="12:30 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="01:00 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    01:00 PM</div>
-                                <div class="drop-zone" data-time="01:00 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="01:30 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    01:30 PM</div>
-                                <div class="drop-zone" data-time="01:30 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="02:00 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    02:00 PM</div>
-                                <div class="drop-zone" data-time="02:00 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="02:30 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    02:30 PM</div>
-                                <div class="drop-zone" data-time="02:30 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="03:00 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    03:00 PM</div>
-                                <div class="drop-zone" data-time="03:00 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="03:30 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    03:30 PM</div>
-                                <div class="drop-zone" data-time="03:30 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="04:00 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    04:00 PM</div>
-                                <div class="drop-zone" data-time="04:00 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="04:30 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    04:30 PM</div>
-                                <div class="drop-zone" data-time="04:30 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="05:00 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    05:00 PM</div>
-                                <div class="drop-zone" data-time="05:00 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="05:30 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    05:30 PM</div>
-                                <div class="drop-zone" data-time="05:30 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="06:00 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    06:00 PM</div>
-                                <div class="drop-zone" data-time="06:00 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="06:30 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    06:30 PM</div>
-                                <div class="drop-zone" data-time="06:30 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="07:00 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    07:00 PM</div>
-                                <div class="drop-zone" data-time="07:00 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="07:30 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    07:30 PM</div>
-                                <div class="drop-zone" data-time="07:30 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="08:00 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    08:00 PM</div>
-                                <div class="drop-zone" data-time="08:00 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="08:30 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    08:30 PM</div>
-                                <div class="drop-zone" data-time="08:30 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="09:00 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    09:00 PM</div>
-                                <div class="drop-zone" data-time="09:00 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="09:30 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    09:30 PM</div>
-                                <div class="drop-zone" data-time="09:30 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="10:00 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    10:00 PM</div>
-                                <div class="drop-zone" data-time="10:00 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="10:30 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    10:30 PM</div>
-                                <div class="drop-zone" data-time="10:30 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="11:00 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    11:00 PM</div>
-                                <div class="drop-zone" data-time="11:00 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                            <div class="time-slot" data-time="11:30 PM">
-                                <div class="slot-label"
-                                    style="width: 80px; font-weight: bold; color: var(--text-secondary); margin-top: 0.5rem;">
-                                    11:30 PM</div>
-                                <div class="drop-zone" data-time="11:30 PM"
-                                    style="flex-grow: 1; min-height: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                <!-- Colour Legend -->
+                <div style="display:flex; gap:1rem; margin-bottom:1rem; font-size:0.82rem; flex-wrap:wrap;">
+                    <span><span
+                            style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ef4444;margin-right:4px;"></span><strong>Red</strong>
+                        Routine</span>
+                    <span><span
+                            style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#f97316;margin-right:4px;"></span><strong>Orange</strong>
+                        Recurring</span>
+                    <span><span
+                            style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#a855f7;margin-right:4px;"></span><strong>Purple</strong>
+                        One-off</span>
                 </div>
+                <div id="schedule-week-grid" style="overflow-x:auto;"></div>
             </section>
 
-            <!-- Productivity & Gamification View -->
-            <section id="productivity" class="tab-content glass-panel">
-                <div class="section-header">
-                    <h2><span class="icon">📈</span> Productivity Metrics <span id="points-display"
-                            style="font-size: 1.25rem; font-weight: bold; color: var(--accent-green); margin-left: 1rem;">[0
-                            pts]</span>
-                    </h2>
-                    <p class="sub-text">Your 7-Day Rolling Gamification Score</p>
-                </div>
-
-                <div class="chart-container"
-                    style="position: relative; height: 250px; width:100%; margin-bottom: 2rem; background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-md); padding: 1rem;">
-                    <canvas id="productivityChart"></canvas>
-                </div>
-
-                <div class="workout-rules">
-                    <strong>🎮 Gamification System:</strong>
-                    Tick off tasks in your "Today's Schedule" and "Daily Candidates" lists to rack up points.
-                    Maximize
-                    your daily output and hold yourself accountable. Data is dual-synced via Supabase back into your
-                    local raw Excel Ledger.
-                </div>
-            </section>
 
             <!-- Finances View -->
             <section id="finances" class="tab-content glass-panel">
@@ -960,131 +519,157 @@
                 </div>
             </section>
 
-            <!-- Weekly/Monthly View -->
-            <section id="weekly" class="tab-content glass-panel">
+            <!-- Planner — Template Editor + Yearly Wall -->
+            <section id="planner" class="tab-content glass-panel">
                 <div class="section-header">
-                    <h2><span class="icon">📅</span> Weekly & Monthly Planner</h2>
+                    <h2><span class="icon">🗓️</span> Planner</h2>
+                    <p class="sub-text">Set up your weekly template, manage recurring tasks, and plot yearly events.</p>
                 </div>
 
-                <!-- Add Event Form -->
-                <div
-                    style="background: #ffffff; border: 2px inset var(--win-shadow); padding: 0.75rem; margin-bottom: 1rem;">
-                    <h3
-                        style="color: #000080; font-family: 'Press Start 2P', monospace; font-size: 0.55rem; margin-bottom: 0.5rem;">
-                        ➕ ADD EVENT</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: flex-end;">
-                        <div style="flex: 2 1 180px;">
-                            <label
-                                style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Title</label>
-                            <input type="text" id="event-title" placeholder="e.g. Dad's Birthday"
-                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem; box-sizing: border-box;">
-                        </div>
-                        <div style="flex: 1 1 130px;">
-                            <label style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Date</label>
-                            <input type="date" id="event-date"
-                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem; box-sizing: border-box;">
-                        </div>
-                        <div style="flex: 1 1 100px;">
-                            <label style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Time
-                                (opt)</label>
-                            <input type="time" id="event-time"
-                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem; box-sizing: border-box;">
-                        </div>
-                        <div style="flex: 1 1 100px;">
-                            <label
-                                style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Recurrence</label>
-                            <select id="event-recurrence"
-                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem;">
-                                <option value="once">One-Time</option>
-                                <option value="weekly">Weekly</option>
-                                <option value="monthly">Monthly</option>
-                                <option value="yearly">Yearly</option>
-                            </select>
-                        </div>
-                        <div style="flex: 0 1 80px;">
-                            <label
-                                style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Color</label>
-                            <select id="event-color"
-                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem;">
-                                <option value="BLUE">🔵 Blue</option>
-                                <option value="RED">🔴 Red</option>
-                                <option value="ORANGE">🟠 Orange</option>
-                                <option value="GREEN">🟢 Green</option>
-                                <option value="PURPLE">🟣 Purple</option>
-                            </select>
-                        </div>
-                        <div style="flex: 1 1 100px;">
-                            <label
-                                style="font-family: 'VT323', monospace; font-size: 0.9rem; color: #000;">Category</label>
-                            <select id="event-category"
-                                style="width: 100%; padding: 4px 6px; background: #fff; border: 2px inset var(--win-shadow); font-family: 'VT323', monospace; font-size: 1rem;">
-                                <option value="birthday">🎂 Birthday</option>
-                                <option value="appointment">📋 Appointment</option>
-                                <option value="deadline">⏰ Deadline</option>
-                                <option value="reminder">🔔 Reminder</option>
-                                <option value="other">📌 Other</option>
-                            </select>
-                        </div>
-                        <button id="add-event-btn"
-                            style="padding: 6px 16px; background: #008000; border: 2px outset #00ff00; color: #fff; font-family: 'VT323', monospace; font-size: 1.1rem; cursor: pointer; font-weight: bold; text-shadow: 1px 1px 0 #000;">
-                            Add Event
-                        </button>
-                    </div>
+                <!-- View Toggle -->
+                <div id="planner-view-toggle"
+                    style="display:flex; gap:0.5rem; margin-bottom:1.25rem; font-family:'VT323',monospace;">
+                    <button id="planner-view-template"
+                        style="padding:0.3rem 1.1rem; background:rgba(0,200,160,0.18); border:1px solid var(--accent-green); color:var(--accent-green); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px; font-weight:bold;">📋
+                        Template</button>
+                    <button id="planner-view-yearly"
+                        style="padding:0.3rem 1.1rem; background:transparent; border:1px solid var(--glass-border); color:var(--text-secondary); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px;">📌
+                        Yearly</button>
                 </div>
 
-                <!-- Calendar Views Grid -->
-                <div class="grid-2-col" style="margin-bottom: 1rem;">
-                    <!-- Week View -->
-                    <div class="sub-panel">
-                        <h3><span class="icon">📆</span> This Week</h3>
-                        <div id="calendar-week-view"
-                            style="background: #ffffff; border: 2px inset var(--win-shadow); padding: 0.5rem; min-height: 200px;">
-                            <!-- Populated by JS -->
-                        </div>
-                    </div>
-                    <!-- Month View -->
-                    <div class="sub-panel">
-                        <div
-                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                            <h3 style="margin: 0;"><span class="icon">🗓️</span> <span
-                                    id="calendar-month-title">February 2026</span></h3>
-                            <div>
-                                <button id="cal-prev-month"
-                                    style="background: #c0c0c0; border: 2px outset var(--win-highlight); cursor: pointer; padding: 2px 8px; font-family: 'VT323', monospace; font-weight: bold;">◄</button>
-                                <button id="cal-next-month"
-                                    style="background: #c0c0c0; border: 2px outset var(--win-highlight); cursor: pointer; padding: 2px 8px; font-family: 'VT323', monospace; font-weight: bold;">►</button>
-                            </div>
-                        </div>
-                        <div id="calendar-month-grid"
-                            style="background: #ffffff; border: 2px inset var(--win-shadow); padding: 0.25rem;">
-                            <!-- Populated by JS -->
-                        </div>
-                    </div>
-                </div>
+                <!-- Two-column layout: sidebar + main -->
+                <div class="planner-layout">
 
-                <!-- All Events List -->
-                <div class="sub-panel">
-                    <h3><span class="icon">📋</span> All Events</h3>
-                    <div id="all-events-list"
-                        style="background: #ffffff; border: 2px inset var(--win-shadow); padding: 0.5rem; max-height: 300px; overflow-y: auto;">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
+                    <!-- Sidebar -->
+                    <aside class="planner-sidebar">
+                        <!-- Mini Month Calendar -->
+                        <div class="planner-sidebar-card">
+                            <h4>📅 Calendar</h4>
+                            <div id="planner-mini-cal"></div>
+                        </div>
 
-                <!-- Existing Task Trackers -->
-                <div class="grid-2-col" style="margin-top: 1rem;">
-                    <div class="sub-panel">
-                        <h3>Weekly Reset Tasks</h3>
-                        <ul class="task-list" id="weekly-list"></ul>
+                        <!-- Tasks -->
+                        <div class="planner-sidebar-card">
+                            <h4>✅ Tasks</h4>
+                            <input id="planner-task-input" class="sidebar-task-input"
+                                placeholder="Add task, press Enter…" type="text">
+                            <ul id="planner-task-list" class="sidebar-task-list"></ul>
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="planner-sidebar-card">
+                            <h4>📝 Notes</h4>
+                            <textarea id="planner-notes-area" class="sidebar-notes-area"
+                                placeholder="Quick notes…"></textarea>
+                        </div>
+                    </aside>
+
+                    <!-- Main content -->
+                    <div class="planner-main">
+                        <!-- Section: Weekly Template + Recurring Tasks -->
+                        <div id="planner-template-section">
+                            <div id="planner-template-grid"></div>
+                            <div id="planner-recurring-manager" style="margin-top:2rem;"></div>
+                        </div>
+
+                        <!-- Section: Yearly Wall -->
+                        <div id="planner-yearly-section" style="display:none;">
+                            <div id="planner-yearly-grid"></div>
+                        </div>
                     </div>
-                    <div class="sub-panel">
-                        <h3>Monthly Audit Tasks</h3>
-                        <ul class="task-list" id="monthly-list"></ul>
-                    </div>
+
                 </div>
             </section>
 
-            <!-- Dog Protocol View -->
+            <!-- Block Edit Modal -->
+            <div id="block-modal"
+                style="display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
+                <div
+                    style="background:#1a1a2e; border:2px solid var(--accent-green); border-radius:8px; padding:1.5rem; min-width:320px; max-width:420px; font-family:'VT323',monospace;">
+                    <h3 id="block-modal-title" style="margin:0 0 1rem 0; color:var(--accent-yellow); font-size:1.3rem;">
+                        Add Block</h3>
+                    <div style="display:flex; flex-direction:column; gap:0.75rem;">
+                        <input id="block-label" type="text" placeholder="Block name (e.g. Morning Routine)"
+                            style="padding:0.4rem 0.6rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family:'VT323',monospace; font-size:1rem; border-radius:3px;">
+                        <div style="display:flex; gap:0.5rem;">
+                            <div style="flex:1;">
+                                <label style="font-size:0.8rem; color:var(--text-secondary);">Start</label>
+                                <input id="block-start" type="time"
+                                    style="width:100%; padding:0.4rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family:'VT323',monospace; font-size:1rem; border-radius:3px;">
+                            </div>
+                            <div style="flex:1;">
+                                <label style="font-size:0.8rem; color:var(--text-secondary);">End</label>
+                                <input id="block-end" type="time"
+                                    style="width:100%; padding:0.4rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family:'VT323',monospace; font-size:1rem; border-radius:3px;">
+                            </div>
+                        </div>
+                        <div>
+                            <label style="font-size:0.8rem; color:var(--text-secondary);">Colour</label>
+                            <div id="block-colour-picker"
+                                style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:4px;"></div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:0.5rem; margin-top:1.25rem; justify-content:flex-end;">
+                        <button id="block-modal-delete"
+                            style="display:none; padding:0.3rem 0.9rem; background:rgba(239,68,68,0.2); border:1px solid #ef4444; color:#ef4444; font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Delete</button>
+                        <button id="block-modal-cancel"
+                            style="padding:0.3rem 0.9rem; background:rgba(0,0,0,0.3); border:1px solid var(--glass-border); color:var(--text-secondary); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Cancel</button>
+                        <button id="block-modal-save"
+                            style="padding:0.3rem 0.9rem; background:rgba(52,211,153,0.2); border:1px solid var(--accent-green); color:var(--accent-green); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px; font-weight:bold;">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yearly Event Modal -->
+            <div id="event-modal"
+                style="display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
+                <div
+                    style="background:#1a1a2e; border:2px solid var(--accent-yellow); border-radius:8px; padding:1.5rem; min-width:320px; max-width:420px; font-family:'VT323',monospace;">
+                    <h3 id="event-modal-title" style="margin:0 0 1rem 0; color:var(--accent-yellow); font-size:1.3rem;">
+                        Add Event</h3>
+                    <div style="display:flex; flex-direction:column; gap:0.75rem;">
+                        <div style="display:flex; gap:0.5rem; align-items:center;">
+                            <select id="event-emoji"
+                                style="padding:0.4rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family:'VT323',monospace; font-size:1.1rem; border-radius:3px; width:70px;">
+                                <option>🎂</option>
+                                <option>✈️</option>
+                                <option>❤️</option>
+                                <option>⭐</option>
+                                <option>🎉</option>
+                                <option>💼</option>
+                                <option>🏥</option>
+                                <option>🎓</option>
+                                <option>🏖️</option>
+                                <option>📅</option>
+                            </select>
+                            <input id="event-label" type="text" placeholder="Event name"
+                                style="flex:1; padding:0.4rem 0.6rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; font-family:'VT323',monospace; font-size:1rem; border-radius:3px;">
+                        </div>
+                        <div>
+                            <label style="font-size:0.8rem; color:var(--text-secondary);">Colour</label>
+                            <div id="event-colour-picker"
+                                style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:4px;"></div>
+                        </div>
+                        <div style="display:flex; gap:1rem; align-items:center;">
+                            <label style="font-size:0.9rem; color:var(--text-secondary);">Repeat annually?</label>
+                            <input id="event-annual" type="checkbox" style="width:16px; height:16px; cursor:pointer;">
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:0.5rem; margin-top:1.25rem; justify-content:flex-end;">
+                        <button id="event-modal-delete"
+                            style="display:none; padding:0.3rem 0.9rem; background:rgba(239,68,68,0.2); border:1px solid #ef4444; color:#ef4444; font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Delete</button>
+                        <button id="event-modal-cancel"
+                            style="padding:0.3rem 0.9rem; background:rgba(0,0,0,0.3); border:1px solid var(--glass-border); color:var(--text-secondary); font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px;">Cancel</button>
+                        <button id="event-modal-save"
+                            style="padding:0.3rem 0.9rem; background:rgba(249,115,22,0.2); border:1px solid #f97316; color:#f97316; font-family:'VT323',monospace; font-size:1rem; cursor:pointer; border-radius:3px; font-weight:bold;">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            </section>
+
+
+
             <section id="dog" class="tab-content glass-panel">
                 <div class="section-header">
                     <h2><span class="icon">🐶</span> Quinny's Page</h2>
@@ -1265,6 +850,12 @@
                         <span class="bio-toggle">▼</span>
                     </div>
                     <div class="bio-accordion-body" id="bio-supplements-body" style="display: block;">
+                        <div style="margin-bottom: 1rem; display: flex; justify-content: flex-end;">
+                            <a href="reports/supplement_protocol_report.html" target="_blank" class="tab-btn" 
+                                style="text-decoration: none; font-size: 0.75rem; background: rgba(0, 229, 255, 0.1); border-color: var(--accent-blue); color: var(--accent-blue); padding: 4px 10px;">
+                                📄 View Full Report →
+                            </a>
+                        </div>
                         <div class="workout-rules" style="font-size: 0.85rem; margin-bottom: 1rem;">
                             <strong>⚠️ Critical:</strong> NAC — no Selenium blends (TSH borderline low).
                             Vit D load = 30,000IU/day — get 25(OH)D test at 8 weeks. ~16-18 total caps/day.
@@ -1648,140 +1239,7 @@
                             </div>
                         </div>
             </section>
-            <!-- Reminders View -->
-            <section id="reminders" class="tab-content glass-panel" style="border-color: rgba(251, 191, 36, 0.3);">
-                <div class="section-header">
-                    <h2><span class="icon">💡</span> Mental Load & Reminders</h2>
-                    <p class="sub-text" style="color: var(--accent-yellow);">Frequently forgotten items and
-                        household
-                        rules.</p>
-                </div>
 
-                <div class="sub-panel">
-                    <h3>Active Reminders</h3>
-                    <ul class="task-list" id="reminders-list" style="margin-top: 1rem;">
-                        <!-- Populated by JS -->
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Procurement (Wants vs Needs) View -->
-            <section id="procurement" class="tab-content glass-panel" style="border-color: rgba(56, 189, 248, 0.3);">
-                <div class="section-header">
-                    <h2><span class="icon">⚖️</span> Wants vs. Needs</h2>
-                    <p class="sub-text" style="color: var(--accent-blue);">Cognitive procurement filtering and AI
-                        advisory based on health & financial goals.</p>
-                </div>
-
-                <!-- Add Item Form -->
-                <div class="sub-panel" style="margin-bottom: 1.5rem; border-color: rgba(56, 189, 248, 0.3);">
-                    <h3 style="color: var(--accent-blue);">➕ Add New Item</h3>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem;">
-                        <input type="text" id="procurement-item-input"
-                            placeholder="What do you want/need? (e.g., New Running Shoes)"
-                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
-                        <input type="text" id="procurement-justification-input"
-                            placeholder="Why? (e.g., Current ones are worn out, causing shin splints)"
-                            style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
-                        <div style="display: flex; gap: 0.5rem;">
-                            <select id="procurement-category-input"
-                                style="flex: 1; padding: 0.4rem; background: rgba(0,0,0,0.3); border: 2px inset var(--win-shadow); color: #fff; font-family: 'VT323', monospace; font-size: 1rem;">
-                                <option value="NEED">🛡️ Need (Essential)</option>
-                                <option value="WANT">🎮 Want (Discretionary)</option>
-                            </select>
-                            <button id="add-procurement-btn" class="tab-btn active"
-                                style="margin: 0; padding: 0.4rem 1.5rem; background: rgba(52,211,153,0.2); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: 'VT323', monospace; font-size: 1rem;">+
-                                Add</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid-3-col">
-                    <!-- Column 1: Essential Needs -->
-                    <div class="sub-panel" style="border-color: rgba(52, 211, 153, 0.3);">
-                        <h3 style="color: var(--accent-green);"><span class="icon">🛡️</span> Essential Needs</h3>
-                        <div class="workout-rules"
-                            style="margin-top: 1rem; font-size: 0.85rem; border-left-color: var(--accent-green); background: rgba(52, 211, 153, 0.05);">
-                            <strong>Rule:</strong> Items must have a biological, structural, or high-yield financial
-                            justification.
-                        </div>
-                        <div id="needs-container"
-                            style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
-                            <!-- Populated by JS -->
-                        </div>
-                    </div>
-
-                    <!-- Column 2: Discretionary Wants -->
-                    <div class="sub-panel" style="border-color: rgba(251, 191, 36, 0.3);">
-                        <h3 style="color: var(--accent-yellow);"><span class="icon">🎮</span> Discretionary Wants
-                        </h3>
-                        <div class="workout-rules"
-                            style="margin-top: 1rem; font-size: 0.85rem; border-left-color: var(--accent-yellow); background: rgba(251, 191, 36, 0.05);">
-                            <strong>Rule:</strong> Purely recreational or luxury items. Lowest priority capital
-                            allocation.
-                        </div>
-                        <div id="wants-container"
-                            style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
-                            <!-- Populated by JS -->
-                        </div>
-                    </div>
-
-                    <!-- Column 3: Lobotto's Advisory -->
-                    <div class="sub-panel" style="border-color: rgba(192, 132, 252, 0.3);">
-                        <h3 style="color: var(--accent-purple);"><span class="icon">🧠</span> Lobotto's Advisory</h3>
-                        <div class="workout-rules"
-                            style="margin-top: 1rem; font-size: 0.85rem; border-left-color: var(--accent-purple); background: rgba(192, 132, 252, 0.05);">
-                            <strong>System:</strong> Cross-referencing requested items against the DNA Master
-                            Blueprint
-                            and current financial velocity.
-                        </div>
-                        <div id="lobotto-advisory-container"
-                            style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
-                            <!-- Populated by JS -->
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Ideas / Bucket List View -->
-            <section id="ideas" class="tab-content glass-panel" style="border-color: rgba(16, 185, 129, 0.3);">
-                <div class="section-header">
-                    <h2><span class="icon">💡</span> Ideas & Bucket List</h2>
-                    <p class="sub-text" style="color: var(--accent-green);">A brain dump for your brilliant ideas
-                        and
-                        long-term adventures.</p>
-                </div>
-
-                <div class="grid-2-col">
-                    <div class="sub-panel" style="border-color: rgba(56, 189, 248, 0.3);">
-                        <h3 style="color: var(--accent-blue);"><span class="icon">🍍</span> Bucket List</h3>
-                        <!-- Quick Add for Bucket List -->
-                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem; margin-bottom: 0.75rem;">
-                            <input type="text" id="quick-add-bucket" placeholder="Add a bucket list item..."
-                                style="flex-grow: 1; min-width: 0; padding: 0.5rem;">
-                            <button id="quick-add-bucket-btn" class="tab-btn">Add</button>
-                        </div>
-                        <ul class="task-list" id="bucket-list" style="margin-top: 1rem;">
-                            <li>
-                                <div class="checkbox"></div>
-                                <div class="task-content">Walk the full Pineapple Track</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="sub-panel" style="border-color: rgba(251, 191, 36, 0.3);">
-                        <h3 style="color: var(--accent-yellow);"><span class="icon">🧠</span> Brain Dump</h3>
-                        <!-- Quick Add for Brain Dump -->
-                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem; margin-bottom: 0.75rem;">
-                            <input type="text" id="quick-add-braindump" placeholder="Dump a random thought..."
-                                style="flex-grow: 1; min-width: 0; padding: 0.5rem;">
-                            <button id="quick-add-braindump-btn" class="tab-btn">Dump</button>
-                        </div>
-                        <ul class="task-list" id="braindump-list" style="margin-top: 1rem;">
-                            <!-- Populated dynamically or left empty initially -->
-                        </ul>
-                    </div>
-                </div>
-            </section>
 
             <!-- User Manual View -->
             <section id="manual" class="tab-content">
@@ -1871,8 +1329,7 @@
                                 attacking vulnerable arteries (9p21).<br><br>
                                 <strong>Mitigation:</strong>
                                 <ul style="margin: 0.5rem 0 0 0;">
-                                    <li>Immediately take 1200mg NAC + 2 caps Phloe (sponges oxidative stress & seals
-                                        gut).</li>
+                                    <li>Immediately take 1200mg NAC (sponges oxidative stress & protects liver).</li>
                                     <li>Do 20 mins of heavy resistance/sprints. Use ADRB2 adrenaline receptors to force
                                         the body to burn the glucose rather than storing it.</li>
                                 </ul>
@@ -2031,7 +1488,145 @@
                     style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
                     <!-- Tracked supplements populated by JS -->
                 </div>
-            </section>
+            </section><!-- /supps -->
+
+            <!-- Misc — Life Design Canvas -->
+            <section id="misc" class="tab-content glass-panel">
+                <div class="section-header">
+                    <h2><span class="icon">✦</span> Misc</h2>
+                    <p class="sub-text">Life design experiments, challenges, and reference documents.</p>
+                </div>
+
+                <!-- Ideal Week Challenge -->
+                <div style="margin-bottom: 2rem;">
+                    <div style="display:flex; align-items:baseline; gap:0.75rem; margin-bottom:0.5rem;">
+                        <h3
+                            style="font-family:'VT323',monospace; font-size:1.4rem; color:var(--accent-green); letter-spacing:1px; margin:0;">
+                            🗓️ THE IDEAL WEEK</h3>
+                        <span style="font-size:0.85rem; color:var(--text-secondary);">Target · Asleep by 12:00 AM every
+                            night</span>
+                    </div>
+                    <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1.25rem; line-height:1.6;">
+                        Built around your actual roster (Mon 12–6 PM · Fri–Sat 2:45–11 PM · Sun 11–5 PM) and your DNA
+                        blueprint: deep work in the morning cortisol peak, exercise mid-morning or afternoon, caffeine
+                        cut at 10 AM, wind-down ritual at 9 PM.</p>
+
+                    <!-- Legend -->
+                    <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.5rem;">
+                        <span
+                            style="font-size:0.8rem; padding:2px 10px; border-left:3px solid #38bdf8; background:rgba(56,189,248,0.08); border-radius:2px; color:var(--text-secondary);">Kids
+                            / Family</span>
+                        <span
+                            style="font-size:0.8rem; padding:2px 10px; border-left:3px solid #00c9a0; background:rgba(0,200,160,0.08); border-radius:2px; color:var(--text-secondary);">Deep
+                            Work</span>
+                        <span
+                            style="font-size:0.8rem; padding:2px 10px; border-left:3px solid #c084fc; background:rgba(192,132,252,0.08); border-radius:2px; color:var(--text-secondary);">Nap</span>
+                        <span
+                            style="font-size:0.8rem; padding:2px 10px; border-left:3px solid #fbbf24; background:rgba(251,191,36,0.08); border-radius:2px; color:var(--text-secondary);">Work
+                            Shift</span>
+                        <span
+                            style="font-size:0.8rem; padding:2px 10px; border-left:3px solid #fb923c; background:rgba(251,146,60,0.08); border-radius:2px; color:var(--text-secondary);">Exercise</span>
+                        <span
+                            style="font-size:0.8rem; padding:2px 10px; border-left:3px solid #f472b6; background:rgba(244,114,182,0.08); border-radius:2px; color:var(--text-secondary);">Personal
+                            / Quinn</span>
+                        <span
+                            style="font-size:0.8rem; padding:2px 10px; border-left:3px solid #a78bfa; background:rgba(167,139,250,0.08); border-radius:2px; color:var(--text-secondary);">Wind
+                            Down</span>
+                        <span
+                            style="font-size:0.8rem; padding:2px 10px; border-left:3px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.03); border-radius:2px; color:var(--text-secondary);">Routine</span>
+                        <span
+                            style="font-size:0.8rem; padding:2px 10px; border-left:3px solid #4ade80; background:rgba(74,222,128,0.08); border-radius:2px; color:var(--text-secondary);">Cannabis</span>
+                    </div>
+
+                    <!-- Day Grid — rendered by _misc.js -->
+                    <div id="ideal-week-grid"
+                        style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:1rem;">
+                    </div>
+
+                    <!-- Cannabis Protocol Summary -->
+                    <div style="margin-top: 2rem;">
+                        <div id="cannabis-protocol-header"
+                            style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.2); border-radius: 6px;"
+                            onclick="(function(h){var b=document.getElementById('cannabis-protocol-body');var t=h.querySelector('.cp-toggle');if(b.style.display==='none'){b.style.display='block';t.textContent='▼'}else{b.style.display='none';t.textContent='►'}})(this)">
+                            <span style="font-weight: 700; color: #4ade80; font-size: 0.95rem;">🌿 Cannabis Protocol
+                                <span
+                                    style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 400;">DNA-Optimized</span></span>
+                            <span class="cp-toggle" style="color: #4ade80;">►</span>
+                        </div>
+                        <div id="cannabis-protocol-body"
+                            style="display: none; margin-top: 0.75rem; padding: 1rem; background: rgba(4,18,18,0.6); border: 1px solid var(--glass-border); border-radius: 4px;">
+
+                            <!-- Gene Interactions -->
+                            <h4 style="color: #4ade80; margin: 0 0 0.75rem; font-size: 0.9rem;">Gene Interactions</h4>
+                            <div
+                                style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.5rem; margin-bottom: 1.25rem;">
+                                <div
+                                    style="font-size: 0.78rem; color: var(--text-secondary); padding: 6px 10px; background: rgba(255,255,255,0.03); border-radius: 3px; border-left: 2px solid #4ade80; line-height: 1.5;">
+                                    <strong style="color: var(--text-primary);">COMT G/G</strong> — Fast dopamine
+                                    clearance. Shorter THC peak, faster recovery. Low anxiety risk.
+                                </div>
+                                <div
+                                    style="font-size: 0.78rem; color: var(--text-secondary); padding: 6px 10px; background: rgba(255,255,255,0.03); border-radius: 3px; border-left: 2px solid #fbbf24; line-height: 1.5;">
+                                    <strong style="color: var(--text-primary);">CYP1A2 A/C</strong> — Slow metabolizer.
+                                    Edibles hit harder/longer. Inhaled more predictable.
+                                </div>
+                                <div
+                                    style="font-size: 0.78rem; color: var(--text-secondary); padding: 6px 10px; background: rgba(255,255,255,0.03); border-radius: 3px; border-left: 2px solid #38bdf8; line-height: 1.5;">
+                                    <strong style="color: var(--text-primary);">TNF-α A/G</strong> — High inflammation
+                                    baseline. CBD anti-inflammatory benefit above average.
+                                </div>
+                                <div
+                                    style="font-size: 0.78rem; color: var(--text-secondary); padding: 6px 10px; background: rgba(255,255,255,0.03); border-radius: 3px; border-left: 2px solid #a78bfa; line-height: 1.5;">
+                                    <strong style="color: var(--text-primary);">SIRT1 C/C</strong> — THC suppresses REM.
+                                    Stacks with disrupted circadian. 2h+ buffer before sleep.
+                                </div>
+                                <div
+                                    style="font-size: 0.78rem; color: var(--text-secondary); padding: 6px 10px; background: rgba(255,255,255,0.03); border-radius: 3px; border-left: 2px solid #f87171; line-height: 1.5;">
+                                    <strong style="color: var(--text-primary);">GSTP1 A/G</strong> — Slower phase II
+                                    detox. Daily heavy use stresses liver. Moderation required.
+                                </div>
+                            </div>
+
+                            <!-- Schedule -->
+                            <h4 style="color: #4ade80; margin: 0 0 0.5rem; font-size: 0.9rem;">Weekly Schedule</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem;">
+                                <span
+                                    style="font-size: 0.75rem; padding: 3px 10px; border-radius: 3px; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.25); color: #f87171;">Mon
+                                    ✕</span>
+                                <span
+                                    style="font-size: 0.75rem; padding: 3px 10px; border-radius: 3px; background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.3); color: #4ade80; font-weight: 600;">Tue
+                                    ✓</span>
+                                <span
+                                    style="font-size: 0.75rem; padding: 3px 10px; border-radius: 3px; background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.3); color: #4ade80; font-weight: 600;">Wed
+                                    ✓</span>
+                                <span
+                                    style="font-size: 0.75rem; padding: 3px 10px; border-radius: 3px; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.25); color: #f87171;">Thu
+                                    ✕</span>
+                                <span
+                                    style="font-size: 0.75rem; padding: 3px 10px; border-radius: 3px; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.25); color: #f87171;">Fri
+                                    ✕</span>
+                                <span
+                                    style="font-size: 0.75rem; padding: 3px 10px; border-radius: 3px; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.25); color: #f87171;">Sat
+                                    ✕</span>
+                                <span
+                                    style="font-size: 0.75rem; padding: 3px 10px; border-radius: 3px; background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.3); color: #4ade80; font-weight: 600;">Sun
+                                    ✓</span>
+                            </div>
+
+                            <!-- Rules -->
+                            <div
+                                style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.6; padding: 8px 12px; background: rgba(74,222,128,0.04); border: 1px solid rgba(74,222,128,0.1); border-radius: 4px;">
+                                <strong style="color: #4ade80;">Rules:</strong>
+                                2–3 nights/week max · Evenings only, after kids' bedtime (~20:30) · 2+ hours before
+                                sleep target · Off days preferred (recovery benefit from TNF-α suppression) · No use on
+                                work-night closings or early-sleep days
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section><!-- /misc -->
 
         </main>
     </div>
@@ -2040,6 +1635,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="retro-audio.js"></script>
     <script src="symphony-app.js?v=5"></script>
+    <script src="_planner_v2.js?v=1"></script>
+    <script src="_planner_sidebar.js?v=1"></script>
+    <script src="_misc.js?v=1"></script>
 
     <!-- Standalone Quinny handlers (runs independently of main script) -->
     <script>
@@ -2961,3 +2559,1544 @@
 </body>
 
 </html>
+
+
+===============
+FILE: styles.css
+===============
+/* ============================================
+   LIFE HUB — AURORA TEAL THEME
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Core palette */
+    --bg-primary:       #061414;
+    --bg-deep:          #030d0d;
+    --glass-bg:         rgba(6, 28, 28, 0.72);
+    --glass-bg-light:   rgba(10, 40, 38, 0.55);
+    --glass-border:     rgba(0, 200, 160, 0.15);
+    --glass-border-hot: rgba(0, 210, 175, 0.35);
+
+    /* Accent colours */
+    --accent-green:     #00c9a0;
+    --accent-teal:      #0d9488;
+    --accent-blue:      #38bdf8;
+    --accent-purple:    #a78bfa;
+    --accent-yellow:    #fbbf24;
+    --accent-red:       #f87171;
+    --accent-orange:    #fb923c;
+    --accent-magenta:   #f472b6;
+    --accent-coral:     #f87171;
+
+    /* Text */
+    --text-primary:     rgba(220, 245, 240, 0.92);
+    --text-secondary:   rgba(160, 210, 200, 0.6);
+    --text-dim:         rgba(100, 160, 150, 0.45);
+
+    /* Win95 compat vars (used by inline JS‐generated styles) */
+    --win-highlight:    rgba(0,200,160,0.3);
+    --win-shadow:       rgba(0,0,0,0.5);
+    --win-dark-shadow:  rgba(0,0,0,0.8);
+    --bg-panel:         var(--glass-bg);
+
+    /* Geometry */
+    --radius-lg:  6px;
+    --radius-md:  4px;
+    --radius-sm:  2px;
+
+    --transition-smooth: all 0.2s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ── Body + Aurora Background ─────────────────── */
+body {
+    font-family: 'VT323', monospace;
+    background-color: var(--bg-primary);
+    background-image:
+        radial-gradient(ellipse 80% 50% at 60% -5%,  rgba(0, 180, 130, 0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 35% at 15% 8%,   rgba(0, 140, 200, 0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 120% 80% at 50% 100%, rgba(3, 20, 20, 0.9)   0%, transparent 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+    line-height: 1.6;
+    font-size: 18px;
+}
+
+/* Aurora animated wisps */
+.background-effects {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.blur-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.12;
+    animation: drift 18s ease-in-out infinite alternate;
+}
+
+.blur-blob:nth-child(1) {
+    width: 500px; height: 300px;
+    background: radial-gradient(ellipse, #00c9a0, transparent);
+    top: -80px; left: 55%;
+    animation-duration: 20s;
+}
+.blur-blob:nth-child(2) {
+    width: 350px; height: 200px;
+    background: radial-gradient(ellipse, #0891b2, transparent);
+    top: -40px; left: 10%;
+    animation-duration: 25s;
+    animation-delay: -8s;
+}
+.blur-blob:nth-child(3) {
+    width: 250px; height: 180px;
+    background: radial-gradient(ellipse, #0d9488, transparent);
+    top: 60px; left: 35%;
+    animation-duration: 30s;
+    animation-delay: -14s;
+    opacity: 0.08;
+}
+
+@keyframes drift {
+    from { transform: translateX(0) translateY(0) scale(1); }
+    to   { transform: translateX(40px) translateY(20px) scale(1.1); }
+}
+
+/* ── Layout ───────────────────────────────────── */
+.app-container {
+    width: 100%;
+    max-width: 1100px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Glass Panels ─────────────────────────────── */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    box-shadow:
+        0 4px 24px rgba(0,0,0,0.4),
+        inset 0 1px 0 rgba(0,200,160,0.08);
+    color: var(--text-primary);
+    transition: border-color 0.2s;
+}
+
+.glass-panel:hover {
+    border-color: var(--glass-border-hot);
+}
+
+/* ── Header ───────────────────────────────────── */
+header.glass-panel {
+    background: linear-gradient(135deg,
+        rgba(6, 30, 28, 0.9) 0%,
+        rgba(10, 45, 40, 0.85) 100%);
+    border-color: rgba(0, 200, 160, 0.25);
+    text-align: center;
+}
+
+/* Remove Under Construction banner */
+header.glass-panel::after {
+    display: none;
+}
+
+header h1 {
+    font-family: 'VT323', monospace;
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin: 0.4rem 0 0.2rem 0;
+    color: var(--accent-green);
+    text-shadow: 0 0 20px rgba(0, 200, 160, 0.35);
+    letter-spacing: 3px;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: var(--accent-green);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.date-display {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    justify-content: center;
+}
+
+.badge {
+    background: rgba(0, 200, 160, 0.15);
+    color: var(--accent-green);
+    padding: 0.2rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    border: 1px solid rgba(0, 200, 160, 0.3);
+    font-weight: bold;
+    animation: none;
+}
+
+/* ── Tabs ─────────────────────────────────────── */
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px;
+    background: rgba(4, 18, 18, 0.7);
+    padding: 4px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+.tab-btn {
+    flex: 0 1 auto;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-sm);
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+
+.tab-btn:hover {
+    color: var(--text-primary);
+    background: rgba(0, 200, 160, 0.08);
+    border-color: var(--glass-border);
+}
+
+.tab-btn:active {
+    background: rgba(0, 200, 160, 0.15);
+}
+
+.tab-btn.active {
+    background: rgba(0, 200, 160, 0.18);
+    color: var(--accent-green);
+    border-color: rgba(0, 200, 160, 0.4);
+    font-weight: bold;
+}
+
+/* ── Content ──────────────────────────────────── */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.2s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.75rem;
+}
+
+.section-header h2 {
+    font-family: 'VT323', monospace;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.4rem;
+    color: var(--accent-green);
+    letter-spacing: 1px;
+}
+
+.sub-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 0.2rem;
+}
+
+/* ── Progress ─────────────────────────────────── */
+.progress-container {
+    width: 200px;
+    height: 8px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--glass-border);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-teal), var(--accent-green));
+    width: 0%;
+    transition: width 0.4s ease;
+    border-radius: 2px;
+}
+
+/* ── Sub-panels ───────────────────────────────── */
+.sub-panel {
+    background: rgba(4, 20, 20, 0.5);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+}
+
+.sub-panel h3 {
+    margin-bottom: 0.5rem;
+    color: var(--accent-green);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'VT323', monospace;
+    font-weight: 400;
+}
+
+/* ── Timeline ─────────────────────────────────── */
+.timeline {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 7px;
+    width: 1px;
+    background: linear-gradient(180deg,
+        var(--accent-green) 0%,
+        var(--accent-teal) 50%,
+        transparent 100%);
+    opacity: 0.4;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 1.25rem;
+    cursor: pointer;
+}
+
+.timeline-item:last-child { margin-bottom: 0; }
+
+.timeline-item::before {
+    content: '◆';
+    position: absolute;
+    top: 3px;
+    left: -1.7rem;
+    color: var(--accent-teal);
+    font-size: 10px;
+    opacity: 0.7;
+}
+
+.timeline-item.completed::before {
+    content: '✔';
+    color: var(--accent-green);
+    opacity: 1;
+}
+
+.timeline-item.completed .time,
+.timeline-item.completed .task-title {
+    opacity: 0.4;
+    text-decoration: line-through;
+}
+
+.time {
+    font-size: 0.9rem;
+    color: var(--accent-teal);
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+    display: block;
+}
+
+.task-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.task-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 0.2rem;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    background: rgba(0, 200, 160, 0.12);
+    border: 1px solid rgba(0, 200, 160, 0.25);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+    color: var(--accent-green);
+}
+
+.tag.break {
+    color: var(--accent-blue);
+    background: rgba(56, 189, 248, 0.1);
+    border-color: rgba(56, 189, 248, 0.25);
+}
+
+/* ── Task Lists ───────────────────────────────── */
+.task-list {
+    list-style: none;
+}
+
+.task-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.6rem 0.8rem;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.4rem;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.task-list li:hover {
+    background: rgba(0, 200, 160, 0.06);
+    border-color: var(--glass-border-hot);
+}
+
+.checkbox {
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--glass-border-hot);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 3px;
+    background: rgba(0,0,0,0.3);
+    flex-shrink: 0;
+    transition: background 0.15s;
+}
+
+.checkbox.checked {
+    background: rgba(0, 200, 160, 0.3);
+    border-color: var(--accent-green);
+}
+
+.checkbox.checked::after {
+    content: '✓';
+    color: var(--accent-green);
+    font-size: 12px;
+}
+
+.task-content {
+    flex: 1;
+    color: var(--text-primary);
+}
+
+.task-list li.completed .task-content {
+    opacity: 0.4;
+    text-decoration: line-through;
+}
+
+/* ── Grids ────────────────────────────────────── */
+.grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.grid-3-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.75rem;
+}
+
+/* ── Workout ──────────────────────────────────── */
+.workout-card {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--glass-border);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    transition: border-color 0.15s;
+}
+
+.workout-card:hover {
+    border-color: var(--glass-border-hot);
+}
+
+.workout-focus {
+    font-size: 1rem;
+    color: var(--accent-teal);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+.workout-list {
+    list-style: none;
+    font-size: 1rem;
+}
+
+.workout-list li {
+    margin-bottom: 0.4rem;
+    padding-left: 1.2rem;
+    position: relative;
+    color: var(--text-primary);
+}
+
+.workout-list li::before {
+    content: "▸";
+    color: var(--accent-teal);
+    position: absolute;
+    left: 0;
+    font-size: 0.85em;
+}
+
+.workout-rules {
+    background: rgba(0, 200, 160, 0.05);
+    border-left: 3px solid var(--accent-teal);
+    padding: 0.75rem 1rem;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+}
+
+/* ── Briefing ─────────────────────────────────── */
+.briefing-content {
+    background: rgba(0,0,0,0.25);
+    border: 1px solid var(--glass-border);
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-height: 400px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    margin-top: 0.75rem;
+    color: var(--text-primary);
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+/* ── Today Grid ───────────────────────────────── */
+.today-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* ── Lock Screen ──────────────────────────────── */
+.lock-container {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.password-input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+#password-input {
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--glass-border-hot);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    font-family: 'VT323', monospace;
+}
+
+#password-input:focus {
+    outline: none;
+    border-color: var(--accent-green);
+    box-shadow: 0 0 0 2px rgba(0, 200, 160, 0.15);
+}
+
+.error-msg {
+    color: var(--accent-red);
+    font-size: 1rem;
+    margin-top: 0.75rem;
+    border: 1px solid rgba(248, 113, 113, 0.3);
+    background: rgba(248, 113, 113, 0.08);
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+}
+
+/* ── Scrollbar ────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 200, 160, 0.25);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 200, 160, 0.4);
+}
+
+/* ── Drag and Drop ────────────────────────────── */
+.draggable-task {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem;
+    cursor: grab;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    user-select: none;
+    color: var(--text-primary);
+}
+
+.draggable-task:active { cursor: grabbing; }
+
+.draggable-task.dragging {
+    opacity: 0.6;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    border-color: var(--accent-teal);
+    z-index: 100;
+}
+
+.drop-zone.drag-over {
+    background-color: rgba(0, 200, 160, 0.06) !important;
+    border: 1px dashed var(--accent-teal) !important;
+}
+
+/* ── Quick Add ────────────────────────────────── */
+#quick-add-input {
+    background: rgba(0,0,0,0.35) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: var(--text-primary) !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 1.1rem !important;
+    border-radius: var(--radius-sm) !important;
+}
+
+#quick-add-input:focus {
+    border-color: var(--accent-teal) !important;
+    outline: none !important;
+}
+
+#quick-add-btn {
+    background: rgba(0, 200, 160, 0.15) !important;
+    border: 1px solid rgba(0, 200, 160, 0.3) !important;
+    color: var(--accent-green) !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 1.1rem !important;
+    border-radius: var(--radius-sm) !important;
+    cursor: pointer;
+}
+
+#quick-add-btn:hover {
+    background: rgba(0, 200, 160, 0.25) !important;
+}
+
+/* ── Lock-In Button ───────────────────────────── */
+#lock-in-btn {
+    background: rgba(0, 200, 160, 0.15);
+    border: 1px solid rgba(0, 200, 160, 0.35);
+    color: var(--accent-green);
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    padding: 0.3rem 1rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+#lock-in-btn:hover {
+    background: rgba(0, 200, 160, 0.25);
+}
+
+/* ── Planner Sidebar Layout ────────────────────── */
+.planner-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 1.25rem;
+    align-items: start;
+}
+
+.planner-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: sticky;
+    top: 1rem;
+}
+
+.planner-sidebar-card {
+    background: rgba(4, 20, 20, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 0.85rem;
+}
+
+.planner-sidebar-card h4 {
+    font-family: 'VT323', monospace;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+/* Mini Calendar */
+.mini-cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    font-size: 0.8rem;
+}
+
+.mini-cal-day-header {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    padding: 2px 0;
+}
+
+.mini-cal-cell {
+    text-align: center;
+    padding: 3px 1px;
+    border-radius: 2px;
+    cursor: default;
+    color: var(--text-secondary);
+    transition: background 0.1s;
+}
+
+.mini-cal-cell.today {
+    background: rgba(0, 200, 160, 0.25);
+    color: var(--accent-green);
+    font-weight: bold;
+    border-radius: 2px;
+}
+
+.mini-cal-cell.other-month {
+    opacity: 0.25;
+}
+
+.mini-cal-month-label {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--accent-green);
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+/* Sidebar Tasks */
+.sidebar-task-input {
+    width: 100%;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: 'VT323', monospace;
+    font-size: 0.95rem;
+    padding: 0.3rem 0.5rem;
+    margin-bottom: 0.5rem;
+    outline: none;
+}
+
+.sidebar-task-input:focus {
+    border-color: var(--accent-teal);
+}
+
+.sidebar-task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    max-height: 160px;
+    overflow-y: auto;
+}
+
+.sidebar-task-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 3px 4px;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+}
+
+.sidebar-task-item input[type="checkbox"] {
+    accent-color: var(--accent-green);
+    cursor: pointer;
+}
+
+.sidebar-task-item span {
+    flex: 1;
+}
+
+.sidebar-task-item.done span {
+    text-decoration: line-through;
+    opacity: 0.4;
+}
+
+.sidebar-task-item button {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 0.75rem;
+    padding: 0 2px;
+    opacity: 0;
+    transition: opacity 0.1s;
+}
+
+.sidebar-task-item:hover button {
+    opacity: 1;
+}
+
+/* Sidebar Notes */
+.sidebar-notes-area {
+    width: 100%;
+    min-height: 90px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: 'VT323', monospace;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.5rem;
+    resize: vertical;
+    outline: none;
+    line-height: 1.5;
+}
+
+.sidebar-notes-area:focus {
+    border-color: var(--accent-teal);
+}
+
+/* ── Bio Tracking Accordion ───────────────────── */
+.bio-accordion-header {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* ── General Input / Select overrides ─────────── */
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="time"],
+input[type="date"],
+select,
+textarea {
+    background: rgba(0,0,0,0.35);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: 'VT323', monospace;
+    padding: 0.35rem 0.5rem;
+    font-size: 1rem;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="time"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--accent-teal);
+    box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.15);
+}
+
+select {
+    cursor: pointer;
+}
+
+select option {
+    background: #061814;
+    color: var(--text-primary);
+}
+
+/* ── Responsive ───────────────────────────────── */
+@media (max-width: 1024px) {
+    .today-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .grid-2-col { grid-template-columns: 1fr; }
+    .planner-layout { grid-template-columns: 1fr; }
+    .planner-sidebar { position: static; }
+}
+
+@media (max-width: 768px) {
+    .grid-2-col, .grid-3-col { grid-template-columns: 1fr; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .tabs { flex-direction: column; }
+    .today-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+    .slot-label { width: 55px !important; font-size: 0.7rem !important; }
+    .draggable-task { font-size: 0.85rem; padding: 0.35rem; }
+    .section-header h2 { font-size: 1.1rem; }
+    .sub-panel h3 { font-size: 0.9rem !important; }
+    .app-container, .glass-panel, .sub-panel, .pool-accordion-body {
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 480px) {
+    .slot-label { width: 50px !important; font-size: 0.6rem !important; }
+    .draggable-task { font-size: 0.8rem; padding: 0.25rem; }
+    .section-header h2 { font-size: 0.95rem; }
+    .sub-panel h3 { font-size: 0.75rem !important; }
+    .coming-up-event { font-size: 0.85rem; padding: 2px 4px; }
+}
+
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+
+===============
+FILE: shadow.html
+===============
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Protocol | The Life Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Aurora Teal / Indigo Specific Overrides */
+        :root {
+            --aurora-teal: #0d9488;
+            --aurora-teal-glow: rgba(13, 148, 136, 0.4);
+            --aurora-indigo: #6366f1;
+            --aurora-indigo-glow: rgba(99, 102, 241, 0.4);
+            --bg-deep: #0f172a;
+        }
+
+        body {
+            background: var(--bg-deep);
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* Ambient background glow */
+        .aurora-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 15% 50%, rgba(13, 148, 136, 0.15), transparent 40%),
+                        radial-gradient(circle at 85% 30%, rgba(99, 102, 241, 0.15), transparent 40%);
+        }
+        
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.6;
+            border-radius: 50%;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        .blob-teal { width: 40vw; height: 40vw; background: var(--aurora-teal-glow); top: -10%; left: -10%; }
+        .blob-indigo { width: 35vw; height: 35vw; background: var(--aurora-indigo-glow); bottom: -10%; right: -10%; animation-delay: -10s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(5%, 10%) scale(1.1); }
+        }
+
+        .glass-panel-teal {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .glass-panel-teal:hover {
+            box-shadow: 0 8px 32px rgba(13, 148, 136, 0.15);
+            border-color: rgba(13, 148, 136, 0.3);
+        }
+
+        /* Teeter Totter CSS */
+        .seesaw-container {
+            position: relative;
+            height: 100px;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .seesaw-board {
+            width: 80%;
+            height: 8px;
+            background: linear-gradient(90deg, #e2e8f0, #475569);
+            position: absolute;
+            border-radius: 4px;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+            transform: rotate(0deg);
+            z-index: 2;
+        }
+        .seesaw-fulcrum {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 40px solid var(--aurora-teal);
+            position: absolute;
+            bottom: 10px;
+            z-index: 1;
+        }
+        .seesaw-weight {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            position: absolute;
+            top: -30px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+        .weight-left { left: 5%; background: #f8fafc; color: #000; } /* Persona */
+        .weight-right { right: 5%; background: #1e293b; border: 2px solid var(--aurora-teal); } /* Shadow */
+
+        /* Trigger Journal */
+        .journal-textarea {
+            width: 100%;
+            min-height: 150px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #f8fafc;
+            font-family: 'Outfit', sans-serif;
+            padding: 1rem;
+            border-radius: 8px;
+            resize: vertical;
+            margin-top: 1rem;
+            transition: border-color 0.3s;
+        }
+        .journal-textarea:focus {
+            outline: none;
+            border-color: var(--aurora-indigo);
+            box-shadow: 0 0 15px var(--aurora-indigo-glow);
+        }
+
+        .btn-teal {
+            background: rgba(13, 148, 136, 0.2);
+            border: 1px solid var(--aurora-teal);
+            color: var(--aurora-teal);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'VT323', monospace;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+        .btn-teal:hover {
+            background: rgba(13, 148, 136, 0.4);
+            box-shadow: 0 0 10px var(--aurora-teal-glow);
+            color: #fff;
+        }
+
+        /* Chair Exercise */
+        .chair-tabs { display: flex; gap: 1rem; margin-bottom: 1rem; }
+        .chair-tab {
+            flex: 1; padding: 1rem; text-align: center;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px; cursor: pointer;
+            transition: all 0.3s;
+        }
+        .chair-tab.active { background: rgba(99, 102, 241, 0.2); border-color: var(--aurora-indigo); }
+        .chair-content { display: none; }
+        .chair-content.active { display: block; animation: fadeIn 0.4s; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .genetic-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            margin-right: 0.5rem;
+            font-family: 'VT323', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="aurora-bg">
+        <div class="blob blob-teal"></div>
+        <div class="blob blob-indigo"></div>
+    </div>
+
+    <div class="app-container" style="max-width: 900px; margin: 0 auto; padding: 2rem;">
+        <header class="glass-panel-teal" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h1 style="margin: 0; font-size: 2rem; background: linear-gradient(90deg, #5eead4, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Shadow Protocol</h1>
+                <p style="margin: 0.25rem 0 0 0; color: #94a3b8; font-size: 0.9rem;">Robert A. Johnson Framework | Loner Empath Integration</p>
+                <div style="margin-top: 0.5rem;">
+                    <span class="genetic-tag">OXTR A/A</span>
+                    <span class="genetic-tag" style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.3); color: #fcd34d;">COMT G/G</span>
+                    <span class="genetic-tag" style="background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.3); color: #93c5fd;">TNF-Alpha</span>
+                </div>
+            </div>
+            <a href="index.html" class="btn-teal" style="text-decoration: none; border-color: rgba(255,255,255,0.2); color: #e2e8f0;">← Back to Life Hub</a>
+        </header>
+
+        <!-- Teeter-Totter -->
+        <section class="glass-panel-teal">
+            <h2 style="margin-top: 0; display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.2rem;">⚖️</span> The Law of Compensation</h2>
+            <p style="color: #cbd5e1; font-size: 0.9rem;">For every quality pushed into the "light" Persona, an equal weight drops into the Shadow. Log today's balance.</p>
+            
+            <div class="seesaw-container">
+                <div class="seesaw-fulcrum"></div>
+                <div class="seesaw-board" id="seesaw-board">
+                    <div class="seesaw-weight weight-left" title="Persona (I'm fine, independent)">🎭</div>
+                    <div class="seesaw-weight weight-right" title="Shadow (Unacknowledged needs/anger)">🌑</div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+                <button class="btn-teal" onclick="adjustSeesaw(-10)" style="border-color: #94a3b8; color: #94a3b8;">+ Performed "I'm Fine"</button>
+                <button class="btn-teal" onclick="adjustSeesaw(10)">+ Chose Vulnerability</button>
+            </div>
+            <div style="text-align: center; margin-top: 0.5rem; font-family: 'VT323'; color: var(--aurora-teal);" id="seesaw-status">Balance is neutral.</div>
+        </section>
+
+        <!-- Daily Trigger Journal -->
+        <section class="glass-panel-teal">
+            <h2 style="margin-top: 0; display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.2rem;">📓</span> Daily Trigger Journal</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <p style="color: #cbd5e1; font-size: 0.9rem; margin: 0;">What part of yourself are you seeing in others?</p>
+                <button class="btn-teal" onclick="rotatePrompt()" style="font-size: 0.9rem; padding: 0.3rem 0.6rem;">🔄 Change Prompt</button>
+            </div>
+            
+            <div style="background: rgba(99, 102, 241, 0.1); border-left: 3px solid var(--aurora-indigo); padding: 0.75rem; margin-top: 1rem; border-radius: 0 4px 4px 0; font-style: italic; color: #c7d2fe;" id="journal-prompt">
+                "What quality do I hate most in others right now? Do I possess it?"
+            </div>
+
+            <textarea class="journal-textarea" id="shadow-journal" placeholder="Write without censoring. The shadow speaks here..."></textarea>
+            
+            <div style="display: flex; justify-content: flex-end; margin-top: 0.75rem; gap: 0.5rem;">
+                <span id="journal-save-msg" style="color: var(--aurora-teal); align-self: center; font-family: 'VT323'; display: none;">Saved to LocalStorage.</span>
+                <button class="btn-teal" onclick="saveJournal()">💾 Save Entry</button>
+                <button class="btn-teal" onclick="clearJournal()" style="background: transparent; border-color: #ef4444; color: #ef4444;">🗑️ Clear</button>
+            </div>
+        </section>
+
+        <!-- 3-Chair Exercise -->
+        <section class="glass-panel-teal">
+            <h2 style="margin-top: 0; display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.2rem;">🪑</span> The 3-Chair Exercise</h2>
+            <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 1.5rem;">Process a specific conflict or trigger by physically or mentally shifting perspectives.</p>
+
+            <div class="chair-tabs">
+                <div class="chair-tab active" onclick="switchChair(0)">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">👤</div>
+                    <strong>1. Ego</strong>
+                </div>
+                <div class="chair-tab" onclick="switchChair(1)">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">🌑</div>
+                    <strong>2. Shadow</strong>
+                </div>
+                <div class="chair-tab" onclick="switchChair(2)">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">👁️</div>
+                    <strong>3. Self</strong>
+                </div>
+            </div>
+
+            <div class="chair-content active" id="chair-0">
+                <h3 style="color: #cbd5e1;">The Everyday Self</h3>
+                <p style="font-size: 0.9rem; color: #94a3b8;">State the problem from your Persona's perspective. How were you wronged? Why are you "fine" or justified?</p>
+                <textarea class="journal-textarea" id="chair-0-text" style="min-height: 100px;" placeholder="The problem is..."></textarea>
+            </div>
+
+            <div class="chair-content" id="chair-1">
+                <h3 style="color: #818cf8;">The Disowned Part</h3>
+                <p style="font-size: 0.9rem; color: #94a3b8;">Speak as the part you exile. What is its truth? Are you actually angry? Do you secretly need something?</p>
+                <textarea class="journal-textarea" id="chair-1-text" style="min-height: 100px; border-color: rgba(99, 102, 241, 0.3);" placeholder="Actually, I am..."></textarea>
+            </div>
+
+            <div class="chair-content" id="chair-2">
+                <h3 style="color: #5eead4;">The Synthesizer (The Mandorla)</h3>
+                <p style="font-size: 0.9rem; color: #94a3b8;">Hold both truths simultaneously. What is the integrated response? (e.g., "I am independent AND I need connection")</p>
+                <textarea class="journal-textarea" id="chair-2-text" style="min-height: 100px; border-color: rgba(13, 148, 136, 0.3);" placeholder="Holding both, I choose to..."></textarea>
+            </div>
+            
+            <div style="display: flex; justify-content: flex-end; margin-top: 1rem; gap: 0.5rem;">
+                <span id="chair-save-msg" style="color: var(--aurora-teal); align-self: center; font-family: 'VT323'; display: none;">Saved to Backend.</span>
+                <button class="btn-teal" onclick="saveChairExercise()">💾 Save Exercise</button>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3001/api';
+        const API_TOKEN = 'local_tailnet_token';
+
+        async function apiCall(endpoint, method = 'GET', body = null) {
+            const options = {
+                method,
+                headers: {
+                    'Authorization': `Bearer ${API_TOKEN}`,
+                    'Content-Type': 'application/json'
+                }
+            };
+            if (body) options.body = JSON.stringify(body);
+            try {
+                const res = await fetch(`${API_BASE}${endpoint}`, options);
+                return await res.json();
+            } catch (e) {
+                console.error("API Error:", e);
+                return null;
+            }
+        }
+
+        // Teeter Totter Logic
+        let tilt = 0;
+        function adjustSeesaw(amount) {
+            tilt += amount;
+            if (tilt > 30) tilt = 30;
+            if (tilt < -30) tilt = -30;
+            updateSeesawUI();
+            
+            // Sync to backend
+            apiCall('/shadow/balance', 'POST', { tilt_value: tilt });
+        }
+        
+        function updateSeesawUI() {
+            document.getElementById('seesaw-board').style.transform = `rotate(${tilt}deg)`;
+            const status = document.getElementById('seesaw-status');
+            if (tilt < -10) {
+                status.innerText = "⚠️ Warning: Persona overload. Shadow weight accumulating.";
+                status.style.color = "#ef4444";
+            } else if (tilt > 10) {
+                status.innerText = "⭐ Integration active. Tension is releasing.";
+                status.style.color = "#5eead4";
+            } else {
+                status.innerText = "Balance is neutral.";
+                status.style.color = "var(--aurora-teal)";
+            }
+        }
+
+        // Journal Logic
+        const prompts = [
+            "What quality do I hate most in others right now? Do I possess it?",
+            "What am I pretending not to need today?",
+            "If I had no 'independent' image to maintain, what would I do differently?",
+            "What would I scream right now if no one could hear?",
+            "Where did I say 'I'm fine' today when I actually wasn't?"
+        ];
+        let promptIdx = 0;
+        
+        function rotatePrompt() {
+            promptIdx = (promptIdx + 1) % prompts.length;
+            document.getElementById('journal-prompt').innerText = `"${prompts[promptIdx]}"`;
+        }
+
+        async function saveJournal() {
+            const text = document.getElementById('shadow-journal').value;
+            const prompt = prompts[promptIdx];
+            const msg = document.getElementById('journal-save-msg');
+            msg.innerText = 'Syncing...';
+            msg.style.display = 'inline';
+            
+            await apiCall('/shadow/journal', 'POST', { prompt, entry_text: text });
+            
+            msg.innerText = 'Saved to Backend.';
+            setTimeout(() => { msg.style.display = 'none'; }, 2000);
+        }
+
+        function clearJournal() {
+            if(confirm("Clear current entry?")) {
+                document.getElementById('shadow-journal').value = '';
+            }
+        }
+
+        // Chair Logic
+        function switchChair(idx) {
+            const tabs = document.querySelectorAll('.chair-tab');
+            const contents = document.querySelectorAll('.chair-content');
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            tabs[idx].classList.add('active');
+            contents[idx].classList.add('active');
+        }
+
+        async function saveChairExercise() {
+            const ego = document.getElementById('chair-0-text').value;
+            const shadow = document.getElementById('chair-1-text').value;
+            const self = document.getElementById('chair-2-text').value;
+            
+            const msg = document.getElementById('chair-save-msg');
+            msg.innerText = 'Syncing...';
+            msg.style.display = 'inline';
+            
+            await apiCall('/shadow/chair', 'POST', { 
+                ego_text: ego, 
+                shadow_text: shadow, 
+                self_text: self 
+            });
+            
+            msg.innerText = 'Saved to Backend.';
+            setTimeout(() => { msg.style.display = 'none'; }, 2000);
+        }
+
+        // Boot Sync
+        window.onload = async () => {
+            // Load Balance
+            const balData = await apiCall('/shadow/balance');
+            if (balData && balData.tilt_value !== undefined) {
+                tilt = balData.tilt_value;
+                updateSeesawUI();
+            }
+            
+            // Load Journal
+            const journalData = await apiCall('/shadow/journal');
+            if (journalData && journalData.entry_text) {
+                document.getElementById('shadow-journal').value = journalData.entry_text;
+                if (journalData.prompt) {
+                    const idx = prompts.indexOf(journalData.prompt.replace(/"/g, ''));
+                    if (idx !== -1) promptIdx = idx;
+                    document.getElementById('journal-prompt').innerText = `"${prompts[promptIdx]}"`;
+                }
+            }
+        };
+    </script>
+</body>
+</html>
+
+
+===============
+FILE: server\package.json
+===============
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "sqlite3": "^6.0.1"
+  }
+}
+
+
+===============
+FILE: server\database.js
+===============
+const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
+const fs = require('fs');
+
+// Ensure data directory exists
+const dataDir = path.join(__dirname, 'data');
+if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir);
+}
+
+const dbPath = path.join(dataDir, 'lifehub.db');
+const db = new sqlite3.Database(dbPath, (err) => {
+    if (err) {
+        console.error('Error opening database', err.message);
+    } else {
+        console.log(`Connected to the SQLite database at ${dbPath}`);
+        initializeTables();
+    }
+});
+
+function initializeTables() {
+    db.serialize(() => {
+        // Shadow Journals Table
+        db.run(`CREATE TABLE IF NOT EXISTS shadow_journals (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            date TEXT NOT NULL,
+            prompt TEXT NOT NULL,
+            entry_text TEXT NOT NULL,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )`);
+
+        // Shadow Balances Table (Teeter-Totter)
+        db.run(`CREATE TABLE IF NOT EXISTS shadow_balances (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            date TEXT NOT NULL UNIQUE,
+            tilt_value INTEGER NOT NULL,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )`);
+
+        // Chair Exercises Table
+        db.run(`CREATE TABLE IF NOT EXISTS chair_exercises (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            date TEXT NOT NULL,
+            trigger_context TEXT,
+            ego_text TEXT,
+            shadow_text TEXT,
+            self_text TEXT,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )`);
+        
+        console.log('Database tables initialized successfully.');
+    });
+}
+
+module.exports = db;
+
+
+===============
+FILE: server\server.js
+===============
+const express = require('express');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const db = require('./database');
+
+dotenv.config();
+
+const app = express();
+app.use(express.json());
+app.use(cors());
+
+// --- Authentication Middleware ---
+const API_TOKEN = process.env.API_TOKEN || 'local_tailnet_token';
+
+function requireAuth(req, res, next) {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ error: 'Unauthorized: Missing or invalid token format' });
+    }
+    const token = authHeader.split(' ')[1];
+    if (token !== API_TOKEN) {
+        return res.status(403).json({ error: 'Forbidden: Invalid token' });
+    }
+    next();
+}
+
+app.use('/api', requireAuth);
+
+// --- Endpoints ---
+
+// 1. Get today's shadow balance
+app.get('/api/shadow/balance', (req, res) => {
+    const today = new Date().toISOString().split('T')[0];
+    db.get(`SELECT tilt_value FROM shadow_balances WHERE date = ?`, [today], (err, row) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ tilt_value: row ? row.tilt_value : 0 });
+    });
+});
+
+// 2. Update today's shadow balance
+app.post('/api/shadow/balance', (req, res) => {
+    const { tilt_value } = req.body;
+    if (tilt_value === undefined) return res.status(400).json({ error: 'Missing tilt_value' });
+    
+    const today = new Date().toISOString().split('T')[0];
+    
+    db.run(`
+        INSERT INTO shadow_balances (date, tilt_value, updated_at) 
+        VALUES (?, ?, CURRENT_TIMESTAMP) 
+        ON CONFLICT(date) DO UPDATE SET tilt_value = ?, updated_at = CURRENT_TIMESTAMP
+    `, [today, tilt_value, tilt_value], function(err) {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ success: true, tilt_value });
+    });
+});
+
+// 3. Get latest shadow journal (today's draft)
+app.get('/api/shadow/journal', (req, res) => {
+    const today = new Date().toISOString().split('T')[0];
+    db.get(`SELECT prompt, entry_text FROM shadow_journals WHERE date = ? ORDER BY id DESC LIMIT 1`, [today], (err, row) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(row || { prompt: '', entry_text: '' });
+    });
+});
+
+// 4. Save shadow journal entry
+app.post('/api/shadow/journal', (req, res) => {
+    const { prompt, entry_text } = req.body;
+    if (!prompt || entry_text === undefined) return res.status(400).json({ error: 'Missing prompt or entry_text' });
+    
+    const today = new Date().toISOString().split('T')[0];
+    db.run(`INSERT INTO shadow_journals (date, prompt, entry_text) VALUES (?, ?, ?)`, 
+    [today, prompt, entry_text], function(err) {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ success: true, id: this.lastID });
+    });
+});
+
+// 5. Save 3-Chair Exercise
+app.post('/api/shadow/chair', (req, res) => {
+    const { ego_text, shadow_text, self_text, trigger_context } = req.body;
+    const today = new Date().toISOString().split('T')[0];
+    
+    db.run(`INSERT INTO chair_exercises (date, trigger_context, ego_text, shadow_text, self_text) VALUES (?, ?, ?, ?, ?)`,
+    [today, trigger_context || '', ego_text || '', shadow_text || '', self_text || ''], function(err) {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ success: true, id: this.lastID });
+    });
+});
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+    console.log(`Sovereign Backend running on port ${PORT}`);
+    console.log(`API Token in use: ${API_TOKEN}`);
+});
+
+

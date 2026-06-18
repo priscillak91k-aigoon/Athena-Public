@@ -59,5 +59,25 @@ seerr.atom.tailnet {
 }
 
 media.atom.tailnet {
-    reverse_proxy 100.73.93.94:32400
+    reverse_proxy 100.73.93.94:8096
+}
+
+hub.atom.tailnet {
+    reverse_proxy lifehub:8086
+}
+
+sonarr.atom.tailnet {
+    reverse_proxy 100.73.93.94:8989
+}
+
+radarr.atom.tailnet {
+    reverse_proxy 100.73.93.94:7878
+}
+
+qbit.atom.tailnet {
+    reverse_proxy 100.73.93.94:8088
+}
+
+prowlarr.atom.tailnet {
+    reverse_proxy 100.73.93.94:9696
 }

@@ -72,27 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Supabase Global Configuration ---
-    const SUPABASE_URL = "https://ezvptctdfcddoybownml.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6dnB0Y3RkZmNkZG95Ym93bm1sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3NDgzNzAsImV4cCI6MjA4NzMyNDM3MH0.u_t44hY_YCwwtbWCIrQKf7EnUZDrja1q4zUFT0MXNOs";
+    // --- Local Sovereign Backend Configuration ---
+    const API_BASE = "/api"; // same-origin: works over Tailscale from any device
+    const API_TOKEN = "local_tailnet_token";
 
-    // Auth & Lock Screen Logic
-    const CORRECT_PASSWORD = "quinn15405";
-    const lockScreen = document.getElementById('lock-screen');
-    const appContent = document.getElementById('app-content');
-    const passwordInput = document.getElementById('password-input');
-    const unlockBtn = document.getElementById('unlock-btn');
-    const passwordError = document.getElementById('password-error');
-
-    function checkAuth() {
-        if (localStorage.getItem('symphony_auth') === 'true') {
-            lockScreen.style.display = 'none';
-            appContent.style.display = 'flex';
-        } else {
-            lockScreen.style.display = 'flex';
-            appContent.style.display = 'none';
-        }
-    }
+    // Auth & Lock Screen Logic removed - relying on Tailscale
 
     // --- Financial Calculations (NZ) ---
     // Helper: compute NZ net income for a given weekly gross
@@ -282,24 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial calculation
     calculateFinance();
 
-    unlockBtn.addEventListener('click', () => {
-        if (passwordInput.value === CORRECT_PASSWORD) {
-            localStorage.setItem('symphony_auth', 'true');
-            passwordError.style.display = 'none';
-            checkAuth();
-        } else {
-            passwordError.style.display = 'block';
-            passwordInput.value = '';
-            passwordInput.focus();
-        }
-    });
-
-    passwordInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') unlockBtn.click();
-    });
-
-    checkAuth();
-
     // --- Tab Navigation Logic ---
     const tabBtns = document.querySelectorAll('.tab-btn[data-tab]');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -370,16 +336,14 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master`, {
-                method: 'POST',
-                headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Content-Type': 'application/json',
-                    'Prefer': 'return=minimal'
-                },
-                body: JSON.stringify([newTask])
-            });
+            const response = await apiFetch(`/tasks`, {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify([newTask])
+                });
 
             if (response.ok) {
                 quickAddInput.value = '';
@@ -413,13 +377,11 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerText = '⏳';
             btn.style.pointerEvents = 'none';
             try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master`, {
-                    method: 'POST',
+                const response = await apiFetch(`/tasks`, {
+                    method: "POST",
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
+                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "Content-Type": "application/json"
                     },
                     body: JSON.stringify([{ title, points: 2, priority_color: 'GREEN', time_target: timeTarget, is_active: true }])
                 });
@@ -455,14 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- READONLY TODAY VIEW ---
     async function fetchReadonlyToday() {
         try {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?is_active=eq.true&select=*`, {
-                method: 'GET',
-                headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Content-Type': 'application/json'
-                }
-            });
+            const response = await apiFetch(`/tasks`, { headers: { "Authorization": `Bearer ${API_TOKEN}` } });
             if (response.ok) {
                 const allTasks = await response.json();
                 renderReadonlyToday(allTasks);
@@ -497,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         timelineTasks.sort((a, b) => timeToMinutes(a.time_target) - timeToMinutes(b.time_target));
 
-        let html = '<div style="font-family: \'VT323\', monospace; font-size: 1.1rem; border-left: 2px solid var(--glass-border); padding-left: 1rem; position: relative;">';
+        let html = '<div style="font-family: \\\'VT323\\\', monospace; font-size: 1.1rem; border-left: 2px solid var(--glass-border); padding-left: 1rem; position: relative;">';
 
         let lastDoneDates = JSON.parse(localStorage.getItem('symphony_last_done') || '{}');
 
@@ -524,8 +479,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div style="display: flex; gap: 0.5rem; align-items: flex-start;">
                                 <div class="checkbox completion-toggle readonly-tick" data-id="${task.id}" style="${isCompletedToday ? 'background:var(--accent-green);' : ''}"></div>
                                 <div>
-                                    <div style="font-weight: bold; text-decoration: ${decoration}; color: var(--text-primary); margin-bottom: 0.25rem;">${task.title}</div>
-                                    ${task.description ? `<div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem; text-decoration: ${decoration};">${task.description}</div>` : ''}
+                                    <div style="font-weight: bold; text-decoration: ${decoration}; color: var(--text-primary); margin-bottom: 0.25rem;">${escapeHTML(task.title)}</div>
+                                    ${task.description ? `<div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem; text-decoration: ${decoration};">${escapeHTML(task.description)}</div>` : ''}
                                     <div style="display: flex; gap: 4px;">
                                         ${(task.tags || []).map(t => `<span class="tag" style="font-size: 0.75rem;">${t}</span>`).join('')}
                                     </div>
@@ -590,14 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setupDragAndDropZones();
 
             // Fetch ALL active tasks for the universal Task Pool
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?is_active=eq.true&select=*`, {
-                method: 'GET',
-                headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Content-Type': 'application/json'
-                }
-            });
+            const response = await apiFetch(`/tasks`, { headers: { "Authorization": `Bearer ${API_TOKEN}` } });
 
             if (response.ok) {
                 dynamicTasks = await response.json();
@@ -706,15 +654,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             renderDraggableTimeline();
 
-            // Persist to Supabase
+            // Persist to Backend
             try {
-                await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?id=eq.${taskId}`, {
-                    method: 'PATCH',
+                await apiFetch(`/tasks/${taskId}`, {
+                    method: "PATCH",
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
+                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ time_target: task.time_target })
                 });
@@ -751,12 +697,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="display: flex; align-items: flex-start; gap: 8px;">
                         ${isOnTimeline ? `<div class="checkbox completion-toggle" style="margin-top: 2px;" title="Mark Complete"></div>` : ''}
                          <div class="task-title" style="font-size: 0.95rem; font-weight: bold; transition: all 0.2s;">
-                            ${task.title}
+                            ${escapeHTML(task.title)}
                         </div>
                     </div>
                     <button class="task-delete-btn" data-task-id="${task.id}" style="background: #c0c0c0; border: 2px outset var(--win-highlight); color: red; font-weight: bold; font-size: 0.9rem; cursor: pointer; padding: 0 5px; line-height: 1.2;" title="Delete task">×</button>
                 </div>
-                ${task.description ? `<div class="task-desc" style="font-size: 0.8rem;">${task.description}</div>` : ''}
+                ${task.description ? `<div class="task-desc" style="font-size: 0.8rem;">${escapeHTML(task.description)}</div>` : ''}
                 <div style="margin-top: 4px; display: flex; justify-content: space-between; align-items: center;">
                     <div>
                         ${(task.tags || []).map(t => `<span class="tag" style="font-size: 0.65rem; padding: 2px 6px;">${t}</span>`).join('')}
@@ -822,15 +768,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (deleteBtn) {
                 deleteBtn.addEventListener('click', async (e) => {
                     e.stopPropagation();
-                    if (!confirm(`Delete "${task.title}"?`)) return;
+                    if (!confirm(`Delete "${escapeHTML(task.title)}"?`)) return;
                     deleteBtn.innerText = "⏳";
                     try {
-                        const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?id=eq.${task.id}`, {
-                            method: 'DELETE',
-                            headers: {
-                                'apikey': SUPABASE_ANON_KEY,
-                                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-                            }
+                        const response = await apiFetch(`/tasks/${task.id}`, {
+                            method: "DELETE",
+                            headers: { "Authorization": `Bearer ${API_TOKEN}` }
                         });
 
                         if (response.ok || response.status === 204) {
@@ -1041,13 +984,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }));
 
             const patchPromises = updates.map(update => {
-                return fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?id=eq.${update.id}`, {
+                return apiFetch(`/tasks/${update.id}`, {
                     method: 'PATCH',
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
+                        'Authorization': `Bearer ${API_TOKEN}`,
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ time_target: update.time_target })
                 });
@@ -1117,7 +1058,7 @@ document.addEventListener('DOMContentLoaded', () => {
             li.style.alignItems = 'center';
             li.innerHTML = `
                 <div class="task-content">
-                    <strong>${task.title}</strong>
+                    <strong>${escapeHTML(task.title)}</strong>
                     ${task.tags ? `<br><span class="tag" style="font-size:0.65rem;">${task.tags.join(', ')}</span>` : ''}
                 </div>
                 <div style="background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; border: 1px solid var(--glass-border);">
@@ -1247,33 +1188,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let items = []; // [{id, text, completed, sort_order}]
 
-            // Fetch from Supabase, fallback to localStorage (safe: won't clobber local data)
+            // Fetch from local backend, fallback to localStorage
             async function fetchItems() {
                 try {
-                    const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_ideas?list_type=eq.${listType}&order=sort_order.asc,created_at.asc`, {
+                    const resp = await apiFetch(`/ideas?list_type=${listType}`, {
                         headers: {
-                            'apikey': SUPABASE_ANON_KEY,
-                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                            'Authorization': `Bearer ${API_TOKEN}`
                         }
                     });
                     if (resp.ok) {
-                        const supabaseData = await resp.json();
-                        const localData = localStorage.getItem(LOCAL_KEY);
-                        const localItems = localData ? JSON.parse(localData) : [];
-                        if (supabaseData.length > 0) {
-                            items = supabaseData;
+                        const serverData = await resp.json();
+                        if (serverData.length > 0) {
+                            items = serverData;
                             localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
-                        } else if (localItems.length > 0) {
-                            items = localItems;
-                            console.info(`Ideas (${listType}): Supabase empty, keeping local data`);
                         } else {
-                            items = [];
+                            const localData = localStorage.getItem(LOCAL_KEY);
+                            const localItems = localData ? JSON.parse(localData) : [];
+                            if (localItems.length > 0) {
+                                items = localItems;
+                                console.info(`Ideas (${listType}): Server empty, keeping local data`);
+                            } else {
+                                items = [];
+                            }
                         }
                     } else {
                         throw new Error(`HTTP ${resp.status}`);
                     }
                 } catch (e) {
-                    console.warn(`Ideas (${listType}): Supabase fetch failed, using localStorage:`, e);
+                    console.warn(`Ideas (${listType}): Server fetch failed, using localStorage:`, e);
                     const local = localStorage.getItem(LOCAL_KEY);
                     if (local) items = JSON.parse(local);
                 }
@@ -1300,20 +1242,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         this.parentElement.classList.toggle('completed');
                         items[index].completed = !items[index].completed;
                         localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
-                        // Sync to Supabase
+                        // Sync to backend
                         if (items[index].id) {
                             try {
-                                await fetch(`${SUPABASE_URL}/rest/v1/symphony_ideas?id=eq.${items[index].id}`, {
+                                await apiFetch(`/ideas/${items[index].id}`, {
                                     method: 'PATCH',
                                     headers: {
-                                        'apikey': SUPABASE_ANON_KEY,
-                                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                                        'Content-Type': 'application/json',
-                                        'Prefer': 'return=minimal'
+                                        'Authorization': `Bearer ${API_TOKEN}`,
+                                        'Content-Type': 'application/json'
                                     },
-                                    body: JSON.stringify({ completed: items[index].completed, updated_at: new Date().toISOString() })
+                                    body: JSON.stringify({ completed: items[index].completed })
                                 });
-                            } catch (e) { console.warn('Failed to sync checkbox to Supabase:', e); }
+                            } catch (e) { console.warn('Failed to sync checkbox:', e); }
                         }
                     });
 
@@ -1321,17 +1261,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         const removedItem = items.splice(index, 1)[0];
                         localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
                         renderItems();
-                        // Delete from Supabase
+                        // Delete from backend
                         if (removedItem && removedItem.id) {
                             try {
-                                await fetch(`${SUPABASE_URL}/rest/v1/symphony_ideas?id=eq.${removedItem.id}`, {
+                                await apiFetch(`/ideas/${removedItem.id}`, {
                                     method: 'DELETE',
                                     headers: {
-                                        'apikey': SUPABASE_ANON_KEY,
-                                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                                        'Authorization': `Bearer ${API_TOKEN}`
                                     }
                                 });
-                            } catch (e) { console.warn('Failed to delete from Supabase:', e); }
+                            } catch (e) { console.warn('Failed to delete idea:', e); }
                         }
                     });
 
@@ -1356,25 +1295,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderItems();
                 input.value = '';
 
-                // Persist to Supabase
+                // Persist to backend
                 try {
-                    const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_ideas`, {
+                    const resp = await apiFetch(`/ideas`, {
                         method: 'POST',
                         headers: {
-                            'apikey': SUPABASE_ANON_KEY,
-                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                            'Content-Type': 'application/json',
-                            'Prefer': 'return=representation'
+                            'Authorization': `Bearer ${API_TOKEN}`,
+                            'Content-Type': 'application/json'
                         },
                         body: JSON.stringify(newItem)
                     });
                     if (resp.ok) {
-                        // Re-fetch to get the real ID from Supabase
+                        // Re-fetch to get the real ID from backend
                         await fetchItems();
                         renderItems();
                     }
                 } catch (e) {
-                    console.warn('Failed to save idea to Supabase:', e);
+                    console.warn('Failed to save idea:', e);
                 }
 
                 if (typeof playRetroClick === 'function') playRetroClick();
@@ -1891,13 +1828,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ── Supabase sync helpers ──
-    async function saveDayToSupabase(dateStr, items, totals, grade, score) {
+    async function saveDayToBackend(dateStr, items, totals, grade, score) {
         try {
             // First check if an entry exists for this date
-            const getResp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_food_log?date=eq.${dateStr}&select=id`, {
+            const getResp = await apiFetch(`/food_log?date=${dateStr}`, {
                 headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    'Authorization': `Bearer ${API_TOKEN}`
                 }
             });
             const existing = await getResp.json();
@@ -1905,26 +1841,22 @@ document.addEventListener('DOMContentLoaded', () => {
             if (existing && existing.length > 0) {
                 // Update existing
                 const id = existing[0].id;
-                const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_food_log?id=eq.${id}`, {
+                const resp = await apiFetch(`/food_log/${id}`, {
                     method: 'PATCH',
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
+                        'Authorization': `Bearer ${API_TOKEN}`,
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ items, totals, grade, grade_score: score })
                 });
                 return resp.ok;
             } else {
                 // Insert new
-                const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_food_log`, {
+                const resp = await apiFetch(`/food_log`, {
                     method: 'POST',
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
+                        'Authorization': `Bearer ${API_TOKEN}`,
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ date: dateStr, items, totals, grade, grade_score: score })
                 });
@@ -1936,16 +1868,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function fetchHistoryFromSupabase(days = 30) {
+    async function fetchHistoryFromBackend(days = 30) {
         try {
             const cutoff = new Date();
             cutoff.setDate(cutoff.getDate() - days);
             const dateStr = getLocalDayDateString(cutoff);
 
-            const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_food_log?date=gte.${dateStr}&select=date,grade,grade_score,totals&order=date.asc`, {
+            const resp = await apiFetch(`/food_log?date_gte=${dateStr}`, {
                 headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    'Authorization': `Bearer ${API_TOKEN}`
                 }
             });
             if (resp.ok) {
@@ -1963,13 +1894,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function saveRecipeToSupabase(recipe) {
         try {
-            const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_food_recipes`, {
+            const resp = await apiFetch(`/food_recipes`, {
                 method: 'POST',
                 headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Content-Type': 'application/json',
-                    'Prefer': 'return=minimal'
+                    'Authorization': `Bearer ${API_TOKEN}`,
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(recipe)
             });
@@ -2503,8 +2432,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 else history.push(entry);
                 saveFoodHistory(history);
 
-                // Save to Supabase
-                await saveDayToSupabase(today, log, totals, result.grade, result.score);
+                // Save to Backend
+                await saveDayToBackend(today, log, totals, result.grade, result.score);
 
                 // Refresh charts
                 renderGradeChart(14);
@@ -2548,7 +2477,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Fetch Supabase history in background for charts
-        fetchHistoryFromSupabase(30).then(() => renderGradeChart(14));
+        fetchHistoryFromBackend(30).then(() => renderGradeChart(14));
     }
 
     // Initialize View
@@ -2796,10 +2725,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         async function fetchData() {
             try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/symphony_procurement?select=*&order=created_at.desc`, {
+                const response = await apiFetch(`/procurement`, {
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Authorization': `Bearer ${API_TOKEN}`,
                         'Content-Type': 'application/json'
                     }
                 });
@@ -2810,7 +2738,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error(`HTTP ${response.status}`);
                 }
             } catch (e) {
-                console.warn('Procurement: Supabase fetch failed, using localStorage:', e);
+                console.warn('Procurement: Backend fetch failed, using localStorage:', e);
                 const local = localStorage.getItem(LOCAL_KEY);
                 if (local) procurementData = JSON.parse(local);
             }
@@ -2836,7 +2764,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="delete-procurement-btn" data-id="${item.id}" style="position: absolute; top: 0.5rem; right: 0.5rem; background: none; border: none; color: #ff0000; cursor: pointer; font-size: 1.1rem;" title="Delete">×</button>
                     <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
                         <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:${dotColor};"></span>
-                        ${item.item}
+                        ${escapeHTML(item.item)}
                     </div>
                     <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
                         <strong>Why:</strong> ${item.justification || 'No justification provided.'}
@@ -2858,7 +2786,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const verdictColor = item.athena_verdict === 'APPROVED' ? 'var(--accent-green)' : (item.athena_verdict === 'FLAGGED' ? 'var(--accent-yellow)' : 'var(--text-secondary)');
                 div.innerHTML = `
                     <div style="font-weight: 600; color: var(--accent-blue); display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <span>Target: ${item.item}</span>
+                        <span>Target: ${escapeHTML(item.item)}</span>
                         <span style="font-size: 0.75rem; color: ${verdictColor}; border: 1px solid ${verdictColor}; padding: 2px 6px; border-radius: 4px;">${item.athena_verdict || 'PENDING'}</span>
                     </div>
                     <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
@@ -2876,11 +2804,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem(LOCAL_KEY, JSON.stringify(procurementData));
                     renderAll();
                     try {
-                        await fetch(`${SUPABASE_URL}/rest/v1/symphony_procurement?id=eq.${id}`, {
+                        await apiFetch(`/procurement/${id}`, {
                             method: 'DELETE',
                             headers: {
-                                'apikey': SUPABASE_ANON_KEY,
-                                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                                'Authorization': `Bearer ${API_TOKEN}`
                             }
                         });
                     } catch (e) { console.warn('Failed to delete procurement item:', e); }
@@ -2921,15 +2848,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 itemEl.value = '';
                 justEl.value = '';
 
-                // Persist to Supabase
+                // Persist to Backend
                 try {
-                    const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_procurement`, {
+                    const resp = await apiFetch(`/procurement`, {
                         method: 'POST',
                         headers: {
-                            'apikey': SUPABASE_ANON_KEY,
-                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                            'Content-Type': 'application/json',
-                            'Prefer': 'return=representation'
+                            'Authorization': `Bearer ${API_TOKEN}`,
+                            'Content-Type': 'application/json'
                         },
                         body: JSON.stringify(newItem)
                     });
@@ -2938,7 +2863,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         renderAll();
                     }
                 } catch (e) {
-                    console.warn('Failed to save procurement item to Supabase:', e);
+                    console.warn('Failed to save procurement item to Backend:', e);
                 }
 
                 if (typeof playRetroSuccess === 'function') playRetroSuccess();
@@ -2946,7 +2871,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Init
-        needsContainer.innerHTML = '<div style="color:var(--text-secondary); font-size: 0.85rem;">Syncing from Supabase...</div>';
+        needsContainer.innerHTML = '<div style="color:var(--text-secondary); font-size: 0.85rem;">Syncing from Backend...</div>';
         await fetchData();
         renderAll();
     }
@@ -2968,16 +2893,14 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             selectEl.disabled = true;
 
-            await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?id=eq.${taskId}`, {
-                method: 'PATCH',
-                headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Content-Type': 'application/json',
-                    'Prefer': 'return=minimal'
-                },
-                body: JSON.stringify({ priority_color: newColor })
-            });
+            await apiFetch(`/tasks/${taskId}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ priority_color: newColor })
+                });
 
             selectEl.disabled = false;
 
@@ -2985,8 +2908,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // so the task doesn't vanish from the user's current category view.
 
             // Refresh the main schedule view behind the scenes just in case
-            if (typeof fetchSupabaseData === 'function') {
-                fetchSupabaseData();
+            if (typeof fetchLocalAPIData === 'function') {
+                fetchLocalAPIData();
             }
 
         } catch (err) {
@@ -3004,31 +2927,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let inventory = [];
 
-        // 1. Fetch from Supabase (safe: won't clobber local data)
-        async function fetchSupabaseInventory() {
+        // 1. Fetch from Backend (safe: won't clobber local data)
+        async function fetchLocalAPIInventory() {
             try {
-                const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_supp_inventory?order=name.asc`, {
+                const resp = await apiFetch(`/supp_inventory`, {
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                        "Authorization": `Bearer ${API_TOKEN}`
                     }
                 });
                 if (resp.ok) {
-                    const supabaseData = await resp.json();
+                    const apiData = await resp.json();
                     const localData = localStorage.getItem('symphony_supp_inventory_local');
                     const localItems = localData ? JSON.parse(localData) : [];
-                    if (supabaseData.length > 0) {
-                        inventory = supabaseData;
+                    if (apiData.length > 0) {
+                        inventory = apiData;
                         localStorage.setItem('symphony_supp_inventory_local', JSON.stringify(inventory));
                     } else if (localItems.length > 0) {
                         inventory = localItems;
-                        console.info('Supps: Supabase empty, keeping local inventory');
+                        console.info('Supps: Backend empty, keeping local inventory');
                     } else {
                         inventory = [];
                     }
                 }
             } catch (e) {
-                console.error("Failed to fetch supps from Supabase, falling back to local:", e);
+                console.error("Failed to fetch supps from Backend, falling back to local:", e);
                 const local = localStorage.getItem('symphony_supp_inventory_local');
                 if (local) inventory = JSON.parse(local);
             }
@@ -3063,21 +2985,19 @@ document.addEventListener('DOMContentLoaded', () => {
             nameEl.value = ''; capEl.value = ''; doseEl.value = '';
 
             try {
-                await fetch(`${SUPABASE_URL}/rest/v1/symphony_supp_inventory`, {
+                await apiFetch(`/supp_inventory`, {
                     method: 'POST',
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
+                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "Content-Type": "application/json"
                     },
                     body: JSON.stringify(newSupp)
                 });
                 // Re-fetch to get actual IDs
-                await fetchSupabaseInventory();
+                await fetchLocalAPIInventory();
                 renderGrid();
             } catch (e) {
-                console.error("Failed to save new supp to Supabase:", e);
+                console.error("Failed to save new supp to Backend:", e);
             }
         }
 
@@ -3091,21 +3011,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                await fetch(`${SUPABASE_URL}/rest/v1/symphony_supp_inventory?id=eq.${id}`, {
+                await apiFetch(`/supp_inventory/${id}`, {
                     method: 'PATCH',
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
+                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        current_stock: newStock,
-                        updated_at: new Date().toISOString()
+                        current_stock: newStock
                     })
                 });
             } catch (e) {
-                console.error("Failed to update stock in Supabase:", e);
+                console.error("Failed to update stock in Backend:", e);
             }
         }
 
@@ -3222,7 +3139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         addBtn.addEventListener('click', addSupp);
 
         // Init
-        await fetchSupabaseInventory();
+        await fetchLocalAPIInventory();
         renderGrid();
     }
 
@@ -3243,14 +3160,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Try Supabase first, fallback to localStorage (safe: won't clobber local data)
         async function fetchItems() {
             try {
-                const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics?status=eq.open&order=created_at.desc`, {
-                    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+                const resp = await apiFetch(`/logistics?status=open`, {
+                    headers: { "Authorization": `Bearer ${API_TOKEN}` }
                 });
                 if (resp.ok) {
                     const data = await resp.json();
                     // Fetch subtasks for all items
-                    const stResp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics_subtasks?order=created_at.asc`, {
-                        headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+                    const stResp = await apiFetch(`/logistics_subtasks`, {
+                        headers: { "Authorization": `Bearer ${API_TOKEN}` }
                     });
                     const subtasks = stResp.ok ? await stResp.json() : [];
                     const mergedItems = data.map(item => ({
@@ -3265,15 +3182,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
                     } else if (localItems.length > 0) {
                         items = localItems;
-                        console.info('Logistics: Supabase empty, keeping local data');
+                        console.info('Logistics: Backend empty, keeping local data');
                     } else {
                         items = [];
                     }
 
                     // Also fetch solved items for the log
                     try {
-                        const solvedResp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics?status=eq.done&order=updated_at.desc`, {
-                            headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+                        const solvedResp = await apiFetch(`/logistics?status=done`, {
+                            headers: { "Authorization": `Bearer ${API_TOKEN}` }
                         });
                         if (solvedResp.ok) {
                             const solvedData = await solvedResp.json();
@@ -3287,7 +3204,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
             } catch (e) {
-                console.warn('Logistics: Supabase unavailable, using localStorage', e);
+                console.warn('Logistics: Backend unavailable, using localStorage', e);
             }
             // Fallback
             const local = localStorage.getItem(LOCAL_KEY);
@@ -3320,17 +3237,15 @@ document.addEventListener('DOMContentLoaded', () => {
             titleInput.value = '';
 
             try {
-                await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics`, {
-                    method: 'POST',
+                await apiFetch(`/logistics`, {
+                    method: "POST",
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
+                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ id: newItem.id, title: newItem.title, status: 'open' })
                 });
-            } catch (e) { console.warn('Failed to save item to Supabase:', e); }
+            } catch (e) { console.warn('Failed to save item to Backend:', e); }
         }
 
         // Add sub-task
@@ -3344,17 +3259,15 @@ document.addEventListener('DOMContentLoaded', () => {
             renderItems();
 
             try {
-                await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics_subtasks`, {
-                    method: 'POST',
+                await apiFetch(`/logistics_subtasks`, {
+                    method: "POST",
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
+                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "Content-Type": "application/json"
                     },
                     body: JSON.stringify(st)
                 });
-            } catch (e) { console.warn('Failed to save subtask to Supabase:', e); }
+            } catch (e) { console.warn('Failed to save subtask to Backend:', e); }
         }
 
         // Toggle sub-task completion
@@ -3369,13 +3282,11 @@ document.addEventListener('DOMContentLoaded', () => {
             renderItems();
 
             try {
-                await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics_subtasks?id=eq.${subtaskId}`, {
-                    method: 'PATCH',
+                await apiFetch(`/logistics_subtasks/${subtaskId}`, {
+                    method: "PATCH",
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
+                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ completed: st.completed })
                 });
@@ -3396,17 +3307,15 @@ document.addEventListener('DOMContentLoaded', () => {
             renderSolvedLog();
 
             try {
-                await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics?id=eq.${itemId}`, {
-                    method: 'PATCH',
+                await apiFetch(`/logistics/${itemId}`, {
+                    method: "PATCH",
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
+                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ status: 'done', updated_at: new Date().toISOString() })
                 });
-            } catch (e) { console.warn('Failed to mark done in Supabase:', e); }
+            } catch (e) { console.warn('Failed to mark done in Backend:', e); }
         }
 
         // Re-open a solved item
@@ -3423,17 +3332,15 @@ document.addEventListener('DOMContentLoaded', () => {
             renderSolvedLog();
 
             try {
-                await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics?id=eq.${itemId}`, {
-                    method: 'PATCH',
+                await apiFetch(`/logistics/${itemId}`, {
+                    method: "PATCH",
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
+                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ status: 'open', updated_at: new Date().toISOString() })
                 });
-            } catch (e) { console.warn('Failed to reopen in Supabase:', e); }
+            } catch (e) { console.warn('Failed to reopen in Backend:', e); }
         }
 
         // Render Solved Log
@@ -3451,7 +3358,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return `
                 <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0.75rem; background: rgba(0,0,0,0.15); border: 1px solid rgba(34,197,94,0.15); border-radius: 6px;">
                     <div style="flex: 1;">
-                        <span style="color: var(--text-secondary); text-decoration: line-through; font-size: 0.9rem;">✅ ${item.title}</span>
+                        <span style="color: var(--text-secondary); text-decoration: line-through; font-size: 0.9rem;">✅ ${escapeHTML(item.title)}</span>
                         ${solvedDate ? `<span style="font-size: 0.7rem; color: var(--text-secondary); margin-left: 0.5rem; opacity: 0.6;">${solvedDate}</span>` : ''}
                     </div>
                     <button class="logistics-reopen-btn" data-id="${item.id}"
@@ -3477,12 +3384,10 @@ document.addEventListener('DOMContentLoaded', () => {
             renderItems();
 
             try {
-                await fetch(`${SUPABASE_URL}/rest/v1/symphony_logistics_subtasks?id=eq.${subtaskId}`, {
+                await apiFetch(`/logistics_subtasks/${subtaskId}`, {
                     method: 'DELETE',
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Prefer': 'return=minimal'
+                        "Authorization": `Bearer ${API_TOKEN}`
                     }
                 });
             } catch (e) { console.warn('Failed to delete subtask:', e); }
@@ -3513,7 +3418,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
                         <div style="flex: 1;">
                             <h4 style="margin: 0; color: var(--text-primary); font-size: 1.15rem; line-height: 1.3;">
-                                🔧 ${item.title}
+                                🔧 ${escapeHTML(item.title)}
                             </h4>
                             <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem;">
                                 ${progressText}
@@ -3771,7 +3676,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'nexgard': { name: 'NexGard', type: 'flea', protects: 'Fleas (kills within 8 hours) + Ticks (including paralysis tick)', schedule: 'Monthly chewable tablet.', note: 'Beef-flavoured chew. Starts killing fleas within 8 hours.' },
             'bravecto': { name: 'Bravecto', type: 'flea', protects: 'Fleas + Ticks for up to 3 months per dose', schedule: 'Every 3 months (chew) or 6 months (spot-on).', note: 'Longest-lasting flea/tick protection available.' },
             'simparica': { name: 'Simparica', type: 'flea', protects: 'Fleas (kills within 3 hours) + Ticks + Mites (sarcoptic & demodectic mange)', schedule: 'Monthly chewable tablet.', note: 'Fastest flea kill speed of any oral product.' },
-            'advantage': { name: 'Advantage', type: 'flea', protects: 'Fleas only (spot-on topical treatment)', schedule: 'Monthly spot-on application.', note: 'Topical — good for dogs who won\'t take chews. Avoid bathing 48hrs after.' },
+            'advantage': { name: 'Advantage', type: 'flea', protects: 'Fleas only (spot-on topical treatment)', schedule: 'Monthly spot-on application.', note: 'Topical — good for dogs who won\\\'t take chews. Avoid bathing 48hrs after.' },
             'frontline': { name: 'Frontline Plus', type: 'flea', protects: 'Fleas + Ticks + Lice (spot-on)', schedule: 'Monthly spot-on application.', note: 'Also kills flea eggs and larvae to break the lifecycle.' },
             'seresto': { name: 'Seresto Collar', type: 'flea', protects: 'Fleas + Ticks for up to 8 months', schedule: 'Replace collar every 8 months.', note: 'Continuous slow-release protection. Water-resistant.' },
             'revolution': { name: 'Revolution', type: 'flea', protects: 'Fleas, Heartworm, Ear mites, Sarcoptic mange, some ticks', schedule: 'Monthly spot-on.', note: 'Multi-parasite spot-on. Does NOT cover all tick species.' }
@@ -3936,11 +3841,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-        // Fetch events from Supabase
+        // Fetch events from Backend
         async function fetchEvents() {
             try {
-                const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_events?order=event_date.asc`, {
-                    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+                const resp = await apiFetch(`/events`, {
+                    headers: { "Authorization": `Bearer ${API_TOKEN}` }
                 });
                 if (resp.ok) {
                     calEvents = await resp.json();
@@ -3948,7 +3853,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
             } catch (e) {
-                console.warn('Calendar: Supabase unavailable, using localStorage', e);
+                console.warn('Calendar: Backend unavailable, using localStorage', e);
             }
             const local = localStorage.getItem('symphony_events_local');
             calEvents = local ? JSON.parse(local) : [];
@@ -4104,11 +4009,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem('symphony_events_local', JSON.stringify(calEvents));
                     renderAll();
                     try {
-                        await fetch(`${SUPABASE_URL}/rest/v1/symphony_events?id=eq.${id}`, {
-                            method: 'DELETE',
-                            headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+                        await apiFetch(`/events/${id}`, {
+                            method: "DELETE",
+                            headers: { "Authorization": `Bearer ${API_TOKEN}` }
                         });
-                    } catch (e) { console.warn('Failed to delete event from Supabase:', e); }
+                    } catch (e) { console.warn('Failed to delete event from Backend:', e); }
                 });
             });
         }
@@ -4198,13 +4103,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('event-time').value = '';
 
                 try {
-                    await fetch(`${SUPABASE_URL}/rest/v1/symphony_events`, {
-                        method: 'POST',
+                    await apiFetch(`/events`, {
+                        method: "POST",
                         headers: {
-                            'apikey': SUPABASE_ANON_KEY,
-                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                            'Content-Type': 'application/json',
-                            'Prefer': 'return=minimal'
+                            "Authorization": `Bearer ${API_TOKEN}`,
+                            "Content-Type": "application/json"
                         },
                         body: JSON.stringify({
                             id: newEvent.id, title, event_date: eventDate,
@@ -4212,7 +4115,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             time_of_day: timeOfDay || null
                         })
                     });
-                } catch (e) { console.warn('Failed to save event to Supabase:', e); }
+                } catch (e) { console.warn('Failed to save event to Backend:', e); }
 
                 addBtn.innerText = 'Add Event';
                 addBtn.style.pointerEvents = 'auto';
@@ -4262,38 +4165,35 @@ document.addEventListener('DOMContentLoaded', () => {
             return { weekly: '/wk', fortnightly: '/fn', monthly: '/mo', yearly: '/yr' }[f] || '';
         }
 
-        // Fetch from Supabase
+        // Fetch from Backend
         async function fetchExpenses() {
             try {
-                const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_expenses?order=category.asc,name.asc`, {
+                const resp = await apiFetch(`/expenses`, {
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                        'Authorization': `Bearer ${API_TOKEN}`
                     }
                 });
                 if (resp.ok) {
-                    const supabaseData = await resp.json();
+                    const apiData = await resp.json();
                     const localData = localStorage.getItem(LOCAL_KEY);
                     const localItems = localData ? JSON.parse(localData) : [];
 
-                    if (supabaseData.length > 0) {
-                        // Supabase has data — use it as source of truth
-                        expenses = supabaseData;
+                    if (apiData.length > 0) {
+                        // Backend has data — use it as source of truth
+                        expenses = apiData;
                         localStorage.setItem(LOCAL_KEY, JSON.stringify(expenses));
                     } else if (localItems.length > 0) {
-                        // Supabase is empty but localStorage has items — sync UP
+                        // Backend is empty but localStorage has items — sync UP
                         expenses = localItems;
-                        console.info('Expenses: Supabase empty, syncing local items up...');
+                        console.info('Expenses: Backend empty, syncing local items up...');
                         for (const item of localItems) {
                             if (!item.id) {
                                 try {
-                                    await fetch(`${SUPABASE_URL}/rest/v1/symphony_expenses`, {
+                                    await apiFetch(`/expenses`, {
                                         method: 'POST',
                                         headers: {
-                                            'apikey': SUPABASE_ANON_KEY,
-                                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                                            'Content-Type': 'application/json',
-                                            'Prefer': 'return=minimal'
+                                            'Authorization': `Bearer ${API_TOKEN}`,
+                                            'Content-Type': 'application/json'
                                         },
                                         body: JSON.stringify({ name: item.name, amount: item.amount, frequency: item.frequency, category: item.category })
                                     });
@@ -4307,7 +4207,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error(`HTTP ${resp.status}`);
                 }
             } catch (e) {
-                console.warn('Expenses: Supabase fetch failed, using localStorage:', e);
+                console.warn('Expenses: Backend fetch failed, using localStorage:', e);
                 const local = localStorage.getItem(LOCAL_KEY);
                 if (local) expenses = JSON.parse(local);
             }
@@ -4360,16 +4260,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     expenses = expenses.filter(e => e.id !== id);
                     localStorage.setItem(LOCAL_KEY, JSON.stringify(expenses));
                     renderExpenses();
-                    // Delete from Supabase
+                    // Delete from Backend
                     try {
-                        await fetch(`${SUPABASE_URL}/rest/v1/symphony_expenses?id=eq.${id}`, {
+                        await apiFetch(`/expenses/${id}`, {
                             method: 'DELETE',
                             headers: {
-                                'apikey': SUPABASE_ANON_KEY,
-                                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                                'Authorization': `Bearer ${API_TOKEN}`
                             }
                         });
-                    } catch (e) { console.warn('Failed to delete expense from Supabase:', e); }
+                    } catch (e) { console.warn('Failed to delete expense from Backend:', e); }
                     if (typeof playRetroClick === 'function') playRetroClick();
                 });
             });
@@ -4493,15 +4392,13 @@ document.addEventListener('DOMContentLoaded', () => {
             nameEl.value = '';
             amountEl.value = '';
 
-            // Persist to Supabase
+            // Persist to Backend
             try {
-                const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_expenses`, {
+                const resp = await apiFetch(`/expenses`, {
                     method: 'POST',
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=representation'
+                        'Authorization': `Bearer ${API_TOKEN}`,
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(newExpense)
                 });
@@ -4510,7 +4407,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     renderExpenses();
                 }
             } catch (e) {
-                console.warn('Failed to save expense to Supabase:', e);
+                console.warn('Failed to save expense to Backend:', e);
             }
 
             if (typeof playRetroSuccess === 'function') playRetroSuccess();
@@ -4547,7 +4444,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="height: 100%; width: ${pct}%; background: var(--accent-green); transition: width 0.3s;"></div>
                 </div>`;
         } catch (e) {
-            pulseToday.innerHTML = '<div>Open Today\'s Schedule to see progress.</div>';
+            pulseToday.innerHTML = '<div>Open Today\\\'s Schedule to see progress.</div>';
         }
 
         // 2. Open Logistics
@@ -4562,7 +4459,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const stDone = item.subtasks ? item.subtasks.filter(s => s.completed).length : 0;
                     const badge = stCount > 0 ? ` <span style="color: var(--text-secondary); font-size: 0.75rem;">(${stDone}/${stCount} steps)</span>` : '';
                     return `<div style="padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        🔧 ${item.title}${badge}
+                        🔧 ${escapeHTML(item.title)}${badge}
                     </div>`;
                 }).join('');
             }
@@ -4627,7 +4524,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const pct = Math.round((s.current_stock / s.total_capacity) * 100);
                     const color = pct < 25 ? 'var(--accent-red)' : 'var(--accent-yellow)';
                     return `<div style="padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between;">
-                        <span style="color: ${color};">⚠️ ${s.name}</span>
+                        <span style="color: ${color};">⚠️ ${escapeHTML(s.name)}</span>
                         <span>${s.current_stock}/${s.total_capacity} (${daysLeft} days left)</span>
                     </div>`;
                 }).join('');
@@ -4740,8 +4637,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Re-render the configurator to move items to their new lists
             await initTaskConfigurator();
-            if (typeof fetchSupabaseData === 'function') {
-                await fetchSupabaseData();
+            if (typeof fetchLocalAPIData === 'function') {
+                await fetchLocalAPIData();
             }
 
             lockInBtn.innerHTML = '<span class="icon">🔒</span> Lock In';
@@ -4758,6 +4655,20 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================================
 (function initPlannerV2() {
     'use strict';
+
+function escapeHTML(str) {
+    if (typeof str !== 'string') return str;
+    return str.replace(/[&<>'"]/g, 
+        tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag] || tag)
+    );
+}
+
 
     // ── Constants ──────────────────────────────────────────
     const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -5050,7 +4961,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const dueLabel = freq === 'weekly' && t.dueDay ? ` · due by ${t.dueDay}` : '';
                     html += `<div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.35rem;">`;
                     html += `<div style="flex:1; background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.08); border-radius:4px; padding:6px 10px;">`;
-                    html += `<div style="font-size:0.9rem; font-weight:bold;">${t.title}<span style="opacity:0.45; font-size:0.78rem;">${dueLabel}</span></div>`;
+                    html += `<div style="font-size:0.9rem; font-weight:bold;">${escapeHTML(t.title)}<span style="opacity:0.45; font-size:0.78rem;">${dueLabel}</span></div>`;
                     html += `<div style="font-size:0.75rem; color:var(--text-secondary); margin-top:1px;">${lastText}</div>`;
                     html += `</div>`;
                     html += `<button class="rt-delete-btn" data-rtid="${t.id}" style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.4); color:#ef4444; border-radius:3px; padding:3px 8px; font-family:'VT323',monospace; font-size:0.85rem; cursor:pointer;">✕</button>`;
@@ -5386,9 +5297,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let tasks = [];
         try {
-            const resp = await fetch(`${SUPABASE_URL}/rest/v1/symphony_tasks_master?is_active=eq.true&select=id,title,priority_color,time_target`, {
-                headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
-            });
+            const resp = await apiFetch(`/tasks`, { headers: { "Authorization": `Bearer ${API_TOKEN}` } });
             if (resp.ok) tasks = await resp.json();
         } catch (e) { console.warn('Task pool fetch failed', e); return; }
 
@@ -5423,7 +5332,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const safeLabel = task.title.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
             html += `<div class="pool-task-card" draggable="true" data-task-id="${task.id}" data-task-label="${safeLabel}" style="background:rgba(0,0,0,0.3); border:1px solid ${colorBorder}; border-radius:6px; padding:7px 12px; cursor:grab; opacity:${isDoneToday ? '0.4' : '1'}; min-width:120px; max-width:200px; user-select:none;">`;
-            html += `<div style="font-size:0.88rem; font-weight:bold; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${task.title}</div>`;
+            html += `<div style="font-size:0.88rem; font-weight:bold; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHTML(task.title)}</div>`;
             html += `<div style="font-size:0.7rem; color:var(--text-secondary); margin-top:2px;">\u{1F550} ${lastDoneLabel}</div>`;
             html += `</div>`;
         });
@@ -5503,7 +5412,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 html += `<div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.4rem;">`;
                 html += `<div style="flex:1; background:rgba(0,0,0,0.2); border:1px solid ${overdue ? 'rgba(239,68,68,0.4)' : 'rgba(255,255,255,0.07)'}; border-radius:4px; padding:7px 10px;">`;
-                html += `<div style="font-size:0.92rem; font-weight:bold;">${t.title}${dueLabel}${overdue ? ' <span style="color:#ef4444; font-size:0.75rem;">⚠ OVERDUE</span>' : ''}</div>`;
+                html += `<div style="font-size:0.92rem; font-weight:bold;">${escapeHTML(t.title)}${dueLabel}${overdue ? ' <span style="color:#ef4444; font-size:0.75rem;">⚠ OVERDUE</span>' : ''}</div>`;
                 html += `<div style="font-size:0.75rem; color:${doneToday ? 'var(--accent-green)' : 'var(--text-secondary)'}; margin-top:1px;">${lastText}</div>`;
                 html += `</div>`;
                 if (!doneToday) {

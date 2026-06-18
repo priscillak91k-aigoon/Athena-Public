@@ -1,0 +1,104 @@
+{
+  "project_name": "National NZBC Consent Verification Audit",
+  "timestamp": "2026-06-10 16:18:57",
+  "projects": {
+    "bedford_parade": {
+      "id": "bedford_parade",
+      "name": "12 Bedford Parade Change of Use",
+      "city": "Dunedin",
+      "target_bca": "Dunedin City Council",
+      "wind_zone": "High",
+      "foundation_type": "Timber Subfloor",
+      "description": "Garage conversion to self-contained unit (Section 115 Change of Use).",
+      "is_alteration": true,
+      "dimensions": {
+        "ground_area": 60.0
+      },
+      "climate_zone": 5,
+      "z_factor": 0.13,
+      "earthworks_m3": 50.0,
+      "folder_path": "C:\\Users\\prisc\\Documents\\Athena-Public\\projects\\12_Bedford_Parade"
+    },
+    "lynn_street": {
+      "id": "lynn_street",
+      "name": "64 Lynn Street Alterations",
+      "city": "Dunedin",
+      "target_bca": "Dunedin City Council",
+      "wind_zone": "High",
+      "foundation_type": "Timber Subfloor",
+      "description": "Internal load-bearing wall removal for open-plan living.",
+      "is_alteration": true,
+      "bracing": {
+        "lost_demand": 186.8,
+        "panel_length": 1.2,
+        "panel_capacity": 60.0
+      },
+      "climate_zone": 5,
+      "z_factor": 0.13,
+      "earthworks_m3": 50.0,
+      "folder_path": "C:\\Users\\prisc\\Documents\\Athena-Public\\projects\\64_Lynn_Street"
+    },
+    "portobello": {
+      "id": "portobello",
+      "name": "675 Portobello Road Alterations",
+      "city": "Dunedin",
+      "target_bca": "Dunedin City Council",
+      "wind_zone": "High",
+      "foundation_type": "Concrete Slab-on-Ground",
+      "description": "Habitable extension adding a bedroom and living space.",
+      "is_alteration": false,
+      "dimensions": {
+        "width": 3.5,
+        "length": 4.64,
+        "wall_height": 2.4,
+        "roof_pitch_deg": 15.0,
+        "ground_area": 16.24
+      },
+      "climate_zone": 5,
+      "z_factor": 0.13,
+      "earthworks_m3": 50.0,
+      "folder_path": "C:\\Users\\prisc\\Documents\\Athena-Public\\projects\\675_Portobello_Road"
+    },
+    "mock_wellington": {
+      "id": "mock_wellington",
+      "name": "Mock Wellington Build",
+      "city": "Wellington",
+      "target_bca": "Wellington City Council",
+      "wind_zone": "Very High",
+      "foundation_type": "slab",
+      "description": "New residential build.",
+      "is_alteration": false,
+      "dimensions": {
+        "width": 8.0,
+        "length": 12.0,
+        "wall_height": 2.4,
+        "roof_pitch_deg": 25.0,
+        "ground_area": 96.0
+      },
+      "climate_zone": 3,
+      "z_factor": 0.3,
+      "earthworks_m3": 10.0,
+      "folder_path": "C:\\Users\\prisc\\Documents\\Athena-Public\\projects\\Mock_Wellington_Build"
+    }
+  },
+  "findings": [
+    {
+      "project": "bedford_parade",
+      "id": "RFI-BEDFORD-01",
+      "severity": "MEDIUM",
+      "category": "H1 Energy Efficiency / Change of Use",
+      "clause": "Building Act 2004 s.115 / NZBC H1/AS1",
+      "message": "Existing suspended concrete floor slab R-value is R0.40, failing the new-build H1/AS1 minimum of R3.0 for Climate Zone 5. However, under Section 115 (Change of Use), compliance can be demonstrated under the ANARP (As Nearly As Reasonably Practicable) path.",
+      "remediation": "Submit a Section 115 ANARP report detailing headroom constraints to Council, and compensate by upgrading wall insulation to R2.8+ or ceiling to R7.0+."
+    },
+    {
+      "project": "bedford_parade",
+      "id": "RFI-BEDFORD-02",
+      "severity": "CRITICAL",
+      "category": "C Fire Safety / Thermal Envelope",
+      "clause": "NZBC Clauses C3.4 & H1/AS1",
+      "message": "The proposed 1.49m x 1.015m floor opening and trapdoor to the basement storage unit below lacks fire-rating and insulation detailing. A residential unit above a separate storage/garage space requires a fire separation (min FRR 30/30/30) and continuous air-tight seals.",
+      "remediation": "Specify a fire-rated access hatch / floor door with a certified FD30 rating, and detail continuous compression draft seals and thermal insulation on the underside of the door."
+    }
+  ]
+}

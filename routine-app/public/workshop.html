@@ -5,13 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Workshop | Personal Organizer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Outfit:wght@300;400;500;600&family=VT323&display=swap"
-        rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
+            <link
+
+        <style>
         :root {
             /* ── Forge Palette ── */
             --bg-forge: #070504;
@@ -43,7 +39,7 @@
         body {
             background: var(--bg-forge);
             color: var(--parchment);
-            font-family: 'Outfit', system-ui, sans-serif;
+            font-family: system-ui, -apple-system, sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -327,7 +323,7 @@
         }
 
         header h1 {
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             font-size: 2.4rem;
             font-weight: 700;
             color: var(--copper-bright);
@@ -350,7 +346,7 @@
             left: 1.5rem;
             color: var(--copper);
             text-decoration: none;
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             font-size: 0.85rem;
             opacity: 0.6;
             transition: opacity 0.2s;
@@ -378,7 +374,7 @@
             border: 1px solid var(--iron-border);
             border-bottom: 2px solid rgba(100, 60, 30, 0.3);
             color: var(--parchment-dim);
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             font-size: 0.82rem;
             font-weight: 600;
             cursor: pointer;
@@ -418,7 +414,7 @@
         }
 
         .section-header h2 {
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--copper-bright);
@@ -443,7 +439,7 @@
         }
 
         .sub-panel h3 {
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             font-size: 1rem;
             font-weight: 600;
             margin: 0 0 0.75rem 0;
@@ -458,7 +454,7 @@
             background: rgba(8, 5, 4, 0.6);
             border: 1px solid rgba(120, 80, 40, 0.25);
             color: var(--parchment);
-            font-family: 'Outfit', sans-serif;
+            font-family: system-ui, -apple-system, sans-serif;
             font-size: 0.9rem;
             border-radius: var(--radius);
             outline: 2px solid transparent;
@@ -491,7 +487,7 @@
             background: rgba(176, 96, 40, 0.15);
             border: 1px solid var(--copper);
             color: var(--copper-bright);
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
@@ -554,7 +550,7 @@
             font-weight: 600;
             margin-bottom: 0.4rem;
             color: var(--copper-bright);
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             font-size: 0.95rem;
             overflow-wrap: break-word;
             word-break: break-word;
@@ -590,7 +586,7 @@
             color: var(--copper);
             margin-right: 0.3rem;
             margin-top: 0.3rem;
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -619,7 +615,7 @@
         }
 
         .person-name {
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             font-size: 1.15rem;
             font-weight: 700;
             color: var(--brass-bright);
@@ -652,7 +648,7 @@
 
         .gift-item .price {
             color: var(--brass);
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             font-size: 0.85rem;
             font-weight: 600;
         }
@@ -665,7 +661,7 @@
             background: rgba(120, 96, 64, 0.2);
             border: 1px solid rgba(120, 96, 64, 0.4);
             color: var(--patina);
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             font-weight: 600;
             letter-spacing: 0.3px;
         }
@@ -1018,11 +1014,28 @@
 
     <script>
         // ═══════════════════════════════════════════════════════════════════════════
-        // SUPABASE CLIENT
+        // SOVEREIGN API CLIENT  (was Supabase cloud — now local /api over Tailscale)
         // ═══════════════════════════════════════════════════════════════════════════
-        const SUPABASE_URL = 'https://ezvptctdfcddoybownml.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6dnB0Y3RkZmNkZG95Ym93bm1sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3NDgzNzAsImV4cCI6MjA4NzMyNDM3MH0.u_t44hY_YCwwtbWCIrQKf7EnUZDrja1q4zUFT0MXNOs';
-        const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const API_BASE = '/api';
+        const API_TOKEN = 'local_tailnet_token';
+
+        // Single fetch wrapper. Throws loudly on any non-2xx so callers must handle
+        // failure rather than silently corrupting the in-memory cache.
+        async function api(endpoint, { method = 'GET', body } = {}) {
+            const res = await fetch(`${API_BASE}${endpoint}`, {
+                method,
+                headers: {
+                    'Authorization': `Bearer ${API_TOKEN}`,
+                    ...(body ? { 'Content-Type': 'application/json' } : {})
+                },
+                ...(body ? { body: JSON.stringify(body) } : {})
+            });
+            if (!res.ok) {
+                const detail = await res.text().catch(() => '');
+                throw new Error(`${method} ${endpoint} -> ${res.status} ${detail}`);
+            }
+            return res.status === 204 ? null : res.json();
+        }
 
         // ═══════════════════════════════════════════════════════════════════════════
         // SYNC BUTTON (localhost-only)
@@ -1143,11 +1156,11 @@
                             return;
                         }
                         if (!confirm('This will REPLACE all current data. Are you sure?')) return;
-                        const mapping = { people: KEYS.people, ideas: KEYS.ideas, wishes: KEYS.wishes, lists: KEYS.lists, projects: KEYS.projects };
+                        const mapping = { people: KEYS.people, projects: KEYS.projects };
                         Object.entries(mapping).forEach(([name, key]) => {
                             if (Array.isArray(data[name])) save(key, data[name]);
                         });
-                        renderAll();
+                        initAll();
                         alert('Data imported successfully.');
                     } catch (err) {
                         alert('Import failed — invalid JSON: ' + err.message);
@@ -1341,7 +1354,7 @@
         }
 
         // ═══════════════════════════════════════════════════════════════════════════
-        // IDEAS — Supabase
+        // IDEAS — Sovereign /api
         // ═══════════════════════════════════════════════════════════════════════════
         let currentIdeaFilter = 'all';
         let _ideasCache = [];
@@ -1351,8 +1364,9 @@
             const text = textEl.value.trim();
             if (!text) return;
             const category = document.getElementById('idea-category').value;
-            const { data, error } = await db.from('workshop_ideas').insert({ text, category }).select().single();
-            if (error) { console.error('[Ideas] Insert failed:', error); return; }
+            let data;
+            try { data = await api('/workshop_ideas', { method: 'POST', body: { text, category } }); }
+            catch (e) { console.error('[Ideas] Insert failed:', e.message); alert('Could not save idea: ' + e.message); return; }
             _ideasCache.unshift(data);
             textEl.value = '';
             renderIdeas();
@@ -1361,7 +1375,8 @@
 
         async function deleteIdea(id) {
             if (!confirm('Delete this idea?')) return;
-            await db.from('workshop_ideas').delete().eq('id', id);
+            try { await api('/workshop_ideas/' + id, { method: 'DELETE' }); }
+            catch (e) { console.error('[Ideas] Delete failed:', e.message); alert('Could not delete idea: ' + e.message); return; }
             _ideasCache = _ideasCache.filter(i => i.id !== id);
             renderIdeas();
         }
@@ -1374,8 +1389,8 @@
         }
 
         async function loadIdeas() {
-            const { data } = await db.from('workshop_ideas').select('*').order('added_at', { ascending: false });
-            _ideasCache = data || [];
+            try { _ideasCache = await api('/workshop_ideas') || []; }
+            catch (e) { console.error('[Ideas] Load failed:', e.message); _ideasCache = []; }
             renderIdeas();
         }
 
@@ -1403,7 +1418,7 @@
         }
 
         // ═══════════════════════════════════════════════════════════════════════════
-        // WISHLISTS — Supabase
+        // WISHLISTS — Sovereign /api
         // ═══════════════════════════════════════════════════════════════════════════
         let _wishesCache = [];
 
@@ -1414,8 +1429,9 @@
             const price = document.getElementById('wish-price').value.trim();
             const link = document.getElementById('wish-link').value.trim();
             const why = document.getElementById('wish-why').value.trim();
-            const { data, error } = await db.from('workshop_wishlists').insert({ name, price: price || null, link: link || null, why: why || null }).select().single();
-            if (error) { console.error('[Wishes] Insert failed:', error); return; }
+            let data;
+            try { data = await api('/workshop_wishlists', { method: 'POST', body: { name, price: price || null, link: link || null, why: why || null } }); }
+            catch (e) { console.error('[Wishes] Insert failed:', e.message); alert('Could not save wish: ' + e.message); return; }
             _wishesCache.unshift(data);
             ['wish-name', 'wish-price', 'wish-link', 'wish-why'].forEach(id => document.getElementById(id).value = '');
             renderWishes();
@@ -1426,14 +1442,15 @@
             const wish = _wishesCache.find(w => w.id === id);
             const name = wish ? wish.name : 'this item';
             if (!confirm(`Remove "${name}" from your wishlist?`)) return;
-            await db.from('workshop_wishlists').delete().eq('id', id);
+            try { await api('/workshop_wishlists/' + id, { method: 'DELETE' }); }
+            catch (e) { console.error('[Wishes] Delete failed:', e.message); alert('Could not delete wish: ' + e.message); return; }
             _wishesCache = _wishesCache.filter(w => w.id !== id);
             renderWishes();
         }
 
         async function loadWishes() {
-            const { data } = await db.from('workshop_wishlists').select('*').order('added_at', { ascending: false });
-            _wishesCache = data || [];
+            try { _wishesCache = await api('/workshop_wishlists') || []; }
+            catch (e) { console.error('[Wishes] Load failed:', e.message); _wishesCache = []; }
             renderWishes();
         }
 
@@ -1469,7 +1486,7 @@
         }
 
         // ═══════════════════════════════════════════════════════════════════════════
-        // LISTS — Supabase
+        // LISTS — Sovereign /api
         // ═══════════════════════════════════════════════════════════════════════════
         let _listsCache = [];
 
@@ -1478,8 +1495,9 @@
             const name = nameEl.value.trim();
             if (!name) return;
             const icon = document.getElementById('list-icon').value;
-            const { data, error } = await db.from('workshop_lists').insert({ list_name: name, icon, items: [] }).select().single();
-            if (error) { console.error('[Lists] Insert failed:', error); return; }
+            let data;
+            try { data = await api('/workshop_lists', { method: 'POST', body: { list_name: name, icon, items: [] } }); }
+            catch (e) { console.error('[Lists] Insert failed:', e.message); alert('Could not create list: ' + e.message); return; }
             _listsCache.push(data);
             nameEl.value = '';
             renderLists();
@@ -1493,8 +1511,9 @@
             const list = _listsCache.find(l => l.id === listId);
             if (!list) return;
             const newItems = [...(list.items || []), { id: genId(), text, checked: false }];
-            const { data, error } = await db.from('workshop_lists').update({ items: newItems, updated_at: new Date().toISOString() }).eq('id', listId).select().single();
-            if (error) { console.error('[Lists] Update failed:', error); return; }
+            let data;
+            try { data = await api('/workshop_lists/' + listId, { method: 'PATCH', body: { items: newItems } }); }
+            catch (e) { console.error('[Lists] Update failed:', e.message); alert('Could not add item: ' + e.message); return; }
             list.items = data.items;
             renderLists();
             const newInput = document.getElementById(`list-item-${listId}`);
@@ -1506,7 +1525,8 @@
             if (!list) return;
             const item = (list.items || []).find(i => i.id === itemId);
             if (item) item.checked = !item.checked;
-            await db.from('workshop_lists').update({ items: list.items, updated_at: new Date().toISOString() }).eq('id', listId);
+            try { await api('/workshop_lists/' + listId, { method: 'PATCH', body: { items: list.items } }); }
+            catch (e) { console.error('[Lists] Update failed:', e.message); alert('Could not update list: ' + e.message); }
             renderLists();
         }
 
@@ -1514,20 +1534,22 @@
             const list = _listsCache.find(l => l.id === listId);
             if (!list) return;
             list.items = (list.items || []).filter(i => i.id !== itemId);
-            await db.from('workshop_lists').update({ items: list.items, updated_at: new Date().toISOString() }).eq('id', listId);
+            try { await api('/workshop_lists/' + listId, { method: 'PATCH', body: { items: list.items } }); }
+            catch (e) { console.error('[Lists] Update failed:', e.message); alert('Could not update list: ' + e.message); }
             renderLists();
         }
 
         async function deleteList(listId) {
             if (!confirm('Delete this entire list?')) return;
-            await db.from('workshop_lists').delete().eq('id', listId);
+            try { await api('/workshop_lists/' + listId, { method: 'DELETE' }); }
+            catch (e) { console.error('[Lists] Delete failed:', e.message); alert('Could not delete list: ' + e.message); return; }
             _listsCache = _listsCache.filter(l => l.id !== listId);
             renderLists();
         }
 
         async function loadLists() {
-            const { data } = await db.from('workshop_lists').select('*').order('updated_at', { ascending: false });
-            _listsCache = data || [];
+            try { _listsCache = await api('/workshop_lists') || []; }
+            catch (e) { console.error('[Lists] Load failed:', e.message); _listsCache = []; }
             renderLists();
         }
 
@@ -1787,7 +1809,7 @@
         // INIT
         // ═══════════════════════════════════════════════════════════════════════════
         async function initAll() {
-            // Supabase tabs (async)
+            // Backend tabs (async)
             loadWishes();
             loadIdeas();
             loadLists();

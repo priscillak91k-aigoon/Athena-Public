@@ -17,42 +17,6 @@ networks:
 
 services:
 
-  # ---------------------------------------------------------------------------
-  # MEDIA SERVER — Plex
-  # ---------------------------------------------------------------------------
-  # Serves media to TV, phone, browser.
-  # Uses network_mode: host for DLNA/GDM discovery on local network.
-  # GPU passthrough enabled for hardware transcoding (requires Plex Pass).
-  # NOTE: If NVENC stays greyed out on the GB10, switch to Jellyfin (see below).
-  #
-  # ⚠️ NETWORKING: Plex uses host networking, so it is NOT on media-net.
-  # Other containers (Seerr, Radarr, Sonarr) must reach Plex via the
-  # HOST'S LAN IP (e.g., http://192.168.x.x:32400), NOT "http://plex:32400".
-  # In Plex Settings > Network > LAN Networks, add your Docker bridge
-  # subnet (172.17.0.0/16) so Plex treats container traffic as local.
-  plex:
-    image: lscr.io/linuxserver/plex:latest
-    container_name: plex
-    network_mode: host
-    environment:
-      - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
-      - TZ=Pacific/Auckland
-      - VERSION=docker
-      - NVIDIA_VISIBLE_DEVICES=all
-      - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
-    volumes:
-      - ./data/plex/config:/config
-      - /mnt/media/data/media:/data/media:ro   # Read-only: Plex only reads
-      - /dev/shm:/transcode                     # RAM-backed transcoding temp
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
-    restart: unless-stopped
 
   # ---------------------------------------------------------------------------
   # ALTERNATIVE: Jellyfin (uncomment to use instead of Plex)
@@ -75,7 +39,7 @@ services:
       - "8096:8096"
     volumes:
       - ./data/jellyfin/config:/config
-      - /mnt/media/data/media:/data/media:ro
+      # - /mnt/media/data/media:/data/media:ro   # Removed by Lobotto: Legacy mount crashing against immutable safeguard
       - /mnt/qnap/Movies:/data/qnap-movies:ro
       - /mnt/qnap/TV Series:/data/qnap-tv:ro
       - /dev/shm:/transcode

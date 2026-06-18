@@ -9,8 +9,29 @@
 
 set -e
 
-# NOTE: Set this password in your environment or keep it hardcoded for an air-gapped node
-export RESTIC_PASSWORD="sovereign_atom_secure"
+# Load environment for Telegram Tokens
+if [ -f "/home/sj/Athena-Public/.env" ]; then
+    export $(grep -v '^#' /home/sj/Athena-Public/.env | xargs)
+fi
+
+notify_failure() {
+    echo "[$(date)] 🚨 CRITICAL ERROR: Backup script failed on line $1"
+    if [ -n "$TELEGRAM_ARCHITECT_TOKEN" ] && [ -n "$TELEGRAM_ALLOWED_USER_ID" ]; then
+        # -s for silent, -o /dev/null to discard response body, preventing token leak in logs
+        curl -s -o /dev/null -X POST "https://api.telegram.org/bot${TELEGRAM_ARCHITECT_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_ALLOWED_USER_ID}" \
+            -d text="🚨 CRITICAL: Restic backup of Sovereign Vault FAILED. Check logs immediately." || true
+    fi
+}
+
+trap 'notify_failure $LINENO' ERR
+
+# RESTIC_PASSWORD must be set in .env. The previous key was compromised.
+if [ -z "$RESTIC_PASSWORD" ]; then
+    echo "🚨 ERROR: RESTIC_PASSWORD not found in .env. Halting backup."
+    notify_failure $LINENO
+    exit 1
+fi
 REPO_DEST="/mnt/qnap/atom_backups_restic"
 
 INFRA_DIR="/home/sj/Athena-Public/infrastructure/sj_atom/data"
@@ -41,3 +62,9 @@ echo "[$(date)] Pruning old snapshots..."
 restic -r "$REPO_DEST" forget --keep-hourly 24 --keep-daily 7 --keep-weekly 4 --keep-monthly 12 --prune
 
 echo "[$(date)] Backup complete! No containers were harmed (or stopped) in the making of this snapshot."
+
+# Dead-Man's Switch: Ping Healthchecks.io on absolute success
+if [ -n "$HEALTHCHECK_URL" ]; then
+    # Timeout 10s, retry up to 3 times, silence output.
+    curl -m 10 --retry 3 -s -o /dev/null "$HEALTHCHECK_URL" || echo "[$(date)] WARNING: Healthcheck ping failed to transmit."
+fi

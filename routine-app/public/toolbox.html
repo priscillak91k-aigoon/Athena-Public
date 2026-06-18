@@ -5,12 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toolbox | Ad-Free Utilities</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+            <link
+
+    <script src="vendor/pdf.min.js"></script>
+    <script src="vendor/qrcode.min.js"></script>
     <style>
         :root {
             --bg-forge: #070504;
@@ -41,7 +39,7 @@
         body {
             background: var(--bg-forge);
             color: var(--parchment);
-            font-family: 'Outfit', system-ui, sans-serif;
+            font-family: system-ui, -apple-system, sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -123,7 +121,7 @@
         }
 
         header h1 {
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             font-size: 2.4rem;
             font-weight: 700;
             color: var(--copper-bright);
@@ -145,7 +143,7 @@
             left: 1.5rem;
             color: var(--copper);
             text-decoration: none;
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             font-size: 0.85rem;
             opacity: 0.6;
             transition: opacity 0.2s;
@@ -188,7 +186,7 @@
         }
 
         .tool-card h3 {
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             color: var(--copper-bright);
             font-size: 1rem;
             margin-bottom: 0.4rem;
@@ -219,7 +217,7 @@
         }
 
         .tool-header h2 {
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             color: var(--copper-bright);
             font-size: 1.4rem;
             letter-spacing: 1px;
@@ -229,7 +227,7 @@
             background: rgba(176, 96, 40, 0.15);
             border: 1px solid var(--copper);
             color: var(--copper-bright);
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             font-size: 0.8rem;
             padding: 0.4rem 0.8rem;
             cursor: pointer;
@@ -252,7 +250,7 @@
             background: rgba(8, 5, 4, 0.6);
             border: 1px solid rgba(120, 80, 40, 0.25);
             color: var(--parchment);
-            font-family: 'Outfit', sans-serif;
+            font-family: system-ui, -apple-system, sans-serif;
             font-size: 0.9rem;
             border-radius: var(--radius);
             outline: 2px solid transparent;
@@ -289,7 +287,7 @@
             background: rgba(176, 96, 40, 0.15);
             border: 1px solid var(--copper);
             color: var(--copper-bright);
-            font-family: 'Cinzel', serif;
+            font-family: Georgia, serif;
             font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
@@ -593,7 +591,7 @@
                             style="max-width:100%;max-height:300px;border:1px solid var(--iron-border);border-radius:var(--radius);display:block;margin:0.5rem 0;">
                     </div>
                     <div class="sub-panel">
-                        <h3 style="font-family:'Cinzel',serif;color:var(--copper);margin-bottom:0.75rem;">Convert &
+                        <h3 style="font-family: Georgia, serif;color:var(--copper);margin-bottom:0.75rem;">Convert &
                             Resize</h3>
                         <div class="row" style="margin-bottom:0.75rem;">
                             <div style="flex:0 0 auto;min-width:auto;"><label
@@ -647,7 +645,7 @@
                     <button class="tb-btn green" onclick="copyResult('text-input')">Copy</button>
                 </div>
                 <div class="sub-panel" style="margin-top:1rem;">
-                    <h3 style="font-family:'Cinzel',serif;color:var(--copper);margin-bottom:0.5rem;font-size:0.9rem;">
+                    <h3 style="font-family: Georgia, serif;color:var(--copper);margin-bottom:0.5rem;font-size:0.9rem;">
                         Find & Replace</h3>
                     <div class="row" style="gap:0.4rem;">
                         <input class="tb-input" id="text-find" placeholder="Find...">
@@ -825,7 +823,7 @@
         // PDF VIEWER
         // ═══════════════════════════════════════════════════════════
         let pdfDoc = null, pdfPageNum = 1, pdfScale = 1.0;
-        if (window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        if (window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdf.worker.min.js';
 
         function setupDrop(dropId, fileId, handler) {
             const drop = document.getElementById(dropId);
@@ -1070,25 +1068,35 @@
             const output = document.getElementById('qr-output');
             const dlBtn = document.getElementById('qr-download');
             if (!text) { output.innerHTML = '<p style="color:var(--parchment-dim);font-size:0.85rem;">Enter text above to generate a QR code</p>'; dlBtn.disabled = true; return; }
-            // Simple QR via an inline canvas approach using the QR encoding API
-            // We'll use a Google Charts fallback rendered to canvas for reliability
-            const size = 250;
-            const img = new Image();
-            img.crossOrigin = 'anonymous';
-            img.onload = function () {
-                output.innerHTML = '';
-                const canvas = document.createElement('canvas');
-                canvas.width = size; canvas.height = size;
-                canvas.id = 'qr-canvas';
-                canvas.getContext('2d').drawImage(img, 0, 0, size, size);
-                output.appendChild(canvas);
-                dlBtn.disabled = false;
-            };
-            img.onerror = function () {
-                output.innerHTML = '<p style="color:#c05030;font-size:0.85rem;">QR generation requires internet (uses Google Charts API)</p>';
+            
+            output.innerHTML = '';
+            const container = document.createElement('div');
+            container.style.display = 'inline-block';
+            output.appendChild(container);
+
+            try {
+                new QRCode(container, {
+                    text: text,
+                    width: 250,
+                    height: 250,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.M
+                });
+                
+                setTimeout(() => {
+                    const canvas = container.querySelector('canvas');
+                    if (canvas) {
+                        canvas.id = 'qr-canvas';
+                        canvas.style.border = '4px solid #fff';
+                        canvas.style.borderRadius = 'var(--radius)';
+                        dlBtn.disabled = false;
+                    }
+                }, 50);
+            } catch (err) {
+                output.innerHTML = '<p style="color:#c05030;font-size:0.85rem;">Failed to generate QR code locally.</p>';
                 dlBtn.disabled = true;
-            };
-            img.src = `https://chart.googleapis.com/chart?cht=qr&chs=${size}x${size}&chl=${encodeURIComponent(text)}&choe=UTF-8`;
+            }
         }
 
         function downloadQR() {

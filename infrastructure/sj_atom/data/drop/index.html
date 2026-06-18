@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign Life Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #0f172a;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .background-effects {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .blur-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+            animation: float 20s infinite ease-in-out alternate;
+        }
+        .blob-1 {
+            top: -10%; left: -10%; width: 50vw; height: 50vw;
+            background: rgba(168, 85, 247, 0.2);
+        }
+        .blob-2 {
+            bottom: -10%; right: -10%; width: 60vw; height: 60vw;
+            background: rgba(59, 130, 246, 0.2);
+            animation-delay: -10s;
+        }
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10%, 10%) scale(1.1); }
+        }
+        .glass-panel {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-decoration: none;
+            color: inherit;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+        .service-card h3 {
+            margin: 0.5rem 0;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+        .service-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="background-effects">
+        <div class="blur-blob blob-1"></div>
+        <div class="blur-blob blob-2"></div>
+    </div>
+
+    <div style="max-width: 900px; margin: 4rem auto; display: block; padding: 0 1rem;">
+        
+        <header class="glass-panel" style="text-align: center; padding: 3rem 2rem; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #A855F7, #3B82F6, #10B981);"></div>
+            <h1 style="color: #fff; font-size: 2.8rem; margin-bottom: 0.5rem; font-weight: 800; letter-spacing: -1px;">Sovereign Hub</h1>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); margin: 0;">Internal Tailscale Mesh</p>
+            <div style="margin-top: 1rem; display: inline-block; padding: 4px 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 20px; color: #10B981; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;">
+                ● Secure Node
+            </div>
+        </header>
+
+        <!-- Front-Facing Services -->
+        <h2 style="margin: 2rem 0 1rem; color: #fff; font-size: 1.5rem; text-shadow: 0 0 10px rgba(255,255,255,0.2);">Front-Facing Services</h2>
+        <section class="glass-panel" style="padding: 2rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                <a href="https://media.atom.tailnet" target="_blank" class="service-card" style="border-color: rgba(168, 85, 247, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem; filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4));">🎬</div>
+                    <h3 style="color: #A855F7;">Jellyfin</h3>
+                    <p>11TB Media Array</p>
+                </a>
+                <a href="https://seerr.atom.tailnet" target="_blank" class="service-card" style="border-color: rgba(245, 158, 11, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem; filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.4));">🍿</div>
+                    <h3 style="color: #F59E0B;">Seerr</h3>
+                    <p>Media Requests</p>
+                </a>
+                <a href="https://audio.atom.tailnet" target="_blank" class="service-card" style="border-color: rgba(16, 185, 129, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem; filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));">📚</div>
+                    <h3 style="color: #10B981;">Audiobookshelf</h3>
+                    <p>Library & Podcasts</p>
+                </a>
+                <a href="https://ai.atom.tailnet" target="_blank" class="service-card" style="border-color: rgba(59, 130, 246, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem; filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.4));">🧠</div>
+                    <h3 style="color: #3B82F6;">Open WebUI</h3>
+                    <p>122B Qwen Engine</p>
+                </a>
+                <a href="https://wiki.atom.tailnet" target="_blank" class="service-card" style="border-color: rgba(236, 72, 153, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem; filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.4));">📓</div>
+                    <h3 style="color: #EC4899;">Wiki</h3>
+                    <p>Knowledge Base</p>
+                </a>
+                <a href="https://memos.atom.tailnet" target="_blank" class="service-card" style="border-color: rgba(251, 191, 36, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem; filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.4));">📝</div>
+                    <h3 style="color: #FBBF24;">Memos</h3>
+                    <p>Quick Thoughts</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Backend & Automation -->
+        <h2 style="margin: 2.5rem 0 1rem; color: #fff; font-size: 1.5rem; text-shadow: 0 0 10px rgba(255,255,255,0.2);">Backend & Automation</h2>
+        <section class="glass-panel" style="padding: 2rem; margin-bottom: 4rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                <a href="https://agent.atom.tailnet" target="_blank" class="service-card" style="border-color: rgba(244, 63, 94, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem; filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.4));">⚙️</div>
+                    <h3 style="color: #F43F5E;">n8n</h3>
+                    <p>Automation Mesh</p>
+                </a>
+                <a href="https://sonarr.atom.tailnet" target="_blank" class="service-card" style="border-color: rgba(14, 165, 233, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem; filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.4));">📺</div>
+                    <h3 style="color: #0EA5E9;">Sonarr</h3>
+                    <p>TV Automation</p>
+                </a>
+                <a href="https://radarr.atom.tailnet" target="_blank" class="service-card" style="border-color: rgba(234, 179, 8, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem; filter: drop-shadow(0 0 10px rgba(234, 179, 8, 0.4));">🎞️</div>
+                    <h3 style="color: #EAB308;">Radarr</h3>
+                    <p>Movie Automation</p>
+                </a>
+                <a href="https://qbit.atom.tailnet" target="_blank" class="service-card" style="border-color: rgba(34, 197, 94, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem; filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.4));">⬇️</div>
+                    <h3 style="color: #22C55E;">qBittorrent</h3>
+                    <p>Download Client</p>
+                </a>
+                <a href="https://prowlarr.atom.tailnet" target="_blank" class="service-card" style="border-color: rgba(139, 92, 246, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem; filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.4));">🔍</div>
+                    <h3 style="color: #8B5CF6;">Prowlarr</h3>
+                    <p>Indexer Manager</p>
+                </a>
+                <a href="https://vault.atom.tailnet" target="_blank" class="service-card" style="border-color: rgba(100, 116, 139, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem; filter: drop-shadow(0 0 10px rgba(100, 116, 139, 0.4));">🔒</div>
+                    <h3 style="color: #94A3B8;">Vaultwarden</h3>
+                    <p>Password Manager</p>
+                </a>
+                <a href="https://sync.atom.tailnet" target="_blank" class="service-card" style="border-color: rgba(56, 189, 248, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.4));">🔄</div>
+                    <h3 style="color: #38BDF8;">Syncthing</h3>
+                    <p>File Sync</p>
+                </a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

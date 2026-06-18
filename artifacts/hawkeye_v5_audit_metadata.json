@@ -1,0 +1,221 @@
+{
+  "project_name": "National NZBC Consent Verification Audit",
+  "timestamp": "2026-06-10 12:57:13",
+  "projects": {
+    "bedford_parade": {
+      "id": "bedford_parade",
+      "name": "12 Bedford Parade Change of Use",
+      "city": "Dunedin",
+      "target_bca": "Dunedin City Council",
+      "wind_zone": "High",
+      "foundation_type": "Timber Subfloor",
+      "description": "Garage conversion to self-contained unit (Section 115 Change of Use).",
+      "is_alteration": true,
+      "dimensions": {
+        "ground_area": 60.0
+      },
+      "climate_zone": 5,
+      "z_factor": 0.13,
+      "earthworks_m3": 50.0,
+      "folder_path": "C:\\Users\\prisc\\Documents\\Athena-Public\\projects\\12_Bedford_Parade"
+    },
+    "lynn_street": {
+      "id": "lynn_street",
+      "name": "64 Lynn Street Alterations",
+      "city": "Dunedin",
+      "target_bca": "Dunedin City Council",
+      "wind_zone": "High",
+      "foundation_type": "Timber Subfloor",
+      "description": "Internal load-bearing wall removal for open-plan living.",
+      "is_alteration": true,
+      "bracing": {
+        "lost_demand": 186.8,
+        "panel_length": 1.2,
+        "panel_capacity": 60.0
+      },
+      "climate_zone": 5,
+      "z_factor": 0.13,
+      "earthworks_m3": 50.0,
+      "folder_path": "C:\\Users\\prisc\\Documents\\Athena-Public\\projects\\64_Lynn_Street"
+    },
+    "portobello": {
+      "id": "portobello",
+      "name": "675 Portobello Road Alterations",
+      "city": "Dunedin",
+      "target_bca": "Dunedin City Council",
+      "wind_zone": "High",
+      "foundation_type": "Concrete Slab-on-Ground",
+      "description": "Habitable extension adding a bedroom and living space.",
+      "is_alteration": false,
+      "dimensions": {
+        "width": 3.5,
+        "length": 4.64,
+        "wall_height": 2.4,
+        "roof_pitch_deg": 15.0,
+        "ground_area": 16.24
+      },
+      "climate_zone": 5,
+      "z_factor": 0.13,
+      "earthworks_m3": 50.0,
+      "folder_path": "C:\\Users\\prisc\\Documents\\Athena-Public\\projects\\675_Portobello_Road"
+    },
+    "mock_wellington": {
+      "id": "mock_wellington",
+      "name": "Mock Wellington Build",
+      "city": "Wellington",
+      "target_bca": "Wellington City Council",
+      "wind_zone": "Very High",
+      "foundation_type": "slab",
+      "description": "New residential build.",
+      "is_alteration": false,
+      "dimensions": {
+        "width": 8.0,
+        "length": 12.0,
+        "wall_height": 2.4,
+        "roof_pitch_deg": 25.0,
+        "ground_area": 96.0
+      },
+      "climate_zone": 3,
+      "z_factor": 0.3,
+      "earthworks_m3": 10.0,
+      "folder_path": "C:\\Users\\prisc\\Documents\\Athena-Public\\projects\\Mock_Wellington_Build"
+    }
+  },
+  "findings": [
+    {
+      "project": "bedford_parade",
+      "id": "RFI-BEDFORD-01",
+      "severity": "MEDIUM",
+      "category": "H1 Energy Efficiency / Change of Use",
+      "clause": "Building Act 2004 s.115 / NZBC H1/AS1",
+      "message": "Existing suspended concrete floor slab R-value is R0.40, failing the new-build H1/AS1 minimum of R3.0 for Climate Zone 5. However, under Section 115 (Change of Use), compliance can be demonstrated under the ANARP (As Nearly As Reasonably Practicable) path.",
+      "remediation": "Submit a Section 115 ANARP report detailing headroom constraints to Council, and compensate by upgrading wall insulation to R2.8+ or ceiling to R7.0+."
+    },
+    {
+      "project": "bedford_parade",
+      "id": "RFI-BEDFORD-02",
+      "severity": "CRITICAL",
+      "category": "C Fire Safety / Thermal Envelope",
+      "clause": "NZBC Clauses C3.4 & H1/AS1",
+      "message": "The proposed 1.49m x 1.015m floor opening and trapdoor to the basement storage unit below lacks fire-rating and insulation detailing. A residential unit above a separate storage/garage space requires a fire separation (min FRR 30/30/30) and continuous air-tight seals.",
+      "remediation": "Specify a fire-rated access hatch / floor door with a certified FD30 rating, and detail continuous compression draft seals and thermal insulation on the underside of the door."
+    },
+    {
+      "project": "lynn_street",
+      "id": "RFI-LYNN-01",
+      "severity": "CRITICAL",
+      "category": "RBW / Certificate of Design Work",
+      "clause": "Building Act 2004 s.45 / Form 2A",
+      "message": "Form 2A Certificate of Design Work (CoDW) error. Page 1 'Basis for Providing this Memorandum' fails to nominate the 'Lead' designer role.",
+      "remediation": "Revise Form 2A CoDW page 1 to tick the 'Lead' designer option. Update dates and revision numbers."
+    },
+    {
+      "project": "lynn_street",
+      "id": "RFI-LYNN-02",
+      "severity": "CRITICAL",
+      "category": "RBW / Certificate of Design Work",
+      "clause": "Building Act 2004 s.45 / Form 2A",
+      "message": "Form 2A CoDW fails to nominate 'Walls' which support new point loads from the open-plan structural beam.",
+      "remediation": "Revise Form 2A CoDW to tick the 'Walls' section under Restricted Building Work scope."
+    },
+    {
+      "project": "lynn_street",
+      "id": "RFI-LYNN-03",
+      "severity": "CRITICAL",
+      "category": "B1 Structure / Bracing Calculations",
+      "clause": "NZS 3604 Section 5",
+      "message": "Bracing demand deficit along wall removal line. Removing 3.470m of wall plus 1.2m of lining creates a total 'lost' bracing demand of 186.8 BUs. Provided GIB GS1-N bracing (1.2m length at 60 BUs/m = 72.0 BUs) leaves a deficit of 114.8 BUs along this line.",
+      "remediation": "Revise Drawing 201 to add bracing panels (e.g. upgrade to GIB Braceline BL1/BLG panels) to provide at least 186.8 BUs, and submit structural fixing schedules."
+    },
+    {
+      "project": "portobello",
+      "id": "RFI-PORTOBELLO-01",
+      "severity": "CRITICAL",
+      "category": "E2 Weathertightness / Product Alignment",
+      "clause": "E2/AS1 Clause 8.5",
+      "message": "Waterproofing product mismatch. Drawings specify 'Ardex WPM 5000D' on flat roof/verandah details, but the project Specifications document (Section 421) specifies 'Ardex WPM 195'.",
+      "remediation": "Update either sheet details or specifications to nominate the same system (Ardex WPM 195 was selected for compliance documentation)."
+    },
+    {
+      "project": "portobello",
+      "id": "RFI-PORTOBELLO-02",
+      "severity": "CRITICAL",
+      "category": "B1 Structure / Drafting Error",
+      "clause": "NZS 3604 Clause 7.5",
+      "message": "Slab-footing depth conflict on structural sheet S.03. General details show footing depth as 250mm, but the verandah slab section shows 300mm footing depth.",
+      "remediation": "Confirm correct slab depth with structural engineer. Revise S.03 details to maintain dimension consistency."
+    },
+    {
+      "project": "portobello",
+      "id": "RFI-PORTOBELLO-03",
+      "severity": "CRITICAL",
+      "category": "B1 Structure / Structural Engineer",
+      "clause": "NZS 3604 Clause 8.6",
+      "message": "Window W03 structural lintel missing. Lintel sizing is not listed on framing plan schedules nor in the engineer's PS1 design scope of work.",
+      "remediation": "Request structural engineer to perform calculations for window W03 lintel, update engineering schedules, and update framing plan."
+    },
+    {
+      "project": "portobello",
+      "id": "RFI-PORTOBELLO-04",
+      "severity": "CRITICAL",
+      "category": "B1 Structure / Wind Loading",
+      "clause": "NZS 3604 Table 10.10",
+      "message": "Purlin fixing specified does not suit wind zone. The site is designated as a High Wind Zone, but details on sheet 606 specify a low-wind purlin fixing schedule.",
+      "remediation": "Adjust sheet 606 purlin fixing schedule to comply with NZS 3604 Table 10.10 for High wind zones (e.g. 1x8g screw / Type C fixing)."
+    },
+    {
+      "project": "portobello",
+      "id": "RFI-PORTOBELLO-06",
+      "severity": "CRITICAL",
+      "category": "B1 Structure / Bracing Calculations",
+      "clause": "NZS 3604 Section 5",
+      "message": "Bracing adequacy failure. Recalculated demand requires minimum 85.0 BUs (NZS 3604 floor limit), but drawings specify only 80.0 BUs. Details of deficits: Across-direction bracing deficit: Provided 80.0 BUs, but demand is 370.6 BUs (Wind: 370.6, Seismic: 85.0)., Along-direction bracing deficit: Provided 80.0 BUs, but demand is 256.7 BUs (Wind: 256.7, Seismic: 85.0).",
+      "remediation": "Update bracing plans to specify panels providing at least 85.0 BUs in both directions."
+    },
+    {
+      "project": "portobello",
+      "id": "RFI-PORTOBELLO-05",
+      "severity": "MEDIUM",
+      "category": "E1 Surface Water / Clearances",
+      "clause": "E1/AS1 (3.0.1) & E2/AS1 Table 7",
+      "message": "FFL clearance to external ground is missing. Plans indicate a step up from the concrete porch (20mm/50mm), but do not state the clear vertical distance from FFL to the finished unpaved ground level.",
+      "remediation": "Add an annotation showing FFL to ground clearances on elevations and details (min 225mm to unpaved ground, or 150mm to paved ground)."
+    },
+    {
+      "project": "portobello",
+      "id": "RFI-PORTOBELLO-07",
+      "severity": "CRITICAL",
+      "category": "G13 Sanitary Plumbing / Venting",
+      "clause": "AS/NZS 3500.2 Clause 6.8",
+      "message": "Terminal vent designation missing. The plan shows a '100\u00d8 Stack' but does not specify that it extends as an open terminal vent to the atmosphere.",
+      "remediation": "Update stack labels on the floor plans and drainage schematics to explicitly designate the vertical run as a '100\u00d8 Stack + Terminal Vent' extending to open air."
+    },
+    {
+      "project": "portobello",
+      "id": "RFI-PORTOBELLO-08",
+      "severity": "CRITICAL",
+      "category": "G13 Sanitary Plumbing / Drainage",
+      "clause": "AS/NZS 3500.2 Clause 4.6.6",
+      "message": "Overflow Relief Gully (ORG) designation missing. The plan fails to show or designate an external ORG, which is mandatory to protect the interior from flooding during a blockage.",
+      "remediation": "Update the external drainage plans to show the location and details of the mandatory Overflow Relief Gully (ORG) with relative levels showing it is at least 150mm lower than the shower tray."
+    },
+    {
+      "project": "portobello",
+      "id": "RFI-PORTOBELLO-09",
+      "severity": "CRITICAL",
+      "category": "H1 Energy Efficiency / Insulation",
+      "clause": "NZBC H1/AS1 Clause 2.1",
+      "message": "H1 insulation failure. Floor R-value of R1.3 does not meet the minimum required R1.7 for slab-on-ground floors in Climate Zone 5. Discrepancies: Floor R-value R1.3 is below H1/AS1 minimum R1.6 for Climate Zone 5 (slab floor).",
+      "remediation": "Update foundation drawings and specifications to nominate edge insulation (e.g. 50mm perimeter XPS wrap) or under-slab insulation supplying at least R1.7."
+    },
+    {
+      "project": "mock_wellington",
+      "id": "RFI-MOCK_WELLINGTON-H1",
+      "severity": "CRITICAL",
+      "category": "H1 Energy Efficiency / Insulation",
+      "clause": "NZBC H1/AS1",
+      "message": "H1 insulation generic check failure. Climate Zone 3.",
+      "remediation": "Update insulation specifications to meet NZBC H1/AS1 limits."
+    }
+  ]
+}
