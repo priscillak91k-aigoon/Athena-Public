@@ -76,6 +76,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const API_BASE = "/api"; // same-origin: works over Tailscale from any device
     const API_TOKEN = "local_tailnet_token";
 
+// Thin fetch wrapper. Prepends API_BASE, always attaches the bearer token,
+// and sets JSON content-type when there's a body. Returns the RAW Response so
+// callers keep doing `if (resp.ok) { await resp.json() }`.
+async function apiFetch(path, options = {}) {
+    const opts = { ...options };
+    opts.headers = {
+        "Authorization": `Bearer ${API_TOKEN}`,
+        ...(opts.body ? { "Content-Type": "application/json" } : {}),
+        ...(opts.headers || {})
+    };
+    const url = path.startsWith('http') ? path : `${API_BASE}${path}`;
+    return fetch(url, opts);
+}
+
+
     // Auth & Lock Screen Logic removed - relying on Tailscale
 
     // --- Financial Calculations (NZ) ---
@@ -1827,7 +1842,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ── Supabase sync helpers ──
+    // ── Backend sync helpers ──
     async function saveDayToBackend(dateStr, items, totals, grade, score) {
         try {
             // First check if an entry exists for this date
@@ -1863,7 +1878,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return resp.ok;
             }
         } catch (e) {
-            console.error('Supabase food log save failed:', e);
+            console.error('Backend food log save failed:', e);
             return false;
         }
     }
@@ -1887,12 +1902,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return history;
             }
         } catch (e) {
-            console.error('Supabase history fetch failed, using localStorage:', e);
+            console.error('Backend history fetch failed, using localStorage:', e);
         }
         return getFoodHistory();
     }
 
-    async function saveRecipeToSupabase(recipe) {
+    async function saveRecipeToBackend(recipe) {
         try {
             const resp = await apiFetch(`/food_recipes`, {
                 method: 'POST',
@@ -1904,7 +1919,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             return resp.ok;
         } catch (e) {
-            console.error('Supabase recipe save failed:', e);
+            console.error('Backend recipe save failed:', e);
             return false;
         }
     }
@@ -2119,8 +2134,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
 
-                    // 2) Also search Open Food Facts for branded/packaged products
-                    if (query.length >= 3) {
+                    // 2) Branded/packaged lookup via Open Food Facts — DISABLED on the
+                    //    sovereign node. It reaches the public internet (breaks the air-gap),
+                    //    and with no route a bare wait fetch hangs for the browser's full
+                    //    connection timeout, freezing the search box on every keystroke.
+                    //    Re-enable ONLY behind a LOCAL mirror, and keep the AbortController below.
+                    const ALLOW_EXTERNAL_FOOD_API = false;
+                    if (ALLOW_EXTERNAL_FOOD_API && query.length >= 3) {
                         try {
                             const response = await fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=6`);
                             const data = await response.json();
@@ -2187,7 +2207,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 });
                             }
                         } catch (error) {
-                            console.error('Food Search Error:', error);
+                            console.error('Food Search (external) skipped:', error.name === 'AbortError' ? 'timeout' : error);
+                        } finally {
+                            clearTimeout(timeout);
                         }
                     }
 
@@ -2398,7 +2420,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const allRecipes = getRecipes();
                 allRecipes.push(recipe);
                 saveRecipes(allRecipes);
-                saveRecipeToSupabase(recipe); // async background save
+                saveRecipeToBackend(recipe); // async background save
 
                 buildingRecipe = false;
                 recipeItems = [];
