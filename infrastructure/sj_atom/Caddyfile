@@ -63,7 +63,14 @@ media.atom.tailnet {
 }
 
 hub.atom.tailnet {
+    basicauth {
+        priscilla $2b$10$FPZp2/7tzzuqAhK9e.MKHu/GnUL5w9GW3OsW3TzHrLt6NFKZOwfsu
+    }
     reverse_proxy lifehub:8086
+}
+
+dash.atom.tailnet {
+    reverse_proxy drop_page:8085
 }
 
 sonarr.atom.tailnet {
