@@ -828,9 +828,7 @@
                 <button class="ws-btn" onclick="importData()"
                     style="font-size:0.7rem;padding:0.25rem 0.6rem;opacity:0.5;"
                     title="Import data from backup file">Import</button>
-                <button id="sync-btn" class="ws-btn green" onclick="syncToLive()"
-                    style="font-size:0.78rem;padding:0.3rem 0.8rem;display:none;"
-                    title="Sync local changes to live GitHub Pages site">⟳ Sync</button>
+                
             </div>
         </header>
 
@@ -1035,38 +1033,6 @@
                 throw new Error(`${method} ${endpoint} -> ${res.status} ${detail}`);
             }
             return res.status === 204 ? null : res.json();
-        }
-
-        // ═══════════════════════════════════════════════════════════════════════════
-        // SYNC BUTTON (localhost-only)
-        // ═══════════════════════════════════════════════════════════════════════════
-        const IS_LOCAL = !['priscillak91k-aigoon.github.io'].includes(window.location.hostname);
-        if (IS_LOCAL) {
-            const syncBtn = document.getElementById('sync-btn');
-            if (syncBtn) syncBtn.style.display = 'inline-block';
-        }
-
-        async function syncToLive() {
-            const btn = document.getElementById('sync-btn');
-            btn.textContent = '⟳ Syncing...';
-            btn.disabled = true;
-            try {
-                const res = await fetch('http://localhost:7338/deploy', { signal: AbortSignal.timeout(70000) });
-                const json = await res.json();
-                if (json.status === 'ok') {
-                    btn.textContent = '✅ Synced';
-                    btn.style.borderColor = 'var(--brass)';
-                    setTimeout(() => { btn.textContent = '⟳ Sync'; btn.style.borderColor = ''; btn.disabled = false; }, 4000);
-                } else {
-                    btn.textContent = '❌ Failed';
-                    btn.disabled = false;
-                    console.error('[Sync]', json);
-                }
-            } catch (e) {
-                btn.textContent = '❌ Server offline';
-                btn.disabled = false;
-                console.error('[Sync] Deploy server not running:', e.message);
-            }
         }
 
         // ═══════════════════════════════════════════════════════════════════════════

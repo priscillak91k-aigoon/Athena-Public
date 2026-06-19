@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Life Hub | Daily Routine Optimizer</title>
-                <link rel="stylesheet" href="styles.css?v=4">
+                <link rel="stylesheet" href="styles.css?v=1.0.0">
 </head>
 
 <body>
     <div class="background-effects">
-        <div class="blur-blob blob-1"></div>
-        <div class="blur-blob blob-2"></div>
+        
+        
     </div>
 
     <!-- UI ERROR LOGGER (Injected first) -->
@@ -299,7 +299,7 @@
                             style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#a855f7;margin-right:4px;"></span><strong>Purple</strong>
                         One-off</span>
                 </div>
-                <div id="schedule-week-grid" style="overflow-x:auto;"></div>
+                
             </section>
 
 
@@ -334,7 +334,7 @@
                             <div style="display: flex; align-items: center; justify-content: space-between;">
                                 <label style="font-weight: bold; color: var(--text-secondary);">Public Holiday (1.5x
                                     pay):</label>
-                                <div class="checkbox" id="input-holiday" style="margin-top: 0;"></div>
+                                
                             </div>
                         </div>
 
@@ -396,9 +396,7 @@
                             <div style="font-size: 0.7rem; color: var(--text-secondary);">take-home / year</div>
                         </div>
                     </div>
-                    <div id="finance-yearly-diff"
-                        style="text-align: center; margin-top: 0.75rem; font-size: 0.85rem; color: var(--text-secondary);">
-                    </div>
+                    
                 </div>
 
                 <!-- Budget Builder -->
@@ -528,7 +526,7 @@
                         <!-- Mini Month Calendar -->
                         <div class="planner-sidebar-card">
                             <h4>📅 Calendar</h4>
-                            <div id="planner-mini-cal"></div>
+                            
                         </div>
 
                         <!-- Tasks -->
@@ -551,13 +549,13 @@
                     <div class="planner-main">
                         <!-- Section: Weekly Template + Recurring Tasks -->
                         <div id="planner-template-section">
-                            <div id="planner-template-grid"></div>
-                            <div id="planner-recurring-manager" style="margin-top:2rem;"></div>
+                            
+                            
                         </div>
 
                         <!-- Section: Yearly Wall -->
                         <div id="planner-yearly-section" style="display:none;">
-                            <div id="planner-yearly-grid"></div>
+                            
                         </div>
                     </div>
 
@@ -588,8 +586,7 @@
                         </div>
                         <div>
                             <label style="font-size:0.8rem; color:var(--text-secondary);">Colour</label>
-                            <div id="block-colour-picker"
-                                style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:4px;"></div>
+                            
                         </div>
                     </div>
                     <div style="display:flex; gap:0.5rem; margin-top:1.25rem; justify-content:flex-end;">
@@ -630,8 +627,7 @@
                         </div>
                         <div>
                             <label style="font-size:0.8rem; color:var(--text-secondary);">Colour</label>
-                            <div id="event-colour-picker"
-                                style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:4px;"></div>
+                            
                         </div>
                         <div style="display:flex; gap:1rem; align-items:center;">
                             <label style="font-size:0.9rem; color:var(--text-secondary);">Repeat annually?</label>
@@ -1037,9 +1033,7 @@
                                     <input type="text" id="food-search-input"
                                         placeholder="Search food (e.g., Chicken Breast)..." autocomplete="off"
                                         style="width: 100%; padding: 0.75rem; background: var(--bg-surface); border: 2px inset var(--win-shadow); color: var(--text-primary); font-family: ui-monospace, monospace; font-size: 1rem;">
-                                    <div id="food-autocomplete-results"
-                                        style="position: absolute; top: 100%; left: 0; width: 100%; max-height: 250px; overflow-y: auto; background: #1e293b; border: 1px solid var(--glass-border); border-top: none; z-index: 10; display: none; margin-top: 2px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); font-family: 'Segoe UI', Arial, sans-serif; font-size: 0.95rem; color: #f1f5f9;">
-                                    </div>
+                                    
                                 </div>
 
                                 <!-- Portion Picker (hidden by default, shown when food is selected) -->
@@ -1113,9 +1107,7 @@
                                         <li style="color: var(--text-secondary); font-style: italic;">Search and add
                                             foods above, they'll appear here</li>
                                     </ul>
-                                    <div id="recipe-totals"
-                                        style="font-size: 0.8rem; color: var(--accent-blue); margin-bottom: 0.5rem;">
-                                    </div>
+                                    
                                     <button id="save-recipe-btn"
                                         style="width: 100%; padding: 0.4rem; background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.4); color: var(--accent-green); font-family: ui-monospace, monospace; cursor: pointer; border-radius: 4px;">
                                         Save Recipe
@@ -1522,9 +1514,7 @@
                     </div>
 
                     <!-- Day Grid — rendered by _misc.js -->
-                    <div id="ideal-week-grid"
-                        style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:1rem;">
-                    </div>
+                    
 
                     <!-- Cannabis Protocol Summary -->
                     <div style="margin-top: 2rem;">
@@ -1614,13 +1604,13 @@
         </main>
     </div>
 
-    <script src="vendor/marked.min.js"></script>
-    <script src="vendor/chart.js"></script>
-    <script src="retro-audio.js"></script>
-    <script src="symphony-app.js?v=5"></script>
-    <script src="_planner_v2.js?v=1"></script>
-    <script src="_planner_sidebar.js?v=1"></script>
-    <script src="_misc.js?v=1"></script>
+    <script src="vendor/marked.min.js?v=1.0.0"></script>
+    <script src="vendor/chart.js?v=1.0.0"></script>
+    <script src="retro-audio.js?v=1.0.0"></script>
+    <script src="symphony-app.js?v=1.0.0"></script>
+    <script src="_planner_v2.js?v=1.0.0"></script>
+    <script src="_planner_sidebar.js?v=1.0.0"></script>
+    <script src="_misc.js?v=1.0.0"></script>
 
     <!-- Standalone Quinny handlers (runs independently of main script) -->
     <script>
@@ -1761,7 +1751,7 @@
                         var paths = ['../health/DNA_God_Mode_Report.md'];
                         function tryFetch(idx) {
                             if (idx >= paths.length) {
-                                dnaContent.innerHTML = '<div style="color:var(--accent-red);padding:2rem;text-align:center;">Could not load DNA report. Please view on the <a href="https://priscillak91k-aigoon.github.io/Athena-Public/routine-app/" style="color:var(--accent-blue);">live site</a>.</div>';
+                                dnaContent.innerHTML = '<div style="color:var(--accent-red);padding:2rem;text-align:center;">Could not load DNA report. Please view on the .</div>';
                                 return;
                             }
                             fetch(paths[idx]).then(function (r) {
@@ -2269,18 +2259,14 @@
                             <div style="font-size: 0.9rem; color: #ef4444; font-weight: bold; margin-bottom: 0.3rem; padding-left: 4px;">
                                 📅 Timeline
                             </div>
-                            <div id="tpl-timeline" style="flex: 1; overflow-y: auto; padding-right: 4px;"></div>
+                            
                         </div>
                         <!-- Parking Column -->
                         <div style="flex: 1; display: flex; flex-direction: column; min-width: 180px;">
                             <div style="font-size: 0.9rem; color: #fbbf24; font-weight: bold; margin-bottom: 0.3rem; padding-left: 4px;">
                                 🅿️ Parking <span id="tpl-park-count" style="color: #64748b; font-weight: normal;"></span>
                             </div>
-                            <div id="tpl-parking" style="
-                                flex: 1; overflow-y: auto; padding: 0.4rem;
-                                background: rgba(251,191,36,0.03); border: 2px dashed rgba(251,191,36,0.2);
-                                border-radius: 4px; min-height: 100px;
-                            "></div>
+                            
                         </div>
                     </div>
 
