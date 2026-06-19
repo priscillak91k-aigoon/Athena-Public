@@ -34,7 +34,11 @@ services:
     build: ../../routine-app
     container_name: lifehub
     restart: unless-stopped
+    environment:
+      - PORT=8086
+      - API_TOKEN=local_tailnet_token
     volumes:
       - ../../routine-app/server/data:/app/server/data
+      - ../../routine-app/public:/app/public
     ports:
       - "127.0.0.1:8086:8086"
