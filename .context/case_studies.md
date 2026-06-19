@@ -75,3 +75,10 @@ Mapped chronic cannabis use as a 'lock and key' mechanism. FAAH mutation (fast a
 ### The Seerr/Jellyfin API Block Bypass
 - **Context**: During initial setup, Seerr attempts to sync libraries from Jellyfin. If Jellyfin is simultaneously ingesting terabytes of data (e.g. from an 11TB QNAP array), its internal SQLite database gets locked under heavy load. The Seerr UI throws a 'Something went wrong' timeout and blocks setup progression.
 - **Solution**: Bypassed the frontend token auth entirely. Generated a hardcoded Admin API key directly inside Jellyfin's Dashboard. Injected the key into Seerr's 'API Key' field in settings. This forcefully bridged the connection and bypassed the frontend timeout.
+
+
+## [2026-06-19] The Stranded Local Data Bug
+**Problem**: After refactoring to use a local API wrapper (`apiFetch`), the wrapper was undefined. The `try/catch` logic swallowed the `ReferenceError` and fell back to `localStorage`. The UI appeared fine, but the SQLite backend was disconnected.
+**Solution**: Mathematically injected the `apiFetch` definition, purged a duplicate `const API_BASE` syntax error, and bumped the cache-buster.
+**Key Takeaway**: "The Anti-Spaghetti Protocol". Never let a fallback block hide a catastrophic systemic failure. Always log `e.name` and `e.message`.
+

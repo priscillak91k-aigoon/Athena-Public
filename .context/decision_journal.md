@@ -113,3 +113,10 @@ Engineered Sarah's biological architecture. Deconstructed her MTHFR, GSTP1, GAD1
 **Reasoning:** A machine experiencing total hardware failure cannot run the script to ping an error. Silence must trigger the alarm.
 **Decision:** Mandated explicit verification in a fresh terminal *before* removing compromised Restic master keys.
 **Reasoning:** The `restic key remove` operation is destructive. If the new key is not correctly saved and verified first, the archive becomes permanently inaccessible.
+
+
+## [2026-06-19] Sovereign LifeHub Air-Gap Lockdown
+**Context**: LifeHub contained residual cloud-era logic (Supabase sync, Open Food Facts API).
+**Decision**: Purged all external API calls and GitHub pages fallbacks. Replaced with `apiFetch` wrapper pointing strictly to the local SQLite backend.
+**Reasoning**: To maintain a zero-trust, 100% sovereign system, LifeHub must operate securely over Tailscale without any reliance on the public web.
+

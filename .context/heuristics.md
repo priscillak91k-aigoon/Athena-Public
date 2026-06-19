@@ -307,3 +307,10 @@ w,uid=1000,gid=1000,dmask=000,fmask=111 to prevent permission lockout for rootle
 - **Master Key Security:** Hardcoded encryption keys in synced backup scripts completely negate encryption-at-rest. Use `.env` variables. If a key is leaked via a synced plain-text file, it is compromised and must be explicitly rotated using `restic key add` then `restic key remove`.
 - **Restic Key Rotation Sequencing:** Never run `restic key remove` until you have opened a completely fresh terminal and explicitly verified that `restic snapshots` works with the new key. Removing an old key before verifying the new one will permanently brick the archive.
 - **Llama.cpp Benchmark Glob Expansion:** When running `llama-bench` on a massively split model (`.gguf` parts 01, 02, 03), never use `*.gguf` as the target file argument. Bash will feed all split files to the `-m` flag simultaneously and crash the benchmark. Always point `llama-bench` exclusively at the `00001` file.
+
+
+## [2026-06-19] The Silent Catch Trap & Cache-Buster Veto
+1. **Never swallow `ReferenceError`**: A `catch (e) { ... }` block that defaults to `localStorage` must differentiate between network failure and code failure. If it catches a code bug (like an undefined function), it must fail loudly.
+2. **Patch Positioning Trap**: When applying a patch, never paste the 'context' lines, or you will create a duplicate `const` syntax error.
+3. **Cache-Buster Veto**: Never declare a frontend fix complete without bumping the `?v=` query parameter in `index.html`. If the browser holds onto the old JS, the fix doesn't exist.
+
