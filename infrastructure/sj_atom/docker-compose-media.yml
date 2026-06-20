@@ -33,8 +33,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Pacific/Auckland
-      - NVIDIA_VISIBLE_DEVICES=all
-      - NVIDIA_DRIVER_CAPABILITIES=all
     ports:
       - "8096:8096"
     volumes:
@@ -43,13 +41,6 @@ services:
       - /mnt/qnap/Movies:/data/qnap-movies:ro
       - /mnt/qnap/TV Series:/data/qnap-tv:ro
       - /dev/shm:/transcode
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
     restart: unless-stopped
 
   # ===========================================================================

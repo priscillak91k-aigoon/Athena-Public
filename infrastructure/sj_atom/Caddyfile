@@ -4,11 +4,11 @@
     # This completely stops Let's Encrypt from crashing when MagicDNS fails
     local_certs
     debug
-    default_sni 100.73.93.94
+    default_sni 100.103.179.49
 }
 
 # Strict IP route for HTTPS only
-https://100.73.93.94 {
+https://100.103.179.49 {
     tls internal
     reverse_proxy vaultwarden:80
 }
@@ -19,51 +19,51 @@ vault.atom.tailnet {
 }
 
 memos.atom.tailnet {
-    reverse_proxy 100.73.93.94:5230
+    reverse_proxy 100.103.179.49:5230
 }
 
 dna.atom.tailnet {
-    reverse_proxy 100.73.93.94:8888
+    reverse_proxy 100.103.179.49:8888
 }
 
 wiki.atom.tailnet {
-    reverse_proxy 100.73.93.94:8081
+    reverse_proxy 100.103.179.49:8081
 }
 
 audio.atom.tailnet {
-    reverse_proxy 100.73.93.94:13378
+    reverse_proxy 100.103.179.49:13378
 }
 
 ai.atom.tailnet {
-    reverse_proxy 100.73.93.94:3000
+    reverse_proxy 100.103.179.49:3000
 }
 
 agent.atom.tailnet {
-    reverse_proxy 100.73.93.94:5678
+    reverse_proxy 100.103.179.49:5678
 }
 
 search.atom.tailnet {
-    reverse_proxy 100.73.93.94:8082
+    reverse_proxy 100.103.179.49:8082
 }
 
 sync.atom.tailnet {
-    reverse_proxy 100.73.93.94:8384
+    reverse_proxy 100.103.179.49:8384
 }
 
 tts.atom.tailnet {
-    reverse_proxy 100.73.93.94:7860
+    reverse_proxy 100.103.179.49:7860
 }
 
 seerr.atom.tailnet {
-    reverse_proxy 100.73.93.94:5055
+    reverse_proxy 100.103.179.49:5055
 }
 
 media.atom.tailnet {
-    reverse_proxy 100.73.93.94:8096
+    reverse_proxy 100.103.179.49:8096
 }
 
 hub.atom.tailnet {
-    basicauth {
+    basic_auth {
         priscilla $2b$10$FPZp2/7tzzuqAhK9e.MKHu/GnUL5w9GW3OsW3TzHrLt6NFKZOwfsu
     }
     reverse_proxy lifehub:8086
@@ -74,17 +74,17 @@ dash.atom.tailnet {
 }
 
 sonarr.atom.tailnet {
-    reverse_proxy 100.73.93.94:8989
+    reverse_proxy 100.103.179.49:8989
 }
 
 radarr.atom.tailnet {
-    reverse_proxy 100.73.93.94:7878
+    reverse_proxy 100.103.179.49:7878
 }
 
 qbit.atom.tailnet {
-    reverse_proxy 100.73.93.94:8088
+    reverse_proxy 100.103.179.49:8088
 }
 
 prowlarr.atom.tailnet {
-    reverse_proxy 100.73.93.94:9696
+    reverse_proxy 100.103.179.49:9696
 }

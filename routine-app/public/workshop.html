@@ -1022,7 +1022,7 @@
             const res = await fetch(`${API_BASE}${endpoint}`, {
                 method,
                 headers: {
-                    'Authorization': `Bearer ${API_TOKEN}`,
+                    'X-API-Token': `${API_TOKEN}`,
                     ...(body ? { 'Content-Type': 'application/json' } : {})
                 },
                 ...(body ? { body: JSON.stringify(body) } : {})

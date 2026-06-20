@@ -120,3 +120,10 @@ Engineered Sarah's biological architecture. Deconstructed her MTHFR, GSTP1, GAD1
 **Decision**: Purged all external API calls and GitHub pages fallbacks. Replaced with `apiFetch` wrapper pointing strictly to the local SQLite backend.
 **Reasoning**: To maintain a zero-trust, 100% sovereign system, LifeHub must operate securely over Tailscale without any reliance on the public web.
 
+
+### Session 100 (2026-06-20)
+**Decision:** Ripped NVIDIA GPU hooks (`NVIDIA_VISIBLE_DEVICES` and `deploy: gpu`) out of Jellyfin.
+**Reasoning:** The Atom's GB10 ARM64 architecture triggers fatal AppArmor locks when Docker containers attempt to use the NVIDIA Container Toolkit. Switching transcoding to the 20-core CPU brute-forces playback without hitting the kernel wall.
+
+**Decision:** Vetoed using Claude to fix the Atom Hub button.
+**Reasoning:** The HTML was structurally perfect (`<a href="https://dash.atom.tailnet">`); the underlying problem was a changed Tailscale IP breaking the `Caddyfile` and `hosts` file. Code editing cannot fix network routing.

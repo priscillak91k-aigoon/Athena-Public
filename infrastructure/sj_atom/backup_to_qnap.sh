@@ -35,6 +35,7 @@ fi
 REPO_DEST="/mnt/qnap/atom_backups_restic"
 
 INFRA_DIR="/home/sj/Athena-Public/infrastructure/sj_atom/data"
+DB_DIR="/home/sj/Athena-Public/routine-app/server/data"
 CONTEXT_DIR="/home/sj/context"
 
 echo "[$(date)] Starting Phase 5 Restic Backup..."
@@ -49,6 +50,13 @@ fi
 # 2. Perform live, zero-downtime backup
 echo "[$(date)] Backing up infrastructure data ($INFRA_DIR)..."
 restic -r "$REPO_DEST" backup "$INFRA_DIR"
+
+if [ -d "$DB_DIR" ]; then
+    echo "[$(date)] Backing up SQLite database ($DB_DIR)..."
+    restic -r "$REPO_DEST" backup "$DB_DIR"
+else
+    echo "[WARNING] $DB_DIR not found. Skipping database backup."
+fi
 
 if [ -d "$CONTEXT_DIR" ]; then
     echo "[$(date)] Backing up cognitive air-gap ($CONTEXT_DIR)..."

@@ -82,3 +82,9 @@ Mapped chronic cannabis use as a 'lock and key' mechanism. FAAH mutation (fast a
 **Solution**: Mathematically injected the `apiFetch` definition, purged a duplicate `const API_BASE` syntax error, and bumped the cache-buster.
 **Key Takeaway**: "The Anti-Spaghetti Protocol". Never let a fallback block hide a catastrophic systemic failure. Always log `e.name` and `e.message`.
 
+
+### CS-034: The False Transcoder Crash vs MKV Corruption (Session 100)
+**Problem**: Jellyfin failed to play specific media files (e.g. Chicken Run) on the Atom node, throwing immediate playback errors.
+**Diagnosis**: The initial assumption was an AppArmor GPU lock (which we fixed). However, the specific file continued to fail. Log analysis revealed `EBML header parsing failed` and `Invalid data found when processing input`.
+**Solution**: Identified the failure as physical file corruption (either a bad download or a CS-024 USB bridge read failure), not a transcoder pipeline crash. Built a `docker exec` one-liner to silently `ffprobe` all 11TB of media to flag corrupted headers.
+**Key Insight**: Always read the FFmpeg logs before assuming a codec or hardware acceleration crash. An EBML failure means the binary is physically scrambled.

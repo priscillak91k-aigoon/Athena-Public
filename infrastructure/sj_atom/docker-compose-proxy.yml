@@ -17,7 +17,8 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
-  # Standalone HTTP Server for the Drop Page (Bypasses UFW firewall via Docker bridge)
+  # Standalone static server for the Atom Hub drop page. Reachable ONLY via the
+  # Caddy proxy (dash.atom.tailnet) over the docker network — no host port exposure.
   drop_page:
     image: python:3-slim
     container_name: drop_page
@@ -26,8 +27,6 @@ services:
       - ./data/drop:/var/www/drop
     working_dir: /var/www/drop
     command: python -m http.server 8085
-    ports:
-      - "8085:8085"
 
   # LifeHub Sovereign Backend
   lifehub:

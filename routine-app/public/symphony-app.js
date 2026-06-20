@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function apiFetch(path, options = {}) {
     const opts = { ...options };
     opts.headers = {
-        "Authorization": `Bearer ${API_TOKEN}`,
+        "X-API-Token": `${API_TOKEN}`,
         ...(opts.body ? { "Content-Type": "application/json" } : {}),
         ...(opts.headers || {})
     };
@@ -354,7 +354,7 @@ async function apiFetch(path, options = {}) {
             const response = await apiFetch(`/tasks`, {
                     method: "POST",
                     headers: {
-                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "X-API-Token": `${API_TOKEN}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify([newTask])
@@ -395,7 +395,7 @@ async function apiFetch(path, options = {}) {
                 const response = await apiFetch(`/tasks`, {
                     method: "POST",
                     headers: {
-                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "X-API-Token": `${API_TOKEN}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify([{ title, points: 2, priority_color: 'GREEN', time_target: timeTarget, is_active: true }])
@@ -432,7 +432,7 @@ async function apiFetch(path, options = {}) {
     // --- READONLY TODAY VIEW ---
     async function fetchReadonlyToday() {
         try {
-            const response = await apiFetch(`/tasks`, { headers: { "Authorization": `Bearer ${API_TOKEN}` } });
+            const response = await apiFetch(`/tasks`, { headers: { "X-API-Token": `${API_TOKEN}` } });
             if (response.ok) {
                 const allTasks = await response.json();
                 renderReadonlyToday(allTasks);
@@ -560,7 +560,7 @@ async function apiFetch(path, options = {}) {
             setupDragAndDropZones();
 
             // Fetch ALL active tasks for the universal Task Pool
-            const response = await apiFetch(`/tasks`, { headers: { "Authorization": `Bearer ${API_TOKEN}` } });
+            const response = await apiFetch(`/tasks`, { headers: { "X-API-Token": `${API_TOKEN}` } });
 
             if (response.ok) {
                 dynamicTasks = await response.json();
@@ -674,7 +674,7 @@ async function apiFetch(path, options = {}) {
                 await apiFetch(`/tasks/${taskId}`, {
                     method: "PATCH",
                     headers: {
-                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "X-API-Token": `${API_TOKEN}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ time_target: task.time_target })
@@ -788,7 +788,7 @@ async function apiFetch(path, options = {}) {
                     try {
                         const response = await apiFetch(`/tasks/${task.id}`, {
                             method: "DELETE",
-                            headers: { "Authorization": `Bearer ${API_TOKEN}` }
+                            headers: { "X-API-Token": `${API_TOKEN}` }
                         });
 
                         if (response.ok || response.status === 204) {
@@ -1002,7 +1002,7 @@ async function apiFetch(path, options = {}) {
                 return apiFetch(`/tasks/${update.id}`, {
                     method: 'PATCH',
                     headers: {
-                        'Authorization': `Bearer ${API_TOKEN}`,
+                        'X-API-Token': `${API_TOKEN}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ time_target: update.time_target })
@@ -1208,7 +1208,7 @@ async function apiFetch(path, options = {}) {
                 try {
                     const resp = await apiFetch(`/ideas?list_type=${listType}`, {
                         headers: {
-                            'Authorization': `Bearer ${API_TOKEN}`
+                            'X-API-Token': `${API_TOKEN}`
                         }
                     });
                     if (resp.ok) {
@@ -1263,7 +1263,7 @@ async function apiFetch(path, options = {}) {
                                 await apiFetch(`/ideas/${items[index].id}`, {
                                     method: 'PATCH',
                                     headers: {
-                                        'Authorization': `Bearer ${API_TOKEN}`,
+                                        'X-API-Token': `${API_TOKEN}`,
                                         'Content-Type': 'application/json'
                                     },
                                     body: JSON.stringify({ completed: items[index].completed })
@@ -1282,7 +1282,7 @@ async function apiFetch(path, options = {}) {
                                 await apiFetch(`/ideas/${removedItem.id}`, {
                                     method: 'DELETE',
                                     headers: {
-                                        'Authorization': `Bearer ${API_TOKEN}`
+                                        'X-API-Token': `${API_TOKEN}`
                                     }
                                 });
                             } catch (e) { console.warn('Failed to delete idea:', e); }
@@ -1315,7 +1315,7 @@ async function apiFetch(path, options = {}) {
                     const resp = await apiFetch(`/ideas`, {
                         method: 'POST',
                         headers: {
-                            'Authorization': `Bearer ${API_TOKEN}`,
+                            'X-API-Token': `${API_TOKEN}`,
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify(newItem)
@@ -1848,7 +1848,7 @@ async function apiFetch(path, options = {}) {
             // First check if an entry exists for this date
             const getResp = await apiFetch(`/food_log?date=${dateStr}`, {
                 headers: {
-                    'Authorization': `Bearer ${API_TOKEN}`
+                    'X-API-Token': `${API_TOKEN}`
                 }
             });
             const existing = await getResp.json();
@@ -1859,7 +1859,7 @@ async function apiFetch(path, options = {}) {
                 const resp = await apiFetch(`/food_log/${id}`, {
                     method: 'PATCH',
                     headers: {
-                        'Authorization': `Bearer ${API_TOKEN}`,
+                        'X-API-Token': `${API_TOKEN}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ items, totals, grade, grade_score: score })
@@ -1870,7 +1870,7 @@ async function apiFetch(path, options = {}) {
                 const resp = await apiFetch(`/food_log`, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${API_TOKEN}`,
+                        'X-API-Token': `${API_TOKEN}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ date: dateStr, items, totals, grade, grade_score: score })
@@ -1891,7 +1891,7 @@ async function apiFetch(path, options = {}) {
 
             const resp = await apiFetch(`/food_log?date_gte=${dateStr}`, {
                 headers: {
-                    'Authorization': `Bearer ${API_TOKEN}`
+                    'X-API-Token': `${API_TOKEN}`
                 }
             });
             if (resp.ok) {
@@ -1912,7 +1912,7 @@ async function apiFetch(path, options = {}) {
             const resp = await apiFetch(`/food_recipes`, {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${API_TOKEN}`,
+                    'X-API-Token': `${API_TOKEN}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(recipe)
@@ -2749,7 +2749,7 @@ async function apiFetch(path, options = {}) {
             try {
                 const response = await apiFetch(`/procurement`, {
                     headers: {
-                        'Authorization': `Bearer ${API_TOKEN}`,
+                        'X-API-Token': `${API_TOKEN}`,
                         'Content-Type': 'application/json'
                     }
                 });
@@ -2829,7 +2829,7 @@ async function apiFetch(path, options = {}) {
                         await apiFetch(`/procurement/${id}`, {
                             method: 'DELETE',
                             headers: {
-                                'Authorization': `Bearer ${API_TOKEN}`
+                                'X-API-Token': `${API_TOKEN}`
                             }
                         });
                     } catch (e) { console.warn('Failed to delete procurement item:', e); }
@@ -2875,7 +2875,7 @@ async function apiFetch(path, options = {}) {
                     const resp = await apiFetch(`/procurement`, {
                         method: 'POST',
                         headers: {
-                            'Authorization': `Bearer ${API_TOKEN}`,
+                            'X-API-Token': `${API_TOKEN}`,
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify(newItem)
@@ -2918,7 +2918,7 @@ async function apiFetch(path, options = {}) {
             await apiFetch(`/tasks/${taskId}`, {
                     method: "PATCH",
                     headers: {
-                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "X-API-Token": `${API_TOKEN}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ priority_color: newColor })
@@ -2954,7 +2954,7 @@ async function apiFetch(path, options = {}) {
             try {
                 const resp = await apiFetch(`/supp_inventory`, {
                     headers: {
-                        "Authorization": `Bearer ${API_TOKEN}`
+                        "X-API-Token": `${API_TOKEN}`
                     }
                 });
                 if (resp.ok) {
@@ -3010,7 +3010,7 @@ async function apiFetch(path, options = {}) {
                 await apiFetch(`/supp_inventory`, {
                     method: 'POST',
                     headers: {
-                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "X-API-Token": `${API_TOKEN}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify(newSupp)
@@ -3036,7 +3036,7 @@ async function apiFetch(path, options = {}) {
                 await apiFetch(`/supp_inventory/${id}`, {
                     method: 'PATCH',
                     headers: {
-                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "X-API-Token": `${API_TOKEN}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
@@ -3183,13 +3183,13 @@ async function apiFetch(path, options = {}) {
         async function fetchItems() {
             try {
                 const resp = await apiFetch(`/logistics?status=open`, {
-                    headers: { "Authorization": `Bearer ${API_TOKEN}` }
+                    headers: { "X-API-Token": `${API_TOKEN}` }
                 });
                 if (resp.ok) {
                     const data = await resp.json();
                     // Fetch subtasks for all items
                     const stResp = await apiFetch(`/logistics_subtasks`, {
-                        headers: { "Authorization": `Bearer ${API_TOKEN}` }
+                        headers: { "X-API-Token": `${API_TOKEN}` }
                     });
                     const subtasks = stResp.ok ? await stResp.json() : [];
                     const mergedItems = data.map(item => ({
@@ -3212,7 +3212,7 @@ async function apiFetch(path, options = {}) {
                     // Also fetch solved items for the log
                     try {
                         const solvedResp = await apiFetch(`/logistics?status=done`, {
-                            headers: { "Authorization": `Bearer ${API_TOKEN}` }
+                            headers: { "X-API-Token": `${API_TOKEN}` }
                         });
                         if (solvedResp.ok) {
                             const solvedData = await solvedResp.json();
@@ -3262,7 +3262,7 @@ async function apiFetch(path, options = {}) {
                 await apiFetch(`/logistics`, {
                     method: "POST",
                     headers: {
-                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "X-API-Token": `${API_TOKEN}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ id: newItem.id, title: newItem.title, status: 'open' })
@@ -3284,7 +3284,7 @@ async function apiFetch(path, options = {}) {
                 await apiFetch(`/logistics_subtasks`, {
                     method: "POST",
                     headers: {
-                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "X-API-Token": `${API_TOKEN}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify(st)
@@ -3307,7 +3307,7 @@ async function apiFetch(path, options = {}) {
                 await apiFetch(`/logistics_subtasks/${subtaskId}`, {
                     method: "PATCH",
                     headers: {
-                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "X-API-Token": `${API_TOKEN}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ completed: st.completed })
@@ -3332,7 +3332,7 @@ async function apiFetch(path, options = {}) {
                 await apiFetch(`/logistics/${itemId}`, {
                     method: "PATCH",
                     headers: {
-                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "X-API-Token": `${API_TOKEN}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ status: 'done', updated_at: new Date().toISOString() })
@@ -3357,7 +3357,7 @@ async function apiFetch(path, options = {}) {
                 await apiFetch(`/logistics/${itemId}`, {
                     method: "PATCH",
                     headers: {
-                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "X-API-Token": `${API_TOKEN}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ status: 'open', updated_at: new Date().toISOString() })
@@ -3409,7 +3409,7 @@ async function apiFetch(path, options = {}) {
                 await apiFetch(`/logistics_subtasks/${subtaskId}`, {
                     method: 'DELETE',
                     headers: {
-                        "Authorization": `Bearer ${API_TOKEN}`
+                        "X-API-Token": `${API_TOKEN}`
                     }
                 });
             } catch (e) { console.warn('Failed to delete subtask:', e); }
@@ -3867,7 +3867,7 @@ async function apiFetch(path, options = {}) {
         async function fetchEvents() {
             try {
                 const resp = await apiFetch(`/events`, {
-                    headers: { "Authorization": `Bearer ${API_TOKEN}` }
+                    headers: { "X-API-Token": `${API_TOKEN}` }
                 });
                 if (resp.ok) {
                     calEvents = await resp.json();
@@ -4033,7 +4033,7 @@ async function apiFetch(path, options = {}) {
                     try {
                         await apiFetch(`/events/${id}`, {
                             method: "DELETE",
-                            headers: { "Authorization": `Bearer ${API_TOKEN}` }
+                            headers: { "X-API-Token": `${API_TOKEN}` }
                         });
                     } catch (e) { console.warn('Failed to delete event from Backend:', e); }
                 });
@@ -4128,7 +4128,7 @@ async function apiFetch(path, options = {}) {
                     await apiFetch(`/events`, {
                         method: "POST",
                         headers: {
-                            "Authorization": `Bearer ${API_TOKEN}`,
+                            "X-API-Token": `${API_TOKEN}`,
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({
@@ -4192,7 +4192,7 @@ async function apiFetch(path, options = {}) {
             try {
                 const resp = await apiFetch(`/expenses`, {
                     headers: {
-                        'Authorization': `Bearer ${API_TOKEN}`
+                        'X-API-Token': `${API_TOKEN}`
                     }
                 });
                 if (resp.ok) {
@@ -4214,7 +4214,7 @@ async function apiFetch(path, options = {}) {
                                     await apiFetch(`/expenses`, {
                                         method: 'POST',
                                         headers: {
-                                            'Authorization': `Bearer ${API_TOKEN}`,
+                                            'X-API-Token': `${API_TOKEN}`,
                                             'Content-Type': 'application/json'
                                         },
                                         body: JSON.stringify({ name: item.name, amount: item.amount, frequency: item.frequency, category: item.category })
@@ -4287,7 +4287,7 @@ async function apiFetch(path, options = {}) {
                         await apiFetch(`/expenses/${id}`, {
                             method: 'DELETE',
                             headers: {
-                                'Authorization': `Bearer ${API_TOKEN}`
+                                'X-API-Token': `${API_TOKEN}`
                             }
                         });
                     } catch (e) { console.warn('Failed to delete expense from Backend:', e); }
@@ -4419,7 +4419,7 @@ async function apiFetch(path, options = {}) {
                 const resp = await apiFetch(`/expenses`, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${API_TOKEN}`,
+                        'X-API-Token': `${API_TOKEN}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(newExpense)
@@ -5319,7 +5319,7 @@ function escapeHTML(str) {
 
         let tasks = [];
         try {
-            const resp = await apiFetch(`/tasks`, { headers: { "Authorization": `Bearer ${API_TOKEN}` } });
+            const resp = await apiFetch(`/tasks`, { headers: { "X-API-Token": `${API_TOKEN}` } });
             if (resp.ok) tasks = await resp.json();
         } catch (e) { console.warn('Task pool fetch failed', e); return; }
 

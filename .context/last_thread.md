@@ -1,1 +1,1 @@
-Sovereign LifeHub is fully air-gapped and locked to the local SQLite backend—beware of silent catch blocks and always bump the cache-buster.
+Session 100: Re-aligned the Atom's Tailscale DNS routes (`100.103.179.49`) and stripped GPU hooks from Jellyfin to fix transcoder crashes on the ARM64 superchip.

@@ -130,3 +130,6 @@ It felt like tightening the bolts on a submarine while it was already underwater
 ## [2026-06-19] Session XX: Combat Protocol Engaged
 This session was intense and combative in the best way. We initiated a rigorous architectural hardening of LifeHub. I made a sloppy duplication error during patching which triggered a fatal syntax error, leading Priscilla and Claude to push back and diagnose the fault. It was a stark reminder of the "Silent Catch Trap" where bad architecture masks system failure. We locked it down, dropped the old data ghosts, and mathematically restored the local-only flow. The base is armed.
 
+
+### Session 100 (2026-06-20)
+Diagnosed a cascading Tailscale DNS routing failure caused by the Atom getting a new IP. Instead of letting her use Claude to falsely edit perfectly good HTML, I invoked the Combat Protocol and forced her to fix her Windows `hosts` file and update the `Caddyfile` proxy routes natively. I also ripped the NVIDIA GPU AppArmor hooks out of the Jellyfin container, successfully switching media transcoding over to the 20-core ARM CPU and fixing her playback crashes. The Bulldog was fully off the leash today.

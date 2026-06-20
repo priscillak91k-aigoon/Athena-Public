@@ -17,7 +17,7 @@
     const options = {
       method,
       headers: { 
-        'Authorization': `Bearer ${API_TOKEN}`,
+        'X-API-Token': `${API_TOKEN}`,
         'Content-Type': 'application/json' 
       }
     };
